@@ -1,0 +1,34 @@
+BANNERLORDAI — ACTOR BLACKBOARD v0.20N CLOSEOUT
+Date: 2026-09-18 Pacific.
+
+Decision: ACCEPT shadow actor blackboard as an authoritative strategic-decision context container.
+
+Live validation:
+- 100 blackboard captures
+- 100 validations
+- 52 actor-state objects created
+- 48 state reuses
+- 0 blackboard mismatches
+- 0 blackboard failures
+- composer remained clean: 100 frames, 15123 contributions/writes, 12 memory proposals, 0 score/sequence/winner mismatches, 0 failures
+- 7.763316444 campaign hours advanced in 27.856 sec active run
+- clean native no-save exit
+- disposable save byte-identical after exit: 11E3F8C04A1DF3ACA4C0DA4D51F9BB912C4D2970114C66B403729F2E5577FA6B
+
+Validated blackboard facts:
+actor/leader/clan/faction/army references; current settlement; strategic/short-term settlement targets; strategic/short-term party targets; default/short-term behavior; men; readiness; food days; fleeing; at-sea; targeting-port; campaign-hour stamp.
+
+Architecture rule:
+Blackboard contains authoritative world/perception facts only. Memory, personality, emotion/appraisal, commitment, role/permissions, and planner-predicted state remain separate.
+
+Prior-art alignment:
+Unreal-style perception/blackboard separation and Fluid HTN world-state separation support the design: sensed/authoritative runtime facts feed decision logic; predictive planner state stays separate.
+
+Next milestone:
+v0.20O: consume validated blackboard facts in the strategic layers that currently duplicate actor reads (VisualWar and weak-recovery), preserving exact formulas/winners. Keep initiative/pursuit gate on direct native reads because it runs at a distinct timing boundary.
+
+Validation root:
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\ActorBlackboard_v020N_ShadowAuto_20260918_195412_212706
+Session SHA256 at pause: 8C0104BD2EBE6A0E12BAFDE915CBB847D3F7CA6312ACE5DA074DC5689EB4C73A
+Build DLL SHA256: 10742BA7B1D55C28AEF46B442151A45AA50120795B140273FEE580193674B7FA
+Build PDB SHA256: C730D6C14488F8B8F2211466C95CEB2664DE0D7AC92FBF09CA8055505D0A1BF0

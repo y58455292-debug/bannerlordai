@@ -1,0 +1,82 @@
+{
+    "note":  "Every subscriber below runs inside that one tick. For the per-party and per-settlement events, multiply by the party or settlement count - that is where a heavy modlist turns cheap handlers into a stall.",
+    "caveat":  "This says WHO runs, not how long each takes. A mod with many subscribers is a suspect, not a verdict.",
+    "events":  [
+                   {
+                       "campaignEvent":  "HourlyTickPartyEvent",
+                       "subscriberCount":  15,
+                       "byMod":  [
+                                     {
+                                         "mod":  "TaleWorlds.CampaignSystem",
+                                         "subscribers":  11
+                                     },
+                                     {
+                                         "mod":  "NavalDLC",
+                                         "subscribers":  4
+                                     }
+                                 ],
+                       "subscribers":  [
+                                           {
+                                               "mod":  "NavalDLC",
+                                               "handler":  "NavalDLC.CampaignBehaviors.FishingPartyCampaignBehavior.OnHourlyTickParty"
+                                           },
+                                           {
+                                               "mod":  "NavalDLC",
+                                               "handler":  "NavalDLC.CampaignBehaviors.NavalKingdomPolicyCampaignBehaviour.OnHourlyTickParty"
+                                           },
+                                           {
+                                               "mod":  "NavalDLC",
+                                               "handler":  "NavalDLC.CampaignBehaviors.NavalFishingCampaignBehaviour.OnHourlyTickParty"
+                                           },
+                                           {
+                                               "mod":  "NavalDLC",
+                                               "handler":  "NavalDLC.CampaignBehaviors.SeaDamageCampaignBehavior.HourlyTickParty"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PatrolPartiesCampaignBehavior.HourlyTickParty"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.DiscardItemsCampaignBehavior.OnHourlyTickParty"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.DisbandPartyCampaignBehavior.HourlyTickParty"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.MobilePartyTrainingBehavior.HourlyTickParty"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.VillagerCampaignBehavior.HourlyTickParty"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.RecruitmentCampaignBehavior.HourlyTickParty"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.MapTracksCampaignBehavior.OnHourlyTickParty"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PrisonerReleaseCampaignBehavior.HourlyPartyTick"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PartiesBuyFoodCampaignBehavior.HourlyTickParty"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CaravansCampaignBehavior.HourlyTickParty"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.DesertersCampaignBehavior.HourlyTickParty"
+                                           }
+                                       ]
+                   }
+               ]
+}

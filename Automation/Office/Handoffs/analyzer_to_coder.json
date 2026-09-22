@@ -1,0 +1,28 @@
+{
+  "schema": "BannerlordAI.StructuredHandoff.v1",
+  "from_role": "analyzer",
+  "to_role": "coder",
+  "intent": "Apply the bounded validator-only repair for the v0.2.10.18 preflight harness false negative.",
+  "current_state": "HARNESS_FALSE_NEGATIVE. The compiled feature source contains appendOnly=true and overwritePrior=false, but the static validator matcher searched the wrong escaped text representation. No game launch/deployment/save mutation occurred.",
+  "constraints": [
+    "Do not modify v0.2.10.18 feature source or binary.",
+    "Patch only the validator static matcher.",
+    "Verify runner candidate SHA-256 remains 280183253D43D0E3F95E0EB8687DDB609C5322810C3920AD7B759A30AC2D3CF9.",
+    "Re-run the same registered action with one bounded repaired attempt.",
+    "Keep all original persistence/restart/protected-save/rollback gates."
+  ],
+  "evidence_pointers": [
+    "D:\\BannerlordAIResearch\\Longitudinal\\DerivedReports\\2026-09-20_v02118_PreflightHarness_AnalyzerReview.txt",
+    "D:\\BannerlordAIResearch\\Automation\\Autopilot\\logs\\20260920_145435_v02118_memory_update_eligibility.log",
+    "D:\\BannerlordAIResearch\\workspace\\validate_v02118_memory_update_eligibility.py",
+    "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002118_MemoryUpdateEligibility_20260920_1450\\candidate\\SubModule.cs"
+  ],
+  "next_action": "Coder patches only the validator static append-only matcher, confirms unchanged feature hash, re-arms, and reruns v02118_memory_update_eligibility.",
+  "completion_receipt": {
+    "terminal_status": "PASS",
+    "result_pointer": "D:\\BannerlordAIResearch\\Longitudinal\\DerivedReports\\2026-09-20_v02118_PreflightHarness_AnalyzerReview.txt",
+    "handoff_pointer": "D:\\BannerlordAIResearch\\Automation\\Office\\Handoffs\\analyzer_to_coder.json",
+    "checkpoint_seq": 180,
+    "owner_released": true
+  }
+}

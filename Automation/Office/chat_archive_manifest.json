@@ -1,0 +1,83 @@
+{
+  "schema": "BannerlordAI.ChatArchiveManifest.v1",
+  "status": "COVERAGE_AUDIT",
+  "rule": "No chat is SAFE_TO_ARCHIVE until its unique useful content is represented in durable local evidence and/or Mem. UI deletion is user-controlled; this manifest only records readiness.",
+  "chats": [
+    {
+      "title": "BannerlordAI Analyzer Desk",
+      "status": "COVERED_PENDING_FINAL_OFFICE_INDEX",
+      "coverage": ["HandoffV3 current/events/snapshots", "LiveValidation", "Automation/Office", "Mem Breakthrough Ledger"]
+    },
+    {
+      "title": "BannerlordAI Progress Watch",
+      "status": "COVERED_PENDING_FINAL_OFFICE_INDEX",
+      "coverage": ["HandoffV3", "ARCHITECTURE_LEARNING.md", "Mem continuation/architecture notes"]
+    },
+    {
+      "title": "Resume Test Closeout",
+      "status": "COVERED",
+      "coverage": ["HandoffV3", "ARCHITECTURE_LEARNING.md", "Mem Breakthrough Ledger", "LiveValidation"]
+    },
+    {
+      "title": "Research AI Architecture",
+      "status": "COVERED",
+      "coverage": ["REFERENCE_REGISTRY", "ARCHITECTURE_LEARNING.md", "Mem Agent Memory Architecture v2", "Mem Breakthrough Ledger"]
+    },
+    {
+      "title": "Collect Data and Continue",
+      "status": "COVERED",
+      "coverage": ["DeepSeek File-Read + Compression Method", "Rolling Context Method", "HandoffV3"]
+    },
+    {
+      "title": "Continue From Memory File",
+      "status": "COVERED",
+      "coverage": ["Mem Bannerlord AI Research collection", "HandoffV3"]
+    },
+    {
+      "title": "File Analysis Options",
+      "status": "COVERED",
+      "coverage": ["ARCHITECTURE_LEARNING.md", "REFERENCE_REGISTRY", "comparative architecture durable handoff"]
+    },
+    {
+      "title": "Analytical Psychology For AI",
+      "status": "COVERED",
+      "coverage": ["Mem Analytical Psychology Source & Application Gate", "Library Bannerlord_AI_Analytical_Psychology_Handoff.txt"]
+    },
+    {
+      "title": "Remote Desktop Offline Notice",
+      "status": "LOW_VALUE_COVERED",
+      "coverage": ["current Remote Desktop device/runtime protocol and handoff tooling"]
+    },
+    {
+      "title": "Reconstructing Bannerlord AI",
+      "status": "COVERED",
+      "coverage": ["Codex/local archives", "HandoffV3", "ContextPyramid", "Mem recovered state/method notes"]
+    },
+    {
+      "title": "Calastides Campaign Chronicle",
+      "status": "COVERED",
+      "coverage": ["campaign-record.json", "Nethors-Law-1124.md", "chronicle archive", "dynasty native history", "user canon memory"]
+    },
+    {
+      "title": "Bannerlord Economy Data",
+      "status": "COVERED",
+      "coverage": ["world census provenance", "economics/trade-route research archives", "Handoff architecture learning"]
+    },
+    {
+      "title": "Current Front Office / Department Architecture",
+      "status": "COVERED_PENDING_FINAL_OFFICE_INDEX",
+      "coverage": ["Automation/Office", "Mature Office Operating Model", "new Mem layered archive collections", "checkpoint 93+"]
+    },
+    {
+      "title": "BannerlordAI Front Watch",
+      "status": "COVERED",
+      "coverage": ["ChatHandoffs/20260920_001235_BannerlordAI_Front_Watch.json", "HandoffV3 checkpoint 117+", "ContextPyramid FRONT/HOT rebuild", "front_to_next_front rollover packet"]
+    }
+  ],
+  "safe_delete_rule": "Only statuses COVERED or LOW_VALUE_COVERED may be proposed to the user as safe-to-archive/delete, and only after final DeepSeek archive index verification. COVERED_PENDING_FINAL_OFFICE_INDEX remains protected until office index launch gate passes.",
+  "local_chat_archive_sources": [
+    "C:\\Users\\csala\\Documents\\Codex\\2026-09-09",
+    "C:\\Users\\csala\\Documents\\Codex\\2026-09-10",
+    "C:\\Users\\csala\\Documents\\Codex\\2026-09-13"
+  ]
+}

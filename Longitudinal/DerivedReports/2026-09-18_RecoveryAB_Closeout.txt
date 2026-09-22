@@ -1,0 +1,43 @@
+BANNERLORDAI — RECOVERY JUDGMENT A/B CLOSEOUT
+Date: 2026-09-18 Pacific.
+Question: Does suppressing weak-lord bandit pursuit improve recovery trajectory/outcomes versus native pass-through while preserving native simulation?
+Design: same protected save, same ClanAI v0.20E binary, same Inspector v0.34 observers; only startup Mode changed Observe -> Suppress.
+Detailed radius recorder was OFF in both arms. No save in either arm.
+Protected save remained SHA256 A3DAA0C37C0F8F6966DFB6DB2A57002BED70978A6C253F29DF395F171F9043AC.
+Common comparison horizon: 66.8043559724465 campaign hours.
+Minimum evidence target met: control 68 distinct weak actor-target opportunities / 30 actors; treatment 75 / 35.
+Control completed lord-bandit battles: 64. Treatment: 35.
+Actor-level settlement entry: control 73.33%; treatment 71.43% (difference -1.90 percentage points).
+Observed recovery-threshold crossing: control 3.33%; treatment 11.43% (+8.10 pp).
+Weak battle before observed threshold crossing: control 76.67%; treatment 0% (-76.67 pp).
+Healthy battle after weak opportunity: control 0%; treatment 5.71% (+5.71 pp).
+Exact capture among weak-opportunity actor cohort: 0 in both arms.
+Matched-actor cohort: 23 lords appeared in both arms.
+Matched settlement entry: control 18/23; treatment 20/23.
+Matched threshold crossing: control 1/23; treatment 4/23.
+Matched weak battle before crossing: control 19/23; treatment 0/23.
+Matched healthy battle after opportunity: control 0/23; treatment 2/23.
+Same actor-target pairs present in both arms: 15.
+Of those common pairs, control later fought the same target while weak in 9/15; treatment did so in 0/15.
+Equal-start readiness subset: 12 matched lords began their first observed opportunity at effectively identical readiness in both arms.
+Mean readiness gain to last observed post-opportunity state: control +0.1023; treatment +0.1814.
+Median readiness gain: control +0.04795; treatment +0.12962.
+Treatment had the larger readiness gain for 8/12; control for 4/12.
+This continuous-readiness result supports the threshold-crossing direction but is secondary evidence because last-observation timing/state can differ after trajectories diverge.
+Capture finding: the exact same Izdenka vs northern_pirates_668 event occurred in both arms.
+In both arms Izdenka began weak at readiness 0.215053767, foodDays 17, engaging=false, GoToSettlement/FleeToPoint, lordSide=Defender; Sea Raiders were callback attacker.
+In both arms the exact event-object linkage ends in Izdenka being captured by that same Sea Raiders party.
+Therefore suppression did not prevent this hostile catch. It was not a self-initiated weak pursuit in either arm.
+Engineering conclusion:
+1. The gate is effective at its narrow intended job: preventing weak lords from converting native weak EngageParty opportunities into weak lord-bandit battles.
+2. It does not materially reduce settlement access in this pair and is associated with more observed threshold crossings / stronger readiness gain.
+3. Healthy post-opportunity combat remains possible; prior v0.33 evidence also proved reversible same-target re-engagement after threshold crossing.
+4. Capture/survival benefit is NOT established; exact Izdenka evidence shows a recovering weak lord can still be caught by hostile bandits.
+5. Do not broaden this into blanket combat immunity or modify bandits. Bandits remain the native control.
+Next design question: recovery routing/risk context — can a weak recovering lord prefer a safer settlement/path or recognize nearby hostile interception risk while preserving native movement/execution?
+Do not implement a routing change until existing route/threat APIs and evidence are reviewed.
+No reversed-order A/B pair is currently required for the pursuit-gate question: the intended mechanical effect is exact and large, both arms exceeded the minimum opportunity target, matched-pair evidence agrees, and the remaining failure mode is different.
+Limits: one paired engineering experiment, simulation trajectories diverge after intervention, no claim of subjective intent, no p-value significance claim, and no proof of long-term survival improvement.
+Control evidence: D:\BannerlordAIResearch\Longitudinal\LiveValidation\RecoveryAB_Control_Observe_20260918_151240_646427
+Treatment evidence: D:\BannerlordAIResearch\Longitudinal\LiveValidation\RecoveryAB_Treatment_Suppress_20260918_152652_303735
+Rollback root: D:\BannerlordAIResearch\workspace\_PatchBackups\Before_RecoveryAB_20260918_151157

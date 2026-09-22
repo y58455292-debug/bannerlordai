@@ -1,0 +1,83 @@
+{
+  "schema": "BannerlordAI.ChatGPTCleanupPlan.v1",
+  "status": "READY_FOR_USER_UI_ORGANIZATION",
+  "projects": {
+    "00_FRONT": "BannerlordAI — 00 FRONT OFFICE",
+    "10_CODER": "BannerlordAI — 10 CODER DESK",
+    "20_ANALYZER": "BannerlordAI — 20 ANALYZER DESK",
+    "40_RESEARCH": "BannerlordAI — 40 RESEARCH LIBRARY",
+    "99_INBOX": "BannerlordAI — 99 INBOX / REVIEW"
+  },
+  "known_chats": [
+    {
+      "title": "Current Front Office chat",
+      "action": "KEEP_VISIBLE",
+      "destination": "BannerlordAI — 00 FRONT OFFICE",
+      "reason": "Active command hub; must remain until Front clock-out handoff."
+    },
+    {
+      "title": "Research AI Architecture",
+      "action": "MOVE_AND_KEEP_VISIBLE",
+      "destination": "BannerlordAI — 40 RESEARCH LIBRARY",
+      "reason": "Durable architecture/prior-art research remains useful for deep retrieval."
+    },
+    {
+      "title": "File Analysis Options",
+      "action": "MOVE_AND_KEEP_VISIBLE",
+      "destination": "BannerlordAI — 40 RESEARCH LIBRARY",
+      "reason": "Comparative architecture/prior-art evidence remains useful."
+    },
+    {
+      "title": "Analytical Psychology For AI",
+      "action": "MOVE_AND_KEEP_VISIBLE",
+      "destination": "BannerlordAI — 40 RESEARCH LIBRARY",
+      "reason": "Durable research line with Mem mirror and architecture references."
+    },
+    {
+      "title": "Read handoff instructions",
+      "action": "ARCHIVE",
+      "reason": "Current HandoffV3 protocol/current state supersede it; archived chat remains searchable."
+    },
+    {
+      "title": "BannerlordAI Progress Watch",
+      "action": "ARCHIVE",
+      "reason": "Evidence and accepted outcomes are captured in events, architecture ledger, and LiveValidation."
+    },
+    {
+      "title": "Resume Test Closeout",
+      "action": "ARCHIVE",
+      "reason": "Durable testing/workflow findings are in architecture ledger and DerivedReports."
+    },
+    {
+      "title": "Collect Data and Continue",
+      "action": "ARCHIVE",
+      "reason": "DeepSeek/handoff/workflow lessons are captured in durable architecture and Mem layers."
+    },
+    {
+      "title": "Continue From Memory File",
+      "action": "ARCHIVE",
+      "reason": "Coverage repaired to current Handoff protocol + verified FRONT/HOT Mem mirror."
+    },
+    {
+      "title": "Blood Feud Era Update",
+      "action": "ARCHIVE",
+      "reason": "Campaign canon/source evidence is preserved in Codex campaign-record and source index; archived chat remains searchable."
+    },
+    {
+      "title": "Remote Desktop Offline Notice",
+      "action": "ARCHIVE",
+      "reason": "Transient support thread; archive is safer than permanent deletion during first cleanup."
+    }
+  ],
+  "unknown_chat_rule": "Any other BannerlordAI-related chat you see goes to BannerlordAI — 99 INBOX / REVIEW. Do not archive/delete it until Front Office classifies it.",
+  "coder_analyzer_launch_rule": "Leave 10 CODER and 20 ANALYZER empty before launch. The organized-sequence test begins by creating one new Coder chat and one new Analyzer chat in those Projects.",
+  "success_state": [
+    "00 FRONT shows only the current active Front chat",
+    "10 CODER is empty before test",
+    "20 ANALYZER is empty before test",
+    "40 RESEARCH contains only the three durable research chats",
+    "99 INBOX is empty",
+    "legacy engineering/canon/support chats listed above are archived"
+  ],
+  "permanent_delete_rule": "Do not permanently delete any valuable project chat during this first cleanup. Archive first; deletion can be tested later on an intentionally disposable demo chat after all gates are proven."
+}

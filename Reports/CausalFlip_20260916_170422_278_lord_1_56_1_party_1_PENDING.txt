@@ -1,0 +1,65 @@
+GLOBAL SAME-THINK CAUSAL CAPTURE v0.1
+STATUS: NO_COMMIT_CAPTURED
+FINAL: True
+StartedLocalTime: 2026-09-16 17:04:22.276
+
+PARTY / CLAN
+Party: Germana's Party
+PartyId: lord_1_56_1_party_1
+Hero: Germana
+HeroId: lord_1_56_1
+Clan: Vatatzes
+ClanId: clan_empire_north_8
+
+PRE-MUTATION VANILLA
+VanillaWinnerBehavior: GoToSettlement
+VanillaWinnerTarget: Syratos
+VanillaWinnerTargetId: castle_village_EN8_1
+VanillaWinnerScore: 2.535706
+NeedTarget: Syratos Castle
+NeedTargetId: castle_EN8
+NeedTargetVanillaScore: 2.489177
+NeedTargetVanillaRank: 2
+
+LIVE TERRITORY NEED
+UnderRaid: False
+UnderSiege: False
+IdealGarrisonStrength: 111.1727
+ActualGarrisonStrength: 89.97999
+GarrisonDeficit: 0.190629
+Pressure: 0.190629
+
+INTERVENTION
+RequiredBonusFraction: 0.018692
+AvailableBonusFraction: 0.190629
+Multiplier: 1.190629
+AppliedScore: 2.963686
+PredictedHypotheticalScore: 2.963686
+PredictedHypotheticalRank: 1
+OneShotMarkerConsumedBeforeMutation: True
+
+POST-MUTATION VANILLA COMMIT
+CommitCaptured: False
+SelectedBehavior: <null>
+SelectedTarget: <null>
+SelectedTargetId: <null>
+AfterDefaultBehavior: <null>
+AfterTargetSettlement: <null>
+AfterTargetSettlementId: <null>
+AfterTargetParty: <null>
+AfterTargetPartyId: <null>
+
+RESULT
+NO_COMMIT_CAPTURED
+
+TOP VANILLA CANDIDATES BEFORE MUTATION
+#1 score=2.535706 behavior=GoToSettlement target=Syratos targetId=castle_village_EN8_1
+#2 score=2.489177 behavior=GoToSettlement target=Syratos Castle targetId=castle_EN8
+#3 score=2.473066 behavior=GoToSettlement target=Sestadaim targetId=castle_village_ES6_1
+#4 score=2.319588 behavior=GoToSettlement target=Crios targetId=village_EN3_3
+#5 score=2.085488 behavior=GoToSettlement target=Tememos targetId=castle_village_EN8_2
+#6 score=1.907623 behavior=GoToSettlement target=Chanopsis targetId=castle_village_ES8_1
+#7 score=1.689914 behavior=GoToSettlement target=Saneopa targetId=town_EN3
+#8 score=1.648967 behavior=GoToSettlement target=Lycaron targetId=town_ES4
+#9 score=1.588539 behavior=GoToSettlement target=Popsia targetId=castle_village_ES8_2
+#10 score=1.582033 behavior=GoToSettlement target=Varagos targetId=castle_village_EN1_1

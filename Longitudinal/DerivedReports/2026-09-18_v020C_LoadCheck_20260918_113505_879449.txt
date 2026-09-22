@@ -1,0 +1,23 @@
+BANNERLORDAI - v0.20C CONTROLLED LOAD CHECK
+Recorded local: 2026-09-18T11:35:05.879449-07:00
+Status: LOAD_AND_INSPECTOR_ADAPTER_PASS_PLAY_SAVE_EXIT_PENDING
+Scope: load and real Inspector adapter only; not behavioral-effect or performance acceptance.
+Observed: v0.20C-review session started 2026-09-18T18:31:33.0854170Z (11:31:33 Pacific).
+Observed: ClanAI.DelegatingMobilePartyAIModel is active; mirror=True; inner=NavalDLC.GameComponents.NavalDLCMobilePartyAIModel.
+Observed: Noble memory restored=True records=201; social ledger restored=True records=597.
+Observed: 6 complete dedicated diagnostic snapshots captured, including session_begin and periodic records.
+Observed: Real PERFORMANCE_JSON and RECORDER_JSON parse successfully; recorder session=20260918_113055_pid7272.
+Observed: Latest snapshot BEGIN_DIAGNOSTIC_SNAPSHOT schema=v1 build=v0.20C-review sequence=6 utc=2026-09-18T18:34:04.4260958Z reason=periodic terminal=False
+Observed: GLOBAL_AI_JUDGMENT_SNAPSHOT reason=periodic scope=campaign_session getBestCalls=2 weakBanditEngageSuppressed=0 healthyBanditEngagePassed=0 weakBanditNonEngage=0
+Observed: CLANAI_WRITER_HEALTH scope=process_lifetime requests=30 queued=30 writtenCalls=30 syncWritten=0 syncFallbacks=0 queueRejected=0 failures=0 openFailures=0 flushFailures=0 disposeFailures=0 terminalWriteFailures=0 queueFailures=0 workerFailures=0 startFailures=0 shutdownTimeouts=0 successfulFlushes=2425 pending=0 threadAlive=True stopping=False drainCompleted=False
+Observed: Error collector armed=True; totalSeen=0; fatal=0; droppedOverBudget=0; selfSuppressed=1. This is not proof that every possible exception was observable.
+Observed: Installed ClanAI and Inspector hashes match HOT; original world memory proof.sav still matches the v0.20B checkpoint.
+Limit: This is a paused-load check. Zero party-think rows and only two initiative calls do not validate active simulation or AI outcomes.
+Limit: Frame windows are rolling 1024 samples; initial menu/loading and paused-map samples are not an active-play benchmark. No performance-neutrality conclusion.
+Limit: threadAlive=True and drainCompleted=False describe an active writer here, not a tested shutdown. Save/end/final-health markers remain pending.
+Evidence: D:\BannerlordAIResearch\Longitudinal\LiveValidation\v020C_Load_20260918_113505_879449\manifest.json
+Live log: D:\BannerlordAIResearch\Telemetry\ClanAI\sessions\ClanAI_20260918_183133_085_v020C_review.log
+Live diagnostics: D:\BannerlordAIResearch\Telemetry\ClanAI\sessions\ClanAI_20260918_183133_085_v020C_review.diagnostics.txt
+Next: Advance at normal campaign speed for about two minutes; Save As ClanAI_v020C_DIAGNOSTIC_TEST; return to paused campaign map briefly; exit fully and normally.
+Do not overwrite world memory proof. Do not change mod selections, game settings, or bandit behavior.
+Handoff: Preserve GLOBAL; update HOT/current and append one evidence-linked WARM entry. Keep the v0.20B checkpoint identity unchanged.

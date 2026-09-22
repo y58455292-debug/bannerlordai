@@ -1,0 +1,29 @@
+BannerlordAI v0.2.10.63 FINAL VERIFY - ACCEPT
+
+Decisive evidence
+- Runner compiled with 0 errors.
+- Offline gates:
+  main fixtures 257/257 PASS
+  v3/hash fixtures 63/63 PASS
+  v4/result-size fixtures 72/72 PASS
+  deterministic loopback-v63 fixtures 40/40 PASS
+  provider-request contract fixtures 49/49 PASS.
+- Queue-side registered result-size evaluator enforces the active executionPolicyId and invariant positive maxResultBytes.
+- Runtime TransportReceipt.v3/ProviderResult.v4 binding checks exact result UTF-8 byte count after execution-policy identity match and before advisory admission.
+- Deterministic loopback independently enforces the same registered maxResultBytes before returning a successful result.
+- Live natural full chain used test maxResultBytes=65536.
+- Exact ProviderResult.v4 byte count=754.
+- Runtime resultSizePolicyReason=RESULT_SIZE_WITHIN_LIMIT.
+- maxResultBytes=65536.
+- transport receipt and execution policy matched.
+- providerResultAccepted=true; KEEP_BASELINE admitted.
+- SUCCESS_ACKED removed queue 1 -> 0.
+- Replay failed DISPATCH_JOB_NOT_FOUND.
+- Every live check true.
+- Provider invocation stream empty; no credential value read, network/model call, Apply/score/memory authority.
+- Protected saves matched, disposable saves cleaned, accepted binaries restored, lease released.
+
+Classification: ACCEPT.
+
+Architecture meaning
+The first registered execution-policy resource bound is now enforced, not merely carried as provenance. Exact ProviderResult.v4 bytes must fit the registered maxResultBytes on both the deterministic external transport side and independently in runtime before cognition output can be admitted.

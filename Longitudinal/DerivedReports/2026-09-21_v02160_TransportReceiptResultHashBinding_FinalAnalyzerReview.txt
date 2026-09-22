@@ -1,0 +1,22 @@
+BannerlordAI v0.2.10.60 FINAL VERIFY - ACCEPT
+
+Decisive evidence
+- Runner compiled with 0 errors.
+- Backcompat fixture suite passed 225/225.
+- ProviderResult.v3 + transport receipt/hash-binding fixture suite passed 63/63.
+- Deterministic transport fixture suite remained 73/73.
+- Live TransportReceipt.v2 and exact ProviderResult.v3 bytes were submitted together.
+- Runtime independently recomputed exact ProviderResult.v3 SHA-256:
+  FFDF4893505385327D32F0E65E2A5844CFC294414573D5385E4659B39FD0B220
+- Runtime-computed hash exactly matched transport receipt resultSha256.
+- Registered transport/provider/request provenance matched TRANSPORT_RECEIPT_MATCHED.
+- Existing ProviderResult.v3 admission then accepted KEEP_BASELINE.
+- Completion SUCCESS_ACKED removed queue 1 -> 0.
+- Replay failed at transport receipt job lookup DISPATCH_JOB_NOT_FOUND; no second nested v3 admission was produced; completion stayed 0 -> 0.
+- Every live check true.
+- Protected saves matched, disposable cleaned, accepted binaries restored, lease released.
+
+Classification: ACCEPT.
+
+Architecture meaning
+Exact ProviderResult.v3 bytes are now cryptographically bound to the transport receipt before advisory admission. A transport cannot claim one result hash while runtime admits different bytes.

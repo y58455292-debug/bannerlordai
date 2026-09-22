@@ -1,0 +1,28 @@
+BannerlordAI v0.2.10.32 — Session-local recent outcome context shadow
+
+Question
+Can current ClanAI make an accepted unified outcome packet available as bounded exact-identity transient context during the same campaign session, without writing persistent PatrolDefense memory or changing gameplay?
+
+Prior art
+- BannerlordAI ActorBlackboard / GroveGames typed-blackboard prior art supports bounded typed transient state separate from long-term memory.
+- SkyrimNet separates structured event/context surfaces from actor memory and exposes schema-validated events before downstream memory/reaction use.
+- Accepted v0.2.10.31 supplies the canonical read-only outcome packet.
+Therefore .32 should add a bounded session-local context cache, not a save key or episode append.
+
+Smallest implementation
+- Add PatrolDefenseRecentOutcomeContext as a separate session-local component, not DynastyBranchEpisodeMemory.
+- Exact key = actorId + branchId + banditId.
+- Store only the latest unified packet per exact key after the packet is emitted.
+- Bound total keys (e.g. 128) with explicit oldest-key eviction; clear naturally with the campaign behavior/session instance.
+- No SyncData and no save key.
+- Expose a read-only bridge receipt BannerlordAI.PatrolDefenseRecentOutcomeContext.v1 containing exact eventKey, actor/branch/bandit identity, outcome native facts, capture facts, source packet phase, and retrievalContext.
+- Retrieval result is FOUND or NONE only; no fuzzy/name/time matching.
+- memoryWriteApplied=false; persistentMemoryMutation=false; interpretationApplied=false; behaviorMutation=false; intentMutation=false; scoreMutation=false; nativeMovementCalls=0.
+
+Acceptance
+1. Current ClanAI + TestRunner compile.
+2. Isolated fixtures cover exact key, wrong actor, wrong bandit, wrong branch, latest replacement, bounded eviction, no persistence.
+3. One bounded live natural event produces a unified packet, then explicit read-only same-session retrieval by its exact actor/bandit returns the same eventKey and factual packet fields.
+4. Wrong-bandit retrieval returns NONE.
+5. Full no-save/integrity cleanup.
+6. MainHero + EXACT_UNIQUE persistent outcome memory remains blocked; .32 is transient context only.

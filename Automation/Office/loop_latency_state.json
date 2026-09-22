@@ -1,0 +1,16 @@
+{
+  "schema": "BannerlordAI.LoopLatencyState.v1",
+  "updated_at": "2026-09-22T01:10:26.516007-07:00",
+  "checkpoint_seq": 375,
+  "office_mode": "CLOSED",
+  "active_role": "front",
+  "turn_seq": 194,
+  "turn_age_minutes": 37.37,
+  "claimed": true,
+  "claim_receipt_checkpoint_seq": null,
+  "claim_sla_minutes": 5,
+  "warning": null,
+  "needs_attention": false,
+  "activation_command": null,
+  "rule": "A worker handoff must be claimed within five minutes or surface as an explicit continuity warning."
+}

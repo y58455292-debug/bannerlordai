@@ -1,0 +1,23 @@
+BannerlordAI v0.2.10.66 FINAL VERIFY - ACCEPT
+
+Terminal validator classification
+HARNESS_FALSE_NEGATIVE_POST_COMPLETION_SUMMARY_NAMEERROR.
+
+Decisive raw evidence
+- Candidate runner SHA-256 D91136C0378834206ABB30C2E1A5FF728F51673836BA632F49F7019A82241401 compiled with 0 errors; ClanAI unchanged.
+- Offline gates: main 257/257 PASS; v3/hash 63/63 PASS; v4/backcompat 135/135 PASS; v5 stale/exact 40/40 PASS; deterministic loopback-v66 63/63 PASS; provider-request contract 49/49 PASS.
+- Runtime issued authorization #1 at ordinal/count/max 1/1/2 and authorization #2 at 2/2/2, both timeoutMs=1000 with distinct deterministic IDs.
+- Stale auth1-bound TransportReceipt.v4/ProviderResult.v5 rejected with EXECUTION_AUTHORIZATION_ID_MISMATCH.
+- Stale SUCCESS did not consume work: SUCCESS_NOT_ADMITTED_RETAINED, queue 1 -> 1.
+- Exact auth2 matched EXECUTION_AUTHORIZATION_MATCHED, exact result hash, size and policy gates; ProviderResult.v5 admitted KEEP_BASELINE.
+- Exact auth2 completed SUCCESS_ACKED, queue 1 -> 0; replay rejected DISPATCH_JOB_NOT_FOUND.
+- Every static and live check is true. Provider invocation rows=0; no network/model/gameplay authority.
+- Protected saves matched, disposable saves cleaned, accepted ClanAI/runner binaries restored, lease released.
+- Validator had already written PASS evidence and completed safe cleanup; a stale print-summary variable raised NameError afterward and overwrote terminal result to FAIL.
+- Validator-only print typo was repaired. No additional live rerun is required.
+
+Classification
+ACCEPT.
+
+Architecture meaning
+The latest transport-execution authorization is now part of end-to-end result provenance. With maxAttempts > 1, an older authorized execution cannot consume the job after a newer authorization exists. This closes stale external-execution result concurrency before real provider integration.

@@ -1,0 +1,82 @@
+=== AI TRACE ===
+=== AI TRACE BEGIN #5 v0.3.3 ===
+party=Kanujan's Party id=lord_6_19_party_1 leader=Kanujan
+before behavior=Hold targetSettlement=<null> targetParty=<null>
+think currentObjectiveValue=0 doNotChangeBehavior=False willGatherAnArmy=False
+strength noArmy=1911.87 withArmy=6625.481 sameClanNoArmy=80.41
+goToSettlementWrites=0 sourceGroups=0
+candidateCount=252
+candidate score=5.793966 behavior=GoToSettlement target=Khimli [castle_village_K5_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=3.647407 behavior=GoToSettlement target=Baltakhand [town_K1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=3.512466 behavior=GoToSettlement target=Ulaan [village_K1_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=3.413044 behavior=GoToSettlement target=Kuruluk [castle_village_K4_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=3.016741 behavior=GoToSettlement target=Fisnar [village_K1_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=2.57851 behavior=GoToSettlement target=Tepes [castle_village_K4_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=2.512728 behavior=GoToSettlement target=Usek [castle_village_K1_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=2.482434 behavior=PatrolAroundPoint target=Khimli [castle_village_K5_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=2.419697 behavior=GoToSettlement target=Asalig [village_K1_4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=2.279344 behavior=GoToSettlement target=Hanekhy [village_K3_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=2.218865 behavior=GoToSettlement target=Esme [castle_village_K1_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=2.191944 behavior=GoToSettlement target=Kaysar [castle_village_K9_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=2.134968 behavior=GoToSettlement target=Payam [castle_village_K9_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=2.114578 behavior=GoToSettlement target=Mazen [village_K3_3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.939519 behavior=GoToSettlement target=Ortongard [town_K4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.932747 behavior=GoToSettlement target=Makeb [town_K3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.835007 behavior=PatrolAroundPoint target=Lycaron [town_ES4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.830647 behavior=PatrolAroundPoint target=Baltakhand [town_K1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.827729 behavior=PatrolAroundPoint target=Asalig [village_K1_4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.820982 behavior=PatrolAroundPoint target=Sestadaim [castle_village_ES6_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.817454 behavior=PatrolAroundPoint target=Diathma [town_EN2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.816946 behavior=PatrolAroundPoint target=Fisnar [village_K1_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.81455 behavior=PatrolAroundPoint target=Ulaan [village_K1_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.814274 behavior=PatrolAroundPoint target=Spotia [village_ES6_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.811331 behavior=PatrolAroundPoint target=Chanopsis [castle_village_ES8_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.809241 behavior=PatrolAroundPoint target=Kaysar [castle_village_K9_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.80112 behavior=PatrolAroundPoint target=Saneopa [town_EN3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.800604 behavior=PatrolAroundPoint target=Rhesos [castle_village_EN3_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.798944 behavior=PatrolAroundPoint target=Sagora [village_ES4_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.794751 behavior=PatrolAroundPoint target=Kuruluk [castle_village_K4_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.791686 behavior=PatrolAroundPoint target=Makeb [town_K3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.786817 behavior=PatrolAroundPoint target=Syronea [town_ES7] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.784438 behavior=PatrolAroundPoint target=Crios [village_EN3_3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.779321 behavior=PatrolAroundPoint target=Dyopalis [castle_village_EN3_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.778451 behavior=PatrolAroundPoint target=Phycaon [town_ES6] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.776523 behavior=PatrolAroundPoint target=Syratos [castle_village_EN8_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.776071 behavior=PatrolAroundPoint target=Morenia [castle_village_ES5_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.771081 behavior=PatrolAroundPoint target=Jogurys [castle_village_ES7_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.767709 behavior=PatrolAroundPoint target=Samatha [village_EN5_4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.762384 behavior=PatrolAroundPoint target=Laxahof [castle_village_N1_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidateNote=top 40 by score shown; total=252
+final behavior=GoToSettlement targetSettlement=Khimli targetParty=<null> army=<null> attachedTo=<null>
+=== AI TRACE END #5 ===
+
+=== VISIT TRACE ===
+=== VISIT SCORE TRACE BEGIN #5 v0.3.3 ===
+party=Kanujan's Party id=lord_6_19_party_1 home=Khimli Castle behavior=Hold
+thresholds baseVisitScore=1.6 goodEnoughScore=8 meaningfulScoreThreshold=0.025 recruitingMoneyLimit=2000
+partyParameters=(0.4964539, 1, 0, 70)
+pipeline touched=207 terminalScored=0 suitabilityRejected=8 suitableButUnscored=199 deeperButUnscored=199
+TOP TERMINAL VISIT SCORES: none
+PASSED SUITABILITY BUT NO FINAL SCORE (first 12):
+  target=Flintolg Castle [castle_B6] stage=NAVIGATION_STAGE_NO_FINAL suitable=True distanceDays=6.952776 nav=Default
+  target=Flintolg [castle_village_B6_1] stage=NAVIGATION_STAGE_NO_FINAL suitable=True distanceDays=6.967745 nav=Default
+  target=Glintor [castle_village_B6_2] stage=NAVIGATION_STAGE_NO_FINAL suitable=True distanceDays=6.938768 nav=Default
+  target=Lavenia Castle [castle_ES4] stage=NAVIGATION_STAGE_NO_FINAL suitable=True distanceDays=4.479136 nav=Default
+  target=Lavenia [castle_village_ES4_1] stage=NAVIGATION_STAGE_NO_FINAL suitable=True distanceDays=4.365924 nav=Default
+  target=Ethemisa [castle_village_ES4_2] stage=NAVIGATION_STAGE_NO_FINAL suitable=True distanceDays=4.096565 nav=Default
+  target=Corenia Castle [castle_ES2] stage=NAVIGATION_STAGE_NO_FINAL suitable=True distanceDays=3.102267 nav=Default
+  target=Corenia [castle_village_ES2_1] stage=NAVIGATION_STAGE_NO_FINAL suitable=True distanceDays=2.885749 nav=Default
+  target=Metachia [castle_village_ES2_2] stage=NAVIGATION_STAGE_NO_FINAL suitable=True distanceDays=3.362587 nav=Default
+  target=Odrysa Castle [castle_ES1] stage=NAVIGATION_STAGE_NO_FINAL suitable=True distanceDays=4.223478 nav=Default
+  target=Odrysa [castle_village_ES1_1] stage=NAVIGATION_STAGE_NO_FINAL suitable=True distanceDays=4.521434 nav=Default
+  target=Caira [castle_village_ES1_2] stage=NAVIGATION_STAGE_NO_FINAL suitable=True distanceDays=3.986152 nav=Default
+SUITABILITY REJECTED (first 12):
+  target=Tarcutis [castle_village_EW3_2] stage=SUITABILITY_REJECTED suitable=False
+  target=Thorios Castle [castle_EW2] stage=SUITABILITY_REJECTED suitable=False
+  target=Seonon [town_B4] stage=SUITABILITY_REJECTED suitable=False
+  target=Bryn Glas [village_B4_1] stage=SUITABILITY_REJECTED suitable=False
+  target=Andurn [village_B4_2] stage=SUITABILITY_REJECTED suitable=False
+  target=Mag Arba [village_B4_3] stage=SUITABILITY_REJECTED suitable=False
+  target=Swenryn [village_B4_4] stage=SUITABILITY_REJECTED suitable=False
+  target=Rhesos Castle [castle_EN3] stage=SUITABILITY_REJECTED suitable=False
+=== VISIT SCORE TRACE END #5 ===

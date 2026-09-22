@@ -1,0 +1,21 @@
+BannerlordAI v0.2.10.30 FINAL VERIFY — ACCEPT
+
+Evidence
+- Current ClanAI capture companion compiled against installed assemblies with 0 errors.
+- Isolated helper suite passed 34/34 checks, including exact active/recent resolution, same-reference agreement, conflicting native references, untracked references, duplicate/end retention, role/winner basics, and zero mutation.
+- Live current-binary natural capture chain:
+  eventKey=20260921T182557840_322162637ab34b1195e8959efe77f557_M000016
+  actor=lord_4_16_1, bandit=deserters_48537, actorSideAtStart=Defender.
+  Capture linkGrade=exact_native_object_reference.
+  prisonerHeroId=lord_4_16_1; primaryActorPrisoner=true.
+  capturerBanditId=deserters_48537; capturerMatchesStartBandit=true.
+  Capture callback preceded end callback (observedAfterEndCallback=false), proving ordering is not assumed.
+  End receipt reused the same eventKey; native result was AttackerVictory, actorWon=false, actorAlive=true, actorPrisoner=true.
+- observerFailures=0; capacitySkips=0.
+- memoryWriteApplied=false; interpretationApplied=false; behaviorMutation=false; intentMutation=false; scoreMutation=false; nativeMovementCalls=0.
+- Protected saves matched, disposable clone cleaned, installed binaries restored, lease released.
+
+Classification: ACCEPT.
+
+Architecture meaning
+Current ClanAI can now join battle start, capture, and battle end by exact native MapEvent object identity with explicit conflict/untracked handling and no name/time fallback. Callback ordering is observational, not assumed. Outcome/capture memory append remains blocked by the v0.2.10.29 MainHero+EXACT_UNIQUE field-evidence gap.

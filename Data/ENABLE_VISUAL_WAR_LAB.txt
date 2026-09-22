@@ -1,0 +1,4 @@
+ClanAI v0.19B VISUAL WAR LAB
+Enabled for controlled dummy/test campaigns only.
+Behavior: bounded boosts to native valid frontier-defense, frontier-offense, and small-party anti-bandit candidates.
+No forced movement. Delete this file to disable.

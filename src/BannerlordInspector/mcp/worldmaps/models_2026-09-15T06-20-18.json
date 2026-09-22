@@ -1,0 +1,647 @@
+{
+  "mapperVersion": "0.1",
+  "capturedAtRealTime": "2026-09-15T06:20:18.413Z",
+  "campaignTime": {
+    "year": 1084,
+    "dayOfYear": 21,
+    "season": {
+      "type": "TaleWorlds.CampaignSystem.CampaignTime+Seasons",
+      "value": "Summer"
+    },
+    "hour": 8,
+    "ticks": 78690851967232
+  },
+  "modelCount": 126,
+  "models": [
+    {
+      "name": "AgeModel",
+      "declaredType": "AgeModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultAgeModel"
+    },
+    {
+      "name": "AlleyModel",
+      "declaredType": "AlleyModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultAlleyModel"
+    },
+    {
+      "name": "AllianceModel",
+      "declaredType": "AllianceModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultAllianceModel"
+    },
+    {
+      "name": "ArmyManagementCalculationModel",
+      "declaredType": "ArmyManagementCalculationModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCArmyManagementCalculationModel"
+    },
+    {
+      "name": "BanditDensityModel",
+      "declaredType": "BanditDensityModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCBanditDensityModel"
+    },
+    {
+      "name": "BannerItemModel",
+      "declaredType": "BannerItemModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultBannerItemModel"
+    },
+    {
+      "name": "BarterModel",
+      "declaredType": "BarterModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultBarterModel"
+    },
+    {
+      "name": "BattleCaptainModel",
+      "declaredType": "BattleCaptainModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultBattleCaptainModel"
+    },
+    {
+      "name": "BattleRewardModel",
+      "declaredType": "BattleRewardModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCBattleRewardModel"
+    },
+    {
+      "name": "BattleWreckageModel",
+      "declaredType": "BattleWreckageModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCBattleWreckageModel"
+    },
+    {
+      "name": "BodyPropertiesModel",
+      "declaredType": "BodyPropertiesModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultBodyPropertiesModel"
+    },
+    {
+      "name": "BribeCalculationModel",
+      "declaredType": "BribeCalculationModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultBribeCalculationModel"
+    },
+    {
+      "name": "BuildingConstructionModel",
+      "declaredType": "BuildingConstructionModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCBuildingConstructionModel"
+    },
+    {
+      "name": "BuildingEffectModel",
+      "declaredType": "BuildingEffectModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultBuildingEffectModel"
+    },
+    {
+      "name": "BuildingModel",
+      "declaredType": "BuildingModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCBuildingModel"
+    },
+    {
+      "name": "BuildingScoreCalculationModel",
+      "declaredType": "BuildingScoreCalculationModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultBuildingScoreCalculationModel"
+    },
+    {
+      "name": "CampaignShipDamageModel",
+      "declaredType": "CampaignShipDamageModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCCampaignShipDamageModel"
+    },
+    {
+      "name": "CampaignShipParametersModel",
+      "declaredType": "CampaignShipParametersModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCCampaignShipParametersModel"
+    },
+    {
+      "name": "CampaignTimeModel",
+      "declaredType": "CampaignTimeModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultCampaignTimeModel"
+    },
+    {
+      "name": "CaravanModel",
+      "declaredType": "CaravanModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCCaravanModel"
+    },
+    {
+      "name": "CharacterDevelopmentModel",
+      "declaredType": "CharacterDevelopmentModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalCharacterDevelopmentModel"
+    },
+    {
+      "name": "CharacterStatsModel",
+      "declaredType": "CharacterStatsModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterStatsModel"
+    },
+    {
+      "name": "ClanFinanceModel",
+      "declaredType": "ClanFinanceModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCClanFinanceModel"
+    },
+    {
+      "name": "ClanMemberPartyRoleModel",
+      "declaredType": "ClanMemberPartyRoleModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCClanMemberPartyRoleModel"
+    },
+    {
+      "name": "ClanPoliticsModel",
+      "declaredType": "ClanPoliticsModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCClanPoliticsModel"
+    },
+    {
+      "name": "ClanTierModel",
+      "declaredType": "ClanTierModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultClanTierModel"
+    },
+    {
+      "name": "CombatSimulationModel",
+      "declaredType": "CombatSimulationModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCCombatSimulationModel"
+    },
+    {
+      "name": "CombatXpModel",
+      "declaredType": "CombatXpModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCCombatXpModel"
+    },
+    {
+      "name": "CompanionHiringPriceCalculationModel",
+      "declaredType": "CompanionHiringPriceCalculationModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultCompanionHiringPriceCalculationModel"
+    },
+    {
+      "name": "CrimeModel",
+      "declaredType": "CrimeModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultCrimeModel"
+    },
+    {
+      "name": "CutsceneSelectionModel",
+      "declaredType": "CutsceneSelectionModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultCutsceneSelectionModel"
+    },
+    {
+      "name": "DailyTroopXpBonusModel",
+      "declaredType": "DailyTroopXpBonusModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultDailyTroopXpBonusModel"
+    },
+    {
+      "name": "DefectionModel",
+      "declaredType": "DefectionModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultDefectionModel"
+    },
+    {
+      "name": "DelayedTeleportationModel",
+      "declaredType": "DelayedTeleportationModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultDelayedTeleportationModel"
+    },
+    {
+      "name": "DifficultyModel",
+      "declaredType": "DifficultyModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultDifficultyModel"
+    },
+    {
+      "name": "DiplomacyModel",
+      "declaredType": "DiplomacyModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultDiplomacyModel"
+    },
+    {
+      "name": "DisguiseDetectionModel",
+      "declaredType": "DisguiseDetectionModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultDisguiseDetectionModel"
+    },
+    {
+      "name": "EmissaryModel",
+      "declaredType": "EmissaryModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultEmissaryModel"
+    },
+    {
+      "name": "EncounterGameMenuModel",
+      "declaredType": "EncounterGameMenuModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalEncounterMenuModel"
+    },
+    {
+      "name": "EncounterModel",
+      "declaredType": "EncounterModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCEncounterModel"
+    },
+    {
+      "name": "EquipmentSelectionModel",
+      "declaredType": "EquipmentSelectionModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultEquipmentSelectionModel"
+    },
+    {
+      "name": "FerryModel",
+      "declaredType": "FerryModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalFerryModel"
+    },
+    {
+      "name": "FleetManagementModel",
+      "declaredType": "FleetManagementModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCFleetManagementModel"
+    },
+    {
+      "name": "GenericXpModel",
+      "declaredType": "GenericXpModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultGenericXpModel"
+    },
+    {
+      "name": "HeirSelectionCalculationModel",
+      "declaredType": "HeirSelectionCalculationModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultHeirSelectionCalculationModel"
+    },
+    {
+      "name": "HeroAgentLocationModel",
+      "declaredType": "HeroAgentLocationModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCHeroAgentLocationModel"
+    },
+    {
+      "name": "HeroCreationModel",
+      "declaredType": "HeroCreationModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultHeroCreationModel"
+    },
+    {
+      "name": "HeroDeathProbabilityCalculationModel",
+      "declaredType": "HeroDeathProbabilityCalculationModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultHeroDeathProbabilityCalculationModel"
+    },
+    {
+      "name": "HideoutModel",
+      "declaredType": "HideoutModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultHideoutModel"
+    },
+    {
+      "name": "IncidentModel",
+      "declaredType": "IncidentModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCIncidentModel"
+    },
+    {
+      "name": "InformationRestrictionModel",
+      "declaredType": "InformationRestrictionModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultInformationRestrictionModel"
+    },
+    {
+      "name": "InventoryCapacityModel",
+      "declaredType": "InventoryCapacityModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCInventoryCapacityModel"
+    },
+    {
+      "name": "IssueModel",
+      "declaredType": "IssueModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultIssueModel"
+    },
+    {
+      "name": "ItemDiscardModel",
+      "declaredType": "ItemDiscardModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultItemDiscardModel"
+    },
+    {
+      "name": "KingdomCreationModel",
+      "declaredType": "KingdomCreationModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultKingdomCreationModel"
+    },
+    {
+      "name": "KingdomDecisionPermissionModel",
+      "declaredType": "KingdomDecisionPermissionModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultKingdomDecisionPermissionModel"
+    },
+    {
+      "name": "LocationModel",
+      "declaredType": "LocationModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultLocationModel"
+    },
+    {
+      "name": "MapDistanceModel",
+      "declaredType": "MapDistanceModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCMapDistanceModel"
+    },
+    {
+      "name": "MapTrackModel",
+      "declaredType": "MapTrackModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultMapTrackModel"
+    },
+    {
+      "name": "MapVisibilityModel",
+      "declaredType": "MapVisibilityModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCMapVisibilityModel"
+    },
+    {
+      "name": "MapWeatherModel",
+      "declaredType": "MapWeatherModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCMapWeatherModel"
+    },
+    {
+      "name": "MarriageModel",
+      "declaredType": "MarriageModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultMarriageModel"
+    },
+    {
+      "name": "MilitaryPowerModel",
+      "declaredType": "MilitaryPowerModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCMilitaryPowerModel"
+    },
+    {
+      "name": "MinorFactionsModel",
+      "declaredType": "MinorFactionsModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultMinorFactionsModel"
+    },
+    {
+      "name": "MobilePartyAIModel",
+      "declaredType": "MobilePartyAIModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCMobilePartyAIModel"
+    },
+    {
+      "name": "MobilePartyFoodConsumptionModel",
+      "declaredType": "MobilePartyFoodConsumptionModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCMobilePartyFoodConsumptionModel"
+    },
+    {
+      "name": "NotablePowerModel",
+      "declaredType": "NotablePowerModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultNotablePowerModel"
+    },
+    {
+      "name": "NotableSpawnModel",
+      "declaredType": "NotableSpawnModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultNotableSpawnModel"
+    },
+    {
+      "name": "PartyDesertionModel",
+      "declaredType": "PartyDesertionModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultPartyDesertionModel"
+    },
+    {
+      "name": "PartyFoodBuyingModel",
+      "declaredType": "PartyFoodBuyingModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultPartyFoodBuyingModel"
+    },
+    {
+      "name": "PartyHealingModel",
+      "declaredType": "PartyHealingModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCPartyHealingModel"
+    },
+    {
+      "name": "PartyImpairmentModel",
+      "declaredType": "PartyImpairmentModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCPartyImpairmentModel"
+    },
+    {
+      "name": "PartyMoraleModel",
+      "declaredType": "PartyMoraleModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCPartyMoraleModel"
+    },
+    {
+      "name": "PartyNavigationModel",
+      "declaredType": "PartyNavigationModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalPartyNavigationModel"
+    },
+    {
+      "name": "PartyShipLimitModel",
+      "declaredType": "PartyShipLimitModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCShipLimitModel"
+    },
+    {
+      "name": "PartySizeLimitModel",
+      "declaredType": "PartySizeLimitModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCPartySizeLimitModel"
+    },
+    {
+      "name": "PartySpeedCalculatingModel",
+      "declaredType": "PartySpeedModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCPartySpeedCalculationModel"
+    },
+    {
+      "name": "PartyTradeModel",
+      "declaredType": "PartyTradeModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultPartyTradeModel"
+    },
+    {
+      "name": "PartyTrainingModel",
+      "declaredType": "PartyTrainingModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCPartyTrainingModel"
+    },
+    {
+      "name": "PartyTransitionModel",
+      "declaredType": "PartyTransitionModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCPartyTransitionModel"
+    },
+    {
+      "name": "PartyTroopUpgradeModel",
+      "declaredType": "PartyTroopUpgradeModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCPartyTroopUpgradeModel"
+    },
+    {
+      "name": "PartyWageModel",
+      "declaredType": "PartyWageModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCPartyWageModel"
+    },
+    {
+      "name": "PersuasionModel",
+      "declaredType": "PersuasionModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultPersuasionModel"
+    },
+    {
+      "name": "PlayerProgressionModel",
+      "declaredType": "PlayerProgressionModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultPlayerProgressionModel"
+    },
+    {
+      "name": "PregnancyModel",
+      "declaredType": "PregnancyModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultPregnancyModel"
+    },
+    {
+      "name": "PrisonBreakModel",
+      "declaredType": "PrisonBreakModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultPrisonBreakModel"
+    },
+    {
+      "name": "PrisonerDonationModel",
+      "declaredType": "PrisonerDonationModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultPrisonerDonationModel"
+    },
+    {
+      "name": "PrisonerRecruitmentCalculationModel",
+      "declaredType": "PrisonerRecruitmentCalculationModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCPrisonerRecruitmentCalculationModel"
+    },
+    {
+      "name": "RaidModel",
+      "declaredType": "RaidModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCRaidModel"
+    },
+    {
+      "name": "RansomValueCalculationModel",
+      "declaredType": "RansomValueCalculationModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultRansomValueCalculationModel"
+    },
+    {
+      "name": "RomanceModel",
+      "declaredType": "RomanceModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultRomanceModel"
+    },
+    {
+      "name": "SceneModel",
+      "declaredType": "SceneModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultSceneModel"
+    },
+    {
+      "name": "SettlementAccessModel",
+      "declaredType": "SettlementAccessModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCSettlementAccessModel"
+    },
+    {
+      "name": "SettlementEconomyModel",
+      "declaredType": "SettlementEconomyModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultSettlementEconomyModel"
+    },
+    {
+      "name": "SettlementFoodModel",
+      "declaredType": "SettlementFoodModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultSettlementFoodModel"
+    },
+    {
+      "name": "SettlementGarrisonModel",
+      "declaredType": "SettlementGarrisonModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCSettlementGarrisonModel"
+    },
+    {
+      "name": "SettlementLoyaltyModel",
+      "declaredType": "SettlementLoyaltyModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultSettlementLoyaltyModel"
+    },
+    {
+      "name": "SettlementMilitiaModel",
+      "declaredType": "SettlementMilitiaModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCSettlementMilitiaModel"
+    },
+    {
+      "name": "SettlementPatrolModel",
+      "declaredType": "SettlementPatrolModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalSettlementPatrolModel"
+    },
+    {
+      "name": "SettlementProsperityModel",
+      "declaredType": "SettlementProsperityModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCSettlementProsperityModel"
+    },
+    {
+      "name": "SettlementSecurityModel",
+      "declaredType": "SettlementSecurityModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCSettlementSecurityModel"
+    },
+    {
+      "name": "SettlementTaxModel",
+      "declaredType": "SettlementTaxModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultSettlementTaxModel"
+    },
+    {
+      "name": "SettlementValueModel",
+      "declaredType": "SettlementValueModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultSettlementValueModel"
+    },
+    {
+      "name": "ShipCostModel",
+      "declaredType": "ShipCostModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCShipCostModel"
+    },
+    {
+      "name": "ShipDistributionModel",
+      "declaredType": "ShipDistributionModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCShipDistributionModel"
+    },
+    {
+      "name": "ShipStatModel",
+      "declaredType": "ShipStatModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCShipStatModel"
+    },
+    {
+      "name": "SiegeAftermathModel",
+      "declaredType": "SiegeAftermathModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultSiegeAftermathModel"
+    },
+    {
+      "name": "SiegeEventModel",
+      "declaredType": "SiegeEventModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultSiegeEventModel"
+    },
+    {
+      "name": "SiegeLordsHallFightModel",
+      "declaredType": "SiegeLordsHallFightModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultSiegeLordsHallFightModel"
+    },
+    {
+      "name": "SiegeStrategyActionModel",
+      "declaredType": "SiegeStrategyActionModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultSiegeStrategyActionModel"
+    },
+    {
+      "name": "SmithingModel",
+      "declaredType": "SmithingModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultSmithingModel"
+    },
+    {
+      "name": "TargetScoreCalculatingModel",
+      "declaredType": "TargetScoreCalculatingModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalTargetScoreCalculatingModel"
+    },
+    {
+      "name": "TavernMercenaryTroopsModel",
+      "declaredType": "TavernMercenaryTroopsModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultTavernMercenaryTroopsModel"
+    },
+    {
+      "name": "TournamentModel",
+      "declaredType": "TournamentModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCTournamentModel"
+    },
+    {
+      "name": "TradeAgreementModel",
+      "declaredType": "TradeAgreementModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalTradeAgreementModel"
+    },
+    {
+      "name": "TradeItemPriceFactorModel",
+      "declaredType": "TradeItemPriceFactorModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultTradeItemPriceFactorModel"
+    },
+    {
+      "name": "TroopSacrificeModel",
+      "declaredType": "TroopSacrificeModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCTroopSacrificeModel"
+    },
+    {
+      "name": "TroopSupplierProbabilityModel",
+      "declaredType": "TroopSupplierProbabilityModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultTroopSupplierProbabilityModel"
+    },
+    {
+      "name": "ValuationModel",
+      "declaredType": "ValuationModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultValuationModel"
+    },
+    {
+      "name": "VassalRewardsModel",
+      "declaredType": "VassalRewardsModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultVassalRewardsModel"
+    },
+    {
+      "name": "VillageProductionCalculatorModel",
+      "declaredType": "VillageProductionCalculatorModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCVillageProductionCalculatorModel"
+    },
+    {
+      "name": "VillageTradeModel",
+      "declaredType": "VillageTradeModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultVillageTradeModel"
+    },
+    {
+      "name": "VoiceOverModel",
+      "declaredType": "VoiceOverModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCVoiceOverModel"
+    },
+    {
+      "name": "VolunteerModel",
+      "declaredType": "VolunteerModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultVolunteerModel"
+    },
+    {
+      "name": "WallHitPointCalculationModel",
+      "declaredType": "WallHitPointCalculationModel",
+      "runtimeType": "TaleWorlds.CampaignSystem.GameComponents.DefaultWallHitPointCalculationModel"
+    },
+    {
+      "name": "WorkshopModel",
+      "declaredType": "WorkshopModel",
+      "runtimeType": "NavalDLC.GameComponents.NavalDLCWorkshopModel"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+BannerlordAI v0.2.10.25 — Read-only numeric dispersion context
+
+Question
+Can Manan compute deterministic component-wise population variance and standard deviation across persisted same-enemy factual observations, without semantic interpretation or gameplay authority?
+
+Implementation boundary
+- Extend the accepted v0.2.10.24 read-only history reader only.
+- Do not change memory writers, persistence schema, recognition, movement, scoring, or decision authority.
+- Emit stateVariance: component-wise population variance across all exact ordered states.
+- Emit stateStdDev: component-wise square root of stateVariance.
+- Preserve all accepted count/order/timing/states/deltas/rates/min/max/mean/range/provenance fields.
+- Variance/stddev are numeric descriptive facts only. No labels such as volatile, stable, risky, dangerous, predictable, erratic.
+- interpretationApplied=false; behaviorMutation=false; intentMutation=false; scoreMutation=false; nativeMovementCalls=0.
+
+Deterministic fixture
+Reuse the four-observation v0.2.10.24 fixture:
+1) [120,100,60,50,2.0]
+2) [90,80,55,45,1.6363636]
+3) [75,70,50,40,1.5]
+4) [105,85,70,55,1.5]
+
+Expected population variance / standard deviation
+actorStrength: variance 281.25, stddev 16.77050983124842
+actorHealthy: variance 117.1875, stddev 10.825317547305483
+banditStrength: variance 54.6875, stddev 7.39509972887452
+banditHealthy: variance 31.25, stddev 5.5901699437494745
+actorToBanditStrengthRatio: variance 0.041838843388430004, stddev 0.20454545555555617
+
+Acceptance
+1. Four exact same-identity observations at real increasing CampaignTime.
+2. Product stateVariance independently matches population variance over orderedStates for all five fields.
+3. Product stateStdDev independently matches sqrt(stateVariance).
+4. Existing aggregate/trajectory/rate fields remain internally exact.
+5. Native SaveAs/full restart preserves variance/stddev exactly within accepted numeric tolerance.
+6. No semantic interpretation or gameplay authority.
+7. Protected saves/binaries/lease/disposable saves restore cleanly.
+
+Do not repeat
+Do not re-prove .19 persistence, .20 temporal ordering, .21 pairwise deltas, .22 trajectory, .23 rates, or .24 aggregates unless contradictory evidence appears.

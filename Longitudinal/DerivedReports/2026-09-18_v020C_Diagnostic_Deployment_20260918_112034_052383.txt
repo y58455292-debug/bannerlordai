@@ -1,0 +1,35 @@
+BANNERLORDAI - v0.20C DIAGNOSTIC DEPLOYMENT
+Recorded local: 2026-09-18T11:22:17.168426-07:00
+
+Status: DEPLOYED_HASH_VERIFIED_RUNTIME_NOT_RUN. Controlled campaign load is the next gate.
+Build: ClanAI v0.20C-review. Only ClanAI.dll and its matching ClanAI.pdb were installed; no rebuild was performed.
+Observed: Installed DLL SHA256 7AFE90A99D1AAD62A9E5E7F628741E12B75D1A3257D75C76BE007AA8656636F4; matching candidate PDB SHA256 8BE6FD972A43C21ECEF70E1FEAA727393FA23CD46A542905768ADF0548F28F54.
+Observed: The previous live directory contained ClanAI.dll only. No previous PDB existed; this absence is recorded for rollback.
+Checkpoint: The existing v0.20B world-state checkpoint remains the baseline; deployment does not create or relabel a campaign result.
+Save: world memory proof.sav remains byte-identical to its checkpoint; SHA256 59B92DCA65409C0776C75CEDD2670DBB5F5E03C6E92D1FE5A637EAC430831347.
+Observed: All 26 preflight-protected file hashes remain unchanged, including Inspector, save/checkpoint, working source, inspected settings and GLOBAL.
+Review: The prior candidate build passed with zero errors, one System.ValueTuple version-conflict warning, and seven isolated-test passes. Actual Bannerlord compatibility and performance remain untested.
+Runtime: NOT_RUN. No usable live Inspector adapter report, in-game terminal counters, final-health record, or gameplay timing is claimed.
+Next: Launch the normal mod list, load world memory proof, pause on the map, and verify session-start diagnostics before extended play. Use a separate Save As name: ClanAI_v020C_DIAGNOSTIC_TEST.
+Guardrail: No bandit, pursuit-rule, strategic-scoring, combat, captivity, game-configuration or shared-dependency change is part of this deployment.
+Guardrail: Workspace source remains the v0.20B baseline. Do not rebuild/deploy from it as v0.20C; use the archived and staged reviewed source identities.
+
+PROVENANCE AND ROLLBACK
+Reviewed stage: D:\BannerlordAIResearch\workspace\_PatchStaging\DiagnosticsReview_v020C_20260918_111112_392633
+Deployment/rollback manifest: D:\BannerlordAIResearch\workspace\_PatchBackups\Before_v020C_Diagnostics_20260918_112034_052383\deployment_manifest.json
+Backup root: D:\BannerlordAIResearch\workspace\_PatchBackups\Before_v020C_Diagnostics_20260918_112034_052383
+Previous DLL: D:\BannerlordAIResearch\workspace\_PatchBackups\Before_v020C_Diagnostics_20260918_112034_052383\live\ClanAI.dll
+Previous DLL SHA256: 50C15CADAE4290B3132713ADBC588876187F21C57C1B4A97F636614C43CFFFD9
+Reviewed source archive: D:\BannerlordAIResearch\workspace\_PatchBackups\Before_v020C_Diagnostics_20260918_112034_052383\candidate_source
+Current checkpoint: D:\BannerlordAIResearch\Longitudinal\SaveCheckpoints\20260918_103332_v020b_global_judgment_test
+Rollback scope: With Bannerlord closed, restore the hash-verified previous DLL. Remove the newly installed PDB only after verifying it matches the recorded candidate PDB; do not touch saves, Inspector or shared dependencies.
+
+LIVE ACCEPTANCE STILL REQUIRED
+Confirm v0.20C-review session identity, real Inspector PERFORMANCE_JSON/RECORDER_JSON availability, save_serialization and save_followup markers, and a game_end or module_unload terminal snapshot.
+After a normal full exit, check the separate final-health file, pending=0, threadAlive=False, drainCompleted=True, shutdownTimeouts=0 and all relevant failure counters. Queue drain alone does not prove successful writes.
+Timing scope remains rolling 1024 frames and Inspector phases since its last reset; paused/menu frames may be present. No performance-neutrality conclusion follows from installation.
+Checkpoint helper metadata defaults are still obsolete. Verify build hashes and explicitly correct metadata before using it.
+
+HANDOFF
+HOT/current state will identify the installed candidate and pending runtime validation. The prior v0.20B report/logs remain historical completed-session evidence. GLOBAL is not promoted or rebuilt.
+Build-review evidence remains immutable in the original stage and backup. This deployment manifest, not the older review status, records installation.

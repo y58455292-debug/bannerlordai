@@ -1,0 +1,48 @@
+BANNERLORDAI — RECOVERY RISK EXACT THREAT v0.20H CLOSEOUT
+Date: 2026-09-18 Pacific.
+
+Runtime mode: ClanAI v0.20H-review, Mode=Suppress, RiskMode=Observe.
+Results:
+- base risk triggers: 23 across 12 actors
+- flee-qualified base triggers: 1
+- exact-threat-qualified triggers: 0
+- actual reroutes: 0
+- writer failures: 0
+- observer warnings: 0
+- disposable save remained canonical hash while paused
+
+Critical outcome check:
+Two weak same-bandit flee battles DID occur in this run despite exactThreatQualified=0.
+1) Morcon / lord_4_14_party_1 vs deserters_1716
+   readiness .5448718, FleeToPoint, shortTermTarget=deserters_1716, lordSide=Defender.
+   Result: DefenderVictory; no capture.
+2) Qaban / lord_A9_u_party_1 vs southern_pirates_1542
+   readiness .6185567, FleeToPoint, shortTermTarget=southern_pirates_1542, lordSide=Defender.
+   Battle unresolved when replay paused.
+
+Therefore v0.20H exact identity concept is valid but current strategic-settlement evaluation timing misses the event family.
+Timing evidence:
+Morcon's last strategic risk trigger before battle occurred 18.90 real seconds before battle and still showed shortTermBehavior=GoToSettlement, shortTermTarget=<none>.
+Inspector initiative telemetry then showed:
+16:38:35.887 local — INITIATIVE_MODEL_LORD_BANDIT_BEST actor=Morcon behavior=FleeToPoint target=deserters_1716 score=.661
+Battle start occurred at 16:38:49.861 local, about 14 seconds later, with that same deserter as attacker and Morcon as defender.
+Therefore the exact threat becomes known at the native MobilePartyAIModel.GetBestInitiativeBehavior boundary after the strategic settlement-risk layer has already missed its useful window.
+
+Native behavior evidence:
+AiBehavior includes FleeToGate.
+Historical runtime telemetry shows FleeToGate is actively used by vanilla and is associated with settlement targets and successful settlement entry for weak lords.
+Examples include weak parties entering towns/castles while shortTermBehavior=FleeToGate.
+This suggests the next mechanism should investigate native emergency-refuge behavior rather than inventing routing.
+
+Decision:
+- v0.20H Apply remains FORBIDDEN.
+- Do not broaden the strategic settlement scorer.
+- Do not replace movement/pathfinding.
+- Do not modify bandits.
+- Move the next observation to the initiative-model boundary where exact FleeToPoint bandit identity appears.
+- At that moment, record current strategic settlement plus nearest valid friendly fortification using native distance/spatial APIs.
+- First answer whether a viable native fortification refuge exists within FleeToNearbySettlementRadius when the exact threat appears.
+- If yes, investigate whether selecting native FleeToGate/refuge judgment can be done without owning movement.
+- If no, settlement rerouting is not the right mechanism for that episode.
+
+No repeat of v0.20H is needed.

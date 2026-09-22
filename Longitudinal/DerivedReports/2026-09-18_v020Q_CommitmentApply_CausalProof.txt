@@ -1,0 +1,49 @@
+BANNERLORDAI — v0.20Q FIRST BOUNDED COMMITMENT APPLY CAUSAL PROOF
+Date: 2026-09-18 Pacific
+
+Result: PASS / causal behavior change confirmed.
+Validation root:
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\IntegratedCommitment_v020Q_ApplyAuto_20260918_231450_698732
+
+Experimental control:
+- Same accepted v0.20Q-review DLL as integrated Observe.
+- DLL SHA256: 0C9EC39ACBE7ABCA60D97C9C43B5138D39D5E0DE9B0EA1D10F44D7DA8258EC59
+- Same baseline save hash: 11E3F8C04A1DF3ACA4C0DA4D51F9BB912C4D2970114C66B403729F2E5577FA6B
+- Only StrategicCommitment mode changed Observe -> Apply for the treatment.
+- RetentionFactor remained 1.10; MaxAgeHours remained 12.0; same-state/legal-objective bounds unchanged.
+- Config restored to Observe after exit.
+
+Causal result:
+- 375 commitment evaluations.
+- 269 found prior actor state.
+- 17 same-state eligible evaluations.
+- 5 would-retain conditions.
+- 5 Apply writes.
+- 5 actual retains.
+- 0 commitment failures.
+- All five writes changed/held the winner exactly as predicted by the bounded retention rule.
+- Five retention events occurred across three actors (Vasilia, Andros, Usair), not five unique actors.
+
+Observed retention cases:
+- Vasilia: Patrol Chaikand retained over natural Patrol Shapeshte; required factor 1.01848, age ~2.02h.
+- Andros: Patrol Stathymos retained over natural Patrol Mecalovea; required factor 1.01688, age ~6.06h.
+- Vasilia: same bounded patrol preference retained again at ~3.03h.
+- Usair: Patrol Doqa retained over natural Patrol Razih; required factor 1.05305, age ~8.08h.
+- Usair: same preference retained again at ~9.09h; required factor 1.07157.
+
+Responsiveness evidence:
+- Vasilia later switched Patrol -> Recover and selected GoToSettlement:Makeb after the retention events.
+- This demonstrates the current rule can stabilize a near-tie objective without permanently freezing the actor when strategic state changes.
+- Cross-state skips remained active (15); age expiration remained active (2).
+
+Integration health:
+- Composer: 375 frames, 225 applied/equivalent frames, 33,798 score writes, 0 mismatches, 0 failures.
+- Perception blackboard: 375 captures/validations, 269 reuses, 375 visual-war reads, 225 weak-recovery reads, 0 mismatches/failures.
+- Intent blackboard: 375 decisions, 29 objective switches, 15 state switches, 0 failures.
+- Clean EXIT_NOSAVE completed; disposable save remained byte-identical.
+- Installed DLL remained unchanged and deployment ownership stayed intact through exit.
+
+Performance sample during Apply:
+- ~143.1 average FPS, 6.56 ms median, 9.62 ms p95, 13.2 ms p99.
+- Prior integrated Observe sample: ~140.3 average FPS, 9.22 ms p95, 13.1 ms p99.
+- Treat these as run samples, not a deterministic benchmark; no material regression is evident from this bounded treatment.

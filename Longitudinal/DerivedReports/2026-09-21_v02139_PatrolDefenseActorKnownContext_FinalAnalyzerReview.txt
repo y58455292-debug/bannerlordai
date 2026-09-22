@@ -1,0 +1,39 @@
+BannerlordAI v0.2.10.39 FINAL VERIFY — ACCEPT VIA HARNESS FALSE NEGATIVE
+
+Terminal validator status
+- Live validator recorded FAIL because it assumed every PatrolDefense shadow contains a nested threat object and still checked pre-final availability field names.
+- The accepted baseline schema omits nested threat entirely when threatFound=false.
+- Final v0.2.10.39 schema uses hasPersistentMemory / hasStateComparison / hasRecentOutcome.
+- Product binary was not implicated.
+
+Deterministic evidence
+- Final runner compiled with 0 errors.
+- Actor-known context fixture suite passed 25/25.
+- Static ordering: PatrolDefenseShadow.Evaluate occurs before recent-outcome lookup and actorKnownContext construction.
+- Builder contains no Apply, score, or memory-write authority.
+
+Decisive natural raw receipt
+- Natural Manan no-local-threat shadow at town_ES7 emitted BannerlordAI.PatrolDefenseActorKnownContext.v1.
+- Exact session seed:
+  mainHeroId=lord_3_12
+  branchId=c632a07e7140498fa421627250572517
+- Actor-known context matched that exact actor/branch and settlement town_ES7.
+- Baseline threatFound=false, so exact bandit identity is empty and neutral bandit facts are banditStrength=0, banditHealthy=0, actorToBanditStrengthRatio=0.
+- currentThreat preserved baseline actorStrength/actorHealthy and exact neutral no-threat facts; independent numeric comparison passed.
+- persistentMemoryContext=null, memoryStateComparison=null, recentOutcomeContext=null.
+- hasPersistentMemory=false, hasStateComparison=false, hasRecentOutcome=false.
+- interpretationApplied=false; behavior/intent/score mutation=false; nativeMovementCalls=0.
+- Baseline PatrolDefense decision stayed CONTINUE_PATROL / wouldInterrupt=false and no Apply side effects occurred.
+
+Independent corrected verification
+- Corrected validator logic evaluated every live invariant true against the already-captured receipt.
+- Protected root and BLOOD FUED saves matched canonical hashes.
+- Disposable v0.2.10.39 save cleaned.
+- Accepted ClanAI/TestRunner binaries restored.
+- Bannerlord closed, deployment owner clear, lease released.
+
+Classification
+HARNESS_FALSE_NEGATIVE_NO_THREAT_SCHEMA_AND_STALE_FLAG_NAMES, product milestone ACCEPTED.
+
+Architecture meaning
+PatrolDefense now has one stable read-only actor-known factual context that composes baseline current threat, persistent memory provenance/comparison when present, and session-local recent outcome context when present. Absence is explicit null/false. No belief or policy semantics are assigned.

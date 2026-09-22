@@ -1,0 +1,20 @@
+03H SEASON-SCALE GARRISON-ONLY OBSERVATION
+Build: AiDecisionTrace v0.26 / GlobalSameThinkCausalCapture v0.5
+Mode: GARRISON_ONLY_NO_RAID_NO_SIEGE
+
+ObservedPartyThinks: 164203
+EligibleIndependentLordThinks: 8982
+NeedPositiveThinks: 106
+NeedPositiveCandidates: 106
+FlipOpportunities: 0
+InterventionsApplied: 0
+CompletedReports: 0
+MutationFailures: 0
+Consumed: False
+PendingCommit: False
+
+INTERPRETATION
+During this uninterrupted simulation branch, 106 eligible garrison-deficit cases were observed without raid or siege pressure.
+No case produced a counterfactual score high enough to overtake the vanilla top-ranked decision under the current need-sensitive formula.
+This is a negative observational result, not evidence that garrison state is irrelevant.
+The experiment did not retain enough information about non-flip score gaps and surrounding local conditions, motivating the generalized Behavior Delta / Radius Recorder.

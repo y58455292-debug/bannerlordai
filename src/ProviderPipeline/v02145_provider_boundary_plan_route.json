@@ -1,0 +1,13 @@
+{
+  "active_candidate": {
+    "version": "v0.2.10.45-deliberation-provider-boundary-shadow",
+    "name": "Dependency-inverted deliberation provider boundary with deterministic local mock",
+    "status": "PLAN_READY",
+    "plan": "D:\\BannerlordAIResearch\\Longitudinal\\DerivedReports\\2026-09-21_v02145_DeliberationProviderBoundary_Plan.txt",
+    "base_clanai_staging": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate",
+    "base_runner_staging": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002144_RuntimeAdvisoryAdmission_20260921_1336\\candidate"
+  },
+  "active_question": "Can a cognition-provider abstraction generate advisory output for an exact pending route-eligible request while remaining fully behind strict admission and disconnected from network/model/gameplay execution?",
+  "next_action": "Coder EXECUTE v0.2.10.45 runner-only provider-boundary gate: add provider interface + deterministic local mock + provider runtime through existing exact pending-request admission gate, compile and pass exact/mismatch/malformed/retry/consume/replay/disposition/no-network fixtures, then one natural request -> mock KEEP_BASELINE -> admitted -> replay rejection live proof with zero gameplay authority.",
+  "blockers": []
+}

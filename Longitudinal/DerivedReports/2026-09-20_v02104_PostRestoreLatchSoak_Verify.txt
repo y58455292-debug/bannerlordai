@@ -1,0 +1,36 @@
+BannerlordAI — v0.2.10.4 Post-Restore Latch Soak — Front VERIFY
+Date: 2026-09-20 Pacific
+Classification: HARNESS_FALSE_NEGATIVE
+Semantic result: ACCEPTED_PATROL_LOCAL_DEFENSE_POST_RESTORE_LATCH_SOAK
+
+RAW AUTHORITY
+- D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02104_PostRestore_20260920_014337_918858\validation.json
+- D:\BannerlordAIResearch\Automation\TestRunner\patrol_defense_apply.jsonl
+- D:\BannerlordAIResearch\Automation\TestRunner\patrol_defense_shadow.jsonl
+- D:\BannerlordAIResearch\Longitudinal\DerivedReports\2026-09-20_v02104_PostRunIntegrity.json
+
+OBSERVED
+- Fresh safe Syronea proposal selected southern_pirates_47910 targeting local villager player_faction_1.
+- Exactly one ENGAGE_ISSUED used native SetMoveEngageParty; exactlyOnceConsumed=true; nativeScoreWrites=0.
+- Exactly one PATROL_RESTORED used native SetMovePatrolAroundSettlement town_ES7 after bounded_timeout; nativeScoreWrites=0.
+- After restore, the same bandit party southern_pirates_47910 remained a safe qualifying local-villager threat, now targeting player_faction_47784.
+- A later receipt at campaignHours 648677.5727265 carried postConsumedRepeat=true, wouldInterrupt=true, safeToIntervene=true, resumeAction=PATROL_SETTLEMENT:town_ES7.
+- Total ENGAGE_ISSUED remained exactly one after that post-consumed repeat. No second native engage was emitted.
+
+HARNESS FALSE NEGATIVE
+- The terminal validator required the post-restore proposalFingerprint and victimId to equal the original engage proposal exactly.
+- During the live window, the same Corsairs party naturally switched between two local villager targets. That target churn changed the proposal fingerprint without changing the safety claim under test.
+- The real latch claim is threat-actor/settlement scoped: after restore, a still-qualifying same bandit threat must not cause another native engage.
+- The validator was corrected offline to require same banditId, same patrolSettlementId, later campaignHours, safe wouldInterrupt=true, and persistent Syronea resume intent; it compiles with SHA256 01B14CE90AB43262169DC82A063866D04A2B649CDED678803EB59A940450FB19.
+- No live rerun is warranted solely for the over-specific original-victim identity check.
+
+INTEGRITY
+- Post-run integrity receipt PASS: protected root/BLOOD FUED hashes unchanged; disposable v0.2.10.4 save absent; accepted runner restored to EB164E99D7075907F34BD4C6EB32C1EA5E8419FA6A62242C175CB8B2A10F9802; deployment owner released; Bannerlord closed.
+- v0.2.10.4 runner change is instrumentation-only around repeat observation; consumed latch reset path count remains one and is campaign reset only.
+
+SCOPE
+- Accepted: consumed latch survives bounded restore and suppresses repeated automatic engage while the same bandit remains a qualifying Syronea local-defense threat.
+- Not yet accepted: safe recurring rearm for a genuinely new defense episode, resolution-driven rearm, or combat-outcome logic.
+
+NEXT SMALLEST GATE
+- v0.2.10.5 rearm-eligibility shadow: without clearing the live consumed latch or issuing behavior, detect that the prior threat episode has ended and later identify a genuinely new qualifying threat episode. Emit a REARM_ELIGIBLE shadow receipt only after an absence/cooldown boundary and distinct threat identity; zero behavior/intent/score writes.

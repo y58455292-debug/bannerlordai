@@ -1,0 +1,66 @@
+BANNERLORDAI — RECOVERY THREAT MEMORY v0.20J OFFLINE REVIEW
+Date: 2026-09-18 Pacific.
+
+Parent finding:
+v0.20I proved direct emergency refuge is not the primary fix for the canonical Izdenka failure.
+Across 58 exact weak-lord actor/threat pairs, 41 pairs had a valid friendly fortification at least once.
+However Izdenka vs northern_pirates_668 had zero valid friendly fortification from first exact threat detection through exact capture.
+
+Izdenka chase:
+- readiness .215053767
+- first exact Sea Raiders observation ~47.5 real sec before battle
+- threat distance 8.535 -> 1.646
+- Varnovapol native path distance 90.983 -> 136.834
+- native flee-settlement radius 22.5
+- valid friendly refuges remained 0 throughout
+- exact attacker victory and capture repeated
+
+Therefore FleeToGate cannot solve that canonical episode.
+The exact threat is nevertheless known for ~14 campaign hours before capture.
+v0.20J question:
+After native initiative identifies an exact weak-lord bandit threat, does the next strategic reevaluation expose a materially safer fortification candidate?
+
+Architecture:
+1. At GetBestInitiativeBehavior, only weak independent lords whose native result is FleeToPoint against a bandit write an observer-only RecoveryThreatMemory entry.
+2. Memory stores actor/threat IDs and native object reference, first/last campaign hour, observation count, last/min threat distance, and max initiative score.
+3. Observer retention is 24 campaign hours solely to avoid missing the next strategic evaluation. This is not a proposed behavioral memory duration.
+4. Strategic logging is rate-limited to once per campaign hour per active actor memory.
+5. On the next non-empty PartyThinkParams candidate list, RecoveryThreatStrategicObserver reads the memory before the existing Sturgia/Vlandia weak recovery rescore.
+
+Strategic handoff records:
+- threat memory age and duration
+- current exact short-term target match
+- pre-recovery-rescore winner behavior/settlement/score/native path
+- number of positive valid friendly fortification candidates
+- nearest fortification candidate by native MapDistanceModel path distance
+- nearest candidate behavior and score
+- highest-score fortification candidate and path distance
+Fortification validity:
+- Settlement.IsFortification
+- positive existing candidate score
+- same MapFaction by native object reference
+- not under siege
+- not under raid
+- native candidate-specific navigation/port semantics preserved in MapDistanceModel.GetDistance
+
+Safety:
+- no new SetBehaviorScore
+- no SetShortTermBehavior
+- no SetTargetSettlement
+- no SetMove / SetAiBehavior / SetInitiative
+- v0.20I refuge spatial scan is unhooked
+- v0.20F-H strategic recovery-risk detector remains retired
+- existing proven weak EngageParty suppression remains unchanged
+- existing generic weak recovery rescore remains unchanged
+
+Build/audit:
+0 errors; inherited System.ValueTuple warning only.
+All structural safety checks passed.
+
+DLL SHA256 D433214068125FE359721D9F9402272C9D330345F4754E64B3388C3FA1D082D6
+PDB SHA256 882ED074EA7DD403108801BC3A80939AF89EF92FBBE0391E1C89DC0B764790D9
+
+Runtime success condition:
+Observe at least one exact-threat -> strategic handoff.
+For canonical Izdenka if reproduced, determine whether a nearer fortification candidate exists after exact threat memory is already active.
+No score changes in this build.

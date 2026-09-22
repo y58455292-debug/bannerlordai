@@ -1,0 +1,23 @@
+BANNERLORDAI — RECOVERY A/B CONTROL READY
+Recorded: 2026-09-18 Pacific.
+Game state at preparation: closed; protected starting save unchanged.
+Purpose: counterfactual effectiveness test of weak-lord bandit pursuit gating.
+Control arm is configured first: Mode=Observe.
+Observe mode logs the exact weak lord + bandit + native EngageParty opportunity and returns the native result unchanged.
+Treatment later will use the same v0.20E binary with Mode=Suppress; only the startup config changes.
+Installed ClanAI: v0.20E-review, DLL SHA256 231F6E9F90C9F47550F97651392DBD72474A750F2B694FAB9BF56E24E88492D8.
+Installed ClanAI PDB SHA256 D70D17E8BBFFC47C7EAE39FB1D40F0F634EBE2BC467A40F2347FCDA89FDB460D.
+Installed Inspector: v0.34-review, DLL SHA256 81C117E6E4D9BC07D98CCE6CFC13D9C91CCFF2662EAE36E5203F456F8AB94042.
+Installed Inspector PDB SHA256 3D23F21CB88A0993554EEEA097D00BD2F7342DA32183DFB516A3AD0550067E76.
+WeakBanditRecovery.cfg SHA256 973FC0C3F3D1C520B9B31F7A21FAE50193812739F8A38D69E11BF68E6DA71594; Mode=Observe.
+BehaviorDeltaRecorder.cfg SHA256 2E64EC1D665C2DF6D38F52C016CCD443599BC3FEA2609A965E6FC6685823B2D3; Enabled=false.
+Heavy radius/candidate recorder is therefore OFF for A/B; exact event-driven outcome and settlement lifecycle evidence remain.
+ClanAI candidate compiled with zero errors and the pre-existing System.ValueTuple warning.
+RecoveryGateConfig direct parser tests: 6/6 pass.
+Structural audit: Observe contains no decision-output mutation; Suppress retains None/target/score/direction clearing; config read occurs once at wrapper construction.
+Inspector candidate compiled successfully against the installed game assemblies.
+Inspector lifecycle audit: native session + settlement enter/leave events only; no OnApplicationTick, Harmony, save keys, SyncData or game-state writes.
+A/B analyzer passed synthetic fixture tests including carry-through of battles begun before the common horizon.
+Rollback backup: D:\BannerlordAIResearch\workspace\_PatchBackups\Before_RecoveryAB_20260918_151157.
+Control evidence root: D:\BannerlordAIResearch\Longitudinal\LiveValidation\RecoveryAB_Control_Observe_20260918_151240_646427.
+Protected starting save SHA256 remains A3DAA0C37C0F8F6966DFB6DB2A57002BED70978A6C253F29DF395F171F9043AC.

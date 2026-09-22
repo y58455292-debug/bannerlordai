@@ -1,0 +1,57 @@
+{
+  "schema": "BannerlordAI.CurrentDecisionFeatures.v1",
+  "incident": "incident_soldier_in_debt",
+  "title": "Soldier in Debt",
+  "assessment_status": "provisional_text_plus_world_state_until_structured_hints_are_expanded",
+  "options": [
+    {
+      "index": 0,
+      "text": "Force your soldier to repay the loan with full interest",
+      "confidence": 0.68,
+      "features": {
+        "military_readiness": 0.20,
+        "local_stability": 0.15,
+        "legitimacy_influence": 0.10,
+        "personal_relationships": -0.20,
+        "mercy_honor": 0.25,
+        "fear_deterrence": 0.10,
+        "long_term_risk": 0.10,
+        "immediate_cost": 0.00,
+        "uncertainty_penalty": -0.15
+      }
+    },
+    {
+      "index": 1,
+      "text": "Tell the merchant that he is lucky not to be chased out of camp for gouging your men",
+      "confidence": 0.64,
+      "features": {
+        "military_readiness": 0.35,
+        "local_stability": -0.25,
+        "legitimacy_influence": -0.15,
+        "personal_relationships": 0.10,
+        "mercy_honor": -0.15,
+        "fear_deterrence": 0.45,
+        "long_term_risk": -0.20,
+        "immediate_cost": 0.00,
+        "uncertainty_penalty": -0.20
+      }
+    },
+    {
+      "index": 2,
+      "text": "Pay back the loan out of your own purse, even if you might get a reputation for being easily manipulated",
+      "confidence": 0.67,
+      "features": {
+        "military_readiness": 0.20,
+        "wealth_reserve": -0.05,
+        "local_stability": 0.30,
+        "legitimacy_influence": 0.05,
+        "personal_relationships": 0.30,
+        "mercy_honor": 0.40,
+        "fear_deterrence": -0.20,
+        "long_term_risk": -0.10,
+        "immediate_cost": -0.10,
+        "uncertainty_penalty": -0.15
+      }
+    }
+  ]
+}

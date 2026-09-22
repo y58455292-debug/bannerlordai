@@ -1,0 +1,17 @@
+{
+  "schema": "BannerlordAI.MemArchiveSync.v1",
+  "status": "VERIFIED_LAYERED_MIRROR",
+  "verified_at": "2026-09-19T19:41:05-07:00",
+  "front_note_id": "54bf651f-1824-531d-b753-7920ab058166",
+  "front_note_version": 30,
+  "collections": {
+    "00_FRONT": {"id":"31f14436-9647-5edb-b3d4-8cc816aa5ee1","count":1},
+    "10_HOT": {"id":"c92b44e0-df44-595e-9cd5-e0e4fb660b8a","count":1},
+    "20_WARM_ARCHITECTURE": {"id":"b2b8da7d-8031-5826-85df-e49ae533ab7f","count":6},
+    "30_WARM_EVIDENCE": {"id":"6bf2eab9-f63b-5322-815e-3ceefbcbd142","count":4},
+    "40_RESEARCH": {"id":"b29342e7-8bb0-55bc-bef6-f8f9f01ebe45","count":3},
+    "90_LEGACY": {"id":"020af0e3-8fcc-556f-ae50-c7da6d49ef98","count":3}
+  },
+  "rule": "Local HandoffV3/runtime remain authoritative. Mem is the compressed searchable mirror. No important chat is permanently retired until its durable capture and Mem mirror gates pass.",
+  "migration_note": "Legacy notes were added to new layered collections without removing original collection membership."
+}

@@ -1,0 +1,43 @@
+BANNERLORDAI — SOCIAL MEMORY CAUSAL v0.20K TARGETED CLOSEOUT
+Date: 2026-09-18 Pacific.
+
+Question:
+Can a real persisted social memory, bounded to existing aggressive candidates and applied last in the ClanAI scoring stack, measurably change the final strategic winner?
+
+Targeted context:
+- Guaran / lord_B8_c has real persisted capture memory against fen Giall: trust=-3, grievance=8, tension=6, pressure=17.
+- Targeted save came from the exact historical v0.20F session that previously contained Guaran fen Giall near-ties.
+- Automated run used v0.20K Observe, maxAbsDelta=0.12, pressureScale=0.0075.
+
+Autonomous targeted run:
+- 180.36 real seconds.
+- 53.3918309165 campaign hours advanced.
+- blocker-aware automation auto-resumed once after loading.
+- no persistent blockers after load.
+- clean no-save exit.
+- disposable targeted save remained byte-identical SHA256 11E3F8C04A1DF3ACA4C0DA4D51F9BB912C4D2970114C66B403729F2E5577FA6B.
+
+Relevant Guaran/fen Giall evidence:
+- Durn / fen Giall considered at 02:07:01Z, aggressiveScore 2.517, overallTop=False.
+- Durn / fen Giall considered again at 02:08:02Z, aggressiveScore 2.410, overallTop=True.
+- Fenon Etir / fen Giall considered at 02:08:22Z.
+- Gainseth / fen Giall considered at 02:09:02Z.
+- Social ledger touch confirms persisted fen Giall state: trust=-3 grievance=8 bloodDebt=0 obligation=0 tension=6.
+
+Final memory counters:
+- memoryCausalDecisions=29
+- memoryCausalWouldFlip=0
+- memoryCausalActualFlip=0
+- memoryCausalScoreWrites=0
+- memoryCausalFailures=0
+- MEMORY_CAUSAL_NEAR=0
+
+Conclusion:
+The persistent-memory pipeline is technically valid and reaches real decisions, but this calibration does not create a final-stack causal winner change in restored relevant context. Do not increase memory strength arbitrarily. The more important architectural issue is that multiple independent strategic layers currently reshape scores before final selection.
+
+Decision:
+Close v0.20K calibration. Preserve the real social ledger and episode-memory plumbing. Do not enable Apply at 12% and do not tune upward without a unified ownership model. Advance to Strategic Decision Composer: one action -> one owner -> one write authority, with visual-war, weak-recovery, social memory, future personality/commitment and other factors contributing structured terms to one final utility calculation.
+
+Automation milestone achieved in parallel:
+- background campaign advancement works with Chrome open after StopGameOnFocusLost=False and NavalMapScreen compatibility.
+- automated launch/load/play/pause/evidence-freeze/no-save-exit loop is proven.

@@ -1,0 +1,70 @@
+{
+  "schema": "BannerlordAI.ChatRetirementQueue.v1",
+  "updated_at": "2026-09-20T00:18:53.050023-07:00",
+  "ui_action_required": true,
+  "note": "Office verifies safety; user performs actual ChatGPT archive/delete UI action.",
+  "items": [
+    {
+      "alias": "DEMO-CODER-A",
+      "role": "coder",
+      "state": "SAFE_TO_DELETE",
+      "archive_safe": true,
+      "delete_safe": true,
+      "handoff_path": "D:\\BannerlordAIResearch\\Automation\\Office\\ChatHandoffs\\20260919_193804_DEMO-CODER-A.json",
+      "missing_archive_gates": [],
+      "missing_delete_gates": []
+    },
+    {
+      "alias": "BannerlordAI — Analyzer Desk #1",
+      "role": "analyzer",
+      "state": "SAFE_TO_DELETE",
+      "archive_safe": true,
+      "delete_safe": true,
+      "handoff_path": "D:\\BannerlordAIResearch\\Automation\\Office\\ChatHandoffs\\20260919_212506_BannerlordAI_—_Analyzer_Desk_#1.json",
+      "missing_archive_gates": [],
+      "missing_delete_gates": []
+    },
+    {
+      "alias": "BannerlordAI — Analyzer Desk #2",
+      "role": "analyzer",
+      "state": "DOWNSTREAM_REVIEW_PENDING",
+      "archive_safe": false,
+      "delete_safe": false,
+      "handoff_path": "D:\\BannerlordAIResearch\\Automation\\Office\\ChatHandoffs\\20260919_222914_BannerlordAI_—_Analyzer_Desk_#2.json",
+      "missing_archive_gates": [
+        "downstream_ack"
+      ],
+      "missing_delete_gates": [
+        "downstream_ack",
+        "mem_mirror"
+      ]
+    },
+    {
+      "alias": "BannerlordAI — Analyzer Desk #3",
+      "role": "analyzer",
+      "state": "DOWNSTREAM_REVIEW_PENDING",
+      "archive_safe": false,
+      "delete_safe": false,
+      "handoff_path": "D:\\BannerlordAIResearch\\Automation\\Office\\ChatHandoffs\\20260920_001853_BannerlordAI_—_Analyzer_Desk_#3.json",
+      "missing_archive_gates": [
+        "downstream_ack"
+      ],
+      "missing_delete_gates": [
+        "downstream_ack",
+        "mem_mirror"
+      ]
+    },
+    {
+      "alias": "BannerlordAI Front Watch",
+      "role": "front",
+      "state": "SAFE_TO_ARCHIVE",
+      "archive_safe": true,
+      "delete_safe": false,
+      "handoff_path": "D:\\BannerlordAIResearch\\Automation\\Office\\ChatHandoffs\\20260920_001235_BannerlordAI_Front_Watch.json",
+      "missing_archive_gates": [],
+      "missing_delete_gates": [
+        "mem_mirror"
+      ]
+    }
+  ]
+}

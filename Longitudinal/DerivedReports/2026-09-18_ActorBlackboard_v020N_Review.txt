@@ -1,0 +1,56 @@
+BANNERLORDAI — ACTOR BLACKBOARD v0.20N OFFLINE REVIEW
+Date: 2026-09-18 Pacific.
+
+Goal:
+Create a compact authoritative per-actor perception/working-state container without changing strategic behavior.
+
+Prior-art basis:
+- Unreal AI architecture separates perception/state storage (Blackboard) from decision/execution.
+- Unreal AI Perception updates awareness state from stimuli/events.
+- Fluid HTN examples separate predictive planner world-state from ordinary runtime blackboard/cache data.
+BannerlordAI mapping: keep authoritative campaign facts in a reusable actor snapshot; keep memory/personality/emotion/planning as separate state dimensions.
+
+v0.20N shadow design:
+- one reusable ActorBlackboard.State per current Sturgia/Vlandia lord key
+- capture once before composer scoring
+- validate the same snapshot after composer scoring
+- no score, movement, path, target, or native behavior writes
+- no memory/personality/emotion/planner state inside blackboard
+
+Captured authoritative facts:
+actor/leader/clan/faction/army references
+current settlement
+strategic and short-term settlement targets
+strategic and short-term party targets
+default and short-term native behavior
+men
+party readiness
+food days
+is-fleeing
+at-sea
+targeting-port
+campaign-hour capture stamp
+revision counter
+
+Two reflection-visible but inaccessible hot-path properties were intentionally dropped rather than accessed by reflection:
+IsCurrentlyEngagingParty
+IsCurrentlyEngagingSettlement
+
+Shadow validation gate:
+>=100 captures
+>=100 validations
+>0 reused-state captures
+0 blackboard mismatches
+0 blackboard failures
+0 composer score/sequence/winner mismatches/failures
+writer clean
+no material performance regression
+disposable save byte-identical after no-save exit
+
+Build:
+v0.20N-review
+FileVersion 0.20.14.0
+InformationalVersion v0.20N-review-actor-blackboard-shadow
+Build succeeded with inherited System.ValueTuple warning only.
+DLL SHA256 10742BA7B1D55C28AEF46B442151A45AA50120795B140273FEE580193674B7FA
+PDB SHA256 C730D6C14488F8B8F2211466C95CEB2664DE0D7AC92FBF09CA8055505D0A1BF0

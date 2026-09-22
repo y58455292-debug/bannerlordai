@@ -1,0 +1,23 @@
+BannerlordAI v0.2.10.59 FINAL VERIFY - ACCEPT
+
+Decisive evidence
+- Transport-bound ProviderResult.v3 live validation PASS.
+- Exact active claim matched.
+- Exact registered providerRequestId matched.
+- Exact registered transportRequestId matched.
+- Runtime admission sequence reported:
+  CLAIM_MATCHED
+  PROVIDER_REQUEST_MATCHED
+  TRANSPORT_REQUEST_MATCHED.
+- providerResultAccepted=true.
+- Nested advisory admitted=true / disposition=KEEP_BASELINE.
+- Dispatch completion SUCCESS_ACKED removed queue 1 -> 0.
+- Replay after completion rejected DISPATCH_JOB_NOT_FOUND and completion remained 0 -> 0.
+- Every live check true.
+- Protected saves matched, disposable saves cleaned, accepted binaries restored, lease released.
+- No provider/network/model/gameplay authority was introduced.
+
+Classification: ACCEPT.
+
+Architecture meaning
+Provider results are now bound to the exact authorized transport request in addition to claim and provider-request identity. A result cannot be accepted merely by knowing providerRequestId; it must prove the registered transportRequestId too.

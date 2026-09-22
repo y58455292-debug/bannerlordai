@@ -1,0 +1,138 @@
+{
+    "type":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiPartyThinkBehavior",
+    "assembly":  "TaleWorlds.CampaignSystem",
+    "baseType":  "TaleWorlds.CampaignSystem.CampaignBehaviorBase",
+    "interfaces":  [
+                       "ICampaignBehavior"
+                   ],
+    "counts":  {
+                   "properties":  0,
+                   "fields":  1,
+                   "methods":  11
+               },
+    "properties":  [
+
+                   ],
+    "fields":  [
+                   {
+                       "name":  "DefaultThinkingPeriodInHours",
+                       "type":  "Int32",
+                       "isStatic":  true
+                   }
+               ],
+    "methods":  [
+                    {
+                        "name":  "RegisterEvents",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "OnMobilePartyCreated",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "MobileParty mobileParty"
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "OnNewGameCreated",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "CampaignGameStarter gameStarter"
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "SyncData",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "IDataStore dataStore"
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "PartyHourlyAiTick",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "MobileParty mobileParty"
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "OnMakePeace",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "IFaction faction1",
+                                           "IFaction faction2",
+                                           "MakePeaceDetail detail"
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "OnClanChangedKingdom",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "Clan clan",
+                                           "Kingdom oldKingdom",
+                                           "Kingdom newKingdom",
+                                           "ChangeKingdomActionDetail detail",
+                                           "Boolean showNotification"
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "OnWarDeclared",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "IFaction faction1",
+                                           "IFaction faction2",
+                                           "DeclareWarDetail detail"
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "OnSettlementOwnerChanged",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "Settlement settlement",
+                                           "Boolean openToClaim",
+                                           "Hero newOwner",
+                                           "Hero oldOwner",
+                                           "Hero capturerHero",
+                                           "ChangeOwnerOfSettlementDetail detail"
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "HandlePartyActionsAfterSettlementOwnerChange",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "Settlement settlement"
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "CheckMobilePartyActionAccordingToSettlement",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "MobileParty mobileParty",
+                                           "Settlement settlement"
+                                       ],
+                        "queryable":  false
+                    }
+                ]
+}

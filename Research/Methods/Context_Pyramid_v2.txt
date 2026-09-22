@@ -1,0 +1,115 @@
+BANNERLORDAI CONTEXT PYRAMID v2
+Date: 2026-09-18
+
+Purpose:
+Keep the project indefinitely deep without forcing every reasoning step to reread all raw telemetry,
+chat history, source history, and prior experiments.
+
+Inspired by the same systems principle used by modern long-context architectures:
+- exact local/recent memory,
+- compressed global memory,
+- indexed retrieval of relevant mid-resolution history.
+
+This is a project-data architecture, not a claim that our software literally implements DeepSeek's neural attention.
+
+LEVEL 0 — RAW / IMMUTABLE
+Resolution: 1:1
+Examples:
+- save files
+- complete telemetry
+- Behavior Delta CSV
+- source snapshots
+- screenshots/video frames
+- build binaries + hashes
+Rule:
+Never overwrite because a summary exists.
+
+LEVEL 1 — HOT CONTEXT
+Resolution: exact but tiny.
+Target:
+Only what is needed for the next engineering decision.
+Contains:
+- current build/version + hashes
+- current save checkpoint/hash
+- active experiment
+- current hypothesis
+- unresolved questions
+- acceptance criteria
+- latest decisive observations
+- immediate next action
+This is analogous to a local/sliding window: recent/high-value details remain exact.
+
+LEVEL 2 — WARM EVIDENCE BLOCKS
+Resolution: medium.
+Unit:
+one experiment / campaign day / feature / failure investigation.
+Each block contains:
+- block ID
+- time window
+- build version
+- save lineage
+- evidence refs
+- verified findings
+- rejected hypotheses
+- unresolved items
+- tags/entities
+Raw evidence remains addressable beneath it.
+
+LEVEL 3 — GLOBAL PROJECT STATE
+Resolution: heavily compressed.
+Contains:
+- architecture doctrine
+- proven capabilities
+- known limitations
+- milestone status
+- open milestones
+- current world/campaign lineage
+- current best causal model
+It should be small enough to read almost every session.
+
+LEVEL 4 — INDEX / RETRIEVER
+Purpose:
+Do not load all warm blocks.
+Score and retrieve only blocks relevant to the current question.
+
+Initial deterministic scoring:
+- exact entity/tag overlap
+- build/version overlap
+- experiment/milestone overlap
+- evidence type overlap
+- recency
+- unresolved/open status boost
+- causal-proof status boost
+
+Later:
+hybrid retrieval can add embeddings / BM25 / DeepSeek indexing, but deterministic evidence IDs remain canonical.
+
+DECOMPRESSION
+If a warm/global block is insufficient:
+1. retrieve its exact evidence refs;
+2. read only the cited raw file/range/session;
+3. verify;
+4. reason from raw;
+5. update block only if new evidence materially changes it.
+
+CACHE-FRIENDLY RULE
+Stable historical blocks should be immutable whenever possible.
+Append a superseding block rather than constantly rewriting old blocks.
+This preserves reproducibility and makes cached/hashed context useful.
+
+PROMOTION RULE
+RAW -> WARM only after deterministic parsing/verification.
+WARM -> GLOBAL only when a finding is durable enough to affect future decisions.
+Unknown stays UNKNOWN.
+
+REASONING CONTRACT
+At the start of a task:
+1. read HOT;
+2. read GLOBAL;
+3. retrieve top relevant WARM blocks;
+4. open RAW only when required.
+Never default to rereading everything.
+
+TARGET EFFECT
+More project history should increase available evidence without linearly increasing active context,
+token cost, disk I/O, or reasoning latency.

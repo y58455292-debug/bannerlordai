@@ -1,0 +1,15 @@
+v0.19D Priority Alignment Test
+Deployed: 2026-09-18T03:47:21.3796375-07:00
+DLL SHA256: 576850DA91DC5FFAE234B4D7732429F65977056C61A48808BE0E99C75DDF1844
+
+Acceptance:
+1. SESSION_START and SESSION_LOG appear as v0.19D.
+2. Dedicated session file is created under Telemetry\ClanAI\sessions.
+3. VISUAL_WAR_CONTEXT_REFRESH includes:
+   selectionChanges, repeatsSuppressed, weakFrontierSkips,
+   banditEngageCandidates, rearSecurityEligible, rearSecurityWeakSkips.
+4. Ordinary frontier-defense should not fire for readiness < 0.72 or foodDays < 3.
+5. Active-defense can still fire during actual attack.
+6. Healthy frontier-offense remains capable of committing.
+7. Repeated identical visual selection should not spam winner-change lines.
+8. Determine whether rear-security receives native bandit EngageParty candidates.

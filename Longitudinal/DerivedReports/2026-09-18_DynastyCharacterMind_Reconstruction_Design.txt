@@ -1,0 +1,98 @@
+BANNERLORDAI — DYNASTY CHARACTER-MIND RECONSTRUCTION
+Date: 2026-09-18 Pacific
+Status: ADOPTED DESIGN / IMPLEMENTATION AFTER FIRST COMMITMENT APPLY
+
+Goal:
+Use Nethor's Law and recovered old-chat prose as evidence for playable-character personality, memory, voice, goals and doctrine in autonomous dynasty counterfactual runs.
+
+Primary source hierarchy:
+1. Exact dated game/save/world evidence = objective world truth.
+2. Nethor's Law first-person passages + preserved custom dialogue = subjective character evidence.
+3. Earlier old-chat authored passages = supplementary subjective evidence, tagged by provenance.
+4. Inferred traits = derived layer only; must cite supporting passages/events and carry confidence.
+5. Unknowns remain unknown; narrative cannot overwrite canon.
+
+Temporal firewall:
+For a run starting at date D, the character may only receive facts, memories, doctrines, relationships and book passages whose content was knowable by D.
+Later chapters, later deaths, later victories, and future political outcomes are hidden even if present in the completed book.
+The source book is sliced by campaign date before generating a mind packet.
+Per-character Mind Packet:
+- stable identity / family role / current age and status
+- first-person voice examples and vocabulary
+- formative memories available by the start date
+- relationship model: family, allies, enemies, feuds, trust, grief
+- strategic doctrines learned so far
+- economic/logistics habits
+- temperament dimensions with evidence/confidence
+- current goals and obligations
+- fears / aversions / unacceptable losses
+- unresolved beliefs and uncertainty
+- succession inheritance: family history/doctrine can transfer; personality does NOT copy automatically
+
+Decision rule:
+Personality/history changes utility weights, attention, commitment, risk tolerance and goal selection.
+Narrative lines do not hard-script future actions.
+Same world + different lived history should be able to produce different but explainable decisions.
+
+Playable-character order and memory rule:
+- First playable founder: Nethor.
+- Successor: Manan.
+- Successor: Vadrios.
+- The active player is the richest memory-bearing agent in autonomous dynasty runs.
+- Personal memories are actor-owned; successors inherit family doctrine/stories only with provenance, never predecessor private memories as firsthand experience.
+- New counterfactual experiences append to the active player episodic memory and may causally change later decisions.
+
+Current strong Manan evidence:
+- dynasty/line preservation over individual glory
+- logistics and food as strategic necessities
+- willingness to distinguish courage from waste
+- sequencing/containment rather than prideful hegemon fights
+- high value on accurate memory and unresolved truth
+- family protection intensified by blood-feud experience
+
+Current strong Vadrios evidence:
+- inheritance experienced as responsibility, not entitlement
+- explicit emotional continuity with father/family
+- burden of proving the house can survive beyond founders
+- long-war experience and repeated captures as later formative evidence
+- recognizes distributed family strength rather than one heroic fighter
+Research precedent:
+- Generative Agents: persistent experiences, retrieval, reflection and planning support believable individual behavior.
+- Character-LLM: profile + experience + emotional-state conditioning can produce character-specific role behavior.
+BannerlordAI adaptation keeps LLM/persona as judgment layer and deterministic Bannerlord code as action validator/executor.
+
+Evaluation:
+1. Blind character-consistency review: given decision + available context, does it fit book character without knowing future?
+2. Counterfactual sensitivity: same checkpoint with Manan-like vs Vadrios-like mind should diverge for explainable reasons where values conflict.
+3. No-future-leak audit: every retrieved memory/passage <= checkpoint date.
+4. Causal trace: state -> retrieved memories/personality factors -> candidate utilities -> selected intent -> native outcome.
+5. Longitudinal story test: after months/years, generated history should remain coherent without reproducing original canon by script.
+
+Book anchors already recovered:
+- Manan is canonical first voice; voice transfers to Vadrios on Summer 2, 1127.
+- "Build beyond yourself. Protect the line, not merely the man."
+- "A ruler must know the difference between courage and waste."
+- "A family that remembers badly can become more dangerous to itself than an enemy."
+- "Never fight the giant while the smaller kingdoms still exist."
+- Vadrios: "The inheritance was not a throne. It was everything that still needed doing."
+- Vadrios: "This one's for you, father."
+
+Next implementation artifact:
+Generate date-scoped MindPacket JSON for each playable dynasty anchor, beginning with Nethor-era, Manan-era and Vadrios-era checkpoints, with provenance pointers back to book/event evidence.
+Checkpoint / branch-root memory model:
+- A save checkpoint is an objective world-state anchor, not a rolling memory cache.
+- A date-scoped MindPacket is the subjective memory/personality projection attached to that anchor.
+- A new ClanAI run starts a fresh branch eventstream at the checkpoint.
+- After branch start, ONLY events from the new branch may become new memories.
+- Later canonical milestone saves must never be injected into that branch as memories, because divergence makes them counterfactual to the new timeline.
+- Later saves remain independent benchmark roots unless continuity is proven and no branch divergence occurred.
+- For the first dynasty replay, prefer a Manan-era checkpoint with rich prehistory. Seed Manan only with supported memories knowable by that date.
+- Vadrios begins the branch with only his own childhood/young-adult experiences, family stories/doctrine he plausibly learned, and directly observed world events up to the branch date.
+- During the branch, Vadrios accumulates only what he personally experiences or is told/observes. If succession reaches him, his player mind is rehydrated from that actor-owned memory stream plus inherited family doctrine/provenance.
+- Nethor remains an ancestral source for Manan/Vadrios through supported recollection and Nethor's Law, not omniscient shared memory.
+
+Recommended first experiment:
+Choose one mid-Manan checkpoint after enough family/war/economic history has accumulated but before Manan's death.
+Freeze canon at that date.
+Run one new timeline forward continuously through Manan and, if reached naturally, into Vadrios.
+Do not splice later old-canon milestones into the live branch.

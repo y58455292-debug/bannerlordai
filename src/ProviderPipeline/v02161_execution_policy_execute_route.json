@@ -1,0 +1,20 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002161_ExecutionPolicy_20260921_2041\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "70F2733153CC21D910C4D424DD5BABA429EE54C93FEE02376D0C6FD41D81621B",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02161_execution_policy.py",
+    "validator_sha256": "F14B57F9BC6DC89DADBDA65EEF9C321560BF563B4A8AF656BD6CD4CC5ED4772B",
+    "compile_result": "PASS_RUNNER_0_ERRORS_CLANAI_REUSED_V02138",
+    "execution_policy_fixture_result": "PASS_FIXTURES checks=257",
+    "v3_hash_binding_fixture_result": "PASS_V3_FIXTURES checks=63",
+    "provider_request_contract_fixture_result": "PASS_FIXTURES checks=49",
+    "static_zero_authority_checks": "PASS",
+    "network_model_policy": "NO_NETWORK_NO_MODEL_NO_ENV_VALUE_READ",
+    "test_policy_values": "timeoutMs=1000,maxAttempts=1,maxResultBytes=65536,credentialRef=env:BANNERLORDAI_TEST_PROVIDER_KEY; TEST_ONLY_NOT_PRODUCT_DEFAULTS"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.61 bounded live execution-policy registration gate. Natural request -> claim -> provider-request registration -> transport registration -> explicit test policy registration with caller-supplied timeout/attempt/result-size/env credential reference -> exact replay idempotent; provider/model/result/binding streams remain empty, no environment credential read, no Apply authority, full cleanup.",
+  "blockers": []
+}

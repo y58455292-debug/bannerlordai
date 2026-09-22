@@ -1,0 +1,73 @@
+BannerlordAI v0.2.10.49 - Provider dispatch work completion / retry lifecycle shadow
+
+Question
+Can provider-result outcomes update the bounded dispatch queue lifecycle so completed/terminal jobs stop occupying PENDING capacity while retryable failures remain pending, without adding a real model or gameplay authority?
+
+Why this gate
+- v0.2.10.46 enqueues exact PENDING jobs in a bounded 32-job session-local queue.
+- v0.2.10.48 accepts provenance-aware provider results.
+- Today, accepted/terminal results consume the advisory admission request but the dispatch queue still retains the PENDING job until patrol/campaign reset.
+- A long session could therefore fill the queue with already-finished work.
+- Portal Agent prior art uses a persistent controller + serialized tool queue; work lifecycle must distinguish pending from terminal completion.
+
+Smallest implementation
+- Runner-only; ClanAI unchanged.
+- Extend PatrolDefenseProviderDispatchQueue with exact fingerprint terminal acknowledgement.
+- Add terminal outcome enum/string:
+  SUCCESS
+  PERMANENT_FAILURE
+- Add retryable outcome:
+  TRANSIENT_FAILURE
+- On provider result admission:
+  SUCCESS + providerResultAccepted=true:
+    remove matching pending job;
+    emit completion reason=SUCCESS_ACKED.
+  PERMANENT_FAILURE:
+    remove matching pending job even though providerResultAccepted=false;
+    emit completion reason=PERMANENT_FAILURE_ACKED.
+  TRANSIENT_FAILURE:
+    keep matching pending job;
+    emit completion reason=TRANSIENT_FAILURE_RETAINED.
+  malformed/mismatch/advisory-not-admitted:
+    keep pending job.
+  no matching pending dispatch job:
+    fail closed with DISPATCH_JOB_NOT_FOUND; never affect other jobs.
+- Add receipt schema BannerlordAI.PatrolDefenseProviderDispatchCompletion.v1:
+  requestFingerprint,
+  resultStatus,
+  completionApplied,
+  reason,
+  queueCountBefore,
+  queueCountAfter,
+  pendingRetained,
+  externalNetworkUsed=false,
+  modelInvoked=false,
+  executionAuthorized=false,
+  zero gameplay authority.
+- Append completion receipt to dedicated jsonl stream from the provider-result command path.
+- Do not persist queue across save/restart.
+
+Acceptance
+A. Runner compiles; ClanAI unchanged.
+B. Fixtures:
+   SUCCESS accepted removes job 1->0;
+   PERMANENT_FAILURE removes job 1->0;
+   TRANSIENT_FAILURE retains job 1->1;
+   malformed/invalid advisory retains job;
+   wrong fingerprint does not remove unrelated job;
+   unknown/no job returns DISPATCH_JOB_NOT_FOUND;
+   second completion on already-removed job does not mutate;
+   new request can enqueue after completion frees capacity;
+   sequence remains monotonic;
+   zero authority receipt.
+C. Static: result admission -> dispatch completion update ordering is explicit; no network/OpenAI/provider SDK/Apply/score/memory write.
+D. Live:
+   natural request creates queueCount=1;
+   external SUCCESS result envelope is accepted;
+   completion receipt SUCCESS_ACKED reports queueCount 1->0 and pendingRetained=false;
+   immediate result replay still rejects NO_PENDING_ROUTE_REQUEST and completion does not mutate queue again;
+   provider invocation stream empty.
+E. EXIT_NOSAVE integrity cleanup.
+
+Scope
+This closes provider work-item lifecycle/capacity accounting. No claim leasing, timeout policy, real provider/model call, or gameplay influence yet.

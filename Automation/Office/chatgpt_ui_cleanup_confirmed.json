@@ -1,0 +1,13 @@
+{
+  "schema": "BannerlordAI.ChatGPTUICleanupConfirmation.v1",
+  "confirmed": true,
+  "layout_version": "ChatGPTProjectLayout.v1",
+  "confirmed_at": "2026-09-19T21:09:00-07:00",
+  "basis": "User confirmed the account was reduced to only two chats; legacy chats were archived/cleared. Department chats will be created manually during the organized sequence test.",
+  "prelaunch_state": {
+    "front_chat_present": true,
+    "coder_chat_present": false,
+    "analyzer_chat_present": false,
+    "legacy_clutter_removed": true
+  }
+}

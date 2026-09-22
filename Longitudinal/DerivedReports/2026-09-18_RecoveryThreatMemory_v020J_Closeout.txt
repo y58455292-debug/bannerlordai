@@ -1,0 +1,79 @@
+BANNERLORDAI — RECOVERY THREAT MEMORY v0.20J CLOSEOUT
+Date: 2026-09-18 Pacific.
+
+Question:
+After exact native bandit FleeToPoint threat memory is active, does the next strategic candidate list expose a materially safer friendly fortification that could plausibly solve the recurring recovery interception failure?
+
+Runtime:
+- ClanAI v0.20J-review
+- proven weak-lord bandit Engage suppression active
+- threat-memory bridge observer only
+- no new score/target/movement writes
+- Inspector v0.34-review
+- detailed recorder OFF
+
+Results:
+- threat memory observations: 539
+- new threat memories: 51
+- strategic memory reads / handoffs: 96
+- active exact-threat handoffs: 6
+- handoffs with >=1 fortification candidate: 95
+- handoffs without fortification candidate: 1
+- threat-memory failures: 0
+- strategic observer failures: 0
+- writer failures: 0
+- Inspector observer warnings: 0
+Canonical Izdenka case reproduced again:
+Actor lord_2_21_1_party_1.
+Threat northern_pirates_668.
+Readiness .215053767.
+Lord side Defender.
+Battle attacker victory.
+Exact native-object capture by northern_pirates_668.
+
+Exact-threat strategic handoffs during the chase:
+1) since first threat 1.739 campaign hours:
+   - threat distance 7.807
+   - winner/nearest/highest fortification all town_S4 / Varnovapol
+   - winner path 30.506
+   - no safer fortification candidate existed.
+2) since first threat 7.793 campaign hours:
+   - threat distance 4.849
+   - winner/nearest/highest fortification all town_S4
+   - winner path 50.812
+   - no safer fortification candidate existed.
+3) since first threat 13.852 campaign hours:
+   - threat distance 2.018
+   - winner town_S4 path 73.997
+   - nearest alternate castle_EN2 path 64.578
+   - path improvement only 9.419 / 12.7%
+   - alternate score .484 vs winner score 59.545
+   - battle began 3.14 real seconds later.
+
+Therefore the strategic memory bridge worked technically, but it did not reveal an actionable earlier safer fortification in the canonical failure.
+Other active-exact handoffs:
+- Qaban: native winner was already the nearest/highest fortification.
+- Izdenka early x2: native winner already nearest/highest fortification.
+- Taorse: no fortification candidate existed.
+- Tadeos: current winner village path 3.348; nearest fortification path 21.230, so fortification was materially worse.
+- Izdenka late: only alternate was modestly shorter and appeared immediately before battle.
+
+Engineering conclusion:
+The exact threat-memory handoff architecture is valid and works, but this recovery-interception branch does not justify another behavioral override.
+The recurring capture is not explained by an obvious missed safer fortification choice at either emergency-flee or strategic-reevaluation time.
+Solving it further would require stronger control of AI think timing, route geometry, or execution than current evidence justifies.
+
+Final recovery branch decision:
+- KEEP narrow weak-lord bandit pursuit suppression. This intervention has causal A/B support.
+- DO NOT enable v0.20F-H settlement-risk rerouting.
+- DO NOT invoke emergency FleeToGate as a canonical fix.
+- DO NOT add threat-memory-based settlement score changes from v0.20J evidence.
+- DO NOT modify bandits.
+- Treat hostile interception during recovery as a residual native limitation for now.
+- Close recovery interception branch and advance milestone.
+
+Next open intelligence milestone from prior roadmap:
+Prove that real persistent social memory can cause a measurable decision change, rather than merely being stored/retrieved.
+Prior visual-war report recorded real WORLD_MEMORY events and non-zero memory probes but no real-memory-driven behavior flip; that milestone explicitly remained open.
+
+No further recovery observer replay is authorized by default.

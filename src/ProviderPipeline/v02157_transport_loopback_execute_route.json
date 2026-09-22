@@ -1,0 +1,23 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002156_ProviderResultV2Binding_20260921_1549\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "7732C135648EE1E81587EF72E742DEB29260E0CEBD3005009BF66774F413A39C",
+    "provider_transport_helper": "D:\\BannerlordAIResearch\\workspace\\provider_transport_loopback_v02157.py",
+    "provider_transport_helper_sha256": "09B3AA6E738D74E6284D1DDE5627558637163551DB37C491B2F76BFD8077E4A7",
+    "provider_transport_fixtures": "D:\\BannerlordAIResearch\\workspace\\test_provider_transport_loopback_v02157.py",
+    "provider_transport_fixtures_sha256": "8533703E686761121D70F4A6CB660A72E7B30D89F9966CA833C6976835F5F355",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02157_external_transport_loopback.py",
+    "validator_sha256": "5031B87495E8235A2E2AB1166592DB8374791AC656CC4844D64F917331F4B021",
+    "feature_binary_reuse": "UNCHANGED_LIVE_TESTED_V02156",
+    "transport_fixture_result": "PASS_FIXTURES checks=61",
+    "runner_fixture_result": "PASS_FIXTURES checks=206",
+    "provider_request_contract_fixture_result": "PASS_FIXTURES checks=49",
+    "transport_mode": "DETERMINISTIC_LOCAL_LOOPBACK_NO_NETWORK_NO_MODEL",
+    "provenance_note": "Accepted v0.2.10.56 validation records runner_test_sha256=7732C135... and clanai_test_sha256=C437EE12...; stale milestone summary hashes are not used for execution."
+  },
+  "next_action": "Coder EXECUTE v0.2.10.57 bounded external transport-loopback integration on unchanged live-tested v0.2.10.56 binaries. Natural request -> claim -> exact provider request registration -> deterministic_local_loopback validates request/registration and emits byte-auditable ProviderResult.v2 + transport receipt -> existing v2 runtime admission must PROVIDER_REQUEST_MATCHED / KEEP_BASELINE / SUCCESS_ACKED 1->0 -> replay DISPATCH_JOB_NOT_FOUND; provider invocation stream empty, externalNetworkUsed=false, modelInvoked=false, no Apply authority, full cleanup.",
+  "blockers": []
+}

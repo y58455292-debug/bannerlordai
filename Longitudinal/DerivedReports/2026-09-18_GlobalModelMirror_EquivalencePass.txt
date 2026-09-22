@@ -1,0 +1,58 @@
+GLOBAL AI MODEL MIRROR EQUIVALENCE — v0.20A / Inspector 0.31
+Date: 2026-09-18
+Result: PASS
+
+Architecture proof:
+- Live active model:
+  ClanAI.DelegatingMobilePartyAIModel
+- mirror=True
+- inner:
+  NavalDLC.GameComponents.NavalDLCMobilePartyAIModel
+
+This proves ClanAI can globally wrap the actual model selected by the current mod stack rather than assuming vanilla DefaultMobilePartyAIModel.
+
+Behavior-equivalence evidence:
+- Native lord->bandit initiative decisions continued under the wrapper.
+- Native lord-vs-bandit battles continued.
+- Examples included Yaqus, Qaban, Atis, Urundulf and others.
+- REAR_SECURITY_BATTLE_START continued to show:
+  shortTermBehavior=EngageParty
+  exact bandit ShortTermTargetParty
+  IsEngaging=True
+- No intended decision mutation exists in v0.20A.
+
+Persistence:
+- NOBLE_MEMORY_SAVE records=198
+- SOCIAL_LEDGER_SAVE records=574
+
+Checkpoint after mirror test:
+D:\BannerlordAIResearch\Longitudinal\SaveCheckpoints\20260918_051711_global_model_mirror_equivalence_pass
+Save SHA256:
+DA864489DD7C6A23879B270B08ECD257E0A13BD97201EB4F80541C4413220FF1
+
+Conclusion:
+The global MobilePartyAIModel wrapper architecture is validated strongly enough to begin one narrow causal intervention.
+
+Next intervention:
+Globally suppress bandit attack consideration for weak independent hero-led lord parties only.
+Definition:
+weak = PartySizeRatio < 0.72 OR foodDays < 3
+Scope:
+- actor must be IsLordParty
+- hero-led
+- not in an Army
+- target must be bandit
+Everything else delegates unchanged.
+
+Reason:
+Runtime pursuit proof showed 20/60 lord-vs-bandit battles involved readiness <0.72.
+This currently bypasses the strategic recovery priority because short-term initiative operates below/alongside strategic behavior.
+
+Acceptance:
+1. Wrapper active globally.
+2. Count weak-lord/bandit attack considerations intercepted.
+3. Healthy lord/bandit consideration remains vanilla.
+4. Weak lord/bandit actual battles decrease materially relative to observed baseline.
+5. Healthy rear-security remains active.
+6. No effect on non-bandit targets.
+7. No performance regression.

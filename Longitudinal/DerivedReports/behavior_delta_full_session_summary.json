@@ -1,0 +1,317 @@
+{
+  "rows": 2019,
+  "real_start": "2026-09-18 02:16:58.186",
+  "real_end": "2026-09-18 02:46:24.713",
+  "campaign_start": "Summer 3, 1084",
+  "campaign_end": "Summer 12, 1084",
+  "unique_parties": 176,
+  "top_reasons": [
+    [
+      "VANILLA_WINNER",
+      605
+    ],
+    [
+      "BEHAVIOR+TARGET+VANILLA_WINNER",
+      402
+    ],
+    [
+      "BEHAVIOR+TARGET",
+      333
+    ],
+    [
+      "CURRENT_SETTLEMENT",
+      210
+    ],
+    [
+      "TARGET+VANILLA_WINNER",
+      160
+    ],
+    [
+      "ATTACHMENT",
+      81
+    ],
+    [
+      "VANILLA_WINNER+BEHAVIOR+TARGET",
+      68
+    ],
+    [
+      "TARGET",
+      62
+    ],
+    [
+      "ARMY",
+      21
+    ],
+    [
+      "BEHAVIOR+VANILLA_WINNER",
+      18
+    ],
+    [
+      "VANILLA_WINNER+ARMY",
+      14
+    ],
+    [
+      "BEHAVIOR+TARGET+CURRENT_SETTLEMENT",
+      12
+    ]
+  ],
+  "top_after_behaviors": [
+    [
+      "GoToSettlement",
+      533
+    ],
+    [
+      "PatrolAroundPoint",
+      434
+    ],
+    [
+      "DefendSettlement",
+      374
+    ],
+    [
+      "Hold",
+      322
+    ],
+    [
+      "RaidSettlement",
+      161
+    ],
+    [
+      "EscortParty",
+      137
+    ],
+    [
+      "GoToPoint",
+      29
+    ],
+    [
+      "BesiegeSettlement",
+      28
+    ],
+    [
+      "GoAroundParty",
+      1
+    ]
+  ],
+  "top_behavior_transitions": [
+    [
+      [
+        "Hold",
+        "GoToSettlement"
+      ],
+      137
+    ],
+    [
+      [
+        "GoToSettlement",
+        "Hold"
+      ],
+      70
+    ],
+    [
+      [
+        "Hold",
+        "PatrolAroundPoint"
+      ],
+      45
+    ],
+    [
+      [
+        "PatrolAroundPoint",
+        "GoToSettlement"
+      ],
+      43
+    ],
+    [
+      [
+        "PatrolAroundPoint",
+        "DefendSettlement"
+      ],
+      41
+    ],
+    [
+      [
+        "Hold",
+        "DefendSettlement"
+      ],
+      40
+    ],
+    [
+      [
+        "DefendSettlement",
+        "PatrolAroundPoint"
+      ],
+      36
+    ],
+    [
+      [
+        "GoToSettlement",
+        "PatrolAroundPoint"
+      ],
+      34
+    ],
+    [
+      [
+        "DefendSettlement",
+        "RaidSettlement"
+      ],
+      32
+    ],
+    [
+      [
+        "RaidSettlement",
+        "DefendSettlement"
+      ],
+      29
+    ],
+    [
+      [
+        "Hold",
+        "RaidSettlement"
+      ],
+      27
+    ],
+    [
+      [
+        "GoToSettlement",
+        "DefendSettlement"
+      ],
+      25
+    ],
+    [
+      [
+        "PatrolAroundPoint",
+        "EscortParty"
+      ],
+      16
+    ],
+    [
+      [
+        "RaidSettlement",
+        "PatrolAroundPoint"
+      ],
+      15
+    ],
+    [
+      [
+        "DefendSettlement",
+        "GoToSettlement"
+      ],
+      15
+    ]
+  ],
+  "kingdom_counts": [
+    [
+      "Sturgia",
+      1164
+    ],
+    [
+      "Vlandia",
+      855
+    ]
+  ],
+  "top_parties": [
+    [
+      "Karlek's Party",
+      42
+    ],
+    [
+      "Pharon's Party",
+      42
+    ],
+    [
+      "Ruma's Party",
+      40
+    ],
+    [
+      "Abalytos' Party",
+      39
+    ],
+    [
+      "Tasynor's Party",
+      39
+    ],
+    [
+      "Taslur's Party",
+      38
+    ],
+    [
+      "Sejaron's Party",
+      37
+    ],
+    [
+      "Ratagost's Party",
+      37
+    ],
+    [
+      "Hashan's Party",
+      37
+    ],
+    [
+      "Jinda's Party",
+      36
+    ],
+    [
+      "Addas' Party",
+      36
+    ],
+    [
+      "Maritzios' Party",
+      32
+    ],
+    [
+      "Gafnir's Party",
+      32
+    ],
+    [
+      "Richelda's Party",
+      31
+    ],
+    [
+      "Halthdar's Party",
+      29
+    ]
+  ],
+  "campaign_times": [
+    [
+      "Summer 4, 1084",
+      282
+    ],
+    [
+      "Summer 7, 1084",
+      248
+    ],
+    [
+      "Summer 5, 1084",
+      232
+    ],
+    [
+      "Summer 6, 1084",
+      226
+    ],
+    [
+      "Summer 8, 1084",
+      220
+    ],
+    [
+      "Summer 9, 1084",
+      200
+    ],
+    [
+      "Summer 10, 1084",
+      194
+    ],
+    [
+      "Summer 12, 1084",
+      179
+    ],
+    [
+      "Summer 11, 1084",
+      166
+    ],
+    [
+      "Summer 3, 1084",
+      72
+    ]
+  ]
+}

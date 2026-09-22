@@ -1,0 +1,35 @@
+BannerlordAI v0.2.10.28 — Read-only patrol-defense outcome link bridge
+
+Question
+Can current ClanAI join a native lord-bandit MapEvent outcome to an exact/unique existing PatrolDefense memory identity without name/time guessing, memory writes, or gameplay authority?
+
+Prior art reused
+1. BannerlordAI Inspector v0.33 OutcomeIdentityBridge already compiled and passed 24 isolated fixtures.
+2. Its bounded live pilot observed 35 completed lord-bandit MapEvents plus two captures with exact native object identity, consistent start/end event keys, native winner/state fields, capacitySkips=0, observerFailures=0.
+3. Therefore .28 must NOT re-prove generic MapEvent identity from scratch. Reuse the exact object-reference indexing pattern and its caveats.
+4. IntelEngine persists task/meeting outcomes in NPC memory; SkyrimNet supports persistent structured events for actor memory/context. BannerlordAI will first keep outcome data read-only and structured.
+
+Smallest current integration
+- Extend the accepted .27 candidate only with a read-only PatrolDefenseOutcomeObserverBehavior plus a bounded exact-reference event index adapted from v0.33.
+- Subscribe to CampaignEvents.MapEventStarted and MapEventEnded; no polling.
+- At start, recognize exact lord-bandit participant roles. For the current memory-bearing actor, resolve PatrolDefense history by exact actor+branch+bandit identity.
+- Memory resolution is EXACT_UNIQUE only if one visible PatrolDefense context exists for that bandit; NONE and AMBIGUOUS stay explicit. Never guess settlement/context from names, distance, or time.
+- Track exact MapEvent object reference from start to end.
+- End receipt schema BannerlordAI.PatrolDefenseOutcomeObservation.v1 carries factual native fields only:
+  actorId, branchId, banditId, actorSideAtStart,
+  linkResolution, settlementId/contextId/latestEpisodeId/historyEpisodeCount when unique,
+  startCampaignHours/endCampaignHours,
+  winningSide, hasWinner, battleState,
+  actorWon nullable, actorAliveAtCallback, actorPrisonerAtCallback.
+- memoryWriteApplied=false; interpretationApplied=false; behaviorMutation=false; intentMutation=false; scoreMutation=false; nativeMovementCalls=0.
+- Do not append the outcome into episode memory yet. Persistence belongs to a later gate after exact linking is proven.
+
+Acceptance strategy
+A. Reuse archived v0.33 live evidence for generic native start/end object-identity semantics; do not rerun it unchanged.
+B. Current .28 build must compile against installed assemblies and pass isolated deterministic fixtures for:
+   exact unique history link, none, ambiguous; reverse attacker/defender roles; winner/loser mapping; unreadable/no-winner nulls; duplicate start/end; bounded retention; zero mutation.
+C. Run one bounded current-binary live observer gate and require at least one real lord-bandit start/end receipt with exact event-object continuity and zero observer failures. A MainHero+memory-linked event may be ENVIRONMENTAL_INCONCLUSIVE rather than fabricated.
+D. Do not add a TestRunner engage command or automatic PatrolDefense Apply path merely to force acceptance.
+
+Scope limit
+A live current-branch MainHero outcome linked to a unique PatrolDefense history may require a later natural event. .28 is the safe integration bridge; outcome memory append comes only after that exact link is observed.

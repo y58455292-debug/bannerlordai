@@ -1,0 +1,28 @@
+BannerlordAI v0.2.10.23 — Read-only time-normalized historical rate context
+
+Question
+Can Manan combine accepted temporal spacing and factual trajectory deltas to expose exact numeric change rates per campaign hour, without qualitative interpretation or gameplay authority?
+
+Implementation boundary
+- Extend accepted v0.2.10.22 read-only history reader only.
+- Do not change writers, persistence schema, recognition, movement, scoring, or decision authority.
+- Emit orderedKnownByHours for all ordered episodes.
+- Emit intervalHours for each adjacent episode pair.
+- Emit intervalRatesPerHour: each accepted five-field interval delta divided by that exact interval duration.
+- Emit oldestToLatestRatePerHour: accepted cumulative oldest-to-latest delta divided by historySpanHours.
+- Preserve .20-.22 count/order/states/deltas/provenance.
+- If an interval is zero/nonpositive, emit null rate for that interval rather than interpreting it.
+- No labels such as accelerating, weakening, stronger, safer, dangerous, improving, declining.
+- interpretationApplied=false; behaviorMutation=false; intentMutation=false; scoreMutation=false; nativeMovementCalls=0.
+
+Acceptance
+1. Reuse deterministic three-observation fixture with real increasing CampaignTime.
+2. orderedKnownByHours exactly match the three source episode timestamps.
+3. intervalHours independently equal adjacent timestamp differences and are positive.
+4. intervalRatesPerHour independently recompute from accepted intervalDeltas / intervalHours for all five fields.
+5. oldestToLatestRatePerHour independently recomputes from oldestToLatestDelta / historySpanHours.
+6. Native SaveAs/full restart preserves times and rates exactly within accepted numeric tolerance.
+7. No semantic interpretation/gameplay authority; full integrity cleanup.
+
+Do not repeat
+Do not re-prove .19 append persistence, .20 temporal order, .21 pairwise state delta, or .22 three-state trajectory unless contradictory evidence appears.

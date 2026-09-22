@@ -1,0 +1,33 @@
+BannerlordAI v0.2.10.9 — Coder Terminal Report
+Date: 2026-09-20
+Classification: PASS_RAW_EVIDENCE_HARNESS_WRITE_ORDER_FALSE_NEGATIVE
+
+Objective
+Prove that after a fresh-process reload and positive campaign-time advance, the real patrol-defense observer can naturally recognize a remembered bandit as KNOWN_ENEMY with positive memory age, without PATROL_DEFENSE_RECOGNIZE and without behavior/intent/score authority.
+
+Terminal evidence
+- Persistent branch: 27c0400f95864906a2b5e8836e7cf66b.
+- Remembered identity: southern_pirates_47910.
+- Exact prior episode: fac5fdaf1e9e45d39c7545e5d0a17598.
+- Stage-2 observer recognition campaignHours: 648655.42420875.
+- memoryAgeHours: 4.439135666703805.
+- Recognition context: patrol_defense_observation:patrol-defense|town_ES7|southern_pirates_47910|player_faction_47784|648655.42420875.
+- Matching patrol-defense shadow exists with the exact same proposalId and campaignHours; threatFound=true, wouldInterrupt=true, safeToIntervene=true.
+- behaviorMutation=false, intentMutation=false, scoreMutation=false on both recognition and shadow receipts.
+- No PATROL_DEFENSE_RECOGNIZE command occurred after the Stage-2 persisted-save load.
+- No ENGAGE_ISSUED, REARM_ENGAGE_ISSUED, or PATROL_RESTORED Apply side effects.
+- Protected saves remain SHA256 94DFE7F05D89C6E4CC328A416943608713ECFFDF96A572AAEA43A9BDD5CD2DAA.
+- Accepted installed binaries restored: ClanAI 7FCF781463001B0884282C48585F53C9B16622B7FC998743F2C96C3850373BFE; Runner EB164E99D7075907F34BD4C6EB32C1EA5E8419FA6A62242C175CB8B2A10F9802.
+- Deployment lease released; disposable v0.2.10.9 saves cleaned.
+
+Harness finding
+The validator raised on matching_natural_shadow=false because it sampled patrol_defense_shadow.jsonl immediately after noticing the recognition receipt. Runner source intentionally calls ObservePatrolDefenseRecognition(result) before appending the shadow row in the same tick. Post-run raw files contain the exact matching row. The validator was corrected to wait up to 3 seconds for the matching proposal row and compiles. No rerun is required because the complete semantic evidence is already frozen.
+
+Primary frozen evidence
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02109_LiveObservationRecognition_20260920_043329_925039\semantic_acceptance.json
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02109_LiveObservationRecognition_20260920_043329_925039\recognition_receipt.json
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02109_LiveObservationRecognition_20260920_043329_925039\matching_shadow_receipt.json
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02109_LiveObservationRecognition_20260920_043329_925039\validation.json
+
+Coder semantic candidate
+PASS — naturally later, observer-generated persistent known-enemy recognition is proven. Analyzer should independently classify the raw pair and decide promotion scope.

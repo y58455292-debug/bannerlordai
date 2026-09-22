@@ -1,0 +1,100 @@
+BANNERLORDAI — SOCIAL MEMORY CAUSAL v0.20K OFFLINE REVIEW
+Date: 2026-09-18 Pacific.
+
+Milestone:
+Prove that REAL persistent social memory can measurably change a later lord decision, rather than merely being stored and retrieved.
+
+Recovery branch status:
+CLOSED before this work.
+Only the causally-supported weak-lord bandit pursuit suppression is retained.
+v0.20F-J recovery observers/risk/refuge/threat-memory source is removed from the active v0.20K candidate.
+
+Real-memory anchor:
+Guaran / lord_B8_c was genuinely captured by Siaramus / lord_5_20 of fen Giall.
+Persistent episode evidence:
+- event HeroCaptured
+- rememberer Guaran
+- otherHero Siaramus
+- otherClan fen Giall / clan_battania_5
+- source CampaignEvents.HeroPrisonerTaken
+Episode audit timestamp: 2026-09-18T09:26:21.6420409Z.
+The resulting persistent SocialLedger state later loaded as:
+- towardClan fen Giall
+- trust -3
+- grievance 8
+- bloodDebt 0
+- obligation 0
+- tension 6
+- pressure = grievance + tension + 2*bloodDebt - trust - obligation = 17
+Guaran's later escape was not a voluntary mercy release, so it did not create mercy/obligation counter-memory toward fen Giall.
+
+Historical decision evidence:
+The existing read-only memory probe repeatedly found Guaran considering raids against fen Giall.
+Near-ties occurred across multiple same-baseline replays.
+Strongest observed historical opportunity:
+- native/current winner RaidSettlement:Dalmengus score 2.427
+- memory-linked candidate RaidSettlement:Durn base 2.216
+- required factor 1.095
+- old conservative factor 1.043
+- gap 4.8%
+No prior memory-driven flip was actually applied.
+v0.20K review calibration:
+pressureScale = 0.0075
+max absolute memory delta = 0.12
+factor = 1 + clamp(pressure * pressureScale, -0.12, +0.12)
+
+For Guaran pressure 17, factor = 1.12.
+This is not a synthetic memory and does not add grievance.
+It only changes how strongly an already-persisted real memory may bias an existing aggressive candidate.
+
+Offline selectivity replay:
+119 historical MEMORY_BEST_OPPORTUNITY records were replayed.
+At the 12% cap, only 2 hypothetical flips occurred.
+Both were Guaran.
+No other actor in the historical opportunity set would flip.
+This supports a bounded causal test rather than a broad aggression increase.
+Behavioral safety:
+- memory can only rescale an already-existing RaidSettlement, BesiegeSettlement, AssaultSettlement, or EngageParty candidate
+- target must resolve to a clan with non-zero persisted SocialLedger state for that actor
+- no candidate/target/behavior is invented
+- no movement/pathfinding/war/diplomacy action is issued
+- no SetShortTermBehavior / SetTargetSettlement / SetMove / SetAiBehavior / SetInitiative
+- one SetBehaviorScore site only
+- score write exists only under Memory Mode=Apply
+- Observe is default for missing/invalid/read-failed config
+- reviewed runtime scope remains Sturgia/Vlandia strategic layer
+- causal memory layer runs LAST in the ClanAI strategic scoring stack, after visual-war and weak-recovery scoring
+
+Old SocialMemoryDecisionProbe is removed from the active candidate rather than running in parallel.
+A/B plan:
+Config: D:\BannerlordAIResearch\Data\SocialMemoryCausal.cfg
+Mode=Observe:
+- calculate the exact final-stack memory counterfactual
+- zero score writes
+- log MEMORY_CAUSAL_WOULD_FLIP only when the bounded real-memory factor would change the final ClanAI winner
+- log MEMORY_CAUSAL_NEAR for useful <=20% gaps
+
+Mode=Apply:
+- same baseline and same calibration
+- rescale only existing memory-relevant aggressive candidates
+- log MEMORY_CAUSAL_APPLY
+- actual winner after memory is the final ClanAI scoring result handed back to vanilla
+- no save; disposable test only
+
+Config parser tests: 7/7 PASS.
+Missing/empty/invalid config defaults to Observe.
+Build/audit:
+v0.20K-review
+FileVersion 0.20.11.0
+Build: 0 errors; inherited System.ValueTuple warning only.
+Structural safety audit PASS.
+Dead recovery-only source removed from active v0.20K candidate.
+Proven RecoveryGateConfig / weak-bandit pursuit suppression retained.
+
+DLL SHA256: AA59A5F83EA3C3AD6E900612FEBBB8985D7E9F2F275A105FF3343EFFDF2C2A9D
+PDB SHA256: C8F410140F2C29CC61E891BFDA3AF281889087005A991D273A6B974B5FBACB77
+
+Decision gate:
+Run one bounded Observe replay first.
+If MEMORY_CAUSAL_WOULD_FLIP appears with real persisted state and clean telemetry, run one same-baseline Apply replay.
+If Apply changes the final winner in the predicted direction, the real persistent social-memory causal milestone is proven.

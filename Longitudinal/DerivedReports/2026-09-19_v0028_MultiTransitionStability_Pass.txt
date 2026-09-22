@@ -1,0 +1,32 @@
+BannerlordAI v0.2.8 Multi-Transition Stability — bounded pass
+
+Scope
+- Exact-loaded Manan / Calastides / Khuzait branch, 213 troops, accepted ClanAI v0.20Q unchanged.
+- Existing v0.2.8 pause-intent guard only; no new gameplay architecture introduced.
+
+Observed transitions in one run
+1. town_wait_menus -> Stop waiting -> Leave.
+2. Singing for Supper Incident -> option 0 -> sticky PATROL_SETTLEMENT town_ES7 restored -> AUTO_RESUME.
+3. Later independent focus-loss escape-menu event registered NavalMapScreen as state-disable requester; v0.2.8 immediately produced STATE_DISABLE_UNREGISTER and AUTO_ESCAPE_RESOLVE=escape_menu_closed.
+
+Stability
+- Loaded-pause campaignHours: 648650.985073083313.
+- Final campaignHours: 648728.975163222174.
+- Total in-run advancement: 77.990 game-hours.
+- Bounded-monitor advancement: 53.890 game-hours.
+- Final blockers: none; no current-run stall packet.
+- Final party position: 785.959534,457.010284.
+
+Safety/closure
+- EXIT_NOSAVE completed and Bannerlord closed.
+- Manan clone and immutable BLOOD FUED both remain SHA256 94DFE7F05D89C6E4CC328A416943608713ECFFDF96A572AAEA43A9BDD5CD2DAA.
+- Installed ClanAI remains 0C9EC39ACBE7ABCA60D97C9C43B5138D39D5E0DE9B0EA1D10F44D7DA8258EC59.
+- Active run closed, sole inherited watcher stopped, lease released normally.
+
+Controller-concurrency observation
+- A pre-existing low_overhead_live_loop was already attached to the inherited run. A newly started duplicate was detected by process inspection and stopped immediately before another incident occurred. The inherited watcher remained the sole live decision watcher.
+- Operational rule reinforced: enumerate active controller/watcher processes before starting another instance.
+
+Decision
+- Accept v0.2.8 multi-transition operator stability for this bounded scope. Do not repeat the same egress/incident/focus sequence solely for operator proof.
+- Next work should move upward to low-overhead world/dynasty outcome observation on a longer bounded horizon using existing Inspector/census evidence, while retaining exact-load, single-controller, no-save, and hash-integrity gates.

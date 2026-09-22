@@ -1,0 +1,19 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002158_TransportRegistration_20260921_1650\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "B7D93EBADF946A3781EF89BF71BA567B74F89C23A30680F4794D0A0FEA98A657",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02158_provider_transport_registration.py",
+    "validator_sha256": "57AE8648E2AD854382A7D73B21C97F03E0FF3878EDB91890178F5EF0CAFDD74C",
+    "transport_registration_source_sha256": "27554724E48F06060FCC11B807F9333515D6CEFD5337F7A4B36C5D2E8AE346AF",
+    "compile_result": "PASS_RUNNER_0_ERRORS_CLANAI_REUSED_V02138",
+    "isolated_fixture_result": "PASS_FIXTURES checks=225",
+    "provider_request_contract_fixture_result": "PASS_FIXTURES checks=49",
+    "transport_registration_policy": "ONE_EXACT_TRANSPORT_REQUEST_PER_REGISTERED_PROVIDER_REQUEST_IDEMPOTENT_REPLAY",
+    "network_model_policy": "NO_NETWORK_NO_MODEL_CALL"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.58 bounded live provider-transport registration gate. Natural request -> claim attempt-1 -> exact provider-request registration -> exact deterministic_local_loopback transport request registration with runtime SHA-256 transportRequestId -> exact replay idempotent; provider invocation/result streams remain empty, no network/model/Apply authority, full cleanup.",
+  "blockers": []
+}

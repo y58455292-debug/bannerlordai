@@ -1,0 +1,52 @@
+BannerlordAI v0.2.10.42 - Session-local deliberation route eligibility / duplicate-suppression shadow
+
+Question
+Can BannerlordAI decide whether an accepted PatrolDefense deliberation request is NEW and eligible for a future expensive reasoning route, while suppressing identical request replays and still never invoking a model?
+
+Prior art
+- SkyrimNet: eligibility caching and event-driven/off-screen reasoning so expensive cognition is not run continuously.
+- IntelEngine: task/agent orchestration separates scheduling from downstream execution.
+- BannerlordAI durable event-sourcing architecture: stable IDs/fingerprints and idempotent replay prevent duplicate external side effects.
+- v0.2.10.40 establishes when factual reconsideration is warranted.
+- v0.2.10.41 establishes a stable deterministic requestFingerprint.
+
+Smallest implementation
+- Runner-only, session-local PatrolDefenseDeliberationRouteTracker.
+- Input = deliberation request fingerprint.
+- Track fingerprints seen during the current active PatrolDefense intent only.
+- Capacity bounded to 128 fingerprints; deterministic oldest eviction.
+- Reset when PatrolDefense intent is armed/cleared or campaign instance changes.
+- First unseen valid fingerprint:
+  routeEligible=true
+  routeReason=FIRST_UNSEEN_REQUEST
+  duplicate=false
+- Seen fingerprint:
+  routeEligible=false
+  routeReason=DUPLICATE_REQUEST
+  duplicate=true
+- Invalid/null fingerprint:
+  routeEligible=false
+  routeReason=INVALID_REQUEST
+- Emit BannerlordAI.PatrolDefenseDeliberationRouteEligibility.v1 with requestFingerprint, routeEligible, routeReason, duplicate, seenCount, capacity, and zero-authority flags.
+- Nest as deliberationRouteEligibility after deliberationRequest.
+- modelInvoked=false; llmInvoked=false; plannerInvoked=false.
+- Do NOT add cooldown/TTL, token budget, priority score, semantic utility, or model routing choice yet.
+
+Acceptance
+A. Runner compiles; ClanAI unchanged.
+B. Fixtures:
+   first valid request eligible;
+   duplicate same fingerprint ineligible;
+   changed fingerprint eligible;
+   invalid/null ineligible;
+   capacity 128 with deterministic eviction;
+   reset makes same fingerprint eligible again;
+   receipt fields exact and zero authority.
+C. Static ordering:
+   baseline -> actorKnown -> reconsideration -> deliberationRequest -> routeEligibility.
+D. Live: one natural first-observation Manan request emits FIRST_UNSEEN_REQUEST routeEligible=true while modelInvoked/llmInvoked/plannerInvoked all false.
+E. No Apply side effects; EXIT_NOSAVE integrity cleanup.
+F. Duplicate live replay is fixture-proven and must not be forced.
+
+Scope
+This is scheduling eligibility only. It does not choose a model, call a model, interpret the request, or influence gameplay.

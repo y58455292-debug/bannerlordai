@@ -1,0 +1,58 @@
+BannerlordAI v0.2.10.12 — Coder Terminal Report
+Date: 2026-09-20
+Classification candidate: PASS_AUTONOMOUS_MEMORY_PERSISTENCE
+
+Objective
+Prove that a naturally acquired patrol-defense episode survives guarded native SaveAs, full Bannerlord process exit, fresh process exact reload, and exact-identity retrieval with the same branch and episode provenance.
+
+Harness note
+The first v0.2.10.12 attempt naturally acquired memory successfully but used an unapproved SAVE_AS_TEST slot prefix and was rejected by the existing save-prefix guard. It was classified as HARNESS_FALSE_NEGATIVE_SAVE_PREFIX_GUARD. Cleanup was clean, feature binaries were unchanged, and the repaired validator used the previously accepted "ClanAI V020V PERSIST ..." namespace.
+
+Accepted rerun evidence
+Stage 1:
+- Exact zero-store Manan branch.
+- Natural NEW_ENEMY for southern_pirates_47910.
+- Auto-acquired episode f0602ed4320445c88af1574177edfcdf.
+- branchId d766c933cda44d5aafac0c7c329c2962.
+- proposal campaignHours 648654.3552835556.
+- exact bandit/victim/proposal/fingerprint/time provenance.
+- immediate pre-save retrieval returned the exact same episode.
+- all Stage1 checks true: new recognition, matching natural shadow, exactly-one acquisition, provenance/time/identity/validity, no manual seed/recognize, no Apply side effects.
+- guarded native SaveAs succeeded:
+  slot ClanAI V020V PERSIST AUTOLEARN V02112 20260920_055458_156027
+  SHA256 9B0684CD66F825BF73B27D23D5241517EE8066BAFC38DFFC463208BC50AFB04C
+  size 9,130,439 bytes.
+- Stage1 EXIT_NOSAVE fully terminated Bannerlord.
+
+Stage 2:
+- Fresh Bannerlord process launched.
+- Exact persisted save loaded.
+- DYNASTY_BRANCH_EPISODE_SESSION_READY:
+  records=3 restored=True branchId=d766c933cda44d5aafac0c7c329c2962
+- Total record count is intentionally non-authoritative because incident episodes share this store.
+- Exact bandit retrieval returned visibleCount=1 and episode f0602ed4320445c88af1574177edfcdf.
+- Exact contextId, source, detail, knownByHours preserved.
+- actorValid=true, branchValid=true, identityValid=true, futureLeak=false, scoreMutation=false.
+- All 18 Stage2 checks true.
+- Persisted save SHA remained unchanged through Stage2 EXIT_NOSAVE.
+- No manual PATROL_DEFENSE_RECOGNIZE or PATROL_DEFENSE_MEMORY_SEED_REAL_V02107 in Stage2.
+- No Apply side effects.
+- Protected save hashes unchanged.
+- Disposable source/persist saves cleaned.
+- Accepted binaries restored.
+- Bannerlord closed; lease released.
+
+Evidence
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02112_AutonomousMemoryPersistence_20260920_055458_156027\validation.json
+D:\BannerlordAIResearch\workspace\validate_v02112_autonomous_memory_persistence.py
+Validator SHA256 B9F63625D058A4F8AA27C941CA397C01DDED6C86B1702D30EA327B46A6B047E5
+Feature runner SHA256 5A0067D1DC2CA88816ADD733F1BCBAC1FCF55676A33DBBF58A9355887ADFEEAC
+ClanAI candidate SHA256 CE0ED97E098B7C3B7905E245D59C182A8E30625455C80D6EBC22FB0D7456EA63
+
+Coder semantic candidate
+PASS — autonomous lived patrol-defense memory persisted through native save and full process restart with exact branch/episode/provenance identity and zero gameplay authority.
+
+Suggested next smallest gate
+v0.2.10.13 — naturally later KNOWN recognition from autonomous persisted memory.
+Stage1: zero-store natural NEW -> auto-acquire -> SaveAs.
+Stage2: fresh process exact persisted reload, positive campaign-time advance, patrol naturally, require observer-generated KNOWN_ENEMY for the exact learned bandit, priorEpisode.id exactly the learned episode, positive memoryAgeHours, exact natural shadow correlation, no manual recognition/seed, no new acquisition for KNOWN, no Apply/rearm, zero behavior/intent/score/native movement.

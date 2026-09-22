@@ -1,0 +1,62 @@
+BANNERLORDAI — RECOVERY RISK EXACT THREAT v0.20H OFFLINE REVIEW
+Date: 2026-09-18 Pacific.
+
+Parent finding:
+v0.20G reduced broad risk triggers from 84 to 2 flee-qualified cases (97.62%), but both remaining cases lacked causal bandit identity:
+- Dagunic was fleeing Hirobert's lord party while scanner selected unrelated forest_bandits_58.
+- Alijin had FleeToPoint with no explicit ShortTermTargetParty.
+Therefore v0.20G Apply remained forbidden.
+
+v0.20H exact discriminator:
+- party.IsFleeing() == true
+- ShortTermBehavior == FleeToPoint
+- ShortTermTargetParty != null
+- ShortTermTargetParty.IsBandit == true
+- broad risk detector finds an avoid-worthy nearby bandit
+- required flee target and detected threat must be the SAME native MobileParty object via object.ReferenceEquals
+- only then can exactThreatQualified become true
+- helper itself refuses SetBehaviorScore unless apply && ExactThreatMatch
+This is defense-in-depth: strategic caller and helper both gate Apply.
+
+Retrospective exact-outcome evidence:
+Across Inspector OUTCOME_V1 records, weak lord + FleeToPoint + shortTermTargetPartyId == battle banditId occurred 6 times across 3 unique lords.
+All 6 began with lordSide=Defender.
+5/6 ended in exact native-object capture of the lord by that same bandit.
+Observed actors include Izdenka, Morcon, and Qaban.
+Therefore this exact-target pattern is a recurring high-risk failure family, not an Izdenka-only anecdote.
+Prior v0.20G qualified replay under v0.20H:
+- Dagunic rejected because flee target CharacterObject_1818_party_1 is known lord Hirobert.
+- Alijin rejected because flee target was <none>.
+Thus previous false-positive qualified set becomes 0/2 under exact-threat gating.
+
+Implementation:
+RecoverySettlementRiskBias.Decision now carries native ThreatParty and ExactThreatMatch.
+HasAvoidWorthyBanditNearby returns the nearest native MobileParty object in addition to ID/distance.
+ExactThreatMatch uses object.ReferenceEquals(requiredThreat, threatParty).
+Future Apply is allowed only when:
+1) RiskMode=Apply,
+2) native fleeing state is active,
+3) flee target exists and IsBandit,
+4) helper finds exact native-object match to detected avoid-worthy threat.
+Observe mode still performs zero score writes.
+
+Structural audit passed:
+- Apply mode required.
+- flee-bandit qualification required.
+- exact object reference used.
+- helper Apply requires ExactThreatMatch.
+- one SetBehaviorScore site only.
+- no movement/path commands.
+- exact-threat counter/log present.
+
+Build:
+0 errors; inherited System.ValueTuple warning only.
+DLL SHA256: 209F4A3D8C0E67F2F03E670AE2AEEDFDC8124EE392203D0857085A33D646EFEE
+PDB SHA256: E0F8EB7A101A3B6CDDFA32C6AF2DE857FC1482D9C4A077BB48D3BE5B7644811F
+
+Runtime plan:
+Deploy v0.20H in RiskMode=Observe only.
+Measure base risk -> flee-qualified -> exact-threat-qualified in one bounded replay.
+Require zero reroutes and clean telemetry.
+If exact-threat-qualified naturally appears, compare to outcome/lifecycle evidence.
+If zero, do not repeat indefinitely; one bounded replay is enough to establish rarity and guide the next deterministic validation.

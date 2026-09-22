@@ -1,0 +1,30 @@
+STOP_REASON: FLIP_FOUND
+NEW_OBSERVED: 25016
+NEW_ELIGIBLE: 1514
+ObservedPartyThinks: 39988
+EligibleIndependentLordThinks: 3284
+NeedPositiveThinks: 110
+NeedPositiveCandidates: 116
+FlipOpportunities: 1
+ClosestGapFraction: 0.0
+ClosestPartyName: Arytha's Party
+ClosestClanName: Sorados
+ClosestTargetName: Gersegos Castle
+ClosestVanillaRank: 4
+ClosestRequiredBonusFraction: 0.09607744
+ClosestAvailableBonusFraction: 0.16717127
+ClosestVanillaScore: 2.82270479
+ClosestTopVanillaScore: 3.093903
+ClosestTopVanillaBehavior: DefendSettlement
+ClosestTopVanillaTarget: Pen Cannoc
+LastHitPartyName: Arytha's Party
+LastHitClanName: Sorados
+LastHitTargetName: Gersegos Castle
+LastHitVanillaRank: 4
+LastHitAvailableBonusFraction: 0.16717127
+LastHitRequiredBonusFraction: 0.09607744
+LastHitTopVanillaBehavior: DefendSettlement
+LastHitTopVanillaTarget: Pen Cannoc
+
+--- GLOBAL NEAR TIE HIT LOGS ---
+[16:12:35.824] INFO  GLOBAL NEAR TIE HIT v0.1 party=Arytha's Party partyId=lord_1_62_1_party_1 clan=Sorados clanId=clan_empire_west_6 target=Gersegos Castle targetId=castle_EW8 vanillaScore=2.822705 vanillaRank=4 pressure=0.167171 availableBonusFraction=0.167171 requiredBonusFraction=0.096077 hypotheticalScore=3.29458 hypotheticalRank=1 topVanillaBehavior=DefendSettlement topVanillaTarget=Pen Cannoc topVanillaScore=3.093903 underRaid=False underSiege=False idealGarrison=112.1719 actualGarrisonStrength=93.42 garrisonDeficit=0.167171 mutation=False

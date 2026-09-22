@@ -1,0 +1,66 @@
+{
+    "note":  "Every subscriber below runs inside that one tick. For the per-party and per-settlement events, multiply by the party or settlement count - that is where a heavy modlist turns cheap handlers into a stall.",
+    "caveat":  "This says WHO runs, not how long each takes. A mod with many subscribers is a suspect, not a verdict.",
+    "events":  [
+                   {
+                       "campaignEvent":  "AiHourlyTickEvent",
+                       "subscriberCount":  11,
+                       "byMod":  [
+                                     {
+                                         "mod":  "TaleWorlds.CampaignSystem",
+                                         "subscribers":  9
+                                     },
+                                     {
+                                         "mod":  "NavalDLC",
+                                         "subscribers":  2
+                                     }
+                                 ],
+                       "subscribers":  [
+                                           {
+                                               "mod":  "NavalDLC",
+                                               "handler":  "NavalDLC.CampaignBehaviors.PiratesCampaignBehavior.AiHourlyTick"
+                                           },
+                                           {
+                                               "mod":  "NavalDLC",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.NavalPatrolPartiesCampaignBehavior.AiHourlyTick"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.BattleWreckageCampaignBehavior.OnAiHourlyTickEvent"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PatrolPartiesCampaignBehavior.AiHourlyTick"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AIMoveToNearestLandBehavior.AiHourlyTick"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiVisitSettlementBehavior.AiHourlyTick"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiLandBanditPatrollingBehavior.AiHourlyTick"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiEngagePartyBehavior.AiHourlyTick"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiPatrollingBehavior.AiHourlyTick"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiMilitaryBehavior.AiHourlyTick"
+                                           },
+                                           {
+                                               "mod":  "TaleWorlds.CampaignSystem",
+                                               "handler":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiArmyMemberBehavior.AiHourlyTick"
+                                           }
+                                       ]
+                   }
+               ]
+}

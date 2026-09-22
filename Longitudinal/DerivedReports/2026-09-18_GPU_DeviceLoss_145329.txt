@@ -1,0 +1,21 @@
+BANNERLORDAI — GPU DEVICE-LOSS INCIDENT
+Recorded: 2026-09-18 Pacific.
+Scope: graphics/runtime incident only; keep separate from AI behavior conclusions.
+At 14:53:29 Bannerlord rgl_log_errors_8620.txt recorded:
+ERROR: d3d_device_context_->Map at rglGPU_device::lock_texture Failed!
+The GPU device instance has been suspended.
+d3d11_debug_layer.txt recorded: D3D11: Removing Device.
+The RGL log shows the campaign had lost focus at 14:48:28 and the GPU error occurred about five minutes later.
+This timing is correlation only; no causal attribution to alt-tab, Inspector, ClanAI, browser activity, or driver software is established.
+The v0.33 outcome observer had already emitted valid exact-event records before the GPU incident with observerFailures=0 in observed OUTCOME_V1 records.
+No AI exception or outcome-observer warning was found in the inspected pilot segment.
+After user closed the crash dialog/game, no Bannerlord/TaleWorlds process remained in the process list.
+Protected saves remained byte-identical:
+ClanAI v020D DIAGNOSTIC TEST.sav SHA256 A3DAA0C37C0F8F6966DFB6DB2A57002BED70978A6C253F29DF395F171F9043AC.
+world memory proof.sav SHA256 3FF4154175A5054D5B19ED6FC7E3D7452F864E0091B7F024E6444807F1BEF323.
+ClanAI DLL remained 4EC3E5907E06053BE2C36782A2C181182D95D1DD731B3252E5BDC41F40FAB770.
+Inspector v0.33-review DLL remained AF59812533AD63C9DCEECC8AA532B2C187C70C2D9F00FC1A1DA94311051EE376.
+No graphics setting, driver setting, Windows registry, security setting, or save was modified by the agent.
+Current interpretation: confirmed D3D11 device-loss incident; root cause UNKNOWN.
+Do not use this incident as evidence for or against AI behavior, recorder overhead, or gameplay intelligence.
+If it recurs, collect Windows display-driver/device-removal evidence and compare lifecycle/focus/GPU conditions before changing graphics quality.

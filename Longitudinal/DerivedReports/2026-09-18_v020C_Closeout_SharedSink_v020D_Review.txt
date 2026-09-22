@@ -1,0 +1,61 @@
+BANNERLORDAI - v0.20C LIFECYCLE CLOSEOUT AND v0.20D SINK REVIEW
+Recorded local: 2026-09-18T11:49:03.781630-07:00
+Status: LIFECYCLE_VERIFIED; SHARED_LOG_INTEGRITY_FAILED; PERFORMANCE/OUTCOME_ACCEPTANCE_OPEN; v0.20D_STAGED_NOT_DEPLOYED.
+Conclusion: Real-session counters, Inspector snapshots, save callbacks and clean shutdown were captured. A separate shared-log integrity defect was found and reproduced offline; do not treat zero writer exceptions as proof of complete evidence.
+
+CAMPAIGN SAFETY AND EXIT
+Observed: Process.CloseMainWindow requested normal closure of the verified Bannerlord window, PID 7272, at 11:40:43 Pacific; no force termination. game_end was recorded at 18:40:43.9683728Z, Inspector disarmed at 11:40:44.165, and post-shutdown health was written at 18:40:44.4004412Z. Process absence was verified. [C:316; H:1; I:182994; close_request.json]
+Save: The user saved to world memory proof.sav at 11:38:57.996306 Pacific, replacing the working baseline name rather than creating ClanAI_v020C_DIAGNOSTIC_TEST. The requested separate filename was absent. Both world states are preserved; nothing was restored over the new progress.
+Save SHA256 (new): 3FF4154175A5054D5B19ED6FC7E3D7452F864E0091B7F024E6444807F1BEF323; 7,183,239 bytes.
+Checkpoint (new): D:\BannerlordAIResearch\Longitudinal\SaveCheckpoints\20260918_114200_v020c_diagnostic_lifecycle
+Baseline checkpoint: D:\BannerlordAIResearch\Longitudinal\SaveCheckpoints\20260918_103332_v020b_global_judgment_test
+Baseline SHA256 (verified intact): 59B92DCA65409C0776C75CEDD2670DBB5F5E03C6E92D1FE5A637EAC430831347
+Observed: The new save was safety-copied before closure and remained byte-identical through exit. 41 evidence files were frozen with source/copy SHA256 checks; original telemetry was not edited.
+
+VERIFIED DEDICATED EVIDENCE
+Observed: Final campaign-session counters: getBestCalls=102093; weakBanditEngageSuppressed=388; healthyBanditEngagePassed=318; weakBanditNonEngage=165. save_serialization and game_end counters agree. These are final recorded counters, not the older 100,000-call snapshot. [C:315-316; D:174]
+Observed: 20 complete consecutive diagnostic snapshots, including session_begin, periodic, save_followup and terminal game_end. Every PERFORMANCE_JSON and RECORDER_JSON parsed. Diagnostic failure counter remained zero. [D:1-180]
+Observed: Saved memory callbacks report 206 noble-memory records and 614 social-ledger records. A successful reload of the newly saved file has not been tested. [C:313-314]
+Observed: ClanAI post-shutdown requests=662, queued=662, writtenCalls=662; pending=0, threadAlive=False, stopping=True, drainCompleted=True. All reported write/fallback/flush/dispose/start/queue/worker/terminal-failure counters and shutdownTimeouts were zero. writtenCalls counts writer items, not necessarily physical lines or durable exactly-once delivery. [H:3-5]
+Observed: Recorder CSVs contain 161 consecutive event IDs, 1,465 candidate rows, 1,336 nearby-party rows, 256 nearby-settlement rows and 714 radius-delta rows. No malformed rows or orphan event references; all five counts match terminal RECORDER_JSON. [B and companions; D:178]
+Observed: status.txt is stale at event 148. The terminal snapshot reaches event 161 and is the appropriate comparison for the frozen CSVs. [R; D:178]
+Observed: Before exit, the armed error collector returned totalSeen=0, fatal=0, droppedOverBudget=0, selfSuppressed=1. This is a bounded observation, not proof that every exception was observable. [pre_exit/errors.json]
+
+SHARED-LOG INTEGRITY - NEW BLOCKER
+Observed: The frozen shared inspector.log has mixed/truncated records at original lines 182899, 182901 and 182964. Only 65 of 316 dedicated ClanAI lines are present as exact shared-log lines; 251 are not. Of 161 recorder event IDs in CSV, 39 are absent from the shared log. These comparisons are not losses from the dedicated CSVs. [C; B; I:182654-182994; analysis.json]
+Finding: ClanAI and Inspector each own a separate persistent writer, yet both target the same inspector.log path. Copied writer classes reproduced the failure in two isolated runs: 4,096 expected exact records, 2,049 present, 2,047 absent, while both writers reported zero failures. Two separate-path control runs retained all 4,096 records each. [A]
+Limit: The reproduction ran on .NET 11.0.0-rc.1.26425.128 without loading the game engine. It establishes the copied-writer failure mode and supports the diagnosis; it is not an in-game validation of the staged fix.
+Guardrail: Do not repair or overwrite the damaged raw log. Do not claim complete battle counts or compare capture/battle rates from that shared log. Dedicated counters, snapshots and CSVs remain the primary evidence for their own fields.
+
+BEHAVIORAL OBSERVATIONS - COMPLETENESS NOT ESTABLISHED
+Observed: Ten intact lord-bandit battle-start records were readable: eight healthy/engaging=True and two weak/engaging=False. Because the shared log is damaged, this is a readable subset, not a verified total. [I]
+Observed: Achios was fleeing deserters; no earlier exact actor-target suppression detail was found. Jastion was traveling toward Ortysia; an exact deserters_2014 suppression detail preceded the non-engaging battle snapshot by 14.204286 seconds. Neither snapshot independently proves the initiating side. [C:147; I:182741,182862]
+Observed: Six frontier selection details: five defense, one offense. Five match actor, selected after-behavior/settlement and recorder timestamp within 10 milliseconds; Agnathea-to-Pen Cannoc lacks a matching row under that rule. State changes do not prove arrival or completed defense. [C:56,74,80,92,186,286; B; analysis.json]
+
+PERFORMANCE LIMITS
+Observed: Timings now persist, but use rolling 1,024-frame windows and phase accumulators since Inspector reset. The recorder does not explicitly tag pause state, game speed, window focus or save state.
+Observed: Snapshots 13-15 were taken while counters advanced between observations. Their window averages were 119.5, 101.7 and 59.6 FPS; the third included a 2,468.86 ms frame interval. Snapshot 16 includes the save boundary. These are not a full-session benchmark. [D:109-144]
+Conclusion: The 2.47-second interval remains unattributed. No comparable controlled baseline establishes diagnostic overhead, performance neutrality or an AI-caused slowdown. Phase totals may overlap through nested dispatchers and are not per-mod CPU attribution.
+
+NEXT CANDIDATE - STAGED ONLY
+Build: v0.20D-review changes only the ClanAI aggregate log destination to a ClanAI-owned file, plus build/session/version labels. Gameplay methods, thresholds, save keys, memory logic and writer algorithms remain unchanged.
+New aggregate sink: D:\BannerlordAIResearch\Telemetry\ClanAI\logs\clanai.log
+Staged source: D:\BannerlordAIResearch\workspace\_PatchStaging\DiagnosticsSink_v020D_20260918_114647_268412\src\ClanAI
+Candidate DLL SHA256: 4EC3E5907E06053BE2C36782A2C181182D95D1DD731B3252E5BDC41F40FAB770
+Review: Candidate compiles with zero errors and the existing one System.ValueTuple version-conflict warning. All seven writer/lifecycle tests pass. Split-sink controls pass twice. No shared dependency was replaced. [S]
+Runtime: v0.20D NOT_RUN; deployment NOT_PERFORMED. Installed ClanAI remains v0.20C-review; Inspector remains v0.32. Working source still matches all 17 v0.20B baseline files.
+Next: Review the pinned v0.20D candidate and source diff; back up/hash-check installed C before any deployment. Then repeat load, active-play, save and normal-exit integrity checks, including full record identity/count comparisons. Only after clean evidence should a matched performance/control experiment proceed. Keep bandits and other gameplay rules unchanged.
+
+EVIDENCE MAP - ORIGINAL FILE LINE NUMBERS
+Frozen root: D:\BannerlordAIResearch\Longitudinal\SaveCheckpoints\20260918_114200_v020c_diagnostic_lifecycle\frozen_evidence
+C = clanai/ClanAI_20260918_183133_085_v020C_review.log (316 lines). D = clanai/ClanAI_20260918_183133_085_v020C_review.diagnostics.txt (180 lines). H = clanai/ClanAI_20260918_183133_085_v020C_review.diagnostics.finalhealth.txt.
+B = behavior/behavior_changes.csv and companion CSVs. R = behavior/status.txt.
+I = inspector/inspector.log; only this process session, original lines 182654-182994, was analyzed. Damaged records were preserved verbatim.
+Freeze manifest: D:\BannerlordAIResearch\Longitudinal\SaveCheckpoints\20260918_114200_v020c_diagnostic_lifecycle\frozen_evidence\manifest.json
+Analysis: D:\BannerlordAIResearch\Longitudinal\SaveCheckpoints\20260918_114200_v020c_diagnostic_lifecycle\analysis.json
+A = D:\BannerlordAIResearch\workspace\_PatchStaging\SharedSinkAudit_20260918_114326_967650\manifest.json; results: D:\BannerlordAIResearch\workspace\_PatchStaging\SharedSinkAudit_20260918_114326_967650\audit_results.json
+S = D:\BannerlordAIResearch\workspace\_PatchStaging\DiagnosticsSink_v020D_20260918_114647_268412\review_status.json; source hashes: D:\BannerlordAIResearch\workspace\_PatchStaging\DiagnosticsSink_v020D_20260918_114647_268412\source_manifest.json
+
+HANDOFF
+Update HOT/current to the new checkpoint, installed C, and staged-not-deployed D. Index this one WARM report; preserve GLOBAL byte-for-byte. Older reports remain historical, not silently rewritten.
+Before another checkpoint helper run, address its obsolete metadata defaults. Do not rebuild working v0.20B source and label it C or D. Leave the game closed and require an explicit controlled runtime validation for the new candidate.

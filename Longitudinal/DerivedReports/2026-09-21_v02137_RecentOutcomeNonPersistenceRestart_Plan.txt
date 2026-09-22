@@ -1,0 +1,28 @@
+BannerlordAI v0.2.10.37 — Session-local recent outcome non-persistence across full restart
+
+Question
+Does the v0.2.10.35 recent outcome context correctly disappear after native SaveAs + full process restart, proving it is transient working context rather than persistent memory?
+
+Why this gate matters
+- v0.2.10.35 proved same-session FOUND/NONE retrieval.
+- v0.2.10.36 proved receipt-only reasoning integration.
+- Architecture requires blackboard/working context to remain separate from persistent episodic memory.
+- Static absence of SyncData is strong but a live restart proof closes the boundary causally.
+
+Feature binaries
+Reuse accepted v0.2.10.35 ClanAI cache and v0.2.10.36 TestRunner; no feature changes.
+
+Acceptance
+1. Disposable exact Manan clone boots and naturally produces one unified lord-bandit outcome packet.
+2. Exact actor+bandit same-session retrieval returns FOUND with matching eventKey.
+3. Native guarded SaveAs persists the campaign while the session cache is populated.
+4. Full Bannerlord process exits.
+5. Fresh process boots from known-good source then exact LOAD_SAVE of persisted branch.
+6. Branch restore succeeds.
+7. Exact actor+bandit recent-outcome retrieval after restart returns NONE.
+8. This NONE is not due to wrong identity: request actor/bandit are exactly the Stage1 FOUND identity.
+9. Persistent DynastyBranchEpisodeMemory remains independent; no recent-outcome save key exists.
+10. Protected saves match; disposable source/persisted saves cleaned; accepted binaries restored; lease released.
+
+Do not repeat
+Do not rerun v0.2.10.35 same-session retrieval proof or v0.2.10.36 shadow integration. This gate is only the restart transience boundary.

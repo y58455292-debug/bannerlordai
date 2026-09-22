@@ -1,0 +1,60 @@
+{
+  "installed_build": {
+    "version": "v0.20N-review actor strategic blackboard shadow",
+    "sha256": "B1E33E673DEC4CABF5821515DDB37CE13C2AB9E95C8FA288BAE4C5F74E37255F"
+  },
+  "last_accepted_milestone": {
+    "version": "v0.20N-intent-shadow",
+    "name": "Actor Strategic Intent Blackboard Shadow",
+    "status": "ACCEPTED_RUNTIME",
+    "dll_sha256": "B1E33E673DEC4CABF5821515DDB37CE13C2AB9E95C8FA288BAE4C5F74E37255F",
+    "result": "501 decisions; 44 objective switches; 41 previous objectives still eligible; near5=5 near10=8 near20=12; 21 coarse-state switches; 0 failures; composer clean; clean no-save exit/save unchanged"
+  },
+  "active_candidate": {
+    "version": "v0.20P-review",
+    "name": "Merged true-single-writer + authoritative perception blackboard consumption",
+    "status": "OFFLINE_AUDIT_PASS_WAITING_DEPLOY",
+    "dll_sha256": "76C7BFAF0AFB8CC6666067F0C3B71191979ABE19FDA0C0A0ABDB82FE5E7CCC49",
+    "pdb_sha256": "0ACED821DF81B7F1846181C8DC11D8002EFAE5329C98BC7A39A28B455D0E53EC"
+  },
+  "active_question": "Can the already-validated authoritative actor fact snapshot be consumed by global VisualWar and targeted weak-recovery on the refined true-single-writer composer with exact score/winner equivalence, zero cache drift, and no performance regression?",
+  "run_state": {
+    "bannerlord_running": false,
+    "inherited_run": "ActorStrategicBlackboard v0.20N shadow completed and exited no-save",
+    "overlap_allowed": false,
+    "campaign_ready": false,
+    "automation": "IDLE",
+    "validation_root": "D:\\BannerlordAIResearch\\Longitudinal\\LiveValidation\\ActorStrategicBlackboard_v020N_ShadowAuto_20260918_201453_153329",
+    "stop_condition": "Next run is v0.20P only: >=100 authoritative blackboard captures/validations, reuse>0, visual-war reads>0, weak-recovery reads>0, composer writes>0, zero composer/blackboard mismatch/failure"
+  },
+  "configs": {
+    "social_memory": "Observe",
+    "weak_recovery": "Suppress"
+  },
+  "decisive_evidence": [
+    "D:\\BannerlordAIResearch\\Longitudinal\\LiveValidation\\ActorStrategicBlackboard_v020N_ShadowAuto_20260918_201453_153329\\final_result.json",
+    "D:\\BannerlordAIResearch\\Longitudinal\\DerivedReports\\2026-09-18_ActorBlackboard_v020N_Closeout.txt",
+    "D:\\BannerlordAIResearch\\Longitudinal\\DerivedReports\\2026-09-18_v020P_Merged_Blackboard_Review.txt",
+    "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\ActorBlackboardMerged_v020P_20260918_200724_641742\\audit_v020p.py"
+  ],
+  "next_action": "Do not start hysteresis Apply yet. First deploy the offline-audited v0.20P under deployment ownership, run exactly one autonomous merged perception-blackboard consumption validation, freeze evidence, verify installed hash stayed locked and save remained byte-identical. If it passes, accept authoritative blackboard consumption; then merge the already-proven intent-switch observer and use its near-switch evidence to design shadow commitment/hysteresis calibration.",
+  "blockers": [
+    "Cross-agent deployment contention was observed. Live deploy/run must honor workspace/DEPLOYMENT_OWNER.json. Research/build may remain parallel."
+  ],
+  "do_not_repeat": [
+    "Do not rerun v0.20M composer ownership proof.",
+    "Do not rerun authoritative v0.20N fact-blackboard shadow proof.",
+    "Do not rerun ActorStrategicBlackboard v0.20N shadow sampling.",
+    "Do not reintroduce layer-specific SetBehaviorScore writes.",
+    "Do not deploy commitment/hysteresis Apply before v0.20P blackboard consumption integration passes."
+  ],
+  "invariants": [
+    "StrategicDecisionComposer is the sole SetBehaviorScore site in refined composer-derived candidates.",
+    "Authoritative perception blackboard is world/runtime facts only; strategic intent history is a separate persistent state layer.",
+    "ActorStrategicBlackboard shadow evidence is accepted for future commitment/hysteresis design but currently writes no behavior.",
+    "Initiative/pursuit gate keeps direct native reads at its different timing boundary.",
+    "Native movement/pathfinding/combat execution remains TaleWorlds-owned.",
+    "Live deployment/test is single-owner through DEPLOYMENT_OWNER.json; parallel research/build is allowed.",
+    "Performance and no-save integrity remain acceptance criteria."
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "BannerlordAI.TodayProductivityFocus.v1",
+  "date": "2026-09-20",
+  "generated_at": "2026-09-20T14:18:00-07:00",
+  "objective": "Maximize useful roadmap throughput while preserving correctness, integrity, and WIP=1.",
+  "measured_baseline": {
+    "accepted_gate_median_minutes": 29.96,
+    "accepted_gate_average_minutes": 68.99,
+    "fastest_gate": {
+      "version": "v0.2.10.16",
+      "minutes": 8.53
+    },
+    "worst_gate": {
+      "version": "v0.2.10.13",
+      "minutes": 418.84
+    },
+    "measured_latency_regression": {
+      "prior_cycle_minutes": 13.1267,
+      "regressed_cycle_minutes": 85.7251,
+      "increase_minutes": 72.5983,
+      "multiplier": 6.5306,
+      "activation_wait_share_of_increase": 0.8732
+    },
+    "long_gap": {
+      "live_prepared": "2026-09-20T06:04:11-07:00",
+      "next_durable_action": "2026-09-20T12:54:00-07:00",
+      "approximate_gap_minutes": 409.8,
+      "continuity_signal": "CONTINUITY_NO_AGENT_ACTIVITY_OLDER_THAN_75_MIN"
+    }
+  },
+  "rules": [
+    "WIP=1 on the main roadmap; Agent 2 remains HOLD.",
+    "Front Controller immediately claims the next logical phase; target claim latency <5 minutes.",
+    "After terminal EXECUTE, run mechanical completion checks and enter VERIFY immediately; no idle handoff gap.",
+    "After VERIFY PASS, checkpoint promotion and route the next smallest gate in the same work cycle.",
+    "During stochastic live waits, only do safe non-overlapping offline prep/audit for the same roadmap; never start a second live controller.",
+    "Environmental nonappearance is classified, not repeatedly brute-forced. One targeted retry only when policy supports it; repeated nonappearance triggers harness refinement.",
+    "No maintenance/backlog work while a core gate is active unless tiny, reversible, and directly reduces measured bottleneck.",
+    "Publish only material user updates; suppress routine polling and duplicate status.",
+    "Keep exact acceptance-to-acceptance timing refreshed after each milestone.",
+    "Never trade save integrity, ownership safety, causal proof, or evidence quality for speed."
+  ],
+  "today_priority": [
+    "Finish v0.2.10.17 runtime factual memory-state comparison shadow.",
+    "Analyzer VERIFY and promote/reject immediately after terminal evidence.",
+    "Pull the next smallest roadmap gate from Analyzer; keep factual state separate from semantics unless prior-art/evidence supports promotion.",
+    "Maintain zero avoidable activation/handoff idle while office remains OPEN."
+  ],
+  "productivity_target": {
+    "wording": "100% of avoidable working time should be assigned to useful authorized work; stochastic/game wait time is used for safe same-roadmap prep where possible.",
+    "note": "This is an operating target, not a guarantee that every minute produces an acceptance milestone."
+  }
+}

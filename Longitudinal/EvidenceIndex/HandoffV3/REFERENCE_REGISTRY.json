@@ -1,0 +1,338 @@
+{
+  "schema": "BannerlordAI.ReferenceRegistry.v1",
+  "rule": "Search/adapt before inventing. Replace only with explicit measured/evidence-backed reason.",
+  "sources": [
+    {
+      "id": "deepseek-harness",
+      "name": "DeepSeek Harness",
+      "type": "github",
+      "url": "https://github.com/deepseek-ai/deepseek-harness.git",
+      "tags": [
+        "agents",
+        "delegation",
+        "workflow",
+        "compression",
+        "subagents",
+        "tools",
+        "memory"
+      ],
+      "use": "Bounded worker delegation, persistent sessions, tools/files, heavy-research compression.",
+      "status": "reference"
+    },
+    {
+      "id": "deepastra",
+      "name": "DeepAstra",
+      "type": "github",
+      "url": "https://github.com/ItsssssJack/DeepAstra",
+      "tags": [
+        "agents",
+        "delegation",
+        "codex",
+        "workflow",
+        "cost",
+        "isolation"
+      ],
+      "use": "Main-agent -> bounded task -> worker -> review pattern; isolated project runs and status/timeouts.",
+      "status": "future_reference",
+      "local_note": "D:\\BannerlordAIResearch\\Research\\FutureReferences\\DeepAstra_reference_2026-09-18.txt"
+    },
+    {
+      "id": "architecture-video",
+      "name": "User architecture video",
+      "type": "youtube",
+      "url": "https://youtu.be/_MrumlZnGic?si=DGYf5sSl7WkN8EV4",
+      "tags": [
+        "architecture",
+        "workflow",
+        "compression",
+        "explanation"
+      ],
+      "use": "High-level architecture explanation the user found especially clear.",
+      "status": "reference"
+    },
+    {
+      "id": "skyrimnet",
+      "name": "SkyrimNet GamePlugin",
+      "type": "github",
+      "url": "https://github.com/MinLL/SkyrimNet-GamePlugin",
+      "tags": [
+        "memory",
+        "agents",
+        "eligibility",
+        "event-driven",
+        "offscreen",
+        "model-routing",
+        "observability"
+      ],
+      "use": "Layered cognition, actor-local knowledge, eligibility caching, event-driven/off-screen reasoning.",
+      "status": "reference"
+    },
+    {
+      "id": "intelengine",
+      "name": "IntelEngine GamePlugin",
+      "type": "github",
+      "url": "https://github.com/galanx/IntelEngine-GamePlugin",
+      "tags": [
+        "goals",
+        "tasks",
+        "commitment",
+        "memory",
+        "save-load",
+        "offscreen",
+        "world-director"
+      ],
+      "use": "Persistent tasks/commitments, save/load recovery, world-director patterns and off-screen agents.",
+      "status": "reference"
+    },
+    {
+      "id": "severactions",
+      "name": "SeverActions",
+      "type": "github",
+      "url": "https://github.com/Severause/SeverActions",
+      "tags": [
+        "actions",
+        "deterministic-execution",
+        "llm",
+        "intent",
+        "validation"
+      ],
+      "use": "High-level intent separated from registered/legal deterministic execution.",
+      "status": "reference"
+    },
+    {
+      "id": "inworld",
+      "name": "Inworld ecosystem",
+      "type": "ecosystem",
+      "url": null,
+      "tags": [
+        "memory",
+        "emotion",
+        "llm",
+        "tools",
+        "routing",
+        "modular-cognition"
+      ],
+      "use": "Modular STT/LLM/TTS/memory/tools and structured cognition metadata.",
+      "status": "named_reference_url_pending"
+    },
+    {
+      "id": "sptquestingbots",
+      "name": "SPTQuestingBots",
+      "type": "github",
+      "url": "https://github.com/dashed/SPTQuestingBots",
+      "tags": [
+        "utility",
+        "hysteresis",
+        "commitment",
+        "actions",
+        "scoring"
+      ],
+      "use": "Utility scoring plus hysteresis to reduce action flip-flopping.",
+      "status": "applied_prior_art",
+      "local_note": "D:\\BannerlordAIResearch\\Longitudinal\\DerivedReports\\2026-09-18_ActorStateCommitment_PriorArt.txt"
+    },
+    {
+      "id": "grove-behaviourtree",
+      "name": "GroveGames BehaviourTree",
+      "type": "github",
+      "url": "https://github.com/grovegs/BehaviourTree",
+      "tags": [
+        "blackboard",
+        "csharp",
+        "performance",
+        "behavior-tree",
+        "typed-state"
+      ],
+      "use": "Allocation-conscious C# behavior framework and typed blackboard patterns.",
+      "status": "applied_prior_art",
+      "local_note": "D:\\BannerlordAIResearch\\Longitudinal\\DerivedReports\\2026-09-18_ActorStateCommitment_PriorArt.txt"
+    },
+    {
+      "id": "gameai-net",
+      "name": "GameAI.Net",
+      "type": "github",
+      "url": "https://github.com/likeslines-maker/GameAI.Net",
+      "tags": [
+        "tick",
+        "agents",
+        "performance",
+        "world-loop"
+      ],
+      "use": "Centralized world/agent update loop instead of expensive per-agent per-frame polling.",
+      "status": "applied_prior_art",
+      "local_note": "D:\\BannerlordAIResearch\\Longitudinal\\DerivedReports\\2026-09-18_ActorStateCommitment_PriorArt.txt"
+    },
+    {
+      "id": "portal-agent",
+      "name": "Portal Agent",
+      "type": "github",
+      "url": "https://github.com/cozyblaze/portal-agent",
+      "tags": [
+        "operator",
+        "controller",
+        "mcp",
+        "automation",
+        "stop-path",
+        "observability"
+      ],
+      "use": "Persistent controller, serialized tool queue, bounded plans and game observation/control patterns.",
+      "status": "reference",
+      "local_note": "C:\\Users\\csala\\Documents\\Codex\\2026-09-10\\bannerlord-astra-prototype\\work\\prototype\\REFERENCES.md"
+    },
+    {
+      "id": "gamedev-happy-hour-hk",
+      "name": "Game Dev Happy Hour HK",
+      "type": "youtube_channel",
+      "url": "https://www.youtube.com/@gamedevhappyhourhk/videos",
+      "tags": [
+        "game-development",
+        "debugging",
+        "iteration",
+        "playtesting",
+        "systems",
+        "workflow",
+        "ai"
+      ],
+      "use": "User-supplied game-development channel for practical production, debugging, playtesting, systemic-design and AI engineering patterns.",
+      "status": "reference"
+    },
+    {
+      "id": "gamedev-happy-hour-video-hTleipiAEJ8",
+      "name": "User Game Dev Happy Hour video hTleipiAEJ8",
+      "type": "youtube",
+      "url": "https://youtu.be/hTleipiAEJ8?si=yAM-KPWJ7GAQaula",
+      "tags": [
+        "game-development",
+        "debugging",
+        "workflow",
+        "iteration",
+        "engineering"
+      ],
+      "use": "User-supplied video retained as practical game-development/debugging reference; extract reusable iteration methods before inventing new workflow machinery.",
+      "status": "reference"
+    },
+    {
+      "id": "game-ai-pro",
+      "name": "Game AI Pro",
+      "type": "article_collection",
+      "url": "https://www.gameaipro.com/",
+      "tags": [
+        "game-ai",
+        "architecture",
+        "debugging",
+        "production",
+        "planning",
+        "behavior"
+      ],
+      "use": "Production game-AI techniques and postmortem-style implementation guidance; compare architecture and debugging approaches.",
+      "status": "reference"
+    },
+    {
+      "id": "gdc-vault",
+      "name": "GDC Vault",
+      "type": "talk_archive",
+      "url": "https://www.gdcvault.com/",
+      "tags": [
+        "game-development",
+        "debugging",
+        "production",
+        "ai",
+        "performance",
+        "postmortem"
+      ],
+      "use": "Industry talks and postmortems for debugging, iteration, AI, performance and systemic game-design practices.",
+      "status": "reference"
+    },
+    {
+      "id": "aaai-aiide",
+      "name": "AAAI AIIDE Proceedings",
+      "type": "research_archive",
+      "url": "https://ojs.aaai.org/index.php/AIIDE/",
+      "tags": [
+        "game-ai",
+        "research",
+        "planning",
+        "behavior",
+        "evaluation"
+      ],
+      "use": "Research evidence for game AI planning, behavior and evaluation methods.",
+      "status": "reference"
+    },
+    {
+      "id": "bannerlord-api-docs",
+      "name": "Bannerlord API Documentation",
+      "type": "documentation",
+      "url": "https://apidoc.bannerlord.com/",
+      "tags": [
+        "bannerlord",
+        "api",
+        "runtime",
+        "debugging",
+        "engine"
+      ],
+      "use": "Authoritative/public API surface reference before reflection or new bridge code.",
+      "status": "reference"
+    },
+    {
+      "id": "harmony-execution",
+      "name": "Harmony execution documentation",
+      "type": "documentation",
+      "url": "https://harmony.pardeike.net/v3/articles/execution.html",
+      "tags": [
+        "harmony",
+        "patching",
+        "runtime",
+        "debugging",
+        "ordering",
+        "hot-patching"
+      ],
+      "use": "Patch execution behavior, ordering and runtime instrumentation guidance for safe game hooks.",
+      "status": "reference"
+    },
+    {
+      "id": "harmony-priorities",
+      "name": "Harmony patch priorities",
+      "type": "documentation",
+      "url": "https://harmony.pardeike.net/v3/articles/priorities.html",
+      "tags": [
+        "harmony",
+        "patching",
+        "debugging",
+        "conflicts",
+        "ordering"
+      ],
+      "use": "Diagnose patch conflicts/order and reduce brittle mod interaction.",
+      "status": "reference"
+    },
+    {
+      "id": "microsoft-dotnet-performance",
+      "name": "Microsoft .NET performance guidance",
+      "type": "documentation",
+      "url": "https://learn.microsoft.com/",
+      "tags": [
+        "dotnet",
+        "performance",
+        "profiling",
+        "debugging",
+        "csharp"
+      ],
+      "use": "General .NET profiling/performance guidance for hot-path and telemetry work.",
+      "status": "reference"
+    },
+    {
+      "id": "fscheck",
+      "name": "FsCheck",
+      "type": "github",
+      "url": "https://github.com/fscheck/FsCheck",
+      "tags": [
+        "testing",
+        "property-based",
+        "debugging",
+        "regression",
+        "csharp"
+      ],
+      "use": "Property-based testing patterns for controller invariants, state transitions and regression tests.",
+      "status": "reference"
+    }
+  ]
+}

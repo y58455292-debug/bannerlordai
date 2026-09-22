@@ -1,0 +1,9 @@
+v0.19B Visual War Test
+StartedUtc=
+2026-09-18T07:56:51.5807618Z
+InitialInspectorLogLines=
+4419
+LabMarker=
+True
+BuildHash=C456D111065F423B4BC2AAF69B49A7EFA696B9C1D20C13F4EF8DCBBD6D8A48E2
+Expected reasons=frontier-defense,active-defense,frontier-offense,rear-security

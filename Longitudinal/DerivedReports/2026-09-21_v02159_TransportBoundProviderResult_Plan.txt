@@ -1,0 +1,80 @@
+BannerlordAI v0.2.10.59 - Transport-bound ProviderResult.v3 admission shadow
+
+Question
+Can a provider result be admitted only when it proves the exact registered transportRequestId in addition to the active claim and providerRequestId?
+
+Why this gate
+- v0.2.10.55 registers providerRequestId.
+- v0.2.10.56 binds ProviderResult.v2 to providerRequestId.
+- v0.2.10.58 registers transportRequestId before send.
+- ProviderResult.v2 does not yet prove which authorized transport instance produced the result.
+
+Smallest implementation
+- Runner-only result-contract extension plus deterministic external helper; ClanAI unchanged.
+- Preserve ProviderResult.v1 and v2 behavior for backward-compat fixtures.
+- Add BannerlordAI.PatrolDefenseProviderResult.v3 required fields:
+  schema
+  providerId
+  attemptId
+  requestFingerprint
+  providerRequestId
+  transportRequestId
+  status
+  advisoryBase64.
+- Admission ordering:
+  strict envelope parse;
+  active claim match providerId+attemptId+fingerprint;
+  registered providerRequestId match;
+  registered transportRequestId match;
+  then existing strict advisory admission;
+  then existing dispatch completion lifecycle.
+- Add non-mutating queue transport match:
+  no job -> DISPATCH_JOB_NOT_FOUND;
+  not claimed -> PROVIDER_JOB_NOT_CLAIMED;
+  claim mismatch -> PROVIDER_CLAIM_MISMATCH;
+  provider request missing/mismatch -> existing reasons;
+  transport request missing -> TRANSPORT_REQUEST_NOT_REGISTERED;
+  transportRequestId mismatch -> TRANSPORT_REQUEST_ID_MISMATCH;
+  exact -> TRANSPORT_REQUEST_MATCHED.
+- Command:
+  PATROL_DEFENSE_PROVIDER_RESULT_V3_ADMIT <base64Utf8Json>.
+- Receipt:
+  BannerlordAI.PatrolDefenseProviderResultV3Admission.v1
+  claimMatchReason,
+  providerRequestMatchReason,
+  transportRequestMatchReason,
+  providerRequestId,
+  transportRequestId,
+  advisoryAdmission,
+  existing zero-authority flags.
+- Deterministic external loopback v3 helper echoes exact providerRequestId + transportRequestId and produces strict KEEP_BASELINE advisory.
+- No real network/model call.
+
+Acceptance
+A. Runner compiles; ClanAI unchanged.
+B. Fixtures:
+   exact claim + provider request + transport request + v3 SUCCESS admitted;
+   transport not registered rejected;
+   wrong transportRequestId rejected without consuming pending request;
+   wrong providerRequestId rejected;
+   wrong provider/attempt rejected;
+   exact TRANSIENT/PERMANENT failures preserve accepted lifecycle semantics;
+   malformed/extra fields rejected;
+   replay after SUCCESS fails job lookup;
+   v2 and v1 backward-compat fixtures remain PASS;
+   zero-authority receipt.
+C. External v3 loopback fixtures:
+   exact registered request+transport -> byte-deterministic ProviderResult.v3;
+   echoes both request IDs;
+   independent result hash match;
+   no network/model.
+D. Live:
+   natural job -> claim -> provider request registration -> transport registration;
+   deterministic loopback v3 returns exact providerRequestId+transportRequestId;
+   runtime admission reports CLAIM_MATCHED -> PROVIDER_REQUEST_MATCHED -> TRANSPORT_REQUEST_MATCHED -> KEEP_BASELINE;
+   SUCCESS_ACKED queue 1->0;
+   replay DISPATCH_JOB_NOT_FOUND.
+E. Full EXIT_NOSAVE cleanup.
+
+Scope
+This closes transport-to-result provenance. No real network/model provider, timeout/backoff/cost policy, or gameplay influence yet.

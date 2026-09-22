@@ -1,0 +1,28 @@
+BannerlordAI v0.2.10.32 — Read-only outcome-memory append eligibility candidate
+
+Question
+Can current ClanAI deterministically classify whether a unified PatrolDefense outcome packet would be eligible for a future append, while guaranteeing that this milestone never writes memory?
+
+Reuse
+- Reuse accepted v0.2.10.18 eligibility-before-write architecture: candidate first, writer later.
+- Reuse accepted v0.2.10.31 unified outcome packet as the only candidate input.
+- Preserve v0.2.10.29 write barrier: no outcome append until real MainHero + EXACT_UNIQUE prior-history field evidence exists.
+
+Eligibility facts
+eligible=true only when:
+1. packet actorId exactly equals current MainHero id.
+2. eventKey, branchId and banditId are present.
+3. linkResolution=EXACT_UNIQUE, historyContextCount=1, settlementId/contextId/latestEpisodeId exist, historyEpisodeCount>=1.
+4. start/end CampaignHours are finite and end>=start.
+5. native outcome is complete/readable: hasWinner, valid winningSide, battleState, actorWon, actorAliveAtCallback and actorPrisonerAtCallback are non-null.
+Otherwise eligible=false with explicit factual gate failures; no guessing.
+
+Candidate schema: BannerlordAI.PatrolDefenseOutcomeMemoryCandidate.v1
+Carries exact packet provenance plus eligible and gateFailures.
+memoryWriteApplied=false; interpretationApplied=false; behaviorMutation=false; intentMutation=false; scoreMutation=false; nativeMovementCalls=0.
+
+Acceptance
+A. Pure fixtures: positive MainHero+EXACT_UNIQUE, actor mismatch, NONE, AMBIGUOUS, missing identity, invalid time, incomplete native outcome.
+B. Product build/static checks prove no outcome memory writer or Apply path.
+C. Bounded natural live negative gate: candidate emitted for ordinary non-MainHero/NONE event and eligible=false for correct factual reasons.
+D. Positive live candidate is environmental and not required; no forced MainHero combat.

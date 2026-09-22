@@ -1,0 +1,17 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002155_ProviderRequestRegistration_20260921_1541\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "F9B8DCFF3F87D643E67C4D7DC70DCA9FE0CD2BC24ECF73CF0CE07FC003D0E7CB",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02155_provider_request_registration.py",
+    "validator_sha256": "EE996380638CE3E823042BB514559522EF1EDBBDAFFB2B315073DEE3DBEB36E6",
+    "compile_result": "PASS_RUNNER_0_ERRORS_CLANAI_REUSED_V02138",
+    "isolated_fixture_result": "PASS_FIXTURES checks=190",
+    "provider_request_contract_fixture_result": "PASS_FIXTURES checks=49",
+    "registration_policy": "ONE_EXACT_PROVIDER_REQUEST_PER_ACTIVE_CLAIM_IDEMPOTENT_REPLAY"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.55 bounded live provider-request registration gate. Natural request -> exact claim attempt-1 -> exact v0.2.10.54 provider-request envelope -> runtime validates bytes/hash/provenance and registers providerRequestId; exact identical envelope replay must be idempotent with the same providerRequestId; provider invocation/result streams remain empty, zero network/model/gameplay authority, full cleanup.",
+  "blockers": []
+}

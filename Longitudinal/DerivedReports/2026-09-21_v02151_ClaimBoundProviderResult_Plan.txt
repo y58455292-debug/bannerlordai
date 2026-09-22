@@ -1,0 +1,54 @@
+BannerlordAI v0.2.10.51 - Claim-bound provider result admission shadow
+
+Question
+Can a provider result consume the pending deliberation request only when its providerId + attemptId + requestFingerprint exactly match the active claimed dispatch job?
+
+Why this gate
+- v0.2.10.50 establishes exclusive claim identity before expensive cognition.
+- v0.2.10.48 establishes provider-result provenance and strict advisory admission.
+- These are not yet bound: a structurally valid result can currently reach strict admission without proving it came from the active claim.
+
+Smallest implementation
+- Runner-only; ClanAI unchanged.
+- Add non-mutating claim match on PatrolDefenseProviderDispatchQueue:
+  exact fingerprint job missing -> DISPATCH_JOB_NOT_FOUND;
+  job state not CLAIMED -> PROVIDER_JOB_NOT_CLAIMED;
+  providerId or attemptId mismatch -> PROVIDER_CLAIM_MISMATCH;
+  exact CLAIMED provider+attempt -> CLAIM_MATCHED.
+- Add claim-bound provider result evaluation path:
+  parse/validate envelope fields first;
+  before pending-request advisory admission, require exact queue claim match using envelope requestFingerprint/providerId/attemptId;
+  claim mismatch must return providerResultAccepted=false and must NOT consume the advisory pending request.
+- Existing result envelope/failure semantics remain unchanged after claim match.
+- Existing dispatch completion lifecycle remains:
+  exact SUCCESS admitted -> SUCCESS_ACKED removes claimed job;
+  exact TRANSIENT_FAILURE -> claimed job retained;
+  exact PERMANENT_FAILURE -> terminal remove.
+- Add claim-match reason to provider-result admission receipt for audit.
+
+Acceptance
+A. Runner compiles; ClanAI unchanged.
+B. Fixtures:
+   valid SUCCESS without claim rejected PROVIDER_JOB_NOT_CLAIMED and advisory pending retained;
+   exact claim + SUCCESS admitted;
+   wrong provider rejected PROVIDER_CLAIM_MISMATCH and pending retained;
+   wrong attempt rejected PROVIDER_CLAIM_MISMATCH;
+   missing dispatch job rejected DISPATCH_JOB_NOT_FOUND;
+   exact transient failure retains claimed job;
+   exact permanent failure removes claimed job through completion;
+   malformed envelope never consumes pending;
+   exact success consumes pending and completion removes job;
+   replay rejected and no second removal;
+   zero authority.
+C. Static ordering: envelope parse -> claim match -> strict advisory gate -> dispatch completion.
+D. Live:
+   natural request enqueues one job;
+   exact claim deterministic_external_worker/attempt-1;
+   synthetic SUCCESS result envelope with same provider/attempt/fingerprint admitted;
+   SUCCESS_ACKED queue 1->0;
+   immediate replay rejects NO_PENDING_ROUTE_REQUEST / DISPATCH_JOB_NOT_FOUND;
+   provider invocation stream empty; no model/network/Apply authority.
+E. EXIT_NOSAVE integrity cleanup.
+
+Scope
+This closes claim-to-result provenance binding. No timeout/claim stealing, retry attempt rotation, or real model/provider call yet.

@@ -1,0 +1,81 @@
+BANNERLORDAI — STRATEGIC COMMITMENT v0.20O OFFLINE REVIEW
+Date: 2026-09-18 Pacific.
+
+Purpose:
+Introduce the smallest data-driven commitment/hysteresis mechanism after v0.20N proved real final-stack objective churn.
+
+Evidence basis:
+v0.20N mature-world sample:
+- 501 decisions / 106 actors
+- 45 parsed objective switches
+- 42 switches retained a still-legal previous objective in the candidate list
+- same-state eligible switches: 23
+- cross-state eligible switches: 19
+- same-state <=5%: 1
+- same-state <=10%: 3
+- same-state <=20%: 3
+- median objective age ~6.06 campaign hours
+
+Offline counterfactual:
+Same-state-only factor sensitivity:
+- x1.02–x1.05 would retain 1 switch
+- x1.075 would retain 2
+- x1.10 would retain 3
+- x1.125/x1.15 still only 3 in this sample
+
+First intervention is intentionally narrower than x1.10 across all same-state switches:
+- previous objective must still be present in current candidate list
+- natural winner must differ from previous objective
+- previous coarse state must equal natural winner coarse state
+- objective age must be <=12 campaign hours
+- previous objective receives at most x1.10
+- no intervention when previous objective vanished
+- no intervention across coarse-state changes
+- no movement/pathfinding/action invention
+- factor enters only through StrategicDecisionComposer
+
+Why 12 hours:
+The observed strategic reconsideration rhythm is often ~6 campaign hours. Twelve hours bounds commitment to roughly two common reconsideration cycles. It is an initial engineering window, not a universal behavioral truth.
+This excludes Ecarand's ~12.12h Recover->Recover near-switch while retaining the much clearer Yngvar (~6.06h / 0.3% gap) and Vasilia (~2.02h / 5.05% gap) opportunities in the current sample.
+
+Architecture:
+- ActorStrategicBlackboard remains the per-actor state owner.
+- StrategicCommitmentLayer reads the previous objective/state from blackboard.
+- StrategicCommitmentLayer runs immediately before StrategicDecisionComposer.Complete.
+- Observe mode calculates exact would-retain counterfactual and writes nothing.
+- Apply mode only contributes x1.10 when it would actually retain the previous legal objective.
+- composer remains the ONLY SetBehaviorScore owner.
+
+Config:
+D:\BannerlordAIResearch\Data\StrategicCommitment.cfg
+Mode=Observe / Apply.
+Missing, invalid, or read-failed config defaults Observe.
+Config parser fixtures: 7/7 PASS.
+
+Structural audit:
+- exactly one SetBehaviorScore in active source
+- owner StrategicDecisionComposer.cs
+- commitment layer has no direct score write
+- cross-state escape present
+- previous-objective legality check present
+- max age 12h present
+- Observe/Apply gating present
+- composer-only contribution present
+
+Observe acceptance:
+- commitmentWouldRetain > 0, ideally matching the two predicted <=12h same-state opportunities from the same mature baseline
+- commitmentApplied=0
+- commitmentActualRetains=0
+- commitmentFailures=0
+- composer score/sequence/winner mismatches=0
+- blackboardFailures=0
+- clean no-save exit / unchanged save
+If Observe passes, authorize one same-baseline Apply treatment. No calibration expansion before that result.
+
+Build:
+v0.20O-review
+FileVersion 0.20.15.0
+InformationalVersion v0.20O-review-strategic-commitment
+Build succeeded; inherited System.ValueTuple warning only.
+DLL SHA256 18F80C8E30AAAF2B494DD139353910054208FE2245EE4A74D54FE572CC8927C7
+PDB SHA256 D9351913B7E68DA2E31E07D8F392920115EF5F2F65034AD5E09B3C6CA2D30705

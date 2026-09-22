@@ -1,0 +1,19 @@
+COMMANDER ALDRIC v1
+Field Commander v1.0 custom local voice profile.
+
+Voice identity:
+- Base synthesizer: Microsoft David Desktop
+- Custom delivery: context-sensitive slower/lower command cadence
+- Custom DSP: low-mid body reinforcement, softened synthetic high-frequency edge,
+  mild soft saturation/compression, short early reflection, restrained hall tail,
+  automatic peak normalization
+- Urgent reports use a faster, less-lowered delivery than ordinary reports.
+
+This is a locally processed custom voice profile. It is not a cloned human voice.
+It runs only when a report is spoken and has no code inside Bannerlord's render or AI loop.
+
+Future neural path:
+A Kokoro blended neural voice prototype was prepared separately, but direct model
+downloads from Hugging Face were reset by the local network during this release.
+The observer/voice interface is deliberately replaceable so a neural renderer can
+be added later without changing the game adapters or relevance logic.

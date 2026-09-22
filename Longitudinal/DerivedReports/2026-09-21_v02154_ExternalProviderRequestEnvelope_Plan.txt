@@ -1,0 +1,51 @@
+BannerlordAI v0.2.10.54 - External provider request envelope / prompt provenance shadow
+
+Question
+Can the external worker construct an immutable, fingerprinted provider-request envelope from the exact claimed deliberation job so eventual real model calls have auditable provider/model/prompt/input provenance before any network integration exists?
+
+Why this gate
+- v0.2.10.46-.53 now secure dispatch, ownership, retries, result provenance and stale-result rejection.
+- The worker still lacks a strict outbound provider-request contract. A future model call must not be able to silently alter the exact deliberation input, prompt contract or expected response schema.
+
+Smallest implementation
+- External-worker contract first; no real network/model call.
+- Define BannerlordAI.PatrolDefenseProviderRequest.v1 with:
+  schema
+  providerId
+  modelId
+  attemptId
+  requestFingerprint
+  promptContractVersion
+  responseSchema
+  deliberationRequestBase64
+  inputSha256
+- inputSha256 = SHA-256 of exact UTF-8 deliberationRequest JSON bytes from the outbox job.
+- providerId/modelId/promptContractVersion are explicit nonempty provenance strings.
+- responseSchema must equal BannerlordAI.PatrolDefenseDeliberationAdvisory.v1.
+- requestFingerprint must equal exact claimed job fingerprint.
+- attemptId must equal the active claim attempt.
+- No free-form system prompt text is stored in product runtime yet; promptContractVersion identifies the immutable contract family.
+- Build/validate helper in external deterministic worker tooling first; optionally mirror a pure C# validator only if needed for runtime audit.
+- Result envelope must echo providerId/attemptId/fingerprint already accepted by v0.2.51.
+- No provider SDK/network/model call.
+
+Acceptance
+A. Pure deterministic provider-request builder/validator:
+   exact job+claim builds valid envelope;
+   SHA-256 independently recomputes;
+   altered deliberation JSON fails hash;
+   wrong fingerprint fails;
+   wrong attempt fails;
+   missing provider/model/prompt version fails;
+   wrong responseSchema fails;
+   malformed base64 fails;
+   unknown/extra action-bearing fields rejected.
+B. Integration on unchanged v0.2.52 binaries:
+   natural outbox job -> exact claim attempt-1 -> external worker builds provider request envelope;
+   validator independently decodes exact deliberationRequest and recomputes inputSha256;
+   no network/model invocation.
+C. Existing claim/result/admission state remains untouched; this gate does not submit a result.
+D. EXIT_NOSAVE integrity cleanup.
+
+Scope
+This is outbound request provenance only. No real provider/model call, token limits, timeout/backoff, prompt semantics, or gameplay influence yet.

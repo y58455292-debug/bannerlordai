@@ -1,0 +1,191 @@
+{
+  "schema": "BannerlordAI.DynastyMindPacket.v1",
+  "generated_for": "Calastides dynasty canon bootstrap",
+  "rules": {
+    "temporal_firewall": "Only entries with known_by_campaign_hours <= persisted branch_root_campaign_hours are visible.",
+    "branch_rule": "After branch start, later original-canon entries never unlock. New branch events are stored only by live memory systems.",
+    "actor_ownership": "Personal memories remain actor-owned; inherited family doctrine/stories are explicitly labeled.",
+    "execution": "v0.20R is observe-only: retrieval is logged but does not mutate behavior scores."
+  },
+  "actors": [
+    {
+      "actor_id": "main_hero",
+      "actor_name": "Nethor"
+    },
+    {
+      "actor_id": "lord_3_12",
+      "actor_name": "Manan"
+    },
+    {
+      "actor_id": "CharacterObject_7666",
+      "actor_name": "Vadrios"
+    }
+  ],
+  "entries": [
+    {
+      "actor_id": "main_hero",
+      "actor_name": "Nethor",
+      "known_by_campaign_hours": 627412.8949162777,
+      "kind": "relationship",
+      "key": "manan_spouse",
+      "strength": 1,
+      "confidence": 1,
+      "source": "native_history:14433",
+      "text": "Manan is Nethor's wife and dynasty partner."
+    },
+    {
+      "actor_id": "main_hero",
+      "actor_name": "Nethor",
+      "known_by_campaign_hours": 630105.0622988056,
+      "kind": "family_doctrine",
+      "key": "protect_line",
+      "strength": 1,
+      "confidence": 0.95,
+      "source": "NethorsLaw:adopted_design",
+      "text": "Build beyond yourself; protect the line, not merely the individual ruler."
+    },
+    {
+      "actor_id": "lord_3_12",
+      "actor_name": "Manan",
+      "known_by_campaign_hours": 627412.8949162777,
+      "kind": "relationship",
+      "key": "nethor_spouse",
+      "strength": 1,
+      "confidence": 1,
+      "source": "native_history:14433",
+      "text": "Nethor is Manan's husband and founder-partner."
+    },
+    {
+      "actor_id": "lord_3_12",
+      "actor_name": "Manan",
+      "known_by_campaign_hours": 630105.0622988056,
+      "kind": "legacy",
+      "key": "nethor_succession",
+      "strength": 1,
+      "confidence": 1,
+      "source": "native_history:27351",
+      "text": "Manan carries responsibility for the dynasty after Nethor's era as player-ruler ended."
+    },
+    {
+      "actor_id": "lord_3_12",
+      "actor_name": "Manan",
+      "known_by_campaign_hours": 648650.9850730833,
+      "kind": "territorial_anchor",
+      "key": "syronea",
+      "strength": 1,
+      "confidence": 0.95,
+      "source": "Manan_CanonSeed:Syronea",
+      "text": "Syronea is Manan's personally owned, symbolically important Imperial foothold; threats to it deserve elevated defensive attention."
+    },
+    {
+      "actor_id": "lord_3_12",
+      "actor_name": "Manan",
+      "known_by_campaign_hours": 648650.9850730833,
+      "kind": "doctrine",
+      "key": "avoid_giant_while_smaller_exist",
+      "strength": 1,
+      "confidence": 1,
+      "source": "canon:Spring1126",
+      "text": "Never fight the giant while the smaller kingdoms still exist; sequence wars and contain the hegemon rather than fight from pride."
+    },
+    {
+      "actor_id": "lord_3_12",
+      "actor_name": "Manan",
+      "known_by_campaign_hours": 648650.9850730833,
+      "kind": "doctrine",
+      "key": "courage_vs_waste",
+      "strength": 0.95,
+      "confidence": 0.95,
+      "source": "NethorsLaw:adopted_design",
+      "text": "A ruler must distinguish courage from waste; concentrate strength, fortify, and respect logistics."
+    },
+    {
+      "actor_id": "lord_3_12",
+      "actor_name": "Manan",
+      "known_by_campaign_hours": 648650.9850730833,
+      "kind": "logistics",
+      "key": "survival_capacity",
+      "strength": 0.95,
+      "confidence": 0.95,
+      "source": "Manan_CanonSeed:strategic_personality",
+      "text": "Food, money, inventory, protected territory, and secure routes are survival capacity, not secondary concerns."
+    },
+    {
+      "actor_id": "lord_3_12",
+      "actor_name": "Manan",
+      "known_by_campaign_hours": 648650.9850730833,
+      "kind": "family",
+      "key": "protect_line",
+      "strength": 1,
+      "confidence": 0.95,
+      "source": "Manan_CanonSeed:family_lens",
+      "text": "Protect the dynasty line and avoid exposing family members recklessly, especially under blood-feud conditions."
+    },
+    {
+      "actor_id": "lord_3_12",
+      "actor_name": "Manan",
+      "known_by_campaign_hours": 648650.9850730833,
+      "kind": "epistemic",
+      "key": "accurate_memory",
+      "strength": 1,
+      "confidence": 1,
+      "source": "NethorsLaw:adopted_design",
+      "text": "Unresolved truth is preferable to invented certainty; a family that remembers badly can endanger itself."
+    },
+    {
+      "actor_id": "CharacterObject_7666",
+      "actor_name": "Vadrios",
+      "known_by_campaign_hours": 630105.0622988056,
+      "kind": "family_story",
+      "key": "nethor_legacy",
+      "strength": 0.9,
+      "confidence": 0.9,
+      "source": "family_doctrine:inherited",
+      "text": "Vadrios knows Nethor as founder and receives family doctrine as inherited story, not as Nethor's firsthand memory."
+    },
+    {
+      "actor_id": "CharacterObject_7666",
+      "actor_name": "Vadrios",
+      "known_by_campaign_hours": 648650.9850730833,
+      "kind": "family_doctrine",
+      "key": "protect_line",
+      "strength": 0.9,
+      "confidence": 0.9,
+      "source": "family_doctrine:inherited",
+      "text": "Build beyond yourself and protect the dynasty line; this is inherited doctrine, not copied personality."
+    },
+    {
+      "actor_id": "CharacterObject_7666",
+      "actor_name": "Vadrios",
+      "known_by_campaign_hours": 648650.9850730833,
+      "kind": "experience",
+      "key": "syronea_governance",
+      "strength": 0.85,
+      "confidence": 0.9,
+      "source": "canon:pre1126_governor",
+      "text": "Vadrios has firsthand experience governing and living around Syronea, giving him personal familiarity with the family's core territory."
+    },
+    {
+      "actor_id": "CharacterObject_7666",
+      "actor_name": "Vadrios",
+      "known_by_campaign_hours": 648650.9850730833,
+      "kind": "epistemic",
+      "key": "accurate_memory",
+      "strength": 0.85,
+      "confidence": 0.9,
+      "source": "family_doctrine:inherited",
+      "text": "Vadrios inherits the family rule that uncertain history should remain uncertain rather than be invented."
+    },
+    {
+      "actor_id": "CharacterObject_7666",
+      "actor_name": "Vadrios",
+      "known_by_campaign_hours": 649331.3949947777,
+      "kind": "succession",
+      "key": "inheritance_responsibility",
+      "strength": 1,
+      "confidence": 1,
+      "source": "native_history:130926+NethorsLaw",
+      "text": "On succession, Vadrios experiences inheritance as responsibility for everything the house still needs to do, not as entitlement."
+    }
+  ]
+}

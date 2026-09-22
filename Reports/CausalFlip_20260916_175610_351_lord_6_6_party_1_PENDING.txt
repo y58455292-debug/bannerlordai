@@ -1,0 +1,72 @@
+GLOBAL SAME-THINK CAUSAL CAPTURE v0.4
+STATUS: FLIPPED_TO_NEEDY_CLAN_HOLDING
+FINAL: True
+StartedLocalTime: 2026-09-16 17:56:10.350
+
+PARTY / CLAN
+Party: Suran's Party
+PartyId: lord_6_6_party_1
+Hero: Suran
+HeroId: lord_6_6
+Clan: Tigrit
+ClanId: clan_khuzait_4
+
+PRE-MUTATION VANILLA
+VanillaWinnerBehavior: PatrolAroundPoint
+VanillaWinnerTarget: Okhutan
+VanillaWinnerTargetId: village_K5_2
+VanillaWinnerScore: 3.07424
+NeedTarget: Akkalat
+NeedTargetId: town_K2
+NeedTargetVanillaScore: 2.8329
+NeedTargetVanillaRank: 2
+
+LIVE TERRITORY NEED
+UnderRaid: False
+UnderSiege: True
+IdealGarrisonStrength: 102.9231
+ActualGarrisonStrength: 195.98
+GarrisonDeficit: 0
+Pressure: 1
+
+INTERVENTION
+RequiredBonusFraction: 0.085192
+AvailableBonusFraction: 0.25
+Multiplier: 1.25
+RequestedAppliedScore: 3.541125
+MutationReadbackScore: 3.541125
+MutationReadbackVerified: True
+MutationReadbackMatchMode: SemanticBehaviorTargetNavigation
+MutationReadbackMatchCount: 1
+AppliedScore: 3.541125
+PredictedHypotheticalScore: 3.541125
+PredictedHypotheticalRank: 1
+OneShotMarkerConsumedBeforeMutation: True
+
+POST-MUTATION VANILLA RESULT
+CaptureMethod: SetPartyAiAction.ApplyInternal postfix
+CommitCaptured: True
+FallbackFinalStateCaptured: False
+SelectedBehavior: GoToSettlement
+SelectedTarget: Akkalat
+SelectedTargetId: town_K2
+AfterDefaultBehavior: GoToSettlement
+AfterTargetSettlement: Akkalat
+AfterTargetSettlementId: town_K2
+AfterTargetParty: <null>
+AfterTargetPartyId: <null>
+
+RESULT
+FLIPPED_TO_NEEDY_CLAN_HOLDING
+
+TOP VANILLA CANDIDATES BEFORE MUTATION
+#1 score=3.07424 behavior=PatrolAroundPoint target=Okhutan targetId=village_K5_2
+#2 score=2.8329 behavior=GoToSettlement target=Akkalat targetId=town_K2
+#3 score=2.717379 behavior=PatrolAroundPoint target=Mazen targetId=village_K3_3
+#4 score=2.651017 behavior=PatrolAroundPoint target=Vargornis targetId=village_ES7_2
+#5 score=2.634881 behavior=PatrolAroundPoint target=Payam targetId=castle_village_K9_2
+#6 score=2.545017 behavior=PatrolAroundPoint target=Chaikand targetId=town_K5
+#7 score=2.536838 behavior=PatrolAroundPoint target=Jogurys Castle targetId=castle_ES7
+#8 score=2.530377 behavior=PatrolAroundPoint target=Makeb targetId=town_K3
+#9 score=2.516745 behavior=PatrolAroundPoint target=Karahalli targetId=castle_village_K6_2
+#10 score=2.49873 behavior=PatrolAroundPoint target=Syronea targetId=town_ES7

@@ -1,0 +1,51 @@
+BANNERLORDAI — RECOVERY RISK FLEE v0.20G OBSERVE CLOSEOUT
+Date: 2026-09-18 Pacific.
+
+Runtime mode: ClanAI v0.20G-review, Mode=Suppress, RiskMode=Observe.
+Goal: compare broad base-risk triggers with native flee-qualified risk triggers without changing AI.
+
+Results:
+- RECOVERY_RISK_BASE_TRIGGER: 84 records across 29 actors.
+- RECOVERY_RISK_WOULD_REROUTE (flee-qualified): 2 records across 2 actors.
+- RECOVERY_RISK_REROUTE: 0.
+- Selectivity reduction: 97.62%.
+- Writer failures: 0.
+- Inspector outcome/lifecycle warnings: 0.
+- OUTCOME_V1 records: 141.
+- RECOVERY_LIFECYCLE_V1 records: 564.
+- Disposable save remained canonical hash while paused:
+  A3DAA0C37C0F8F6966DFB6DB2A57002BED70978A6C253F29DF395F171F9043AC.
+
+Qualified case 1 — Dagunic / lord_V11_c2_party_1:
+- readiness .485
+- ShortTermBehavior=FleeToPoint
+- shortTermTarget=CharacterObject_1818_party_1
+- chosen castle_V1 native path distance 113.703
+- alternative village_B2_2 native path distance 15.809
+- scanner threat forest_bandits_58 at 12.645
+Identity check: CharacterObject_1818_party_1 is Hirobert of the Brotherhood's Party, a lord party, not a bandit.
+Therefore Dagunic was fleeing a lord party while the broad risk scanner selected an unrelated nearby bandit.
+
+Qualified case 2 — Alijin / lord_6_10_party_1:
+- readiness .479
+- ShortTermBehavior=FleeToPoint
+- shortTermTarget=<none>
+- chosen town_K5 distance 73.906
+- alternative town_K3 distance 7.115
+- scanner threat looters_2239 at 18.716
+The flee cause is not explicitly identified by current state.
+
+Outcome correlation:
+Neither qualified actor had a weak defensive battle or capture during this observed window.
+Therefore native fleeing is an excellent selectivity filter, but flee state + arbitrary nearby avoid-worthy bandit is still not sufficiently causal for Apply.
+
+Next discriminator:
+Require an explicit flee target, require that flee target is a bandit, and require the risk threat to be that exact same party (or exact native object identity).
+This is directly aligned with the Izdenka failure mode: weak, FleeToPoint, shortTermTarget=northern_pirates_668, later exact defender capture by that same Sea Raiders party.
+
+Decision:
+- v0.20G Observe semantics: PASS.
+- v0.20G selectivity: STRONGLY IMPROVED.
+- v0.20G Apply: STILL FORBIDDEN.
+- No identical replay needed.
+- Next work should stage exact flee-target/bandit identity gating offline before any new live validation.

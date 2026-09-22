@@ -1,0 +1,29 @@
+{
+  "schema": "BannerlordAI.LiveDecisionPolicy.v1",
+  "actor": "Manan",
+  "calibration": "provisional_from_canon_seed",
+  "reload": "external_live_no_game_restart",
+  "weights": {
+    "family_survival": 2.8,
+    "territorial_defense": 3.0,
+    "military_readiness": 2.5,
+    "logistics_food_supply": 2.4,
+    "wealth_reserve": 1.7,
+    "local_stability": 1.8,
+    "legitimacy_influence": 1.7,
+    "personal_relationships": 1.6,
+    "mercy_honor": 1.4,
+    "fear_deterrence": 1.1,
+    "long_term_risk": 2.1,
+    "immediate_cost": 1.4,
+    "doctrine_alignment": 1.9,
+    "memory_resonance": 1.8,
+    "uncertainty_penalty": 1.5
+  },
+  "rules": {
+    "unknown_choice_auto_select": false,
+    "require_decision_receipt": true,
+    "require_before_after_snapshot": true,
+    "min_confidence_to_recommend": 0.55
+  }
+}

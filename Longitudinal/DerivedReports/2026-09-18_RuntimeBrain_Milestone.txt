@@ -1,0 +1,147 @@
+BANNERLORDAI RUNTIME BRAIN MILESTONE
+Date: 2026-09-18
+Status: BUILT + DEPLOYED + CHECKPOINTED
+
+GOAL
+Stop guessing at TaleWorlds AI internals. Use public live runtime contracts, event surfaces,
+spatial indexes, and read-only probes to discover the true judgment -> action -> consequence path.
+
+LEGAL/RESEARCH BOUNDARY
+- Public/exported runtime metadata and signatures only.
+- Read-only reflection/Harmony observation of live calls and arguments.
+- No method-body decompilation in this workflow.
+- No redistribution of TaleWorlds proprietary code.
+- Our source, telemetry, reports, and derived evidence remain our research artifacts.
+
+PUBLIC RUNTIME API INDEX
+D:\BannerlordAIResearch\Research\RuntimeApiIndex\2026-09-18
+- 4,276 AI-relevant public runtime members indexed.
+- 423 high-value breakthrough candidates.
+- Reusable index builder:
+  D:\BannerlordAIResearch\Research\RuntimeApiIndex\build_public_runtime_index.ps1
+
+MAJOR BREAKTHROUGH
+TaleWorlds publicly exposes MobilePartyAIModel, a compact AI judgment contract.
+
+Key methods:
+- ShouldPartyCheckInitiativeBehavior(MobileParty)
+- ShouldConsiderAttacking(MobileParty actor, MobileParty target)
+- ShouldConsiderAvoiding(MobileParty actor, MobileParty target)
+- GetBestInitiativeBehavior(MobileParty, ref AiBehavior, ref MobileParty, ref float, ref Vec2)
+- GetPatrolRadius(...)
+- GetSettlementNearbyThreatAndAllyCheckRadius(...)
+
+This is likely the correct layer for rear-security/pursuit judgment.
+It is upstream of movement execution and much closer to our doctrine:
+preserve native movement/pathfinding/combat; modify judgment/context only.
+
+Also discovered:
+- MobileParty.RecalculateShortTermBehavior() is public.
+- SetShortTermBehavior(AiBehavior, IInteractablePoint)
+- SetAiBehavior(AiBehavior, IInteractablePoint, CampaignVec2)
+- SetMoveEngageParty(MobileParty, NavigationType)
+- PartyBase bridges IInteractablePoint to MobileParty/Settlement.
+- CampaignEvents.MapEventStarted(MapEvent, PartyBase, PartyBase)
+- Native spatial indexes:
+  MobileParty.StartFindingLocatablesAroundPosition / FindNextLocatable
+  Settlement.StartFindingLocatablesAroundPosition / FindNextLocatable
+
+INSPECTOR v0.30 — RUNTIME PURSUIT DISCOVERY
+Deployed SHA256:
+C1544E03FDCEFE85245AD8A8B9412D579FF29CBDD5B5EA3D29A94E3E85B0FE0E
+
+New proof chain in one run:
+1. MobilePartyAIModel initiative/attack/avoid judgment
+2. default AI behavior assignment
+3. short-term AI behavior assignment
+4. SetMove* execution commit
+5. actual lord-vs-bandit MapEvent battle start
+
+New evidence:
+- INITIATIVE_MODEL_ACTIVE
+- INITIATIVE_MODEL_CENSUS
+- INITIATIVE_MODEL_BEST
+- GLOBAL_DEFAULT_BEHAVIOR_CENSUS / RARE
+- GLOBAL_SHORTTERM_CENSUS / RARE
+- GLOBAL_STRATEGIC_COMMIT_CENSUS
+- GLOBAL_ENGAGE_COMMIT
+- REAR_SECURITY_BATTLE_START
+
+PERFORMANCE REDESIGN
+1. AI Research Light Mode:
+   - world census staggered
+   - lord-party census staggered
+   - economy/supply/traffic/market/military/history background scans paused
+   - event-driven AI probes remain active
+2. Behavior Delta local radius now uses TaleWorlds' native spatial locator grids
+   instead of scanning every party and settlement on each capture.
+3. Inspector evidence writes moved to bounded below-normal background EvidenceWriter.
+4. Behavior Delta CSV rows are queued instead of synchronous AppendAllText.
+5. status.txt rewrite reduced from every AI event to at most every 5 seconds.
+6. inspector.log 2MB destructive rotation removed; raw evidence is retained.
+7. /perf now exposes evidence-writer queued/written/fallback/failure counters.
+8. Inspector shutdown drains/flushes evidence queue.
+
+CLANAI v0.19F
+Deployed SHA256:
+F43992B232D0A8097D135D6D7F86CE8AB2BEACC54EC22F296F82772BA8E11C07
+
+Behavior logic is intentionally unchanged from v0.19E.
+Diagnostics/performance change only:
+- ClanAI main/session logs moved to bounded below-normal background writer.
+- SocialEpisodeMemory audit moved to same writer.
+- writer drains on module unload.
+- v0.19F session files identify this performance-only revision.
+
+GAME/HARDWARE PERFORMANCE
+Hardware:
+- AMD Ryzen 9 3900XT, 12c/24t
+- 64 GB RAM
+- RTX 2080 SUPER, 8 GB VRAM
+- Micron 2300 NVMe
+- 1920x1080 / 60 Hz
+
+No graphics-quality settings were reduced.
+
+Safe startup optimization:
+keep_shader_cache_on_module_change = 1
+Backup:
+D:\BannerlordAIResearch\Archive\ConfigBackups\20260918_PreBrainPerf
+
+Inspector config:
+aiResearchLightMode=true
+
+CAMPAIGN CHECKPOINT SYSTEM
+Reusable:
+D:\BannerlordAIResearch\Tools\Evidence\checkpoint_campaign.py
+
+Current checkpoint:
+D:\BannerlordAIResearch\Longitudinal\SaveCheckpoints\20260918_045314_pre_runtime_pursuit_030
+
+Save:
+world memory proof.sav
+SHA256:
+7794FA6D8BBAEC725CD59EAE132466905202314B3146E3A6C1EA1C912B3CF2CD
+
+Rolling active-state index:
+D:\BannerlordAIResearch\Longitudinal\EvidenceIndex\current_state.json
+
+From now on each completed test should:
+- save game
+- exit
+- run checkpoint_campaign.py with a descriptive label
+- preserve save hash + deployed build hashes + latest session pointers
+- compress raw -> window -> campaign-day -> session -> build -> cross-build
+- keep raw evidence immutable
+
+NEXT MILESTONE
+Prove where vanilla lord-vs-bandit pursuit is born and where it commits.
+
+One run should classify:
+A) MobilePartyAIModel considers/chooses bandit Engage -> decision is lost downstream.
+B) Initiative model does not choose bandit Engage -> judgment layer is the true modification point.
+C) default/short-term assigns Engage but SetMove does not commit -> execution handoff issue.
+D) SetMoveEngageParty commits -> follow to MapEvent.
+E) no Engage but lord-vs-bandit battles happen -> vanilla pursuit uses another behavior/mode; battle snapshot tells us which.
+
+Only after this proof should ClanAI modify the initiative model result.

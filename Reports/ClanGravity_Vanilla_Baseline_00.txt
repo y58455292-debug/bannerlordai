@@ -1,0 +1,79 @@
+=== AI TRACE BEGIN #6 v0.7 ===
+party=Kanujan's Party id=lord_6_19_party_1 leader=Kanujan
+before defaultBehavior=GoToSettlement targetSettlement=Syronea targetParty=<null>
+before shortTermBehavior=FleeToPoint shortTermTargetSettlement=<null> shortTermTargetParty=Tulag's Party
+think currentObjectiveValue=0.3267871 doNotChangeBehavior=False willGatherAnArmy=False
+strength noArmy=5235.552 withArmy=7231.008 sameClanNoArmy=276.65
+boundaryCount=7
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AIMoveToNearestLandBehavior.AiHourlyTick beforeCount=0 afterCount=0 changes=0 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiVisitSettlementBehavior.AiHourlyTick beforeCount=0 afterCount=44 changes=44 goToSettlementChanges=44
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Syronea [town_ES7] beforeScore=0 afterScore=4.980759
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Akkalat [town_K2] beforeScore=0 afterScore=2.092957
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Odokh [town_K6] beforeScore=0 afterScore=1.738383
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Khimli [castle_village_K5_1] beforeScore=0 afterScore=1.555555
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Kohi Ajik [village_K2_2] beforeScore=0 afterScore=1.057977
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Karakalat [village_K2_1] beforeScore=0 afterScore=0.998658
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Khimli Castle [castle_K5] beforeScore=0 afterScore=0.971401
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Tismil [castle_village_K7_2] beforeScore=0 afterScore=0.877318
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Omrotok [castle_village_K5_2] beforeScore=0 afterScore=0.840381
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Simira [castle_village_K7_1] beforeScore=0 afterScore=0.790213
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Corenia [castle_village_ES2_1] beforeScore=0 afterScore=0.609953
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Erzenur [castle_village_K8_1] beforeScore=0 afterScore=0.537397
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Danara [village_K6_3] beforeScore=0 afterScore=0.38916
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Karahan [village_K6_1] beforeScore=0 afterScore=0.385252
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Nutyuk [village_K6_2] beforeScore=0 afterScore=0.371961
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Akiser [castle_village_K2_1] beforeScore=0 afterScore=0.344689
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Kamshar [castle_village_K2_2] beforeScore=0 afterScore=0.337425
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Gereden [castle_village_K8_2] beforeScore=0 afterScore=0.29289
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Simira Castle [castle_K7] beforeScore=0 afterScore=0.271203
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Corenia Castle [castle_ES2] beforeScore=0 afterScore=0.222783
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiLandBanditPatrollingBehavior.AiHourlyTick beforeCount=44 afterCount=44 changes=0 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiEngagePartyBehavior.AiHourlyTick beforeCount=44 afterCount=45 changes=1 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiPatrollingBehavior.AiHourlyTick beforeCount=45 afterCount=45 changes=0 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiMilitaryBehavior.AiHourlyTick beforeCount=45 afterCount=83 changes=38 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiArmyMemberBehavior.AiHourlyTick beforeCount=83 afterCount=83 changes=0 goToSettlementChanges=0
+candidateCount=83
+candidate score=4.980759 behavior=GoToSettlement target=Syronea [town_ES7] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=True
+candidate score=2.092957 behavior=GoToSettlement target=Akkalat [town_K2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.738383 behavior=GoToSettlement target=Odokh [town_K6] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.555555 behavior=GoToSettlement target=Khimli [castle_village_K5_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.057977 behavior=GoToSettlement target=Kohi Ajik [village_K2_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.998658 behavior=GoToSettlement target=Karakalat [village_K2_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.971401 behavior=GoToSettlement target=Khimli Castle [castle_K5] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.877318 behavior=GoToSettlement target=Tismil [castle_village_K7_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.840381 behavior=GoToSettlement target=Omrotok [castle_village_K5_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.790213 behavior=GoToSettlement target=Simira [castle_village_K7_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.609953 behavior=GoToSettlement target=Corenia [castle_village_ES2_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.537397 behavior=GoToSettlement target=Erzenur [castle_village_K8_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.38916 behavior=GoToSettlement target=Danara [village_K6_3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.385252 behavior=GoToSettlement target=Karahan [village_K6_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.371961 behavior=GoToSettlement target=Nutyuk [village_K6_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.344689 behavior=GoToSettlement target=Akiser [castle_village_K2_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.337425 behavior=GoToSettlement target=Kamshar [castle_village_K2_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.326787 behavior=GoAroundParty target=Tulag's Party [lord_6_5_party_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=0.29289 behavior=GoToSettlement target=Gereden [castle_village_K8_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.271203 behavior=GoToSettlement target=Simira Castle [castle_K7] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.222783 behavior=GoToSettlement target=Corenia Castle [castle_ES2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=True
+candidate score=0.133395 behavior=GoToSettlement target=Akiser Castle [castle_K2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.118961 behavior=GoToSettlement target=Erzenur Castle [castle_K8] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Lamesa [castle_village_A6_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Metachia [castle_village_ES2_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Vargornis [village_ES7_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Erebulos [village_ES1_4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Psotai [village_ES7_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Shibal Zumr Castle [castle_A6] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Shibal Zumr [castle_village_A6_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Tegresos [village_ES1_3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Caira [castle_village_ES1_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Polisia [village_ES1_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Danustica [town_ES1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Ethemisa [castle_village_ES4_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Morenia Castle [castle_ES5] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Hoqqa [village_A2_3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Odrysa Castle [castle_ES1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Husn Fulq [town_A2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.025 behavior=GoToSettlement target=Lavenia [castle_village_ES4_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidateNote=top 40 by score shown; total=83
+final defaultBehavior=GoToSettlement targetSettlement=Syronea targetParty=<null>
+final shortTermBehavior=FleeToPoint shortTermTargetSettlement=<null> shortTermTargetParty=Tulag's Party moveTargetParty=<null> moveMode=Point army=<null> attachedTo=<null>
+=== AI TRACE END #6 ===

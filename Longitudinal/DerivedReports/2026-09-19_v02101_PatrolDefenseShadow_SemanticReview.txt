@@ -1,0 +1,46 @@
+BannerlordAI v0.2.10.1 Patrol-Local Defense Shadow — Semantic Review
+Date: 2026-09-19
+Classification: ACCEPTED SHADOW BEHAVIOR MILESTONE
+
+Evidence
+- Exact-load identity proved Manan / lord_3_12 / Calastides / Khuzait / Syronea branch.
+- Player party after egress: Manan's Party, 213 healthy troops.
+- Native nearby-threat radius: 52.4159927.
+- 33 nearby parties scanned.
+- One actual local threat found.
+- Bandit: southern_pirates_47910 / Corsairs, strength 81.7, 68 healthy.
+- Victim: player_faction_47784 / Fishers of Vargornis, Khuzait villager party.
+- Native target evidence: ShortTermTargetParty.
+- Bandit-to-villager distance: 3.37395.
+- Actor-to-bandit distance: 53.43505.
+- Actor strength: 273.499969.
+- Actor/bandit strength ratio: 3.3476.
+- Decision: threatFound=true, safeToIntervene=true, wouldInterrupt=true.
+- Candidate action: ENGAGE_BANDIT.
+- Resume intent: PATROL_SETTLEMENT:town_ES7.
+- No behavior mutation, intent mutation, or score mutation occurred.
+- Protected root/BLOOD FUED/clone hashes remained identical.
+- Runner restored; disposable save cleaned; lease released; causal mode remained Observe.
+
+Semantic conclusion
+The observer correctly detected a real bandit actively targeting a same-faction local villager and proposed a defensive patrol interrupt only when the main party was not outmatched. Actor identity is correctly party-level for movement/combat while Manan remains hero/memory context. This satisfies the intended shadow milestone.
+
+Next smallest bounded Apply
+1. Preserve Observe as default.
+2. Add one explicit patrol-defense Apply gate/config used only by the controlled validator.
+3. Reuse the existing shadow eligibility result; do not build a second threat detector.
+4. On a fresh wouldInterrupt=true receipt, resolve the exact bandit by StringId and call:
+   MobileParty.MainParty.SetMoveEngageParty(bandit, MobileParty.NavigationType.Default)
+5. Record a causal receipt before/after mutation with actor, bandit, victim, patrol settlement, original patrol intent, campaign time, and exact reason.
+6. Do not alter StrategicDecisionComposer / SetBehaviorScore.
+7. Do not change global lord behavior; scope is player/main-party disposable validation branch only.
+8. Stop Apply if incident/menu/blocker appears, target becomes inactive, actor is no longer safe, or identity/hash gate fails.
+9. Acceptance requires native movement target/behavior visibly transitions toward the exact bandit and no unrelated score writes occur.
+10. After threat resolution/disappearance or bounded timeout, restore PATROL_SETTLEMENT:town_ES7 through the existing native patrol command.
+11. EXIT_NOSAVE, verify protected hashes, restore accepted runner/config, clean disposable save.
+
+Native API proof
+- MobileParty.SetMoveEngageParty(MobileParty party, MobileParty.NavigationType navigationType) is present in the locally indexed public runtime surface.
+- Existing PATROL_SETTLEMENT uses SetMovePatrolAroundSettlement(..., NavigationType.Default, false), so the Apply can preserve native navigation ownership and resume the same known-good patrol path.
+
+Do not expand scope to resupply/recruit/attack loops until this single defensive interrupt Apply is accepted.

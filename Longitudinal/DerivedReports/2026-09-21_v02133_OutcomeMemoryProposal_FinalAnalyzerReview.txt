@@ -1,0 +1,58 @@
+BannerlordAI v0.2.10.33 FINAL VERIFY — ACCEPT VIA HARNESS FALSE NEGATIVE
+
+Terminal validator status
+- Validator recorded FAIL only because it called v31.packet_checks with the wrong arity.
+- The error occurred after the product emitted the decisive packet/candidate/proposal chain.
+- Feature binary was not implicated.
+
+Decisive raw product evidence
+- One natural ordinary lord-bandit event emitted:
+  1) PatrolDefenseOutcomePacket.v1
+  2) PatrolDefenseOutcomeMemoryCandidate.v1
+  3) PatrolDefenseOutcomeMemoryProposalShadow.v1
+- All three shared the exact same native source event key.
+- Packet linkResolution=NONE.
+- Candidate eligible=false with all required factual failures:
+  actor_not_mainhero
+  link_resolution_not_exact_unique
+  history_context_count_not_one
+  settlement_id_missing
+  context_id_missing
+  latest_episode_id_missing
+  history_episode_count_invalid
+- Proposal shadow:
+  proposalEligible=false
+  proposal=null
+  episodeIdGenerated=false
+  memoryWriteApplied=false
+  persistentMemoryMutation=false
+  interpretationApplied=false
+  behaviorMutation=false
+  intentMutation=false
+  scoreMutation=false
+  nativeMovementCalls=0.
+
+Deterministic product evidence
+- Current ClanAI build compiled 0 errors.
+- Proposal fixture suite passed 69/69:
+  positive eligible proposal,
+  exact identity/history/event provenance,
+  exact native outcome/capture facts,
+  ineligible -> null,
+  packet/candidate instance mismatch -> null,
+  proposal type has no Id/EpisodeId field.
+
+Independent integrity audit after validator failure
+- Protected root save SHA256 matched canonical hash.
+- BLOOD FUED save SHA256 matched canonical hash.
+- Disposable v0.2.10.33 save count=0.
+- Installed ClanAI and TestRunner restored to accepted baseline hashes.
+- Bannerlord closed.
+- Deployment owner clear.
+- Failure lease released.
+
+Classification
+HARNESS_FALSE_NEGATIVE_VALIDATOR_PACKET_CHECK_ARITY, product milestone ACCEPTED.
+
+Scope
+No outcome writer exists. Real MainHero + EXACT_UNIQUE live outcome remains the mandatory barrier before any persistent append.

@@ -1,0 +1,44 @@
+ClanAI v0.18E — MEMORY -> NATIVE AI CAUSAL PROOF
+Date: 2026-09-17 local / 2026-09-18 UTC
+
+STATUS: PASS
+
+Controlled target:
+- Actor: Maritzios
+- Actor clan: Vatatzes
+- Memory target clan: Hongeros
+- Vanilla winning candidate: RaidSettlement:Alision
+- Vanilla winner score: 3.237825
+- Alternative native candidate: RaidSettlement:Gorcorys
+- Alternative base score: 3.236451
+- Required factor to overtake winner: 1.000425
+
+Synthetic lab memory:
+- Trust: 0
+- Grievance: 4
+- BloodDebt: 0
+- Obligation: 0
+- Tension: 0
+- Memory pressure formula: grievance + tension + 2*bloodDebt - trust - obligation
+- Pressure: 4
+- Bounded score factor: 1 + (pressure * 0.0025) = 1.010
+
+Applied native candidate score:
+- Gorcorys 3.236451 -> 3.268815
+- No forced action was issued.
+- Only the score of an already-valid Bannerlord candidate was changed.
+
+Runtime proof:
+MEMORY_LAB_SEEDED actor=Maritzios targetClan=Hongeros trust=0->0 grievance=0->4 bloodDebt=0->0 obligation=0->0 tension=0->0
+MEMORY_CAUSAL_INTERVENTION party=Maritzios' Party leader=Maritzios vanillaWinner=RaidSettlement:Alision vanillaScore=3.237825 memoryCandidate=RaidSettlement:Gorcorys targetClan=Hongeros baseScore=3.236451 requiredFactor=1.000425 syntheticMemory=grievance4 memoryPressure=4 memoryFactor=1.010 appliedScore=3.268815 markerConsumed=True
+MEMORY_CAUSAL_RESULT result=PASS_FLIPPED_TO_MEMORY_TARGET party=Maritzios' Party vanillaWinner=RaidSettlement:Alision vanillaScore=3.237825 targetBaseScore=3.236451 requiredFactor=1.000425 appliedScore=3.268815 finalBehavior=RaidSettlement finalTarget=Gorcorys finalTargetId=village_ES2_2
+
+Conclusion:
+Social-memory state can be retrieved during a real Bannerlord strategic decision, converted into a bounded desirability adjustment, applied to a native valid candidate, and cause Bannerlord's own normal selection/commit path to choose a different target.
+
+Scientific limitation:
+The v0.18E memory record was synthetically seeded for controlled causality. Real raids, captures, and intentional releases were proven separately to create persistent social-memory records. The next milestone is one uninterrupted chain:
+REAL EVENT -> persistent memory -> later retrieval -> native score change -> changed committed behavior -> observed consequence.
+
+Cleanup requirement:
+Lab-only synthetic seeding and target-specific causal hooks must not remain in the production deployment.

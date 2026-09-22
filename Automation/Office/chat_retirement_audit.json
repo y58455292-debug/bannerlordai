@@ -1,0 +1,47 @@
+{
+  "schema": "BannerlordAI.ChatRetirementAudit.v1",
+  "policy": {
+    "actual_chat_ui_action": "user",
+    "rule": "No permanent retirement until local durable coverage, Analyzer review, Mem mirror, and Front approval all pass.",
+    "archive_rule": "Archive may be recommended after local durable capture and downstream review."
+  },
+  "brain": {
+    "local_archive_root": "D:\\BannerlordAIResearch\\Longitudinal\\EvidenceIndex\\ChatArchiveBrain",
+    "source_count": 726,
+    "known_project_chats_indexed": 9,
+    "permanent_retirement_safe_now": 0,
+    "mem_migration_state": "PARTIAL: layered collections populated; final FRONT/HOT mirror pending."
+  },
+  "chat_groups": [
+    {
+      "group": "engineering_progress",
+      "titles": ["Read handoff instructions","BannerlordAI Progress Watch","Resume Test Closeout","Collect Data and Continue","Continue From Memory File"],
+      "coverage": ["HandoffV3","ARCHITECTURE_LEARNING","DerivedReports","LiveValidation"],
+      "state": "ANALYZER_VERIFICATION_REQUIRED"
+    },
+    {
+      "group": "research_architecture",
+      "titles": ["Research AI Architecture","File Analysis Options","Analytical Psychology For AI"],
+      "coverage": ["REFERENCE_REGISTRY","ARCHITECTURE_LEARNING","Mem WARM/Research collections"],
+      "state": "ANALYZER_AND_MEM_VERIFICATION_REQUIRED"
+    },
+    {
+      "group": "campaign_canon",
+      "titles": ["Blood Feud Era Update"],
+      "coverage": ["Codex campaign-record.json","Chronicle-Source-Index.json"],
+      "state": "CANON_ANALYZER_VERIFICATION_REQUIRED"
+    },
+    {
+      "group": "support_transient",
+      "titles": ["Remote Desktop Offline Notice"],
+      "coverage": ["Confirm no unique project facts before archive recommendation"],
+      "state": "LOW_VALUE_REVIEW"
+    },
+    {
+      "group": "active_front",
+      "titles": ["Current Front Office chat"],
+      "coverage": ["Mandatory Front clock-out handoff before rotation"],
+      "state": "KEEP_OPEN"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "schema": "BannerlordAI.FrontOffice.v1",
+  "updated_at": "2026-09-19T23:37:24.094509-07:00",
+  "office_state": "ROLLOVER_REQUIRED",
+  "checkpoint_seq": 115,
+  "accepted": {
+    "version": "v0.2.10.2-patrol-defense-apply",
+    "name": "Patrol-Local Reactive Villager Defense Apply",
+    "status": "ACCEPTED_PATROL_LOCAL_DEFENSE_APPLY",
+    "result": "Exact-load Manan/Syronea proof issued one native SetMoveEngageParty to southern_pirates_47910 and one bounded SetMovePatrolAroundSettlement restore after 15 seconds, with exact bandit target state, zero native score writes, protected saves unchanged, accepted runner restored, and owner released. This is bounded test-gate execution proof, not autonomous production or combat-outcome proof."
+  },
+  "active": {
+    "version": "v0.2.10.3-patrol-defense-auto-apply",
+    "name": "Patrol-local reactive villager defense automatic Apply",
+    "status": "TERMINAL_VALIDATOR_FAIL_POST_COMPLETION_PENDING_ANALYZER"
+  },
+  "question": "Can the accepted bounded patrol-defense Apply be triggered exactly once automatically from a fresh safe observer proposal with immutable proposal provenance, then recover to the original Syronea patrol without repeated engage, score writes, or integrity drift?",
+  "next": "Analyzer reviews the terminal v0.2.10.3 evidence and classifies PASS/FAIL/HARNESS_FALSE_NEGATIVE/UNKNOWN. Raw validation has all 14 acceptance checks true and completed cleanup before a post-completion summary NameError overwrote result to FAIL. Do not rerun live unless Analyzer finds raw evidence insufficient.",
+  "blockers": [],
+  "runtime": {
+    "bannerlord_running": false,
+    "campaign_ready": "True",
+    "player_hero": "Manan",
+    "campaign_hours": "648676.21286072221",
+    "time_control": "Stop",
+    "control_run_state": "CLOSED",
+    "deployment_owner": null,
+    "operation_id": null,
+    "desired_intent": {
+      "actor": "Manan",
+      "kind": "PATROL_SETTLEMENT",
+      "target": "town_ES7",
+      "sticky": true
+    }
+  },
+  "departments": {
+    "coder": {
+      "state": "COMPLETE_HANDOFF_READY",
+      "action_id": "v02103_patrol_defense_auto_apply",
+      "result": "VALIDATOR_FAIL_POST_COMPLETION_HARNESS_BUG",
+      "return_code": 1,
+      "log_path": null
+    },
+    "analyzer": {
+      "state": "COMPLETE_HANDOFF_READY",
+      "classification": "PASS",
+      "source_action_id": "v02102_patrol_defense_apply",
+      "agent_review_required": false,
+      "latest_validation": {
+        "path": "D:\\BannerlordAIResearch\\Longitudinal\\LiveValidation\\PatrolDefense_v02102_Apply_20260919_221539_445877",
+        "validation_json": "D:\\BannerlordAIResearch\\Longitudinal\\LiveValidation\\PatrolDefense_v02102_Apply_20260919_221539_445877\\validation.json",
+        "schema": "BannerlordAI.PatrolDefenseApplyValidation.v1",
+        "result": "PASS_PATROL_LOCAL_DEFENSE_APPLY",
+        "error": null
+      }
+    },
+    "supervisor": {
+      "enabled": true,
+      "state": "READY_FOR_FRONT_PLANNING",
+      "pending_action_id": "v02101_patrol_defense_shadow_rerun",
+      "attempts": 0,
+      "last_result": "SUCCESS",
+      "last_supervisor_result": "OFFICE_POLICY_DENY:WORK_CLASS_REQUIRES_OPEN"
+    },
+    "front": {
+      "state": "ACTIVE",
+      "role": "User-facing whole-office coordination and concise verified updates"
+    }
+  },
+  "latest_validation": {
+    "path": "D:\\BannerlordAIResearch\\Longitudinal\\LiveValidation\\PatrolDefense_v02103_AutoApply_20260919_230102_295195",
+    "schema": "BannerlordAI.PatrolDefenseAutoApplyValidation.v1",
+    "result": "FAIL",
+    "error": "NameError: name 'threat_receipts' is not defined"
+  },
+  "rollover": {
+    "schema": "BannerlordAI.FrontRolloverState.v1",
+    "session_started_at": "2026-09-19T23:35:52.988442-07:00",
+    "start_checkpoint_seq": 115,
+    "front_touches": 1,
+    "material_updates": 0,
+    "updated_at": "2026-09-19T23:37:24.085509-07:00",
+    "last_checkpoint_seq": 115,
+    "checkpoint_delta": 0,
+    "age_minutes": 1.52,
+    "pressure_level": "RED",
+    "pressure_ratio": 1.0,
+    "pressure_components": {
+      "wall_time": 0.0084,
+      "material_updates": 0.0,
+      "front_touches": 0.0556,
+      "checkpoint_delta": 0.0
+    },
+    "successor_ready": true,
+    "successor_handoff": "D:\\BannerlordAIResearch\\Automation\\Office\\Handoffs\\front_to_next_front.json",
+    "rotation_requested": true,
+    "activation_command": "Front watch — recover current assignment and continue.",
+    "exact_token_signal_available": false,
+    "rule": "Use conservative operational pressure proxies; keep a dormant successor packet ready at all times.",
+    "forced_saturation_signal": true
+  },
+  "recovery": {
+    "follow_protocol_return_code": 0,
+    "follow_protocol_tail": "{\"protocol\":\"FOLLOW_PROTOCOL\",\"status\":\"FAST_OK\",\"resume_ms\":75.27,\"checkpoint_seq\":115,\"game_running\":false,\"hero\":\"Manan\",\"owner\":null,\"run_state\":\"CLOSED\",\"intent\":\"PATROL_SETTLEMENT:town_ES7\",\"detail\":\"D:\\\\BannerlordAIResearch\\\\Longitudinal\\\\EvidenceIndex\\\\HandoffV3\\\\Continuity\\\\fast_boot.json\"}\n",
+    "context_rebuild_return_code": 0
+  }
+}

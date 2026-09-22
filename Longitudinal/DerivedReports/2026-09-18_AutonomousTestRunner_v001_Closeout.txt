@@ -1,0 +1,97 @@
+BANNERLORDAI — AUTONOMOUS TEST RUNNER v0.1 CLOSEOUT
+Date: 2026-09-18 Pacific.
+
+Objective:
+Remove repetitive user launch/load/play/pause/exit work without contaminating ClanAI behavior under test and without building a screenshot cache.
+
+Architecture:
+- Separate BannerlordAITestRunner DLL loaded as a second submodule inside the already-enabled ClanAI module.
+- ClanAI behavior DLL remains separate.
+- File-command bridge under D:\BannerlordAIResearch\Automation\TestRunner.
+- External Python controller uses process/log/state files.
+- No screenshot dependency.
+- No mouse dependency for campaign simulation control.
+Native TaleWorlds surfaces proved:
+- Campaign.TimeControlMode writable.
+- Campaign.SetTimeSpeed(int).
+- Campaign.SetTimeControlModeLock(bool).
+- CampaignTimeControlMode enum mapped.
+- Module.CurrentModule.ShutDownWithDelay(reason, seconds) provides clean application shutdown.
+
+Runner commands:
+PLAY
+PAUSE / STOP
+FAST
+AUTO_PLAY
+AUTO_FAST
+STATUS
+EXIT_NOSAVE
+
+Safety:
+- no save calls
+- no AI score writes
+- no movement commands in runner
+- no ClanAI behavior writes
+- native no-save shutdown, not force-kill
+External controller proved:
+- reconstruct exact selected module order from LauncherData.xml
+- make only disposable target save newest
+- launch Bannerlord.exe directly with /singleplayer + _MODULES_ list + /continuegame
+- wait for TestRunner campaign-ready handshake
+- discover new ClanAI session log automatically
+- arm AUTO_PLAY
+- watch exact log evidence conditions
+- PAUSE on condition/timeout
+- freeze session/diagnostics/runner state
+- issue EXIT_NOSAVE
+- verify target save hash post-exit
+
+First failures and fixes:
+1. One-shot PLAY did not survive apparent pauses.
+2. GABS prior art revealed blocker-aware continuation pattern.
+3. NavalDLC campaign screen is NavalMapScreen, not MapScreen.
+4. BannerlordConfig had StopGameOnFocusLost=True.
+5. TimeControlMode alone was insufficient; SetTimeSpeed(1) was also required.
+Final proof:
+30-second background smoke test with Chrome/Spotify open:
+- AUTO_PLAY armed
+- blockers cleared
+- auto resume count 1
+- campaign hours advanced 8.3830411
+- Guaran/fen Giall candidate observed
+- clean pause
+- evidence frozen
+- native no-save exit
+- disposable save byte-identical after exit
+
+Full targeted autonomous run:
+- 180.37 real seconds
+- 53.1746125 campaign hours advanced
+- no user input
+- clean exit
+- save unchanged
+
+External prior art:
+Bannerlord.GABS source was downloaded to:
+D:\BannerlordAIResearch\ExternalPriorArt\Bannerlord.GABS-master
+It confirms:
+- main-thread dispatcher pattern
+- blocker checks
+- wait-for-state / wait-for-arrival
+- native party movement
+- cheat mode + console command surface
+- focus-loss handling
+- agent bridge architecture
+Compatibility:
+Public GABS source currently lists supported reference versions v1.3.15 / v1.3.13 / v1.2.12.
+Current local game is 1.5.3.
+Do not install GABS prebuilt stack blindly.
+Use it as prior art and port/build compatible pieces against local 1.5.3 assemblies.
+
+Next automation steps:
+- make StopGameOnFocusLost=False temporary to automation sessions and restore user's normal setting afterward
+- add scenario-driver commands separately from behavior runner
+- tag all scenario setup as INDUCED
+- add movement/checkpoint/console-command capabilities only to test infrastructure
+- preserve no-save default
+- later expose typed local agent tools or GABP-like bridge when useful

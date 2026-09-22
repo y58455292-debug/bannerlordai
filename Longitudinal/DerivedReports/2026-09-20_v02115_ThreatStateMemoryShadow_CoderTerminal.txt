@@ -1,0 +1,73 @@
+BannerlordAI v0.2.10.15 — Coder Terminal Report
+Date: 2026-09-20
+Semantic candidate: PASS_PATROL_DEFENSE_THREAT_STATE_MEMORY_SHADOW
+
+Objective
+Persist five factual patrol-defense threat-state scalars from an observer-generated NEW encounter into the existing autonomous episode provenance, survive SaveAs/full restart, and on a later exact KNOWN re-encounter expose both prior and current factual state for validator-only comparison with zero policy/action authority.
+
+Implementation
+- Existing RecordPatrolDefenseEpisode API preserved.
+- Added RecordPatrolDefenseEpisodeWithState for natural observer acquisition only.
+- Persisted fields:
+  actorStrength
+  actorHealthy
+  banditStrength
+  banditHealthy
+  actorToBanditStrengthRatio
+- Values copied from PatrolDefenseShadow.Evaluate locals; no new world scan.
+- Acquisition receipt adds threatSnapshot with same five facts.
+- PatrolDefenseShadowResult carries the same already-computed scalars.
+- Runtime does not compute/interpret deltas.
+- Apply/rearm remains disconnected.
+
+Live proof
+Validation:
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02115_ThreatStateMemoryShadow_20260920_134319_124765\validation.json
+
+Branch: abffb961b24c450fb068abcaa5e74498
+Learned bandit: southern_pirates_47910
+Episode: 10bef7ced1204b4a8a1fa6a13b0faea4
+
+Stage1 natural NEW:
+- Shadow, acquisition receipt and persisted episode all contained exactly:
+  actorStrength=273.499969
+  actorHealthy=213
+  banditStrength=81.7
+  banditHealthy=68
+  actorToBanditStrengthRatio=3.34761286
+- All Stage1 checks true.
+- Episode source PatrolDefenseObserver.v02115.natural_new_enemy_state.
+- Exactly-one acquisition; no mutation/Apply.
+
+Stage2 fresh restart:
+- restored=True, same branch.
+- Exact learned Corsairs naturally reappeared after positive time.
+- KNOWN_ENEMY memoryAgeHours=4.224479805561714.
+- priorEpisode id/source/detail/knownByHours exactly matched Stage1 autonomous episode.
+- memoryContext in matching natural shadow exactly matched recognition.
+- Prior snapshot parsed from persisted detail.
+- Current snapshot read from current shadow.
+- Validator emitted BannerlordAI.PatrolDefenseThreatStateComparison.v1 with interpretationApplied=false.
+- All five observed deltas were 0 and current/prior ratios were 1.0.
+- All Stage2 checks true.
+- No reacquisition for learned bandit.
+- No explicit memory retrieval, recognize, seed, Apply/rearm, behavior/intent/score/movement authority.
+
+Integrity
+- Protected saves unchanged:
+  94DFE7F05D89C6E4CC328A416943608713ECFFDF96A572AAEA43A9BDD5CD2DAA
+- Accepted ClanAI restored:
+  7FCF781463001B0884282C48585F53C9B16622B7FC998743F2C96C3850373BFE
+- Accepted runner restored:
+  EB164E99D7075907F34BD4C6EB32C1EA5E8419FA6A62242C175CB8B2A10F9802
+- Disposable saves cleaned.
+- Bannerlord closed.
+- Deployment owner released.
+
+Candidate hashes
+ClanAI: 258D6E59EC91D7C980D197F5A642C5F24BD41FF526311251E4D7EE7A7ED4F923
+Runner: C8E2499EF304623D3E6C2FBBCF54F5A64BCF98F4AB707BAA944359FC6217BA74
+Validator: 802ADFAC881C229D1F1BABDD5B7B452E1A89D34C61C8070ECEB3603B597469CB
+
+Scope limit
+This proves factual prior/current comparison plumbing. Because the naturally repeated state was identical, it does not yet prove a nonzero changed-state delta under natural play.

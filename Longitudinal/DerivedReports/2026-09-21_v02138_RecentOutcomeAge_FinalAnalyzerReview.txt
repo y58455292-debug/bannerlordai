@@ -1,0 +1,20 @@
+BannerlordAI v0.2.10.38 FINAL VERIFY — ACCEPT
+
+Decisive evidence
+- ClanAI built with accepted v0.2.10.36 TestRunner; fixtures passed 96/96.
+- Natural same-session exact outcome context returned FOUND after positive campaign-time advance.
+- FOUND receipt currentCampaignHours=648662.8966345278.
+- Stored outcome endCampaignHours=648660.5226722222.
+- Product outcomeAgeHours=2.3739623056026176, exactly matching validator recomputation.
+- outcomeAgeHours is nonnegative and currentCampaignHours is not before the outcome.
+- futureLeak=false.
+- Exact packet identity/history/native outcome/capture fields remained unchanged.
+- Wrong-bandit NONE returned outcomeAgeHours=null and futureLeak=null while currentCampaignHours remained readable.
+- Every live validator check passed.
+- persistentMemoryMutation=false; interpretationApplied=false; behavior/intent/score mutation=false; nativeMovementCalls=0; no Apply side effects.
+- Protected saves matched, disposable save cleaned, accepted binaries restored, lease released.
+
+Classification: ACCEPT.
+
+Architecture meaning
+Recent outcome working context now carries factual age and future-leak state from live CampaignTime without a freshness threshold or semantic label. Because the accepted v0.2.10.36 shadow nests the receipt unchanged, these fields are available to reasoning evidence without another integration surface.

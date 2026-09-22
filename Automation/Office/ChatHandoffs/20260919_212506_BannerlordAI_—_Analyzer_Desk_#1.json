@@ -1,0 +1,73 @@
+{
+  "schema": "BannerlordAI.ChatClockoutHandoff.v1",
+  "created_at": "2026-09-19T21:25:06.037357-07:00",
+  "chat_alias": "BannerlordAI — Analyzer Desk #1",
+  "role": "analyzer",
+  "reason": "semantic_review_complete",
+  "checkpoint_seq": 100,
+  "accepted": {
+    "version": "v0.2.10.1-patrol-defense-shadow",
+    "name": "Patrol-Local Reactive Villager Defense Shadow",
+    "status": "ACCEPTED_PATROL_LOCAL_DEFENSE_SHADOW",
+    "result": "Exact-load Manan branch observed a real Corsairs party actively targeting a same-faction Khuzait villager near Syronea. Native threat radius scan found threatFound=true, safeToIntervene=true, wouldInterrupt=true, candidateAction=ENGAGE_BANDIT, resumeAction=PATROL_SETTLEMENT:town_ES7, with zero behavior/intent/score mutation and protected saves unchanged."
+  },
+  "active": {
+    "version": "v0.2.10.1-patrol-defense-shadow",
+    "name": "Patrol-local reactive villager defense shadow",
+    "status": "OBSERVER_CORE_OK_HARNESS_MENU_RACE_FIXED"
+  },
+  "question": "Can the already-accepted patrol-defense shadow proposal perform one tightly bounded real native defensive interrupt against the exact bandit, then safely resume the original Syronea patrol without score mutation or save drift?",
+  "next": "Coder Desk #1 implements the smallest test-only patrol-defense Apply gate from the accepted v0.2.10.1 shadow proof: reuse accepted eligibility, resolve exact bandit by StringId, issue one native SetMoveEngageParty, record causal receipt, restore Syronea patrol after resolution/disappearance or bounded timeout, then EXIT_NOSAVE and verify hashes/config/runner restoration.",
+  "blockers": [],
+  "runtime": {
+    "bannerlord_running": false,
+    "campaign_ready": "True",
+    "player_hero": "Manan",
+    "campaign_hours": "648656.78130955552",
+    "time_control": "Stop",
+    "control_run_state": "CLOSED",
+    "deployment_owner": null,
+    "operation_id": null,
+    "desired_intent": {
+      "actor": "Manan",
+      "kind": "PATROL_SETTLEMENT",
+      "target": "town_ES7",
+      "sticky": true
+    }
+  },
+  "desk_status": {
+    "schema": "BannerlordAI.Office.AnalyzerStatus.v1",
+    "updated_at": "2026-09-19T21:22:15.247457-07:00",
+    "state": "COMPLETE_HANDOFF_READY",
+    "last_processed_result_id": "v02101_patrol_defense_shadow_rerun|2026-09-19T18:56:10.324559-07:00",
+    "source_action_id": "v02101_patrol_defense_shadow_rerun",
+    "source_log": "D:\\BannerlordAIResearch\\Automation\\Autopilot\\logs\\20260919_185503_v02101_patrol_defense_shadow_rerun.log",
+    "coder_return_code": 0,
+    "classification": "PASS",
+    "semantic_result": "ACCEPTED_PATROL_LOCAL_DEFENSE_SHADOW",
+    "prior_attempt_classification": "HARNESS_FALSE_NEGATIVE",
+    "latest_validation": {
+      "path": "D:\\BannerlordAIResearch\\Longitudinal\\LiveValidation\\PatrolDefense_v02101_Shadow_20260919_185503_586202",
+      "validation_json": "D:\\BannerlordAIResearch\\Longitudinal\\LiveValidation\\PatrolDefense_v02101_Shadow_20260919_185503_586202\\validation.json",
+      "schema": "BannerlordAI.PatrolDefenseShadowValidation.v1",
+      "result": "PASS_PATROL_LOCAL_DEFENSE_SHADOW",
+      "error": null
+    },
+    "semantic_summary": "Exact-load Manan/Syronea observer detected a real Corsairs->Khuzait-villager threat, judged the actor safely stronger, proposed ENGAGE_BANDIT with Syronea patrol resume, and recorded zero behavior/intent/score mutation; save and runner integrity passed.",
+    "scope_limit": "Shadow eligibility/proposal only; actual native engage execution and patrol resumption are not yet proven.",
+    "durable_update": {
+      "derived_report": "D:\\BannerlordAIResearch\\Longitudinal\\DerivedReports\\2026-09-19_v02101_PatrolDefenseShadow_AnalyzerReview.txt",
+      "architecture_learning_updated": true,
+      "new_policy_required": false
+    },
+    "next_acceptance_gate": "Disposable exact-load branch: reuse accepted eligibility, resolve observed bandit by StringId, issue one native SetMoveEngageParty, record causal target/interrupt receipt, restore PATROL_SETTLEMENT:town_ES7 after resolution/disappearance or bounded timeout, then EXIT_NOSAVE and verify protected saves, Observe/config, accepted runner, and zero score-write integrity.",
+    "handoff_to": "Front Office",
+    "agent_review_required": false
+  },
+  "raw_authority": [
+    "D:\\BannerlordAIResearch\\Longitudinal\\EvidenceIndex\\HandoffV3\\current.json",
+    "D:\\BannerlordAIResearch\\Longitudinal\\EvidenceIndex\\ContextPyramid\\front_page.json"
+  ],
+  "handoff_to": "front",
+  "do_not_assume_chat_history": true
+}

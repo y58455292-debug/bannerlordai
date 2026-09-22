@@ -1,0 +1,67 @@
+BannerlordAI v0.2.10.16 — Coder Terminal Report
+Date: 2026-09-20
+Semantic candidate: PASS_NATURAL_CHANGED_THREAT_STATE_COMPARISON
+
+Objective
+Using unchanged accepted v0.2.10.15 feature binaries, prove an exact learned enemy can naturally reappear after persistence/restart with at least one changed factual threat-state scalar, and that validator-only prior/current comparison computes correct nonzero deltas/ratios with zero policy/action authority.
+
+Evidence
+Validation:
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02116_NaturalChangedThreatState_20260920_135034_721943\validation.json
+
+Branch: ee6a5841066743ed92fa53512405b9f0
+Learned bandit: southern_pirates_47910
+Episode: 444a98fda55e42d7adc7644178940c7b
+Memory age at accepted changed re-encounter: 84.30123436113354 campaign-hours
+
+Prior factual snapshot
+- actorStrength=273.499969
+- actorHealthy=213
+- banditStrength=81.7
+- banditHealthy=68
+- actorToBanditStrengthRatio=3.34761286
+
+Accepted current factual snapshot
+- actorStrength=273.499969
+- actorHealthy=213
+- banditStrength=82.86
+- banditHealthy=67
+- actorToBanditStrengthRatio=3.30074787
+
+Validator-only factual deltas
+- actorStrength = 0.0
+- actorHealthy = 0
+- banditStrength = +1.1599999999999966
+- banditHealthy = -1
+- actorToBanditStrengthRatio = -0.046864989999999995
+
+Current/prior ratios
+- actorStrength = 1.0
+- actorHealthy = 1.0
+- banditStrength = 1.0141982864137087
+- banditHealthy = 0.9852941176470589
+- actorToBanditStrengthRatio = 0.9860004749772648
+
+Harness behavior
+- Six exact learned-bandit KNOWN re-encounters with unchanged five-value state were observed and deliberately not accepted.
+- The accepted event was the first exact KNOWN + matching natural shadow whose factual snapshot differed beyond tolerance.
+- comparison_math_correct=true.
+- natural_nonzero_change=true.
+- interpretationApplied=false.
+- All Stage1 and Stage2 checks true.
+
+Authority/integrity
+- No feature-binary change from accepted v0.2.10.15.
+- No reacquisition for learned bandit.
+- No explicit memory retrieve/seed/recognize.
+- No Apply/rearm.
+- Recognition/shadow remain behaviorMutation=false, intentMutation=false, scoreMutation=false.
+- No movement authority added.
+- Protected saves unchanged at 94DFE7F05D89C6E4CC328A416943608713ECFFDF96A572AAEA43A9BDD5CD2DAA.
+- Accepted binaries restored.
+- Disposable saves cleaned.
+- Bannerlord closed.
+- Deployment owner released.
+
+Semantic candidate
+PASS. This proves natural nonzero factual change sensitivity in persisted exact-identity memory comparison. It does not interpret the change as safer/more dangerous or alter any decision.

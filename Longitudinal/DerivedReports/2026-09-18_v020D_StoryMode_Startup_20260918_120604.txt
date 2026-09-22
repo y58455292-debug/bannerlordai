@@ -1,0 +1,27 @@
+BANNERLORDAI - STORYMODE STARTUP INCIDENT
+Recorded: 2026-09-18, Pacific local time.
+Status: FAILED NATIVE LAUNCH EXITED; REGULAR MANAGED LAUNCHER OPEN; GAME RELAUNCH NOT YET VALIDATED.
+
+OBSERVED
+The failed run used Launcher.Native.exe, PID 5692. The last successful campaign run used TaleWorlds.MountAndBlade.Launcher.exe, PID 7272.
+The two runs used the same ordered module list. The failed run included /continuegame.
+The failed log first loads StoryMode from Modules/StoryMode/bin/Win64_Shipping_Client, then fails to resolve StoryMode.dll under the central bin/Win64_Shipping_Client folder.
+Exact failed-log references: rgl_log_5692.txt lines 2564, 2657, 2668, 2774 and 2821. Two errors name StoryMode.dll; another names StoryMode.ViewModelCollection.dll.
+StoryMode.dll exists at its module path: 536416 bytes; SHA256 6E49AB8EC9AB58BC54212F0343B23959DC6B9EF108EF1D828E726414FCDDE410.
+The failed log never reaches a Loading assembly entry for ClanAI.dll. No v0.20D campaign session was created by that failed attempt.
+PID 5692 exited during investigation. No force termination or repeated launch loop was performed in this investigation.
+The save remains 3FF4154175A5054D5B19ED6FC7E3D7452F864E0091B7F024E6444807F1BEF323 and matches the existing v0.20C checkpoint.
+Installed ClanAI is v0.20D-review, SHA256 4EC3E5907E06053BE2C36782A2C181182D95D1DD731B3252E5BDC41F40FAB770. HOT had not yet incorporated the prior deployment.
+
+ACTION AND LIMITS
+Opened TaleWorlds.MountAndBlade.Launcher.exe once, with explicit working directory bin/Win64_Shipping_Client, the same module list, and no /continuegame. New PID: 24432.
+The regular launcher is open under title M&B II: Bannerlord; no new game rgl log exists for this PID at the latest check. Reaching the launcher is not a successful campaign-load test.
+The native-executable/launch-path difference is a leading explanation, not an isolated proof of the underlying assembly-resolution cause. Do not describe the DLL as corrupted or the issue as fully fixed.
+No engine DLL, mod DLL, source, save or security setting was replaced in this investigation. Both StoryMode DLLs, installed ClanAI/Inspector and the save/checkpoint hashes remain unchanged.
+LauncherData.xml was rewritten by launcher startup with reversed namespace-attribute order only. Module selections, order and known versions are unchanged.
+A GUI inspection/screenshot request was blocked before execution. It was not retried through another route; no screenshot or GUI click from that request is claimed.
+Next: use Play in the open regular launcher, keep the same selected modules, verify successful StoryMode and ClanAI startup before campaign testing. Do not copy StoryMode DLLs into the central bin folder or remove native modules as a workaround.
+
+EVIDENCE
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\v020D_StoryMode_Startup_20260918_120604\preflight.json and controlled_launch.json; frozen before/ logs and context.
+Deployment provenance: D:\BannerlordAIResearch\workspace\_PatchBackups\Before_v020D_SplitSink_20260918_115921_954228\deployment_manifest.json.

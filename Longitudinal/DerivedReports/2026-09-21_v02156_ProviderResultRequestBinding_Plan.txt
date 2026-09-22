@@ -1,0 +1,69 @@
+BannerlordAI v0.2.10.56 - Registered provider-request ID bound result admission shadow
+
+Question
+Can provider results be accepted only when they echo the exact providerRequestId registered for the active claimed job, in addition to matching providerId + attemptId + requestFingerprint?
+
+Why this gate
+- v0.2.10.55 registers one exact outbound provider request per active claim.
+- v0.2.10.51 binds results to the claim, but not yet to the exact outbound provider request/model/prompt/input instance.
+- Before real provider transport, a result from a different request instance must be unable to satisfy the claim.
+
+Compatibility
+- Keep accepted BannerlordAI.PatrolDefenseProviderResult.v1 behavior unchanged.
+- Introduce new BannerlordAI.PatrolDefenseProviderResult.v2 for request-bound results.
+- New v2 required fields:
+  schema
+  providerId
+  attemptId
+  requestFingerprint
+  providerRequestId
+  status
+  advisoryBase64.
+
+Smallest implementation
+- Runner-only; ClanAI unchanged.
+- Add non-mutating MatchRegisteredProviderRequest on dispatch queue:
+  missing job -> DISPATCH_JOB_NOT_FOUND;
+  not CLAIMED -> PROVIDER_JOB_NOT_CLAIMED;
+  claim provider/attempt mismatch -> PROVIDER_CLAIM_MISMATCH;
+  no providerRequestId registered -> PROVIDER_REQUEST_NOT_REGISTERED;
+  wrong providerRequestId -> PROVIDER_REQUEST_ID_MISMATCH;
+  exact -> PROVIDER_REQUEST_MATCHED.
+- Add strict v2 result parser/admission:
+  exact v2 field set only;
+  validate provider/attempt/fingerprint/requestId;
+  require MatchRegisteredProviderRequest before pending-request advisory admission;
+  SUCCESS then decodes advisory and passes through existing strict advisory gate;
+  TRANSIENT/PERMANENT failure semantics remain identical after exact request match.
+- Command:
+  PATROL_DEFENSE_PROVIDER_RESULT_V2_ADMIT <base64Utf8EnvelopeJson>
+- Dedicated receipt stream:
+  patrol_defense_provider_result_v2_admissions.jsonl
+  schema BannerlordAI.PatrolDefenseProviderResultV2Admission.v1
+  includes providerRequestId and providerRequestMatchReason.
+- Dispatch completion lifecycle remains unchanged after admission result.
+
+Acceptance
+A. Runner compiles; ClanAI unchanged.
+B. Fixtures:
+   exact registered request + SUCCESS admitted;
+   no request registration rejected PROVIDER_REQUEST_NOT_REGISTERED;
+   wrong providerRequestId rejected and pending retained;
+   wrong provider/attempt/fingerprint rejected;
+   exact TRANSIENT failure retains job;
+   exact PERMANENT failure removes through completion;
+   malformed/extra fields rejected;
+   exact SUCCESS consumes pending and completion removes job;
+   replay rejected/no second removal;
+   accepted v1 fixtures remain unchanged and PASS.
+C. Static ordering: v2 envelope parse -> claim match -> providerRequestId match -> strict advisory gate -> completion.
+D. Live:
+   natural request -> claim attempt-1 -> register exact provider request -> synthetic v2 SUCCESS with same providerRequestId;
+   providerRequestMatchReason=PROVIDER_REQUEST_MATCHED;
+   nested KEEP_BASELINE admitted;
+   SUCCESS_ACKED queue 1->0;
+   replay rejects DISPATCH_JOB_NOT_FOUND.
+E. Provider/model/network invocation streams remain empty; no Apply authority; full cleanup.
+
+Scope
+This binds results to the exact registered outbound request instance. Still no real provider/model call.

@@ -1,0 +1,19 @@
+BannerlordAI v0.2.10.47 FINAL VERIFY - ACCEPT
+
+Decisive evidence
+- v0.2.10.46 ClanAI/runner binaries reused unchanged.
+- Reused v0.2.10.46 fixture suite remained 108/108 PASS.
+- Natural route-eligible request produced one exact PENDING outbox job.
+- External validator worker read the exact job/fingerprint/request payload outside Bannerlord.
+- Worker constructed strict KEEP_BASELINE advisory using the exact job requestFingerprint.
+- Existing PATROL_DEFENSE_ADVISORY_ADMIT admitted=true / KEEP_BASELINE.
+- executionAuthorized=false; model/LLM/planner false.
+- Immediate identical worker replay rejected NO_PENDING_ROUTE_REQUEST.
+- In-game provider invocation stream remained empty, proving the response came through the external-worker path rather than the in-game provider mock.
+- Every live check passed; no Apply side effects.
+- Protected saves matched, disposable cleaned, accepted binaries restored, lease released.
+
+Classification: ACCEPT.
+
+Architecture meaning
+The full controller -> outbox -> external worker -> exact runtime admission roundtrip is now proven without changing feature binaries or invoking a real model. Game-thread reasoning and external cognition work are cleanly separated.

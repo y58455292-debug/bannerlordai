@@ -1,0 +1,22 @@
+BannerlordAI v0.2.10.58 FINAL VERIFY - ACCEPT
+
+Decisive evidence
+- Runner compiled with 0 errors; ClanAI reused unchanged.
+- Transport registration fixture suite passed 225/225.
+- Provider-request contract fixture suite passed 49/49.
+- Natural request was claimed attempt-1 and exact provider request registered first.
+- Runtime accepted strict transport envelope:
+  transportId=deterministic_local_loopback
+  transportRequestId=2C105C64263F1BFF5CEF68E95CFAF658DE7A7F831DAFAFE2919B8B23A2F1B50D.
+- Runtime-computed transportRequestId exactly matched the independent SHA-256 of the exact transport-envelope UTF-8 bytes.
+- Exact registration replay was idempotent with reason SAME_TRANSPORT_REQUEST_ALREADY_REGISTERED.
+- Fixtures prove second different transport envelope rejection, provider-request-not-registered, providerRequestId/provider/model/attempt/fingerprint/input-hash mismatches, unclaimed/missing/malformed/extra-field rejection, release cleanup and retry re-registration.
+- No transport send occurred.
+- Provider invocation and provider-result streams remained empty.
+- No network/model/Apply authority.
+- Every live check passed; protected saves matched, disposable cleaned, binaries restored, lease released.
+
+Classification: ACCEPT.
+
+Architecture meaning
+Runtime now records the exact authorized transport instance for a registered provider request before any send occurs. Transport provenance has an immutable transportRequestId and idempotent replay semantics.

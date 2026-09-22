@@ -1,0 +1,394 @@
+BANNERLORDAI — NEXT AGENT HANDOFF
+Timestamp: 2026-09-18 ~20:03 Pacific
+Status: SAFE HANDOFF / GAME CLOSED / v0.20L INSTALLED / v0.20M STAGED
+
+FIRST ACTION FOR NEXT AGENT
+1. Read D:\BannerlordAIResearch\Longitudinal\EvidenceIndex\current_state.json.
+2. Read this handoff.
+3. Read only relevant WARM/Mem notes by capability. Do not reload the whole project.
+4. Do NOT assume v0.20M is runtime validated.
+5. Audit the staged v0.20M single-owner migration, then deploy it deliberately from staging only if the audit remains clean.
+6. Use the autonomous TestRunner for bounded validation; no user launch/load/play/pause/exit input should be needed.
+
+==================================================
+CURRENT ACTIVE MILESTONE
+==================================================
+
+Strategic Decision Composer / unified score ownership.
+
+Goal:
+One action -> one owner -> one final SetBehaviorScore authority.
+
+Reason:
+v0.20K proved persistent social memory reaches real final-stack decisions but a bounded 12% memory factor produced zero final-stack flips in restored relevant context. The architectural problem is not “memory too weak”; the old stack had multiple independent score writers. We are consolidating score ownership before adding richer cognition.
+
+==================================================
+v0.20L SHADOW COMPOSER — RUNTIME PROVEN
+==================================================
+
+Stage:
+D:\BannerlordAIResearch\workspace\_PatchStaging\StrategicDecisionComposer_v020L_20260918_191245_372461\candidate
+
+Installed SAFE baseline at handoff:
+ClanAI.dll SHA256:
+A12260B59A43120550CAAB87132EAD26F22FA77F9C3287EEF348477534B59FFA
+
+ClanAI.pdb SHA256:
+D0A574891FC2700D46904CA966D09DCDE59D76D0BAA75392F8784FF422016A50
+
+Shadow validation root:
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\StrategicDecisionComposer_v020L_ShadowAuto_20260918_192625_599011
+
+Session:
+D:\BannerlordAIResearch\Telemetry\ClanAI\sessions\ClanAI_20260919_022709_705_v020L_review.log
+
+Gate result at 100 frames:
+- composer frames: 100
+- applied frames: 100
+- applied contributions: 15,384
+- social-memory proposal contributions: 17
+- equivalent frames: 100
+- score mismatches: 0
+- sequence mismatches: 0
+- winner mismatches: 0
+- failures: 0
+- campaign hours advanced: 8.625326583
+- clean no-save exit
+- target save byte-identical after exit
+
+Game-end diagnostics:
+- composerFrames=103
+- composerAppliedFrames=103
+- composerAppliedContributions=15,728
+- composerProposalContributions=21
+- composerScoreMismatches=0
+- composerSequenceMismatches=0
+- composerWinnerMismatches=0
+- composerEquivalentFrames=103
+- composerFailures=0
+- writer failures=0
+
+Performance snapshot at game end:
+- fpsAverage 131.7
+- frame median 7.34 ms
+- p95 9.81 ms
+- p99 12.61 ms
+Treat as health evidence, not a controlled performance comparison.
+
+Conclusion:
+Shadow composer exactly reproduced the legacy visual-war + weak-recovery applied score chain while also carrying social-memory proposals. This authorizes migration of write ownership, not new intelligence factors yet.
+==================================================
+v0.20M SINGLE-WRITE OWNER — STAGED / COMPILES / NOT RUNTIME VALIDATED
+==================================================
+
+Stage:
+D:\BannerlordAIResearch\workspace\_PatchStaging\StrategicDecisionComposer_v020M_20260918_192850_707115\candidate
+
+Metadata:
+FileVersion 0.20.13.0
+InformationalVersion v0.20M-review-strategic-composer-owner
+
+Current compiled staged hashes:
+DLL SHA256:
+34186C5FE9AB8160392E70868EAE0074EEE1F103D74C9C163C79471162289B66
+
+PDB SHA256:
+11F6F054809256E7621B99B566BC6BA80DDA9CB2DA48F0DDA93B1153240A4ACA
+
+Build:
+- succeeds
+- 0 errors
+- inherited System.ValueTuple warning only
+
+Critical structural checkpoint:
+Exactly ONE SetBehaviorScore site exists in the entire v0.20M candidate source:
+StrategicDecisionComposer.cs line ~316.
+
+There are NO SetBehaviorScore sites remaining in:
+- VisualWarDecisionLayer.cs
+- ClanAIStrategicBehavior.cs weak-recovery path
+- SocialMemoryCausalLayer.cs
+
+The v0.20M candidate currently:
+- keeps per-frame virtual WorkingScore in StrategicDecisionComposer
+- VisualWar reads composer.CurrentScore and contributes via composer.ApplyFactor
+- weak-recovery reads composer.CurrentScore and contributes via composer.ApplyFactor
+- NobleMemory reads composer virtual scores
+- SocialConsequenceProbe reads composer virtual scores
+- SocialLedger reads composer virtual scores
+- SocialMemoryCausalLayer reads composer virtual scores
+- SocialMemory Observe contributes only RecordProposal
+- SocialMemory Apply path routes via composer.ApplyFactor
+- composer.CurrentBestIndex supplies virtual winner during the frame
+- composer.Complete owns the final PartyThinkParams SetBehaviorScore writes
+
+Key staged source hashes at handoff:
+StrategicDecisionComposer.cs
+B46E828FA455BD38CAB12A784B67A7F0A57C1352CE1019A254BEF99DC6C77844
+
+VisualWarDecisionLayer.cs
+6AEB41CC6F02A562BB613BA4030756DF45E44E5A56E8DFB21763B8392F82C070
+
+ClanAIStrategicBehavior.cs
+054C11741994854B2827690792E7D2FDD96407BE92BC12F30EB6EB5EEE2CD6EB
+
+SocialMemoryCausalLayer.cs
+61ECEC00FD27A9F5698019EDB877E53DD23116D4094982A9108FAC3D4D9091D6
+
+NobleMemory.cs
+EB1EFA0D8CFC057923BFCD68BAD5E6012F9258432D14E1583FE74369CAAC3073
+
+SocialConsequenceProbe.cs
+65ED80F94EB3C9490A866D1D3BF9F00065FDA5363F0E2E294BE86DBA2ED594F4
+
+SocialLedger.cs
+D8566FFC3D7846A33E74EB23200DB1FE27EF8443B9B9EAEA213C8F0B7B2982D9
+
+IMPORTANT:
+v0.20M was briefly installed during staging, but it was NOT runtime validated. Before handoff it was backed up and the proven v0.20L binary was restored.
+
+Backup of the unvalidated installed v0.20M:
+D:\BannerlordAIResearch\workspace\_PatchBackups\Before_Handoff_Restore_v020L_20260918_200210
+
+Do not call v0.20M accepted yet.
+
+NEXT ENGINEERING GATE:
+Offline audit v0.20M for semantic equivalence, especially:
+- virtual score sequencing across layers
+- winner queries use virtual scores where needed
+- observer semantics match legacy ordering
+- social-memory Apply path remains dormant while Mode=Observe
+- no hidden direct score writers remain
+- composer.Complete writes final working score exactly once per changed candidate
+Then deploy v0.20M from staging and run same-save autonomous validation.
+
+v0.20M runtime success target:
+- >=100 owner frames with applied contributions
+- composerScoreWrites > 0
+- social-memory proposals > 0 if naturally available
+- score mismatches = 0
+- sequence mismatches = 0
+- winner mismatches = 0
+- failures = 0
+- save unchanged
+- no material runtime/writer regression
+If passed, unified score ownership becomes ACCEPTED architecture.
+==================================================
+AUTONOMOUS TESTING — PROVEN INFRASTRUCTURE
+==================================================
+
+TestRunner:
+Separate DLL inside ClanAI module.
+Installed runner SHA256:
+7B26009CE8B9187675425FE1E31F37506AFFA694EC34141C7C3D8E4BB83391AB
+
+Source/workspace:
+D:\BannerlordAIResearch\workspace\_TestRunner_v001
+
+Control directory:
+D:\BannerlordAIResearch\Automation\TestRunner
+
+Proven capabilities:
+- direct Bannerlord.exe /singleplayer launch with exact selected module order
+- newest disposable save + /continuegame
+- campaign-ready handshake
+- native AUTO_PLAY / PLAY / PAUSE / FAST
+- blocker-aware auto resume
+- evidence-condition monitoring
+- evidence freeze before exit
+- native EXIT_NOSAVE through Module.CurrentModule.ShutDownWithDelay
+- process exit verification
+- post-exit save SHA verification
+- no screenshot pipeline required
+
+Important runtime discoveries:
+- BannerlordConfig StopGameOnFocusLost=True freezes background simulation.
+- automation controller temporarily switches this to False and restores True after exit.
+- NavalDLC campaign map screen is NavalMapScreen, not only MapScreen.
+- TimeControlMode alone was insufficient in the earlier automation work; real campaign-hours advancement must always be measured.
+- controller must measure campaign hours, not only wall-clock time.
+
+Autonomous proof:
+One full targeted run advanced ~53.39 campaign hours in 180 sec, froze evidence, exited cleanly, save unchanged.
+v0.20L shadow gate reached in ~30.8 sec of simulation.
+
+Prior art:
+Bannerlord.GABS source downloaded locally:
+D:\BannerlordAIResearch\ExternalPriorArt\Bannerlord.GABS-master
+
+Use as architecture reference for:
+- main-thread dispatcher
+- blocker checks
+- wait-for-state / wait-for-arrival
+- player map movement
+- cheat-mode + console-command wrapper
+- typed tool registry / agent bridge
+- focus-loss handling
+
+Do NOT blindly install its prebuilt dependency stack into local Bannerlord 1.5.3. Port/adapt mechanisms against exact local assemblies or isolate the dependency stack.
+
+Scenario-driver rule:
+Cheats/movement may create controlled conditions, but tag setup INDUCED. AI behavior after setup is RESPONSE. Never call induced setup NATURAL evidence.
+
+==================================================
+RECENT MILESTONE CLOSEOUTS
+==================================================
+
+Recovery interception branch:
+CLOSED.
+Keep narrow weak-lord bandit pursuit suppression only.
+Do not enable v0.20F-H settlement rerouting.
+Do not force FleeToGate.
+Do not add v0.20J threat-memory settlement score changes.
+Do not modify bandits.
+Hostile interception during recovery remains a residual native limitation.
+
+v0.20K real social-memory causal calibration:
+CLOSED / NO APPLY.
+Targeted automation restored real Guaran/fen Giall candidate context over ~53 campaign hours.
+Final-stack results:
+- real persistent memory reached decisions
+- multiple fen Giall aggressive candidates appeared
+- 29+ relevant memory decisions in targeted run
+- 0 <=20% final-stack near ties
+- 0 would flips
+- 0 score writes
+- 0 failures
+Do NOT arbitrarily increase memory factor just to force a flip.
+Preserve social memory plumbing; integrate it later as one composer consideration.
+
+==================================================
+PROCESS / REASONING DOCTRINE
+==================================================
+
+User requires:
+- keep working automatically; status updates are informational, not approval gates
+- only stop for destructive/security-sensitive action, protected real campaign risk, unavoidable user input, or genuine design preference
+- user-facing updates should be only key breakthrough / blocker / closeout / requested status
+- do not narrate every tool call
+
+Prior-art first:
+Before building any new mod/input/helper/automation/memory/planner subsystem:
+1. define exact missing capability
+2. search GitHub + reliable technical sources
+3. extract mechanism, not branding
+4. map only Bannerlord-specific integration
+5. offline-test pure logic
+6. live-test only the remaining Bannerlord-specific uncertainty
+
+Performance:
+Performance is correctness, but do not cheap out.
+Use the strongest architecture that earns its cost.
+Measure main-thread time, allocations, memory, I/O, logging, save/load, latency, cache refresh, synchronization.
+Optimize event-driven architecture/caching/LOD before reducing intelligence or graphics.
+
+DeepSeek-style context law:
+As research grows, ACTIVE CONTEXT MUST GET SMALLER AND SMARTER.
+
+RAW:
+immutable source truth / telemetry / source files
+
+COLD:
+old logs, superseded builds, screenshots, rejected branches, long source excerpts
+
+WARM:
+stable architecture, verified findings, prior-art mappings, subsystem contracts, reusable methods
+
+HOT:
+current installed/staged hashes, active milestone, exact blocker, exact next gate only
+
+Compression must preserve:
+- causal facts
+- decisions
+- source/evidence paths and hashes
+- limitations / unknowns
+- performance implications
+- subsystem ownership
+- exact next action / stop rule
+
+Retrieve by CAPABILITY, not chronology:
+perception / memory / utility / commitment / coordination / action ownership / planning / automation / performance.
+
+If a recurring blocker happens twice, treat it as infrastructure debt and build a guard/preflight/cache/adapter/automation.
+
+Every future handoff must include improvements to the WORKFLOW itself, not only game-code state.
+==================================================
+MEM / HANDOFF STATE
+==================================================
+
+Important Mem notes:
+Continuation:
+54bf651f-1824-531d-b753-7920ab058166
+
+Context architecture:
+f67ffc0a-7ff3-576e-ad04-a7ebf838201f
+
+Breakthrough ledger:
+f3f9d535-9fcd-57d0-bd12-e2d2fd3cd1d8
+
+DeepSeek file/compression:
+6bea9ca6-8d46-5ae0-9493-2fd6f71e7660
+
+Rolling context/self-compacting index:
+b9de6f15-c172-57c1-a079-ba1361aae6f9
+
+Analytical psychology:
+2d219e0c-ab0f-57dd-b464-6b380d2f5ebf
+
+Global AI architecture:
+f395f215-ea5b-51c6-b85a-2716189ddc13
+
+The following workflow improvements were successfully embedded into existing Mem notes:
+- non-blocking updates
+- GitHub/prior-art-first rule
+- autonomous test architecture
+- performance-first-do-not-cheap-out
+- reliable-source ingestion
+- HOT/WARM/COLD scaling rules
+- self-improving handoff/workspace invariant
+- expected-blockage rule
+
+A separate “Agent Reasoning & Speed Cheat Sheet” note creation was attempted but Mem rate-limited creation. Do NOT waste time retrying repeatedly. The essential content is already embedded in the continuation/context/ledger notes. Retry once later only if useful.
+
+New research/source intake rule:
+Source -> identify version/provenance -> extract mechanism -> capability tag -> dedupe -> verify -> WARM. Promote to HOT only if it changes active work.
+Do not dump raw source prose into Mem.
+
+==================================================
+PC / ENVIRONMENT
+==================================================
+
+Remote Desktop Commander device:
+DESKTOP-JO4B7VH
+244c243b-a5c4-41b4-bc9a-e5ff7880f34e
+
+Keep remote-agent PowerShell/terminal running.
+Routine low-risk PC actions are pre-authorized.
+
+Power settings changed at user request so progress stays visible while plugged in:
+- AC Sleep after = Never
+- AC Turn off display after = Never
+
+Backup:
+D:\BannerlordAIResearch\workspace\_PatchBackups\PowerSettings_before_never_sleep_20260918_193143.txt
+
+Battery/DC settings were NOT changed.
+
+Bannerlord normal focus behavior:
+StopGameOnFocusLost=True outside automated runs.
+Automation temporarily sets False and restores afterward.
+
+At handoff:
+- Bannerlord closed
+- safe v0.20L installed
+- v0.20M staged/compiled only
+- no protected real campaign save intentionally changed
+- TestRunner remains installed as test-only submodule
+
+==================================================
+NEXT AGENT CONTINUATION COMMAND
+==================================================
+
+CONTINUE BANNERLORDAI FROM THE v0.20M SINGLE-WRITE COMPOSER HANDOFF.
+
+Read current_state.json and the 2026-09-18 NEXT_AGENT_HANDOFF_v020M_OWNER_MIGRATION report first. Use HOT -> relevant WARM -> RAW only if necessary. Do not re-open closed recovery or v0.20K calibration branches. v0.20L shadow equivalence is proven. v0.20M compiles with exactly one SetBehaviorScore site in StrategicDecisionComposer but is NOT runtime validated and is NOT installed at handoff. Audit v0.20M semantic ordering, then deploy it deliberately and use the autonomous runner for a >=100-frame owner-equivalence test. Continue automatically after informational updates. Prior-art first. Performance first without cheaping out. Preserve NATURAL != INDUCED != RESPONSE. Promote workflow improvements into the handoff system itself.

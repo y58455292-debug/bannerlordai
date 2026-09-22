@@ -1,0 +1,21 @@
+BannerlordAI Named-Save Load Bottleneck Evidence — 2026-09-19
+
+Observed issue
+- LaunchSupervisor v0.1 correctly launches Bannerlord and proves campaignReady/no-save integrity, but it uses /continuegame plus filesystem mtime promotion.
+- The Manan branch probe targeted `ClanAI MANAN BRANCH ROOT.sav` (hash 94DFE7F05D89C6E4CC328A416943608713ECFFDF96A572AAEA43A9BDD5CD2DAA), yet TestRunner reported playerHero=Garmi and campaignHours=2186585.8171326113, identical to the earlier operator-smoke identity.
+- Therefore target-path/hash bookkeeping is not sufficient proof that the requested save was actually loaded.
+
+Evidence-first resolution
+- Local prior art already archived at ExternalPriorArt\Bannerlord.GABS-master\src\Bannerlord.GABS\Tools\CoreTools.cs implements exact named loading with MBSaveLoad.IsSaveGameFileExists -> MBSaveLoad.LoadSaveGameData -> MBGameManager.StartNewGame(new SandBoxGameManager(loadResult)).
+- A staged, compiled TestRunner candidate already adapts that exact pattern as `LOAD_SAVE <exact save-slot name>`: workspace\_PatchStaging\AutonomousOperator_v002_NamedLoad_20260919_002002_398822.
+- Candidate DLL exists and SHA256 is 08CE1AE0D589A07DD802C2BC20F705D95D9DB8DFA2AA664430B81FF324356AC9.
+- Current installed ClanAI remains the accepted v0.20Q hash 0C9EC39ACBE7ABCA60D97C9C43B5138D39D5E0DE9B0EA1D10F44D7DA8258EC59; this staged operator does not alter ClanAI.
+
+External corroboration
+- BUTR/Bannerlord.BLSE documentation distinguishes `/continuegame` latest-save behavior from exact save selection and provides `/continuesave` in BLSE; BLSE is not installed locally, so do not assume that route is available.
+- A 2026 BLSE issue also documents that Continue and specific-save loading are distinct paths.
+
+Acceptance rule for next live proof
+- Do not infer correct save from mtime or target filename alone.
+- Exact named load must be followed by a fresh runtime identity capture (player hero + campaign id/date/world marker) that differs when expected, then EXIT_NOSAVE and before/after hash verification of both clone and immutable original.
+- Respect the active deployment lease; no live test may start until the current owner releases or a stale takeover is proven under the deployment-guard protocol.

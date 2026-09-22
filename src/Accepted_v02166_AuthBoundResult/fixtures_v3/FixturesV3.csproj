@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net11.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="FixtureV3Program.cs" />
+    <Compile Include="..\candidate\PatrolDefenseProviderDispatch.cs" Link="PatrolDefenseProviderDispatch.cs" />
+    <Compile Include="..\candidate\PatrolDefenseDeliberationAdvisoryAdmission.cs" Link="PatrolDefenseDeliberationAdvisoryAdmission.cs" />
+    <Compile Include="..\candidate\PatrolDefenseAdvisoryRuntimeGate.cs" Link="PatrolDefenseAdvisoryRuntimeGate.cs" />
+    <Compile Include="..\candidate\PatrolDefenseProviderRequestRegistration.cs" Link="PatrolDefenseProviderRequestRegistration.cs" />
+    <Compile Include="..\candidate\PatrolDefenseProviderTransportRegistration.cs" Link="PatrolDefenseProviderTransportRegistration.cs" />
+    <Compile Include="..\candidate\PatrolDefenseProviderResultV3Admission.cs" Link="PatrolDefenseProviderResultV3Admission.cs" />
+    <Compile Include="..\candidate\PatrolDefenseProviderTransportReceiptResultBinding.cs" Link="PatrolDefenseProviderTransportReceiptResultBinding.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,205 @@
+{
+  "schema": "BannerlordAI.ChatSessions.v1",
+  "sessions": {
+    "DEMO-CODER-A": {
+      "alias": "DEMO-CODER-A",
+      "role": "coder",
+      "state": "SAFE_TO_DELETE",
+      "clocked_in_at": "2026-09-19T19:37:59.456888-07:00",
+      "clocked_out_at": "2026-09-19T19:38:04.236445-07:00",
+      "start_checkpoint_seq": 93,
+      "end_checkpoint_seq": 93,
+      "work_packets": 0,
+      "material_updates": 0,
+      "handoff_path": "D:\\BannerlordAIResearch\\Automation\\Office\\ChatHandoffs\\20260919_193804_DEMO-CODER-A.json",
+      "downstream_review": "COMPLETE",
+      "brain_capture": {
+        "local_durable": true,
+        "context_pyramid": true,
+        "mem_mirror": true
+      },
+      "archive_safe": true,
+      "delete_safe": true,
+      "clockout_reason": "demo_shift_complete",
+      "archive_gates": {
+        "handoff_exists": true,
+        "durable_checkpoint_not_older": true,
+        "local_durable_capture": true,
+        "context_pyramid_capture": true,
+        "front_available": true,
+        "downstream_ack": true
+      },
+      "delete_gates": {
+        "handoff_exists": true,
+        "durable_checkpoint_not_older": true,
+        "local_durable_capture": true,
+        "context_pyramid_capture": true,
+        "front_available": true,
+        "downstream_ack": true,
+        "mem_mirror": true
+      },
+      "reviewed_by": "analyzer",
+      "reviewed_at": "2026-09-19T19:38:08.149269-07:00",
+      "review_notes": "semantic_review_complete"
+    },
+    "BannerlordAI — Analyzer Desk #1": {
+      "alias": "BannerlordAI — Analyzer Desk #1",
+      "role": "analyzer",
+      "state": "SAFE_TO_DELETE",
+      "clocked_in_at": "2026-09-19T21:22:15.247457-07:00",
+      "clocked_out_at": "2026-09-19T21:25:06.038356-07:00",
+      "start_checkpoint_seq": 100,
+      "end_checkpoint_seq": 100,
+      "work_packets": 0,
+      "material_updates": 0,
+      "handoff_path": "D:\\BannerlordAIResearch\\Automation\\Office\\ChatHandoffs\\20260919_212506_BannerlordAI_—_Analyzer_Desk_#1.json",
+      "downstream_review": "COMPLETE",
+      "brain_capture": {
+        "local_durable": true,
+        "context_pyramid": true,
+        "mem_mirror": true
+      },
+      "archive_safe": true,
+      "delete_safe": true,
+      "clockout_reason": "semantic_review_complete",
+      "archive_gates": {
+        "handoff_exists": true,
+        "durable_checkpoint_not_older": true,
+        "local_durable_capture": true,
+        "context_pyramid_capture": true,
+        "front_available": true,
+        "downstream_ack": true
+      },
+      "delete_gates": {
+        "handoff_exists": true,
+        "durable_checkpoint_not_older": true,
+        "local_durable_capture": true,
+        "context_pyramid_capture": true,
+        "front_available": true,
+        "downstream_ack": true,
+        "mem_mirror": true
+      },
+      "reviewed_by": "front-durable",
+      "reviewed_at": "2026-09-19T22:23:17.252079-07:00",
+      "review_notes": "Checkpoint 106 accepted v0.2.10.1 shadow and advanced to v0.2.10.2 Apply."
+    },
+    "BannerlordAI — Analyzer Desk #2": {
+      "alias": "BannerlordAI — Analyzer Desk #2",
+      "role": "analyzer",
+      "state": "DOWNSTREAM_REVIEW_PENDING",
+      "clocked_in_at": "2026-09-19T22:23:22.858023-07:00",
+      "clocked_out_at": "2026-09-19T22:29:14.728322-07:00",
+      "start_checkpoint_seq": 106,
+      "end_checkpoint_seq": 107,
+      "work_packets": 0,
+      "material_updates": 0,
+      "handoff_path": "D:\\BannerlordAIResearch\\Automation\\Office\\ChatHandoffs\\20260919_222914_BannerlordAI_—_Analyzer_Desk_#2.json",
+      "downstream_review": "PENDING",
+      "brain_capture": {
+        "local_durable": true,
+        "context_pyramid": true,
+        "mem_mirror": false
+      },
+      "archive_safe": false,
+      "delete_safe": false,
+      "clockout_reason": "semantic_review_complete",
+      "archive_gates": {
+        "handoff_exists": true,
+        "durable_checkpoint_not_older": true,
+        "local_durable_capture": true,
+        "context_pyramid_capture": true,
+        "front_available": true,
+        "downstream_ack": false
+      },
+      "delete_gates": {
+        "handoff_exists": true,
+        "durable_checkpoint_not_older": true,
+        "local_durable_capture": true,
+        "context_pyramid_capture": true,
+        "front_available": true,
+        "downstream_ack": false,
+        "mem_mirror": false
+      }
+    },
+    "BannerlordAI — Analyzer Desk #3": {
+      "alias": "BannerlordAI — Analyzer Desk #3",
+      "role": "analyzer",
+      "state": "DOWNSTREAM_REVIEW_PENDING",
+      "clocked_in_at": "2026-09-20T00:11:52.918629-07:00",
+      "clocked_out_at": "2026-09-20T00:18:53.048023-07:00",
+      "start_checkpoint_seq": 117,
+      "end_checkpoint_seq": 119,
+      "work_packets": 0,
+      "material_updates": 0,
+      "handoff_path": "D:\\BannerlordAIResearch\\Automation\\Office\\ChatHandoffs\\20260920_001853_BannerlordAI_—_Analyzer_Desk_#3.json",
+      "downstream_review": "PENDING",
+      "brain_capture": {
+        "local_durable": true,
+        "context_pyramid": true,
+        "mem_mirror": false
+      },
+      "archive_safe": false,
+      "delete_safe": false,
+      "clockout_reason": "semantic_review_complete",
+      "archive_gates": {
+        "handoff_exists": true,
+        "durable_checkpoint_not_older": true,
+        "local_durable_capture": true,
+        "context_pyramid_capture": true,
+        "front_available": true,
+        "downstream_ack": false
+      },
+      "delete_gates": {
+        "handoff_exists": true,
+        "durable_checkpoint_not_older": true,
+        "local_durable_capture": true,
+        "context_pyramid_capture": true,
+        "front_available": true,
+        "downstream_ack": false,
+        "mem_mirror": false
+      }
+    },
+    "BannerlordAI Front Watch": {
+      "alias": "BannerlordAI Front Watch",
+      "role": "front",
+      "state": "SAFE_TO_ARCHIVE",
+      "clocked_in_at": "2026-09-20T00:12:35.653864-07:00",
+      "clocked_out_at": "2026-09-20T00:12:35.715866-07:00",
+      "start_checkpoint_seq": 117,
+      "end_checkpoint_seq": 117,
+      "work_packets": 0,
+      "material_updates": 0,
+      "handoff_path": "D:\\BannerlordAIResearch\\Automation\\Office\\ChatHandoffs\\20260920_001235_BannerlordAI_Front_Watch.json",
+      "downstream_review": "COMPLETE",
+      "brain_capture": {
+        "local_durable": true,
+        "context_pyramid": true,
+        "mem_mirror": false
+      },
+      "archive_safe": true,
+      "delete_safe": false,
+      "clockout_reason": "context_saturation_rollover",
+      "archive_gates": {
+        "handoff_exists": true,
+        "durable_checkpoint_not_older": true,
+        "local_durable_capture": true,
+        "context_pyramid_capture": true,
+        "front_available": true,
+        "downstream_ack": true
+      },
+      "delete_gates": {
+        "handoff_exists": true,
+        "durable_checkpoint_not_older": true,
+        "local_durable_capture": true,
+        "context_pyramid_capture": true,
+        "front_available": true,
+        "downstream_ack": true,
+        "mem_mirror": false
+      },
+      "reviewed_by": "replacement-front-watch",
+      "reviewed_at": "2026-09-20T00:12:35.781970-07:00",
+      "review_notes": "successor_recovered_checkpoint_117"
+    }
+  },
+  "updated_at": "2026-09-20T00:18:53.050023-07:00"
+}

@@ -1,0 +1,17 @@
+.env
+.env.*
+**/bin/
+**/obj/
+**/dist/
+**/node_modules/
+**/__pycache__/
+*.pyc
+*.pyo
+*.dll
+*.pdb
+*.exe
+*.log
+*.sav
+*.zip
+*.7z
+*.mp4

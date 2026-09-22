@@ -1,0 +1,20 @@
+BANNERLORDAI - v0.20D MAIN-MENU STARTUP RECOVERY
+Checked local: 2026-09-18T12:13:09.157257-07:00
+Status: MANAGED_MAIN_MENU_STARTUP_VERIFIED; CAMPAIGN_LOAD_AND_SPLIT_SINK_VALIDATION_PENDING.
+Observed: Process 24432 is TaleWorlds.MountAndBlade.Launcher. User reports main menu; engine reports TopScreen: GauntletInitialScreen at 12:11:56.987.
+Observed: StoryMode.dll, StoryMode.ViewModelCollection.dll, StoryMode.View.dll and StoryMode.GauntletUI.dll have explicit successful assembly-load results.
+Observed: BannerlordInspector.dll and ClanAI.dll have explicit successful assembly-load results.
+Evidence: rgl_log_24432.txt one-based lines 957-981 (StoryMode family), 982-986 (Inspector), 1022-1026 (ClanAI). Read snapshot retained in capture.
+Observed: No ERROR:, Cannot load:, or Could not load file or assembly matches in the captured new engine log. Earlier failed launch remains a separate incident.
+Observed: Error collector armed=True; totalSeen=0; fatal=0; selfSuppressed=1. These are scoped collector values, not proof all possible errors were observable.
+Observed: Installed ClanAI hash matches v0.20D-review 4EC3E5907E06053BE2C36782A2C181182D95D1DD731B3252E5BDC41F40FAB770; Inspector hash matches v0.32.
+Observed: world memory proof.sav matches the progressed v0.20C checkpoint, SHA256 3FF4154175A5054D5B19ED6FC7E3D7452F864E0091B7F024E6444807F1BEF323.
+Limit: No v0.20D campaign-session log existed at this menu check. Assembly load is not proof of campaign model installation, restored memory, sink integrity or lifecycle success.
+Limit: Recovery on this startup supports retaining the previously successful managed launch path; underlying resolver cause was not isolated conclusively.
+Limit: Engine log contains Double frame time - video stutter notices at the menu. No gameplay-performance clearance is claimed.
+Next: Load world memory proof and pause on campaign map. Verify D session label, active ClanAI wrapper, 206 noble and 614 social records expected from prior saved counters, real Inspector reports, and distinct log destinations before active play.
+Later test-save name: ClanAI_v020D_DIAGNOSTIC_TEST. Do not overwrite existing progress.
+No save, mod, game configuration, dependency or security changes were performed by this menu verification.
+Capture: D:\BannerlordAIResearch\Longitudinal\LiveValidation\v020D_Menu_20260918_121341_670725
+Original engine log: C:\ProgramData\Mount and Blade II Bannerlord\logs\rgl_log_24432.txt
+Handoff: HOT/current updated with scoped menu success; WARM entry appended; GLOBAL preserved.

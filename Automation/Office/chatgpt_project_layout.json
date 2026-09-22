@@ -1,0 +1,45 @@
+{
+  "schema": "BannerlordAI.ChatGPTProjectLayout.v1",
+  "status": "PRE_LAUNCH_UI_ORGANIZATION",
+  "principle": "Keep only active departments visible. Archive completed legacy chats by default; delete only clearly disposable chats after retirement gates pass.",
+  "projects": [
+    {
+      "name": "BannerlordAI — 00 FRONT OFFICE",
+      "purpose": "Primary user-facing hub, daily plan, roadmap, whole-office status, chat registry, retirement queue.",
+      "visible_chat_policy": "One active Front chat at a time plus at most one next-Front handoff chat during rotation.",
+      "activation_phrase": "Front office"
+    },
+    {
+      "name": "BannerlordAI — 10 CODER DESK",
+      "purpose": "Current implementation/live-test work packet only.",
+      "visible_chat_policy": "One clocked-in Coder chat at a time. Retire it after terminal packet + Analyzer intake.",
+      "activation_phrase": "Coder desk"
+    },
+    {
+      "name": "BannerlordAI — 20 ANALYZER DESK",
+      "purpose": "One semantic evidence-review packet at a time; policies, lessons, acceptance gates.",
+      "visible_chat_policy": "One clocked-in Analyzer chat at a time. Retire after Front intake.",
+      "activation_phrase": "Analyzer desk"
+    },
+    {
+      "name": "BannerlordAI — 40 RESEARCH LIBRARY",
+      "purpose": "Durable research conversations that remain useful for deeper study and source interpretation.",
+      "visible_chat_policy": "Keep only durable research chats; no routine execution logs.",
+      "activation_phrase": "Research library"
+    },
+    {
+      "name": "BannerlordAI — 99 INBOX / REVIEW",
+      "purpose": "Temporary quarantine for any BannerlordAI chat Front Office has not classified or verified yet.",
+      "visible_chat_policy": "No execution from this Project. Front classifies each chat into Front/Coder/Analyzer/Research or verified archive retirement.",
+      "activation_phrase": "Front classify inbox"
+    }
+  ],
+  "supervisor": {
+    "chat_project": null,
+    "reason": "Supervisor is a local deterministic platform/system log, not a standing conversational department. It surfaces only exceptions to Front."
+  },
+  "archive_default": "Archive completed legacy engineering/canon chats after brain coverage + downstream review. Archived chats remain searchable.",
+  "delete_default": "Delete only disposable/support/test chats when SAFE_TO_DELETE is verified. User performs final UI action.",
+  "cross_project_memory": "Do not depend on individual Project history for operational continuity. HandoffV3/runtime + Mem layered brain are authoritative cross-project context.",
+  "cleanup_success": "00 Front contains only active Front chat(s); 10 Coder and 20 Analyzer are empty until launch; 40 Research contains only durable research chats; 99 Inbox is empty; verified legacy chats are archived."
+}

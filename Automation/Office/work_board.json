@@ -1,0 +1,27 @@
+{
+  "schema": "BannerlordAI.OfficeWorkBoard.v1",
+  "updated_at": "2026-09-19T22:59:00-07:00",
+  "office_mode": "OPEN",
+  "wip_limits": {
+    "primary_roadmap_objectives": 1,
+    "coder_live": 1,
+    "coder_offline_prep": 1,
+    "analyzer_reasoning_reviews": 1,
+    "supervisor_dispatched_actions": 1,
+    "front_queued_priority_changes": 2
+  },
+  "current_bottleneck": {
+    "name": "V0.2.10.3_PATROL_DEFENSE_AUTO_APPLY",
+    "primary_owner": "coder",
+    "reason": "Office setup is complete; engineering is the active bottleneck."
+  },
+  "items": [
+    {
+      "id": "v02103-patrol-defense-auto-apply",
+      "class": "ENGINEERING",
+      "owner": "coder",
+      "state": "READY",
+      "objective": "Persist fresh proposal provenance and prove exactly-once automatic Apply from a fresh safe patrol-defense proposal with bounded restore and full integrity checks."
+    }
+  ]
+}

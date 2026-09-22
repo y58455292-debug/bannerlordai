@@ -1,0 +1,36 @@
+BANNERLORDAI - OUTCOME IDENTITY OBSERVER REVIEW
+Scope: Inspector-only diagnostic candidate v0.33-review; ClanAI v0.20D and native decision/execution code are not changed.
+Question: Can native event-object identity join a primary lord-bandit encounter to its end and capture callback without name/time guesses?
+Decision changed by the next test: accept precise outcome links for later recovery evaluation, or retain explicit unknowns if native references are unavailable.
+Source-derived basis: existing read-only RearSecurityBattleObserver; existing RuntimeApiIndex confirms MapEventStarted, MapEventEnded and HeroPrisonerTaken signatures.
+External corroboration: official Bannerlord API 1.3.4 documents these events and MapEvent winner/ID properties. That documentation is not proof of the installed version's callback ordering.
+Actual candidate and baseline compiled against the installed game assemblies, net48. Both have 0 errors and the same 2 CS0649 warnings in TerritoryNeedMonitor.
+24 isolated fixtures passed on the actual candidate helper sources with stub campaign types; they are not in-game tests.
+Existing source delta: only RearSecurityBattleObserver.RegisterEvents gains a guarded companion registration. Its old event log remains intact.
+New files: OutcomeEventIndex.cs and OutcomeIdentityBridge.cs. No new AI Harmony patch, movement/combat operation, periodic poll or save key.
+Identity: session GUID plus monotonic sequence identifies the same native MapEvent object; no native identifier is assigned or overwritten.
+Bounds: 256 active event references, 64 recently ended references, 20,000 emitted records; explicit capacity/budget warnings. End removes active retention.
+Start records: exact participant/hero IDs, callback attacker/defender roles, unrounded readiness text and directly evaluated research-threshold flag.
+An attacker role is not asserted to be the voluntary decision initiator. That remains explicitly unobserved by this callback.
+End records: same event key, native winner/hasWinner/state, original participants and leader alive/prisoner state at callback time.
+Capture records: prisoner and capturer IDs; exact tracked object reference only. Conflicting or unavailable native references remain unlinked. No name/time fallback.
+Partial reads return null, not fabricated field values. Future survival, causation, or victory is never inferred from missing records.
+Current source files and installed binaries were not changed by staging. Original workspace distribution DLL equals the installed v0.32 hash.
+Baseline rebuild DLL is not byte-identical to installed. The separate semantic IL comparison did NOT run because PowerShell script execution is disabled.
+No execution-policy override or alternate execution of that PowerShell script was attempted; exact baseline-to-installed IL equivalence is not claimed.
+A combined native-decompilation/source-snippet read was blocked before execution. It was not retried by another route; native callback ordering remains unverified.
+HOT diagnosis: Restart Manager lists Node.js PID 23076 using hot_context.json; the previously inspected Desktop Commander runtime uses that PID.
+No process was killed, no file handle forcibly closed, and no permissions changed. Legacy HOT remains untouched.
+Continuity solution: use the already writable current_state.json plus its verified WARM report, not the stale HOT as a mandatory gate.
+A more general read-only resolver and 8 passing fixtures were prepared in the conversation workspace; its remote file publication was blocked and it is NOT installed.
+Runtime gate: regular managed launcher, exact protected test save, verify OUTCOME_V1 ready before a bounded normal-speed pilot; do not save the replay.
+Pilot success: nonempty stable participant IDs, consistent start/end event keys and native outcome fields, zero observer warnings; capture linkage is separately pending until observed.
+Stop at five minutes or any exception. Missing natural capture events are not a failed game test and do not justify inventing an outcome.
+Recorder-cost experiment is closed; this is a named outcome-link investigation, not another identical FPS benchmark.
+Status: DEPLOYED_HASH_VERIFIED_RUNTIME_PENDING. No game has been launched for this candidate.
+
+Deployment manifest: D:\BannerlordAIResearch\workspace\_PatchBackups\Before_Inspector_v033_OutcomeIdentity_20260918_143401\deployment.json
+Installed Inspector DLL SHA256: AF59812533AD63C9DCEECC8AA532B2C187C70C2D9F00FC1A1DA94311051EE376
+Installed matching PDB SHA256: E6BFE1C2025DF47D063CED40229FA67537A30F29CB52FCE333A4117FC7E1C491
+ClanAI, saved campaign files, graphics, detailed recorder setting and working sources are unchanged.
+Next: launch normally through the managed launcher, load ClanAI v020D DIAGNOSTIC TEST, pause before play for the OUTCOME_V1 ready check.

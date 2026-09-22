@@ -1,0 +1,19 @@
+BannerlordAI v0.2.10.26 FINAL VERIFY — ACCEPT
+
+Decisive evidence
+- Deterministic four-observation same-identity history used real increasing CampaignTime.
+- Product stateLinearSlopePerHour independently matched validator recomputation for all five factual fields.
+- Pre-save and post-native-SaveAs/full-restart slopes were exactly identical:
+  actorStrength=-2.4237540373856303
+  actorHealthy=-2.243661707006579
+  banditStrength=1.0628273925371712
+  banditHealthy=0.43500171045434566
+  actorToBanditStrengthRatio=-0.06746269255444692
+- Every carried .20-.25 validator subcheck remained true.
+- interpretationApplied=false; behaviorMutation=false; intentMutation=false; scoreMutation=false; nativeMovementCalls=0.
+- Protected saves matched, disposable saves cleaned, accepted binaries restored, lease released.
+
+Classification: ACCEPT.
+
+Architecture meaning
+The memory reader can now summarize all persisted observations with a descriptive least-squares rate over actual campaign time, distinct from adjacent rates and endpoint rate. This remains factual context only; sign/magnitude receives no semantic label or policy meaning.

@@ -1,0 +1,39 @@
+BannerlordAI v0.2.10.39 — Structured PatrolDefense actor-known state context
+
+Question
+Can PatrolDefense reasoning expose one stable actor-known factual context that composes current threat facts, persistent memory provenance/comparison, and session-local recent outcome context without changing baseline judgment or gameplay authority?
+
+Architecture basis
+- BannerlordAI target architecture explicitly separates AUTHORITATIVE GAME STATE / BLACKBOARD -> ACTOR-KNOWN / ACTOR-BELIEVED STATE -> MEMORY/PERSONALITY/GOALS.
+- ActorBlackboard/Grove/Unreal prior art keeps typed actor-specific working state separate from reusable behavior logic.
+- v0.2.10.14/.17 proved persistent memory and factual comparison may cross into reasoning as read-only context.
+- v0.2.10.35-.38 proved recent native outcome context is exact, transient, restart-bounded, and age-aware.
+The missing layer is a stable composition surface; do not infer beliefs or policy semantics yet.
+
+Smallest implementation
+- Runner-only change; reuse accepted v0.2.10.38 ClanAI unchanged.
+- Keep PatrolDefenseShadow.Evaluate first and unchanged.
+- Build BannerlordAI.PatrolDefenseActorKnownContext.v1 from already-observed facts only:
+  actorId, branchId, settlementId, banditId,
+  currentThreat snapshot copied from baseline result,
+  persistentMemoryContext = exact existing memoryContext or null,
+  memoryStateComparison = exact existing factual comparison or null,
+  recentOutcomeContext = exact existing recent outcome context (FOUND/NONE) or null,
+  availability booleans:
+    hasPersistentMemory, hasStateComparison, hasRecentOutcome.
+- Nest as actorKnownContext in patrol_defense_shadow.jsonl.
+- No second world scan and no new memory/cache lookup beyond the already accepted lookups.
+- No belief label, threat semantic, score delta, target/intent change, Apply, movement, or write ownership.
+
+Acceptance
+A. Runner compiles with unchanged v0.2.10.38 ClanAI.
+B. Pure attachment/builder fixtures cover all-null, persistent-only, recent-only, combined contexts and prove baseline receipt fields unchanged.
+C. Static ordering: PatrolDefenseShadow.Evaluate before context lookups/bundle build.
+D. Live natural Manan patrol shadow emits actorKnownContext:
+   exact actor/branch/settlement/bandit identity,
+   currentThreat exactly equals top-level threat facts,
+   persistentMemoryContext exactly equals existing memoryContext when present,
+   memoryStateComparison exactly equals existing field when present,
+   recentOutcomeContext exactly equals existing nested receipt,
+   availability booleans match actual null/presence.
+E. No Apply side effects or gameplay authority; EXIT_NOSAVE integrity cleanup.

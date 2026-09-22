@@ -1,0 +1,19 @@
+BannerlordAI v0.2.10.52 FINAL VERIFY - ACCEPT
+
+Decisive evidence
+- Runner compiled with 0 errors; ClanAI reused unchanged.
+- Explicit release/retry fixture suite passed 173/173.
+- Natural request enqueued one provider job and attempt-1 claimed it.
+- Exact TRANSIENT_FAILURE result matched active claim (CLAIM_MATCHED), providerResultAccepted=false, retryable=true.
+- Dispatch completion retained work: TRANSIENT_FAILURE_RETAINED, queue 1 -> 1.
+- Exact release for attempt-1 emitted CLAIM_RELEASED and transitioned CLAIMED -> PENDING without changing job identity.
+- attempt-2 then claimed the same job PENDING -> CLAIMED.
+- Provider invocation stream stayed empty.
+- Fixtures prove wrong provider/attempt release rejection, release replay no-op, PENDING release rejection, sequence/request identity preservation, and later SUCCESS removal.
+- No timeout/TTL/expiry/steal/backoff policy exists.
+- Every live check passed; protected saves matched, disposable cleaned, binaries restored, lease released.
+
+Classification: ACCEPT.
+
+Architecture meaning
+Retry ownership can now rotate explicitly and safely without automatic timeout/steal behavior. A transiently failed claimed job can be released back to PENDING and reclaimed by a new attempt while preserving exact job identity.

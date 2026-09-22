@@ -1,0 +1,10 @@
+{
+  "schema": "BannerlordAI.DesiredIntent.v1",
+  "actor": "Manan",
+  "kind": "PATROL_SETTLEMENT",
+  "target": "town_ES7",
+  "command": "PATROL_SETTLEMENT town_ES7",
+  "sticky": true,
+  "source": "field_controller",
+  "reason": "current live test intent; restore after UI/incident transitions"
+}

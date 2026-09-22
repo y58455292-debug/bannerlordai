@@ -1,0 +1,20 @@
+BannerlordAI v0.2.10.53 FINAL VERIFY - ACCEPT
+
+Decisive evidence
+- v0.2.10.52 feature binaries reused unchanged; fixture suite remained 173/173 PASS.
+- Natural request claimed by attempt-1.
+- TRANSIENT_FAILURE attempt-1 matched active claim and retained queue work.
+- Explicit release returned CLAIMED -> PENDING.
+- attempt-2 reclaimed the same job PENDING -> CLAIMED.
+- Stale SUCCESS result from attempt-1 was rejected with claimMatchReason=PROVIDER_CLAIM_MISMATCH.
+- Stale completion was SUCCESS_NOT_ADMITTED_RETAINED with queue 1 -> 1.
+- Exact attempt-2 SUCCESS reported CLAIM_MATCHED, providerResultAccepted=true, nested KEEP_BASELINE admitted.
+- Exact completion SUCCESS_ACKED removed queue 1 -> 0.
+- Replay attempt-2 failed DISPATCH_JOB_NOT_FOUND and completion remained 0 -> 0.
+- Provider invocation stream stayed empty; no network/model/Apply authority.
+- Every live check passed; full no-save integrity cleanup passed.
+
+Classification: ACCEPT.
+
+Architecture meaning
+Retry ownership rotation is now end-to-end safe: after a new attempt claims a released job, stale results from the previous attempt cannot consume advisory state or complete the job. Only the current active claim can complete work.

@@ -1,0 +1,33 @@
+BannerlordAI v0.2.10.26 — Read-only least-squares historical slope context
+
+Question
+Can Manan derive an all-observation component-wise linear slope per campaign-hour from persisted same-enemy factual history, without semantic interpretation, prediction, or gameplay authority?
+
+Prior-art check
+- Local ReferenceLookup returned no existing covariance/correlation/time-series/uncertainty source that directly settles the next factual gate.
+- NIST Engineering Statistics Handbook identifies straight-line slope as a common quantitative way to characterize change/trend in sequential observations.
+  https://www.itl.nist.gov/div898/handbook/prc/section1/prc17.htm
+  https://www.itl.nist.gov/div898/handbook/eda/section4/eda4273.htm
+- Adaptation is deliberately narrower than statistical inference: emit only the descriptive least-squares slope; do not emit significance tests, predictions, confidence, or semantic labels.
+
+Implementation boundary
+- Extend accepted v0.2.10.25 read-only history reader only.
+- Preserve memory writers, persistence schema, recognition, movement, scoring, decision authority, and accepted .20-.25 fields.
+- Emit stateLinearSlopePerHour for actorStrength, actorHealthy, banditStrength, banditHealthy, actorToBanditStrengthRatio.
+- Compute ordinary least-squares slope with actual CampaignHours centered at their mean: sum((t-meanT)*(x-meanX))/sum((t-meanT)^2).
+- If fewer than two valid observations, invalid state parsing, or zero time variance, emit null.
+- No direction labels such as rising/falling/improving/worsening; no prediction.
+
+Deterministic fixture
+Reuse accepted four-observation fixture and real increasing CampaignTime from v0.2.10.24-.25.
+
+Acceptance
+1. Four exact same-identity observations at real increasing CampaignTime.
+2. Validator independently recomputes all five slopes from fixture facts + orderedKnownByHours.
+3. All accepted .20-.25 temporal/state/delta/rate/aggregate/dispersion fields remain exact.
+4. Native SaveAs/full restart preserves stateLinearSlopePerHour exactly.
+5. interpretationApplied=false; behaviorMutation=false; intentMutation=false; scoreMutation=false; nativeMovementCalls=0.
+6. Protected saves/binaries/lease/disposables restore cleanly.
+
+Do not repeat
+Do not re-prove .19 persistence or .20-.25 factual-history layers except as unchanged invariants carried by the same deterministic fixture.

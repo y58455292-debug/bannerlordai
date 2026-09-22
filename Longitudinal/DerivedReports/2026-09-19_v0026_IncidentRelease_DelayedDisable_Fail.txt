@@ -1,0 +1,9 @@
+BannerlordAI v0.2.6 Incident Release Guard — bounded live result
+
+RESULT: FAIL (narrow blocker isolated; save integrity PASS).
+
+v0.2.6 successfully captured and explicitly resolved the "Singing for Supper" Incident and Bannerlord advanced about 30.106 in-game hours afterward. It then froze again while TestRunner still reported UnstoppablePlay. Two low-level probes 3.811 seconds apart showed identical MapTimeTracker ticks and CampaignTime hours. At the freeze, GameStateManager.ActiveStateDisabledByUser=true with exactly one live disable request, owned by NavalDLC.View.Map.NavalMapScreen. No Incident, menu, map conversation, simulation, or next Incident was active.
+
+No INCIDENT_RELEASE_GUARD_* log line was emitted. The synchronous post-selection guard therefore did not observe the later stale request. The smallest unresolved question is the timing/caller of the delayed NavalMapScreen RegisterActiveStateDisableRequest call. Next evidence step: instrument Register/Unregister around one disposable incident; do not invent a broader cleanup mechanism first.
+
+Closeout: EXIT_NOSAVE completed, Bannerlord exited, disposable Manan clone and immutable BLOOD FUED original both remain SHA256 94DFE7F05D89C6E4CC328A416943608713ECFFDF96A572AAEA43A9BDD5CD2DAA.

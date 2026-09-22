@@ -1,0 +1,19 @@
+BannerlordAI v0.2.10.67 FINAL VERIFY - ACCEPT
+
+Decisive evidence
+- Accepted v0.2.10.66 runner reused unchanged at SHA256 D91136C0378834206ABB30C2E1A5FF728F51673836BA632F49F7019A82241401; ClanAI unchanged.
+- Offline gates passed: main 257/257; v3 63/63; v4 135/135; v5 40/40; loopback-v66 63/63; provider request 49/49; ProviderExecutionPackage 44/44.
+- Exact ProviderExecutionPackage.v1 validated with stable executionPackageId 74EF66EF4E5633DF2A83EC0222EA731D92B6351EB9C79CBA67531DDDC6C24FCB.
+- Stale auth1 package was invalid against latest auth2 and was rejected before adapter invocation.
+- Deterministic adapter invocation count was exactly 1 for the exact latest-auth package.
+- Adapter emitted TransportReceipt.v4 + ProviderResult.v5 carrying exact auth2 provenance.
+- Runtime binding reported EXECUTION_AUTHORIZATION_MATCHED; advisory disposition KEEP_BASELINE.
+- Completion SUCCESS_ACKED removed queue 1 -> 0; replay failed DISPATCH_JOB_NOT_FOUND.
+- Every live check true; provider invocation stream remained empty.
+- No credential value read, network/model call, or gameplay authority.
+- Protected saves matched, disposable save cleaned, accepted binaries restored, lease released, control run closed.
+
+Classification: ACCEPT.
+
+Architecture meaning
+The generic external cognition handoff is now complete through a strict byte-auditable execution package and validated provider-adapter boundary. A provider adapter cannot be invoked for stale/tampered/unvalidated work. The next step is no longer generic plumbing: provider-specific configuration and explicit authorization for real credential resolution/network/model execution are required.

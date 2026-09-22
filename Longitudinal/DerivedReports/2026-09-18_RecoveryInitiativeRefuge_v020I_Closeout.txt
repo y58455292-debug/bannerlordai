@@ -1,0 +1,67 @@
+BANNERLORDAI — RECOVERY INITIATIVE REFUGE v0.20I CLOSEOUT
+Date: 2026-09-18 Pacific.
+
+Runtime:
+ClanAI v0.20I-review.
+Existing pursuit gate Mode=Suppress.
+Old v0.20F-H strategic recovery-risk detector retired.
+New initiative-refuge layer is read-only.
+
+Observer results:
+- exact weak-lord bandit FleeToPoint observations: 743
+- rate-limited context records: 229
+- context records with >=1 valid friendly fortification: 124
+- context records without refuge: 105
+- unique actor/threat pairs: 58
+- pairs ever with refuge: 41
+- pairs never with refuge: 17
+- observer failures: 0
+- writer failures: 0
+- Inspector observer warnings: 0
+- disposable save remained canonical hash while paused.
+Canonical failure reproduced:
+Izdenka / lord_2_21_1_party_1 vs northern_pirates_668.
+- readiness .215053767
+- foodDays 17
+- native FleeToPoint target exact Sea Raiders
+- lordSide=Defender
+- attacker victory
+- exact native-object capture
+Nearest observer record before battle:
+- lag 0.986638 sec
+- threat distance 1.64586389
+- initiative score 6.78747368
+- valid friendly refuges inside native radius: 0
+- strategic target town_S4 / Varnovapol
+- Varnovapol native path distance 136.83371
+- native flee-settlement radius 22.5
+
+The same exact threat was first observed ~47.5 real seconds earlier:
+- threat distance 8.5352335
+- initiative score 1.24319613
+- Varnovapol native path distance 90.98303
+- valid friendly refuges: 0
+- current strategic/default behavior still GoToSettlement
+Across the entire exact-threat chase, valid friendly refuges remained 0.
+Trajectory during Izdenka chase:
+- exact threat remained northern_pirates_668 throughout
+- threat distance closed 8.535 -> 1.646
+- Varnovapol path distance worsened 90.983 -> 136.834
+- no friendly fortification ever entered the active 22.5 native flee radius
+- initiative FleeToPoint score rose as capture approached
+
+Interpretation:
+Direct emergency FleeToGate/refuge redirection cannot solve the canonical Izdenka episode because no valid native refuge exists during the entire exact-threat interval.
+Refuge availability is common enough elsewhere to remain a possible future secondary feature, but it is not the primary mechanism for this failure family.
+
+The exact threat is known long before capture, however.
+That creates a better architecture:
+native initiative FleeToPoint exact bandit -> short-lived threat memory -> next strategic settlement decision sees that memory -> observe whether a nearer safe fortification candidate is available.
+This preserves native movement/pathfinding and moves intervention back to judgment/context rather than execution.
+
+Decision:
+- v0.20I observer question answered.
+- Do not invoke FleeToGate for the canonical failure.
+- Do not alter movement/pathfinding.
+- Do not modify bandits.
+- Next experiment should be read-only threat-memory handoff into the strategic scorer.

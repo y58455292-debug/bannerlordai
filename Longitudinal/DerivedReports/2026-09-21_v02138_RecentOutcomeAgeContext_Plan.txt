@@ -1,0 +1,33 @@
+BannerlordAI v0.2.10.38 — Factual age/freshness fields for session-local recent outcome context
+
+Question
+Can exact recent outcome context expose deterministic currentCampaignHours and outcomeAgeHours so reasoning can distinguish newly observed from older same-session outcomes without inventing a freshness policy?
+
+Prior art / architecture basis
+- Actor blackboard prior art keeps compact actor-specific working state and updates it at defined reasoning boundaries.
+- BannerlordAI architecture keeps engine-authoritative time facts live rather than duplicating them as long-lived truth.
+- Persistent PatrolDefense memory already exposes factual memoryAgeHours without assigning aggression/avoidance semantics.
+- v0.2.10.37 proved recent outcome context is session-local only.
+Therefore add factual age only; do not add TTL/stale/fresh labels yet.
+
+Smallest implementation
+- Extend PatrolDefenseRecentOutcomeContext.v1 receipt only.
+- Read current CampaignTime.Now.ToHours at retrieval.
+- Always emit currentCampaignHours when time is readable.
+- FOUND receipt:
+  outcomeAgeHours = max(0, currentCampaignHours - packet.endCampaignHours)
+  futureLeak = packet.endCampaignHours > currentCampaignHours + epsilon
+- NONE receipt:
+  outcomeAgeHours=null
+  futureLeak=null
+- Preserve exact FOUND/NONE identity and all existing factual packet fields.
+- No cache eviction policy change, no TTL threshold, no persistence, no decision authority.
+- Because v0.2.10.36 nests the receipt unchanged, these factual age fields automatically become available to the shadow without a second integration change.
+
+Acceptance
+A. ClanAI builds with unchanged accepted v0.2.10.36 TestRunner.
+B. Fixtures independently validate age math, nonnegative clamp, futureLeak detection, and NONE nulls.
+C. Live: natural packet -> advance at least 2 campaign-hours in same session -> exact actor+bandit retrieval FOUND with same eventKey; validator recomputes age=currentCampaignHours-endCampaignHours and requires positive age plus futureLeak=false.
+D. Wrong-bandit NONE returns outcomeAgeHours=null/futureLeak=null.
+E. No persistence/interpretation/gameplay authority; full no-save cleanup.
+F. Do not introduce a stale/fresh threshold until age distributions and use cases justify one.

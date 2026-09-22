@@ -1,0 +1,28 @@
+BANNERLORDAI — RECOVERY RISK v0.20F OBSERVE CLOSEOUT
+Date: 2026-09-18 Pacific.
+Runtime mode: ClanAI v0.20F-review, Mode=Suppress, RiskMode=Observe.
+Observe mode made zero risk reroutes by construction; installed save remained unchanged.
+Runtime technical validation PASSED: session mode record clean, writer failures 0, observer warnings 0, Inspector v0.34 outcome/lifecycle observers healthy.
+Outcome records: 106. Recovery lifecycle records: 365.
+Weak pursuit suppressions during run: 94.
+Risk detector result: 73 RECOVERY_RISK_WOULD_REROUTE records, 0 RECOVERY_RISK_REROUTE records.
+Those 73 triggers span 23 unique lords and 49 unique actor/chosen/alternative triples.
+Top repeated actors include Arthamund 7, Satros 7, Vashorki 7, Awdhan 6, Morcon 5, Apys 5, Dagunic 5.
+Chosen native path distance among triggers: min 45.923, median 89.638, max 342.184.
+Alternative native path distance: min 1.248, median 9.677, max 22.472.
+Nearest avoid-worthy bandit distance: min 0.790, median 13.073, max 22.484.
+Protected diagnostic save SHA256 remained A3DAA0C37C0F8F6966DFB6DB2A57002BED70978A6C253F29DF395F171F9043AC.
+Interpretation: runtime semantics are valid, but selectivity FAILED. Historical proxy suggested 1/14 triggers; live native-path/native-radius evaluation fired broadly.
+Do NOT enable RiskMode=Apply with current thresholds.
+This mismatch is valuable evidence: straight-line historical radius proxy materially underrepresented the native-path/native-radius condition frequency.
+Decision:
+- v0.20F Observe validation succeeds as instrumentation.
+- v0.20F current Apply policy is REJECTED / NOT AUTHORIZED.
+- Pursuit suppression remains the supported active recovery intervention.
+- Keep bandits native.
+- Do not add blanket nearest-settlement behavior.
+- Next offline task is threshold/mechanism refinement using this live trigger distribution and exact outcomes, looking for a condition that isolates truly dangerous recovery choices rather than merely long recovery travel.
+Potential discriminators to test offline before any new live deployment: stronger readiness severity, fortification-vs-village safety, hostile interception geometry relative to destination, repeated local threat pressure, current fleeing state, target settlement type, and whether hostile bandit lies between party and chosen destination rather than merely nearby.
+Do not use target-only proximity as a substitute for route risk.
+No further identical Observe replay is needed.
+Current game after run: PAUSED, NO SAVE pending normal exit.

@@ -1,0 +1,487 @@
+BANNERLORD PUBLIC RUNTIME API INDEX â€” AI RESEARCH
+Generated: 2026-09-18T04:41:11.6339121-07:00
+Assembly: TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Scope: exported/public metadata only; no method bodies/decompilation.
+
+COUNTS
+  Method: 2415
+  Property: 1267
+  EnumValue: 315
+  CampaignEvent: 279
+
+HIGH-VALUE SURFACES
+
+TaleWorlds.CampaignSystem.Actions.SetPartyAiAction
+  [Method] System.Void GetActionForBesiegingSettlement(TaleWorlds.CampaignSystem.Party.MobileParty owner, TaleWorlds.CampaignSystem.Settlements.Settlement settlement, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType, System.Boolean isFromPort)
+  [Method] System.Void GetActionForDefendingSettlement(TaleWorlds.CampaignSystem.Party.MobileParty owner, TaleWorlds.CampaignSystem.Settlements.Settlement settlement, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType, System.Boolean isFromPort, System.Boolean isTargetingPort)
+  [Method] System.Void GetActionForEscortingParty(TaleWorlds.CampaignSystem.Party.MobileParty owner, TaleWorlds.CampaignSystem.Party.MobileParty mobileParty, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType, System.Boolean isFromPort, System.Boolean isTargetingPort)
+  [Method] System.Void GetActionForMovingToNearestLand(TaleWorlds.CampaignSystem.Party.MobileParty owner, TaleWorlds.CampaignSystem.Settlements.Settlement settlement)
+  [Method] System.Void GetActionForPatrollingAroundPoint(TaleWorlds.CampaignSystem.Party.MobileParty owner, TaleWorlds.CampaignSystem.CampaignVec2 position, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType, System.Boolean isFromPort)
+  [Method] System.Void GetActionForPatrollingAroundSettlement(TaleWorlds.CampaignSystem.Party.MobileParty owner, TaleWorlds.CampaignSystem.Settlements.Settlement settlement, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType, System.Boolean isFromPort, System.Boolean isTargetingPort)
+  [Method] System.Void GetActionForRaidingSettlement(TaleWorlds.CampaignSystem.Party.MobileParty owner, TaleWorlds.CampaignSystem.Settlements.Settlement settlement, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType, System.Boolean isFromPort, System.Boolean isTargetingPort)
+  [Method] System.Void GetActionForVisitingSettlement(TaleWorlds.CampaignSystem.Party.MobileParty owner, TaleWorlds.CampaignSystem.Settlements.Settlement settlement, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType, System.Boolean isFromPort, System.Boolean isTargetingPort)
+
+TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiMilitaryBehavior
+  [Method] System.Void FindBestTargetAndItsValueForFaction(TaleWorlds.CampaignSystem.Army+ArmyTypes missionType, TaleWorlds.CampaignSystem.PartyThinkParams p, System.Single ourStrength)
+
+TaleWorlds.CampaignSystem.CampaignEvents
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`4[[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.Settlements.Alley, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.CampaignSystem.Settlements.Alley, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Roster.TroopRoster, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.CampaignSystem.Settlements.Alley, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.Army, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.CampaignSystem.Army, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Army+ArmyDispersionReason, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.CampaignSystem.Army, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Map.IMapPoint, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Actions.RemoveCompanionAction+RemoveCompanionDetail, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.MapEvents.ForceSuppliesEventComponent, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.MapEvents.ForceVolunteersEventComponent, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.ReferenceIMBEvent`3[[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.MapEvents.MapEvent, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.CampaignSystem.MapEvents.MapEvent, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Buildings.Building, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Collections.Generic.List`1[[System.ValueTuple`2[[TaleWorlds.Core.EquipmentElement, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`4[[TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.CraftingSystem.CraftingOrder, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.Core.ItemObject, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`4[[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Actions.TeleportHeroAction+TeleportationDetail, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.MbEvent`3[[TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.MapEvents.HideoutEventComponent, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.MapEvents.HideoutEventComponent+HideoutBattleEndState, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.CampaignSystem.Party.PartyComponents.BanditPartyComponent, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Hideout, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.Core.ItemObject, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.Core.ItemObject, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`5[[TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.Core.ItemRosterElement, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Army, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.MapEvents.MapEvent, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`6[[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Actions.ChangeOwnerOfSettlementAction+ChangeOwnerOfSettlementDetail, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`5[[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Actions.SiegeAftermathAction+SiegeAftermath, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Collections.Generic.Dictionary`2[[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`5[[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.Core.SiegeEngineType, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Siege.SiegeBombardTargets, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`5[[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.Core.SiegeEngineType, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`4[[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.Core.SiegeEngineType, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[System.Collections.Generic.List`1[[TaleWorlds.CampaignSystem.TradeRumor, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Roster.TroopRoster, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`5[[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`4[[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.MapEvents.RaidEventComponent, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`4[[TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`3[[TaleWorlds.CampaignSystem.Siege.SiegeEvent, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.Core.SiegeEngineType, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`4[[TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.Library.MBReadOnlyList`1[[TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], TaleWorlds.Library, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.Core.ItemObject, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.Settlements.Village, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.Settlements.Village, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.Settlements.Village, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`4[[TaleWorlds.CampaignSystem.Settlements.Village, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Village+VillageStates, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Settlements.Village+VillageStates, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.Settlements.Workshops.Workshop, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`2[[TaleWorlds.CampaignSystem.Settlements.Workshops.Workshop, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+  [CampaignEvent] TaleWorlds.CampaignSystem.IMbEvent`1[[TaleWorlds.CampaignSystem.Settlements.Workshops.Workshop, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+TaleWorlds.CampaignSystem.ComponentInterfaces.MobilePartyAIModel
+  [Method] System.Void GetBestInitiativeBehavior(TaleWorlds.CampaignSystem.Party.MobileParty mobileParty, TaleWorlds.CampaignSystem.Party.AiBehavior& bestInitiativeBehavior, TaleWorlds.CampaignSystem.Party.MobileParty& bestInitiativeTargetParty, System.Single& bestInitiativeBehaviorScore, TaleWorlds.Library.Vec2& averageEnemyVec)
+  [Method] System.Single GetPatrolRadius(TaleWorlds.CampaignSystem.Party.MobileParty mobileParty, TaleWorlds.CampaignSystem.CampaignVec2 patrolPoint)
+  [Method] System.Single GetSettlementNearbyThreatAndAllyCheckRadius(TaleWorlds.CampaignSystem.Settlements.Settlement settlement, System.Boolean isPort)
+  [Method] System.Boolean ShouldConsiderAttacking(TaleWorlds.CampaignSystem.Party.MobileParty party, TaleWorlds.CampaignSystem.Party.MobileParty targetParty)
+  [Method] System.Boolean ShouldConsiderAvoiding(TaleWorlds.CampaignSystem.Party.MobileParty party, TaleWorlds.CampaignSystem.Party.MobileParty targetParty)
+  [Method] System.Boolean ShouldPartyCheckInitiativeBehavior(TaleWorlds.CampaignSystem.Party.MobileParty mobileParty)
+  [Property] System.Single FleeToNearbyPartyRadius
+  [Property] System.Single FleeToNearbySettlementRadius
+  [Property] System.Single FortificationPatrolDistanceAsDays
+  [Property] System.Single FortificationPortPatrolDistanceAsDays
+  [Property] System.Single HideoutPatrolDistanceAsDays
+  [Property] System.Single SettlementDefendingNearbyPartyCheckRadius
+  [Property] System.Single SettlementDefendingWaitingPositionRadius
+  [Property] System.Single VillagePatrolDistanceAsDays
+
+TaleWorlds.CampaignSystem.GameComponents.DefaultMobilePartyAIModel
+  [Method] System.Void GetBestInitiativeBehavior(TaleWorlds.CampaignSystem.Party.MobileParty mobileParty, TaleWorlds.CampaignSystem.Party.AiBehavior& bestInitiativeBehavior, TaleWorlds.CampaignSystem.Party.MobileParty& bestInitiativeTargetParty, System.Single& bestInitiativeBehaviorScore, TaleWorlds.Library.Vec2& averageEnemyVec)
+  [Method] System.Single GetPatrolRadius(TaleWorlds.CampaignSystem.Party.MobileParty mobileParty, TaleWorlds.CampaignSystem.CampaignVec2 patrolPoint)
+  [Method] System.Single GetSettlementNearbyThreatAndAllyCheckRadius(TaleWorlds.CampaignSystem.Settlements.Settlement settlement, System.Boolean isPort)
+  [Method] System.Boolean ShouldConsiderAttacking(TaleWorlds.CampaignSystem.Party.MobileParty party, TaleWorlds.CampaignSystem.Party.MobileParty targetParty)
+  [Method] System.Boolean ShouldConsiderAvoiding(TaleWorlds.CampaignSystem.Party.MobileParty party, TaleWorlds.CampaignSystem.Party.MobileParty targetParty)
+  [Method] System.Boolean ShouldPartyCheckInitiativeBehavior(TaleWorlds.CampaignSystem.Party.MobileParty mobileParty)
+  [Property] System.Single FleeToNearbyPartyRadius
+  [Property] System.Single FleeToNearbySettlementRadius
+  [Property] System.Single FortificationPatrolDistanceAsDays
+  [Property] System.Single FortificationPortPatrolDistanceAsDays
+  [Property] System.Single HideoutPatrolDistanceAsDays
+  [Property] System.Single SettlementDefendingNearbyPartyCheckRadius
+  [Property] System.Single SettlementDefendingWaitingPositionRadius
+  [Property] System.Single VillagePatrolDistanceAsDays
+
+TaleWorlds.CampaignSystem.MapEvents.BlockadeBattleEventComponent
+  [Method] System.Void AddInsideSettlementParties()
+  [Method] System.Void AddNearbyPartiesToPlayerMapEvent()
+  [Method] System.Boolean CheckIfBattleShouldContinueAfterBattleMission(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.BlockadeBattleEventComponent CreateBlockadeBattleMapEvent(TaleWorlds.CampaignSystem.Party.PartyBase attackerParty, TaleWorlds.CampaignSystem.Party.PartyBase besiegerParty, System.Boolean isSallyOut)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes GetBattleType()
+  [Method] TaleWorlds.CampaignSystem.CampaignVec2 GetMapEventPosition()
+  [Method] TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState GetPlayerEncounterStateOnMapEventEnd()
+  [Method] System.Void OnAddInvolvedParty(TaleWorlds.CampaignSystem.MapEvents.MapEventParty party, TaleWorlds.Core.BattleSideEnum side)
+  [Method] System.Void OnBeforeMapEventFinalize()
+  [Method] System.Void OnPlayerEncounterContinueBattle(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& nextEncounterState, System.Boolean& stateHandled)
+  [Method] System.Void OnPlayerEncounterFinalizeBattle()
+  [Method] System.Void UpdateAfterMapChange(TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType leaderNavigationCapability, TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Method] System.Void UpdateMapEventSettlement()
+  [Method] System.Void UpdatePlayerEncounterState(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& encounterState, System.Boolean& stateHandled)
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent+PowerCalculationContext SimulationContext
+
+TaleWorlds.CampaignSystem.MapEvents.FieldBattleEventComponent
+  [Method] System.Void AddInsideSettlementParties()
+  [Method] System.Void AddNearbyPartiesToPlayerMapEvent()
+  [Method] System.Boolean CheckIfBattleShouldContinueAfterBattleMission(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.FieldBattleEventComponent CreateComponentForOldSaves(TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.FieldBattleEventComponent CreateFieldBattleEvent(TaleWorlds.CampaignSystem.Party.PartyBase attackerParty, TaleWorlds.CampaignSystem.Party.PartyBase defenderParty)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes GetBattleType()
+  [Method] TaleWorlds.CampaignSystem.CampaignVec2 GetMapEventPosition()
+  [Method] TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState GetPlayerEncounterStateOnMapEventEnd()
+  [Method] System.Void OnAddInvolvedParty(TaleWorlds.CampaignSystem.MapEvents.MapEventParty party, TaleWorlds.Core.BattleSideEnum side)
+  [Method] System.Void OnBeforeMapEventFinalize()
+  [Method] System.Void OnPlayerEncounterContinueBattle(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& nextEncounterState, System.Boolean& stateHandled)
+  [Method] System.Void OnPlayerEncounterFinalizeBattle()
+  [Method] System.Void OnRemoveInvolvedParty(TaleWorlds.CampaignSystem.MapEvents.MapEventParty party)
+  [Method] System.Void UpdateAfterMapChange(TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType leaderNavigationCapability, TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Method] System.Void UpdateMapEventSettlement()
+  [Method] System.Void UpdatePlayerEncounterState(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& encounterState, System.Boolean& stateHandled)
+  [Method] System.Void UpdateShipSiegeEnginesListOfSide(TaleWorlds.CampaignSystem.MapEvents.MapEventSide side, TaleWorlds.Library.MBList`1[[System.ValueTuple`2[[TaleWorlds.Core.SiegeEngineType, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] list)
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent+PowerCalculationContext SimulationContext
+
+TaleWorlds.CampaignSystem.MapEvents.ForceSuppliesEventComponent
+  [Method] System.Void AddInsideSettlementParties()
+  [Method] System.Boolean CheckIfBattleShouldContinueAfterBattleMission(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.ForceSuppliesEventComponent CreateComponentForOldSaves(TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.ForceSuppliesEventComponent CreateForceSuppliesEvent(TaleWorlds.CampaignSystem.Party.PartyBase attackerParty, TaleWorlds.CampaignSystem.Party.PartyBase defenderParty)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes GetBattleType()
+  [Method] TaleWorlds.CampaignSystem.CampaignVec2 GetMapEventPosition()
+  [Method] TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState GetPlayerEncounterStateOnMapEventEnd()
+  [Method] System.Void OnBeforeMapEventFinalize()
+  [Method] System.Void OnPlayerEncounterContinueBattle(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& nextEncounterState, System.Boolean& stateHandled)
+  [Method] System.Void OnPlayerEncounterFinalizeBattle()
+  [Method] System.Void UpdateMapEventSettlement()
+  [Method] System.Void UpdatePlayerEncounterState(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& encounterState, System.Boolean& stateHandled)
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent+PowerCalculationContext SimulationContext
+
+TaleWorlds.CampaignSystem.MapEvents.ForceVolunteersEventComponent
+  [Method] System.Void AddInsideSettlementParties()
+  [Method] System.Boolean CheckIfBattleShouldContinueAfterBattleMission(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.ForceVolunteersEventComponent CreateComponentForOldSaves(TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.ForceVolunteersEventComponent CreateForceSuppliesEvent(TaleWorlds.CampaignSystem.Party.PartyBase attackerParty, TaleWorlds.CampaignSystem.Party.PartyBase defenderParty)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes GetBattleType()
+  [Method] TaleWorlds.CampaignSystem.CampaignVec2 GetMapEventPosition()
+  [Method] TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState GetPlayerEncounterStateOnMapEventEnd()
+  [Method] System.Void OnBeforeMapEventFinalize()
+  [Method] System.Void OnPlayerEncounterContinueBattle(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& nextEncounterState, System.Boolean& stateHandled)
+  [Method] System.Void OnPlayerEncounterFinalizeBattle()
+  [Method] System.Void UpdateMapEventSettlement()
+  [Method] System.Void UpdatePlayerEncounterState(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& encounterState, System.Boolean& stateHandled)
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent+PowerCalculationContext SimulationContext
+
+TaleWorlds.CampaignSystem.MapEvents.HideoutEventComponent
+  [Method] System.Void AddInsideSettlementParties()
+  [Method] System.Boolean CheckIfBattleShouldContinueAfterBattleMission(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.HideoutEventComponent CreateComponentForOldSaves(TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent, System.Boolean isSendTroops)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.HideoutEventComponent CreateHideoutEvent(TaleWorlds.CampaignSystem.Party.PartyBase attackerParty, TaleWorlds.CampaignSystem.Party.PartyBase defenderParty, System.Boolean isSendTroops)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes GetBattleType()
+  [Method] TaleWorlds.CampaignSystem.CampaignVec2 GetMapEventPosition()
+  [Method] TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState GetPlayerEncounterStateOnMapEventEnd()
+  [Method] System.Void OnAddInvolvedParty(TaleWorlds.CampaignSystem.MapEvents.MapEventParty party, TaleWorlds.Core.BattleSideEnum side)
+  [Method] System.Void OnBeforeMapEventFinalize()
+  [Method] System.Void OnPlayerEncounterContinueBattle(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& nextEncounterState, System.Boolean& stateHandled)
+  [Method] System.Void OnPlayerEncounterFinalizeBattle()
+  [Method] System.Void UpdateMapEventSettlement()
+  [Method] System.Void UpdatePlayerEncounterState(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& encounterState, System.Boolean& stateHandled)
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent+PowerCalculationContext SimulationContext
+
+TaleWorlds.CampaignSystem.MapEvents.IMapEventVisual
+  [Method] System.Void OnMapEventEnd()
+
+TaleWorlds.CampaignSystem.MapEvents.MapEvent
+  [Method] System.Boolean CanPartyJoinBattle(TaleWorlds.CampaignSystem.Party.PartyBase party, TaleWorlds.Core.BattleSideEnum side)
+  [Method] System.Void DoSurrender(TaleWorlds.Core.BattleSideEnum side)
+  [Method] System.Void FinishBattle()
+  [Method] TaleWorlds.CampaignSystem.Party.PartyBase GetLeaderParty(TaleWorlds.Core.BattleSideEnum side)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.MapEventSide GetMapEventSide(TaleWorlds.Core.BattleSideEnum side)
+  [Method] System.Int32 GetNumberOfInvolvedMen(TaleWorlds.Core.BattleSideEnum side)
+  [Method] TaleWorlds.Core.BattleSideEnum GetOtherSide(TaleWorlds.Core.BattleSideEnum side)
+  [Method] System.Single GetPlayerBattleContributionRate()
+  [Method] System.Void GetStrengthsRelativeToParty(TaleWorlds.Core.BattleSideEnum partySide, System.Single& partySideStrength, System.Single& opposingSideStrength)
+  [Method] TaleWorlds.Library.MBReadOnlyList`1[[TaleWorlds.CampaignSystem.MapEvents.MapEventParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] PartiesOnSide(TaleWorlds.Core.BattleSideEnum side)
+  [Method] System.Void RecalculateStrengthOfSides()
+  [Method] System.Void ResetBattleState()
+  [Method] System.Void SetOverrideWinner(TaleWorlds.Core.BattleSideEnum winner)
+  [Method] System.Void SimulateBattleRound(System.Int32 simulationTicksDefender, System.Int32 simulationTicksAttacker)
+  [Method] System.Void SimulateBattleSetup(TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster[] priorTroops)
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEventSide AttackerSide
+  [Property] TaleWorlds.CampaignSystem.CampaignTime BattleStartTime
+  [Property] TaleWorlds.Core.BattleState BattleState
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEventComponent Component
+  [Property] TaleWorlds.Core.BattleSideEnum DefeatedSide
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEventSide DefenderSide
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes EventType
+  [Property] System.Boolean IsFieldBattle
+  [Property] System.Boolean IsHideoutBattle
+  [Property] System.Boolean IsNavalMapEvent
+  [Property] System.Boolean IsPlayerMapEvent
+  [Property] TaleWorlds.CampaignSystem.Settlements.Settlement MapEventSettlement
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent PlayerMapEvent
+  [Property] TaleWorlds.Core.BattleSideEnum PlayerSide
+  [Property] TaleWorlds.Core.BattleSideEnum RetreatingSide
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEventSide[] Sides
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent+PowerCalculationContext SimulationContext
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEventState State
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEventSide Winner
+  [Property] TaleWorlds.Core.BattleSideEnum WinningSide
+  [Property] TaleWorlds.Library.MBList`1[[TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] WonRounds
+
+TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes
+  [EnumValue] BlockadeBattle=9
+  [EnumValue] BlockadeSallyOutBattle=10
+  [EnumValue] FieldBattle=1
+
+TaleWorlds.CampaignSystem.MapEvents.MapEvent+PowerCalculationContext
+  [EnumValue] DesertBattle=2
+  [EnumValue] DuneBattle=3
+  [EnumValue] ForestBattle=5
+  [EnumValue] OpenSeaBattle=10
+  [EnumValue] PlainBattle=0
+  [EnumValue] RiverBattle=11
+  [EnumValue] RiverCrossingBattle=6
+  [EnumValue] SeaBattle=9
+  [EnumValue] SnowBattle=4
+  [EnumValue] SteppeBattle=1
+
+TaleWorlds.CampaignSystem.MapEvents.MapEventComponent
+  [Method] System.Void AddInsideSettlementParties()
+  [Method] System.Void AddMapEventParties()
+  [Method] System.Void AddNearbyPartiesToPlayerMapEvent()
+  [Method] System.Boolean CheckIfBattleShouldContinueAfterBattleMission(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes GetBattleType()
+  [Method] TaleWorlds.CampaignSystem.CampaignVec2 GetMapEventPosition()
+  [Method] TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState GetPlayerEncounterStateOnMapEventEnd()
+  [Method] TaleWorlds.Library.MBList`1[[TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] GetSimulationShipList(TaleWorlds.CampaignSystem.MapEvents.MapEventSide side)
+  [Method] System.Void OnAddInvolvedParty(TaleWorlds.CampaignSystem.MapEvents.MapEventParty party, TaleWorlds.Core.BattleSideEnum side)
+  [Method] System.Void OnBeforeMapEventFinalize()
+  [Method] System.Void OnPlayerEncounterContinueBattle(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& nextEncounterState, System.Boolean& stateHandled)
+  [Method] System.Void OnPlayerEncounterFinalizeBattle()
+  [Method] System.Void OnRemoveInvolvedParty(TaleWorlds.CampaignSystem.MapEvents.MapEventParty party)
+  [Method] System.Void UpdateAfterMapChange(TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType leaderNavigationCapability, TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Method] System.Void UpdateMapEventSettlement()
+  [Method] System.Void UpdatePlayerEncounterState(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& nextEncounterState, System.Boolean& stateHandled)
+  [Method] System.Void UpdateShipSiegeEnginesListOfSide(TaleWorlds.CampaignSystem.MapEvents.MapEventSide side, TaleWorlds.Library.MBList`1[[System.ValueTuple`2[[TaleWorlds.Core.SiegeEngineType, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] list)
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent MapEvent
+  [Property] TaleWorlds.CampaignSystem.Settlements.Settlement MapEventSettlement
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent+PowerCalculationContext SimulationContext
+
+TaleWorlds.CampaignSystem.MapEvents.MapEventManager
+  [Method] System.Void FinalizePlayerMapEvent(TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.MapEvent GetMapEvent(System.Int32 attackerPartyIndex)
+  [Method] System.Collections.Generic.List`1[[TaleWorlds.CampaignSystem.MapEvents.MapEvent, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] GetMapEventsBetweenFactions(TaleWorlds.CampaignSystem.IFaction faction1, TaleWorlds.CampaignSystem.IFaction faction2)
+  [Method] System.Void OnMapEventCreated(TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Property] TaleWorlds.Library.MBReadOnlyList`1[[TaleWorlds.CampaignSystem.MapEvents.MapEvent, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] MapEvents
+
+TaleWorlds.CampaignSystem.MapEvents.MapEventParty
+  [Method] System.Void OnRoundEnd(TaleWorlds.CampaignSystem.MapEvents.MapEventSide partySide, TaleWorlds.Core.BattleSideEnum roundWinner)
+  [Method] System.Void SetRenownInfluenceAndMoraleOnBattleEnd(TaleWorlds.CampaignSystem.ExplainedNumber renown, TaleWorlds.CampaignSystem.ExplainedNumber influence, TaleWorlds.CampaignSystem.ExplainedNumber morale)
+  [Property] System.Int32 ContributionToBattle
+  [Property] TaleWorlds.CampaignSystem.Roster.TroopRoster DiedInBattle
+  [Property] TaleWorlds.CampaignSystem.Roster.TroopRoster RoutedInBattle
+  [Property] TaleWorlds.CampaignSystem.Roster.TroopRoster WoundedInBattle
+
+TaleWorlds.CampaignSystem.MapEvents.MapEventSide
+  [Method] System.Void AllocateTroops(System.Collections.Generic.List`1[[TaleWorlds.Core.UniqueTroopDescriptor, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]& troopsList, System.Int32 numberToAllocate, System.Func`3[[TaleWorlds.Core.UniqueTroopDescriptor, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[TaleWorlds.CampaignSystem.MapEvents.MapEventParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] customAllocationConditions)
+  [Method] System.Void CalculateRenownAndInfluenceValuesOnPartyInvolved(System.Single[] strengthOfSide)
+  [Method] System.Void HandleMapEventEnd()
+  [Method] System.Single RecalculateStrengthOfSide()
+  [Property] System.Single CasualtyStrength
+  [Property] System.Int32 HealthyTroopCountAtMapEventStart
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent MapEvent
+  [Property] TaleWorlds.Core.BattleSideEnum MissionSide
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEventSide OtherSide
+  [Property] TaleWorlds.Library.MBReadOnlyList`1[[TaleWorlds.CampaignSystem.MapEvents.MapEventParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] Parties
+
+TaleWorlds.CampaignSystem.MapEvents.RaidEventComponent
+  [Method] System.Void AddInsideSettlementParties()
+  [Method] System.Boolean CheckIfBattleShouldContinueAfterBattleMission(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.RaidEventComponent CreateComponentForOldSaves(TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent, System.Single nextSettlementDamage, System.Int32 lootedItemCount, System.Single raidDamage)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.RaidEventComponent CreateRaidEvent(TaleWorlds.CampaignSystem.Party.PartyBase attackerParty, TaleWorlds.CampaignSystem.Party.PartyBase defenderParty)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes GetBattleType()
+  [Method] TaleWorlds.CampaignSystem.CampaignVec2 GetMapEventPosition()
+  [Method] TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState GetPlayerEncounterStateOnMapEventEnd()
+  [Method] System.Void OnBeforeMapEventFinalize()
+  [Method] System.Void OnPlayerEncounterContinueBattle(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& nextEncounterState, System.Boolean& stateHandled)
+  [Method] System.Void OnPlayerEncounterFinalizeBattle()
+  [Method] System.Void UpdateMapEventSettlement()
+  [Method] System.Void UpdatePlayerEncounterState(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& encounterState, System.Boolean& stateHandled)
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEventSide AttackerSide
+  [Property] TaleWorlds.Core.BattleState BattleState
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEventSide DefenderSide
+  [Property] System.Boolean IsPlayerMapEvent
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent+PowerCalculationContext SimulationContext
+
+TaleWorlds.CampaignSystem.MapEvents.SiegeAmbushEventComponent
+  [Method] System.Void AddInsideSettlementParties()
+  [Method] System.Void AddMapEventParties()
+  [Method] System.Void AddNearbyPartiesToPlayerMapEvent()
+  [Method] System.Boolean CheckIfBattleShouldContinueAfterBattleMission(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.SiegeAmbushEventComponent CreateComponentForOldSaves(TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.SiegeAmbushEventComponent CreateSiegeAmbushEvent(TaleWorlds.CampaignSystem.Party.PartyBase attackerParty, TaleWorlds.CampaignSystem.Party.PartyBase defenderParty)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes GetBattleType()
+  [Method] TaleWorlds.CampaignSystem.CampaignVec2 GetMapEventPosition()
+  [Method] TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState GetPlayerEncounterStateOnMapEventEnd()
+  [Method] System.Void OnAddInvolvedParty(TaleWorlds.CampaignSystem.MapEvents.MapEventParty party, TaleWorlds.Core.BattleSideEnum side)
+  [Method] System.Void OnPlayerEncounterContinueBattle(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& nextEncounterState, System.Boolean& stateHandled)
+  [Method] System.Void OnPlayerEncounterFinalizeBattle()
+  [Method] System.Void UpdateAfterMapChange(TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType leaderNavigationCapability, TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Method] System.Void UpdateMapEventSettlement()
+  [Method] System.Void UpdatePlayerEncounterState(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& encounterState, System.Boolean& stateHandled)
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent+PowerCalculationContext SimulationContext
+
+TaleWorlds.CampaignSystem.MapEvents.SiegeAssaultEventComponent
+  [Method] System.Void AddInsideSettlementParties()
+  [Method] System.Void AddMapEventParties()
+  [Method] System.Boolean CheckIfBattleShouldContinueAfterBattleMission(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.SiegeAssaultEventComponent CreateComponentForOldSaves(TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.SiegeAssaultEventComponent CreateSiegeAssaultMapEvent(TaleWorlds.CampaignSystem.Party.PartyBase attackerParty, TaleWorlds.CampaignSystem.Party.PartyBase defenderParty)
+  [Method] System.Void FinishBattleAndKeepSiegeEvent()
+  [Method] TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes GetBattleType()
+  [Method] TaleWorlds.CampaignSystem.CampaignVec2 GetMapEventPosition()
+  [Method] TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState GetPlayerEncounterStateOnMapEventEnd()
+  [Method] System.Void OnAddInvolvedParty(TaleWorlds.CampaignSystem.MapEvents.MapEventParty party, TaleWorlds.Core.BattleSideEnum side)
+  [Method] System.Void OnBeforeMapEventFinalize()
+  [Method] System.Void OnPlayerEncounterContinueBattle(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& nextEncounterState, System.Boolean& stateHandled)
+  [Method] System.Void OnPlayerEncounterFinalizeBattle()
+  [Method] System.Void UpdateMapEventSettlement()
+  [Method] System.Void UpdatePlayerEncounterState(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& nextEncounterState, System.Boolean& stateHandled)
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent+PowerCalculationContext SimulationContext
+
+TaleWorlds.CampaignSystem.MapEvents.SiegeOutsideEventComponent
+  [Method] System.Void AddInsideSettlementParties()
+  [Method] System.Void AddMapEventParties()
+  [Method] System.Void AddNearbyPartiesToPlayerMapEvent()
+  [Method] System.Boolean CheckIfBattleShouldContinueAfterBattleMission(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.SiegeOutsideEventComponent CreateComponentForOldSaves(TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.SiegeOutsideEventComponent CreateSiegeOutsideMapEvent(TaleWorlds.CampaignSystem.Party.PartyBase attackerParty, TaleWorlds.CampaignSystem.Party.PartyBase defenderParty)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes GetBattleType()
+  [Method] TaleWorlds.CampaignSystem.CampaignVec2 GetMapEventPosition()
+  [Method] TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState GetPlayerEncounterStateOnMapEventEnd()
+  [Method] System.Void OnAddInvolvedParty(TaleWorlds.CampaignSystem.MapEvents.MapEventParty party, TaleWorlds.Core.BattleSideEnum side)
+  [Method] System.Void OnBeforeMapEventFinalize()
+  [Method] System.Void OnPlayerEncounterContinueBattle(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& nextEncounterState, System.Boolean& stateHandled)
+  [Method] System.Void OnPlayerEncounterFinalizeBattle()
+  [Method] System.Void OnRemoveInvolvedParty(TaleWorlds.CampaignSystem.MapEvents.MapEventParty party)
+  [Method] System.Void UpdateAfterMapChange(TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType leaderNavigationCapability, TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Method] System.Void UpdateMapEventSettlement()
+  [Method] System.Void UpdatePlayerEncounterState(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& nextEncounterState, System.Boolean& stateHandled)
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent+PowerCalculationContext SimulationContext
+
+TaleWorlds.CampaignSystem.MapEvents.SiegeSallyOutEventComponent
+  [Method] System.Void AddInsideSettlementParties()
+  [Method] System.Void AddMapEventParties()
+  [Method] System.Void AddNearbyPartiesToPlayerMapEvent()
+  [Method] System.Boolean CheckIfBattleShouldContinueAfterBattleMission(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.SiegeSallyOutEventComponent CreateComponentForOldSaves(TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.SiegeSallyOutEventComponent CreateSiegeSallyOutEvent(TaleWorlds.CampaignSystem.Party.PartyBase attackerParty, TaleWorlds.CampaignSystem.Party.PartyBase defenderParty)
+  [Method] TaleWorlds.CampaignSystem.MapEvents.MapEvent+BattleTypes GetBattleType()
+  [Method] TaleWorlds.CampaignSystem.CampaignVec2 GetMapEventPosition()
+  [Method] TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState GetPlayerEncounterStateOnMapEventEnd()
+  [Method] System.Void OnAddInvolvedParty(TaleWorlds.CampaignSystem.MapEvents.MapEventParty party, TaleWorlds.Core.BattleSideEnum side)
+  [Method] System.Void OnBeforeMapEventFinalize()
+  [Method] System.Void OnPlayerEncounterContinueBattle(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& nextEncounterState, System.Boolean& stateHandled)
+  [Method] System.Void OnPlayerEncounterFinalizeBattle()
+  [Method] System.Void UpdateAfterMapChange(TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType leaderNavigationCapability, TaleWorlds.CampaignSystem.MapEvents.MapEvent mapEvent)
+  [Method] System.Void UpdateMapEventSettlement()
+  [Method] System.Void UpdatePlayerEncounterState(TaleWorlds.CampaignSystem.Encounters.CampaignBattleResult campaignBattleResult, TaleWorlds.CampaignSystem.Encounters.PlayerEncounterState& encounterState, System.Boolean& stateHandled)
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent+PowerCalculationContext SimulationContext
+
+TaleWorlds.CampaignSystem.Party.AiBehavior
+  [EnumValue] AssaultSettlement=3
+  [EnumValue] BesiegeSettlement=5
+  [EnumValue] DefendSettlement=15
+  [EnumValue] EngageParty=6
+  [EnumValue] EscortParty=14
+  [EnumValue] FleeToGate=11
+  [EnumValue] FleeToParty=12
+  [EnumValue] FleeToPoint=10
+  [EnumValue] GoToSettlement=2
+  [EnumValue] MoveToNearestLandOrPort=17
+  [EnumValue] NumAiBehaviors=18
+  [EnumValue] PatrolAroundPoint=13
+  [EnumValue] RaidSettlement=4
+
+TaleWorlds.CampaignSystem.Party.MobileParty
+  [Method] TaleWorlds.Localization.TextObject GetBehaviorText()
+  [Method] System.Single GetTotalLandStrengthWithFollowers(System.Boolean includeNonAttachedArmyMembers)
+  [Method] System.Boolean HasPerk(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject perk, TaleWorlds.Core.BattleEnvironment battleEnvironment, TaleWorlds.CampaignSystem.Hero& perkOwnerHero, System.Boolean checkSecondaryRole)
+  [Method] System.Boolean IsFleeBehavior(TaleWorlds.CampaignSystem.Party.AiBehavior aiBehavior)
+  [Method] System.Boolean IsFleeing()
+  [Method] System.Void MovePartyToTheClosestLand()
+  [Method] System.Void RecalculateShortTermBehavior()
+  [Method] System.Void RemoveAllPartyRolesOfHero(TaleWorlds.CampaignSystem.Hero hero)
+  [Method] System.Void RemoveOnePartyRoleOfHero(TaleWorlds.CampaignSystem.Hero hero)
+  [Method] System.Void RemovePartyLeader()
+  [Method] System.Void RemovePartyRoleOfHero(TaleWorlds.CampaignSystem.Hero hero, TaleWorlds.CampaignSystem.PartyRole partyRole)
+  [Method] System.Void SetCustomHomeSettlement(TaleWorlds.CampaignSystem.Settlements.Settlement customHomeSettlement)
+  [Method] System.Void SetMoveBesiegeSettlement(TaleWorlds.CampaignSystem.Settlements.Settlement settlement, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType)
+  [Method] System.Void SetMoveDefendSettlement(TaleWorlds.CampaignSystem.Settlements.Settlement settlement, System.Boolean isTargetingPort, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType)
+  [Method] System.Void SetMoveEngageParty(TaleWorlds.CampaignSystem.Party.MobileParty party, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType)
+  [Method] System.Void SetMoveEscortParty(TaleWorlds.CampaignSystem.Party.MobileParty mobileParty, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType, System.Boolean isTargetingPort)
+  [Method] System.Void SetMoveGoAroundParty(TaleWorlds.CampaignSystem.Party.MobileParty party, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType)
+  [Method] System.Void SetMoveGoToInteractablePoint(TaleWorlds.CampaignSystem.Map.IInteractablePoint point, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType)
+  [Method] System.Void SetMoveGoToPoint(TaleWorlds.CampaignSystem.CampaignVec2 point, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType)
+  [Method] System.Void SetMoveGoToSettlement(TaleWorlds.CampaignSystem.Settlements.Settlement settlement, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType, System.Boolean isTargetingThePort)
+  [Method] System.Void SetMoveModeHold()
+  [Method] System.Void SetMovePatrolAroundPoint(TaleWorlds.CampaignSystem.CampaignVec2 point, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType)
+  [Method] System.Void SetMovePatrolAroundSettlement(TaleWorlds.CampaignSystem.Settlements.Settlement settlement, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType, System.Boolean isTargetingPort)
+  [Method] System.Void SetMoveRaidSettlement(TaleWorlds.CampaignSystem.Settlements.Settlement settlement, TaleWorlds.CampaignSystem.Party.MobileParty+NavigationType navigationType, System.Boolean isTargetingPort)
+  [Method] System.Void SetMoveToNearestLand(TaleWorlds.CampaignSystem.Settlements.Settlement settlement)
+  [Method] System.Void SetTargetSettlement(TaleWorlds.CampaignSystem.Settlements.Settlement settlement, System.Boolean isTargetingPort)
+  [Method] System.Void UpdateLocator(TaleWorlds.CampaignSystem.Party.MobileParty party)
+  [Property] TaleWorlds.CampaignSystem.CampaignVec2 AiBehaviorTarget
+  [Property] TaleWorlds.Library.MBReadOnlyList`1[[TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] AllPatrolParties
+  [Property] TaleWorlds.CampaignSystem.Army Army
+  [Property] TaleWorlds.Localization.TextObject ArmyName
+  [Property] TaleWorlds.Library.Vec2 ArmyPositionAdder
+  [Property] TaleWorlds.CampaignSystem.Settlements.Settlement BesiegedSettlement
+  [Property] TaleWorlds.Core.BattleEnvironment CurrentBattleEnvironment
+  [Property] TaleWorlds.CampaignSystem.Settlements.Settlement CurrentSettlement
+  [Property] TaleWorlds.CampaignSystem.Party.AiBehavior DefaultBehavior
+  [Property] TaleWorlds.CampaignSystem.Settlements.Settlement HomeSettlement
+  [Property] System.Boolean IsPatrolParty
+  [Property] System.Boolean IsTargetingPort
+  [Property] TaleWorlds.CampaignSystem.Settlements.Settlement LastVisitedSettlement
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEvent MapEvent
+  [Property] TaleWorlds.CampaignSystem.MapEvents.MapEventSide MapEventSide
+  [Property] TaleWorlds.CampaignSystem.Party.PartyComponents.PatrolPartyComponent PatrolPartyComponent
+  [Property] TaleWorlds.CampaignSystem.Party.AiBehavior ShortTermBehavior
+  [Property] TaleWorlds.CampaignSystem.Party.MobileParty ShortTermTargetParty
+  [Property] TaleWorlds.CampaignSystem.Settlements.Settlement ShortTermTargetSettlement
+  [Property] System.Boolean ShouldJoinPlayerBattles
+  [Property] TaleWorlds.CampaignSystem.Party.MobileParty TargetParty
+  [Property] TaleWorlds.CampaignSystem.CampaignVec2 TargetPosition
+  [Property] TaleWorlds.CampaignSystem.Settlements.Settlement TargetSettlement
+
+TaleWorlds.CampaignSystem.Party.MobilePartyAi
+  [Method] System.Void CacheAiBehaviorPartyBase()
+  [Method] System.Void CalculateFleePosition(TaleWorlds.CampaignSystem.CampaignVec2& fleeTargetPoint, TaleWorlds.CampaignSystem.Party.MobileParty partyToFleeFrom, TaleWorlds.Library.Vec2 averageEnemyVec)
+  [Method] System.Boolean GetNearbyPartyDataWhileDefendingSettlement(TaleWorlds.CampaignSystem.Settlements.Settlement targetSettlement, System.Boolean& shouldConsiderJoiningNearbyAllyParties, System.Boolean& shouldJoinLandSide, System.Boolean& shouldEngage, TaleWorlds.CampaignSystem.Party.MobileParty& mostPowerfulLandAlly, TaleWorlds.CampaignSystem.Party.MobileParty& mostPowerfulNavalAlly)
+  [Method] System.Void SetInitiative(System.Single attackInitiative, System.Single avoidInitiative, System.Single hoursUntilReset)
+  [Property] TaleWorlds.CampaignSystem.Map.IInteractablePoint AiBehaviorInteractable
+  [Property] TaleWorlds.CampaignSystem.Party.PartyBase AiBehaviorPartyBase
+  [Property] System.Single AttackInitiative
+  [Property] System.Single AvoidInitiative

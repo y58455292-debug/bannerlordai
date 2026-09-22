@@ -1,0 +1,19 @@
+{
+  "schema": "BannerlordAI.Office.CoderStatus.v1",
+  "updated_at": "2026-09-22T00:30:11.304668-07:00",
+  "state": "COMPLETE",
+  "result_id": "v02167_execution_package|2026-09-22T00:30:11.303670-07:00",
+  "action_id": "v02167_execution_package",
+  "description": "v0.2.10.67 external ProviderExecutionPackage.v1 validation and deterministic adapter boundary on unchanged accepted v0.2.10.66 runtime.",
+  "return_code": 0,
+  "result": "SUCCESS",
+  "log_path": "D:\\BannerlordAIResearch\\Automation\\Autopilot\\logs\\20260922_002902_v02167_execution_package.log",
+  "command": [
+    "python",
+    "-X",
+    "utf8",
+    "D:\\BannerlordAIResearch\\workspace\\validate_v02167_execution_package.py"
+  ],
+  "handoff_to": "Analyzer / Archivist",
+  "required_next": "Review validator/log evidence and update durable knowledge."
+}

@@ -1,0 +1,25 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002163_ResultSizePolicy_20260921_2208\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "AC561AB57585EAE55ED5949F246DC1D60B22ECF98B3B1B1A0FF9210339807423",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02163_result_size_policy.py",
+    "validator_sha256": "BDCA4ED2437A29ECBE47728894D2B0991904FD3846274D15BD5F967C1434D497",
+    "loopback_helper": "D:\\BannerlordAIResearch\\workspace\\provider_transport_loopback_v02163.py",
+    "loopback_helper_sha256": "C212184518C177E60517E995E84AB3D22F0413FD21E2BCA36D74B46ECAB940F8",
+    "loopback_fixtures": "D:\\BannerlordAIResearch\\workspace\\test_provider_transport_loopback_v02163.py",
+    "loopback_fixtures_sha256": "87425AA257C8F4A9A750BEBE18170854F5E431B2784E328E6A7634ADE12749BF",
+    "compile_result": "PASS_RUNNER_0_ERRORS_CLANAI_REUSED_V02138",
+    "main_fixture_result": "PASS_FIXTURES checks=257",
+    "v3_fixture_result": "PASS_V3_FIXTURES checks=63",
+    "v4_size_fixture_result": "PASS_V4_FIXTURES checks=72",
+    "loopback_v63_fixture_result": "PASS_FIXTURES checks=40",
+    "provider_request_contract_fixture_result": "PASS_FIXTURES checks=49",
+    "result_size_policy": "REGISTERED_MAX_RESULT_BYTES_EXACT_UTF8_BYTE_ENFORCEMENT",
+    "network_model_policy": "NO_NETWORK_NO_MODEL_NO_CREDENTIAL_VALUE_READ"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.63 bounded live result-size policy gate. Natural full chain with test maxResultBytes=65536 -> deterministic loopback v4 must succeed within limit -> runtime binding independently reports RESULT_SIZE_WITHIN_LIMIT with exact resultByteCount and maxResultBytes=65536 before ProviderResult.v4 advisory admission -> KEEP_BASELINE -> SUCCESS_ACKED 1->0 -> replay DISPATCH_JOB_NOT_FOUND; provider stream empty, no env secret read/network/model/Apply authority, full cleanup.",
+  "blockers": []
+}

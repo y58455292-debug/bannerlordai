@@ -1,0 +1,29 @@
+BannerlordAI — v0.2.10.8 Known-Enemy Recognition — Analyzer VERIFY
+Date: 2026-09-20 Pacific
+Classification: PASS
+Semantic result: ACCEPTED_KNOWN_ENEMY_RECOGNITION_PRIMITIVE
+
+RAW AUTHORITY
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02108_KnownEnemyRecognition_20260920_033730_918456\validation.json
+
+VERIFIED
+- Fresh process restart restored branch e25447765bef4ce489a045451141af6a with records=2.
+- southern_pirates_47910 -> KNOWN_ENEMY, visibleCount=1, exact persisted episode id 7a2452255c24438493d1b9bc7b382f99, preserved source/detail provenance.
+- Real distinct Syronea threat identity southern_pirates_48616 -> NEW_ENEMY, visibleCount=0, priorEpisode=null, memoryAgeHours=null.
+- Both receipts: actorValid=true, branchValid=true, identityValid=true, futureLeak=false, behaviorMutation=false, intentMutation=false, scoreMutation=false.
+- Static candidate checks prove observer wiring exists while automatic TryIssue/rearm/tick/enable paths are disconnected.
+- No patrol-defense Apply receipt was generated.
+- Protected saves matched, disposables cleaned, accepted binaries restored, deployment lease released.
+
+SCOPE LIMIT
+The post-reload recognition probe ran at the same campaign hour as the stored memory (memoryAgeHours=0) and used the explicit PATROL_DEFENSE_RECOGNIZE command. Therefore this accepts the persistent identity-recognition primitive and its observer wiring, but does not yet prove a naturally later observer-generated recognition event.
+
+NEXT SMALLEST GATE
+v0.2.10.9 live-observation recognition soak:
+- Fresh reload with accepted persisted memory.
+- Advance campaign time so memoryAgeHours > 0.
+- Patrol Syronea with recognition-only observer.
+- Require a naturally emitted patrol-defense observation of a remembered bandit to produce KNOWN_ENEMY through observer wiring.
+- Prohibit PATROL_DEFENSE_RECOGNIZE manual command during the proof.
+- Keep automatic Apply/rearm disconnected and require zero behavior/intent/score mutation.
+- If the remembered bandit does not appear in the bounded window, classify environmental inconclusive rather than feature failure.

@@ -1,0 +1,44 @@
+GLOBAL AI MODEL MIRROR — v0.20A / Inspector 0.31
+Date: 2026-09-18
+
+Purpose:
+Prove ClanAI can sit globally on TaleWorlds' MobilePartyAIModel without changing vanilla behavior.
+
+This is an architecture validation, NOT a behavior-change experiment.
+
+Expected active model:
+ClanAI.DelegatingMobilePartyAIModel
+Inner model:
+whatever TaleWorlds/loaded mod stack had registered before ClanAI.
+
+Behavior:
+100% delegated.
+No attack/avoid/initiative/patrol result is intentionally changed in v0.20A.
+
+Required proof:
+1. GLOBAL_AI_MODEL_MIRROR_INSTALLED selectedMirror=True
+2. GLOBAL_AI_MODEL_ACTIVE type=ClanAI.DelegatingMobilePartyAIModel mirror=True
+3. inner=<real pre-existing model type>
+4. native lord->bandit initiative decisions continue
+5. real lord-vs-bandit battles continue
+6. no new crashes/errors
+7. performance remains within normal run envelope
+8. evidence writer syncFallbacks=0 and failures=0
+
+Performance doctrine:
+- AI Research Light Mode remains on.
+- broad default/short-term/SetMove census disabled in light mode;
+- initiative details restricted to deduped lord->bandit cases;
+- async evidence writers remain active;
+- native spatial locators remain active;
+- no graphical settings reduced.
+
+Deployed:
+ClanAI v0.20A
+SHA256 C9248DBF8C5247310495E57314606FDFEE7096CC205A8990235A172A7814D3EB
+
+BannerlordInspector v0.31
+SHA256 77D10BED8EBD01F9FF38FEE416C4C67E2399294F149BA32CD8707D0A9B7A416D
+
+If equivalence passes:
+next patch may make ONE narrow judgment intervention inside the model wrapper.

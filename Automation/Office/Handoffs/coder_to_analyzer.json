@@ -1,0 +1,29 @@
+{
+  "schema": "BannerlordAI.StructuredHandoff.v1",
+  "from_role": "coder",
+  "to_role": "analyzer",
+  "intent": "Independently verify v0.2.10.18 KNOWN re-encounter append-only memory-update eligibility shadow.",
+  "current_state": "Coder terminal PASS. Natural NEW remained candidate-free; after SaveAs/full restart an unchanged exact KNOWN emitted eligible=false/changedFields=[], and a later naturally changed exact KNOWN emitted eligible=true with exact factual changed fields. Post-readback still showed one original episode; no gameplay authority or integrity drift.",
+  "constraints": [
+    "Raw validation/source evidence outranks Coder summary.",
+    "Independently recompute changedFields using the accepted 1e-5 relative tolerance.",
+    "Require exact prior episode/settlement/bandit/context/time provenance.",
+    "Require appendOnly=true, overwritePrior=false, interpretationApplied=false.",
+    "Require no second episode write and zero gameplay authority.",
+    "Require protected-save/binary/lease cleanup."
+  ],
+  "evidence_pointers": [
+    "D:\\BannerlordAIResearch\\Longitudinal\\LiveValidation\\PatrolDefense_v02118_MemoryUpdateEligibility_20260920_145753_202186\\validation.json",
+    "D:\\BannerlordAIResearch\\Longitudinal\\DerivedReports\\2026-09-20_v02118_MemoryUpdateEligibility_CoderTerminal.txt",
+    "D:\\BannerlordAIResearch\\workspace\\validate_v02118_memory_update_eligibility.py",
+    "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002118_MemoryUpdateEligibility_20260920_1450\\candidate\\SubModule.cs"
+  ],
+  "next_action": "Analyzer VERIFY independently classifies v0.2.10.18 and, on PASS, defines the next smallest append-only memory-evolution gate.",
+  "completion_receipt": {
+    "terminal_status": "PASS",
+    "result_pointer": "D:\\BannerlordAIResearch\\Longitudinal\\LiveValidation\\PatrolDefense_v02118_MemoryUpdateEligibility_20260920_145753_202186\\validation.json",
+    "handoff_pointer": "D:\\BannerlordAIResearch\\Automation\\Office\\Handoffs\\coder_to_analyzer.json",
+    "checkpoint_seq": 181,
+    "owner_released": true
+  }
+}

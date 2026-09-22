@@ -1,0 +1,13 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_RETRY_STATIC_ASSERTION_REPAIRED",
+    "latest_failure_classification": "HARNESS_FALSE_NEGATIVE_STATIC_ASSERTION",
+    "analyzer_report": "D:\\BannerlordAIResearch\\Longitudinal\\DerivedReports\\2026-09-21_v02162_PrelaunchStaticHarness_AnalyzerReview.txt",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02162_policy_bound_transport_result_v4.py",
+    "validator_sha256": "7EBC8B294424B68649A1C0FED5BE8475D44AB2F32BE2B4A0886A4E1F447E36A8",
+    "runner_test_sha256": "1A08ACA2F41F8F6C1675D510E829A85039CC8B17711FE2091E893429DEDFAB9E",
+    "repair": "Validator now asserts the actual execution-policy call/serialization chain instead of requiring an accepted-reason literal inside ProviderResult.v4 source. Feature binary unchanged."
+  },
+  "next_action": "Coder EXECUTE bounded v0.2.10.62 live rerun after prelaunch static-assertion harness repair. Feature binary unchanged. Require natural full registration chain -> deterministic loopback v4 -> TransportReceipt.v3/ProviderResult.v4 exact executionPolicyId -> TRANSPORT_RECEIPT_MATCHED + EXECUTION_POLICY_MATCHED + exact result SHA -> KEEP_BASELINE -> SUCCESS_ACKED 1->0 -> replay DISPATCH_JOB_NOT_FOUND; zero network/model/Apply authority and full cleanup.",
+  "blockers": []
+}

@@ -1,0 +1,18 @@
+v0.2.10.19 second live run — durable findings
+
+Do not repeat the same Stage2 test unchanged.
+
+Accepted observations from this run:
+- exact KNOWN identity/provenance and prior/current comparison passed.
+- changed_candidate_correct=true.
+- changed_candidate_nonempty_exact_fields=true.
+- eligible_write_recorded_exactly_once=true.
+- post_write_visible_count_two=true.
+- unchanged_candidate_correct=true where an unchanged observation is present.
+- unchanged_candidate_no_write=true.
+- no_apply_side_effects=true and no reacquisition passed.
+- The sole failing Stage2 assertion was unchanged_known_observed=false: this particular natural run reached a changed encounter without first producing a separate unchanged encounter.
+- Because that environmental ordering assertion aborted Stage2, Stage3/Stage4 SaveAs/full-restart visibleCount=2 persistence proof did not execute.
+
+Interpretation:
+The append feature has now directly proven immediate two-episode memory after a changed KNOWN encounter. The next run must not require an unchanged encounter to precede the changed encounter in the same natural Stage2 window. Unchanged/no-write semantics are already evidenced by the first v0.2.10.19 run and must be retained as accepted prior evidence. The next smallest test is persistence-only continuation: changed KNOWN -> one append -> visibleCount=2 -> SaveAs -> full restart -> exact retrieval visibleCount=2/latest=new episode -> cleanup.

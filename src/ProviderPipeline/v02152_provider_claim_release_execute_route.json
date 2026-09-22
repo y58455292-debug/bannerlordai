@@ -1,0 +1,17 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002152_ProviderClaimRelease_20260921_1510\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "CECAFBCD366E82A50D16A803621909E3C930A8BB62A5BC432FF3B4377B0424B8",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02152_provider_claim_release.py",
+    "validator_sha256": "621D4F6E3FDE2C8AEB55F4B849A8E3A244033BB49FA06198EED7C22D85D074AB",
+    "compile_result": "PASS_RUNNER_0_ERRORS_CLANAI_REUSED_V02138",
+    "isolated_fixture_result": "PASS_FIXTURES checks=173",
+    "static_zero_authority_checks": "PASS",
+    "retry_policy": "EXPLICIT_RELEASE_ONLY_NO_TIMEOUT_NO_STEAL"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.52 bounded live explicit retry-ownership gate. Natural request -> claim attempt-1 -> exact TRANSIENT_FAILURE with CLAIM_MATCHED and TRANSIENT_FAILURE_RETAINED -> explicit release CLAIMED->PENDING -> claim attempt-2 PENDING->CLAIMED; no provider/model/network/Apply authority, full cleanup.",
+  "blockers": []
+}

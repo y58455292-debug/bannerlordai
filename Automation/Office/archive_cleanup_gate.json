@@ -1,0 +1,46 @@
+{
+  "schema": "BannerlordAI.ArchiveCleanupGate.v1",
+  "status": "CLEANUP_AUDIT_IN_PROGRESS",
+  "rule": "No chat/history/file is marked safe-to-delete until its useful BannerlordAI content has a durable representation in local Handoff/Evidence and/or Mem with source provenance.",
+  "coverage_sources": {
+    "local_handoff": "D:\\BannerlordAIResearch\\Longitudinal\\EvidenceIndex\\HandoffV3",
+    "local_context_pyramid": "D:\\BannerlordAIResearch\\Longitudinal\\EvidenceIndex\\ContextPyramid",
+    "mem_collection": "Bannerlord AI Research",
+    "mem_collection_id": "659080b1-aac1-5cd2-8323-9d0bd76b480d",
+    "mem_note_count": 25,
+    "library_folder": "/Bannerlordai"
+  },
+  "known_recent_chat_threads": [
+    "BannerlordAI Analyzer Desk",
+    "BannerlordAI Progress Watch",
+    "Resume Test Closeout",
+    "Research AI Architecture",
+    "Collect Data and Continue",
+    "Continue From Memory File",
+    "File Analysis Options",
+    "Analytical Psychology For AI",
+    "Remote Desktop Offline Notice",
+    "Current office/front-desk architecture thread"
+  ],
+  "important_topics_already_covered": [
+    "layered LLM intent + TaleWorlds deterministic execution",
+    "single write owner / StrategicDecisionComposer",
+    "blackboards, commitment, memory separation and temporal firewall",
+    "autonomous operator and exact named-save lifecycle",
+    "v0.20Q commitment proof",
+    "v0.20V lived-choice persistence",
+    "v0.20W later-decision memory influence",
+    "patrol-defense shadow milestone",
+    "DeepSeek HOT/WARM/RAW compression method",
+    "durable Handoff V4 / fast resume / chat-saturation protocol",
+    "reference library and analytical-psychology gate",
+    "mini-office Coder/Analyzer/Supervisor/Front structure"
+  ],
+  "automation_freeze": {
+    "chatgpt_automations": "PAUSED",
+    "pc_scheduled_tasks": "DISABLED",
+    "local_autopilot": "DISABLED",
+    "office_mode": "CLOSED"
+  },
+  "deletion_policy": "Inventory and archive first. Chat deletion itself is not performed by the project tooling; only mark candidates safe after coverage verification."
+}

@@ -1,0 +1,66 @@
+BannerlordAI v0.2.10.15 — Analyzer Review
+Date: 2026-09-20
+Final classification: PASS
+
+Question
+Can BannerlordAI persist a tiny factual patrol-defense threat snapshot from a natural NEW encounter, survive save/restart, and on a later exact KNOWN encounter expose the exact prior snapshot plus current facts for deterministic Observe-only comparison without changing eligibility, target, intent, score or movement?
+
+Independent raw-evidence findings
+- Stage1 and Stage2 acceptance dictionaries contain no false checks.
+- Natural NEW acquisition learned southern_pirates_47910 on branch abffb961b24c450fb068abcaa5e74498.
+- Autonomous episode: 10bef7ced1204b4a8a1fa6a13b0faea4.
+- The five Stage1 facts were identical in:
+  1. patrol-defense shadow,
+  2. acquisition threatSnapshot,
+  3. persisted episode Detail provenance.
+- Exact Stage1 values:
+  actorStrength=273.499969
+  actorHealthy=213
+  banditStrength=81.7
+  banditHealthy=68
+  actorToBanditStrengthRatio=3.34761286
+- Save/restart restored=True on the same branch.
+- The exact learned bandit naturally reappeared as KNOWN_ENEMY after positive time with memoryAgeHours=4.224479805561714.
+- KNOWN priorEpisode.id exactly equals 10bef7ced1204b4a8a1fa6a13b0faea4.
+- priorEpisode source/detail/knownByHours exactly match Stage1.
+- Matching natural shadow embeds memoryContext exactly equal to the recognition receipt.
+- Prior snapshot parsed from persisted episode detail is complete.
+- Current snapshot read from the later shadow is complete.
+- Validator emitted BannerlordAI.PatrolDefenseThreatStateComparison.v1.
+- interpretationApplied=false.
+- No reacquisition for the learned bandit.
+- No explicit memory retrieval, seed, recognize, Apply/rearm, or gameplay-authority side effects.
+- Protected saves matched, disposables cleaned, accepted binaries restored, lease released.
+
+Semantic classification
+PASS. v0.2.10.15 proves a compact factual threat-state snapshot can be attached to autonomous PatrolDefense memory, survive persistence, and later be paired with current facts for exact provenance-bearing comparison while remaining entirely outside policy/action authority.
+
+Important scope limit
+The naturally repeated encounter had the same five factual values, so all deltas were 0 and all current/prior ratios were 1.0. That is valid proof of comparison plumbing and exact fact preservation. It does NOT yet prove that a naturally changed encounter produces a correct nonzero delta.
+
+Architecture lesson
+Memory can now represent not just “I know this exact enemy,” but “I know this exact enemy and remember a compact factual state from the prior encounter.” Keep factual comparison separate from semantic interpretation and policy. The comparison record itself must remain descriptive.
+
+Next smallest gate
+v0.2.10.16 — Natural changed-state threat comparison soak.
+
+Reuse v0.2.10.15 feature binaries unchanged. This should be a harness-only evidence gate.
+
+Question:
+After natural NEW acquisition + persistence + fresh restart, can the exact learned bandit later reappear as KNOWN with at least one of the five current threat-state values naturally changed, while the prior snapshot remains exact and the validator reports the corresponding nonzero factual delta/ratio correctly?
+
+Acceptance:
+1. Same v0.2.10.15 Stage1 snapshot/persistence gates.
+2. Fresh restart, same branch, exact learned bandit.
+3. Positive-time natural KNOWN with exact prior episode/provenance.
+4. Matching natural shadow and exact memoryContext.
+5. Prior snapshot still equals Stage1 persisted facts.
+6. Current snapshot complete.
+7. At least one of actorStrength, actorHealthy, banditStrength, banditHealthy, actorToBanditStrengthRatio differs beyond numeric tolerance.
+8. Validator's nonzero delta(s) and current/prior ratio(s) exactly correspond to prior/current values.
+9. interpretationApplied=false; no runtime policy conclusion.
+10. No reacquisition/manual retrieval/seed/recognize/Apply; zero behavior/intent/score/movement authority.
+11. Full save/binary/disposable/lease integrity.
+12. If the exact learned party does not reappear or all re-encounters remain factually unchanged within the bounded observation window, classify ENVIRONMENTAL_INCONCLUSIVE rather than feature fail.
+
+Do not modify feature binaries solely to manufacture a changed state.

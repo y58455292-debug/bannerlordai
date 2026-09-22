@@ -1,0 +1,63 @@
+BannerlordAI v0.2.10.11 — Coder Terminal Report
+Date: 2026-09-20
+Classification candidate: PASS_NATURAL_ENCOUNTER_ACQUISITION
+
+Objective
+From a fresh zero-episode Manan branch, prove that a valid observer-generated NEW_ENEMY patrol-defense recognition automatically creates exactly one immutable identity-addressable PatrolDefense episode, with no manual seed/recognize and no behavior/intent/score/native-movement authority.
+
+Terminal evidence
+- Exact Manan load at campaignHours 648650.9850730833.
+- Episode session ready: records=0 restored=False.
+- BranchId: 0c200fd5e27842658f2594c0b58588f3.
+- Natural patrol-defense threat appeared at 648655.6839331945 (+4.6988601112h).
+- NEW_ENEMY recognition:
+  - bandit southern_pirates_47910 (Corsairs)
+  - visibleCount=0
+  - priorEpisode=null
+  - memoryAgeHours=null
+  - actorValid=true, branchValid=true, identityValid=true, futureLeak=false
+  - behaviorMutation=false, intentMutation=false, scoreMutation=false
+- Matching natural shadow:
+  - same proposalId/campaignHours
+  - victim player_faction_47784 / Fishers of Vargornis
+  - wouldInterrupt=true, safeToIntervene=true
+- Automatic memory acquisition:
+  - schema BannerlordAI.PatrolDefenseMemoryAcquisition.v1
+  - acquisition=RECORDED
+  - episodeId=b36cc37c74b24292a1604611eb3f7582
+  - exact settlement/bandit/victim/proposal/fingerprint/time provenance
+  - source=PatrolDefenseObserver.v02111.natural_new_enemy
+  - behaviorMutation=false, intentMutation=false, scoreMutation=false, nativeMovementCalls=0
+- Exactly one acquisition row exists for the accepted proposal.
+- Immediate read-back:
+  - visibleCount=1
+  - exact same episodeId
+  - contextId=patrol-defense:town_ES7:southern_pirates_47910
+  - knownByHours exactly matches proposal time
+  - source/provenance preserved
+  - actor/branch/identity valid, futureLeak=false, scoreMutation=false
+- No PATROL_DEFENSE_RECOGNIZE command in the run.
+- No PATROL_DEFENSE_MEMORY_SEED_REAL_V02107 command in the run.
+- Automatic Apply/rearm statically disconnected; no Apply side effects.
+- Protected saves remain SHA256 94DFE7F05D89C6E4CC328A416943608713ECFFDF96A572AAEA43A9BDD5CD2DAA.
+- Accepted binaries restored:
+  ClanAI 7FCF781463001B0884282C48585F53C9B16622B7FC998743F2C96C3850373BFE
+  TestRunner EB164E99D7075907F34BD4C6EB32C1EA5E8419FA6A62242C175CB8B2A10F9802
+- Disposable save cleaned.
+- Bannerlord closed.
+- Deployment owner clear.
+- Validator result: PASS_NATURAL_ENCOUNTER_ACQUISITION.
+
+Evidence
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02111_NaturalEncounterAcquisition_20260920_054316_802612\validation.json
+D:\BannerlordAIResearch\workspace\validate_v02111_natural_encounter_acquisition.py
+D:\BannerlordAIResearch\workspace\_PatchStaging\AutonomousOperator_v002111_NaturalEncounterAcquisition_20260920_0540\candidate
+Validator SHA256 E6006438B0520B9204BA10C98DC017CB7E19B40AFED8058CE72C2D795AA36612
+Runner SHA256 5A0067D1DC2CA88816ADD733F1BCBAC1FCF55676A33DBBF58A9355887ADFEEAC
+
+Coder semantic candidate
+PASS — natural first-encounter acquisition into the existing episodic memory store is proven, exactly once per accepted proposal and without gameplay authority.
+
+Suggested next smallest gate
+v0.2.10.12 autonomous patrol-defense memory persistence:
+repeat zero-store natural acquisition, SaveAs the branch, full process restart, exact reload, require records=1 restored=True with same branchId and exact episodeId, then read back the exact bandit episode. Do not require a second natural encounter yet; that belongs to the following recognition gate.

@@ -1,0 +1,26 @@
+BannerlordAI v0.2.10.56 FINAL VERIFY - ACCEPT
+
+Decisive evidence
+- Runner compiled with 0 errors; ClanAI reused unchanged.
+- Combined v2 + accepted v1 back-compat fixture suite passed 206/206.
+- External provider-request contract suite remained 49/49 PASS.
+- Natural request enqueued and exact attempt-1 claim succeeded.
+- Exact outbound provider request was registered with providerRequestId:
+  59F4B6CEC45552740060069383759BC2D61FFEB2570F79B233F4AF201EDC4660.
+- Synthetic ProviderResult.v2 echoed exact providerId, attemptId, requestFingerprint and providerRequestId.
+- Admission order proved:
+  claimMatchReason=CLAIM_MATCHED
+  providerRequestMatchReason=PROVIDER_REQUEST_MATCHED
+  then strict advisory admission.
+- providerResultAccepted=true; nested KEEP_BASELINE admitted.
+- Dispatch completion SUCCESS_ACKED removed queue 1 -> 0.
+- Identical replay failed at claim lookup DISPATCH_JOB_NOT_FOUND before request matching/advisory admission and completion stayed 0 -> 0.
+- Accepted ProviderResult.v1 schema/command remained present and fixture-covered.
+- Provider invocation stream remained empty; no network/model/Apply authority.
+- Every live check passed; protected saves matched, disposable cleaned, binaries restored, lease released.
+- Continuity refreshed clean.
+
+Classification: ACCEPT.
+
+Architecture meaning
+Provider results can now be bound to the exact registered outbound request instance, not merely the job claim. providerRequestId closes provider/model/prompt/input-instance provenance across request -> result while preserving accepted v1 compatibility.

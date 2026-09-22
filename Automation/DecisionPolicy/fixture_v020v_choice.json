@@ -1,0 +1,24 @@
+{
+  "schema": "BannerlordAI.DynastyBranchChoiceRetrieval.v1",
+  "mode": "observe",
+  "actor": "Manan",
+  "actorId": "lord_3_12",
+  "branchId": "25f69dd868d347fab916e45b74b29440",
+  "retrievalContext": "post_reload",
+  "currentCampaignHours": 648650.9850730833,
+  "visibleChoiceCount": 1,
+  "latestChoice": {
+    "id": "34d0cbeb66b7403ba3806faad450fbaf",
+    "knownByHours": 648650.9850730833,
+    "observedUtc": "2026-09-20T00:01:14.8257338Z",
+    "contextId": "incident:donative-demand",
+    "contextName": "Donative Demand",
+    "optionIndex": 0,
+    "optionText": "Convince your men that the money would be better spent on supplies and recruits to ensure their survival",
+    "source": "TestRunner.Incident.InvokeOption",
+    "actorValid": true,
+    "branchValid": true,
+    "futureLeak": false
+  },
+  "scoreMutation": false
+}

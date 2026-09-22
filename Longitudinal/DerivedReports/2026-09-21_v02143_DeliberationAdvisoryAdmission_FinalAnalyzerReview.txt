@@ -1,0 +1,30 @@
+BannerlordAI v0.2.10.43 FINAL VERIFY - ACCEPT
+
+Deterministic evidence
+- Runner compiled with 0 errors; ClanAI unchanged.
+- Advisory admission fixture suite passed 77/77.
+- Allowed dispositions admitted only with exact request fingerprint:
+  KEEP_BASELINE
+  REVIEW_ALTERNATIVE
+  ABSTAIN
+- Wrong/missing fingerprint rejected.
+- Missing/invalid schema rejected.
+- Missing/unknown disposition rejected.
+- Malformed JSON and duplicate fields rejected.
+- Every extra field is rejected; explicit action-bearing probes rejected:
+  action, target, score, scoreDelta, movement, apply, command.
+- Admission receipt preserves exact requestFingerprint.
+- advisoryOnly=true; executionAuthorized=false.
+- modelInvoked=false; llmInvoked=false; plannerInvoked=false.
+- interpretationApplied=false; behavior/intent/score mutation=false; nativeMovementCalls=0.
+
+Static audit
+- No HttpClient/OpenAI/model call.
+- No PatrolDefenseApplyGate.
+- No SetBehaviorScore.
+- No PatrolDefense memory write.
+
+Classification: ACCEPT.
+
+Architecture meaning
+Future cognition output now has a strict fingerprint-bound, advisory-only admission boundary before runtime execution. The contract rejects unknown/action-bearing fields rather than trusting free-form model output.

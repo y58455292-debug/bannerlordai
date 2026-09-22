@@ -1,0 +1,38 @@
+{
+  "session_log": "D:\\BannerlordAIResearch\\Telemetry\\ClanAI\\sessions\\ClanAI_20260918_105517_707_v019D.log",
+  "log_lines": 742,
+  "visual_events": 37,
+  "by_reason": {
+    "active-defense": {
+      "ALREADY_ACTIVE": 7,
+      "UNPROVEN": 7,
+      "NEW_COMMIT": 12
+    },
+    "frontier-defense": {
+      "NEW_COMMIT": 3,
+      "ALREADY_ACTIVE": 4
+    },
+    "frontier-offense": {
+      "NEW_COMMIT": 4
+    }
+  },
+  "active_defense_weak": {
+    "UNPROVEN": 7,
+    "ALREADY_ACTIVE": 1
+  },
+  "active_defense_healthy": {
+    "ALREADY_ACTIVE": 6,
+    "NEW_COMMIT": 12
+  },
+  "world_memory_events": 10,
+  "memory_probes": 18,
+  "memory_would_flip": 0,
+  "context_refreshes": 9,
+  "last_context": "2026-09-18T10:59:15.9289335Z [ClanAI v0.19D] VISUAL_WAR_CONTEXT_REFRESH walled=133 settlements=440 bandits=538 applications=520 winnerChanges=44 selectionChanges=34 repeatsSuppressed=10 weakFrontierSkips=166 banditEngageCandidates=0 rearSecurityEligible=0 rearSecurityWeakSkips=0 nextHour=2186187.8",
+  "last_summary": "2026-09-18T10:59:19.8058683Z [ClanAI v0.19D] SUMMARY dispatcherCalls=10207 targeted=575 candidateLists=575 candidateTotal=218241 weak=180 weakRescored=180 rescoredCandidates=28762 recoveryBoosts=17330 offenseCuts=11432 winnerChanges=27",
+  "save_events": [
+    "2026-09-18T11:02:25.5030414Z [ClanAI v0.19D] NOBLE_MEMORY_SAVE records=166",
+    "2026-09-18T11:02:25.5050506Z [ClanAI v0.19D] SOCIAL_LEDGER_SAVE records=390"
+  ],
+  "behavior_delta_rows": 630
+}

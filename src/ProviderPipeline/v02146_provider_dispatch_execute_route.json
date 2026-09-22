@@ -1,0 +1,17 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002146_ProviderDispatchOutbox_20260921_1425\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "29CF8B4413FC233EF184E9AB540441317697DBD96E757CE52AA726CCD3117CEB",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02146_provider_dispatch_outbox.py",
+    "validator_sha256": "E563DED6E48EDD58A146DD9F6183830A4D1E7E4782711228CA10AE60D68F8CCD",
+    "compile_result": "PASS_RUNNER_0_ERRORS_CLANAI_REUSED_V02138",
+    "isolated_fixture_result": "PASS_FIXTURES checks=108",
+    "static_zero_authority_checks": "PASS",
+    "dispatch_mode": "SESSION_LOCAL_QUEUE_32_NO_CONSUMER"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.46 bounded live dispatch/outbox gate. Require one natural route-eligible Manan request to emit providerDispatch ENQUEUED with same request fingerprint, queueCount=1, capacity=32, sequence=1; dedicated outbox must contain exactly one PENDING job with exact deliberationRequest JSON; provider invocation stream must remain empty, all network/model/execution flags false, no Apply side effects; EXIT_NOSAVE and full cleanup.",
+  "blockers": []
+}

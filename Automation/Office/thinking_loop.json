@@ -1,0 +1,24 @@
+{
+  "schema": "BannerlordAI.ThinkingLoop.v1",
+  "updated_at": "2026-09-22T00:33:15.217940-07:00",
+  "checkpoint_seq": 375,
+  "active_role": "front",
+  "controller_mode": "SINGLE_FRONT_CONTROLLER",
+  "active_phase": "PLAN",
+  "logical_phase_owner": "front",
+  "derived_from_next_action": "WAITING_ON_USER: select/authorize the first real provider/model and bounded outbound API use. Credential must be supplied via an opaque local environment-variable reference; do not place the secret value in chat/project logs. After authorization, Front EXECUTE builds the provider-specific adapter and runs one advisory-only real-model proof under the accepted package/policy/authorization bounds.",
+  "previous_phase_owner": "analyzer",
+  "turn_seq": 194,
+  "repair_iterations": 0,
+  "milestone_version": "v0.2.10.67-external-provider-execution-package-shadow",
+  "max_direct_repair_iterations": 3,
+  "repair_budget_exhausted": false,
+  "transition_policy": {
+    "execute_terminal": "VERIFY",
+    "verify_pass": "PLAN",
+    "verify_bounded_fail_or_harness_false_negative": "EXECUTE",
+    "verify_unknown_architecture_integrity_or_user_dependency": "PLAN",
+    "plan_routed_work": "EXECUTE"
+  },
+  "rule": "One Front Controller owns the live chat and runs PLAN -> EXECUTE -> VERIFY as distinct evidence phases. Separate Coder/Analyzer chats are optional escalation/review surfaces, not routine handoff dependencies."
+}

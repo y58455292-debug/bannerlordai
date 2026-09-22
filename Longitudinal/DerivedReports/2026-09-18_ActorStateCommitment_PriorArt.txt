@@ -1,0 +1,113 @@
+BANNERLORDAI — ACTOR STATE / COMMITMENT PRIOR-ART REVIEW
+Date: 2026-09-18 Pacific.
+
+Active capability:
+Compact per-actor working state plus commitment/hysteresis for strategic intent.
+
+Sources reviewed:
+
+1. Epic Games — Unreal Engine Behavior Trees / Blackboard official documentation
+https://dev.epicgames.com/documentation/unreal-engine/behavior-trees-in-unreal-engine
+https://dev.epicgames.com/documentation/unreal-engine/behavior-tree-in-unreal-engine---overview
+Mechanism:
+- Blackboard stores actor-specific keys used for AI decisions.
+- Behavior logic reads the blackboard rather than carrying per-agent state in shared behavior nodes.
+- Services can update blackboard values periodically.
+Bannerlord mapping:
+Keep a compact per-lord strategic working state separate from reusable scoring logic. Do not duplicate authoritative engine facts unnecessarily.
+
+2. Epic Games — Behavior Tree Node Reference
+https://dev.epicgames.com/documentation/unreal-engine/behavior-tree-node-reference-in-unreal-engine
+Mechanism:
+- shared behavior nodes improve CPU/memory efficiency but cannot safely hold agent-specific state.
+- Services update state at defined frequencies.
+Bannerlord mapping:
+Static/shared scoring components should remain stateless; per-lord state belongs in a bounded actor record.
+
+3. Schut & Wooldridge — intention reconsideration / BDI commitment research
+“Intention reconsideration as discrete deliberation scheduling” and “Principles of Intention Reconsideration” (2001).
+Mechanism:
+- commitment is governed by when an agent reconsiders an intention.
+- reconsideration policy can be dynamic at runtime rather than fixed.
+Bannerlord mapping:
+Do not implement commitment as a permanent score bonus. Measure when objectives are still valid, when alternatives materially dominate, and when major context changes justify reconsideration.
+
+4. SPTQuestingBots / Phobos-style Utility AI (GitHub prior art)
+https://github.com/dashed/SPTQuestingBots
+Mechanism:
+- scored task/action selection.
+- additive hysteresis used to prevent action flip-flopping.
+- selection is separated from execution.
+Bannerlord mapping:
+Composer remains selector; native TaleWorlds execution remains execution. Commitment/hysteresis should modify selection only and stay bounded/explainable.
+
+5. GroveGames BehaviourTree (GitHub)
+https://github.com/grovegs/BehaviourTree
+Mechanism:
+- allocation-conscious C# behavior framework.
+- typed blackboard; value types avoid boxing.
+Bannerlord mapping:
+Prefer compact typed structs/records and bounded dictionaries; avoid prose state, reflection-heavy hot paths, and per-decision allocations.
+
+6. GameAI.Net (GitHub)
+https://github.com/likeslines-maker/GameAI.Net
+Mechanism:
+- one world tick / tight agent loop recommended rather than per-agent Update overhead.
+Bannerlord mapping:
+Use existing PartyThink/composer boundary as the state update point; do not add per-frame per-lord polling.
+
+Existing BannerlordAI research already agrees:
+- Game Dev Happy Hour curriculum: coarse states + hysteresis/commitment.
+- SkyrimNet/IntelEngine/Inworld prior-art layer: persistent tasks/objectives with explicit state; event-driven cognition; deterministic execution.
+- Analytical Psychology handoff: commitment switching cost belongs as one bounded decision term, not as hidden behavior replacement.
+
+Design decision:
+v0.20N starts READ-ONLY.
+
+ActorStrategicBlackboard per actor stores only persistent decision state:
+- current coarse state
+- current objective signature (behavior + target ID)
+- objective start campaign hour
+- previous decision hour
+- reconsideration count
+- objective switch count
+- coarse-state switch count
+- previous-objective invalidation count
+- previous-objective still-eligible switch count
+- last winner/runner-up score gap
+- last switch gap if previous objective remained eligible
+- last switch reason
+
+Authoritative engine facts such as readiness, food, current faction, current party size remain engine-derived at decision time, not duplicated as long-lived truth.
+
+Coarse state classification is evidence-based:
+- weak + settlement travel => Recover
+- FleeToPoint/FleeToGate => Retreat
+- RaidSettlement => Raid
+- Besiege/Assault => Campaign
+- EngageParty => Pursue
+- PatrolAroundPoint => Patrol
+- EscortParty => Support
+- winner with visual-war active/frontier-defense contribution => Defend
+- other settlement travel => Travel
+- otherwise Other
+
+Shadow measurement question:
+When a lord naturally changes objective, was the old objective:
+A) no longer eligible/available, or
+B) still legal but displaced by another score?
+
+For B, measure score gap and required retention factor.
+This directly calibrates future hysteresis instead of inventing a commitment constant.
+
+Performance budget:
+- one bounded record per active lord
+- update only at composer decision boundary
+- no global scans
+- one candidate pass to identify top/runner-up and previous objective
+- logs only on real objective/state changes and sparse summaries
+- no save serialization in first shadow build
+- no behavior/score writes
+
+Promotion gate:
+Only after runtime evidence shows natural switch families and gap distribution should a hysteresis/commitment factor be proposed.

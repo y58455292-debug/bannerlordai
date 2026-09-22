@@ -1,0 +1,36 @@
+{
+  "schema": "BannerlordAI.RouterEnvelope.v1",
+  "purpose": "Fast Front Office triage with minimal context injection.",
+  "rules": [
+    "Router does not perform specialist work unless target is Self_Resolve.",
+    "Attach only pointers required by the routed task.",
+    "Never inject raw logs, giant transcripts, or full stat blocks into the handoff.",
+    "Workspace/profile lore is namespaced and must not overwrite unrelated project canon.",
+    "Downstream agent recovers durable state before dereferencing pointers."
+  ],
+  "fields": {
+    "workspace_id": "required",
+    "target_agent": "required",
+    "attached_pointers": "array",
+    "handoff_payload": "required",
+    "constraints": "array",
+    "return_to": "Front Office"
+  },
+  "specialists": [
+    "Mod_Coder",
+    "Lore_Writer",
+    "Strategic_Counselor",
+    "Analyzer_Critic",
+    "Researcher",
+    "Self_Resolve"
+  ],
+  "pointer_rules_example": {
+    "Two-handed": "two-handed-perks",
+    "Polearm|Glaive|Spear": "polearm-perks",
+    "Roguery|Crime|Bandit": "roguery"
+  },
+  "workspace_isolation_example": {
+    "workspace_id": "knights_of_valor_warsails",
+    "note": "Knights of Valor/Odysseus lore is isolated from BannerlordAI Calastides/Manan/Vadrios engineering testbed."
+  }
+}

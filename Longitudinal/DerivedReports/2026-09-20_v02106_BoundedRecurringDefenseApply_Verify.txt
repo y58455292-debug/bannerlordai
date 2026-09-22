@@ -1,0 +1,26 @@
+BannerlordAI — v0.2.10.6 Bounded Recurring Defense Apply — Front VERIFY
+Date: 2026-09-20 Pacific
+Classification: PASS
+Semantic result: ACCEPTED_PATROL_LOCAL_DEFENSE_BOUNDED_RECURRING_APPLY
+
+RAW AUTHORITY
+- D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02106_RecurringApply_20260920_023441_569028\validation.json
+- D:\BannerlordAIResearch\Automation\TestRunner\patrol_defense_apply.jsonl
+- D:\BannerlordAIResearch\Automation\TestRunner\patrol_defense_rearm_shadow.jsonl
+
+OBSERVED
+- First episode: southern_pirates_47910 -> exactly one automatic native SetMoveEngageParty -> exactly one bounded Syronea patrol restore.
+- Mutation-free episode boundary established after 2.689 campaign-hours of consumed-threat absence.
+- One REARM_ELIGIBLE receipt identified distinct bandit southern_pirates_48616 targeting clan_khuzait_1_1 after 12.530 campaign-hours.
+- One bounded rearm allowance was spent: second automatic native SetMoveEngageParty targeted southern_pirates_48616 with rearmCount=1 and exact proposal provenance.
+- Exactly one second SetMovePatrolAroundSettlement restore matched the second proposal.
+- Post-second-restore soak lasted 8.057 seconds and total ENGAGE_ISSUED remained exactly two; no third engage occurred.
+- All four engage/restore receipts report scoreMutation=false and nativeScoreWrites=0.
+- Protected saves matched; disposable save removed; accepted runner restored; deployment lease released; Bannerlord closed.
+
+SCOPE
+- Accepted: one recurring local-defense rearm for one genuinely new episode, capped to exactly one rearm in the test candidate.
+- Not yet accepted: unbounded/multi-episode recurring defense, durable cross-save patrol-defense memory, or learned trust/threat weighting from prior encounters.
+
+NEXT SMALLEST GATE
+- v0.2.10.7 patrol-defense episode memory shadow: persist compact immutable episode records for the two accepted threat episodes and, after fresh reload, retrieve by bandit identity / settlement without changing behavior or scores. Prove same-bandit lookup returns prior episode while a distinct bandit remains separately addressable.

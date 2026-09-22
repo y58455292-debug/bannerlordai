@@ -1,0 +1,139 @@
+{
+    "measuringSince":  "00:12:51",
+    "context":  "campaign map, day 91081",
+    "frames":  {
+                   "sampled":  1024,
+                   "fpsAverage":  150.3,
+                   "fpsFromMedian":  155.0,
+                   "msAverage":  6.65,
+                   "msBest":  3.99,
+                   "msMedian":  6.45,
+                   "msP95":  8.36,
+                   "msP99":  10.53,
+                   "msWorst":  16.2,
+                   "note":  "p95/p99 are the stutter. An average of 60 FPS with a 90 ms p99 feels worse than a steady 45."
+               },
+    "campaignPhases":  [
+                           {
+                               "phase":  "TickPartialHourlyAi",
+                               "totalMs":  1494.9,
+                               "shareOfMeasured":  "36.9%",
+                               "calls":  24269,
+                               "avgMs":  0.0616,
+                               "worstMs":  63.51
+                           },
+                           {
+                               "phase":  "AiHourlyTick",
+                               "totalMs":  1431.9,
+                               "shareOfMeasured":  "35.4%",
+                               "calls":  3116,
+                               "avgMs":  0.4595,
+                               "worstMs":  63.29
+                           },
+                           {
+                               "phase":  "HourlyTickParty",
+                               "totalMs":  290.5,
+                               "shareOfMeasured":  "7.2%",
+                               "calls":  24515,
+                               "avgMs":  0.0118,
+                               "worstMs":  12.14
+                           },
+                           {
+                               "phase":  "DailyTickSettlement",
+                               "totalMs":  199.6,
+                               "shareOfMeasured":  "4.9%",
+                               "calls":  324,
+                               "avgMs":  0.6161,
+                               "worstMs":  37.64
+                           },
+                           {
+                               "phase":  "HourlyTickSettlement",
+                               "totalMs":  171.5,
+                               "shareOfMeasured":  "4.2%",
+                               "calls":  7797,
+                               "avgMs":  0.022,
+                               "worstMs":  3.27
+                           },
+                           {
+                               "phase":  "Tick",
+                               "totalMs":  157.5,
+                               "shareOfMeasured":  "3.9%",
+                               "calls":  6318,
+                               "avgMs":  0.0249,
+                               "worstMs":  1.23
+                           },
+                           {
+                               "phase":  "DailyTickClan",
+                               "totalMs":  152.9,
+                               "shareOfMeasured":  "3.8%",
+                               "calls":  65,
+                               "avgMs":  2.3529,
+                               "worstMs":  45.86
+                           },
+                           {
+                               "phase":  "DailyTickParty",
+                               "totalMs":  80.1,
+                               "shareOfMeasured":  "2%",
+                               "calls":  1021,
+                               "avgMs":  0.0784,
+                               "worstMs":  17.22
+                           },
+                           {
+                               "phase":  "HourlyTickClan",
+                               "totalMs":  46.2,
+                               "shareOfMeasured":  "1.1%",
+                               "calls":  1560,
+                               "avgMs":  0.0296,
+                               "worstMs":  4.21
+                           },
+                           {
+                               "phase":  "HourlyTick",
+                               "totalMs":  23.8,
+                               "shareOfMeasured":  "0.6%",
+                               "calls":  14,
+                               "avgMs":  1.6967,
+                               "worstMs":  15.74
+                           },
+                           {
+                               "phase":  "QuarterHourlyTick",
+                               "totalMs":  1.1,
+                               "shareOfMeasured":  "0%",
+                               "calls":  55,
+                               "avgMs":  0.0201,
+                               "worstMs":  0.88
+                           }
+                       ],
+    "phaseNote":  "Time inside the campaign\u0027s own tick dispatchers. \u0027calls\u0027 times \u0027avgMs\u0027 is where the cost is: a cheap method called 5000 times an hour beats an expensive one called twice.",
+    "worstFrames":  [
+                        {
+                            "ms":  188.3,
+                            "atLocalTime":  "00:12:56",
+                            "doing":  "not started"
+                        },
+                        {
+                            "ms":  149.1,
+                            "atLocalTime":  "00:12:57",
+                            "doing":  "not started"
+                        },
+                        {
+                            "ms":  87.0,
+                            "atLocalTime":  "00:12:56",
+                            "doing":  "not started"
+                        },
+                        {
+                            "ms":  77.1,
+                            "atLocalTime":  "00:12:56",
+                            "doing":  "not started"
+                        },
+                        {
+                            "ms":  57.1,
+                            "atLocalTime":  "00:12:56",
+                            "doing":  "not started"
+                        },
+                        {
+                            "ms":  52.4,
+                            "atLocalTime":  "00:13:00",
+                            "doing":  "not started"
+                        }
+                    ]
+}

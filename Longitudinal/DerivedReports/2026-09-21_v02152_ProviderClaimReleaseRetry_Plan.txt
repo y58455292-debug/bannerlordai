@@ -1,0 +1,67 @@
+BannerlordAI v0.2.10.52 - Explicit provider claim release / retry-attempt transition shadow
+
+Question
+Can retryable provider work be explicitly released from one exact claimed attempt back to PENDING so a later attempt can claim it, without timeout/steal policy or duplicate ownership?
+
+Why this gate
+- v0.2.10.50 establishes exclusive claim identity.
+- v0.2.10.51 binds provider results to that exact claim.
+- TRANSIENT_FAILURE intentionally retains the job in CLAIMED state.
+- Without an explicit release transition, a new retry attempt cannot claim the retained job.
+- Automatic timeout/steal remains intentionally forbidden until evidence justifies it.
+
+Smallest implementation
+- Runner-only; ClanAI unchanged.
+- Add exact ReleaseClaim(requestFingerprint, providerId, attemptId):
+  invalid fields -> INVALID_RELEASE;
+  missing job -> DISPATCH_JOB_NOT_FOUND;
+  job not CLAIMED -> PROVIDER_JOB_NOT_CLAIMED;
+  provider/attempt mismatch -> PROVIDER_CLAIM_MISMATCH;
+  exact active claim -> CLAIM_RELEASED:
+    state CLAIMED -> PENDING,
+    clear providerId/attemptId/claimedUtcTicks,
+    queue count unchanged.
+- Add command:
+  PATROL_DEFENSE_PROVIDER_JOB_RELEASE <requestFingerprint> <providerId> <attemptId>
+- Dedicated receipt:
+  BannerlordAI.PatrolDefenseProviderJobRelease.v1
+  requestFingerprint, providerId, attemptId,
+  releaseApplied, reason,
+  stateBefore, stateAfter,
+  queueCount,
+  externalNetworkUsed=false,
+  modelInvoked=false,
+  executionAuthorized=false,
+  zero gameplay authority.
+- No timeout, TTL, expiry, automatic release or claim stealing.
+- Existing result completion semantics remain:
+  TRANSIENT_FAILURE retains CLAIMED;
+  release is explicit controller/worker action;
+  new attempt can then claim PENDING job.
+- Sequence/job identity stays unchanged across release/reclaim.
+
+Acceptance
+A. Runner compiles; ClanAI unchanged.
+B. Fixtures:
+   exact claimed release CLAIMED->PENDING;
+   wrong provider/attempt rejected and state remains CLAIMED;
+   invalid/missing job rejected;
+   release of PENDING rejected PROVIDER_JOB_NOT_CLAIMED;
+   same release replay rejected/no mutation;
+   transient failure retains CLAIMED then exact release returns PENDING;
+   new attempt-2 claims released job;
+   job sequence/request JSON unchanged across release/reclaim;
+   SUCCESS after attempt-2 removes job;
+   zero-authority receipt.
+C. Static: no timeout/TTL/expiry/steal constants; no network/OpenAI/Apply/score/memory write.
+D. Live:
+   natural request -> claim attempt-1;
+   submit exact TRANSIENT_FAILURE result envelope attempt-1;
+   result rejected retryable=true with CLAIM_MATCHED and completion TRANSIENT_FAILURE_RETAINED, job remains claimed;
+   exact release attempt-1 -> CLAIM_RELEASED CLAIMED->PENDING;
+   claim attempt-2 -> CLAIMED;
+   no provider/model invocation; no Apply side effects.
+E. EXIT_NOSAVE integrity cleanup.
+
+Scope
+This establishes explicit retry ownership rotation only. No automatic lease expiry, retry count/backoff policy, or real provider/model call yet.

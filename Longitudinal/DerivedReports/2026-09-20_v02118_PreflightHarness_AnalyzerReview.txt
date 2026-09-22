@@ -1,0 +1,17 @@
+BannerlordAI v0.2.10.18 Preflight Harness Review
+
+Classification
+HARNESS_FALSE_NEGATIVE
+
+Observed
+- Registered validator returned nonzero during static safety checks.
+- Failing check: memory_update_candidate_append_only=false.
+- Bannerlord did not launch and no deployment occurred.
+- Candidate source contains sb.Append(",\"appendOnly\":true") and sb.Append(",\"overwritePrior\":false").
+- Candidate DLL had already compiled successfully with SHA-256 280183253D43D0E3F95E0EB8687DDB609C5322810C3920AD7B759A30AC2D3CF9.
+
+Inference
+The validator searched for the wrong escaped source-text representation. This is a bounded harness matcher defect, not evidence of a feature-code defect.
+
+Bounded repair
+Patch only the validator static append-only matcher to test the actual source representation (or robust key/flag presence). Do not change the feature binary. Re-run the same registered v0.2.10.18 action under the existing full integrity gates.

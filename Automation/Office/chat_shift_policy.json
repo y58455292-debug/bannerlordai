@@ -1,0 +1,58 @@
+{
+  "schema": "BannerlordAI.ChatShiftPolicy.v1",
+  "principle": "Office clock state changes only by explicit Front power/retirement commands. Context rollover may prepare a successor handoff but does not itself power the office off.",
+  "roles": {
+    "coder": {
+      "max_wall_minutes": 90,
+      "max_major_work_packets": 1,
+      "clockout_triggers": ["explicit Front Office offline command","explicit Front Office close command","explicit Front Office retirement command"],
+      "handoff_to": "analyzer"
+    },
+    "analyzer": {
+      "max_wall_minutes": 75,
+      "max_major_work_packets": 1,
+      "clockout_triggers": ["explicit Front Office offline command","explicit Front Office close command","explicit Front Office retirement command"],
+      "handoff_to": "front"
+    },
+    "front": {
+      "max_wall_minutes": 180,
+      "max_material_updates": 6,
+      "max_front_touches": 18,
+      "max_checkpoint_delta": 12,
+      "prepare_successor_ratio": 0.65,
+      "rotate_ratio": 0.85,
+      "clockout_triggers": ["explicit user offline mode command","explicit user close office command","explicit user Front retirement/archive preparation command"],
+      "handoff_to": "next_front"
+    },
+    "supervisor": {
+      "chat_required": false,
+      "status_surface": "local system log only unless blocker/integrity event"
+    }
+  },
+  "retirement_states": [
+    "CLOCKED_IN",
+    "CLOCKING_OUT",
+    "HANDOFF_WRITTEN",
+    "DOWNSTREAM_REVIEW_PENDING",
+    "SAFE_TO_ARCHIVE",
+    "SAFE_TO_DELETE",
+    "RETIRED"
+  ],
+  "archive_gate": {
+    "SAFE_TO_ARCHIVE_requires": [
+      "clockout report exists",
+      "current durable checkpoint is at or newer than report",
+      "raw artifact paths are preserved",
+      "FRONT/HOT context rebuilt",
+      "required downstream reviewer has acknowledged intake"
+    ],
+    "SAFE_TO_DELETE_requires": [
+      "all SAFE_TO_ARCHIVE gates",
+      "downstream semantic review complete",
+      "material lessons/policies are promoted to durable brain",
+      "Mem mirror confirmed for important durable knowledge or explicit user override",
+      "Front Office marks delete_safe=true"
+    ]
+  },
+  "ui_limitation": "The office can prepare and verify retirement, but cannot directly archive/delete ChatGPT chat threads with current tools. User performs the final UI archive/delete action."
+}

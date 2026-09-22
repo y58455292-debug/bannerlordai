@@ -1,0 +1,26 @@
+BannerlordAI v0.2.10.36 FINAL VERIFY — ACCEPT VIA HARNESS FALSE NEGATIVE
+
+Terminal validator issue
+- Product emitted a valid PatrolDefense shadow with nested recentOutcomeContext.
+- Validator checked row.banditId, but accepted PatrolDefenseShadow schema carries enemy identity under row.threat.banditId.
+- Only bandit_matches_shadow failed because of that field-name assumption.
+
+Decisive product evidence
+- Shadow threat.banditId=southern_pirates_47910.
+- Nested recentOutcomeContext.banditId=southern_pirates_47910.
+- recentOutcomeContext actorId=lord_3_12, exact current branch, retrievalContext=patrol_defense_shadow.
+- result=NONE, eventKey absent as required.
+- persistentMemoryMutation=false.
+- interpretationApplied=false; behavior/intent/score mutation=false; nativeMovementCalls=0.
+- No Apply side effects.
+- Static source proves PatrolDefenseShadow.Evaluate executes before recent-outcome lookup.
+- Receipt attachment helper is receipt-only and passed 10/10 fixtures preserving baseline fields.
+
+Independent integrity audit
+- Protected root and BLOOD FUED hashes match canonical.
+- Disposable v0.2.10.36 save removed.
+- Installed ClanAI/TestRunner restored to accepted hashes.
+- Bannerlord closed; deployment owner clear.
+
+Classification
+HARNESS_FALSE_NEGATIVE_SHADOW_BANDIT_FIELD_PATH; product milestone ACCEPTED.

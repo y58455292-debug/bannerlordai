@@ -1,0 +1,77 @@
+ClanAI v0.19D FINAL VALIDATION
+Date: 2026-09-18
+
+Session:
+D:\BannerlordAIResearch\Telemetry\ClanAI\sessions\ClanAI_20260918_105517_707_v019D.log
+
+Final evidence:
+- 742 ClanAI session-log lines
+- 630 Behavior Delta rows
+- 37 distinct VisualWar selection events
+
+Classification:
+ACTIVE DEFENSE
+- 12 new commitments
+- 7 already active
+- 7 unproven
+
+FRONTIER DEFENSE
+- 3 new commitments
+- 4 already active
+- 0 unproven
+
+FRONTIER OFFENSE
+- 4 new commitments
+- 0 unproven
+
+Weak-vs-healthy active-defense split:
+WEAK active-defense:
+- 7 unproven
+- 1 already active
+- 0 new commitments
+
+HEALTHY active-defense:
+- 12 new commitments
+- 6 already active
+- 0 unproven
+
+Conclusion:
+The remaining active-defense failures were entirely concentrated in weak parties.
+This supports a unified priority rule: weak parties recover; VisualWar combat/frontier boosts do not compete with recovery.
+
+Rear-security:
+- 9 context refreshes
+- ~538–553 bandit parties observed
+- banditEngageCandidates = 0 throughout
+- rearSecurityEligible = 0
+- rearSecurityWeakSkips = 0
+
+Conclusion:
+Rear-security is not currently failing at score strength. It is starved upstream because no bandit EngageParty candidates reached the layer.
+
+Memory:
+- 10 WORLD_MEMORY events
+- 18 MEMORY_SCORE_PROBE records
+- 0 wouldFlip=True
+Real event memory continues to populate/retrieve, but no real behavior flip yet.
+
+Diagnostics:
+- repeatsSuppressed reached 10
+- weakFrontierSkips reached 166
+- permanent per-session logging worked correctly
+- save events preserved:
+  NOBLE_MEMORY_SAVE records=166
+  SOCIAL_LEDGER_SAVE records=390
+
+v0.19E next question:
+Count ALL EngageParty candidates and target types:
+- engagePartyCandidates
+- engagePartyMobileTargets
+- engagePartyNonBanditTargets
+- banditEngageCandidates
+
+Decision tree:
+A) engagePartyCandidates == 0 -> no EngageParty candidates reach this hook.
+B) EngageParty exists but banditEngageCandidates == 0 -> native candidate generation excludes bandits here.
+C) bandit candidates exist but rearSecurityEligible == 0 -> readiness/size gating.
+D) eligible candidates exist but no winner changes -> scoring competition.

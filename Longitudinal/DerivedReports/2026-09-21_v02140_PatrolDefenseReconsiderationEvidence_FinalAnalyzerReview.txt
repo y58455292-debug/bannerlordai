@@ -1,0 +1,23 @@
+BannerlordAI v0.2.10.40 FINAL VERIFY — ACCEPT
+
+Decisive evidence
+- Runner compiled with 0 errors; ClanAI reused unchanged.
+- Reconsideration fixture matrix passed 31/31:
+  first observation, exact repeat, volatile-age exclusion, current-threat change,
+  persistent-memory change, recent-outcome change, identity change,
+  present/null transitions, reset behavior, receipt-only attachment.
+- Natural Manan PatrolDefense shadow emitted BannerlordAI.PatrolDefenseReconsiderationEvidence.v1.
+- firstObservation=true.
+- factualContextChanged=false.
+- reconsiderationCandidate=true.
+- changedComponents=[].
+- previous identity/currentThreat fingerprints were null.
+- current identity and currentThreat fingerprints were valid 64-char SHA-256 hex values.
+- All live checks passed; no Apply side effects.
+- interpretationApplied=false; behavior/intent/score mutation=false; nativeMovementCalls=0.
+- Protected saves matched, disposable cleaned, accepted binaries restored, lease released.
+
+Classification: ACCEPT.
+
+Architecture meaning
+PatrolDefense now exposes an event-driven factual deliberation boundary. Expensive reasoning can later be scheduled only when first observed or when stable actor-known facts change. Volatile currentCampaignHours/memoryAgeHours/outcomeAgeHours are deliberately excluded so time passage alone does not create churn.

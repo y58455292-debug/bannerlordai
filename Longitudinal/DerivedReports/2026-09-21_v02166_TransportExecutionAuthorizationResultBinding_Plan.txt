@@ -1,0 +1,45 @@
+BannerlordAI v0.2.10.66 - Exact transport-execution-authorization-bound result provenance shadow
+
+Question
+Can the exact transportExecutionAuthorizationId and attempt ordinal be carried through transport receipt/result and independently re-matched by runtime before advisory admission, so stale transport executions under one executionPolicyId cannot consume the job?
+
+Why this gate
+- v0.2.10.64 created bounded transport-execution authorizations.
+- v0.2.10.65 binds timeoutMs into that authorization.
+- Current TransportReceipt.v3 and ProviderResult.v4 bind executionPolicyId but do not echo transportExecutionAuthorizationId.
+- With maxAttempts > 1, an older authorized execution can therefore be indistinguishable from the latest authorized execution at result admission.
+- Exact authorization provenance is required before real concurrent/retrying external transport is safe.
+
+Smallest implementation
+- Runner + deterministic loopback; ClanAI unchanged.
+- Reuse active job LastTransportExecutionAuthorizationId and LastTransportExecutionAttemptOrdinal.
+- Add exact runtime matcher for requestFingerprint + executionPolicyId + transportExecutionAuthorizationId + attemptOrdinal.
+- Introduce new strict transport/result path without changing accepted v4 behavior:
+  TransportReceipt.v4 includes transportExecutionAuthorizationId + transportExecutionAttemptOrdinal.
+  ProviderResult.v5 includes the same fields.
+  Runtime binding/admission independently matches the exact latest registered authorization before result hash/size/advisory admission.
+- Deterministic loopback-v66 carries the exact consumed authorization ID/ordinal into both receipt and result.
+- Fail closed on missing/wrong authorization ID, ordinal mismatch, policy/fingerprint mismatch, receipt/result disagreement.
+- maxAttempts and timeoutMs authorization behavior remain unchanged.
+
+Acceptance
+A. Runner compiles; ClanAI unchanged; v1-v4 accepted paths stay fixture-green.
+B. New fixtures with maxAttempts=2:
+   auth1 ordinal1 then auth2 ordinal2;
+   stale auth1-bound result rejected while job retained;
+   exact auth2-bound result accepted;
+   wrong/missing auth ID/ordinal rejected;
+   receipt/result auth provenance disagreement rejected;
+   exact hash/size/policy ordering remains intact;
+   replay after completion job-missing.
+C. Deterministic loopback-v66 emits exact authorization ID/ordinal in receipt/result and rejects tampered authorization provenance; no network/model.
+D. Live bounded proof:
+   use registered maxAttempts=2 and timeoutMs=1000;
+   authorize ordinal1, then ordinal2;
+   submit stale ordinal1 result -> reject authorization mismatch with job retained;
+   submit exact ordinal2 result -> KEEP_BASELINE -> SUCCESS_ACKED 1->0;
+   replay job-missing.
+E. EXIT_NOSAVE cleanup and zero gameplay authority.
+
+Scope
+This closes within-policy stale transport-execution result concurrency. It does not add real provider/network execution or real elapsed-time cancellation. credentialRef remains opaque.

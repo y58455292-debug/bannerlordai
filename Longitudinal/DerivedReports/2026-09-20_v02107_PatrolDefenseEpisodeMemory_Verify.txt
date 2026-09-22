@@ -1,0 +1,33 @@
+BannerlordAI — v0.2.10.7 Patrol-Defense Episode Memory — Front VERIFY
+Date: 2026-09-20 Pacific
+Classification: PASS
+Semantic result: ACCEPTED_PATROL_DEFENSE_EPISODE_MEMORY_PERSISTENCE
+
+COMBINED RAW AUTHORITY
+1) Real live stage-1 episode capture:
+   D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02107_EpisodeMemory_20260920_025020_368976\validation.json
+   - Real defense episode #1: southern_pirates_47910.
+   - Real defense episode #2: mountain_bandits_48928.
+   - Each produced its own immutable PatrolDefense memory record and identity-specific pre-save retrieval.
+   - Native SaveAs persisted 4 total branch episodes and fresh reload restored records=4 with the exact same branchId.
+   - Initial post-reload lookup failure was later proven to be a harness race: lookup was sent ~2.64s before DYNASTY_BRANCH_EPISODE_SESSION_READY restored=True.
+
+2) Deterministic persistence-only proof using those exact real episode facts:
+   D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02107_PersistenceOnly_20260920_031854_128596\validation.json
+   - Seeded exact real v0.2.10.7 episode facts only through the public patrol-memory API; zero movement/score writes.
+   - Pre-save identity retrieval returned two distinct episode IDs:
+     southern_pirates_47910 -> a5ccb00c713441589f3257284391ca6a
+     mountain_bandits_48928 -> 40a006986deb4743bb02deec6050eeb8
+   - Guarded native SaveAs wrote a disposable branch.
+   - Full EXIT_NOSAVE and fresh Bannerlord process restart.
+   - Stage2 waited for DYNASTY_BRANCH_EPISODE_SESSION_READY records=2 restored=True with same branchId.
+   - Post-reload identity retrieval returned the exact same two episode IDs, still separately addressable by settlement + bandit identity.
+   - actorValid=true, branchValid=true, identityValid=true, futureLeak=false, scoreMutation=false.
+   - Protected saves unchanged; disposable saves cleaned; accepted ClanAI/runner restored; lease released; Bannerlord closed.
+
+SCOPE
+- Accepted: patrol-defense episodes can become immutable actor/branch/time-valid memories keyed by settlement + enemy party identity; those memories survive native save/full restart and remain separately retrievable.
+- Not yet accepted: memory influencing patrol-defense behavior, threat priority, pursuit persistence, or strategic scores.
+
+NEXT
+- v0.2.10.8 known-enemy recognition shadow: on a later threat observation, retrieve prior patrol-defense memory for the observed bandit and emit KNOWN_ENEMY / NEW_ENEMY recognition with provenance and memory age, while making zero movement/intent/score changes.

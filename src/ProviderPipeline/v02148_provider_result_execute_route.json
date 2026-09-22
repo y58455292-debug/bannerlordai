@@ -1,0 +1,17 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002148_ProviderResultEnvelope_20260921_1436\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "B539B094C998C80D2F62509C07AAFBC4F97D22D7655BCC003AF5B117A0D0F497",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02148_provider_result_envelope.py",
+    "validator_sha256": "8FBA648833EB31697EC0FB796A38DF1EB0029213B1CD446EC18E62A715B3E17D",
+    "compile_result": "PASS_RUNNER_0_ERRORS_CLANAI_REUSED_V02138",
+    "isolated_fixture_result": "PASS_FIXTURES checks=121",
+    "static_zero_authority_checks": "PASS",
+    "provider_result_contract": "STRICT_PROVIDER_ATTEMPT_FINGERPRINT_STATUS_ADVISORY"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.48 bounded live provider-result-envelope gate. Natural outbox request -> synthetic external SUCCESS result envelope with providerId/attemptId/exact fingerprint/base64 KEEP_BASELINE advisory -> providerResultAccepted=true with nested strict advisory admission -> immediate identical replay rejects NO_PENDING_ROUTE_REQUEST; provider invocation stream empty, model/network/execution flags false, no Apply side effects, full cleanup.",
+  "blockers": []
+}

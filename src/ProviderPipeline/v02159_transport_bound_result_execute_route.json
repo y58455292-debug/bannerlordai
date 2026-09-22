@@ -1,0 +1,23 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002159_TransportBoundResultV3_20260921_1658\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "3445F0843F2CB739641CF5448E011D97CC385DD85C2B0FAC80B912473ED5EAED",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02159_transport_bound_result_v3.py",
+    "validator_sha256": "59A0383CA746FAF53C7AC081CCB765C8513A0623FB8D1333326E3E6EE07FB739",
+    "transport_v3_helper": "D:\\BannerlordAIResearch\\workspace\\provider_transport_loopback_v02159.py",
+    "transport_v3_helper_sha256": "9D06FEC6FA90EFDD4728A96F0878CA0D6CBAB4809F54D5D6B5921956487983A5",
+    "provider_result_v3_source_sha256": "BBBC3138D984C50E1A0D978B66FC69E3002DF34EBE034A7DA773C9ED20CF4728",
+    "compile_result": "PASS_RUNNER_0_ERRORS_CLANAI_REUSED_V02138",
+    "backcompat_fixture_result": "PASS_FIXTURES checks=225",
+    "v3_fixture_result": "PASS_V3_FIXTURES checks=40",
+    "provider_request_contract_fixture_result": "PASS_FIXTURES checks=49",
+    "transport_v3_fixture_result": "PASS_FIXTURES checks=73",
+    "result_binding": "CLAIM_PLUS_PROVIDER_REQUEST_PLUS_TRANSPORT_REQUEST",
+    "network_model_policy": "NO_NETWORK_NO_MODEL_CALL"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.59 bounded live transport-bound ProviderResult.v3 gate. Natural request -> exact claim -> providerRequest registration -> transportRequest registration -> deterministic v3 loopback echoes providerRequestId+transportRequestId -> runtime must report CLAIM_MATCHED / PROVIDER_REQUEST_MATCHED / TRANSPORT_REQUEST_MATCHED -> KEEP_BASELINE admitted -> SUCCESS_ACKED queue 1->0 -> replay DISPATCH_JOB_NOT_FOUND; provider invocation stream empty, no network/model/Apply authority, full cleanup.",
+  "blockers": []
+}

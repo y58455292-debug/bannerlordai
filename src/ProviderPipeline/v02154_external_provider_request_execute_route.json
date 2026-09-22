@@ -1,0 +1,20 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002152_ProviderClaimRelease_20260921_1510\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "CECAFBCD366E82A50D16A803621909E3C930A8BB62A5BC432FF3B4377B0424B8",
+    "provider_request_contract": "D:\\BannerlordAIResearch\\workspace\\provider_request_contract_v02154.py",
+    "provider_request_contract_sha256": "489387409EDA11BE2B8EA7F4CBA1449AA4B9E6C249B4AC440016EBA5A4071C07",
+    "provider_request_fixtures": "D:\\BannerlordAIResearch\\workspace\\test_provider_request_contract_v02154.py",
+    "provider_request_fixtures_sha256": "EBFFED4C4DF7C808CF7A4A8DEE4055CC39EA6ED2C28409BDF90ADA87BB32DB36",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02154_external_provider_request_envelope.py",
+    "validator_sha256": "187641F1932D75CBDD08BEB3D981100AD1EA274C520013FA2B358D1EC6C124E9",
+    "feature_binary_reuse": "UNCHANGED_V02152",
+    "isolated_fixture_result": "PASS_FIXTURES checks=49",
+    "network_model_policy": "NO_NETWORK_NO_MODEL_CALL"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.54 unchanged-binary external provider-request provenance gate. Natural request -> exact claim attempt-1 -> external worker builds strict provider/model/attempt/prompt/response-schema envelope from raw outbox deliberation JSON bytes; independently verify exact base64 bytes and inputSha256; no provider result submission, provider invocation/result streams remain empty, zero network/model/gameplay authority, full cleanup.",
+  "blockers": []
+}

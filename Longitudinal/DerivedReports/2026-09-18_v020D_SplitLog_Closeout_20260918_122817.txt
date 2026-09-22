@@ -1,0 +1,25 @@
+BANNERLORDAI - v0.20D SPLIT-LOG CLOSEOUT
+Recorded: 2026-09-18T12:29:55.474036-07:00
+Status: RECORDED_FILE_CONSISTENCY_PASS; NEW_TEST_SAVE_RELOAD_PENDING; PERFORMANCE_EFFECT_UNPROVEN.
+Game process absence verified after the user completed the test. No game input, launch, build deployment, source edit or save overwrite was performed in this closeout.
+Save: ClanAI v020D DIAGNOSTIC TEST.sav; SHA256 A3DAA0C37C0F8F6966DFB6DB2A57002BED70978A6C253F29DF395F171F9043AC. The separate test filename uses spaces, not underscores.
+Checkpoint: D:\BannerlordAIResearch\Longitudinal\SaveCheckpoints\20260918_122817_v020d_split_log_validation
+Parent: D:\BannerlordAIResearch\Longitudinal\SaveCheckpoints\20260918_114200_v020c_diagnostic_lifecycle; world memory proof.sav remains 3FF4154175A5054D5B19ED6FC7E3D7452F864E0091B7F024E6444807F1BEF323. Both versions are preserved.
+Installed: ClanAI v0.20D-review 4EC3E5907E06053BE2C36782A2C181182D95D1DD731B3252E5BDC41F40FAB770; Inspector v0.32 hash unchanged.
+Validation: All 66 recorded-file checks passed on frozen inputs. Checker SHA256 64638DF6423151F93E69D6DECB8E430BA857B3E1663E473C2A5CD51162E6EB3E. Its eight synthetic regression tests were rerun locally and passed.
+Integrity: All 497 dedicated ClanAI lines appear exactly once in its own aggregate. All 365 behavior event IDs appear exactly once in the matching Inspector segment; valid prefixes, no D ClanAI records mixed into that segment.
+Diagnostics: 20 consecutive complete snapshots; real performance and recorder JSON; save_followup and terminal game_end present. All recorded diagnostic failure counts zero.
+Final counters: calls=220932; weak bandit Engage suppressions=1025; healthy bandit Engage passes=649; weak bandit non-Engage=712. [session.log:497; diagnostics.txt:174]
+Save counters: 220763/1025/648/712. The terminal boundary adds 169 calls and one healthy pass after serialization; do not present terminal totals as the exact saved-state boundary. [session.log:496-497]
+Save callbacks: noble memory=215; social ledger=647. Reloading THIS test save remains pending; these are expected counts, not yet confirmed restoration. [session.log:494-495]
+CSV counts: behavior=365; candidates=2924; nearby parties=4240; nearby settlements=814; radius deltas=1865. Consecutive event IDs, no orphan references or malformed rows; all match terminal recorder totals. [split_log_check.json]
+Campaign dates observed in event CSV: Autumn 5-7, 1084. Do not substitute capture timestamps for event dates.
+Post-shutdown health: requests=writtenCalls=1032; pending=0; threadAlive=False; stopping=True; drainCompleted=True. All reported write failure/fallback/timeout fields zero. [diagnostics.finalhealth.txt:3-5]
+Engine startup-error scan: no ERROR:, Cannot load:, or Could not load file or assembly matches in frozen rgl_log_24432.txt. This is not exhaustive exception coverage.
+Limits: Consistency validates these recorded files, not every possible event, durable exactly-once delivery, gameplay improvement or performance neutrality. Historical damaged C segments remain unmodified and excluded.
+Next: Reopen through the regular managed launcher, load ClanAI v020D DIAGNOSTIC TEST, pause, and verify 215 noble / 647 social restoration and D session identity. Do not use Launcher.Native or overwrite either save.
+Handoff: HOT was already denied replacement by Windows in the preceding turn. No retry, alternate overwrite or permission change was attempted. HOT/current/catalog/GLOBAL stayed unchanged; pending_context_update.json contains the proposed compact update.
+Communication preference: keep chat progress replies short; store detailed evidence in reports.
+Evidence: D:\BannerlordAIResearch\Longitudinal\SaveCheckpoints\20260918_122817_v020d_split_log_validation\manifest.json
+Checker result: D:\BannerlordAIResearch\Longitudinal\SaveCheckpoints\20260918_122817_v020d_split_log_validation\split_log_check.json
+Line aliases: session.log and diagnostics.txt refer to frozen_evidence/clanai/ClanAI_20260918_191706_386_v020D_review with their corresponding extensions. Inspector session original lines 182995-183652.

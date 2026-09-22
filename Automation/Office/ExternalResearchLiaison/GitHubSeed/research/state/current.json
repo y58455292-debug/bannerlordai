@@ -1,0 +1,33 @@
+{
+  "schema": "BannerlordAI.ExternalResearchLiaisonState.v1",
+  "updated_at": "2026-09-20T04:45:00-07:00",
+  "coordinator": "BannerlordAI Front Office",
+  "authority": "RESEARCH_ONLY",
+  "project_checkpoint_seen": 148,
+  "current_project_milestone": "v0.2.10.9-live-observation-recognition-soak",
+  "active_core_candidate": "v0.2.10.10-natural-mixed-identity-recognition-soak",
+  "primary_research_task": {
+    "id": "A1",
+    "title": "Party/group identity persistence",
+    "status": "READY_TO_CLAIM",
+    "question": "What identity model safely distinguishes same party instance, same organization/leader lineage, and genuinely new group across Bannerlord save/reload/despawn/reformation?"
+  },
+  "support_research_task": {
+    "id": "A2",
+    "title": "Familiarity vs episodic memory",
+    "status": "READY_TO_CLAIM"
+  },
+  "evidence_pointers": [
+    "docs/CURRENT_STATE.md",
+    "docs/ARCHITECTURE_PRIMER.md",
+    "docs/RESEARCH_ROADMAP.md"
+  ],
+  "blockers": [],
+  "next_action": "Claim A1, create a research issue/branch, map Bannerlord party identity semantics using authoritative/local/public evidence, and produce the first research packet before proposing implementation.",
+  "rules": [
+    "Do not control live Bannerlord.",
+    "Do not promote findings directly to production doctrine.",
+    "Keep large cache external; commit distilled artifacts.",
+    "Checkpoint this file when the question, findings, blocker, or next action changes materially."
+  ]
+}

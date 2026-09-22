@@ -1,0 +1,18 @@
+DEEPASTRA — FUTURE REFERENCE ONLY
+Date saved: 2026-09-18
+Repository: https://github.com/ItsssssJack/DeepAstra
+
+Why saved:
+- Demonstrates a main-assistant -> bounded task brief -> DeepSeek worker -> main-assistant review pattern.
+- Uses Codex CLI as the worker harness rather than DeepSeek Harness.
+- Supports isolated project directories, file/shell work, image references, run status, timeouts, and provider/cost tracking.
+- Relevant to BannerlordAI's future "total improvement" research-worker architecture.
+
+Do not activate now.
+Current priority remains Bannerlord AI core behavior engineering.
+
+Potential future comparison:
+1. DeepSeek Harness
+2. DeepAstra/Codex delegation
+3. Our own lightweight job bridge
+Compare safety, cost, reproducibility, tool control, evidence traceability, and maintenance burden before choosing.

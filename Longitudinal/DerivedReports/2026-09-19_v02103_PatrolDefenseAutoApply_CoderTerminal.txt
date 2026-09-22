@@ -1,0 +1,27 @@
+BannerlordAI — v0.2.10.3 Patrol Defense Auto Apply — Coder Terminal Packet
+Date: 2026-09-19
+Coder terminal status: VALIDATOR_FAIL_POST_COMPLETION_HARNESS_BUG
+Semantic candidate for Analyzer: HARNESS_FALSE_NEGATIVE / behavior proof passed
+
+Raw authority:
+- D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02103_AutoApply_20260919_230102_295195\validation.json
+- D:\BannerlordAIResearch\Automation\TestRunner\patrol_defense_apply.jsonl
+- D:\BannerlordAIResearch\Automation\TestRunner\patrol_defense_shadow.jsonl
+- D:\BannerlordAIResearch\Automation\TestRunner\runner.log
+
+Observed before validator summary failure:
+- Fresh safe proposal carried proposalId, proposalFingerprint, settlement, bandit, victim, and campaignHours.
+- One automatic ENGAGE_ISSUED used SetMoveEngageParty on southern_pirates_47910 with exact proposal provenance.
+- One PATROL_RESTORED used SetMovePatrolAroundSettlement town_ES7 after bounded_timeout.
+- engage_count=1; restore_count=1.
+- All 14 acceptance checks in validation.json are true.
+- scoreMutation=false and nativeScoreWrites=0 on engage and restore.
+- Protected root/BLOOD FUED/disposable clone hashes matched.
+- EXIT_NOSAVE completed, disposable save cleaned, accepted runner restored, causal config Observe, deployment lease released.
+
+Harness failure:
+- After completed_local and lease release were already written, final print referenced obsolete variable threat_receipts.
+- Exception: NameError: name 'threat_receipts' is not defined.
+- Exception handler then overwrote validation result to FAIL.
+- Harness source was fixed offline to print engageCount/restoreCount/proposalId and py_compile passes.
+- Do not rerun live solely for this print bug unless Analyzer decides raw evidence is insufficient.

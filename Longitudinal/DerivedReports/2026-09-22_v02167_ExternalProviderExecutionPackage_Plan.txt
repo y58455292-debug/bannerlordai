@@ -1,0 +1,41 @@
+BannerlordAI v0.2.10.67 - External provider execution-package / adapter-boundary shadow
+
+Question
+Can the external worker receive one strict, byte-auditable execution package containing the exact approved request, transport, execution policy and latest transport-execution authorization, validate it before any provider call, and pass only validated work to a pluggable provider adapter?
+
+Why this gate
+- v0.2.10.54-.66 prove the request -> claim -> provider request -> transport -> policy -> execution authorization -> authorization-bound result chain.
+- Runtime stale-result, retry, hash, size, attempts and timeout provenance are now closed.
+- Before a real model call, the external adapter must receive exactly the already-authorized work and bounds rather than reconstructing loose state.
+- This can be proven on unchanged accepted runtime binaries without reading a credential or using the network.
+
+Smallest implementation
+- Reuse the accepted v0.2.10.66 game/runner binary unchanged.
+- Add external Python ProviderExecutionPackage.v1 builder/validator.
+- Package contains exact providerRequest JSON bytes + providerRequestId/inputSha256.
+- Package contains exact transport request bytes + transportRequestId.
+- Package contains executionPolicyId + timeoutMs/maxAttempts/maxResultBytes/credentialRef.
+- Package contains latest transportExecutionAuthorizationId + attemptOrdinal/attemptCount.
+- Package contains providerId/modelId/promptContractVersion/responseSchema.
+- Compute executionPackageId as SHA-256 over canonical length-delimited exact component bytes/IDs.
+- Strict validation independently re-hashes request bytes and checks all identity fields, policy bounds and latest authorization.
+- credentialRef stays opaque metadata; no environment value is read.
+- Define a provider-adapter interface; deterministic adapter consumes only a validated package and returns accepted TransportReceipt.v4 + ProviderResult.v5 shapes.
+- Adapter is never invoked if package validation fails.
+- No HTTP/socket/provider SDK/model call.
+
+Acceptance
+A. Accepted v0.2.10.66 runner reused unchanged.
+B. Package fixtures: exact package validates and executionPackageId is stable.
+C. Changed request bytes/hash/provider/model/transport/policy/auth ID/ordinal/bounds reject.
+D. Stale auth1 package rejects when auth2 is designated latest; unknown fields reject; credentialRef is never resolved/read.
+E. Adapter fixtures: deterministic adapter receives only validated package and emits exact v4/v5 carrying auth2 ID/ordinal; tampered/unvalidated package cannot invoke adapter.
+F. Bounded live integration on unchanged runner:
+   natural route -> claim -> exact registrations -> maxAttempts=2 -> auth1 then auth2;
+   external worker builds/validates exact auth2 execution package;
+   deterministic adapter emits v4/v5;
+   runtime admits exact auth2 -> KEEP_BASELINE -> SUCCESS_ACKED 1->0 -> replay job-missing.
+G. Full EXIT_NOSAVE cleanup.
+
+Scope
+This is the final generic adapter/input boundary before provider-specific execution. It does not choose a provider, read credentials, or make a network/model call. Provider-specific configuration/authorization is the next user-dependent boundary.

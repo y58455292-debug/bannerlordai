@@ -1,0 +1,22 @@
+v0.2.10.20 FINAL VERIFY — ACCEPT
+
+Scope accepted
+Read-only temporal/provenance history context over multiple persisted PatrolDefense episodes for the exact same actor/branch/settlement/enemy identity.
+
+Decisive evidence
+- Validation-only synthetic identity v02120_fixture_enemy was used only to remove environmental randomness from the acceptance harness.
+- Two PatrolDefense episodes were recorded at actual CampaignTime.Now values separated by real campaign advancement.
+- Pre-save history receipt returned episodeCount=2 with exact oldest/previous/latest identities and orderedEpisodeIds=[episode1, episode2].
+- historySpanHours and latestIntervalHours were positive and internally consistent.
+- Native SaveAs persisted the fixture.
+- Fresh Bannerlord process restart restored the same branch and exact two-episode history.
+- Post-restart history receipt preserved count, ordering, oldest/latest IDs, and the same history span.
+- interpretationApplied=false; behaviorMutation=false; intentMutation=false; scoreMutation=false; nativeMovementCalls=0.
+- No PatrolDefense apply side effects.
+- Protected saves matched, disposable saves were cleaned, accepted ClanAI/TestRunner binaries restored, deployment lease released.
+
+Important scope boundary
+v0.2.10.20 proves temporal/provenance context (count, ordering, recency/span/interval). It does NOT yet claim semantic interpretation or multi-episode factual-state trend aggregation.
+
+Classification
+ACCEPTED_TEMPORAL_HISTORY_CONTEXT_SHADOW

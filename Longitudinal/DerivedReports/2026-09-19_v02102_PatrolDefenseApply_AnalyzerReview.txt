@@ -1,0 +1,37 @@
+BannerlordAI — v0.2.10.2 Patrol Defense Apply — Analyzer Semantic Review
+Date: 2026-09-19
+Scope: PASS_PATROL_LOCAL_DEFENSE_APPLY / v0.2.10.2 only
+Final classification: PASS
+Semantic result: ACCEPTED_PATROL_LOCAL_DEFENSE_APPLY
+
+RAW AUTHORITY
+- D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02102_Apply_20260919_221539_445877\validation.json
+- D:\BannerlordAIResearch\Automation\TestRunner\patrol_defense_apply.jsonl
+- D:\BannerlordAIResearch\Automation\TestRunner\patrol_defense_shadow.jsonl
+- D:\BannerlordAIResearch\Automation\TestRunner\runner.log
+- D:\BannerlordAIResearch\workspace\_PatchStaging\AutonomousOperator_v002102_PatrolDefenseApply_20260919_2208\candidate
+
+OBSERVED
+- Exact-load context was Manan at Syronea (town_ES7), with the accepted patrol-defense observer active.
+- The live observer again found Corsairs southern_pirates_47910 threatening Fishers of Vargornis and returned wouldInterrupt=true / safeToIntervene=true.
+- Apply receipts contain two ARMED control rows, exactly one ENGAGE_ISSUED row, and exactly one PATROL_RESTORED row.
+- ENGAGE_ISSUED records nativeCall=SetMoveEngageParty; TargetParty and ShortTermTargetParty both equal southern_pirates_47910.
+- PATROL_RESTORED occurs after the 15-second bounded timeout and records nativeCall=SetMovePatrolAroundSettlement with party targets cleared.
+- Both action receipts record scoreMutation=false and nativeScoreWrites=0.
+- Candidate integration evaluates PatrolDefenseShadow.Evaluate(target) and passes that exact result directly to PatrolDefenseApplyGate.TryIssue(result,target) on the same scan tick.
+- Tested candidate DLL SHA256=092E18A27383A3B6FF568ECE3BC412917E80A00326809F03A72A0A847E5F8AC9; installed runner is restored to EB164E99D7075907F34BD4C6EB32C1EA5E8419FA6A62242C175CB8B2A10F9802.
+- Protected root/BLOOD FUED/clone hashes match; disposable save cleaned; causal config remained Observe; Coder completion checker passes; follow-protocol reports Bannerlord closed and owner=null.
+SEMANTIC CONCLUSION
+- PASS: the bounded test gate proved one real native defensive engage command against the exact observed bandit and one bounded restoration to the original Syronea patrol, without score writes or save drift.
+- This is a test-command-gated execution proof. It does not yet prove autonomous production triggering, battle initiation/outcome, or restoration caused by actual threat resolution.
+- Runner timing shows two successive observer receipts for the same named threatened villager with different transient victim StringIds (player_faction_1 then player_faction_47784). This does not break bandit-target causality because the hashed candidate passes the same-tick proposal directly into TryIssue and the Apply gate resolves the exact proposal BanditId, but the Apply receipt does not preserve victim/proposal provenance.
+
+NEXT SMALLEST ACCEPTANCE GATE
+- v0.2.10.3 should bind execution to a fresh proposal identity: persist proposal fingerprint/id plus settlementId, banditId, victimId, and proposal campaignHours into the ENGAGE receipt.
+- On the disposable exact-load branch, enable one feature-scoped automatic Apply trigger from a fresh safe proposal without the external PATROL_DEFENSE_APPLY_ONCE command; reject stale/mismatched proposals and allow no second native engage while active.
+- Restore PATROL_SETTLEMENT:town_ES7 on bandit disappearance/resolution or the existing bounded timeout, then EXIT_NOSAVE and re-verify protected saves, Observe/default config, accepted runner restoration, owner release, and zero native score writes.
+
+DURABLE UPDATE
+- Architecture lesson warranted: bounded patrol defense can be implemented as a recoverable native movement interrupt layered behind local eligibility, but execution receipts should carry the proposal provenance needed for semantic audit.
+- No new standing policy is required; existing observe-before-apply, causal-proof, bounded-intervention, single-owner, and save-integrity rules already cover the next gate.
+- Do not rerun v0.2.10.2 unchanged solely to re-prove explicit one-shot SetMoveEngageParty plus timeout patrol restoration.

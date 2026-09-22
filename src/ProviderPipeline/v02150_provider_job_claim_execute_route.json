@@ -1,0 +1,17 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002150_ProviderJobClaim_20260921_1457\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "8FE355CDA2A4A70091E985432F86DF146235924BA905AE7344928C6511C3B7AF",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02150_provider_job_claim.py",
+    "validator_sha256": "5C61546B2BB66A15C67D54989CF8CE2A4761EBBD5C445D0F31ED99796CFF44B7",
+    "compile_result": "PASS_RUNNER_0_ERRORS_CLANAI_REUSED_V02138",
+    "isolated_fixture_result": "PASS_FIXTURES checks=147",
+    "static_zero_authority_checks": "PASS",
+    "claim_policy": "EXCLUSIVE_PROVIDER_ATTEMPT_NO_TIMEOUT_NO_STEAL"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.50 bounded live provider job claim gate. Natural request must enqueue one job; exact claim deterministic_external_worker/attempt-1 must PENDING->CLAIMED, identical claim replay must be idempotent with original claimedUtcTicks, competing attempt-2 must reject ALREADY_CLAIMED; provider invocation stream empty, no timeout/steal/network/model/execution/gameplay authority, full cleanup.",
+  "blockers": []
+}

@@ -1,0 +1,63 @@
+BANNERLORDAI — DYNASTY ARCHIVE RECOVERY MAP
+Date: 2026-09-18 Pacific
+
+Recovered campaign/story lineage:
+A. Original campaign chronicle archive
+  C:\Users\csala\Documents\Codex\2026-09-13\realtime-voice-chat\work\chronicle-archive\
+  Evidence report says earliest accessible thread spans 251 turns / 493 messages / 26 pages.
+  Structured index:
+  C:\Users\csala\Documents\Codex\2026-09-13\realtime-voice-chat\outputs\Chronicle-Source-Index.json
+  Campaign synthesis:
+  ...\outputs\campaign-record.json
+  Reference:
+  ...\outputs\Campaign-Reference.md
+
+B. Early reconstructed book chapter
+  C:\Users\csala\Documents\Codex\2026-09-13\realtime-voice-chat\outputs\Nethors-Law-1124.md
+  Companion source notes:
+  ...\outputs\Nethors-Law-1124-Source-Notes.md
+  This is a Manan-first-person literary reconstruction through Winter 4, 1124 with explicit separation of factual campaign events from invented dialogue/interiority.
+
+C. Later official canon edition
+  Nethors_Law_Official_Canon_Edition_Spring_1135.docx in ChatGPT Library.
+  This edition integrates stable IDs, 1,928 native history entries, master chronology/event ledger, blood-feud evidence, and frozen Spring 5 1135 world-state.
+Recovered old custom-book concept:
+Chronicle archive page-004 contains the chat where the title changed to NETHOR'S LAW / The Private Chronicle of House Calastides.
+Important authored principles/voice material include:
+- Nethor's Dynasty = what the family becomes; Nethor's Law = what prevents them forgetting why.
+- family before ambition / power must create security / wealth is a shield not an identity
+- successors may add their truth but never erase prior keepers' words
+- book is private family guidance, not propaganda
+These are literary/personality evidence, not observed campaign facts.
+
+Campaign-player chronology:
+- Founder/player first: Nethor, husband of Manan, father of Vadrios.
+- Control later transfers Nethor -> Manan, then Manan -> Vadrios.
+- Later book editions often use Manan as first narrator because she looks back on Nethor; narrator order must never be confused with original player-control order.
+
+Dynasty-specific objective evidence on PC:
+D:\BannerlordAIResearch\workspace\BannerlordInspector\mcp\vadrios_native_history.json
+  1,928 retained native entries, Summer 5 1075 through Spring 5 1135.
+D:\BannerlordAIResearch\workspace\BannerlordInspector\mcp\vadrios_pause_military.json
+D:\BannerlordAIResearch\workspace\BannerlordInspector\mcp\vadrios_pause_economy.json
+D:\BannerlordAIResearch\workspace\BannerlordInspector\mcp\vadrios_pause_supply.json
+D:\BannerlordAIResearch\workspace\BannerlordInspector\mcp\vadrios_pause_traffic.json
+D:\BannerlordAIResearch\workspace\BannerlordInspector\mcp\vadrios_pause_market.json
+D:\BannerlordAIResearch\workspace\BannerlordInspector\mcp\vadrios_pause_lordparties.json
+Frozen Spring 1135 census scale:
+- 57 towns in economy census
+- 307 villages in supply census; 285 normal / 3 being raided / 19 looted
+- 431 trading parties in traffic census; 132 caravans / 299 villagers / 214 moving
+- 57 towns x 7 market categories
+- 238 tracked lord parties; 182 independent / 56 in armies
+- 6 armies in military census
+
+Separate instrumentation/lab archive — DO NOT MERGE CHRONOLOGY:
+D:\BannerlordAIResearch\Archive\2026-09-15_PreRefactor\Project\BannerlordInspector-main\mcp\history\
+Contains economy/, supply/, traffic/, master/, reports/ with 169+ combined world snapshots and analyzer outputs.
+Campaign dates around Y1084 show this is a separate instrumented simulation/test context unless proven otherwise.
+Useful for tool validation and systems research, not automatic Calastides canon.
+
+Core research rule:
+Family POV/story evidence and objective world-state evidence stay separate but linked by date.
+For autonomous dynasty replays, create a date-scoped character mind from the book/archive and pair it with the exact save/world state available at that date. Future chapters remain hidden.

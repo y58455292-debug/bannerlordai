@@ -1,0 +1,26 @@
+{
+  "schema": "BannerlordAI.FrontRolloverState.v1",
+  "session_started_at": "2026-09-21T22:59:10.224784-07:00",
+  "start_checkpoint_seq": 364,
+  "front_touches": 8,
+  "material_updates": 8,
+  "updated_at": "2026-09-22T00:33:54.310175-07:00",
+  "last_checkpoint_seq": 375,
+  "checkpoint_delta": 11,
+  "age_minutes": 94.73,
+  "pressure_level": "RED",
+  "pressure_ratio": 1.3333,
+  "pressure_components": {
+    "wall_time": 0.5263,
+    "material_updates": 1.3333,
+    "front_touches": 0.4444,
+    "checkpoint_delta": 0.9167
+  },
+  "successor_ready": true,
+  "successor_handoff": "D:\\BannerlordAIResearch\\Automation\\Office\\Handoffs\\front_to_next_front.json",
+  "rotation_requested": true,
+  "forced_saturation_signal": false,
+  "activation_command": "Front watch — recover current assignment and continue.",
+  "exact_token_signal_available": false,
+  "rule": "Use conservative operational pressure proxies; keep a dormant successor packet ready at all times."
+}

@@ -1,0 +1,28 @@
+BannerlordAI v0.2.10.23 — Time-Normalized Historical Rate Context — Final Analyzer Review
+Date: 2026-09-21
+Classification: PASS / ACCEPT
+
+Candidate:
+- ClanAI SHA256: 3185175D0E5ADE57563477B34506CA98824FA669E8A5CD228AAEAC2C3FDC755A
+- TestRunner reused unchanged from accepted v0.2.10.20: DC358CADE9104717815BD1464DDDA6F27FBE15DBF77EBAF7880695D5E816704F
+- Validation: D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02123_TimeNormalizedRates_20260921_093640_644816\validation.json
+
+Decisive evidence:
+- orderedKnownByHours = [648650.9850730833, 648653.2694184722, 648655.4626283334].
+- intervalHours = [2.284345388878137, 2.193209861172363], each positive and independently equal to adjacent timestamp differences.
+- intervalRatesPerHour exactly matched accepted interval deltas divided by those exact intervals:
+  interval 1: actorStrength=-13.132865172693204, actorHealthy=-8.755243448462137, banditStrength=-2.188810862115534, banditHealthy=-2.188810862115534, ratio=-0.1591862473032527.
+  interval 2: actorStrength=-6.839290788151877, actorHealthy=-4.5595271921012515, banditStrength=-2.2797635960506257, banditHealthy=-2.2797635960506257, ratio=-0.062175367899863374.
+- oldestToLatestRatePerHour exactly matched cumulative delta/history span:
+  actorStrength=-10.050127242872652, actorHealthy=-6.700084828581768, banditStrength=-2.233361609527256, banditHealthy=-2.233361609527256, ratio=-0.1116680804763628.
+- Native SaveAs/full restart reproduced ordered hours, interval hours, interval rates, and cumulative rate exactly.
+- All preserved .20-.22 trajectory/state/delta checks remained true before save and after restart.
+- interpretationApplied=false; behaviorMutation=false; intentMutation=false; scoreMutation=false; nativeMovementCalls=0; no_apply_side_effects=true.
+- Protected saves matched, disposable fixture saves were cleaned, deployment lease released, and accepted installed binaries restored exactly.
+
+Harness note:
+- Three pre-acceptance failures were validator-only issues (stale candidate path, stale static predicate, missing inherited trajectory helper). The final retry used the same v0.2.10.23 feature binary and passed after the validator itself passed a full synthetic receipt self-test.
+
+Acceptance boundary:
+- v0.2.10.23 proves descriptive numeric change rates per campaign hour over persisted factual history.
+- It does not assign qualitative meaning such as improving/declining/dangerous/safe and does not affect memory writes, scores, intent, movement, or behavior.

@@ -1,0 +1,20 @@
+BannerlordAI v0.2.10.34 FINAL VERIFY — ACCEPT
+
+Evidence
+- ClanAI build: 0 errors.
+- Deterministic fixture suite: 80/80 PASS.
+- Append fingerprint is SHA-256 uppercase hex, 64 chars.
+- Canonical material is length-delimited exact immutable provenance:
+  branchId, actorId, banditId, targetContextId, sourceEventKey.
+- Same proposal and independently rebuilt equivalent proposal produce identical fingerprint.
+- Mutating branch, actor, bandit, target context, or source event key changes fingerprint.
+- Delimiter-like content cannot create tuple alias collisions.
+- Null/missing provenance yields no fingerprint.
+- Proposal contains no Id/EpisodeId.
+- Runtime shadow exposes appendFingerprint only through the non-null proposal path.
+- Static checks: no PatrolDefense outcome memory writer, no SyncData write, no Apply gate; memoryWriteApplied=false, persistentMemoryMutation=false, episodeIdGenerated=false.
+
+Classification: ACCEPT.
+
+Scope
+This defines future writer idempotency identity only. Persistent outcome append remains blocked on real MainHero + EXACT_UNIQUE field evidence.

@@ -1,0 +1,84 @@
+[14:02:35.731] INFO  CLAN GRAVITY NEED v0.4 party=Apolytea's Party clan=Neretzes target=Chanopsis Castle targetId=castle_ES8 behavior=GoToSettlement oldScore=0.183086 pressure=0.030042 bonusFraction=0.030042 multiplier=1.030042 newScore=0.188586 underRaid=False underSiege=False idealGarrison=117.2421 actualGarrisonStrength=113.72 garrisonDeficit=0.030042
+[14:02:35.731] INFO  CLAN GRAVITY NEED v0.4 party=Apolytea's Party clan=Neretzes target=Varagos Castle targetId=castle_EN1 behavior=GoToSettlement oldScore=0.102595 pressure=0.016736 bonusFraction=0.016736 multiplier=1.016736 newScore=0.104312 underRaid=False underSiege=False idealGarrison=117.2421 actualGarrisonStrength=115.28 garrisonDeficit=0.016736
+[14:02:35.731] INFO  CLAN GRAVITY NEED SUMMARY v0.4 party=Apolytea's Party clan=Neretzes clanTerritoryCandidates=18 needPositive=2 changed=2 formula=multiplier(1+min(0.25,pressure)) markerArmed=True
+[14:02:35.733] INFO  === AI TRACE BEGIN #7 v0.14 ===
+party=Apolytea's Party id=lord_1_1_8_party_1 leader=Apolytea
+before defaultBehavior=EscortParty targetSettlement=<null> targetParty=Gornlautir's Party
+before shortTermBehavior=GoToPoint shortTermTargetSettlement=<null> shortTermTargetParty=Gornlautir's Party
+think currentObjectiveValue=0 doNotChangeBehavior=False willGatherAnArmy=False
+strength noArmy=0 withArmy=0 sameClanNoArmy=0
+boundaryCount=7
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AIMoveToNearestLandBehavior.AiHourlyTick beforeCount=0 afterCount=0 changes=0 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiVisitSettlementBehavior.AiHourlyTick beforeCount=0 afterCount=157 changes=157 goToSettlementChanges=157
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Argoron [town_EN4] beforeScore=0 afterScore=0.498635
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Atrion Castle [castle_EN5] beforeScore=0 afterScore=0.418231
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Atrion [castle_village_EN5_1] beforeScore=0 afterScore=0.394474
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Enoisa [village_EN3_1] beforeScore=0 afterScore=0.380322
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Masangara [castle_village_EN5_2] beforeScore=0 afterScore=0.341655
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Hetania [village_EN4_4] beforeScore=0 afterScore=0.33669
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Varnovapol [town_S4] beforeScore=0 afterScore=0.323835
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Gaos [castle_village_EN4_1] beforeScore=0 afterScore=0.318962
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Gaos Castle [castle_EN4] beforeScore=0 afterScore=0.297491
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Alatys [village_EN4_2] beforeScore=0 afterScore=0.281986
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Alosea [village_EN2_1] beforeScore=0 afterScore=0.266072
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Amprela [town_EN6] beforeScore=0 afterScore=0.250696
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Crios [village_EN3_3] beforeScore=0 afterScore=0.247737
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Themys [castle_village_EN4_2] beforeScore=0 afterScore=0.244752
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Orthra [village_EN5_2] beforeScore=0 afterScore=0.244488
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Saneopa [town_EN3] beforeScore=0 afterScore=0.243329
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Jeracos [village_EN2_2] beforeScore=0 afterScore=0.240246
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Diathma [town_EN2] beforeScore=0 afterScore=0.216735
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Vealos [village_EN5_1] beforeScore=0 afterScore=0.216287
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Saldannis [village_ES6_1] beforeScore=0 afterScore=0.21482
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiLandBanditPatrollingBehavior.AiHourlyTick beforeCount=157 afterCount=157 changes=0 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiEngagePartyBehavior.AiHourlyTick beforeCount=157 afterCount=157 changes=0 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiPatrollingBehavior.AiHourlyTick beforeCount=157 afterCount=157 changes=0 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiMilitaryBehavior.AiHourlyTick beforeCount=157 afterCount=157 changes=0 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiArmyMemberBehavior.AiHourlyTick beforeCount=157 afterCount=158 changes=1 goToSettlementChanges=0
+candidateCount=158
+candidate score=20 behavior=EscortParty target=Gornlautir's Party [lord_7_14_party_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=0.498635 behavior=GoToSettlement target=Argoron [town_EN4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.418231 behavior=GoToSettlement target=Atrion Castle [castle_EN5] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.394474 behavior=GoToSettlement target=Atrion [castle_village_EN5_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.380322 behavior=GoToSettlement target=Enoisa [village_EN3_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.341655 behavior=GoToSettlement target=Masangara [castle_village_EN5_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.33669 behavior=GoToSettlement target=Hetania [village_EN4_4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.323835 behavior=GoToSettlement target=Varnovapol [town_S4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=True
+candidate score=0.318962 behavior=GoToSettlement target=Gaos [castle_village_EN4_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.297491 behavior=GoToSettlement target=Gaos Castle [castle_EN4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.281986 behavior=GoToSettlement target=Alatys [village_EN4_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.266072 behavior=GoToSettlement target=Alosea [village_EN2_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.250696 behavior=GoToSettlement target=Amprela [town_EN6] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.247737 behavior=GoToSettlement target=Crios [village_EN3_3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.244752 behavior=GoToSettlement target=Themys [castle_village_EN4_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.244488 behavior=GoToSettlement target=Orthra [village_EN5_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.243329 behavior=GoToSettlement target=Saneopa [town_EN3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.240246 behavior=GoToSettlement target=Jeracos [village_EN2_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.216735 behavior=GoToSettlement target=Diathma [town_EN2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.216287 behavior=GoToSettlement target=Vealos [village_EN5_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.21482 behavior=GoToSettlement target=Saldannis [village_ES6_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.203248 behavior=GoToSettlement target=Boreagora [village_EN6_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.202525 behavior=GoToSettlement target=Melion [castle_village_ES3_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.191122 behavior=GoToSettlement target=Avasinton [village_EN6_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.188586 behavior=GoToSettlement target=Chanopsis Castle [castle_ES8] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.182787 behavior=GoToSettlement target=Gymos [village_EN1_3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.173869 behavior=GoToSettlement target=Makeb [town_K3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=True
+candidate score=0.171814 behavior=GoToSettlement target=Popsia [castle_village_ES8_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.171097 behavior=GoToSettlement target=Syratos [castle_village_EN8_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.168843 behavior=GoToSettlement target=Rhesos [castle_village_EN3_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.168143 behavior=GoToSettlement target=Lochana [castle_village_EN2_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.167451 behavior=GoToSettlement target=Sestadaim [castle_village_ES6_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.166235 behavior=GoToSettlement target=Dyopalis [castle_village_EN3_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.165897 behavior=GoToSettlement target=Lycaron [town_ES4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.162646 behavior=GoToSettlement target=Sagolina [castle_village_ES3_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.156951 behavior=GoToSettlement target=Spotia [village_ES6_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.156456 behavior=GoToSettlement target=Samatha [village_EN5_4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.156436 behavior=GoToSettlement target=Myzea [town_EN5] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0.156116 behavior=GoToSettlement target=Gretysfjord [town_N2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=True
+candidate score=0.156052 behavior=GoToSettlement target=Sagora [village_ES4_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidateNote=top 40 by score shown; total=158
+final defaultBehavior=EscortParty targetSettlement=<null> targetParty=Gornlautir's Party
+final shortTermBehavior=GoToPoint shortTermTargetSettlement=<null> shortTermTargetParty=Gornlautir's Party moveTargetParty=<null> moveMode=Point army=Gornlautir's Army attachedTo=<null>
+=== AI TRACE END #7 ===
+[14:02:35.772] INFO  === AI STATE TRANSITION BEGIN #329 v0.14 ===
+source=MobileParty.SetShortTermBehavior caller=TaleWorlds.CampaignSystem.Party.MobilePartyAi.TickInternal duringPartyThink=False

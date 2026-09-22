@@ -1,0 +1,59 @@
+{
+  "schema": "BannerlordAI.NextRestartBundle.v1",
+  "created_unix": 1789819112.3598144,
+  "bundle_version": "v0.20R-dynasty-mind-observe",
+  "expected_campaign_id": "ZJtX6IZXozIG",
+  "target_save": "ClanAI MANAN BRANCH ROOT",
+  "expected_party_members": 213,
+  "accepted_clanai_sha256": "0DBC936234E29CE50F93107EF885090A2DF1C6C2BAB8125C51C4FE8EB4FAB363",
+  "deployment_owner": "sol_dynasty_mind_v020r_71c3",
+  "deployment_operation_id": "dynasty-mind-v020r-observe-20260919",
+  "runner_source": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v0029_KingdomDecisionBridge_20260919_035500\\candidate\\bin\\Release\\netstandard2.0",
+  "files": {
+    "runner_dll": {
+      "path": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v0029_KingdomDecisionBridge_20260919_035500\\candidate\\bin\\Release\\netstandard2.0\\BannerlordAITestRunner.dll",
+      "sha256": "C1FE635691CD7BC4F1B4CEBF0EB13114BF02F5D240B0CAA24B857324B9B0CA68"
+    },
+    "runner_pdb": {
+      "path": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v0029_KingdomDecisionBridge_20260919_035500\\candidate\\bin\\Release\\netstandard2.0\\BannerlordAITestRunner.pdb",
+      "sha256": "57CE703CECE349652C7887876DA9DECBD940A834962906997744DA9DEF8B11A6"
+    },
+    "command_bus": {
+      "path": "D:\\BannerlordAIResearch\\Automation\\Control\\command_bus.py",
+      "sha256": "606D7F22D2A438C803078FEF05CD3DFDFDFB606D4367DD27FE604063C3942DE2"
+    },
+    "desired_intent": {
+      "path": "D:\\BannerlordAIResearch\\Automation\\Control\\desired_intent.json",
+      "sha256": "3A9927D4AC9FEB6ECBF3BEAC094D1057E656D9AD84D8CE6CDDF562C78DDFDB89"
+    },
+    "low_overhead_loop": {
+      "path": "D:\\BannerlordAIResearch\\Automation\\Control\\low_overhead_live_loop.py",
+      "sha256": "0AC029307E751D7A88720D21C146118BD6F96109668AC1BED27D3845866C8D23"
+    },
+    "fast_decider": {
+      "path": "D:\\BannerlordAIResearch\\Automation\\DecisionPolicy\\fast_live_decider.py",
+      "sha256": "236E9E05FA1D333E9ED2E8163E5E9229582ED4B968A8A6CBCF3282C06B43425C"
+    },
+    "policy": {
+      "path": "D:\\BannerlordAIResearch\\Automation\\DecisionPolicy\\manan_live_policy.json",
+      "sha256": "2225818F4F1F763DF1E1225EC033D49160C6FE2DEF552856C1F7A7C6716B651D"
+    },
+    "reasoning_levels": {
+      "path": "D:\\BannerlordAIResearch\\Automation\\DecisionPolicy\\reasoning_levels.json",
+      "sha256": "4B26E54427C337B16FBD53DA0FC93D5BE78F3A0EA7C2614A50F839EE8FF8C0C6"
+    },
+    "rapid_launcher": {
+      "path": "D:\\BannerlordAIResearch\\Tools\\Operator\\rapid_manan_lab.py",
+      "sha256": "B474D908A23885C98D451DF6673AFE7001C24E41B250C934BE18888C8C2C0600"
+    }
+  },
+  "requirements": [
+    "exact Manan identity and 213 hydration",
+    "dynasty mind cutoff created at branch root",
+    "parsed 15 available 14 futureHidden 1",
+    "Manan 8 entries",
+    "scoreMutation false",
+    "EXIT_NOSAVE",
+    "protected save hashes unchanged"
+  ]
+}

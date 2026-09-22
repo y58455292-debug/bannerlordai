@@ -1,0 +1,185 @@
+{
+  "collectorVersion": "0.5",
+  "capturedAtRealTime": "2026-09-15T06:12:29.289Z",
+  "campaignTime": {
+    "year": 1084,
+    "dayOfYear": 21,
+    "season": "Summer",
+    "hour": 8,
+    "ticks": 78690851967232
+  },
+  "stringId": "town_ES7",
+  "settlementIndex": 47,
+  "prosperity": 4000,
+  "prosperityChange": -0.2,
+  "security": 51,
+  "securityChange": 1.89171278,
+  "foodStocks": 600,
+  "foodChange": -33.25,
+  "gold": 29861,
+  "loyalty": 41,
+  "loyaltyChange": 0.92,
+  "construction": 35.26,
+  "militia": 272,
+  "militiaChange": -0.8000002,
+  "tradeTaxAccumulated": 10165,
+  "workshopCount": 4,
+  "villageCount": 2,
+  "tradeBoundVillageCount": 5,
+  "garrisonCount": 285,
+  "isTown": true,
+  "isCastle": false,
+  "isUnderSiege": false,
+  "explanations": {
+    "food": {
+      "result": -33.25,
+      "base": -33.25,
+      "sumOfFactors": 0,
+      "lineCount": 12,
+      "lines": [
+        {
+          "name": "Local Farmlands",
+          "number": 15,
+          "operationType": "Add"
+        },
+        {
+          "name": "Psotai",
+          "number": 12,
+          "operationType": "Add"
+        },
+        {
+          "name": "Vargornis",
+          "number": 12,
+          "operationType": "Add"
+        },
+        {
+          "name": "Date Fruit",
+          "number": 1,
+          "operationType": "Add"
+        },
+        {
+          "name": "Olives",
+          "number": 2,
+          "operationType": "Add"
+        },
+        {
+          "name": "Grape",
+          "number": 2,
+          "operationType": "Add"
+        },
+        {
+          "name": "Butter",
+          "number": 1,
+          "operationType": "Add"
+        },
+        {
+          "name": "Fish",
+          "number": 8,
+          "operationType": "Add"
+        },
+        {
+          "name": "Cheese",
+          "number": 1,
+          "operationType": "Add"
+        },
+        {
+          "name": "Grain",
+          "number": 27,
+          "operationType": "Add"
+        },
+        {
+          "name": "Prosperity",
+          "number": -100,
+          "operationType": "Add"
+        },
+        {
+          "name": "Garrison",
+          "number": -14.25,
+          "operationType": "Add"
+        }
+      ]
+    },
+    "prosperity": {
+      "result": -0.2,
+      "base": -0.2,
+      "sumOfFactors": 0,
+      "lineCount": 2,
+      "lines": [
+        {
+          "name": "Goods From Market",
+          "number": 0.2,
+          "operationType": "Add"
+        },
+        {
+          "name": "Settlement Issues",
+          "number": -0.4,
+          "operationType": "Add"
+        }
+      ]
+    },
+    "security": {
+      "result": 1.89171278,
+      "base": 1.89171278,
+      "sumOfFactors": 0,
+      "lineCount": 3,
+      "lines": [
+        {
+          "name": "Prosperity",
+          "number": -2,
+          "operationType": "Add"
+        },
+        {
+          "name": "Garrison",
+          "number": 3.95837951,
+          "operationType": "Add"
+        },
+        {
+          "name": "Security Drift",
+          "number": -0.06666667,
+          "operationType": "Add"
+        }
+      ]
+    },
+    "loyalty": {
+      "result": 0.92,
+      "base": 0.92,
+      "sumOfFactors": 0,
+      "lineCount": 2,
+      "lines": [
+        {
+          "name": "Security",
+          "number": 0.02,
+          "operationType": "Add"
+        },
+        {
+          "name": "Loyalty Drift",
+          "number": 0.900000036,
+          "operationType": "Add"
+        }
+      ]
+    },
+    "militia": {
+      "result": -0.8000002,
+      "base": -0.8000002,
+      "sumOfFactors": 0,
+      "lineCount": 3,
+      "lines": [
+        {
+          "name": "Base",
+          "number": 2,
+          "operationType": "Add"
+        },
+        {
+          "name": "Retired",
+          "number": -6.8,
+          "operationType": "Add"
+        },
+        {
+          "name": "From Prosperity",
+          "number": 4,
+          "operationType": "Add"
+        }
+      ]
+    }
+  }
+}

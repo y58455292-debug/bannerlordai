@@ -1,0 +1,17 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002149_ProviderWorkLifecycle_20260921_1451\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "722BF96AA18F83FD4AB11BBC36504BE4CD7CEA3A4F614D39B89F1961995FE083",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02149_provider_work_lifecycle.py",
+    "validator_sha256": "9F020655F59CC15216F5FE4D8930D221619CC12D7C934F9135256442B73D589C",
+    "compile_result": "PASS_RUNNER_0_ERRORS_CLANAI_REUSED_V02138",
+    "isolated_fixture_result": "PASS_FIXTURES checks=135",
+    "static_zero_authority_checks": "PASS",
+    "lifecycle_policy": "SUCCESS_REMOVE_PERMANENT_REMOVE_TRANSIENT_RETAIN"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.49 bounded live provider-work lifecycle gate. Natural request must enqueue queueCount=1; exact SUCCESS result must be admitted and emit SUCCESS_ACKED completion queueCount 1->0 pendingRetained=false; immediate result replay must reject NO_PENDING_ROUTE_REQUEST and emit DISPATCH_JOB_NOT_FOUND completion 0->0; provider invocation stream empty, no network/model/execution/gameplay authority, full cleanup.",
+  "blockers": []
+}

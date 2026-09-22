@@ -1,0 +1,16 @@
+{
+  "schema": "BannerlordAI.ChatNaming.v1",
+  "rule": "Every department handoff must include an exact canonical chat title plus the activation command. Operational identity comes from the role/packet on disk, not from the UI title alone.",
+  "patterns": {
+    "front": "BannerlordAI — Front Office #<n>",
+    "coder": "BannerlordAI — Coder Desk #<n>",
+    "analyzer": "BannerlordAI — Analyzer Desk #<n>"
+  },
+  "current": {
+    "front": "BannerlordAI — Front Office #1",
+    "next_coder": "BannerlordAI — Coder Desk #1",
+    "next_analyzer": "BannerlordAI — Analyzer Desk #2"
+  },
+  "rotation": "Increment the desk number only when that department chat is archived/retired and a replacement chat is opened.",
+  "fallback": "If ChatGPT auto-generates another title, the handoff still works because the pasted command and durable packet identify the role. Rename the chat manually to the canonical title for clean tracking."
+}

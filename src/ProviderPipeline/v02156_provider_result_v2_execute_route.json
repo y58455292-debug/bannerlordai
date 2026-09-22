@@ -1,0 +1,18 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002156_ProviderResultV2Binding_20260921_1549\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "7732C135648EE1E81587EF72E742DEB29260E0CEBD3005009BF66774F413A39C",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02156_provider_result_v2_binding.py",
+    "validator_sha256": "1236A130A363DB242D9426894783129EDA4B82D7FC7372964E0E28D7228B132C",
+    "compile_result": "PASS_RUNNER_0_ERRORS_CLANAI_REUSED_V02138",
+    "isolated_fixture_result": "PASS_FIXTURES checks=206",
+    "provider_request_contract_fixture_result": "PASS_FIXTURES checks=49",
+    "v1_backcompat": "PASS",
+    "v2_binding_policy": "CLAIM_MATCH_THEN_PROVIDER_REQUEST_ID_MATCH_THEN_STRICT_ADVISORY"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.56 bounded live ProviderResult.v2 request-binding gate. Natural request -> claim attempt-1 -> register exact providerRequestId -> exact v2 SUCCESS must CLAIM_MATCHED and PROVIDER_REQUEST_MATCHED before KEEP_BASELINE admission and SUCCESS_ACKED 1->0; identical replay must fail DISPATCH_JOB_NOT_FOUND with no second completion; v1 remains unchanged; provider stream empty, zero network/model/gameplay authority, full cleanup.",
+  "blockers": []
+}

@@ -1,0 +1,65 @@
+BannerlordAI v0.2.10.57 - External provider transport adapter contract with deterministic loopback
+
+Question
+Can an external transport adapter consume the exact registered provider request and produce a ProviderResult.v2 bound to the same providerRequestId through a reproducible transport contract, before any real network/model provider is connected?
+
+Prior art
+- DeepAstra reference: bounded worker task, isolated runs, status/timeouts, provider/cost tracking; explicitly future-reference only.
+- BannerlordAI should prefer a lightweight auditable bridge before selecting an external harness/provider.
+- v0.2.10.54-.56 now secure outbound request bytes/provenance, runtime registration and result request-ID binding.
+
+Smallest implementation
+- External Python transport contract/helper only; feature binaries can reuse v0.2.10.56 unchanged.
+- Define deterministic adapter interface:
+  transportId
+  send(providerRequestEnvelopeJson) -> ProviderResult.v2 JSON.
+- Implement deterministic loopback adapter:
+  transportId=deterministic_local_loopback
+  no socket/HTTP/provider SDK/model call,
+  validates strict ProviderRequest.v1 using v0.2.10.54 helper,
+  requires registered providerRequestId supplied by runtime registration receipt,
+  emits ProviderResult.v2:
+    providerId/attemptId/requestFingerprint echoed from exact request,
+    providerRequestId echoed from registration,
+    status=SUCCESS,
+    strict KEEP_BASELINE advisoryBase64.
+- Transport receipt schema:
+  BannerlordAI.PatrolDefenseProviderTransportReceipt.v1
+  transportId,
+  providerRequestId,
+  providerId,
+  modelId,
+  attemptId,
+  requestFingerprint,
+  requestInputSha256,
+  resultStatus,
+  resultSha256,
+  externalNetworkUsed=false,
+  modelInvoked=false,
+  success=true/false,
+  errorCode nullable.
+- resultSha256 = SHA-256 exact UTF-8 ProviderResult.v2 JSON bytes.
+- Strict transport helper rejects altered request bytes/hash/provenance, missing registration, mismatched providerRequestId and malformed request.
+- No timeout/retry/cost constants yet because no real transport exists.
+
+Acceptance
+A. External transport helper fixtures:
+   exact request + registration -> deterministic result v2;
+   same input -> byte-identical result and receipt hashes;
+   wrong/missing providerRequestId registration rejected;
+   invalid provider request rejected;
+   altered input hash rejected;
+   malformed request rejected;
+   receipt network/model flags false.
+B. Integration on unchanged v0.2.10.56 binaries:
+   natural job -> claim -> exact provider request registration;
+   external loopback consumes exact provider request + registered providerRequestId;
+   validator independently hashes ProviderResult.v2 bytes;
+   submit returned v2 through existing runtime command;
+   PROVIDER_REQUEST_MATCHED -> KEEP_BASELINE -> SUCCESS_ACKED 1->0;
+   replay DISPATCH_JOB_NOT_FOUND.
+C. Provider invocation stream remains empty; no real network/model call; no Apply authority.
+D. EXIT_NOSAVE integrity cleanup.
+
+Scope
+This proves transport-adapter composition using deterministic loopback. It does not authorize HTTP, external credentials, model/provider selection, timeouts, backoff, cost limits or gameplay influence.

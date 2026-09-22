@@ -1,0 +1,18 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002160_TransportReceiptResultHash_20260921_1948\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "629C5A24D09CF25A5EB9D0625546B580E0221595D67B158B2464FE16642177FE",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02160_transport_receipt_result_hash.py",
+    "validator_sha256": "E06D534E5AE61477E0ABE9D9BEDB4D29374600AFAE0835E0F6C704370CDCE3E5",
+    "compile_result": "PASS_RUNNER_0_ERRORS_CLANAI_REUSED_V02138",
+    "backcompat_fixture_result": "PASS_FIXTURES checks=225",
+    "v3_hash_binding_fixture_result": "PASS_V3_FIXTURES checks=63",
+    "static_zero_authority_checks": "PASS",
+    "binding_contract": "TRANSPORT_RECEIPT_V2_PLUS_EXACT_PROVIDER_RESULT_V3_BYTES_SHA256"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.60 bounded live receipt/result-byte binding gate. Natural request -> claim -> provider-request registration -> transport registration -> deterministic loopback TransportReceipt.v2 + exact ProviderResult.v3 bytes submitted together -> runtime independently computes result SHA-256, requires TRANSPORT_RECEIPT_MATCHED, then existing v3 admission must KEEP_BASELINE and SUCCESS_ACKED 1->0; replay must fail DISPATCH_JOB_NOT_FOUND with no second nested v3 admission; full cleanup.",
+  "blockers": []
+}

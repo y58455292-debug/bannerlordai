@@ -1,0 +1,21 @@
+BANNERLORDAI — RECOVERY RISK FLEE v0.20G OFFLINE REVIEW
+Date: 2026-09-18 Pacific.
+Parent: v0.20F Observe closeout.
+v0.20F technical validation passed but selectivity failed: 73 base risk triggers across 23 lords / 49 actor-choice triples, 0 reroutes in Observe.
+Outcome join across those triggered actors: only one weak defensive battle occurred, Morcon / lord_4_14_party_1. It began ~19.8 seconds after a nearby v0.20F base trigger, with readiness 0.5448718, lordSide=Defender, engaging=false, DefaultBehavior=GoToSettlement, ShortTermBehavior=FleeToPoint.
+The other 22 triggered actors produced no weak defensive battle during the observed run.
+This motivates native fleeing state as the next discriminator.
+Installed API index confirms MobileParty.IsFleeing(), MobileParty.ShortTermBehavior and AiBehavior.FleeToPoint are public; scratch compile against installed assemblies passed.
+v0.20G keeps the full v0.20F base-risk detector for measurement, then computes fleeQualified = party.IsFleeing() && party.ShortTermBehavior == AiBehavior.FleeToPoint.
+Observe logs RECOVERY_RISK_BASE_TRIGGER for every broad base trigger and RECOVERY_RISK_WOULD_REROUTE only for flee-qualified triggers.
+Future Apply is structurally gated by BOTH RiskMode=Apply AND fleeQualified. A base trigger that is not already fleeing cannot write a score.
+The helper still uses only existing native settlement candidates, native MapDistanceModel, active MobilePartyAIModel radii, native ShouldConsiderAvoiding, same-faction filter and siege/raid exclusions. No movement/path command is introduced.
+Structural audit PASS: apply requires Apply mode + fleeQualified; native IsFleeing + FleeToPoint required; one score-write site only; no movement commands; base/qualified logs separate.
+Final staged build: 0 errors, same pre-existing System.ValueTuple warning lineage.
+DLL SHA256 DFC2C7084A8621888B432E71242347DDCF36C2F1EA02107BC35D4C1577FBFF85
+PDB SHA256 3A7FEABDDB571894A500A0FC9F8DD47B4104D58DD09E4F333ADBB565DC95D0A3
+Unexpected save write note: the prior v0.20F replay wrote ClanAI v020D DIAGNOSTIC TEST.sav at exit. Original baseline remains preserved at D:\BannerlordAIResearch\Longitudinal\SaveCheckpoints\20260918_122817_v020d_split_log_validation\ClanAI v020D DIAGNOSTIC TEST.sav SHA256 A3DAA0C37C0F8F6966DFB6DB2A57002BED70978A6C253F29DF395F171F9043AC.
+Future validation must load a disposable copy of that preserved baseline, not the mutable diagnostic filename.
+Runtime goal for v0.20G Observe: measure base triggers vs flee-qualified triggers in one bounded replay. Apply must remain disabled.
+Success criterion: a large reduction from broad base triggers to a small flee-qualified subset, clean writers/observers, zero reroutes, and ideally overlap between flee-qualified risk and weak defensive/fleeing battle exposure.
+No repeated replay if selectivity is obviously poor or zero.

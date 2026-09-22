@@ -1,0 +1,9 @@
+=== SELECTED ACTION COMMIT BEGIN v0.7 ===
+caller=TaleWorlds.CampaignSystem.MbEvent`1.InvokeList detail=GoToSettlement duringPartyThink=True
+selectedCandidate behavior=GoToSettlement target=Khimli Castle [castle_K5] score=15.61116 rank=1
+args settlement=Khimli Castle [castle_K5] mobileParty=<null> position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True nav=Default fromPort=False targetingPort=False
+before defaultBehavior=GoToSettlement targetSettlement=Khimli Castle targetParty=<null>
+before shortTermBehavior=EngageParty shortTermTargetSettlement=<null> shortTermTargetParty=Looters moveTargetParty=Looters moveMode=Party
+after defaultBehavior=GoToSettlement targetSettlement=Khimli Castle targetParty=<null>
+after shortTermBehavior=EngageParty shortTermTargetSettlement=<null> shortTermTargetParty=Looters moveTargetParty=Looters moveMode=Party
+=== SELECTED ACTION COMMIT END v0.7 ===

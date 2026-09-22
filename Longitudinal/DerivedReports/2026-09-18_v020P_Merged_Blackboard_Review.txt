@@ -1,0 +1,52 @@
+BANNERLORDAI — v0.20P MERGED SINGLE-WRITER + BLACKBOARD CONSUMPTION REVIEW
+Date: 2026-09-18 Pacific.
+
+Base:
+Runtime-proven refined v0.20M true single-writer composer.
+Base DLL SHA256 34186C5FE9AB8160392E70868EAE0074EEE1F103D74C9C163C79471162289B66.
+Base validation: StrategicDecisionComposer_v020M_OwnerAuto_20260918_200542_231229.
+100 applied owner frames / 15095 score writes / 12 memory proposals / zero score, sequence, winner mismatches / zero failures / clean save.
+
+Merged capability:
+Validated ActorBlackboard mechanism from v0.20N plus blackboard consumption from superseded v0.20O, rebuilt cleanly on refined v0.20M.
+
+Architecture:
+- Composer begins for every eligible lord-party strategic frame with candidates.
+- ActorBlackboard captures the same scope.
+- VisualWar reads Men / Readiness / FoodDays from blackboard and contributes factors through composer.
+- Non-targeted factions complete composer and validate blackboard before returning.
+- Sturgia/Vlandia weak-recovery reads Readiness / FoodDays from blackboard.
+- Targeted social-memory stays Observe unless config explicitly changes.
+- ActorBlackboard validates authoritative facts against live MobileParty after the scoring pass.
+- Initiative/pursuit timing boundary remains on direct native reads in DelegatingMobilePartyAIModel.
+- No movement/path/target behavior writes were added.
+
+Critical structural result:
+Exactly ONE SetBehaviorScore site exists across all candidate .cs source:
+StrategicDecisionComposer.cs only.
+
+Live gate:
+>=100 composer applied frames
+>=100 blackboard captures/validations
+blackboard states reused >0
+blackboardVisualWarReads >0
+blackboardWeakRecoveryReads >0
+composerScoreWrites >0
+all composer mismatch/failure counters =0
+all blackboard mismatch/failure counters =0
+writer clean
+no material performance regression
+disposable save byte-identical after clean no-save exit
+
+Build:
+v0.20P-review
+FileVersion 0.20.16.0
+InformationalVersion v0.20P-review-single-writer-blackboard-consume
+Build succeeded; inherited System.ValueTuple warning only.
+DLL SHA256 76C7BFAF0AFB8CC6666067F0C3B71191979ABE19FDA0C0A0ABDB82FE5E7CCC49
+PDB SHA256 0ACED821DF81B7F1846181C8DC11D8002EFAE5329C98BC7A39A28B455D0E53EC
+
+Concurrency safety:
+Live deployments/runs are serialized via
+D:\BannerlordAIResearch\Tools\Deployment\deployment_guard.py
+and D:\BannerlordAIResearch\workspace\DEPLOYMENT_OWNER.json.

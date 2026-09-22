@@ -1,0 +1,100 @@
+BannerlordAI v0.2.10.12 — Analyzer Review
+Date: 2026-09-20
+Final classification: PASS_AUTONOMOUS_MEMORY_PERSISTENCE
+
+Question
+Can a naturally acquired PatrolDefense episode survive guarded native SaveAs, full Bannerlord process exit, fresh exact reload with the same branchId and exact episodeId, and remain retrievable by exact bandit identity without manual seed/recognize or gameplay authority?
+
+Attempt 1 classification
+HARNESS_FALSE_NEGATIVE_SAVE_PREFIX_GUARD.
+- Natural NEW_ENEMY acquisition itself succeeded and created episode 297640fd0efc41c28becc94aac73e813.
+- SAVE_AS_TEST was rejected because the validator invented an unapproved slot prefix.
+- The existing prefix guard correctly returned operator_save_test_prefix_denied.
+- Validator timed out waiting for completion, then performed clean rollback: Bannerlord closed, owner released, accepted binaries restored, no v0.2.10.12 disposable save survived.
+- Feature binaries were unchanged for the repaired run.
+This attempt is not evidence against persistence.
+
+Repaired accepted run
+Stage 1:
+- Fresh Manan root clone with zero PatrolDefense/branch episodes at the exact-load boundary.
+- Natural observer generated NEW_ENEMY for southern_pirates_47910.
+- Matching natural patrol-defense shadow had exact proposal identity/time.
+- Automatic acquisition recorded exactly one immutable PatrolDefense episode:
+  id=f0602ed4320445c88af1574177edfcdf
+  branchId=d766c933cda44d5aafac0c7c329c2962
+  bandit=southern_pirates_47910
+  victim=player_faction_1
+  proposalCampaignHours=648654.3552835556
+  source=PatrolDefenseObserver.v02111.natural_new_enemy
+- Immediate pre-save retrieval returned visibleCount=1 and the same episode ID/context/source/detail/knownByHours.
+- All Stage1 acquisition/provenance/read-only/no-manual-command/no-Apply checks were true.
+- Guarded native SaveAs succeeded under the approved namespace:
+  ClanAI V020V PERSIST AUTOLEARN V02112 20260920_055458_156027
+  SHA256=9B0684CD66F825BF73B27D23D5241517EE8066BAFC38DFFC463208BC50AFB04C
+  size=9,130,439 bytes.
+- Stage1 exited Bannerlord fully before Stage2.
+
+Stage 2:
+- New Bannerlord process launched.
+- Exact persisted save loaded.
+- DYNASTY_BRANCH_EPISODE_SESSION_READY reported:
+  records=3 restored=True branchId=d766c933cda44d5aafac0c7c329c2962 scoreMutation=False
+- records=3 is valid: IncidentOpened/IncidentChoice and PatrolDefense share the branch episode store. Total record count is not an acceptance identity.
+- Exact read-only retrieval for southern_pirates_47910 returned visibleCount=1 and the exact same learned episode f0602ed4320445c88af1574177edfcdf.
+- The restored record preserved:
+  contextId=patrol-defense:town_ES7:southern_pirates_47910
+  source=PatrolDefenseObserver.v02111.natural_new_enemy
+  identical detail/proposal provenance
+  identical knownByHours=648654.3552835556
+  actorValid=true
+  branchValid=true
+  identityValid=true
+  futureLeak=false
+  scoreMutation=false
+- All 18 Stage2 persistence checks were true.
+- No PATROL_DEFENSE_RECOGNIZE or PATROL_DEFENSE_MEMORY_SEED_REAL_V02107 was used.
+- No Apply side effects occurred.
+- Persisted save SHA remained identical through Stage2 EXIT_NOSAVE.
+- Protected originals remained byte-identical.
+- Disposable source and persisted test saves were deleted.
+- Accepted ClanAI/TestRunner binaries restored.
+- Bannerlord closed and deployment owner released.
+
+Semantic conclusion
+PASS. A PatrolDefense memory learned autonomously from a real natural NEW_ENEMY observation now survives the complete native durability path:
+natural observation -> NEW recognition -> immutable episode acquisition -> guarded native SaveAs -> full process termination -> fresh exact reload -> same branch -> exact same episode identity and provenance -> exact retrieval.
+
+Architecture significance
+The project no longer depends on validation-seeded PatrolDefense memories to prove durability. Autonomous lived patrol-defense experience is now a native-save-backed persistent memory primitive.
+
+What this does NOT prove
+- A later real observer has not yet naturally re-encountered the autonomously learned identity after restart and emitted KNOWN_ENEMY.
+- The memory still has no behavior, movement, target-selection, intent, utility-score, retaliation, pursuit/avoidance, or combat authority.
+- Exact party identity remains separate from future lineage/organization/familiarity semantics.
+
+Next smallest gate
+v0.2.10.13 — naturally later KNOWN recognition from autonomously acquired persisted memory.
+
+Question
+After Stage1 natural NEW acquisition + SaveAs and a full fresh-process reload, can the real patrol-defense observer naturally re-encounter that exact learned bandit identity and emit KNOWN_ENEMY tied to the exact autonomous episode, with positive memory age and no manual recognition/seed or gameplay authority?
+
+Acceptance
+1. Stage1 starts zero-store and naturally acquires one real NEW_ENEMY episode exactly as accepted in v0.2.10.11/12.
+2. Guarded SaveAs, full Bannerlord exit, fresh process exact persisted reload.
+3. Confirm restored=True and same branch; total episode count is not fixed.
+4. Do not call PATROL_DEFENSE_MEMORY_RETRIEVE as a prerequisite to recognition; the decisive proof must come from the real observer.
+5. Patrol town_ES7 and advance positive campaign time.
+6. Require observer-generated KNOWN_ENEMY for the exact Stage1 learned bandit.
+7. priorEpisode.id must exactly equal the Stage1 autonomous episode ID; context/source/detail provenance must match.
+8. memoryAgeHours must be > 0 and currentCampaignHours > knownByHours.
+9. Recognition must correlate to a natural patrol-defense shadow by exact proposalId/campaignHours.
+10. No manual PATROL_DEFENSE_RECOGNIZE or memory seed.
+11. The NEW-only acquisition hook must not create a second episode for this KNOWN observation.
+12. Apply/rearm disconnected; behavior/intent/score/native-movement authority remains zero.
+13. Persisted save hash stable through Stage2 EXIT_NOSAVE; protected saves unchanged; disposables cleaned; accepted binaries restored; lease released.
+14. Stage1 natural nonappearance or Stage2 failure to naturally re-encounter the exact identity within a bounded window is ENVIRONMENTAL_INCONCLUSIVE. A wrong recognition/provenance result when the identity is observed is FAIL.
+
+Evidence
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02112_AutonomousMemoryPersistence_20260920_055458_156027\validation.json
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02112_AutonomousMemoryPersistence_20260920_055146_331908\validation.json
+D:\BannerlordAIResearch\Longitudinal\DerivedReports\2026-09-20_v02112_AutonomousMemoryPersistence_CoderTerminal.txt

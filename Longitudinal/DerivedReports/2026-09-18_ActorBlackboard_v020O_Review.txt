@@ -1,0 +1,32 @@
+BANNERLORDAI — ACTOR BLACKBOARD CONSUMPTION v0.20O OFFLINE REVIEW
+Date: 2026-09-18 Pacific.
+
+Goal:
+Replace duplicated same-boundary strategic actor reads with the validated v0.20N blackboard snapshot while preserving exact formulas, score order, composer ownership and native execution.
+
+Changes:
+- VisualWarDecisionLayer consumes blackboard Men / Readiness / FoodDays when available.
+- Weak-recovery strategic layer consumes blackboard Readiness / FoodDays when available.
+- ActorBlackboard still validates cached facts against live MobileParty after the scoring pass.
+- Dedicated counters record visual-war and weak-recovery blackboard consumption.
+- DelegatingMobilePartyAIModel initiative/pursuit gate keeps direct native readiness/food reads because it runs at a different timing boundary.
+- No new score/movement/path/target writes.
+- StrategicDecisionComposer remains the central writer for current Sturgia/Vlandia scope.
+- Social-memory remains Observe.
+
+Live gate:
+>=100 captures/validations
+blackboardVisualWarReads > 0
+blackboardWeakRecoveryReads > 0
+0 blackboard mismatches/failures
+0 composer score/sequence/winner mismatches/failures
+clean writer / no material performance regression
+save byte-identical after clean no-save exit
+
+Build:
+v0.20O-review
+FileVersion 0.20.15.0
+InformationalVersion v0.20O-review-actor-blackboard-consume
+Build succeeded; inherited System.ValueTuple warning only.
+DLL SHA256 DCE000BD1C69A0F448C3B64DFBB075B9A8D13230F5A346169A29C90A1B60CC63
+PDB SHA256 941C8A54C1933133850A4E84CCC1EFB0799E7D22C9E07EEECB5B8C7CE0D59654

@@ -1,0 +1,47 @@
+BannerlordAI v0.2.10.67 - Explicit external-provider execution grant shadow
+
+Question
+Can real external provider execution be gated behind a separate explicit one-shot grant bound to the exact latest request/transport/policy/transport-execution authorization provenance, without yet reading a credential value or using the network?
+
+Why this gate
+- v0.2.10.54-66 now prove the full request -> claim -> provider request -> transport -> policy -> execution authorization -> authorization-bound result chain.
+- Transport execution authorization means a bounded execution slot exists; it must not silently mean permission to read secrets or make a network/model call.
+- Before a real provider is connected, external execution needs its own explicit, exact, auditable permission boundary.
+- This can be proven with deterministic no-network evidence.
+Smallest implementation
+- Runner-only grant registration/state; ClanAI unchanged.
+- Add ExternalExecutionGrant.v1 bound to exact:
+  requestFingerprint
+  providerId + modelId + claim attemptId
+  providerRequestId
+  transportRequestId + transportId
+  executionPolicyId
+  latest transportExecutionAuthorizationId + attempt ordinal
+  credentialRef
+  externalNetworkAuthorized=true.
+- No implicit/default grant. false/missing authorization rejects.
+- Runtime independently re-matches the latest authorization before registering the grant.
+- Compute externalExecutionGrantId over exact grant bytes.
+- One exact grant per current authorization; exact replay idempotent, conflicting grant rejected.
+- Claim release clears grant state.
+- Newer transport execution authorization invalidates any older grant.
+- Grant receipt is observe-only and carries externalNetworkUsed=false, modelInvoked=false, executionAuthorized=false.
+- No credential value read, endpoint call, socket/HTTP/provider SDK/model invocation.
+
+Acceptance
+A. Runner compiles; ClanAI unchanged; all v1-v5/backcompat fixtures remain green.
+B. Fixtures:
+   exact latest-auth grant registers;
+   exact replay is idempotent;
+   missing/false externalNetworkAuthorized rejects;
+   wrong provider/model/request/transport/policy/auth ID/ordinal/credentialRef rejects;
+   stale auth1 grant rejects after auth2 exists;
+   release clears grant; new claim requires a new grant.
+C. Live:
+   natural chain with maxAttempts=2 -> auth1 -> auth2;
+   stale auth1 grant rejected;
+   exact auth2 grant registered once and replay idempotent;
+   no credential value read/network/model call;
+   EXIT_NOSAVE full cleanup.
+Scope
+This creates the explicit permission boundary required before provider-specific execution. It does not choose a provider, resolve credentialRef, or perform a network/model call. After this gate, actual provider configuration/authorization becomes the next user-dependent boundary.

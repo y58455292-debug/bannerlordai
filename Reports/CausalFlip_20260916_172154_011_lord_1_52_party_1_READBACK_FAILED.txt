@@ -1,0 +1,70 @@
+GLOBAL SAME-THINK CAUSAL CAPTURE v0.3
+STATUS: MUTATION_READBACK_FAILED
+FINAL: True
+StartedLocalTime: 2026-09-16 17:21:54.008
+
+PARTY / CLAN
+Party: Saratis' Party
+PartyId: lord_1_52_party_1
+Hero: Saratis
+HeroId: lord_1_52
+Clan: Sorados
+ClanId: clan_empire_west_6
+
+PRE-MUTATION VANILLA
+VanillaWinnerBehavior: PatrolAroundPoint
+VanillaWinnerTarget: Gersegos
+VanillaWinnerTargetId: castle_village_EW8_1
+VanillaWinnerScore: 2.324331
+NeedTarget: Gersegos Castle
+NeedTargetId: castle_EW8
+NeedTargetVanillaScore: 2.113895
+NeedTargetVanillaRank: 8
+
+LIVE TERRITORY NEED
+UnderRaid: False
+UnderSiege: False
+IdealGarrisonStrength: 109.3526
+ActualGarrisonStrength: 92.31999
+GarrisonDeficit: 0.155759
+Pressure: 0.155759
+
+INTERVENTION
+RequiredBonusFraction: 0.099549
+AvailableBonusFraction: 0.155759
+Multiplier: 1.155759
+RequestedAppliedScore: 2.443153
+MutationReadbackScore: 0
+MutationReadbackVerified: False
+AppliedScore: 0
+PredictedHypotheticalScore: 2.443153
+PredictedHypotheticalRank: 1
+OneShotMarkerConsumedBeforeMutation: True
+
+POST-MUTATION VANILLA RESULT
+CaptureMethod: <null>
+CommitCaptured: False
+FallbackFinalStateCaptured: False
+SelectedBehavior: <null>
+SelectedTarget: <null>
+SelectedTargetId: <null>
+AfterDefaultBehavior: <null>
+AfterTargetSettlement: <null>
+AfterTargetSettlementId: <null>
+AfterTargetParty: <null>
+AfterTargetPartyId: <null>
+
+RESULT
+MUTATION_READBACK_FAILED
+
+TOP VANILLA CANDIDATES BEFORE MUTATION
+#1 score=2.324331 behavior=PatrolAroundPoint target=Gersegos targetId=castle_village_EW8_1
+#2 score=2.264346 behavior=PatrolAroundPoint target=Vathea targetId=castle_village_EW8_2
+#3 score=2.250532 behavior=PatrolAroundPoint target=Thersenion targetId=village_EW6_3
+#4 score=2.203192 behavior=PatrolAroundPoint target=Rhotae targetId=town_EW6
+#5 score=2.203159 behavior=PatrolAroundPoint target=Arpotis targetId=village_EW4_1
+#6 score=2.173816 behavior=PatrolAroundPoint target=Elvania targetId=castle_village_EW7_2
+#7 score=2.163902 behavior=PatrolAroundPoint target=Dradios targetId=village_EW3_3
+#8 score=2.113895 behavior=GoToSettlement target=Gersegos Castle targetId=castle_EW8
+#9 score=2.077922 behavior=PatrolAroundPoint target=Nideon targetId=castle_village_EW6_2
+#10 score=2.072577 behavior=PatrolAroundPoint target=Hertogea Castle targetId=castle_EW6

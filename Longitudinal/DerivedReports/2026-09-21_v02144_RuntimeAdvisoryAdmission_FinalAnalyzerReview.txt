@@ -1,0 +1,23 @@
+BannerlordAI v0.2.10.44 FINAL VERIFY - ACCEPT
+
+Decisive evidence
+- Runner compiled with 0 errors; ClanAI reused unchanged.
+- Runtime admission suite passed 86/86:
+  no-pending rejection, mismatch rejection with pending retained,
+  malformed exact-pending rejection with retry retained,
+  exact admission consume-on-success, replay rejection,
+  reset, all three allowed dispositions, zero execution authority.
+- Natural first unseen Manan deliberation request became the exact pending fingerprint.
+- Synthetic KEEP_BASELINE advisory echoed the exact request fingerprint and was admitted.
+- admitted=true; disposition=KEEP_BASELINE.
+- executionAuthorized=false; advisoryOnly=true.
+- Immediate identical replay was rejected with NO_PENDING_ROUTE_REQUEST after successful consumption.
+- modelInvoked=false; llmInvoked=false; plannerInvoked=false.
+- interpretationApplied=false; behavior/intent/score mutation=false; nativeMovementCalls=0.
+- No Apply side effects.
+- Protected saves matched, disposable cleaned, accepted binaries restored, lease released.
+
+Classification: ACCEPT.
+
+Architecture meaning
+BannerlordAI now has live exact request-response correlation and one-time advisory admission without a model call. A response cannot be admitted against the wrong request and cannot be replayed after consumption. Cognition transport may now be introduced behind this boundary without granting gameplay authority.

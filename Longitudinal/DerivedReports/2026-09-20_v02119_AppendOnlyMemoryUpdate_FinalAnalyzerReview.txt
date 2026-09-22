@@ -1,0 +1,15 @@
+v0.2.10.19 FINAL VERIFY — ACCEPT
+
+Decisive live evidence:
+- exact remembered enemy southern_pirates_47910 naturally reached eligible changed KNOWN state.
+- exactly one append-only update episode was recorded; original episode remained intact.
+- immediate exact readback visibleCount=2.
+- native SaveAs captured that exact live two-episode state.
+- full Bannerlord process restart + exact load restored the branch and exact enemy history.
+- post-restart exact retrieval visibleCount=2.
+- latest episode is the appended v0.2.10.19 known_enemy_changed_update episode.
+- protected saves matched; disposable saves cleaned; deployment lease released.
+- no behavior, intent, score, or native movement authority was granted by memory.
+
+Classification: ACCEPT.
+Next gate: v0.2.10.20 read-only temporal/history context derived from persisted multiple episodes. Do not grant gameplay authority. Reuse .19 persistence proof; do not re-prove append persistence unless contradictory evidence appears.

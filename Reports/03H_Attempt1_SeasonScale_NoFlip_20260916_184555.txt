@@ -1,0 +1,24 @@
+03H ATTEMPT 1 - SEASON-SCALE PARTIAL RUN
+Captured: 2026-09-16 18:45:55
+Build: AiDecisionTrace v0.26 / GlobalSameThinkCausalCapture v0.5
+Mode: GARRISON_ONLY_NO_RAID_NO_SIEGE
+Interpretation: longitudinal run stopped before a causal flip; preserved as observational evidence.
+
+ObservedPartyThinks: 164203
+EligibleIndependentLordThinks: 8982
+NeedPositiveThinks: 106
+NeedPositiveCandidates: 106
+FlipOpportunities: 0
+InterventionsApplied: 0
+CompletedReports: 0
+MutationFailures: 0
+Consumed: False
+PendingCommit: False
+ClosestPartyName: Seranor's Party
+ClosestClanName: Vatatzes
+ClosestTargetName: Syratos Castle
+ClosestVanillaRank: 2
+ClosestRequiredBonusFraction: 0.0273202658
+ClosestAvailableBonusFraction: 0.00707053673
+LastResult: 
+LastReportPath: 

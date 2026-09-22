@@ -1,0 +1,47 @@
+{
+  "schema": "BannerlordAI.LoopEfficiencyBaseline.v1",
+  "captured_at": "2026-09-20T00:20:48.613037-07:00",
+  "checkpoint_seq": 119,
+  "accepted_milestone": "v0.2.10.3-patrol-defense-auto-apply",
+  "active_candidate": "v0.2.10.3-patrol-defense-auto-apply",
+  "active_role": "front",
+  "turn_seq": 2,
+  "repair_iterations": 0,
+  "repair_budget": 3,
+  "coder": {
+    "state": "COMPLETE_HANDOFF_READY",
+    "action_id": "v02103_patrol_defense_auto_apply",
+    "terminal_checkpoint": 113,
+    "updated_at": "2026-09-19T23:03:32.414362-07:00",
+    "owner_released": true,
+    "protected_saves_match": true
+  },
+  "analyzer": {
+    "state": "COMPLETE_HANDOFF_READY",
+    "source_action_id": "v02103_patrol_defense_auto_apply",
+    "updated_at": "2026-09-20T00:17:44.098404-07:00",
+    "review_report_exists": true,
+    "review_report_mtime": "2026-09-20T00:16:06.862597-07:00"
+  },
+  "pre_structure_failures": {
+    "coder_missing_durable_handoff_pre_guard": true,
+    "stale_analyzer_status_pre_guard": true
+  },
+  "controls": {
+    "single_active_loop_owner": true,
+    "stale_analyzer_completion_blocked": true,
+    "front_rollover_guard": true,
+    "pointer_only_handoffs": true
+  },
+  "metrics_to_compare": [
+    "accepted_milestones_per_hour",
+    "checkpoint_advancement_per_hour",
+    "coder_to_analyzer_handoff_latency",
+    "analyzer_to_front_handoff_latency",
+    "repair_bounces_per_milestone",
+    "duplicate_live_runs",
+    "stale_completion_false_passes",
+    "manual_recovery_interventions",
+    "reruns_avoided_by_raw_evidence_review"
+  ]
+}

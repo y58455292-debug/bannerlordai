@@ -1,0 +1,20 @@
+BANNERLORDAI - v0.20D CAMPAIGN LOAD CHECK
+Recorded local: 2026-09-18T12:19:26.634213-07:00
+Status: CAMPAIGN_LOAD_MEMORY_AND_INITIAL_SPLIT_ROUTING_VERIFIED; ACTIVE_PLAY_SAVE_EXIT_INTEGRITY_PENDING.
+Session: D:\BannerlordAIResearch\Telemetry\ClanAI\sessions\ClanAI_20260918_191706_386_v020D_review.log
+Observed: ClanAI v0.20D-review; wrapper=ClanAI.DelegatingMobilePartyAIModel; mirror=True; inner=NavalDLC.GameComponents.NavalDLCMobilePartyAIModel. [session.log:1-3]
+Observed: Noble memory=206 and social ledger=614, both restored=True; counts agree with the prior progressed C save callbacks. [session.log:4-5]
+Observed: All 9 dedicated session lines appear exactly once in the ClanAI-owned aggregate log at the captured boundary. [session.log; clanai_aggregate.log]
+Observed: Current Inspector segment reports the active wrapper and has no [ClanAI v0.20D-review] writer records; the old damaged C segment was excluded. [inspector_current_segment.txt]
+Observed: 5 complete diagnostic snapshots; real PERFORMANCE_JSON and RECORDER_JSON parse; recorder session=20260918_121149_pid24432. [diagnostics.txt; checks.json]
+Observed: Latest captured snapshot has getBestCalls=0, ObservedPartyThinks=0, diagnostic failures=0, writer failures=0, syncFallbacks=0 and pending=0. This is paused-load evidence, not active-play acceptance. [checks.json]
+Observed: Armed error collector totalSeen=0, fatal=0, droppedOverBudget=0, selfSuppressed=1; bounded coverage only. [checks.json]
+Observed: Installed ClanAI/Inspector hashes match HOT; world memory proof.sav remains 3FF4154175A5054D5B19ED6FC7E3D7452F864E0091B7F024E6444807F1BEF323. [checks.json]
+Limit: Successful reload establishes restored counts, not byte-for-byte verification of every in-memory field.
+Limit: Initial split-log routing is supported; high-volume record completeness, D save/end/final-health and D test-save reload are still pending.
+Limit: Paused/menu/loading frame windows are not active-play benchmarks; no performance-neutrality conclusion.
+Next: Advance about two minutes at normal campaign speed; Save As ClanAI_v020D_DIAGNOSTIC_TEST; return to paused map for a few seconds; exit normally. Preserve world memory proof.
+Next analysis: Join exact session records to ClanAI aggregate; match Inspector event IDs and CSV totals; verify final counters and post-drain health, then test reload.
+Guardrail: Retain managed launcher; no Launcher.Native retry, DLL move/replacement, native module removal, security change or gameplay intervention.
+Evidence capture: D:\BannerlordAIResearch\Longitudinal\LiveValidation\v020D_CampaignLoad_20260918_122000_254135\manifest.json
+Handoff: Report and captured evidence saved. HOT replacement was denied by Windows (WinError 5); HOT/current/WARM catalog remain unchanged. No permission change or alternate overwrite attempted. GLOBAL and raw telemetry preserved.

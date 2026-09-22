@@ -1,0 +1,47 @@
+BannerlordAI v0.2.10.65 - Registered timeoutMs transport-execution budget binding shadow
+
+Question
+Can runtime bind the exact registered timeoutMs into each transport-execution authorization and require deterministic transport to consume that exact timeout budget before result production, without introducing sleep, network, model, or secret access?
+
+Why this gate
+- v0.2.10.61 registers timeoutMs.
+- v0.2.10.64 makes maxAttempts actionable at the pre-send authorization boundary.
+- timeoutMs is still provenance-only at that boundary.
+- The smallest safe next capability is exact timeout-budget propagation/binding, not real wall-clock cancellation before a real transport exists.
+
+Smallest implementation
+- Runner + deterministic loopback only; ClanAI unchanged.
+- Extend PatrolDefenseProviderTransportExecutionAuthorization result/receipt with timeoutMs from the exact active execution policy.
+- AuthorizeTransportExecution validates timeoutMs as a positive invariant integer before incrementing the execution count.
+- Invalid/nonpositive timeout -> EXECUTION_TIMEOUT_POLICY_INVALID with no count increment.
+- Existing maxAttempts ordering remains fail-closed and unchanged.
+- authorizationId remains derived from requestFingerprint + executionPolicyId + ordinal; executionPolicyId already commits exact timeoutMs policy bytes.
+- Deterministic loopback-v65 requires authorization receipt timeoutMs to equal the registered execution policy timeoutMs before any result is produced.
+- Missing/wrong/invalid authorization timeout budget rejects deterministically.
+- No sleeping, deadline polling, timeout thread, provider SDK, socket/HTTP, model call or credential value read.
+
+Acceptance
+A. Runner compiles; ClanAI unchanged.
+B. Existing fixture layers remain green.
+C. Runtime fixtures:
+   timeoutMs=1000 -> authorization succeeds and receipt timeoutMs=1000;
+   direct invalid/zero/non-numeric stored timeout -> EXECUTION_TIMEOUT_POLICY_INVALID with count unchanged;
+   maxAttempts behavior remains max=1/max=2/limit-safe;
+   release/new claim resets execution state;
+   authorization ID determinism preserved;
+   zero-authority receipt.
+D. Loopback fixtures:
+   exact timeout budget permits result;
+   missing/wrong/zero timeout budget rejects;
+   policy/authorization fingerprint and executionPolicyId mismatches still reject;
+   no network/model.
+E. Live:
+   natural full chain with test timeoutMs=1000,maxAttempts=1;
+   runtime authorization emits timeoutMs=1000 at ordinal 1;
+   deterministic loopback consumes exact budget;
+   existing v4 hash/size/policy chain -> KEEP_BASELINE -> SUCCESS_ACKED 1->0;
+   exactly one authorization row; replay job-missing.
+F. EXIT_NOSAVE cleanup.
+
+Scope
+This binds the registered timeout budget to the pre-send authorization/transport contract. It does not claim real elapsed-time cancellation; that belongs with a real or deterministic clocked transport gate later. credentialRef remains opaque and no real provider/network is enabled.

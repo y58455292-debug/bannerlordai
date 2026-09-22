@@ -1,0 +1,24 @@
+BannerlordAI v0.2.10.32 FINAL VERIFY — ACCEPT
+
+Decisive evidence
+- Current ClanAI build compiled 0 errors.
+- Pure eligibility fixture suite passed 57/57, including the positive MainHero+EXACT_UNIQUE case and all required negative gates.
+- Natural live ordinary lord-bandit packet produced one PatrolDefenseOutcomeMemoryCandidate.v1 with eligible=false.
+- Candidate actor was CharacterObject_3289 while MainHero was lord_3_12.
+- linkResolution=NONE.
+- Exact factual gate failures:
+  actor_not_mainhero
+  link_resolution_not_exact_unique
+  history_context_count_not_one
+  settlement_id_missing
+  context_id_missing
+  latest_episode_id_missing
+  history_episode_count_invalid
+- Every live validator check passed.
+- memoryWriteApplied=false; persistentMemoryMutation=false; interpretationApplied=false; behavior/intent/score mutation=false; nativeMovementCalls=0.
+- Protected saves matched, disposable save cleaned, accepted binaries restored, lease released.
+
+Classification: ACCEPT.
+
+Architecture meaning
+Outcome append eligibility is now a pure factual gate over the accepted unified packet. The writer still does not exist. The MainHero+EXACT_UNIQUE live barrier remains intact and v0.2.10.29 remains parked environmental-inconclusive.

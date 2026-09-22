@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net11.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="FixtureV5Program.cs" />
+    <Compile Include="..\candidate\PatrolDefenseProviderDispatch.cs" Link="PatrolDefenseProviderDispatch.cs" />
+    <Compile Include="..\candidate\PatrolDefenseDeliberationAdvisoryAdmission.cs" Link="PatrolDefenseDeliberationAdvisoryAdmission.cs" />
+    <Compile Include="..\candidate\PatrolDefenseAdvisoryRuntimeGate.cs" Link="PatrolDefenseAdvisoryRuntimeGate.cs" />
+    <Compile Include="..\candidate\PatrolDefenseProviderRequestRegistration.cs" Link="PatrolDefenseProviderRequestRegistration.cs" />
+    <Compile Include="..\candidate\PatrolDefenseProviderTransportRegistration.cs" Link="PatrolDefenseProviderTransportRegistration.cs" />
+    <Compile Include="..\candidate\PatrolDefenseProviderExecutionPolicyRegistration.cs" Link="PatrolDefenseProviderExecutionPolicyRegistration.cs" />
+    <Compile Include="..\candidate\PatrolDefenseProviderResultV5Admission.cs" Link="PatrolDefenseProviderResultV5Admission.cs" />
+    <Compile Include="..\candidate\PatrolDefenseProviderTransportReceiptResultV5Binding.cs" Link="PatrolDefenseProviderTransportReceiptResultV5Binding.cs" />
+  </ItemGroup>
+</Project>

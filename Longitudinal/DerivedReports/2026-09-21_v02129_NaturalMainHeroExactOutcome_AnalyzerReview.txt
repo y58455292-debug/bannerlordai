@@ -1,0 +1,23 @@
+BannerlordAI v0.2.10.29 VERIFY — ENVIRONMENTAL_INCONCLUSIVE
+
+Unchanged accepted v0.2.10.28 feature binaries were used for one bounded field-evidence attempt.
+
+Observed
+- Campaign advanced 648650.9850730833 -> 648951.394414 (~300.409 h).
+- 111 valid exact native lord-bandit start/end pairs occurred.
+- Natural PatrolDefense acquisition continued during the run (2 acquisitions observed).
+- 0 valid MainHero/Manan lord-bandit outcome pairs occurred.
+- Therefore no live Manan + pre-existing EXACT_UNIQUE PatrolDefense history outcome link could be exercised.
+
+Classification
+ENVIRONMENTAL_INCONCLUSIVE, not feature failure and not harness failure.
+
+Integrity
+- EXIT_NOSAVE completed.
+- Protected saves matched.
+- Disposable clone cleaned.
+- Accepted installed ClanAI/TestRunner binaries restored.
+- Deployment lease released.
+
+Rule
+Do not repeat this unchanged 300-hour field gate. The specific missing environmental condition is Manan entering a native lord-bandit MapEvent after an exact PatrolDefense history exists. Outcome-memory append remains blocked on that evidence; other independent read-only outcome integration may continue.

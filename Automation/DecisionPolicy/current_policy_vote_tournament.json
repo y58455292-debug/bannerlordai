@@ -1,0 +1,270 @@
+{
+  "schema": "BannerlordAI.PolicyVoteReasoningTournament.v1",
+  "wall_unix": 1789814327.17953,
+  "state": {
+    "policy_id": "policy_fraternal_fleet_doctrine",
+    "policy_name": "Auxiliaries to the Fleet",
+    "proposer_clan": "Oburit",
+    "description": "Troops train at sea.",
+    "effects": {
+      "naval_morale_pct": 20,
+      "troop_xp_pct": -15
+    },
+    "native_support": -52.8000069,
+    "proposal_influence_cost": 100,
+    "current_context": {
+      "home": "Syronea",
+      "role": "border/front defense",
+      "land_force_dependency": 1.0,
+      "naval_relevance": 0.25
+    }
+  },
+  "active_level": "2",
+  "levels": {
+    "0": {
+      "name": "Reflex",
+      "choice": "OPPOSE",
+      "margin": 0.6721,
+      "ranking": [
+        {
+          "action": "OPPOSE",
+          "score": 0.7027,
+          "contrib": {
+            "military_readiness": 0.42,
+            "territorial_defense": 0.294,
+            "long_term_risk": 0.0,
+            "immediate_cost": 0.0,
+            "doctrine_alignment": 0.0,
+            "local_stability": 0.0,
+            "legitimacy_influence": 0.0,
+            "uncertainty_penalty": -0.0112
+          }
+        },
+        {
+          "action": "ABSTAIN",
+          "score": 0.0306,
+          "contrib": {
+            "military_readiness": 0.0,
+            "territorial_defense": 0.0,
+            "long_term_risk": -0.0,
+            "immediate_cost": 0.0644,
+            "doctrine_alignment": -0.0,
+            "local_stability": 0.0,
+            "legitimacy_influence": 0.0,
+            "uncertainty_penalty": -0.0338
+          }
+        },
+        {
+          "action": "SUPPORT",
+          "score": -0.6621,
+          "contrib": {
+            "military_readiness": -0.385,
+            "territorial_defense": -0.252,
+            "long_term_risk": -0.0,
+            "immediate_cost": -0.0483,
+            "doctrine_alignment": -0.0,
+            "local_stability": 0.0144,
+            "legitimacy_influence": 0.0238,
+            "uncertainty_penalty": -0.015
+          }
+        }
+      ]
+    },
+    "1": {
+      "name": "Practical",
+      "choice": "OPPOSE",
+      "margin": 1.3336,
+      "ranking": [
+        {
+          "action": "OPPOSE",
+          "score": 1.2635,
+          "contrib": {
+            "military_readiness": 0.6,
+            "territorial_defense": 0.378,
+            "long_term_risk": 0.1964,
+            "immediate_cost": 0.0,
+            "doctrine_alignment": 0.0684,
+            "local_stability": 0.0,
+            "legitimacy_influence": 0.0,
+            "uncertainty_penalty": -0.0292
+          }
+        },
+        {
+          "action": "ABSTAIN",
+          "score": -0.0701,
+          "contrib": {
+            "military_readiness": 0.0,
+            "territorial_defense": 0.0,
+            "long_term_risk": -0.0231,
+            "immediate_cost": 0.056,
+            "doctrine_alignment": -0.0152,
+            "local_stability": 0.0,
+            "legitimacy_influence": 0.0,
+            "uncertainty_penalty": -0.0878
+          }
+        },
+        {
+          "action": "SUPPORT",
+          "score": -1.1977,
+          "contrib": {
+            "military_readiness": -0.55,
+            "territorial_defense": -0.324,
+            "long_term_risk": -0.2079,
+            "immediate_cost": -0.042,
+            "doctrine_alignment": -0.0608,
+            "local_stability": 0.0288,
+            "legitimacy_influence": 0.0272,
+            "uncertainty_penalty": -0.039
+          }
+        }
+      ]
+    },
+    "2": {
+      "name": "Strategic",
+      "choice": "OPPOSE",
+      "margin": 1.762,
+      "ranking": [
+        {
+          "action": "OPPOSE",
+          "score": 1.603,
+          "contrib": {
+            "military_readiness": 0.6,
+            "territorial_defense": 0.42,
+            "long_term_risk": 0.357,
+            "immediate_cost": 0.0,
+            "doctrine_alignment": 0.171,
+            "local_stability": 0.0,
+            "legitimacy_influence": 0.0,
+            "uncertainty_penalty": -0.045
+          }
+        },
+        {
+          "action": "ABSTAIN",
+          "score": -0.159,
+          "contrib": {
+            "military_readiness": 0.0,
+            "territorial_defense": 0.0,
+            "long_term_risk": -0.042,
+            "immediate_cost": 0.056,
+            "doctrine_alignment": -0.038,
+            "local_stability": 0.0,
+            "legitimacy_influence": 0.0,
+            "uncertainty_penalty": -0.135
+          }
+        },
+        {
+          "action": "SUPPORT",
+          "score": -1.532,
+          "contrib": {
+            "military_readiness": -0.55,
+            "territorial_defense": -0.36,
+            "long_term_risk": -0.378,
+            "immediate_cost": -0.042,
+            "doctrine_alignment": -0.152,
+            "local_stability": 0.036,
+            "legitimacy_influence": 0.034,
+            "uncertainty_penalty": -0.06
+          }
+        }
+      ]
+    },
+    "3": {
+      "name": "Deliberative",
+      "choice": "OPPOSE",
+      "margin": 2.0422,
+      "ranking": [
+        {
+          "action": "OPPOSE",
+          "score": 1.8276,
+          "contrib": {
+            "military_readiness": 0.6,
+            "territorial_defense": 0.441,
+            "long_term_risk": 0.4463,
+            "immediate_cost": 0.0,
+            "doctrine_alignment": 0.1966,
+            "local_stability": 0.0,
+            "legitimacy_influence": 0.0,
+            "uncertainty_penalty": -0.0562
+          }
+        },
+        {
+          "action": "ABSTAIN",
+          "score": -0.2146,
+          "contrib": {
+            "military_readiness": 0.0,
+            "territorial_defense": 0.0,
+            "long_term_risk": -0.0525,
+            "immediate_cost": 0.0504,
+            "doctrine_alignment": -0.0437,
+            "local_stability": 0.0,
+            "legitimacy_influence": 0.0,
+            "uncertainty_penalty": -0.1688
+          }
+        },
+        {
+          "action": "SUPPORT",
+          "score": -1.7328,
+          "contrib": {
+            "military_readiness": -0.55,
+            "territorial_defense": -0.378,
+            "long_term_risk": -0.4725,
+            "immediate_cost": -0.0378,
+            "doctrine_alignment": -0.1748,
+            "local_stability": 0.0396,
+            "legitimacy_influence": 0.0357,
+            "uncertainty_penalty": -0.075
+          }
+        }
+      ]
+    },
+    "4": {
+      "name": "Research",
+      "choice": "OPPOSE",
+      "margin": 2.2703,
+      "ranking": [
+        {
+          "action": "OPPOSE",
+          "score": 2.0247,
+          "contrib": {
+            "military_readiness": 0.63,
+            "territorial_defense": 0.462,
+            "long_term_risk": 0.482,
+            "immediate_cost": 0.0,
+            "doctrine_alignment": 0.2137,
+            "local_stability": 0.0,
+            "legitimacy_influence": 0.0,
+            "uncertainty_penalty": -0.063
+          }
+        },
+        {
+          "action": "ABSTAIN",
+          "score": -0.2456,
+          "contrib": {
+            "military_readiness": 0.0,
+            "territorial_defense": 0.0,
+            "long_term_risk": -0.0567,
+            "immediate_cost": 0.0476,
+            "doctrine_alignment": -0.0475,
+            "local_stability": 0.0,
+            "legitimacy_influence": 0.0,
+            "uncertainty_penalty": -0.189
+          }
+        },
+        {
+          "action": "SUPPORT",
+          "score": -1.8947,
+          "contrib": {
+            "military_readiness": -0.5775,
+            "territorial_defense": -0.396,
+            "long_term_risk": -0.5103,
+            "immediate_cost": -0.0357,
+            "doctrine_alignment": -0.19,
+            "local_stability": 0.0414,
+            "legitimacy_influence": 0.0374,
+            "uncertainty_penalty": -0.084
+          }
+        }
+      ]
+    }
+  }
+}

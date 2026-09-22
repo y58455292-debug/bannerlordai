@@ -1,0 +1,94 @@
+{
+  "schema": "BannerlordAI.OfficeLaunchCheck.v1",
+  "generated_at": "2026-09-19T21:09:13.871687-07:00",
+  "overall": "READY_TO_LAUNCH",
+  "launch_permitted": true,
+  "user_approval_required": false,
+  "checks": {
+    "required_files": {
+      "departments": true,
+      "office_hours": true,
+      "office_policy": true,
+      "chat_registry": true,
+      "chat_shift_policy": true,
+      "daily_plan": true,
+      "chat_retirement_audit": true,
+      "chatgpt_project_layout": true,
+      "chatgpt_cleanup_plan": true,
+      "office_override": true,
+      "coder_status": true,
+      "analyzer_status": true,
+      "front_status": true,
+      "autopilot_state": true,
+      "autopilot_registry": true,
+      "front_page": true,
+      "archive_brain": true
+    },
+    "scripts_compile": {
+      "pass": true,
+      "stderr": ""
+    },
+    "user_approval": {
+      "pass": true,
+      "approved": true,
+      "scope": "MATURE_OFFICE_V1",
+      "condition": "Do not launch until ChatGPT Projects/chats are organized to ChatGPTProjectLayout.v1, legacy chats are moved/archived per verified plan, and organized chat-to-task sequence is ready for test."
+    },
+    "chatgpt_ui_organization": {
+      "pass": true,
+      "confirmed": true,
+      "layout_version": "ChatGPTProjectLayout.v1",
+      "confirmed_at": "2026-09-19T21:09:00-07:00"
+    },
+    "freeze_gate": {
+      "pass": true,
+      "office_mode": "CLOSED",
+      "autopilot_enabled": false
+    },
+    "closed_dispatch_refusal": {
+      "pass": true,
+      "output": "{\n  \"allowed\": false,\n  \"reason\": \"OFFICE_CLOSED\",\n  \"action_id\": \"v02101_patrol_defense_shadow_rerun\",\n  \"office_mode\": \"CLOSED\",\n  \"work_class\": \"LIVE_GAME\"\n}\n"
+    },
+    "daily_plan": {
+      "pass": true,
+      "office_mode": "CLOSED",
+      "bottleneck": {
+        "kind": "ANALYZER_REVIEW",
+        "owner": "analyzer",
+        "reason": "Coder evidence exists but semantic promotion is unfinished",
+        "detail": "VALIDATOR_PASS_PENDING_ANALYZER_REVIEW"
+      }
+    },
+    "front_office": {
+      "pass": true,
+      "office_state": "ANALYZING",
+      "checkpoint_seq": 93
+    },
+    "archive_brain": {
+      "pass": true,
+      "source_count": 732,
+      "known_chat_count": 9,
+      "archive_safe_count": 0,
+      "delete_safe_count": 0
+    },
+    "pc_scheduled_tasks": {
+      "pass": true,
+      "output": "[\n    {\n        \"TaskName\":  \"BannerlordAI Continuation Supervisor\",\n        \"State\":  1\n    },\n    {\n        \"TaskName\":  \"BannerlordAI Continuity Watchdog\",\n        \"State\":  1\n    }\n]\n"
+    },
+    "no_bannerlord_running": {
+      "pass": true,
+      "output": "False"
+    },
+    "mem_archive_gate": {
+      "pass": true,
+      "status": "VERIFIED_LAYERED_MIRROR",
+      "front_count": 1,
+      "hot_count": 1,
+      "architecture_count": 6,
+      "evidence_count": 4,
+      "research_count": 3,
+      "legacy_count": 3
+    }
+  },
+  "blocking_checks": []
+}

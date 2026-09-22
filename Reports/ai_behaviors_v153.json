@@ -1,0 +1,1234 @@
+{
+    "count":  243,
+    "byAssembly":  [
+                       {
+                           "assembly":  "TaleWorlds.CampaignSystem",
+                           "count":  189
+                       },
+                       {
+                           "assembly":  "NavalDLC",
+                           "count":  29
+                       },
+                       {
+                           "assembly":  "SandBox",
+                           "count":  25
+                       }
+                   ],
+    "behaviors":  [
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PartyUpgraderCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.EncounterGameMenuBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PlayerCaptivityCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.BackstoryCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.TradeCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.BanditSpawnCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.DesertersCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.BanditInteractionsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.WorkshopsCharactersCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterRelationCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.DesertionCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.FoodConsumptionBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.FindingItemOnMapBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.BuildingsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.ItemConsumptionBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.GarrisonTroopsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CaravansCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CaravanConversationsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.GovernorCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.HideoutCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PartiesBuyFoodCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PartiesBuyHorseCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PoliticalStagnationAndBorderIncidentCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PrisonerReleaseCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PrisonerCaptureCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PrisonerRecruitCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.RomanceCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.LordDefectionCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PartiesSellPrisonerCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PartiesSellLootCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.SettlementVariablesBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.MilitiasCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.SettlementClaimantCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.TradeRumorsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.NotablesCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.LordConversationsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CompanionsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.RetrainOutlawPartyMembersBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.RecruitPrisonersCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.HeroSpawnCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.TournamentGames.TournamentCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CraftingCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.MapTracksCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.MapTrackerCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.HeroAgentSpawnCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.NotableHelperCharacterCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterDevelopmentCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.HeroDailyXpCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.TradeSkillCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.RecruitmentCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.VillageHostileActionCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PlayerTownVisitCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.DynamicBodyCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.VillageTradeBoundCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.VillageGoodProductionCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.SiegeAftermathCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.NPCEquipmentsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.VillagerCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.VillageHealCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PlayerVariablesBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.MobilePartyTrainingBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.TradeAgreementsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.EducationCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.RansomOfferCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PeaceOfferCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.MarriageOfferCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.VassalAndMercenaryOfferCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AllianceCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.TributesCampaignBehaviour",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.EmptyClanPartiesCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PartyConfigurationCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentOnLeaveFactionBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentOnChangeRomanticStateBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentOnChangeSettlementOwnerBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentOnPlayerMeetLordBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentOnEndPlayerBattleBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentOnDefeatCharacterBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentOnCharacterKilledBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentOnChangeVillageStateBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentOnDestroyMobilePartyBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentOnMakePeaceBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentOnDeclareWarBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentOnKingdomDestroyedBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentOnClanDestroyedBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentOnClanLeaderChangedBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentPregnancyBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentChildbirthBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CommentBehaviors.CommentCharacterBornBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.DefaultLogsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.JournalLogsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.ViewDataTrackerCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiArmyMemberBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiMilitaryBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiPatrollingBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiEngagePartyBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiLandBanditPatrollingBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiVisitSettlementBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiPartyThinkBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AIMoveToNearestLandBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.BarterBehaviors.DiplomaticBartersBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.BarterBehaviors.SetPrisonerFreeBarterBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.BarterBehaviors.FiefBarterBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.BarterBehaviors.ItemBarterBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.BarterBehaviors.GoldBarterBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.BarterBehaviors.TransferPrisonerBarterBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CompanionGrievanceBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CompanionRolesCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PlayerTrackCompanionBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.RebellionsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.SallyOutsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CrimeCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PlayerArmyWaitBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.ClanVariablesCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.FactionDiscontinuationCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AgingCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.BattleCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.WorkshopsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PregnancyCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.InitialChildGenerationCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.NotablePowerManagementBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PerkActivationHandlerCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.TownSecurityCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.HeroKnownInformationCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.DisbandPartyCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PartyHealCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CampaignBattleRecoveryBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CampaignWarManagerBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.KingdomDecisionProposalBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PartyRolesCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.EmissarySystemCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CampaignFactionManagerBehaviour",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.SiegeEventCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.IssuesCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.InfluenceGainCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.BannerCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.TeleportationCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.ArmyNeedsSuppliesIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.ArtisanCantSellProductsAtAFairPriceIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.ArtisanOverpricedGoodsIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.CapturedByBountyHuntersIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.CaravanAmbushIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.EscortMerchantCaravanIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.ExtortionByDesertersIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.GangLeaderNeedsToOffloadStolenGoodsIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.GangLeaderNeedsWeaponsIssueQuestBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.RevenueFarmingIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.HeadmanNeedsGrainIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.HeadmanNeedsToDeliverAHerdIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.HeadmanVillageNeedsDraughtAnimalsIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.LadysKnightOutIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.LandLordCompanyOfTroubleIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.LandLordTheArtOfTheTradeIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.LandlordNeedsAccessToVillageCommonsIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.LandLordNeedsManualLaborersIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.LandlordTrainingForRetainersIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.LordNeedsGarrisonTroopsIssueQuestBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.TheConquestOfSettlementIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.VillageNeedsCraftingMaterialsIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.SmugglersIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.LordNeedsHorsesIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.LordsNeedsTutorIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.LordWantsRivalCapturedIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.MerchantArmyOfPoachersIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.MerchantNeedsHelpWithOutlawsIssueQuestBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.NearbyBanditBaseIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.RaidAnEnemyTerritoryIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.ScoutEnemyGarrisonsIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.VillageNeedsToolsIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.GangLeaderNeedsRecruitsIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.GangLeaderNeedsSpecialWeaponsIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.LesserNobleRevoltIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.Issues.BettingFraudIssueBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.DiscardItemsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.OrderOfBattleCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.DisorganizedStateCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PerkResetCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.SiegeAmbushCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.MapWeatherCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.GarrisonRecruitmentCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PartyDiplomaticHandlerCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.ParleyCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.IncidentsCampaignBehaviour",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.PatrolPartiesCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.NotableSupportersCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.ExecutionCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.CampaignAdvancedStartingPlayerOptionsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.AdvancedStartWorldOptionsCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.BattleWreckageCampaignBehavior",
+                          "assembly":  "TaleWorlds.CampaignSystem",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.HideoutConversationsCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.AlleyCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.CommonTownsfolkCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.CompanionDismissCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.DefaultNotificationsCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.ClanMemberRolesCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.PrisonBreakCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.GuardsCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.SettlementMusiciansCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.BoardGameCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.TradersCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.ArenaMasterCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.CommonVillagersCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.HeirSelectionCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.DefaultCutscenesCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.BarberCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.RetirementCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.StatisticsCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.DumpIntegrityCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.CheckpointCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.StealthCharactersCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.TavernEmployeesCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.TownMerchantsCampaignBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.CampaignPermanentOptionsBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "SandBox.CampaignBehaviors.RecruitmentAgentSpawnBehavior",
+                          "assembly":  "SandBox",
+                          "isVanilla":  true
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalTransitionCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalCharacterCreationCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.SeaDamageCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.ShipProductionCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.ShipTradeCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.ShipRepairCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.RaftStateCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.ShipUpgradeCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.PortCharactersCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.ClanFleetManagementCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "TaleWorlds.CampaignSystem.CampaignBehaviors.NavalPatrolPartiesCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalVeteransWisdomCampaignBehaviour",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalFishingCampaignBehaviour",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalNimbleSurgeCampaignBehaviour",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalStormriderCampaignBehaviour",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalOrderOfBattleCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalDLCTutorialBoxCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.PiratesCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalKingdomPolicyCampaignBehaviour",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.FishingPartyCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.StormCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalDLCFigureheadCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalShipDistributionCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.ShipNameCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalInitializationCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalCompanionRolesCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.FerryCampaignBehavior",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      },
+                      {
+                          "behavior":  "NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour",
+                          "assembly":  "NavalDLC",
+                          "isVanilla":  false
+                      }
+                  ]
+}

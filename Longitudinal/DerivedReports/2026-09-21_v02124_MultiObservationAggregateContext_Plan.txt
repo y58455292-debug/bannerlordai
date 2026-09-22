@@ -1,0 +1,42 @@
+BannerlordAI v0.2.10.24 — Read-only multi-observation aggregate factual context
+
+Question
+Can Manan compress a persisted factual trajectory into deterministic component-wise numeric aggregates across all observations, without semantic interpretation or gameplay authority?
+
+Implementation boundary
+- Extend the accepted v0.2.10.23 read-only history reader only.
+- Do not change memory writers, persistence schema, recognition, movement, scoring, or decision authority.
+- Across every exact ordered factual state emit:
+  stateMin: component-wise minimum for all five threat fields.
+  stateMax: component-wise maximum.
+  stateMean: arithmetic mean across all observations.
+  stateRange: component-wise max-min.
+- Preserve all accepted count/order/timing/states/deltas/rates/provenance fields.
+- Aggregates are descriptive numeric facts only. No labels such as safer, stronger, weaker, dangerous, improving, declining, stable, volatile.
+- interpretationApplied=false; behaviorMutation=false; intentMutation=false; scoreMutation=false; nativeMovementCalls=0.
+
+Deterministic fixture
+Use four same-identity observations at real increasing CampaignTime:
+1) [120,100,60,50,2.0]
+2) [90,80,55,45,1.6363636]
+3) [75,70,50,40,1.5]
+4) [105,85,70,55,1.5]
+
+Expected aggregates
+actorStrength: min 75, max 120, mean 97.5, range 45
+actorHealthy: min 70, max 100, mean 83.75, range 30
+banditStrength: min 50, max 70, mean 58.75, range 20
+banditHealthy: min 40, max 55, mean 47.5, range 15
+actorToBanditStrengthRatio: min 1.5, max 2.0, mean 1.6590909, range 0.5 (within accepted numeric tolerance)
+
+Acceptance
+1. Four observations use actual increasing CampaignTime and exact identity.
+2. Product orderedStates contains all four exact fixture states.
+3. stateMin/stateMax/stateMean/stateRange independently recompute exactly within numeric tolerance.
+4. Existing trajectory/rate fields remain internally consistent.
+5. Native SaveAs/full restart preserves ordered states and aggregates.
+6. No semantic interpretation or gameplay authority.
+7. Protected saves/binaries/lease/disposable saves restore cleanly.
+
+Do not repeat
+Do not re-prove .19 persistence, .20 temporal order, .21 pairwise delta, .22 three-state trajectory, or .23 per-hour rate math unless contradictory evidence appears.

@@ -1,0 +1,176 @@
+DEEPSEEK V4.1 FLASH — BANNERLORD AI / TOTAL IMPROVEMENT ASSESSMENT
+Date: 2026-09-18
+Status: RESEARCHED; CONTROLLED INTEGRATION RECOMMENDED
+
+VERIFIED OFFICIAL FACTS
+- Released 2026-09-10.
+- API model name: deepseek-flash.
+- Native text + image understanding.
+- 1,000,000-token context.
+- API max output: 384K tokens.
+- Open weights are MIT licensed.
+- 552B backbone MoE.
+- Causal Encoder–Decoder: roughly 8B active parameters during input/prefill and 16B during output/decode.
+- V4.1 Flash reduces global KV cache substantially vs prior V4 Flash.
+- Official model card says the model supports continuously controllable reasoning effort 1–100.
+- Public API surfaces expose thinking/non-thinking and effort presets/mappings; use the API's supported controls rather than assuming arbitrary numeric effort is accepted everywhere.
+- API context caching is automatic and prefix-based.
+- API is stateless: client keeps canonical history/state.
+- Hosted Responses API supports function tools, but built-in file_search/code_interpreter/computer_use/MCP are not provided by DeepSeek.
+- Responses image input is supported in user/developer input; file input is not.
+- Current API pricing is exceptionally low for bulk analysis, especially cache hits.
+
+TOTAL IMPROVEMENT GOAL
+Treat every new model/tool as a candidate improvement to the entire research/development loop, not as a replacement for proven systems.
+
+Recommended improvement loop:
+OBSERVE
+ -> PRESERVE RAW EVIDENCE
+ -> DETERMINISTIC NORMALIZE / DEDUPE
+ -> BULK MODEL ANALYSIS
+ -> CROSS-RUN COMPARE
+ -> FORM HYPOTHESES
+ -> DETERMINISTIC VERIFY
+ -> PATCH ONE THING
+ -> BENCHMARK BEHAVIOR + PERFORMANCE
+ -> ARCHIVE / LEARN
+ -> IMPROVE THE METHOD ITSELF
+
+BEST ROLE FOR DEEPSEEK V4.1 FLASH
+External high-volume analyst / compactor / anomaly scout.
+
+DO NOT PUT IT
+- in Bannerlord's hot AI loop;
+- on every hourly AI decision;
+- in movement/pathfinding/action execution;
+- as canonical memory;
+- in charge of deciding whether causality is proven.
+
+WHY IT FITS
+Long test sessions can create millions of repetitive telemetry tokens.
+V4.1 Flash has:
+- huge context;
+- cheap input;
+- automatic caching;
+- strong code/agent benchmark results;
+- native image understanding;
+- controllable thinking.
+This makes it useful for reading far more evidence than we should manually keep in one chat context.
+
+CRITICAL LESSON FROM 2026-09-18 TEST
+Do NOT feed raw noisy telemetry directly and trust the summary.
+Our own deterministic analysis found:
+- some VISUAL_WAR_WINNER_CHANGE events were NEW commitments;
+- many were ALREADY_ACTIVE reassertions;
+- some remained UNPROVEN.
+A language model could easily count all of them as separate meaningful changes.
+Therefore preprocessing remains mandatory.
+
+RECOMMENDED PIPELINE
+1. Raw Evidence Store (immutable)
+   logs, CSV, screenshots/keyframes, build hashes, interventions.
+
+2. Deterministic Normalizer
+   labels:
+   - NATURAL vs INDUCED stimulus
+   - NEW_COMMITTED_CHANGE
+   - MAINTAINED / REASSERTED INTENT
+   - TRUE INTENT CHANGE
+   - UNPROVEN
+   - memory event linkage
+   - build/session/timestamp IDs
+
+3. DeepSeek Bulk Analyst
+   consumes normalized event batches and selected images.
+   Strict JSON output with evidence IDs only.
+
+4. Deterministic Verifier
+   scripts test DeepSeek's candidate chains against timestamps and Behavior Delta.
+
+5. Senior Review
+   GPT-5.6 Sol / human evaluates important engineering conclusions and decides what patch to test.
+
+6. Longitudinal Store
+   session summaries, build comparisons, regressions, unresolved findings.
+
+SATURATION-RESISTANT CONTEXT DESIGN
+Do not use 1M tokens as an excuse to append forever.
+Use hierarchy:
+- raw evidence permanently on disk;
+- minute/hour rollups;
+- campaign-day episode summaries;
+- session summaries;
+- build summaries;
+- cross-build conclusions.
+
+Keep stable request prefix:
+- project doctrine;
+- data schema;
+- current build manifest;
+- proof rubric;
+- output JSON schema;
+- previous frozen summary.
+Append only new normalized evidence.
+This maximizes automatic DeepSeek prefix-cache reuse.
+
+MULTIMODAL USE
+For video:
+- keep raw video locally;
+- extract timestamped keyframes / short representative frame sequences;
+- pair frames with telemetry windows;
+- ask DeepSeek to identify visible map state and possible patterns;
+- require frame IDs + event IDs in every claim.
+Do not assume raw video upload support.
+
+REASONING ROUTING
+- Non-thinking / low: tagging, classification, dedupe review, routine compaction.
+- High: anomaly grouping, cross-session comparison, code/log analysis.
+- Max: rare candidate causal chains or difficult architectural analysis.
+Never use max reasoning by default for bulk ingestion.
+
+FIRST CONTROLLED EXPERIMENT
+DeepSeek Bulk Analyst v0.1, READ ONLY.
+Use the already-understood 2026-09-18 session as a benchmark set.
+Give it normalized:
+- Behavior Delta;
+- v0.19C events;
+- intervention labels;
+- video keyframes;
+- deterministic ground-truth classifications.
+Ask for strict JSON:
+- behavior clusters;
+- regional activity;
+- causal-chain candidates;
+- reassertions;
+- anomalies;
+- memory-linked later behavior;
+- unproven claims;
+- evidence IDs.
+
+Acceptance test:
+Compare DeepSeek output against our deterministic 2026-09-18 report.
+Measure:
+- missed proven changes;
+- false causal claims;
+- reassertions misclassified as changes;
+- evidence-reference accuracy;
+- compression ratio;
+- tokens/cost;
+- elapsed analysis time.
+Only expand it to unattended long-run analysis after it passes.
+
+LOCAL HOSTING
+Not realistic on a normal gaming PC.
+The official model repository is hundreds of GB; current vLLM deployment recipes target datacenter-class multi-GPU memory.
+Use hosted API for this role unless future quantizations become dramatically smaller.
+
+PRIVACY / SAFETY PRACTICE
+DeepSeek is an external service.
+Keep canonical raw evidence locally and transmit only project data required for analysis.
+Strip API keys, personal paths/names, unrelated files, and secrets before sending.
+
+BOTTOM LINE
+DeepSeek V4.1 Flash can materially improve the project, especially long-run evidence digestion.
+Its greatest value is not 'more AI inside NPC brains.'
+Its value is making our DEVELOPMENT + OBSERVATION + COMPARISON loop scale without drowning us in logs.
+

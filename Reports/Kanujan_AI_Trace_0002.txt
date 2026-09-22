@@ -1,0 +1,49 @@
+=== AI TRACE BEGIN #2 v0.1 ===
+party=Kanujan's Party id=lord_6_19_party_1 leader=Kanujan
+before behavior=RaidSettlement targetSettlement=Ulikshorn targetParty=<null>
+think currentObjectiveValue=0.9409553 doNotChangeBehavior=False willGatherAnArmy=False
+strength noArmy=1872.211 withArmy=7066.601 sameClanNoArmy=138.29
+candidateCount=399
+candidate score=5.225233 behavior=RaidSettlement target=Ulikshorn [castle_village_N9_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Naval fromPort=False targetPort=True
+candidate score=2.932567 behavior=PatrolAroundPoint target=Thralathorp [castle_village_N9_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Naval fromPort=False targetPort=True
+candidate score=2.840897 behavior=PatrolAroundPoint target=Ulikshorn [castle_village_N9_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Naval fromPort=False targetPort=True
+candidate score=2.778751 behavior=PatrolAroundPoint target=Gauksdal [village_N4_4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Naval fromPort=False targetPort=True
+candidate score=2.742906 behavior=PatrolAroundPoint target=Simira [castle_village_K7_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=2.717374 behavior=PatrolAroundPoint target=Tismil [castle_village_K7_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=2.69105 behavior=PatrolAroundPoint target=Faergap [village_N4_3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Naval fromPort=False targetPort=True
+candidate score=2.66664 behavior=RaidSettlement target=Gauksdal [village_N4_4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Naval fromPort=False targetPort=True
+candidate score=2.50664 behavior=PatrolAroundPoint target=Hargard [town_N4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Naval fromPort=False targetPort=True
+candidate score=2.478286 behavior=PatrolAroundPoint target=Haugr [castle_village_N6_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Naval fromPort=False targetPort=True
+candidate score=2.437627 behavior=PatrolAroundPoint target=Nifdal [castle_village_N6_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Naval fromPort=False targetPort=True
+candidate score=2.397568 behavior=PatrolAroundPoint target=Dvorusta [castle_village_S6_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Naval fromPort=False targetPort=True
+candidate score=2.303926 behavior=PatrolAroundPoint target=Khimli [castle_village_K5_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=2.292398 behavior=PatrolAroundPoint target=Haugr Castle [castle_N6] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Naval fromPort=False targetPort=True
+candidate score=2.121992 behavior=PatrolAroundPoint target=Kvol [village_S6_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=True
+candidate score=2.096339 behavior=PatrolAroundPoint target=Radakmed [village_S6_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=True
+candidate score=2.051002 behavior=PatrolAroundPoint target=Omrotok [castle_village_K5_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=2.009434 behavior=PatrolAroundPoint target=Fimbulgard [castle_village_N5_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=True
+candidate score=2.000822 behavior=PatrolAroundPoint target=Veron [castle_village_EW5_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.988824 behavior=PatrolAroundPoint target=Goleryn [castle_village_EW5_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.966317 behavior=PatrolAroundPoint target=Andurn [village_B4_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.96412 behavior=PatrolAroundPoint target=Claig Ban [castle_village_B5_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.957461 behavior=PatrolAroundPoint target=Mag Arba [village_B4_3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.956203 behavior=PatrolAroundPoint target=Car Banseth [town_B3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.954337 behavior=PatrolAroundPoint target=Seonon [town_B4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.950587 behavior=PatrolAroundPoint target=Thronderlag [town_N3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.945666 behavior=PatrolAroundPoint target=Bryn Glas [village_B4_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.93265 behavior=PatrolAroundPoint target=Rhemtoil [castle_village_B5_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.930908 behavior=PatrolAroundPoint target=Tarcutis [castle_village_EW3_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.922363 behavior=PatrolAroundPoint target=Pendraic [castle_village_B4_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.922347 behavior=PatrolAroundPoint target=Swenryn [village_B4_4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.918969 behavior=PatrolAroundPoint target=Geunat Nal [village_B3_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.916164 behavior=PatrolAroundPoint target=Thorios [castle_village_EW2_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.912602 behavior=PatrolAroundPoint target=Lindorn [castle_village_B4_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.912138 behavior=PatrolAroundPoint target=Bergum [castle_village_EW2_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.904009 behavior=PatrolAroundPoint target=Tor Leiad [village_B3_3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.901568 behavior=PatrolAroundPoint target=Amitatys [town_EW5] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.898373 behavior=PatrolAroundPoint target=Bog Beth [village_B3_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.891513 behavior=PatrolAroundPoint target=Akkalat [town_K2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=1.886961 behavior=PatrolAroundPoint target=Odokh [town_K6] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidateNote=top 40 by score shown; total=399
+final behavior=RaidSettlement targetSettlement=Ulikshorn targetParty=<null> army=<null> attachedTo=<null>
+=== AI TRACE END #2 ===

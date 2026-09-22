@@ -1,0 +1,40 @@
+{
+  "schema": "BannerlordAI.ReasoningTournament.v1",
+  "wall_unix": 1789819618.7185056,
+  "actor": "Manan",
+  "incident": "incident_singing_for_supper",
+  "title": "Singing for Supper",
+  "active_level": "2",
+  "levels": {
+    "0": {
+      "name": "Reflex",
+      "choice": 0,
+      "choice_text": "Let him do it and reward him generously, but tell him to describe your losses and faults as well",
+      "margin": 0.0252
+    },
+    "1": {
+      "name": "Practical",
+      "choice": 0,
+      "choice_text": "Let him do it and reward him generously, but tell him to describe your losses and faults as well",
+      "margin": 0.5426
+    },
+    "2": {
+      "name": "Strategic",
+      "choice": 0,
+      "choice_text": "Let him do it and reward him generously, but tell him to describe your losses and faults as well",
+      "margin": 1.27
+    },
+    "3": {
+      "name": "Deliberative",
+      "choice": 0,
+      "choice_text": "Let him do it and reward him generously, but tell him to describe your losses and faults as well",
+      "margin": 1.5231
+    },
+    "4": {
+      "name": "Research",
+      "choice": 0,
+      "choice_text": "Let him do it and reward him generously, but tell him to describe your losses and faults as well",
+      "margin": 1.6399
+    }
+  }
+}

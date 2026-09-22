@@ -1,0 +1,43 @@
+BannerlordAI — v0.2.10.3 Patrol Defense Auto Apply — Analyzer Semantic Review
+Date: 2026-09-20
+Scope: terminal v0.2.10.3 automatic Apply packet only
+Final classification: HARNESS_FALSE_NEGATIVE
+Semantic result: ACCEPTED_PATROL_LOCAL_DEFENSE_AUTO_APPLY
+
+RAW AUTHORITY
+- D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02103_AutoApply_20260919_230102_295195\validation.json
+- D:\BannerlordAIResearch\Automation\TestRunner\patrol_defense_apply.jsonl
+- D:\BannerlordAIResearch\Automation\TestRunner\patrol_defense_shadow.jsonl
+- D:\BannerlordAIResearch\Automation\TestRunner\runner.log
+- D:\BannerlordAIResearch\workspace\_PatchStaging\AutonomousOperator_v002103_PatrolDefenseAutoApply_20260919_2250\candidate
+
+OBSERVED
+- Exact-load Manan/Syronea branch produced a fresh safe proposal with proposalId, fingerprint, settlement, bandit, victim, and campaignHours.
+- Exactly one automatic ENGAGE_ISSUED receipt used native SetMoveEngageParty on southern_pirates_47910.
+- Engage receipt provenance exactly matches the fresh proposal, including victim player_faction_1 and campaignHours 648657.9394873333.
+- TargetParty and ShortTermTargetParty both confirmed southern_pirates_47910 immediately after the native engage call.
+- Exactly one PATROL_RESTORED receipt used native SetMovePatrolAroundSettlement town_ES7 after bounded_timeout.
+- Restore receipt carries the same proposalId/fingerprint and exactlyOnceConsumed=true.
+- All 14 validator acceptance checks are true; engage_count=1 and restore_count=1.
+- Engage and restore both report scoreMutation=false and nativeScoreWrites=0.
+- Runner command log contains no PATROL_DEFENSE_APPLY_ONCE command in this run; automatic execution followed the patrol observer path.- Protected root/BLOOD FUED/disposable-clone hashes match; disposable save was cleaned; accepted runner restored; causal config remained Observe; deployment lease released.
+- Candidate code keeps a campaign-scoped consumed latch and passes the same fresh shadow result directly into the automatic Apply gate.
+- completed_local=2026-09-19T23:02:25.537886-07:00 was written after cleanup/lease release; failed_local followed about 1 ms later.
+- The only terminal error is NameError: name 'threat_receipts' is not defined from obsolete final-summary printing.
+- Current validator source no longer contains threat_receipts and compiles successfully offline.
+
+SEMANTIC CONCLUSION
+- The validator FAIL is a harness false negative occurring after the behavioral proof and integrity closeout were already complete.
+- The semantic milestone is accepted: one fresh safe patrol-defense proposal automatically caused one exact native bandit engage and one bounded patrol restoration with immutable proposal provenance and zero score writes.
+- No live rerun is warranted solely for the post-completion print NameError.
+- Scope remains bounded: this does not prove combat/battle outcome, threat-resolution-driven restoration, or safe recurring rearm for multiple defense events in one campaign.
+
+NEXT SMALLEST ACCEPTANCE GATE
+- v0.2.10.4 post-restore latch soak: after the first automatic restore, continue the disposable exact-load branch for a bounded observation window.
+- Require at least one post-restore shadow proposal for the same qualifying threat if it remains present, while ENGAGE_ISSUED count stays exactly one and no second native engage occurs.
+- Require patrol intent to remain PATROL_SETTLEMENT:town_ES7, zero native score writes, then EXIT_NOSAVE with protected-save/config/runner/owner integrity unchanged.
+- This isolates the one-shot consumed-latch safety claim before any later design for recurring multi-threat rearm.
+
+DURABLE UPDATE
+- Architecture evidence warranted; no new policy required because existing raw-evidence-over-summary and harness-false-negative rules already cover this case.
+- Do not rerun v0.2.10.3 live solely to clear the obsolete final-summary NameError.

@@ -1,0 +1,173 @@
+{
+    "test":  "UNTOUCHED_BASELINE_FASTFORWARD",
+    "durationSeconds":  60,
+    "started":  "2026-09-15T23:14:37.3339689-07:00",
+    "ended":  "2026-09-15T23:15:37.3843611-07:00",
+    "externalProcess":  null,
+    "inspectorPerf":  {
+                          "measuringSince":  "23:14:37",
+                          "context":  "campaign map, day 91079",
+                          "frames":  {
+                                         "sampled":  1024,
+                                         "fpsAverage":  94.9,
+                                         "fpsFromMedian":  102.5,
+                                         "msAverage":  10.53,
+                                         "msBest":  7.7,
+                                         "msMedian":  9.76,
+                                         "msP95":  16.03,
+                                         "msP99":  19.27,
+                                         "msWorst":  36.42,
+                                         "note":  "p95/p99 are the stutter. An average of 60 FPS with a 90 ms p99 feels worse than a steady 45."
+                                     },
+                          "campaignPhases":  [
+                                                 {
+                                                     "phase":  "TickPartialHourlyAi",
+                                                     "totalMs":  3547.4,
+                                                     "shareOfMeasured":  "44.4%",
+                                                     "calls":  52625,
+                                                     "avgMs":  0.0674,
+                                                     "worstMs":  8.41
+                                                 },
+                                                 {
+                                                     "phase":  "AiHourlyTick",
+                                                     "totalMs":  3470.7,
+                                                     "shareOfMeasured":  "43.4%",
+                                                     "calls":  6330,
+                                                     "avgMs":  0.5483,
+                                                     "worstMs":  5.48
+                                                 },
+                                                 {
+                                                     "phase":  "HourlyTickParty",
+                                                     "totalMs":  263.4,
+                                                     "shareOfMeasured":  "3.3%",
+                                                     "calls":  53185,
+                                                     "avgMs":  0.005,
+                                                     "worstMs":  2.5
+                                                 },
+                                                 {
+                                                     "phase":  "HourlyTickSettlement",
+                                                     "totalMs":  252.2,
+                                                     "shareOfMeasured":  "3.2%",
+                                                     "calls":  19319,
+                                                     "avgMs":  0.0131,
+                                                     "worstMs":  1.57
+                                                 },
+                                                 {
+                                                     "phase":  "DailyTickSettlement",
+                                                     "totalMs":  146.7,
+                                                     "shareOfMeasured":  "1.8%",
+                                                     "calls":  804,
+                                                     "avgMs":  0.1825,
+                                                     "worstMs":  1.96
+                                                 },
+                                                 {
+                                                     "phase":  "DailyTickClan",
+                                                     "totalMs":  73.8,
+                                                     "shareOfMeasured":  "0.9%",
+                                                     "calls":  160,
+                                                     "avgMs":  0.461,
+                                                     "worstMs":  5.22
+                                                 },
+                                                 {
+                                                     "phase":  "HourlyTickClan",
+                                                     "totalMs":  67.0,
+                                                     "shareOfMeasured":  "0.8%",
+                                                     "calls":  3863,
+                                                     "avgMs":  0.0174,
+                                                     "worstMs":  1.71
+                                                 },
+                                                 {
+                                                     "phase":  "DailyTickParty",
+                                                     "totalMs":  64.1,
+                                                     "shareOfMeasured":  "0.8%",
+                                                     "calls":  2215,
+                                                     "avgMs":  0.0289,
+                                                     "worstMs":  1.52
+                                                 },
+                                                 {
+                                                     "phase":  "Tick",
+                                                     "totalMs":  52.0,
+                                                     "shareOfMeasured":  "0.7%",
+                                                     "calls":  2063,
+                                                     "avgMs":  0.0252,
+                                                     "worstMs":  0.14
+                                                 },
+                                                 {
+                                                     "phase":  "DailyTick",
+                                                     "totalMs":  33.7,
+                                                     "shareOfMeasured":  "0.4%",
+                                                     "calls":  1,
+                                                     "avgMs":  33.7221,
+                                                     "worstMs":  33.72
+                                                 },
+                                                 {
+                                                     "phase":  "HourlyTick",
+                                                     "totalMs":  19.0,
+                                                     "shareOfMeasured":  "0.2%",
+                                                     "calls":  36,
+                                                     "avgMs":  0.527,
+                                                     "worstMs":  1.92
+                                                 },
+                                                 {
+                                                     "phase":  "QuarterHourlyTick",
+                                                     "totalMs":  0.6,
+                                                     "shareOfMeasured":  "0%",
+                                                     "calls":  144,
+                                                     "avgMs":  0.0042,
+                                                     "worstMs":  0.08
+                                                 }
+                                             ],
+                          "phaseNote":  "Time inside the campaign\u0027s own tick dispatchers. \u0027calls\u0027 times \u0027avgMs\u0027 is where the cost is: a cheap method called 5000 times an hour beats an expensive one called twice.",
+                          "worstFrames":  [
+                                              {
+                                                  "ms":  178.3,
+                                                  "atLocalTime":  "23:14:47",
+                                                  "doing":  "not started"
+                                              },
+                                              {
+                                                  "ms":  90.2,
+                                                  "atLocalTime":  "23:14:56",
+                                                  "doing":  "not started"
+                                              },
+                                              {
+                                                  "ms":  50.2,
+                                                  "atLocalTime":  "23:14:49",
+                                                  "doing":  "not started"
+                                              }
+                                          ]
+                      },
+    "inspectorErrors":  {
+                            "note":  "Exceptions thrown since the collector was armed, newest first. Identical ones are grouped with a count. \u0027blame\u0027 is the first non-engine assembly on the stack. Test loop: action=clear, do the thing in game, then read this again.",
+                            "armed":  true,
+                            "armedAt":  "23:00:29",
+                            "totalSeen":  0,
+                            "distinct":  0,
+                            "matched":  0,
+                            "shown":  0,
+                            "fatal":  0,
+                            "droppedOverBudget":  0,
+                            "selfSuppressed":  0,
+                            "groups":  [
+
+                                       ]
+                        },
+    "health":  {
+                   "ok":  true,
+                   "mod":  "BannerlordInspector",
+                   "readOnly":  true,
+                   "served":  0,
+                   "pending":  0,
+                   "timedOut":  0,
+                   "gameTicking":  true,
+                   "msSinceLastTick":  4,
+                   "ticks":  136624,
+                   "errors":  {
+                                  "armed":  true,
+                                  "totalSeen":  0,
+                                  "distinct":  0,
+                                  "fatal":  0,
+                                  "newest":  null,
+                                  "newestBlame":  null
+                              }
+               }
+}

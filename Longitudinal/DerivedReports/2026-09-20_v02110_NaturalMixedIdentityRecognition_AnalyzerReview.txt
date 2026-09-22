@@ -1,0 +1,88 @@
+BannerlordAI v0.2.10.10 — Analyzer Review
+Date: 2026-09-20
+Final classification: PASS
+
+Question
+After a fresh reload and positive campaign-time advance, can the real patrol-defense observer naturally distinguish a remembered real bandit group as KNOWN_ENEMY from a different unseen real bandit group as NEW_ENEMY, without manual recognition or behavior/intent/score authority?
+
+Independent raw-evidence review
+- Durable branch: a16e6d9c714b4afc857a8799f38dbcdc.
+- Remembered identities in the persisted branch:
+  - southern_pirates_47910
+  - mountain_bandits_48928
+- Recognition stream contains four Stage-2 natural observer rows:
+  - southern_pirates_47910 -> KNOWN_ENEMY at 648655.9863583611
+  - southern_pirates_47910 -> KNOWN_ENEMY at 648657.2092159167
+  - southern_pirates_47910 -> KNOWN_ENEMY at 648665.8415473889
+  - mountain_bandits_48971 -> NEW_ENEMY at 648734.14065875
+- The accepted KNOWN receipt:
+  - requestedBanditId=southern_pirates_47910
+  - visibleCount=1
+  - memoryAgeHours=5.001285277772695
+  - exact prior episode id=e9b7889daf814b0f844f17f8c1695989
+  - prior source=ValidationSeed.v02107.real_stage1
+  - actorValid=true, branchValid=true, identityValid=true, futureLeak=false
+  - behaviorMutation=false, intentMutation=false, scoreMutation=false
+  - matching natural patrol-defense shadow has exact same proposal identity and campaignHours.
+- The accepted NEW receipt:
+  - requestedBanditId=mountain_bandits_48971
+  - this identity is distinct from both remembered identities
+  - visibleCount=0
+  - priorEpisode=null
+  - memoryAgeHours=null
+  - actorValid=true, branchValid=true, identityValid=true, futureLeak=false
+  - behaviorMutation=false, intentMutation=false, scoreMutation=false
+  - matching natural shadow identifies real Mountain Bandits targeting villager_empire_template_38770 / Villagers of Vargornis with wouldInterrupt=true and safeToIntervene=true.
+- All 17 Stage-2 acceptance checks in validation.json are true.
+- No patrol_defense_apply.jsonl exists after the run; therefore no patrol-defense Apply-side-effect receipt was generated.
+- Shared runner.log contains two PATROL_DEFENSE_RECOGNIZE commands from older v0.2.10.8 manual probes at 10:39Z. They are historical rows outside this v0.2.10.10 Stage-2 interval. The validator's Stage-2 runner-tail-scoped manual_recognition_absent check is true.
+- Campaign time advanced from 648650.9850730833 to 648734.14065875.
+- Protected-save hashes are unchanged at 94DFE7F05D89C6E4CC328A416943608713ECFFDF96A572AAEA43A9BDD5CD2DAA.
+- Accepted binaries restored:
+  - ClanAI 7FCF781463001B0884282C48585F53C9B16622B7FC998743F2C96C3850373BFE
+  - TestRunner EB164E99D7075907F34BD4C6EB32C1EA5E8419FA6A62242C175CB8B2A10F9802
+- Disposable test saves are absent.
+- Bannerlord is closed.
+- Deployment owner is clear.
+
+Semantic conclusion
+PASS. v0.2.10.10 proves natural, exact-identity discrimination across multiple real patrol-defense bandit groups in one fresh-reload run: a persisted known identity resolves KNOWN_ENEMY with exact episode provenance, while a distinct unseen real identity resolves NEW_ENEMY with no prior memory. Recognition remains read-only with respect to behavior, intent, and score authority.
+
+What this does NOT prove
+- It does not prove that a natural NEW_ENEMY observation is automatically written into episodic memory.
+- It does not prove that an autonomously learned patrol-defense episode survives save/restart.
+- It does not prove that such autonomously learned memory later influences movement, target selection, intent, utility score, pursuit, avoidance, retaliation, or combat.
+- It does not prove higher-order group lineage/organization identity after destruction/reformation.
+
+Architecture lesson
+Exact real-party identity is now a viable actor-memory lookup boundary for patrol-defense recognition. Keep exact party identity separate from future lineage/familiarity semantics. NEW vs KNOWN may be observed safely before any behavior authority is granted.
+
+Next smallest acceptance gate
+v0.2.10.11 — Natural patrol-defense encounter acquisition, memory-only.
+
+Question:
+Can an observer-generated NEW_ENEMY recognition, correlated to a valid natural patrol-defense shadow, automatically append exactly one immutable PatrolDefense episode for that exact real bandit identity with proposal/victim/time provenance, while leaving behavior/intent/score and movement authority unchanged?
+
+Acceptance:
+1. Start from a branch with no prior memory for the naturally observed bandit.
+2. Require observer-generated NEW_ENEMY for a distinct real bandit.
+3. Require matching natural shadow by exact proposalId/campaignHours.
+4. Automatically record exactly one PatrolDefense episode only after the valid NEW observation/shadow correlation.
+5. Episode contextId must be patrol-defense:<settlementId>:<banditId>; detail must carry bandit/victim/proposal identity and campaign time.
+6. De-duplicate repeated observer rows for the same accepted proposal so one natural event cannot create duplicate episodes.
+7. Retrieve the exact episode after recording and require actor/branch/identity validity and futureLeak=false.
+8. No PATROL_DEFENSE_MEMORY_SEED_REAL_* command for the newly learned identity.
+9. No manual PATROL_DEFENSE_RECOGNIZE command.
+10. Automatic Apply/rearm disconnected.
+11. behaviorMutation=false, intentMutation=false, scoreMutation=false and no native movement/score calls attributable to acquisition.
+12. Protected saves unchanged; disposable saves cleaned; accepted binaries restored; lease released.
+13. If no NEW real identity naturally appears in the bounded window, classify ENVIRONMENTAL_INCONCLUSIVE.
+
+Reason for gate order
+The missing mechanism is autonomous experience acquisition, not persistence. Patrol-defense episode persistence infrastructure is already separately proven with seeded episodes, so first isolate exactly-once natural memory creation. A later v0.2.10.12 can test SaveAs -> full restart -> same autonomously learned episode -> later KNOWN_ENEMY.
+
+Evidence
+D:\BannerlordAIResearch\Longitudinal\LiveValidation\PatrolDefense_v02110_NaturalMixedIdentityRecognition_20260920_052340_628535\validation.json
+D:\BannerlordAIResearch\Automation\TestRunner\patrol_defense_recognition.jsonl
+D:\BannerlordAIResearch\Automation\TestRunner\patrol_defense_shadow.jsonl
+D:\BannerlordAIResearch\Longitudinal\DerivedReports\2026-09-20_v02110_NaturalMixedIdentityRecognition_CoderTerminal.txt

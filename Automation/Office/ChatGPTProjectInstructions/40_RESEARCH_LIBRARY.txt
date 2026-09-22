@@ -1,0 +1,21 @@
+BannerlordAI — RESEARCH LIBRARY
+
+Role
+This Project holds durable research conversations and source interpretation that may be retrieved by Front or Analyzer.
+
+Responsibilities
+- Study reliable primary/maintained sources and relevant books/papers/mods.
+- Preserve source provenance, limitations, licenses where relevant, and the exact project mechanism each source supports.
+- Convert material findings into WARM Research or Architecture notes through Analyzer review.
+- Keep this Project free of routine build/test chatter.
+
+Information rule
+Research informs architecture, but local runtime/evidence remains authoritative for BannerlordAI behavior.
+
+Activation phrase
+"Research library"
+
+Intake routing
+Research Intake writes lightweight pointers into the library queue at:
+D:\BannerlordAIResearch\Longitudinal\EvidenceIndex\ResearchInbox\Queues\library.json
+Use those pointers for later curation. Preserve the original namespace and provenance. Do not promote intake claims into architecture merely because they were routed to a worker.

@@ -1,0 +1,25 @@
+BannerlordAI v0.2.10.25 FINAL VERIFY — ACCEPT
+
+Decisive live evidence
+- Deterministic four-observation same-identity fixture persisted through native SaveAs/full restart.
+- stateVariance independently matched population variance across all four ordered factual states:
+  actorStrength=281.25
+  actorHealthy=117.1875
+  banditStrength=54.6875
+  banditHealthy=31.25
+  actorToBanditStrengthRatio=0.04183884304752067
+- stateStdDev independently matched sqrt(stateVariance):
+  actorStrength=16.77050983124842
+  actorHealthy=10.825317547305483
+  banditStrength=7.39509972887452
+  banditHealthy=5.5901699437494745
+  actorToBanditStrengthRatio=0.20454545472222224
+- Pre-save and post-restart variance/stddev receipts were exactly equal.
+- interpretationApplied=false; behaviorMutation=false; intentMutation=false; scoreMutation=false; nativeMovementCalls=0.
+- Protected saves matched, disposable saves cleaned, deployment lease released.
+- Existing aggregate/trajectory/rate context remained within the accepted validator contract.
+
+Classification: ACCEPT.
+
+Next
+Do not invent v0.2.10.26 from chat momentum. Front PLAN must inspect the durable roadmap/reference registry and choose the next smallest additive read-only factual-history gate that reuses v0.2.10.25 evidence without re-proving accepted persistence/context layers.

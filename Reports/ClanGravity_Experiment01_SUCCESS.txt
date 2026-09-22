@@ -1,0 +1,65 @@
+CLAN GRAVITY v0.2 HOME_ANCHOR party=Ascyron's Party target=Atrion Castle behavior=GoToSettlement oldScore=2.097712 multiplier=1.25 newScore=2.62214
+
+=== AI TRACE BEGIN #7 v0.9 ===
+party=Ascyron's Party id=lord_1_21_party_1 leader=Ascyron
+before defaultBehavior=GoToSettlement targetSettlement=Saneopa targetParty=<null>
+before shortTermBehavior=GoToSettlement shortTermTargetSettlement=Saneopa shortTermTargetParty=<null>
+think currentObjectiveValue=0 doNotChangeBehavior=False willGatherAnArmy=False
+strength noArmy=13405.65 withArmy=0 sameClanNoArmy=591.3041
+boundaryCount=7
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AIMoveToNearestLandBehavior.AiHourlyTick beforeCount=0 afterCount=0 changes=0 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiVisitSettlementBehavior.AiHourlyTick beforeCount=0 afterCount=4 changes=4 goToSettlementChanges=4
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Masangara [castle_village_EN5_2] beforeScore=0 afterScore=18.5036
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Atrion [castle_village_EN5_1] beforeScore=0 afterScore=11.47422
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Atrion Castle [castle_EN5] beforeScore=0 afterScore=2.097712
+  boundaryDelta kind=ADDED behavior=GoToSettlement target=Enoisa [village_EN3_1] beforeScore=0 afterScore=1.964457
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiLandBanditPatrollingBehavior.AiHourlyTick beforeCount=4 afterCount=4 changes=0 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiEngagePartyBehavior.AiHourlyTick beforeCount=4 afterCount=4 changes=0 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiPatrollingBehavior.AiHourlyTick beforeCount=4 afterCount=4 changes=0 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiMilitaryBehavior.AiHourlyTick beforeCount=4 afterCount=48 changes=44 goToSettlementChanges=0
+boundary source=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiArmyMemberBehavior.AiHourlyTick beforeCount=48 afterCount=48 changes=0 goToSettlementChanges=0
+candidateCount=48
+candidate score=18.5036 behavior=GoToSettlement target=Masangara [castle_village_EN5_2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=11.47422 behavior=GoToSettlement target=Atrion [castle_village_EN5_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=2.62214 behavior=GoToSettlement target=Atrion Castle [castle_EN5] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=1.964457 behavior=GoToSettlement target=Enoisa [village_EN3_1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Simira Castle [castle_K7] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Akiser Castle [castle_K2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Aster Castle [castle_B7] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Rhemtoil Castle [castle_B5] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Verecsand Castle [castle_V8] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Talivel Castle [castle_V7] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Shibal Zumr Castle [castle_A6] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Lavenia Castle [castle_ES4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Corenia Castle [castle_ES2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Odrysa Castle [castle_ES1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Jalmarys [town_EW3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Thractorae Castle [castle_EW4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Onica Castle [castle_EW3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Thorios Castle [castle_EW2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Hakarshus Castle [castle_N7] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Hvalvik [town_N1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Erzenur Castle [castle_K8] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Khimli Castle [castle_K5] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Odokh [town_K6] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Akkalat [town_K2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Ab Comer Castle [castle_B1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Druimmor Castle [castle_B3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Dunglanys [town_B2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Ormanfard Castle [castle_V4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Ostican [town_V8] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Rovalt [town_V9] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Tirby Castle [castle_V5] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Charas [town_V7] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Qasira [town_A8] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=All fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Razih [town_A4] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Morenia Castle [castle_ES5] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Syronea [town_ES7] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Vostrum [town_ES2] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Danustica [town_ES1] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Poros [town_ES3] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidate score=0 behavior=BesiegeSettlement target=Hertogea Castle [castle_EW6] position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True gatherArmy=False nav=Default fromPort=False targetPort=False
+candidateNote=top 40 by score shown; total=48
+final defaultBehavior=GoToSettlement targetSettlement=Masangara targetParty=<null>
+final shortTermBehavior=GoToSettlement shortTermTargetSettlement=Masangara shortTermTargetParty=<null> moveTargetParty=<null> moveMode=Point army=<null> attachedTo=<null>
+=== AI TRACE END #7 ===

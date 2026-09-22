@@ -1,0 +1,34 @@
+ClanAI v0.19E — Engage Candidate Probe
+Deployed: 2026-09-18T04:06:20.5245376-07:00
+DLL SHA256: F0D9360E054720B21105CB5FA52DAAEBD6BB6C14771E3ED12F24499F80EC2641
+
+Hypotheses:
+1. Weak active-defense conflict should disappear because all VisualWar combat/frontier boosts now respect recovery priority.
+2. Rear-security may be starved upstream of scoring.
+3. Count ALL native EngageParty candidates, not only bandit targets.
+
+New context counters:
+- weakActiveSkips
+- weakFrontierSkips
+- engagePartyCandidates
+- engagePartyMobileTargets
+- engagePartyNonBanditTargets
+- banditEngageCandidates
+- rearSecurityEligible
+- rearSecurityWeakSkips
+
+Interpretation:
+A) engagePartyCandidates == 0:
+   Bannerlord is not presenting EngageParty candidates to this hook.
+B) engagePartyCandidates > 0 but banditEngageCandidates == 0:
+   EngageParty exists, but native candidate generation excludes bandits here.
+C) banditEngageCandidates > 0 but rearSecurityEligible == 0:
+   candidates exist but party readiness/size gates reject them.
+D) rearSecurityEligible > 0 but no winner changes:
+   scoring strength/competition becomes the next target.
+
+Acceptance:
+- no VisualWar active/frontier/offense winner changes on weak parties;
+- healthy frontier/offense remains functional;
+- preserve full per-session audit log;
+- collect enough context refreshes to classify A/B/C/D.

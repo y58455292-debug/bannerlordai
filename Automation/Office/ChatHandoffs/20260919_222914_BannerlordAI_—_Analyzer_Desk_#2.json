@@ -1,0 +1,72 @@
+{
+  "schema": "BannerlordAI.ChatClockoutHandoff.v1",
+  "created_at": "2026-09-19T22:29:14.727322-07:00",
+  "chat_alias": "BannerlordAI — Analyzer Desk #2",
+  "role": "analyzer",
+  "reason": "semantic_review_complete",
+  "checkpoint_seq": 107,
+  "accepted": {
+    "version": "v0.2.10.2-patrol-defense-apply",
+    "name": "Patrol-Local Reactive Villager Defense Apply",
+    "status": "ACCEPTED_PATROL_LOCAL_DEFENSE_APPLY",
+    "result": "Exact-load Manan/Syronea proof issued one native SetMoveEngageParty to southern_pirates_47910 and one bounded SetMovePatrolAroundSettlement restore after 15 seconds, with exact bandit target state, zero native score writes, protected saves unchanged, accepted runner restored, and owner released. This is bounded test-gate execution proof, not autonomous production or combat-outcome proof."
+  },
+  "active": {
+    "version": "v0.2.10.2-patrol-defense-apply",
+    "name": "Patrol-local reactive villager defense Apply",
+    "status": "ANALYZER_ACCEPTED_BOUNDED_APPLY"
+  },
+  "question": "Can the accepted bounded patrol-defense Apply be triggered exactly once automatically from a fresh safe observer proposal with immutable proposal provenance, then recover to the original Syronea patrol without repeated engage, score writes, or integrity drift?",
+  "next": "Front Office consumes D:\\BannerlordAIResearch\\Automation\\Office\\Handoffs\\analyzer_to_front.json, promotes v0.2.10.2, refreshes the Daily Plan, and registers the smallest v0.2.10.3 Coder packet: fresh proposal provenance plus exactly-once automatic Apply from a fresh safe proposal, followed by bounded patrol restoration and full integrity checks. No further Coder work starts before Front routing.",
+  "blockers": [],
+  "runtime": {
+    "bannerlord_running": false,
+    "campaign_ready": "True",
+    "player_hero": "Manan",
+    "campaign_hours": "648676.21385608334",
+    "time_control": "Stop",
+    "control_run_state": "CLOSED",
+    "deployment_owner": null,
+    "operation_id": null,
+    "desired_intent": {
+      "actor": "Manan",
+      "kind": "PATROL_SETTLEMENT",
+      "target": "town_ES7",
+      "sticky": true
+    }
+  },
+  "desk_status": {
+    "schema": "BannerlordAI.Office.AnalyzerStatus.v1",
+    "updated_at": "2026-09-19T22:27:37.275487-07:00",
+    "state": "COMPLETE_HANDOFF_READY",
+    "checkpoint_seq": 107,
+    "last_processed_result_id": "v02102_patrol_defense_apply|2026-09-19T22:17:02.689873-07:00",
+    "source_action_id": "v02102_patrol_defense_apply",
+    "coder_return_code": 0,
+    "classification": "PASS",
+    "semantic_result": "ACCEPTED_PATROL_LOCAL_DEFENSE_APPLY",
+    "latest_validation": {
+      "path": "D:\\BannerlordAIResearch\\Longitudinal\\LiveValidation\\PatrolDefense_v02102_Apply_20260919_221539_445877",
+      "validation_json": "D:\\BannerlordAIResearch\\Longitudinal\\LiveValidation\\PatrolDefense_v02102_Apply_20260919_221539_445877\\validation.json",
+      "schema": "BannerlordAI.PatrolDefenseApplyValidation.v1",
+      "result": "PASS_PATROL_LOCAL_DEFENSE_APPLY",
+      "error": null
+    },
+    "semantic_summary": "Exact-load Manan/Syronea proof issued one native SetMoveEngageParty to southern_pirates_47910 and, after the 15-second safety bound, one SetMovePatrolAroundSettlement restore; zero native score writes and save/runner/owner integrity gates passed.",
+    "scope_limit": "Bounded test-command-gated native engage/restore only; autonomous production triggering, battle initiation/outcome, and resolution-driven restoration remain unproven.",
+    "durable_update": {
+      "derived_report": "D:\\BannerlordAIResearch\\Longitudinal\\DerivedReports\\2026-09-19_v02102_PatrolDefenseApply_AnalyzerReview.txt",
+      "architecture_learning_updated": true,
+      "new_policy_required": false
+    },
+    "next_acceptance_gate": "v0.2.10.3: persist fresh proposal provenance (proposal id/fingerprint, settlement, bandit, victim, campaignHours) into the engage receipt and prove exactly-once automatic Apply from that fresh safe proposal on the disposable branch, with the same bounded patrol restore and full integrity envelope.",
+    "handoff_to": "Front Office",
+    "agent_review_required": false
+  },
+  "raw_authority": [
+    "D:\\BannerlordAIResearch\\Longitudinal\\EvidenceIndex\\HandoffV3\\current.json",
+    "D:\\BannerlordAIResearch\\Longitudinal\\EvidenceIndex\\ContextPyramid\\front_page.json"
+  ],
+  "handoff_to": "front",
+  "do_not_assume_chat_history": true
+}

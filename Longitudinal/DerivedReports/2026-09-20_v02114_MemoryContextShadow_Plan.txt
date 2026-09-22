@@ -1,0 +1,41 @@
+BannerlordAI v0.2.10.14 — Patrol-Defense Memory Context Shadow Plan
+
+Goal
+Prove exact identity memory is available inside the patrol-defense shadow decision receipt without changing the baseline decision or gameplay.
+
+Reuse
+- Keep ClanAI recognition/memory APIs unchanged.
+- Keep PatrolDefenseShadow.Evaluate as the baseline decision owner.
+- Reuse the existing recognition call already made by ObservePatrolDefenseRecognition.
+- Reuse v0.2.10.13 natural NEW -> autonomous episode -> save/restart -> later KNOWN lifecycle.
+- Follow accepted shadow-memory pattern: baseline stays authoritative; memory context is provenance-bearing and executionApplied=false.
+
+Small implementation
+1. Add a detailed overload of TryRecognizePatrolDefenseEnemy that also returns the exact recognition receipt JSON already produced by ClanAI. Keep the existing wrapper for manual command compatibility.
+2. Change ObservePatrolDefenseRecognition to return that receipt JSON after its existing NEW-only acquisition logic.
+3. In TryPatrolDefenseShadow, call Observe once, then append the returned receipt as nested memoryContext to the shadow JSON.
+4. Do not perform another memory retrieval or recognition call.
+5. Do not change WouldInterrupt, SafeToIntervene, CandidateAction, target selection, intent, score, movement, Apply or rearm.
+
+Acceptance
+Stage1 zero-store natural NEW:
+- matching shadow memoryContext.recognition == NEW_ENEMY
+- visibleCount=0, priorEpisode=null, memoryAgeHours=null
+- same branch/settlement/bandit/proposal identity as the recognition row
+- automatic episode acquisition still exactly once after NEW recognition
+
+Stage2 fresh reload + positive campaign-time advance:
+- real observer later emits KNOWN_ENEMY for the exact Stage1 learned bandit
+- matching shadow contains memoryContext with the exact same recognition receipt
+- priorEpisode.id/context/source/detail/knownByHours equal the autonomous Stage1 episode
+- memoryAgeHours>0
+- no duplicate acquisition for KNOWN
+
+Safety
+- ClanAI feature binary unchanged.
+- automatic Apply/rearm disconnected.
+- behaviorMutation=false, intentMutation=false, scoreMutation=false.
+- no new native movement or score writes.
+- no explicit memory retrieval/seed/recognize as decisive Stage2 proof.
+- protected saves/hash/cleanup/lease clean.
+- natural nonappearance after bounds => ENVIRONMENTAL_INCONCLUSIVE.

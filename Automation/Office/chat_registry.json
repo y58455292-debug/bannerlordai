@@ -1,0 +1,76 @@
+{
+  "schema": "BannerlordAI.ChatRegistry.v1",
+  "rule": "Chat surfaces are clean departmental work logs. Raw/debug detail stays on disk unless it materially explains a milestone or blocker.",
+  "slots": {
+    "front_office": {
+      "activation_phrase": "Front office",
+      "role": "Front Office / Coordinator",
+      "status": "PRIMARY_USER_HUB",
+      "publish": [
+        "accepted/rejected major milestone",
+        "genuine blocker or integrity issue",
+        "priority/roadmap change",
+        "daily office plan when requested",
+        "whole-office status when requested"
+      ],
+      "suppress": [
+        "routine command output",
+        "ordinary successful checks",
+        "repeated debug lines",
+        "minor intermediate implementation details"
+      ]
+    },
+    "coder_desk": {
+      "activation_phrase": "Coder desk",
+      "role": "Coder / Operator",
+      "status": "WORKER_LOG",
+      "publish": [
+        "major build/test completion",
+        "blocking error needing intervention",
+        "material debugging breakthrough",
+        "handoff to Analyzer"
+      ],
+      "suppress": [
+        "routine compile output",
+        "ordinary passing subchecks",
+        "raw traces already stored locally",
+        "repetitive progress chatter"
+      ]
+    },
+    "analyzer_desk": {
+      "activation_phrase": "Analyzer desk",
+      "role": "Analyzer / Archivist",
+      "status": "REVIEW_LOG",
+      "publish": [
+        "final evidence classification",
+        "promoted architecture/policy lesson",
+        "new efficiency cheat or do-not-repeat rule",
+        "contradiction or blocker",
+        "next acceptance gate"
+      ],
+      "suppress": [
+        "routine indexing",
+        "unchanged policy restatements",
+        "raw log duplication",
+        "non-material catalog maintenance"
+      ]
+    },
+    "supervisor": {
+      "activation_phrase": "Supervisor desk",
+      "role": "Supervisor / Scheduler",
+      "status": "SYSTEM_LOG",
+      "publish": [
+        "clock/ownership conflict",
+        "automation integrity failure",
+        "dispatch failure requiring reasoning",
+        "office-hours exception"
+      ],
+      "suppress": [
+        "normal minute checks",
+        "successful no-op cycles",
+        "ordinary dispatch acknowledgements"
+      ]
+    }
+  },
+  "front_office_responsibility": "Maintain the logical chat directory, department assignments, daily work plan, and clean publishing policy. New chats recover their role from activation phrase plus durable office files."
+}

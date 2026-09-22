@@ -1,0 +1,41 @@
+BannerlordAI v0.2.10.34 — Read-only outcome proposal idempotency fingerprint shadow
+
+Question
+Can current ClanAI derive a deterministic future-writer append fingerprint from an accepted v0.2.10.33 proposal so duplicate callbacks/retries can never create duplicate outcome episodes, without writing memory?
+
+Evidence basis
+- BannerlordAI durable event-sourcing architecture already requires stable operation/action IDs and idempotent replay before state mutation.
+- v0.2.10.19 established immutable append-only PatrolDefense updates.
+- v0.2.10.28-.31 track one exact native MapEvent object and suppress duplicate start/end/capture handling.
+- v0.2.10.33 produces an immutable future append proposal but no writer.
+Therefore future writer idempotency should be defined and proven before write ownership exists.
+
+Smallest implementation
+- Add pure PatrolDefenseOutcomeProposalIdentity.
+- Input: non-null proposal only.
+- Construct canonical fingerprint material from exact immutable provenance:
+  branchId | actorId | banditId | targetContextId | sourceEventKey.
+- Encode each component length-delimited so separator collisions cannot alias distinct tuples.
+- Derive SHA-256 uppercase hex appendFingerprint.
+- Fingerprint is not an episode ID and creates no memory.
+- Same semantic proposal / copied proposal -> same fingerprint.
+- Any change to branch, actor, bandit, target context, or source event key -> different fingerprint.
+- Null proposal -> no fingerprint.
+- Expose appendFingerprint in the read-only proposal shadow only when proposalEligible=true; negative proposal shadow keeps appendFingerprint=null.
+- memoryWriteApplied=false; persistentMemoryMutation=false; episodeIdGenerated=false; interpretation/gameplay authority remains zero.
+
+Acceptance
+A. Build passes.
+B. Pure fixtures:
+   same object stable;
+   copied proposal stable;
+   each identity/provenance component mutation changes fingerprint;
+   delimiter-like component content cannot collide;
+   null proposal -> null;
+   fingerprint is 64 uppercase hex characters;
+   no Id/EpisodeId field or memory write.
+C. Static runtime integration shows proposal shadow emits appendFingerprint only behind non-null proposal.
+D. No live gate required because positive proposal remains blocked by v0.2.10.29 and the negative runtime path was already accepted in v0.2.10.33. Do not rerun that natural gate merely to observe null again.
+
+Scope
+This proves writer idempotency identity only. Persistent outcome writer remains blocked on real MainHero + EXACT_UNIQUE field evidence.

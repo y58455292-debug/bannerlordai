@@ -1,0 +1,81 @@
+ClanAI v0.20B — GLOBAL WEAK-LORD BANDIT INITIATIVE SUPPRESSION
+Inspector v0.32
+Date: 2026-09-18
+
+Purpose:
+First true causal intervention at the proven global MobilePartyAIModel judgment boundary.
+
+Vanilla path remains:
+inner NavalDLC MobilePartyAIModel
+-> GetBestInitiativeBehavior
+-> native short-term AI
+-> native movement/pathfinding
+-> native engagement
+-> native battle
+
+Single intervention:
+After inner.GetBestInitiativeBehavior returns:
+IF
+- actor is active AI lord party
+- hero-led
+- not main party
+- not in Army
+- target is bandit
+- vanilla returned EngageParty
+- actor weak for recovery:
+    PartySizeRatio < 0.72 OR foodDays < 3
+THEN
+- replace returned initiative behavior with AiBehavior.None
+- clear returned target
+- score=0
+- direction=(0,0)
+
+Everything else delegates unchanged.
+
+Why this boundary:
+v0.20A mirror proved the wrapper is the live global model and preserves NavalDLC behavior.
+v0.30 runtime proof showed native lord-bandit pursuit is born in initiative/short-term AI.
+20/60 previously classified lord-bandit battles had readiness <0.72, proving recovery/initiative conflict exists.
+
+Performance:
+- bandit-target gate occurs before recovery-state calculation
+- readiness/food calculation only for independent AI lords with bandit best-target
+- detailed suppression logs deduped by actor-target pair
+- summary only every 100,000 wrapper GetBest calls
+- broad default/short-term/SetMove census remains disabled in AI Research Light Mode
+- async evidence writers active
+- graphics untouched
+
+Expected evidence:
+GLOBAL_AI_MODEL_ACTIVE type=ClanAI.DelegatingMobilePartyAIModel mirror=True inner=NavalDLC...
+GLOBAL_AI_WEAK_BANDIT_ENGAGE_SUPPRESSED ...
+GLOBAL_AI_JUDGMENT_SUMMARY ...
+
+Inspector battle proof now logs:
+readiness
+foodDays
+inArmy
+men
+
+Acceptance:
+1. global wrapper active and inner NavalDLC model preserved.
+2. suppression events occur for weak independent lords when vanilla chooses bandit EngageParty.
+3. healthy independent lord bandit Engage continues.
+4. non-bandit initiative unaffected.
+5. weak independent lord-vs-bandit battle starts materially reduced from prior pattern.
+6. any weak battle after a suppression is investigated actor-target/time matched rather than assumed failure.
+7. native healthy rear-security remains visible.
+8. no errors/crashes.
+9. performance remains steady; evidence writer fallbacks/failures = 0.
+
+Deployed:
+ClanAI v0.20B
+SHA256 50C15CADAE4290B3132713ADBC588876187F21C57C1B4A97F636614C43CFFFD9
+
+BannerlordInspector v0.32
+SHA256 E239BE1FBB579E6DC5264FEAC5B011B4EB9256E479B36B9C658FE81E6D1DF8BD
+
+Baseline checkpoint:
+D:\BannerlordAIResearch\Longitudinal\SaveCheckpoints\20260918_051711_global_model_mirror_equivalence_pass
+save SHA256:
+DA864489DD7C6A23879B270B08ECD257E0A13BD97201EB4F80541C4413220FF1

@@ -1,0 +1,52 @@
+BannerlordAI v0.2.10.18 — KNOWN Re-Encounter Memory-Update Eligibility Shadow
+
+Goal
+Use the accepted runtime memoryStateComparison to decide only whether a later exact KNOWN observation is factually eligible to append a new immutable memory observation. Do not write the episode yet.
+
+Runtime shadow output
+For exact KNOWN with complete compatible memoryStateComparison, append:
+memoryUpdateCandidate = {
+  schema: BannerlordAI.PatrolDefenseMemoryUpdateCandidate.v1,
+  mode: observe,
+  eligible: true|false,
+  priorEpisodeId,
+  settlementId,
+  banditId,
+  proposedContextId,
+  proposedSource,
+  proposedCampaignHours,
+  changedFields: [...],
+  appendOnly: true,
+  overwritePrior: false,
+  interpretationApplied: false,
+  behaviorMutation: false,
+  intentMutation: false,
+  scoreMutation: false,
+  nativeMovementCalls: 0
+}
+
+Eligibility
+- Compare the same five factual scalars already in memoryStateComparison.
+- eligible=true iff at least one differs beyond the same numeric tolerance used by the validator.
+- unchanged exact KNOWN => eligible=false, changedFields=[].
+- changed exact KNOWN => eligible=true with exact changed field names.
+- NEW_ENEMY => no memoryUpdateCandidate.
+
+Constraints
+- Runner-only Observe-layer change.
+- No ClanAI memory schema change.
+- No call to any episode writer for KNOWN re-encounters.
+- No danger/safe/retaliate/avoid semantics.
+- No behavior/intent/score/movement/Apply authority.
+- Exact priorEpisode identity/provenance required.
+- Append-only intent; never overwrite the prior episode.
+
+Acceptance
+- Stage1 NEW has no update candidate and persists initial episode exactly.
+- Fresh restart/same branch.
+- At least one unchanged exact KNOWN shadow emits eligible=false.
+- A later naturally changed exact KNOWN shadow emits eligible=true.
+- Validator independently recomputes changedFields from raw prior/current values and matches runtime candidate.
+- priorEpisodeId/context/bandit/time fields correct.
+- No second episode is actually written for learned bandit.
+- Full save/binary/disposable/lease integrity.

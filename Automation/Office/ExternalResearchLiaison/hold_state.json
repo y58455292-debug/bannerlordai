@@ -1,0 +1,12 @@
+{
+  "schema": "BannerlordAI.ExternalResearchLiaisonHold.v1",
+  "updated_at": "2026-09-20T14:03:00-07:00",
+  "status": "HOLD",
+  "authority": "RESEARCH_ONLY",
+  "reason": "User-directed pause while Front Office continues the core roadmap.",
+  "preserve_existing_state": true,
+  "preserve_current_primary": "A1 — Stable Party / Group Identity",
+  "resume_condition": "Explicit Front Desk [FrontDesk → Agent2] RESUME or new [Task for Research Liaison] message.",
+  "gmail_hold_message_id": "1a0c0aa2ef3e4b7d",
+  "rule": "Do not start new research, prototypes, monitoring, packets, or follow-up while HOLD is active."
+}

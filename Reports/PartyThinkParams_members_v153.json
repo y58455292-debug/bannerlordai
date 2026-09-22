@@ -1,0 +1,132 @@
+{
+    "type":  "TaleWorlds.CampaignSystem.PartyThinkParams",
+    "assembly":  "TaleWorlds.CampaignSystem",
+    "baseType":  "System.Object",
+    "interfaces":  [
+
+                   ],
+    "counts":  {
+                   "properties":  2,
+                   "fields":  9,
+                   "methods":  6
+               },
+    "properties":  [
+                       {
+                           "name":  "AIBehaviorScores",
+                           "type":  "MBReadOnlyList`1",
+                           "isStatic":  false,
+                           "canRead":  true
+                       },
+                       {
+                           "name":  "PossibleArmyMembersUponArmyCreation",
+                           "type":  "MBReadOnlyList`1",
+                           "isStatic":  false,
+                           "canRead":  true
+                       }
+                   ],
+    "fields":  [
+                   {
+                       "name":  "MobilePartyOf",
+                       "type":  "MobileParty",
+                       "isStatic":  false
+                   },
+                   {
+                       "name":  "_aiBehaviorScores",
+                       "type":  "MBList`1",
+                       "isStatic":  false
+                   },
+                   {
+                       "name":  "_possibleArmyMembersUponArmyCreation",
+                       "type":  "MBList`1",
+                       "isStatic":  false
+                   },
+                   {
+                       "name":  "CurrentObjectiveValue",
+                       "type":  "Single",
+                       "isStatic":  false
+                   },
+                   {
+                       "name":  "WillGatherAnArmy",
+                       "type":  "Boolean",
+                       "isStatic":  false
+                   },
+                   {
+                       "name":  "DoNotChangeBehavior",
+                       "type":  "Boolean",
+                       "isStatic":  false
+                   },
+                   {
+                       "name":  "StrengthOfLordsWithoutArmy",
+                       "type":  "Single",
+                       "isStatic":  false
+                   },
+                   {
+                       "name":  "StrengthOfLordsWithArmy",
+                       "type":  "Single",
+                       "isStatic":  false
+                   },
+                   {
+                       "name":  "StrengthOfLordsAtSameClanWithoutArmy",
+                       "type":  "Single",
+                       "isStatic":  false
+                   }
+               ],
+    "methods":  [
+                    {
+                        "name":  "Reset",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "MobileParty mobileParty"
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "Initialization",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "SetArmyMembers",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "MBList`1 armyMembers"
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "TryGetBehaviorScore",
+                        "returns":  "Boolean",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "AIBehaviorData\u0026 aiBehaviorData",
+                                           "Single\u0026 score"
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "SetBehaviorScore",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "AIBehaviorData\u0026 aiBehaviorData",
+                                           "Single score"
+                                       ],
+                        "queryable":  false
+                    },
+                    {
+                        "name":  "AddBehaviorScore",
+                        "returns":  "Void",
+                        "isStatic":  false,
+                        "parameters":  [
+                                           "ValueTuple`2\u0026 value"
+                                       ],
+                        "queryable":  false
+                    }
+                ]
+}

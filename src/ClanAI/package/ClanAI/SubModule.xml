@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Module>
+  <Name value="ClanAI" />
+  <Id value="ClanAI" />
+  <Version value="v0.1.0" />
+  <RequiredBaseVersion value="v1.5.3" />
+  <DefaultModule value="false" />
+  <ModuleCategory value="Singleplayer" />
+
+  <DependedModules>
+    <DependedModule
+      Id="Native"
+      DependentVersion="v1.5.3"
+      Optional="false" />
+    <DependedModule
+      Id="SandBoxCore"
+      DependentVersion="v1.5.3"
+      Optional="false" />
+    <DependedModule
+      Id="Sandbox"
+      DependentVersion="v1.5.3"
+      Optional="false" />
+    <DependedModule
+      Id="StoryMode"
+      DependentVersion="v1.5.3"
+      Optional="false" />
+    <DependedModule
+      Id="NavalDLC"
+      DependentVersion="v1.3.3"
+      Optional="false" />
+  </DependedModules>
+
+  <SubModules>
+    <SubModule>
+      <Name value="ClanAI" />
+      <DLLName value="ClanAI.dll" />
+      <SubModuleClassType value="ClanAI.ClanAISubModule" />
+      <Tags>
+        <Tag
+          key="DedicatedServerType"
+          value="none" />
+        <Tag
+          key="IsNoRenderModeElement"
+          value="false" />
+      </Tags>
+    </SubModule>
+  </SubModules>
+</Module>

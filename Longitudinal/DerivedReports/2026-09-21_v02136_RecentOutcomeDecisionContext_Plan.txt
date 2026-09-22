@@ -1,0 +1,26 @@
+BannerlordAI v0.2.10.36 — Recent outcome context inside PatrolDefense reasoning shadow
+
+Question
+Can the PatrolDefense reasoning shadow expose exact session-local recent outcome context alongside persistent memory context while leaving the baseline decision/result and gameplay authority unchanged?
+
+Reuse
+- v0.2.10.35 proves exact actor+branch+bandit session-local FOUND/NONE context.
+- v0.2.10.14 established the accepted pattern: evaluate baseline first, then attach read-only memory context to the shadow receipt.
+- v0.2.10.17-.19 kept factual comparison/update layers separate from decision ownership.
+
+Smallest implementation
+- In TestRunner TryPatrolDefenseShadow, keep PatrolDefenseShadow.Evaluate(target) first and unchanged.
+- After existing persistent memory context/update work, call ClanAI bridge RetrievePatrolDefenseRecentOutcomeContext for Hero.MainHero.StringId + result.BanditId with context patrol_defense_shadow.
+- Nest the returned receipt as recentOutcomeContext in patrol_defense_shadow.jsonl.
+- Receipt may be FOUND or NONE; never fuzzy-match.
+- Do not let recent outcome context affect WouldInterrupt, proposal, target, score, intent, Apply, movement, or memory writes.
+- No new cache/persistence schema; reuse v0.2.10.35 exactly.
+
+Acceptance
+A. TestRunner compiles with unchanged ClanAI v0.2.10.35 candidate.
+B. Static checks prove baseline Evaluate occurs before recent context lookup and recentOutcomeContext is receipt-only.
+C. Deterministic helper fixture proves valid FOUND/NONE JSON can be attached without changing baseline decision JSON fields.
+D. Bounded live natural Manan patrol shadow emits recentOutcomeContext with exact actor/branch/bandit and result=NONE unless the rare exact same-session MainHero outcome exists.
+E. Baseline patrol-defense decision fields match the pre-context result; no behavior/intent/score/movement authority.
+F. Full EXIT_NOSAVE integrity cleanup.
+G. Positive live FOUND inside Manan reasoning is environmental and not required.

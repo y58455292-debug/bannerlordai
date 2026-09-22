@@ -1,0 +1,13 @@
+[14:45:44.897] INFO  CLAN GRAVITY NEED SUMMARY v0.6 party=Maritzios' Party clan=Vatatzes clanTerritoryCandidates=3 needPositive=1 changed=1 formula=multiplier(1+min(0.25,pressure)) markerArmed=True
+[14:45:50.097] INFO  TERRITORY NEED SUMMARY v0.5 party=Maritzios' Party clan=Vatatzes holdings=3 highestPressure=0.011754 highestPressureTarget=Syratos Castle formula=max(activeSiege,activeRaid,garrisonDeficit) observerMutation=False phase=preMutation
+[14:45:50.097] INFO  CLAN GRAVITY NEED v0.6 disabled: lab marker not present at D:\BannerlordAIResearch\ENABLE_CLAN_GRAVITY_LAB.txt
+[14:45:44.900] INFO  === SELECTED ACTION COMMIT BEGIN v0.16 ===
+caller=TaleWorlds.CampaignSystem.MbEvent`1.InvokeList detail=GoToSettlement duringPartyThink=True
+selectedCandidate behavior=GoToSettlement target=Syratos Castle [castle_EN8] score=0.858351 rank=1
+args settlement=Syratos Castle [castle_EN8] mobileParty=<null> position=(CampaignVec2) X: 0 Y: 0 IsOnLand: True nav=Default fromPort=False targetingPort=False
+before defaultBehavior=Hold targetSettlement=<null> targetParty=<null>
+before shortTermBehavior=Hold shortTermTargetSettlement=<null> shortTermTargetParty=<null> moveTargetParty=<null> moveMode=Hold
+after defaultBehavior=GoToSettlement targetSettlement=Syratos Castle targetParty=<null>
+after shortTermBehavior=GoToSettlement shortTermTargetSettlement=Syratos Castle shortTermTargetParty=<null> moveTargetParty=<null> moveMode=Hold
+=== SELECTED ACTION COMMIT END v0.16 ===
+[14:45:44.900] INFO  === AI TRACE BEGIN #2 v0.16 ===

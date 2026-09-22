@@ -1,0 +1,23 @@
+BannerlordAI v0.2.10.37 FINAL VERIFY — ACCEPT
+
+Decisive live evidence
+- Natural lord-bandit outcome packet event:
+  20260921T192853211_1b831601e65f4abea6d7af6f72cb6bd1_M000001
+- Exact Stage1 identity:
+  actorId=CharacterObject_3200
+  banditId=looters_48866
+  branchId=98f5564735794f23b745f4f8a3b2f6a6
+- Same-session exact recent-outcome retrieval returned FOUND with the same eventKey and all factual fields matching.
+- Guarded native SaveAs persisted the campaign while the cache was populated.
+- Full Bannerlord process exited.
+- Fresh process booted, exact-loaded the persisted save, and restored the same branch:
+  DYNASTY_BRANCH_EPISODE_SESSION_READY records=3 restored=True branchId=98f5564735794f23b745f4f8a3b2f6a6
+- Exact same actor+bandit retrieval after restart returned NONE with eventKey=null.
+- Every Stage1 and post-restart validator check is true.
+- No Apply side effects.
+- Protected saves matched, disposable source/persist saves cleaned, accepted ClanAI/TestRunner restored, lease released.
+
+Classification: ACCEPT.
+
+Architecture meaning
+PatrolDefenseRecentOutcomeContext is causally proven to be session/working context only. It survives within a live session, but does not cross native save/full-process restart. Persistent DynastyBranchEpisodeMemory restores independently. This cleanly separates transient actor-known outcome context from persistent episodic memory.

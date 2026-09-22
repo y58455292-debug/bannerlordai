@@ -1,0 +1,12 @@
+{
+  "schema": "BannerlordAI.MaintenanceBacklog.v1",
+  "rule": "Main Bannerlord roadmap remains default. Supporting-project/workplace improvements run only in an explicitly chosen maintenance session unless a change is tiny, reversible, measurable, and does not interrupt the active roadmap.",
+  "items": [
+    {
+      "id": "maintenance-day-cadence",
+      "status": "BACKLOG",
+      "idea": "Occasional focused days for smaller supporting projects, tooling, research intake, simulation infrastructure, art/audio pipeline, and workplace improvements that strengthen the whole product.",
+      "promotion_gate": "Choose explicitly from Front when the current roadmap gate is at a clean boundary; measure whether the maintenance work improves later throughput or quality."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002162_PolicyBoundResultV4_20260921_2051\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "1A08ACA2F41F8F6C1675D510E829A85039CC8B17711FE2091E893429DEDFAB9E",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02162_policy_bound_transport_result_v4.py",
+    "validator_sha256": "B61381E5919AA13ABFE50FB01654DBEE26C557C7319B55A0E6ADBC8DBE0DF204",
+    "compile_result": "PASS_RUNNER_0_ERRORS_CLANAI_REUSED_V02138",
+    "execution_policy_fixture_result": "PASS_FIXTURES checks=257",
+    "v3_hash_binding_fixture_result": "PASS_V3_FIXTURES checks=63",
+    "v4_fixture_result": "PASS_V4_FIXTURES checks=41",
+    "loopback_v4_fixture_result": "PASS_FIXTURES checks=31",
+    "provider_request_contract_fixture_result": "PASS_FIXTURES checks=49",
+    "binding_policy": "CLAIM_PLUS_PROVIDER_REQUEST_PLUS_TRANSPORT_REQUEST_PLUS_EXECUTION_POLICY_PLUS_EXACT_RESULT_SHA256",
+    "network_model_policy": "NO_NETWORK_NO_MODEL_NO_ENV_VALUE_READ"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.62 bounded live policy-bound transport-result v4 gate. Natural request -> exact claim -> providerRequest registration -> transport registration -> executionPolicy registration -> deterministic loopback v4 receipt/result carrying exact executionPolicyId -> runtime TransportReceipt.v3/ProviderResult.v4 binding must report TRANSPORT_RECEIPT_MATCHED + EXECUTION_POLICY_MATCHED + exact result SHA -> KEEP_BASELINE -> SUCCESS_ACKED 1->0 -> replay DISPATCH_JOB_NOT_FOUND; provider invocation stream empty, no env secret read/network/model/Apply authority, full cleanup.",
+  "blockers": []
+}

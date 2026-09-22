@@ -1,0 +1,17 @@
+{
+  "active_candidate": {
+    "status": "EXECUTE_READY",
+    "candidate_clanai": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\PatrolDefenseRecentOutcomeAge_v02138_20260921_1234\\candidate\\ClanAI.dll",
+    "candidate_runner": "D:\\BannerlordAIResearch\\workspace\\_PatchStaging\\AutonomousOperator_v002145_ProviderBoundary_20260921_1416\\candidate\\BannerlordAITestRunner.dll",
+    "clanai_test_sha256": "C437EE12AF5D223EEB1C3CF17D4191522F26EBAC350E4A0BA652A591A82399FD",
+    "runner_test_sha256": "00E89D468708C4614ABE36A229B89C78BE249BE4C9996C1400D2786B4ED8A088",
+    "validator": "D:\\BannerlordAIResearch\\workspace\\validate_v02145_provider_boundary.py",
+    "validator_sha256": "C4BBDCE2DA718CCE59A8C3CC89C1BD72EC49AFB7DC42C8196E30F70462953698",
+    "compile_result": "PASS_RUNNER_0_ERRORS_CLANAI_REUSED_V02138",
+    "isolated_fixture_result": "PASS_FIXTURES checks=97",
+    "static_zero_authority_checks": "PASS",
+    "provider_mode": "DETERMINISTIC_LOCAL_MOCK_NO_NETWORK"
+  },
+  "next_action": "Coder EXECUTE v0.2.10.45 bounded live provider-boundary gate. Require one natural route-eligible Manan request, invoke deterministic local mock KEEP_BASELINE for exact fingerprint, verify providerInvoked=true and strict admission admitted=true with externalNetworkUsed/modelInvoked/executionAuthorized=false, then immediate identical provider replay must not invoke provider and must reject NO_PENDING_ROUTE_REQUEST; no Apply/score/memory authority; EXIT_NOSAVE and full cleanup.",
+  "blockers": []
+}
