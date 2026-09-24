@@ -60,9 +60,10 @@ namespace ClanAI
         // READ-ONLY AI CONSIDERATION OBSERVATION
         // =================================================
 
-        public static void Observe(
+        internal static void Observe(
             MobileParty actor,
-            PartyThinkParams thinkParams)
+            PartyThinkParams thinkParams,
+            StrategicDecisionComposer.Frame composer)
         {
             if (actor == null ||
                 actor.LeaderHero == null ||
@@ -83,8 +84,15 @@ namespace ClanAI
                 AIBehaviorData candidate =
                     thinkParams.AIBehaviorScores[i].Item1;
 
-                float score =
+                float rawScore =
                     thinkParams.AIBehaviorScores[i].Item2;
+
+                float score =
+                    composer != null
+                        ? composer.CurrentScore(
+                            i,
+                            rawScore)
+                        : rawScore;
 
                 if (!IsAggressive(
                     candidate.AiBehavior))
@@ -873,6 +881,104 @@ namespace ClanAI
             bloodDebt = record.BloodDebt;
             obligation = record.Obligation;
             tension = record.Tension;
+
+            return true;
+        }
+
+        public static bool TryGetClanAggregateStateForKingdom(
+            Clan actorClan,
+            Kingdom targetKingdom,
+            out int trust,
+            out int grievance,
+            out int bloodDebt,
+            out int obligation,
+            out int tension,
+            out int contributingRecords)
+        {
+            trust = 0;
+            grievance = 0;
+            bloodDebt = 0;
+            obligation = 0;
+            tension = 0;
+            contributingRecords = 0;
+
+            if (actorClan == null || targetKingdom == null)
+                return false;
+
+            string actorClanId =
+                SafeId(
+                    actorClan.StringId,
+                    actorClan.Name.ToString());
+
+            HashSet<string> targetClanIds =
+                new HashSet<string>(
+                    StringComparer.Ordinal);
+
+            foreach (Clan clan in targetKingdom.Clans)
+            {
+                if (clan == null)
+                    continue;
+
+                targetClanIds.Add(
+                    SafeId(
+                        clan.StringId,
+                        clan.Name.ToString()));
+            }
+
+            long trustSum = 0;
+            long grievanceSum = 0;
+            long bloodDebtSum = 0;
+            long obligationSum = 0;
+            long tensionSum = 0;
+
+            foreach (Record record in Records.Values)
+            {
+                if (record == null ||
+                    !string.Equals(
+                        record.ActorClanId,
+                        actorClanId,
+                        StringComparison.Ordinal) ||
+                    !targetClanIds.Contains(
+                        record.TargetClanId))
+                {
+                    continue;
+                }
+
+                if (record.Trust == 0 &&
+                    record.Grievance == 0 &&
+                    record.BloodDebt == 0 &&
+                    record.Obligation == 0 &&
+                    record.Tension == 0)
+                {
+                    continue;
+                }
+
+                trustSum += record.Trust;
+                grievanceSum += record.Grievance;
+                bloodDebtSum += record.BloodDebt;
+                obligationSum += record.Obligation;
+                tensionSum += record.Tension;
+                contributingRecords++;
+            }
+
+            if (contributingRecords <= 0)
+                return false;
+
+            trust = (int)Math.Round(
+                (double)trustSum /
+                contributingRecords);
+            grievance = (int)Math.Round(
+                (double)grievanceSum /
+                contributingRecords);
+            bloodDebt = (int)Math.Round(
+                (double)bloodDebtSum /
+                contributingRecords);
+            obligation = (int)Math.Round(
+                (double)obligationSum /
+                contributingRecords);
+            tension = (int)Math.Round(
+                (double)tensionSum /
+                contributingRecords);
 
             return true;
         }

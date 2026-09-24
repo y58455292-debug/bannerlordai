@@ -1,0 +1,146 @@
+using System;
+using System.IO;
+
+namespace ClanAI
+{
+    internal enum SocialMemoryCausalMode
+    {
+        Observe,
+        Apply
+    }
+
+    internal static class SocialMemoryCausalConfig
+    {
+        internal const string ConfigPath =
+            @"D:\BannerlordAIResearch\Data\SocialMemoryCausal.cfg";
+
+        private static readonly object Sync =
+            new object();
+
+        private static bool _loaded;
+        private static SocialMemoryCausalMode _mode =
+            SocialMemoryCausalMode.Observe;
+
+        private static string _status =
+            "not_loaded";
+        internal static SocialMemoryCausalMode Mode
+        {
+            get
+            {
+                EnsureLoaded();
+                return _mode;
+            }
+        }
+
+        internal static string Status
+        {
+            get
+            {
+                EnsureLoaded();
+                return _status;
+            }
+        }
+
+        internal static void EnsureLoaded()
+        {
+            if (_loaded)
+                return;
+
+            lock (Sync)
+            {
+                if (_loaded)
+                    return;
+                try
+                {
+                    if (!File.Exists(ConfigPath))
+                    {
+                        _mode =
+                            SocialMemoryCausalMode.Observe;
+
+                        _status =
+                            "missing_default_observe";
+                    }
+                    else
+                    {
+                        _mode = ParseMode(
+                            File.ReadAllLines(ConfigPath),
+                            out _status);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _mode =
+                        SocialMemoryCausalMode.Observe;
+
+                    _status =
+                        "read_failed_" +
+                        ex.GetType().Name;
+                }
+
+                _loaded = true;
+            }
+        }
+        internal static SocialMemoryCausalMode ParseMode(
+            string[] lines,
+            out string status)
+        {
+            if (lines != null)
+            {
+                foreach (string raw in lines)
+                {
+                    string line =
+                        (raw ?? string.Empty).Trim();
+
+                    if (line.Length == 0 ||
+                        line.StartsWith("#"))
+                    {
+                        continue;
+                    }
+
+                    int eq = line.IndexOf('=');
+                    if (eq <= 0)
+                        continue;
+
+                    string key =
+                        line.Substring(0, eq).Trim();
+                    if (!key.Equals(
+                            "Mode",
+                            StringComparison.OrdinalIgnoreCase))
+                    {
+                        continue;
+                    }
+
+                    string value =
+                        line.Substring(eq + 1).Trim();
+
+                    if (value.Equals(
+                            "Apply",
+                            StringComparison.OrdinalIgnoreCase))
+                    {
+                        status = "configured_apply";
+                        return SocialMemoryCausalMode.Apply;
+                    }
+
+                    if (value.Equals(
+                            "Observe",
+                            StringComparison.OrdinalIgnoreCase))
+                    {
+                        status = "configured_observe";
+                        return SocialMemoryCausalMode.Observe;
+                    }
+                    status =
+                        "invalid_mode_default_observe";
+
+                    return
+                        SocialMemoryCausalMode.Observe;
+                }
+            }
+
+            status =
+                "mode_missing_default_observe";
+
+            return
+                SocialMemoryCausalMode.Observe;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using TaleWorlds.CampaignSystem;
@@ -23,9 +23,10 @@ namespace ClanAI
                 "SOCIAL_CONSEQUENCE_RESET");
         }
 
-        public static void Observe(
+        internal static void Observe(
             MobileParty actor,
-            PartyThinkParams thinkParams)
+            PartyThinkParams thinkParams,
+            StrategicDecisionComposer.Frame composer)
         {
             if (actor == null ||
                 actor.LeaderHero == null ||
@@ -48,8 +49,15 @@ namespace ClanAI
                 AIBehaviorData data =
                     thinkParams.AIBehaviorScores[i].Item1;
 
-                float score =
+                float rawScore =
                     thinkParams.AIBehaviorScores[i].Item2;
+
+                float score =
+                    composer != null
+                        ? composer.CurrentScore(
+                            i,
+                            rawScore)
+                        : rawScore;
 
                 if (score > overallBestScore)
                 {

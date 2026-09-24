@@ -35,36 +35,67 @@ namespace ClanAI
         private static volatile bool _started;
         private static volatile bool _stopping;
 
+        // Successful write calls do not imply fsync or exactly-once delivery.
+        // Counters have process-lifetime scope; failure categories can overlap.
+        private static long _requests, _queued, _written, _syncWritten;
+        private static long _syncFallbacks, _failures, _queueRejected;
+        private static long _openFailures, _flushFailures, _disposeFailures;
+        private static long _terminalWriteFailures, _queueFailures;
+        private static long _workerFailures, _startFailures, _shutdownTimeouts;
+        private static long _successfulFlushes;
+
+        public static string HealthSummary()
+        {
+            bool alive = _thread != null && _thread.IsAlive;
+            int pending = Queue.Count;
+            return "CLANAI_WRITER_HEALTH scope=process_lifetime"
+                + " requests=" + Interlocked.Read(ref _requests)
+                + " queued=" + Interlocked.Read(ref _queued)
+                + " writtenCalls=" + Interlocked.Read(ref _written)
+                + " syncWritten=" + Interlocked.Read(ref _syncWritten)
+                + " syncFallbacks=" + Interlocked.Read(ref _syncFallbacks)
+                + " queueRejected=" + Interlocked.Read(ref _queueRejected)
+                + " failures=" + Interlocked.Read(ref _failures)
+                + " openFailures=" + Interlocked.Read(ref _openFailures)
+                + " flushFailures=" + Interlocked.Read(ref _flushFailures)
+                + " disposeFailures=" + Interlocked.Read(ref _disposeFailures)
+                + " terminalWriteFailures=" + Interlocked.Read(ref _terminalWriteFailures)
+                + " queueFailures=" + Interlocked.Read(ref _queueFailures)
+                + " workerFailures=" + Interlocked.Read(ref _workerFailures)
+                + " startFailures=" + Interlocked.Read(ref _startFailures)
+                + " shutdownTimeouts=" + Interlocked.Read(ref _shutdownTimeouts)
+                + " successfulFlushes=" + Interlocked.Read(ref _successfulFlushes)
+                + " pending=" + pending + " threadAlive=" + alive
+                + " stopping=" + _stopping
+                + " drainCompleted=" + (_stopping && !alive && pending == 0);
+        }
+
         public static void AppendLine(
             string path,
             string line)
         {
-            if (string.IsNullOrEmpty(path))
-                return;
-
-            EnsureStarted();
-
-            var item =
-                new Item
-                {
-                    Path = path,
-                    Text =
-                        (line ?? string.Empty) +
-                        Environment.NewLine
-                };
-
+            if (string.IsNullOrEmpty(path)) return;
+            Interlocked.Increment(ref _requests);
+            var item = new Item
+            {
+                Path = path,
+                Text = (line ?? string.Empty) + Environment.NewLine
+            };
             try
             {
-                if (!_stopping &&
-                    Queue.TryAdd(item))
+                EnsureStarted();
+                if (!_stopping && _thread != null && _thread.IsAlive && Queue.TryAdd(item))
                 {
+                    Interlocked.Increment(ref _queued);
                     return;
                 }
+                Interlocked.Increment(ref _queueRejected);
             }
             catch
             {
+                Interlocked.Increment(ref _failures);
+                Interlocked.Increment(ref _queueFailures);
             }
-
             AppendSync(item);
         }
 
@@ -81,6 +112,8 @@ namespace ClanAI
             }
             catch
             {
+                Interlocked.Increment(ref _failures);
+                Interlocked.Increment(ref _queueFailures);
             }
 
             Thread t = _thread;
@@ -90,10 +123,12 @@ namespace ClanAI
             {
                 try
                 {
-                    t.Join(2500);
+                    if (!t.Join(2500)) Interlocked.Increment(ref _shutdownTimeouts);
                 }
                 catch
                 {
+                    Interlocked.Increment(ref _failures);
+                    Interlocked.Increment(ref _queueFailures);
                 }
             }
         }
@@ -117,8 +152,14 @@ namespace ClanAI
                 _thread.Priority =
                     ThreadPriority.BelowNormal;
 
-                _started = true;
-                _thread.Start();
+                try { _thread.Start(); _started = true; }
+                catch
+                {
+                    _started = false;
+                    _thread = null;
+                    Interlocked.Increment(ref _startFailures);
+                    throw; // AppendLine catches this and uses the synchronous fallback.
+                }
             }
         }
 
@@ -147,6 +188,8 @@ namespace ClanAI
                     }
                     catch
                     {
+                        Interlocked.Increment(ref _failures);
+                        Interlocked.Increment(ref _workerFailures);
                     }
 
                     if (item != null)
@@ -163,16 +206,23 @@ namespace ClanAI
                                 writer.Write(
                                     item.Text);
 
+                                Interlocked.Increment(ref _written);
                                 sinceFlush++;
                             }
                             catch
                             {
+                                Interlocked.Increment(ref _failures);
+                                Interlocked.Increment(ref _workerFailures);
                                 CloseWriter(
                                     writers,
                                     item.Path);
 
                                 AppendSync(item);
                             }
+                        }
+                        else
+                        {
+                            AppendSync(item);
                         }
                     }
 
@@ -212,12 +262,20 @@ namespace ClanAI
                     {
                         writer.Write(
                             tail.Text);
+                        Interlocked.Increment(ref _written);
                     }
                     catch
                     {
+                        Interlocked.Increment(ref _failures);
+                        Interlocked.Increment(ref _workerFailures);
                         AppendSync(tail);
                     }
                 }
+            }
+            catch
+            {
+                Interlocked.Increment(ref _failures);
+                Interlocked.Increment(ref _workerFailures);
             }
             finally
             {
@@ -233,6 +291,8 @@ namespace ClanAI
                     }
                     catch
                     {
+                        Interlocked.Increment(ref _failures);
+                        Interlocked.Increment(ref _workerFailures);
                     }
                 }
             }
@@ -284,6 +344,8 @@ namespace ClanAI
             }
             catch
             {
+                Interlocked.Increment(ref _failures);
+                Interlocked.Increment(ref _openFailures);
                 return null;
             }
         }
@@ -298,9 +360,12 @@ namespace ClanAI
                 try
                 {
                     writer.Flush();
+                    Interlocked.Increment(ref _successfulFlushes);
                 }
                 catch
                 {
+                    Interlocked.Increment(ref _failures);
+                    Interlocked.Increment(ref _flushFailures);
                 }
             }
         }
@@ -326,6 +391,8 @@ namespace ClanAI
             }
             catch
             {
+                Interlocked.Increment(ref _failures);
+                Interlocked.Increment(ref _disposeFailures);
             }
         }
 
@@ -339,6 +406,7 @@ namespace ClanAI
                 return;
             }
 
+            Interlocked.Increment(ref _syncFallbacks);
             try
             {
                 string directory =
@@ -356,9 +424,13 @@ namespace ClanAI
                     item.Path,
                     item.Text ?? string.Empty,
                     Utf8);
+                Interlocked.Increment(ref _written);
+                Interlocked.Increment(ref _syncWritten);
             }
             catch
             {
+                Interlocked.Increment(ref _failures);
+                Interlocked.Increment(ref _terminalWriteFailures);
             }
         }
     }

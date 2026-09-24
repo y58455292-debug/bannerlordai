@@ -1,7 +1,8 @@
-using System;
+﻿using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 
 namespace ClanAI
 {
@@ -10,7 +11,8 @@ namespace ClanAI
     {
         public override void RegisterEvents()
         {
-            SocialMercyPatch.Install();
+            ClanAIPostVanilla.WriteExternalLog(
+                "OBSERVE_ONLY_SHELL SocialMercyPatch=disabled");
             CampaignEvents.HeroPrisonerTaken
                 .AddNonSerializedListener(
                     this,
@@ -27,6 +29,12 @@ namespace ClanAI
                         EndCaptivityDetail,
                         bool>(
                             OnHeroPrisonerReleased));
+
+            CampaignEvents.OnSettlementOwnerChangedEvent
+                .AddNonSerializedListener(
+                    this,
+                    new Action<Settlement, bool, Hero, Hero, Hero, ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail>(
+                        OnSettlementOwnerChanged));
         }
 
         public override void SyncData(
@@ -64,6 +72,29 @@ namespace ClanAI
             SocialLedger.RecordCapture(
                 prisoner,
                 capturer);
+
+            CompanionNegativeOutcomeMemory.RecordCapture(
+                prisoner,
+                capturer);
+        }
+
+        private void OnSettlementOwnerChanged(
+            Settlement settlement,
+            bool openToClaim,
+            Hero newOwner,
+            Hero oldOwner,
+            Hero capturerHero,
+            ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
+        {
+            ClanAIPostVanilla.WriteExternalLog(
+                "SETTLEMENT_OWNER_CHANGED settlement=" +
+                (settlement == null ? "<none>" : settlement.Name.ToString()) +
+                " oldOwner=" + HeroName(oldOwner) +
+                " newOwner=" + HeroName(newOwner) +
+                " detail=" + detail);
+
+            CompanionNegativeOutcomeMemory.RecordHomeLoss(
+                settlement, oldOwner, newOwner, detail);
         }
 
         private void OnHeroPrisonerReleased(
@@ -185,4 +216,5 @@ namespace ClanAI
         }
     }
 }
+
 

@@ -26,12 +26,15 @@ namespace ClanAI
         : MobilePartyAIModel
     {
         private readonly MobilePartyAIModel _inner;
+        private readonly RecoveryGateMode _recoveryGateMode;
 
         private static long _getBestCalls;
         private static long _weakLordBanditEngageSuppressed;
+        private static long _weakLordBanditEngageControlPassed;
         private static long _healthyLordBanditEngagePassed;
         private static long _weakLordBanditNonEngage;
         private static long _nextSummaryAt = 100000;
+        private static string _activeModeName = "Suppress";
 
         private static readonly object DetailSync =
             new object();
@@ -40,6 +43,46 @@ namespace ClanAI
             LoggedSuppressionPairs =
                 new HashSet<string>(
                     StringComparer.Ordinal);
+
+        private static readonly HashSet<string>
+            LoggedControlPairs =
+                new HashSet<string>(
+                    StringComparer.Ordinal);
+
+        // v0.20C-review: diagnostics only; decision methods are unchanged.
+        public static void ResetDiagnostics()
+        {
+            Interlocked.Exchange(ref _getBestCalls, 0);
+            Interlocked.Exchange(ref _weakLordBanditEngageSuppressed, 0);
+            Interlocked.Exchange(ref _weakLordBanditEngageControlPassed, 0);
+            Interlocked.Exchange(ref _healthyLordBanditEngagePassed, 0);
+            Interlocked.Exchange(ref _weakLordBanditNonEngage, 0);
+            Interlocked.Exchange(ref _nextSummaryAt, 100000);
+            lock (DetailSync)
+            {
+                LoggedSuppressionPairs.Clear();
+                LoggedControlPairs.Clear();
+            }
+        }
+
+        public static string DiagnosticSummary(string reason)
+        {
+            return "GLOBAL_AI_JUDGMENT_SNAPSHOT reason=" + reason
+                + " scope=campaign_session"
+                + " gateMode=" + _activeModeName
+                + " getBestCalls=" + Interlocked.Read(ref _getBestCalls)
+                + " weakBanditEngageSuppressed=" + Interlocked.Read(ref _weakLordBanditEngageSuppressed)
+                + " weakBanditEngageControlPassed=" + Interlocked.Read(ref _weakLordBanditEngageControlPassed)
+                + " healthyBanditEngagePassed=" + Interlocked.Read(ref _healthyLordBanditEngagePassed)
+                + " weakBanditNonEngage=" + Interlocked.Read(ref _weakLordBanditNonEngage)
+                + SocialMemoryCausalLayer.SummaryFields()
+                + StrategicDecisionComposer.SummaryFields()
+                + ActorBlackboard.SummaryFields()
+                + ActorStrategicBlackboard.SummaryFields()
+                + StrategicCommitmentLayer.SummaryFields()
+                + DynastyMindSeed.SummaryFields()
+                + DynastyBranchEpisodeMemory.SummaryFields();
+        }
 
         public MobilePartyAIModel InnerModel
         {
@@ -53,6 +96,22 @@ namespace ClanAI
                 throw new ArgumentNullException("inner");
 
             _inner = inner;
+
+            string configStatus =
+                "forced_suppress_only";
+
+            _recoveryGateMode =
+                RecoveryGateMode.Suppress;
+
+            _activeModeName =
+                "SuppressOnly";
+
+            ClanAIPostVanilla.WriteExternalLog(
+                "GLOBAL_AI_RECOVERY_GATE_MODE" +
+                " mode=" + _activeModeName +
+                " configStatus=" + configStatus +
+                " configPath=" +
+                RecoveryGateConfig.ConfigPath);
         }
 
         public override float AiCheckInterval
@@ -167,21 +226,35 @@ namespace ClanAI
                     if (bestBehavior ==
                         AiBehavior.EngageParty)
                     {
-                        Interlocked.Increment(
-                            ref _weakLordBanditEngageSuppressed);
+                        if (_recoveryGateMode ==
+                            RecoveryGateMode.Observe)
+                        {
+                            Interlocked.Increment(
+                                ref _weakLordBanditEngageControlPassed);
 
-                        LogSuppressionOnce(
-                            party,
-                            bestParty,
-                            bestScore);
+                            LogControlPassOnce(
+                                party,
+                                bestParty,
+                                bestScore);
+                        }
+                        else
+                        {
+                            Interlocked.Increment(
+                                ref _weakLordBanditEngageSuppressed);
 
-                        bestBehavior =
-                            AiBehavior.None;
+                            LogSuppressionOnce(
+                                party,
+                                bestParty,
+                                bestScore);
 
-                        bestParty = null;
-                        bestScore = 0f;
-                        bestInitiativeDirection =
-                            new Vec2(0f, 0f);
+                            bestBehavior =
+                                AiBehavior.None;
+
+                            bestParty = null;
+                            bestScore = 0f;
+                            bestInitiativeDirection =
+                                new Vec2(0f, 0f);
+                        }
                     }
                     else
                     {
@@ -317,11 +390,86 @@ namespace ClanAI
                     targetId +
                     " readiness=" +
                     readiness.ToString("0.000") +
+                    " readinessExact=" +
+                    readiness.ToString(
+                        "R",
+                        System.Globalization.CultureInfo.InvariantCulture) +
+                    " gateMode=Suppress" +
+                    " campaignHours=" +
+                    CampaignTime.Now.ToHours.ToString(
+                        "R",
+                        System.Globalization.CultureInfo.InvariantCulture) +
                     " foodDays=" +
                     foodDays +
                     " vanillaScore=" +
                     vanillaScore.ToString("0.000") +
                     " replacement=None");
+            }
+            catch
+            {
+            }
+        }
+
+        private static void LogControlPassOnce(
+            MobileParty actor,
+            MobileParty target,
+            float vanillaScore)
+        {
+            try
+            {
+                string actorId =
+                    actor == null
+                        ? "<null>"
+                        : actor.StringId;
+
+                string targetId =
+                    target == null
+                        ? "<null>"
+                        : target.StringId;
+
+                string key =
+                    actorId +
+                    "|" +
+                    targetId;
+
+                lock (DetailSync)
+                {
+                    if (!LoggedControlPairs.Add(key))
+                        return;
+                }
+
+                float readiness =
+                    actor.PartySizeRatio;
+
+                int foodDays =
+                    actor.GetNumDaysForFoodToLast();
+
+                ClanAIPostVanilla.WriteExternalLog(
+                    "GLOBAL_AI_WEAK_BANDIT_ENGAGE_CONTROL_PASS" +
+                    " actor=" +
+                    actor.Name.ToString() +
+                    " actorId=" +
+                    actorId +
+                    " target=" +
+                    target.Name.ToString() +
+                    " targetId=" +
+                    targetId +
+                    " readiness=" +
+                    readiness.ToString("0.000") +
+                    " readinessExact=" +
+                    readiness.ToString(
+                        "R",
+                        System.Globalization.CultureInfo.InvariantCulture) +
+                    " gateMode=Observe" +
+                    " campaignHours=" +
+                    CampaignTime.Now.ToHours.ToString(
+                        "R",
+                        System.Globalization.CultureInfo.InvariantCulture) +
+                    " foodDays=" +
+                    foodDays +
+                    " vanillaScore=" +
+                    vanillaScore.ToString("0.000") +
+                    " replacement=NativePassThrough");
             }
             catch
             {
@@ -351,11 +499,16 @@ namespace ClanAI
 
             ClanAIPostVanilla.WriteExternalLog(
                 "GLOBAL_AI_JUDGMENT_SUMMARY" +
+                " gateMode=" +
+                _activeModeName +
                 " getBestCalls=" +
                 calls +
                 " weakBanditEngageSuppressed=" +
                 Interlocked.Read(
                     ref _weakLordBanditEngageSuppressed) +
+                " weakBanditEngageControlPassed=" +
+                Interlocked.Read(
+                    ref _weakLordBanditEngageControlPassed) +
                 " healthyBanditEngagePassed=" +
                 Interlocked.Read(
                     ref _healthyLordBanditEngagePassed) +

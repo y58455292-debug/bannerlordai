@@ -6,6 +6,8 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
     <AssemblyName>ClanAI</AssemblyName>
+    <FileVersion>0.21.11.6</FileVersion>
+    <InformationalVersion>v0.21L6-social-loyalty-value-loss</InformationalVersion>
     <RootNamespace>ClanAI</RootNamespace>
   </PropertyGroup>
 

@@ -4,7 +4,9 @@ using System.IO;
 using System.Reflection;
 using HarmonyLib;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 
@@ -17,12 +19,32 @@ namespace ClanAI
         public override void RegisterEvents()
         {
             InstallPostVanillaPatch();
+            WarStrainRecruitmentPatch.Install();
+            WarStrainEconomicPatches.Install();
+            SocialDefectionPatch.Install();
+            SocialLoyaltyPatch.Install();
+
+            ClanAIPostVanilla.WriteExternalLog(
+                "HOURLY_OBSERVE_HOOK AiHourlyTick_patch=enabled mutation=disabled");
 
             CampaignEvents.OnSessionLaunchedEvent
                 .AddNonSerializedListener(
                     this,
                     new Action<CampaignGameStarter>(
                         OnSessionLaunched));
+
+            CampaignEvents.HourlyTickEvent
+                .AddNonSerializedListener(
+                    this,
+                    new Action(
+                        OnHourlyCommitVerify));
+
+            CampaignEvents.OnSettlementOwnerChangedEvent
+                .AddNonSerializedListener(
+                    this,
+                    new Action<Settlement, bool, Hero, Hero, Hero,
+                        ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail>(
+                            OnSocialLoyaltySettlementOwnerChanged));
         }
 
         public override void SyncData(IDataStore dataStore)
@@ -67,11 +89,41 @@ namespace ClanAI
                     socialFound ? socialLines : null);
             }
             SocialEpisodeMemory.SyncData(dataStore);
+            DynastyMindSeed.SyncData(dataStore);
+            DynastyBranchEpisodeMemory.SyncData(dataStore);
+            CompanionDutyMemory.SyncData(dataStore);
+            CompanionExperienceMemory.SyncData(dataStore);
+            CompanionNegativeOutcomeMemory.SyncData(dataStore);
+            SocialLoyaltyClanLossMemory.SyncData(dataStore);
+
+            if (dataStore.IsSaving)
+                ClanAIDiagnostics.RecordSaveBoundary();
+        }
+
+        private void OnHourlyCommitVerify()
+        {
+            CompanionHoldbackLayer.VerifyOutcomePendingCommitsFromWorld();
+        }
+
+        private void OnSocialLoyaltySettlementOwnerChanged(
+            Settlement settlement,
+            bool openToClaim,
+            Hero newOwner,
+            Hero oldOwner,
+            Hero capturerHero,
+            ChangeOwnerOfSettlementAction.ChangeOwnerOfSettlementDetail detail)
+        {
+            SocialLoyaltyClanLossMemory.RecordHoldingLoss(
+                settlement,
+                oldOwner,
+                newOwner,
+                detail);
         }
 
         private void OnSessionLaunched(
             CampaignGameStarter starter)
         {
+            ClanAIDiagnostics.EndSession("session_replaced");
             ClanAIPostVanilla.Reset();
 
             LogActiveGlobalAiModel();
@@ -79,10 +131,29 @@ namespace ClanAI
             NobleMemory.BeginSession();
             SocialLedger.BeginSession();
             SocialEpisodeMemory.BeginSession();
+            DynastyMindSeed.BeginSession();
+            DynastyBranchEpisodeMemory.BeginSession();
             VisualWarDecisionLayer.Reset();
             SocialWorldObserver.BeginSession();
             SocialConsequenceProbe.Reset();
-            SocialMemoryDecisionProbe.Reset();
+            SocialMemoryCausalLayer.Reset();
+            StrategicDecisionComposer.Reset();
+            ActorBlackboard.Reset();
+            ActorStrategicBlackboard.Reset();
+            WorldScopeContext.Reset();
+            WarStrainRecruitmentPatch.BeginSession();
+            WarStrainEconomicPatches.BeginSession();
+            SocialDefectionPatch.BeginSession();
+            SocialLoyaltyClanLossMemory.BeginSession();
+            SocialLoyaltyPatch.BeginSession();
+            StrategicCommitmentLayer.Reset();
+            CompanionDutyMemory.BeginSession();
+            CompanionExperienceMemory.BeginSession();
+            CompanionNegativeOutcomeMemory.BeginSession();
+            CompanionHoldbackLayer.Reset();
+            KingdomObjectiveLayer.Reset();
+            HomeResponsibilityLayer.Reset();
+            ClanAIDiagnostics.BeginSession();
         }
 
         private static void LogActiveGlobalAiModel()
@@ -188,16 +259,19 @@ namespace ClanAI
 
     public static class ClanAIPostVanilla
     {
+        private static readonly bool HourlyObserveOnly = true;
+
         private const string LogPath =
-            @"D:\BannerlordAIResearch\Telemetry\BannerlordInspector\logs\inspector.log";
+            @"D:\BannerlordAIResearch\Telemetry\ClanAI\logs\clanai.log";
 
         private const string SessionLogDirectory =
             @"D:\BannerlordAIResearch\Telemetry\ClanAI\sessions";
 
         private const string Version =
-            "v0.20B";
+            "v0.21L6-social-loyalty-value-loss";
 
         private static string _sessionLogPath;
+        internal static string SessionLogPath { get { return _sessionLogPath; } }
 
         private static long _dispatcherCalls;
         private static long _targeted;
@@ -223,7 +297,7 @@ namespace ClanAI
                         "ClanAI_" +
                         DateTime.UtcNow.ToString(
                             "yyyyMMdd_HHmmss_fff") +
-                        "_v020B.log");
+                        "_v020Q_review.log");
             }
             catch
             {
@@ -252,8 +326,7 @@ namespace ClanAI
                 "rescoredCandidates=0 " +
                 "recoveryBoosts=0 " +
                 "offenseCuts=0 " +
-                "winnerChanges=0"
-            );
+                "winnerChanges=0");
 
             WriteExternalLog(
                 "SESSION_LOG path=" +
@@ -282,26 +355,128 @@ namespace ClanAI
                 return;
             }
 
+            if (HourlyObserveOnly)
+            {
+                int observedCount =
+                    thinkParams.AIBehaviorScores.Count;
+
+                if (observedCount > 0)
+                {
+                    DynastyMindSeed.ObserveDecisionContext(
+                        party.LeaderHero,
+                        "AiHourlyTickComposerScaffold");
+
+                    StrategicDecisionComposer.Frame scaffold =
+                        StrategicDecisionComposer.Begin(
+                            party,
+                            thinkParams);
+
+                    VisualWarDecisionLayer.Apply(
+                        party,
+                        thinkParams,
+                        scaffold,
+                        null);
+
+                    CompanionNegativeOutcomeMemory.Observe(party);
+
+                    CompanionHoldbackLayer.Apply(
+                        party,
+                        thinkParams,
+                        scaffold);
+
+                    HomeResponsibilityLayer.Apply(
+                        party,
+                        thinkParams,
+                        scaffold,
+                        null);
+
+                    CompanionDutyMemory.Apply(
+                        party,
+                        thinkParams,
+                        scaffold);
+
+                    CompanionExperienceMemory.ObserveAndApply(
+                        party,
+                        thinkParams,
+                        scaffold);
+
+                    KingdomObjectiveLayer.Apply(
+                        party,
+                        thinkParams,
+                        scaffold);
+
+                    CompanionHoldbackLayer.ApplyOutcomeSafety(
+                        party,
+                        thinkParams,
+                        scaffold);
+
+                    CompanionHoldbackLayer.ApplyFinalSafety(
+                        party,
+                        thinkParams,
+                        scaffold);
+
+                    StrategicDecisionComposer.Complete(
+                        scaffold,
+                        thinkParams);
+                }
+
+                return;
+            }
+
             int allCount =
                 thinkParams.AIBehaviorScores.Count;
 
             if (allCount > 0)
             {
-                SocialMemoryDecisionProbe.Analyze(
-                    party,
-                    thinkParams);
-
-                VisualWarDecisionLayer.Apply(
-                    party,
-                    thinkParams);
+                DynastyMindSeed.ObserveDecisionContext(
+                    party.LeaderHero,
+                    "AiHourlyTick");
             }
 
             string faction =
                 party.MapFaction.Name.ToString();
 
-            if (faction != "Sturgia" &&
-                faction != "Vlandia")
+            bool targetedScope =
+                faction == "Sturgia" ||
+                faction == "Vlandia";
+
+            ActorBlackboard.State blackboard =
+                allCount > 0
+                    ? ActorBlackboard.Capture(
+                        party)
+                    : null;
+
+            StrategicDecisionComposer.Frame composer =
+                allCount > 0
+                    ? StrategicDecisionComposer.Begin(
+                        party,
+                        thinkParams)
+                    : null;
+
+            if (allCount > 0)
             {
+                VisualWarDecisionLayer.Apply(
+                    party,
+                    thinkParams,
+                    composer,
+                    blackboard);
+            }
+
+            if (!targetedScope)
+            {
+                StrategicCommitmentLayer.Evaluate(
+                    party,
+                    thinkParams,
+                    composer);
+
+                StrategicDecisionComposer.Complete(
+                    composer,
+                    thinkParams);
+
+                ActorBlackboard.Validate(
+                    blackboard,
+                    party);
+
                 return;
             }
 
@@ -315,25 +490,55 @@ namespace ClanAI
             if (count > 0)
             {
                 _candidateLists++;
-                NobleMemory.Observe(party, thinkParams);
-                SocialConsequenceProbe.Observe(party, thinkParams);
-                SocialLedger.Observe(party, thinkParams);
+                NobleMemory.Observe(
+                    party,
+                    thinkParams,
+                    composer);
+
+                SocialConsequenceProbe.Observe(
+                    party,
+                    thinkParams,
+                    composer);
+
+                SocialLedger.Observe(
+                    party,
+                    thinkParams,
+                    composer);
                 SocialWorldObserver.Observe(party);
             }
 
             int beforeWinner =
-                FindBestIndex(thinkParams);
+                composer != null
+                    ? composer.CurrentBestIndex(
+                        thinkParams)
+                    : FindBestIndex(thinkParams);
 
             string beforeBehavior =
                 GetBehaviorName(
                     thinkParams,
                     beforeWinner);
 
-            float readiness =
-                party.PartySizeRatio;
+            float readiness;
+            int foodDays;
 
-            int foodDays =
-                party.GetNumDaysForFoodToLast();
+            if (blackboard != null)
+            {
+                readiness =
+                    blackboard.Readiness;
+
+                foodDays =
+                    blackboard.FoodDays;
+
+                ActorBlackboard.NoteWeakRecoveryRead();
+            }
+            else
+            {
+                readiness =
+                    party.PartySizeRatio;
+
+                foodDays =
+                    party.GetNumDaysForFoodToLast();
+            }
 
             bool weak =
                 readiness < 0.72f ||
@@ -346,7 +551,9 @@ namespace ClanAI
                 var changes =
                     new List<
                         ValueTuple<
+                            int,
                             AIBehaviorData,
+                            float,
                             float>>();
 
                 int thisRecoveryBoosts = 0;
@@ -363,8 +570,15 @@ namespace ClanAI
                     AIBehaviorData data =
                         entry.Item1;
 
-                    float score =
+                    float rawScore =
                         entry.Item2;
+
+                    float score =
+                        composer != null
+                            ? composer.CurrentScore(
+                                i,
+                                rawScore)
+                            : rawScore;
 
                     if (score <= 0f)
                         continue;
@@ -399,10 +613,14 @@ namespace ClanAI
 
                     changes.Add(
                         new ValueTuple<
+                            int,
                             AIBehaviorData,
+                            float,
                             float>(
+                                i,
                                 data,
-                                score * factor
+                                score,
+                                factor
                             )
                     );
                 }
@@ -423,20 +641,40 @@ namespace ClanAI
                      i < changes.Count;
                      i++)
                 {
-                    AIBehaviorData data =
+                    int index =
                         changes[i].Item1;
 
-                    float score =
+                    AIBehaviorData data =
                         changes[i].Item2;
 
-                    thinkParams.SetBehaviorScore(
-                        in data,
-                        score
-                    );
+                    float beforeScore =
+                        changes[i].Item3;
+
+                    float factor =
+                        changes[i].Item4;
+
+                    float score =
+                        beforeScore * factor;
+
+                    if (composer == null)
+                    {
+                        throw new InvalidOperationException(
+                            "Strategic composer missing in targeted recovery scope.");
+                    }
+
+                    composer.ApplyFactor(
+                        index,
+                        "weak-recovery",
+                        beforeScore,
+                        factor,
+                        factor > 1f
+                            ? "recovery-boost"
+                            : "offense-cut");
                 }
 
                 int afterWinner =
-                    FindBestIndex(thinkParams);
+                    composer.CurrentBestIndex(
+                        thinkParams);
 
                 string afterBehavior =
                     GetBehaviorName(
@@ -466,6 +704,27 @@ namespace ClanAI
                     );
                 }
             }
+
+            if (count > 0)
+            {
+                SocialMemoryCausalLayer.Evaluate(
+                    party,
+                    thinkParams,
+                    composer);
+            }
+
+            StrategicCommitmentLayer.Evaluate(
+                party,
+                thinkParams,
+                composer);
+
+            StrategicDecisionComposer.Complete(
+                composer,
+                thinkParams);
+
+            ActorBlackboard.Validate(
+                blackboard,
+                party);
 
             if ((_targeted % 25) == 0)
             {
@@ -543,7 +802,16 @@ namespace ClanAI
                 " offenseCuts=" +
                 _offenseCuts +
                 " winnerChanges=" +
-                _winnerChanges
+                _winnerChanges +
+                SocialMemoryCausalLayer.SummaryFields() +
+                StrategicDecisionComposer.SummaryFields() +
+                ActorBlackboard.SummaryFields() +
+                ActorStrategicBlackboard.SummaryFields() +
+                StrategicCommitmentLayer.SummaryFields() +
+                CompanionHoldbackLayer.SummaryFields() +
+                CompanionNegativeOutcomeMemory.SummaryFields() +
+                DynastyMindSeed.SummaryFields() +
+                DynastyBranchEpisodeMemory.SummaryFields()
             );
         }
 

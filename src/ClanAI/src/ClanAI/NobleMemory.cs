@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using TaleWorlds.CampaignSystem;
@@ -130,9 +130,10 @@ namespace ClanAI
                 Records.Count);
         }
 
-        public static void Observe(
+        internal static void Observe(
             MobileParty party,
-            PartyThinkParams thinkParams)
+            PartyThinkParams thinkParams,
+            StrategicDecisionComposer.Frame composer)
         {
             if (party == null ||
                 party.LeaderHero == null ||
@@ -149,8 +150,15 @@ namespace ClanAI
                  i < thinkParams.AIBehaviorScores.Count;
                  i++)
             {
-                float score =
+                float rawScore =
                     thinkParams.AIBehaviorScores[i].Item2;
+
+                float score =
+                    composer != null
+                        ? composer.CurrentScore(
+                            i,
+                            rawScore)
+                        : rawScore;
 
                 if (score > bestScore)
                 {

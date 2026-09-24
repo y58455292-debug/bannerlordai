@@ -1,0 +1,15 @@
+﻿{
+    "schema":  "BannerlordAI.SocialDefectionClanMemoryExtended.v1",
+    "version":  "v0.21L2-social-defection-clan-memory",
+    "candidateSha":  "C4F55B04871243D8B3543F0FFBFCDA32016A304CC2575FAFE633AFDB8960D675",
+    "considerations":  18,
+    "modified":  4,
+    "positiveFlips":  0,
+    "blockedNative":  0,
+    "commits":  0,
+    "result":  "SWITCH_VALUE_CAUSAL_PROVEN_NATIVE_BOUNDARY_NOT_OBSERVED",
+    "forcedEvent":  false,
+    "cap":  "relative=0.25 absolute=25000 minimum=5000",
+    "nextRoadmapSurface":  "Social 5B loyalty / leave-current-kingdom",
+    "save":  "ClanAI V020V PERSIST SAFE SYRONEA MERCY 20260923"
+}

@@ -1,0 +1,12 @@
+﻿{
+    "schema":  "BannerlordAI.SocialDefectionClanMemoryModifier.v1",
+    "version":  "v0.21L2-social-defection-clan-memory",
+    "candidateSha":  "C4F55B04871243D8B3543F0FFBFCDA32016A304CC2575FAFE633AFDB8960D675",
+    "save":  "ClanAI V020V PERSIST SAFE SYRONEA MERCY 20260923",
+    "saveSha":  "A6EA4D14077DBC41E814086B435B5FEF79E385EA096E07A97A81493D62133D3C",
+    "result":  "CLAN_MEMORY_NATIVE_DEFECTION_VALUE_MODIFIED",
+    "forcedEvent":  false,
+    "nativeAuthority":  "DiplomaticBartersBehavior.ConsiderDefection + JoinKingdomAsClanBarterable",
+    "memoryLine":  "2026-09-24T04:45:35.0167244Z [ClanAI v0.21L2-social-defection-clan-memory] SOCIAL_DEFECTION_MEMORY clan=dey Rothad leader=Dagunic from=Vlandia target=Calradian Empire nativeValue=-1261909 memoryIndex=-6.55 cap=25000 modifier=-1638 oldLeaderState=\u003cnone\u003e oldClanState=\u003cnone\u003e oldClanRecords=0 targetLeaderState=\u003cnone\u003e targetClanState=trust:-3,grievance:8,bloodDebt:0,obligation:0,tension:6 targetClanRecords=2",
+    "considerLine":  "2026-09-24T04:45:35.0187295Z [ClanAI v0.21L2-social-defection-clan-memory] SOCIAL_DEFECTION_CONSIDER clan=dey Rothad leader=Dagunic from=Vlandia target=Calradian Empire nativeClanValue=-1261909 socialModifier=-1638 adjustedClanValue=-1263547 targetValue=54359 nativeSum=-1207550 adjustedSum=-1209188 nativeDemand=1261909 adjustedDemand=1263547 affordable=1708214 nativeWouldDefect=False adjustedWouldDefect=False committed=False considerations=1 modified=1 positiveFlips=0 blockedNative=0 commits=0"
+}

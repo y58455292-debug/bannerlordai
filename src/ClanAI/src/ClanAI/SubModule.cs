@@ -9,10 +9,24 @@ namespace ClanAI
     {
         protected override void OnSubModuleUnloaded()
         {
+            ClanAIDiagnostics.EndSession("module_unload");
             ClanAIEvidenceWriter.Shutdown();
+            ClanAIDiagnostics.WriteShutdownHealth();
             base.OnSubModuleUnloaded();
         }
 
+
+        protected override void OnApplicationTick(float dt)
+        {
+            base.OnApplicationTick(dt);
+            ClanAIDiagnostics.Tick();
+        }
+
+        public override void OnGameEnd(Game game)
+        {
+            ClanAIDiagnostics.EndSession("game_end");
+            base.OnGameEnd(game);
+        }
 
         private static void InstallGlobalAiModelMirror(
             CampaignGameStarter starter)
@@ -95,6 +109,9 @@ namespace ClanAI
                 {
                     InstallGlobalAiModelMirror(starter);
 
+                    ClanAIPostVanilla.WriteExternalLog(
+                        "WRAPPER_PASS_THROUGH global_ai_model_wrapper=enabled mutation=disabled ai_hourly_patch=disabled");
+
                     starter.AddBehavior(
                         new ClanAIStrategicBehavior()
                     );
@@ -103,6 +120,8 @@ namespace ClanAI
                         new ClanAIObserverSafetyBehavior()
                     );
                     starter.AddBehavior(new SocialCaptivityObserverBehavior());
+                    starter.AddBehavior(new PrisonerMercyDecisionBehavior());
+                    starter.AddBehavior(new WarStateBehavior());
                 }
             }
         }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
 
@@ -10,15 +10,10 @@ namespace ClanAI
 
         public override void RegisterEvents()
         {
-            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(
-                this,
-                new Action<CampaignGameStarter>(OnSessionLaunched)
-            );
-
-            CampaignEvents.MobilePartyCreated.AddNonSerializedListener(
-                this,
-                new Action<MobileParty>(OnMobilePartyCreated)
-            );
+            // Survival-showcase candidate: do not install the historical
+            // 10,000-hour do-not-attack-main-party observer protection.
+            // Any timer serialized in the loaded test save is cleared by
+            // the TestRunner's CLEAR_MAIN_PARTY_PROTECTION command.
         }
 
         public override void SyncData(IDataStore dataStore)

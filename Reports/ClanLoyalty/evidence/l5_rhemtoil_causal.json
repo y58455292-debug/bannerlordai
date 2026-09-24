@@ -1,0 +1,19 @@
+﻿{
+    "schema":  "BannerlordAI.SocialLoyaltyDirectLossCausalProof.v1",
+    "version":  "v0.21L5-social-loyalty-direct-loss",
+    "candidateSha":  "94F6699B70C5FD644A8736F6EC0E168CA786A87E34F0034439233FED1D44ECF7",
+    "result":  "REAL_CLAN_HOLDING_LOSS_CAUSED_NATIVE_LOYALTY_SCORE_CHANGE",
+    "forcedEvent":  false,
+    "clan":  "fen Morcar",
+    "lostSettlement":  "Rhemtoil Castle",
+    "nativeValue":  -3955367,
+    "modifier":  108,
+    "adjustedValue":  -3955259,
+    "committed":  false,
+    "memoryAgeHours":  317.338,
+    "save":  "ClanAI V020V PERSIST SAFE SYRONEA MERCY 20260923",
+    "saveSha":  "A6EA4D14077DBC41E814086B435B5FEF79E385EA096E07A97A81493D62133D3C",
+    "lossLine":  "2026-09-24T06:05:01.2713109Z [ClanAI v0.21L5-social-loyalty-direct-loss] SOCIAL_LOYALTY_CLAN_LOSS_RECORDED clan=fen Morcar settlement=Rhemtoil Castle detail=BySiege weight=0.65 count=1 recorded=1 source=OnSettlementOwnerChangedEvent",
+    "memoryLine":  "2026-09-24T06:12:35.8990371Z [ClanAI v0.21L5-social-loyalty-direct-loss] SOCIAL_LOYALTY_MEMORY clan=fen Morcar leader=Pryndor kingdom=Battania nativeValue=-3955367 memoryIndex=0.433 socialIndex=0 directLossIndex=0.433 directLoss=settlement:Rhemtoil Castle,ageHours:317.338,count:1 cap=25000 modifier=108 leaderState=\u003cnone\u003e clanState=\u003cnone\u003e clanRecords=0",
+    "considerLine":  "2026-09-24T06:12:35.8990371Z [ClanAI v0.21L5-social-loyalty-direct-loss] SOCIAL_LOYALTY_CONSIDER clan=fen Morcar leader=Pryndor kingdom=Battania nativeValue=-3955367 socialModifier=108 adjustedValue=-3955259 nativeWouldLeave=False adjustedWouldLeave=False committed=False kingdomAfter=Battania considerations=156 modified=1 positiveFlips=0 retainedByMemory=0 commits=0"
+}

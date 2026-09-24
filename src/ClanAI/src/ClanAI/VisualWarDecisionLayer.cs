@@ -45,7 +45,10 @@ namespace ClanAI
 
         private sealed class PendingChange
         {
+            public int Index;
             public AIBehaviorData Data;
+            public float BaseScore;
+            public float Factor;
             public float NewScore;
             public string Reason;
         }
@@ -114,9 +117,11 @@ namespace ClanAI
                 "VISUAL_WAR_RESET enabled=" + Enabled);
         }
 
-        public static void Apply(
+        internal static void Apply(
             MobileParty actor,
-            PartyThinkParams thinkParams)
+            PartyThinkParams thinkParams,
+            StrategicDecisionComposer.Frame composer,
+            ActorBlackboard.State blackboard)
         {
             if (!Enabled ||
                 actor == null ||
@@ -130,18 +135,41 @@ namespace ClanAI
 
             EnsureWorldContext();
 
-            int beforeIndex = FindBestIndex(thinkParams);
-            string before = CandidateLabel(thinkParams, beforeIndex);
+            int beforeIndex =
+                composer != null
+                    ? composer.CurrentBestIndex(thinkParams)
+                    : FindBestIndex(thinkParams);
 
-            int men =
-                actor.MemberRoster != null
-                    ? actor.MemberRoster.TotalManCount
-                    : 0;
+            string before =
+                CandidateLabel(
+                    thinkParams,
+                    beforeIndex);
 
-            float readiness = actor.PartySizeRatio;
+            int men;
+            float readiness;
+            int foodDays;
 
-            int foodDays =
-                actor.GetNumDaysForFoodToLast();
+            if (blackboard != null)
+            {
+                men = blackboard.Men;
+                readiness = blackboard.Readiness;
+                foodDays = blackboard.FoodDays;
+
+                ActorBlackboard.NoteVisualWarRead();
+            }
+            else
+            {
+                men =
+                    actor.MemberRoster != null
+                        ? actor.MemberRoster.TotalManCount
+                        : 0;
+
+                readiness =
+                    actor.PartySizeRatio;
+
+                foodDays =
+                    actor.GetNumDaysForFoodToLast();
+            }
 
             bool weakForRecovery =
                 readiness < 0.72f ||
@@ -163,8 +191,15 @@ namespace ClanAI
                 AIBehaviorData data =
                     thinkParams.AIBehaviorScores[i].Item1;
 
-                float baseScore =
+                float rawScore =
                     thinkParams.AIBehaviorScores[i].Item2;
+
+                float baseScore =
+                    composer != null
+                        ? composer.CurrentScore(
+                            i,
+                            rawScore)
+                        : rawScore;
 
                 if (baseScore <= 0f)
                     continue;
@@ -304,7 +339,10 @@ namespace ClanAI
                 changes.Add(
                     new PendingChange
                     {
+                        Index = i,
                         Data = data,
+                        BaseScore = baseScore,
+                        Factor = factor,
                         NewScore = baseScore * factor,
                         Reason = reason
                     });
@@ -327,15 +365,35 @@ namespace ClanAI
 
             for (int i = 0; i < changes.Count; i++)
             {
-                AIBehaviorData data =
-                    changes[i].Data;
+                PendingChange change =
+                    changes[i];
 
-                thinkParams.SetBehaviorScore(
-                    in data,
-                    changes[i].NewScore);
+                AIBehaviorData data =
+                    change.Data;
+
+                if (composer == null)
+                {
+                    ClanAIPostVanilla.WriteExternalLog(
+                        "STRATEGIC_COMPOSER_FAILURE" +
+                        " reason=missing-frame" +
+                        " source=visual-war" +
+                        " actor=" +
+                        actor.LeaderHero.Name.ToString());
+
+                    return;
+                }
+
+                composer.ApplyFactor(
+                    change.Index,
+                    "visual-war",
+                    change.BaseScore,
+                    change.Factor,
+                    change.Reason);
             }
 
-            int afterIndex = FindBestIndex(thinkParams);
+            int afterIndex =
+                composer.CurrentBestIndex(
+                    thinkParams);
 
             if (afterIndex == beforeIndex)
                 return;

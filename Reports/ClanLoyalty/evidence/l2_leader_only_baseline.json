@@ -1,0 +1,11 @@
+﻿{
+    "schema":  "BannerlordAI.SocialDefectionLeaderOnlyBaseline.v1",
+    "version":  "v0.21L-social-defection-v1-clean",
+    "candidateSha":  "605E9AEAB670E1A5A63CAE2640AA12C28116A3B6628DE23D903597626DD64764",
+    "considerations":  12,
+    "modified":  0,
+    "result":  "LEADER_ONLY_MEMORY_TOO_SPARSE",
+    "save":  "ClanAI V020V PERSIST SAFE SYRONEA MERCY 20260923",
+    "saveSha":  "A6EA4D14077DBC41E814086B435B5FEF79E385EA096E07A97A81493D62133D3C",
+    "notes":  "No forced defections; native ConsiderDefection only; Manan parked in Syronea."
+}
