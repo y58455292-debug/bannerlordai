@@ -180,6 +180,55 @@ namespace ClanAI
                     out directLossSettlements,
                     out directLossValue);
 
+            int nativeLeaveValue = 0;
+            int carryLeaveModifier = 0;
+            bool leaveObservationAvailable = false;
+
+            try
+            {
+                if (Campaign.Current != null &&
+                    Campaign.Current.Models != null &&
+                    Campaign.Current.Models.DiplomacyModel != null &&
+                    ctx.OldKingdom != null)
+                {
+                    nativeLeaveValue =
+                        (int)Campaign.Current.Models.DiplomacyModel
+                            .GetScoreOfClanToLeaveKingdom(
+                                clan1,
+                                ctx.OldKingdom);
+
+                    carryLeaveModifier =
+                        SocialLoyaltyPatch
+                            .ComputeLoyaltyModifierForObservation(
+                                clan1,
+                                ctx.OldKingdom,
+                                nativeLeaveValue);
+
+                    leaveObservationAvailable = true;
+                }
+            }
+            catch
+            {
+                leaveObservationAvailable = false;
+                nativeLeaveValue = 0;
+                carryLeaveModifier = 0;
+            }
+
+            int carryAdjustedClanValue =
+                ctx.AdjustedClanValue +
+                carryLeaveModifier;
+            int carryAdjustedSum =
+                carryAdjustedClanValue +
+                ctx.TargetKingdomValue;
+            int carryDemand =
+                carryAdjustedClanValue < 0
+                    ? -carryAdjustedClanValue
+                    : 0;
+            bool carryWould =
+                leaveObservationAvailable &&
+                carryAdjustedSum > 0 &&
+                carryDemand <= affordable;
+
             bool nativeWould = nativeSum > 0 && nativeDemand <= affordable;
             bool adjustedWould = adjustedSum > 0 && adjustedDemand <= affordable;
             bool committed = clan1.Kingdom == kingdom;
@@ -214,6 +263,13 @@ namespace ClanAI
                 (hasDirectLoss
                     ? directLossAgeHours.ToString("0.###", CultureInfo.InvariantCulture)
                     : "0") +
+                " leaveObservationAvailable=" + leaveObservationAvailable +
+                " nativeLeaveValue=" + nativeLeaveValue +
+                " carryLeaveModifier=" + carryLeaveModifier +
+                " carryAdjustedClanValue=" + carryAdjustedClanValue +
+                " carryAdjustedSum=" + carryAdjustedSum +
+                " carryDemand=" + carryDemand +
+                " carryWouldDefect=" + carryWould +
                 " nativeWouldDefect=" + nativeWould +
                 " adjustedWouldDefect=" + adjustedWould +
                 " committed=" + committed +

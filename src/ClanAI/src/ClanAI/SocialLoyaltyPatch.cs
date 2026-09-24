@@ -219,6 +219,31 @@ namespace ClanAI
             Kingdom currentKingdom,
             int nativeValue)
         {
+            return ComputeLoyaltyModifierCore(
+                sourceClan,
+                currentKingdom,
+                nativeValue,
+                true);
+        }
+
+        internal static int ComputeLoyaltyModifierForObservation(
+            Clan sourceClan,
+            Kingdom currentKingdom,
+            int nativeValue)
+        {
+            return ComputeLoyaltyModifierCore(
+                sourceClan,
+                currentKingdom,
+                nativeValue,
+                false);
+        }
+
+        private static int ComputeLoyaltyModifierCore(
+            Clan sourceClan,
+            Kingdom currentKingdom,
+            int nativeValue,
+            bool writeLog)
+        {
             if (sourceClan == null ||
                 sourceClan.Leader == null ||
                 currentKingdom == null ||
@@ -331,7 +356,7 @@ namespace ClanAI
                 socialModifier +
                 directLossModifier;
 
-            if (modifier != 0)
+            if (writeLog && modifier != 0)
             {
                 ClanAIPostVanilla.WriteExternalLog(
                     "SOCIAL_LOYALTY_MEMORY clan=" + sourceClan.Name +
