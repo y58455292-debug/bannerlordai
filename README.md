@@ -50,9 +50,13 @@ This satisfies the preregistered Phase 1 win condition for the **voluntary leave
 
 ## In-game visibility
 
-`v0.21M-player-visibility-v1` adds native Bannerlord message-feed visibility for major clan loyalty shocks, committed voluntary departures, committed target-kingdom defections, and the player kingdom's war-strain state. The corrected war-strain path is runtime-proven on the safe Syronea baseline: it stays silent during load and emits the first war-strain message after campaign time resumes. Loyalty/leave/defection notification call sites are implemented and build-proven, but a fresh natural runtime re-observation of those messages is still pending because the dev harness stalled while reloading the Urikskala fixture.
+`v0.21M-player-visibility-v1` adds native Bannerlord message-feed visibility for major clan loyalty shocks, committed voluntary departures, committed target-kingdom defections, and the player kingdom's war-strain state.
 
-See `Reports/Visibility/2026-09-24-player-visibility-v1.md`.
+Runtime proof now covers the player kingdom's war-strain message, natural clan-owned fief-loss messages, a fresh loyalty-shift message, and a native committed voluntary-leave message. In the strongest fresh example, Gauting naturally lost Skarthness Castle, memory moved its leave value from -401,733 to +100,433, Bannerlord committed the departure from Nord, and the game emitted `ClanAI: Gauting has left Nord after mounting losses and grievances.`
+
+A fresh natural target-kingdom defection commit has **not** yet been observed under the visibility build, so that notification remains implemented/build-proven rather than runtime-proven.
+
+See `Reports/Visibility/2026-09-24-player-visibility-v1.md` and `Reports/Visibility/2026-09-24-loyalty-runtime-proof.md`.
 
 ## Loyalty memory and clamps
 

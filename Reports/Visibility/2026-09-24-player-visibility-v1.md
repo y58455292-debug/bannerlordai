@@ -40,13 +40,18 @@ This proves the corrected war-strain message path runs after gameplay resumes, n
 
 ## Loyalty / defection visibility validation status
 
-The loyalty-loss, loyalty-shift, leave-commit, and defection-commit call sites compile and are wired directly to the proven SocialLoyalty/SocialDefection surfaces.
-A subsequent attempt to re-run the Urikskala natural-loss fixture under v0.21M hit a dev-harness save-load stall before the new campaign initialized. That run is not counted as loyalty-UI proof.
+Mission 1 runtime validation is now closed for the voluntary-leave visibility surfaces.
 
-Therefore:
+Fresh natural v0.21M observations proved:
 
-- war-strain visibility: **runtime proven**;
-- loyalty/leave/defection visibility: **implemented and build-proven, natural runtime message re-observation still pending**.
+- real clan-owned fief-loss message: **runtime proven**;
+- major loyalty-shift message: **runtime proven**;
+- native committed voluntary-leave message: **runtime proven**;
+- target-kingdom defection-commit message: **implemented/build-proven, fresh natural runtime commit not yet observed**.
+
+The earlier Urikskala save-load stall was avoided by returning to the main menu and loading the fixture from a fresh campaign process. No gameplay behavior was changed to obtain the messages.
+
+See `Reports/Visibility/2026-09-24-loyalty-runtime-proof.md` and its machine-readable evidence.
 
 ## Safety / rollback
 
