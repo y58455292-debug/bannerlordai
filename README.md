@@ -1,18 +1,113 @@
 # BannerlordAI
 
-Development snapshot of the BannerlordAI / Bannerlord mod research project.
+BannerlordAI is an experimental Mount & Blade II: Bannerlord mod project focused on autonomous world-scope clan and lord behavior while keeping Bannerlord's native eligibility, action, and campaign systems authoritative.
 
-## Snapshot state
-- Durable checkpoint: 375
-- Last accepted milestone: v0.2.10.67 external provider execution-package and adapter-boundary shadow
-- Next milestone: v0.2.10.68 provider-specific controlled execution
-- v0.2.10.68 is intentionally waiting for explicit user selection/authorization of a real provider/model and outbound API use.
-- No provider credential value is stored in this repository.
+The active mod source is `src/ClanAI`. `src/BannerlordInspector` is the observation harness. `src/ProviderPipeline` contains the retained provider-pipeline milestone work, but provider reasoning is not currently part of the proven clan-loyalty behavior described below.
 
-## Included
-Current ClanAI and BannerlordInspector source, accepted v0.2.10.66 runtime candidate source/fixtures, v0.2.10.54-v0.2.10.67 provider pipeline helpers/tests/validators, project automation and authored tools, derived milestone/analyzer reports, durable architecture/handoff state, research notes, tests, configs, and selected accepted validation evidence.
+## Current state
 
-## Intentionally excluded
-Savegames, raw telemetry/log streams, caches, compiled binaries/PDBs, node_modules/bin/obj/dist, local credential values/.env files, large videos, third-party tool distributions, external prior-art source trees, and redundant patch/archive copies.
+The current ClanAI source corresponds to `v0.21L6-social-loyalty-value-loss`. It builds successfully against the local Bannerlord assemblies. The active Social 5B work concerns autonomous clan loyalty, leaving a kingdom, and switching kingdoms.
 
-These exclusions keep the repository reproducible and useful without publishing secrets, personal game-state files, generated junk, or third-party payloads.
+A real causal chain has been demonstrated:
+
+1. an AI clan experiences a real campaign event;
+2. ClanAI records bounded memory from that event;
+3. Bannerlord later reaches its own autonomous diplomacy consideration;
+4. ClanAI biases only the clan-side native barter value;
+5. Bannerlord keeps authority over the >0 decision threshold and the actual `ChangeKingdomAction`.
+
+This is a causal score result, not proof of a completed autonomous defection.
+### Rhemtoil / L5 result
+
+fen Morcar lost Rhemtoil Castle in a real siege. 317.338 campaign hours later Bannerlord naturally evaluated whether the clan should leave Battania. The recorded exact-clan holding loss moved the native leave value from -3,955,367 to -3,955,259: a +108 adjustment.
+
+The decision remained no. No faction transfer was forced.
+
+This run demonstrated real-event -> memory -> native loyalty-score causality, but also exposed the scale mismatch in the first direct-loss implementation.
+
+### Nevyansk / L6 result
+
+L6 values a lost clan-owned fief using Bannerlord's native settlement-value model rather than a flat castle/town weight.
+
+fen Morcar later lost Nevyansk Castle in a real siege. Bannerlord valued that holding at 532,054.6 native settlement-value units. L6 recorded 133,013.7 pressure at loss. The record persisted through save/load (`records=1` before and after reload).
+
+At a natural loyalty check 50.017 campaign hours after the loss:
+
+- native leave value: -2,298,743
+- decayed direct-loss pressure: 123,773.5
+- applied direct-loss modifier: +123,773
+- adjusted leave value: -2,174,970
+- nativeWouldLeave: false
+- adjustedWouldLeave: false
+- committed: false
+An earlier natural sample of 60 leave considerations produced no native leave decisions, no adjusted leave decisions, and no commits. The least-loyal sampled clan was still about 191,000 points below the >0 leave boundary.
+
+**No clan has yet left a kingdom because of this system.** A real boundary crossing and native leave commit remain unproven.
+
+## Loyalty memory and clamps
+
+Ordinary current-kingdom social memory uses:
+
+`social_index = grievance*0.50 + bloodDebt*0.70 + tension*0.25 - trust*0.35 - obligation*0.45`
+
+When both sources exist, leader-direct memory and clan aggregate kingdom memory are blended 65% / 35%. The index is clamped to [-100, 100].
+
+`social_cap = min(25000, max(5000, abs(native_leave_value) * 0.25))`
+
+`social_modifier = social_cap * social_index / 100`
+
+Direct clan-owned fief losses use Bannerlord's native settlement valuation:
+
+`raw_loss_pressure = native_settlement_value * 0.25`
+
+Each loss decays linearly over 720 campaign hours (30 days). Multiple direct losses accumulate for the same clan, with aggregate pressure capped at 750,000.
+At the leave-kingdom hook:
+
+`direct_loss_cap = min(750000, max(75000, abs(native_leave_value) * 1.25))`
+
+`direct_loss_modifier = min(decayed_direct_loss_pressure, direct_loss_cap)`
+
+`adjusted_leave_value = native_leave_value + social_modifier + direct_loss_modifier`
+
+The leave patch is context-gated to Bannerlord's own `DiplomaticBartersBehavior.ConsiderClanLeaveKingdom` path and patches the clan-side `LeaveKingdomAsClanBarterable.GetUnitValueForFaction` result. The kingdom-switch patch is similarly scoped to `ConsiderDefection` / `JoinKingdomAsClanBarterable`. These patches do not directly call a faction-transfer action.
+
+## Other retained ClanAI systems
+
+The current source also contains the previously developed Home Responsibility, companion duty/experience/negative-outcome memory, Holdback, world-scope lord behavior, WarState/WarScar tracking, Kingdom Orders, War Strain recruitment/economy coupling, and Prisoner/Mercy behavior. Prisoner/Mercy remains at release threshold 20.
+
+Not all retained experimental layers are release-ready. In particular, external/provider reasoning is not integrated into the proven loyalty path, and a natural completed `SUSTAINED_RAIDING` WarScar proof remains separate outstanding evidence.
+
+## Repository layout
+
+- `src/ClanAI/` — current mod source and package metadata.
+- `src/BannerlordInspector/` — current observation harness.
+- `src/ProviderPipeline/` — retained provider-pipeline milestone source/tests.
+- `Reports/` — consolidated experiment evidence, including null results.
+- `Tests/` — retained test entry points.
+- `Data/` — small runtime configuration files still referenced by current ClanAI source.
+The old Front Office/controller, handoff, historical dump, longitudinal dump, video-update, and abandoned research trees are intentionally not part of the active repository. The pre-cleanup tracked state is preserved on branch `archive/pre-cleanup-2026-09-23`.
+
+## Reviewer entry points
+
+For the current loyalty slice, start with:
+
+- `src/ClanAI/src/ClanAI/SocialLoyaltyPatch.cs`
+- `src/ClanAI/src/ClanAI/SocialLoyaltyClanLossMemory.cs`
+- `src/ClanAI/src/ClanAI/SocialDefectionPatch.cs`
+- `src/ClanAI/src/ClanAI/SocialLedger.cs`
+- `src/ClanAI/src/ClanAI/ClanAIStrategicBehavior.cs`
+- `Reports/ClanLoyalty/2026-09-23-clan-loyalty.md`
+
+Machine-readable supporting evidence is under `Reports/ClanLoyalty/evidence/`.
+
+## Build
+
+From the repository root:
+
+`dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj -c Release`
+
+The current local build has zero compilation errors. The Bannerlord/Harmony dependency set still emits the inherited `System.ValueTuple` version-conflict warning.
+
+## Working rules
+
+Working code must be committed at least daily in small focused commits with descriptive messages. Experimental claims, including null results, must have matching source/evidence artifacts in the repository before they are treated as project progress. Snapshot mega-commits and chat-only progress are not acceptable project state.

@@ -1,97 +1,64 @@
-# BannerlordAI Project Law — Continuous Useful Work
+# BannerlordAI Project Law
 
-## Law
+## 1. Source of truth
 
-Office power is controlled only by the user's explicit Front Office command. OPEN clocks engineering departments in. OFFLINE is a deliberate evidence-lab mode that clocks engineering departments out and permits only registered SIMULATION/DATA_GATHER. CLOSED pauses all project work except Front power/status and safety continuity. While a department is clocked in, it must always have useful authorized work in motion whenever such work exists.
+The user's current direction has highest authority. After that, use the current repository source, accepted evidence in `Reports/`, and the smallest safe evidence-producing next step.
 
-A department does not stop merely because its current task completed. It must:
-1. finish and record the current result;
-2. perform the required handoff/review;
-3. pull the next highest-priority safe objective from the Daily Plan, durable next_action, accepted roadmap, or Front Office queue;
-4. continue until the user switches Front to OFFLINE or CLOSED, a real blocker exists, or work requires user involvement.
+Chat history, old controller state, archived handoffs, and uncommitted staging folders are not authoritative project state.
 
-## When an agent may ask the user
+## 2. Artifact rule
 
-Ask the user only when at least one of these is true:
-- a manual/UI/physical action is required that available tools cannot perform;
-- explicit authorization is required for a risky, destructive, irreversible, or out-of-scope action;
-- required information is genuinely unavailable from project evidence, tools, or prior decisions;
-- two or more materially different roadmap priorities remain unresolved and existing policy cannot choose between them;
-- a true blocker exists that only the user can clear.
+No progress claim is accepted unless the corresponding working code, evidence, or documentation exists in the repository.
 
-Do NOT ask for:
-- routine approval of safe reversible work;
-- confirmation to continue an already approved objective;
-- status acknowledgment;
-- minor implementation choices covered by accepted architecture;
-- permission to perform normal evidence review, indexing, builds, static checks, or registered safe tests.
+Null results are evidence and must be retained beside positive results when they constrain the design.
 
-## Daily objective rule
+## 3. Commit rule
 
-Every active office day must maintain:
-- one PRIMARY objective;
-- one NEXT objective;
-- optional SUPPORT work that helps the current bottleneck without creating conflicting WIP.
+Commit working code at least daily. Prefer small focused commits with descriptive messages. Do not use snapshot mega-commits as the normal workflow.
 
-When PRIMARY completes, NEXT becomes PRIMARY automatically unless a newly discovered blocker or higher-priority durable event changes the roadmap.
+Behavior-changing work should be committed separately from repository cleanup or documentation-only changes whenever practical.
+## 4. Native-authority rule
 
-If the queue becomes empty, Front Office must derive the next smallest evidence-backed objective from the accepted roadmap rather than asking the user what to do.
+ClanAI should influence Bannerlord through bounded, auditable decision surfaces rather than replacing native world authority.
 
-## Blocked-work rule
+For autonomous decisions, preserve native eligibility, target selection, action legality, and final Bannerlord actions unless a specific experiment proves a different integration is required.
 
-If one task is blocked but other authorized useful work can proceed without invalidating the blocked task, continue that support work.
-Do not manufacture busywork. If no useful authorized work exists, record WAITING_ON_USER with the exact required action and why only the user can provide it.
+Do not raise thresholds, caps, or inject synthetic events merely to manufacture a positive result. A real boundary crossing must be observed as a real boundary crossing.
 
-## Authority order
+## 5. Evidence rule
 
-1. User's explicit current direction.
-2. Durable accepted roadmap / HandoffV3.
-3. Daily Plan and Front Office priority.
-4. Department-specific accepted procedures.
-5. Smallest safe evidence-producing next step.
+For every behavioral claim, record enough evidence to reconstruct:
 
-## Anti-overhaul rule
+- the native value or state before intervention;
+- the bounded ClanAI contribution;
+- the resulting native/adjusted decision state;
+- whether an actual native action committed;
+- whether the triggering world event was natural or forced.
 
-Continuous work does not authorize infrastructure sprawl.
-Infrastructure changes stay incremental unless the user explicitly approves a maintenance window for a broader redesign.
+A score change is not an action commit. A causal modifier is not a completed autonomous behavior.
+## 6. Deployment safety
 
-## Chat behavior
+Do not replace the live mod DLL while Bannerlord is running.
 
-Department chats report only meaningful milestones, blockers, terminal results, and handoffs.
-Routine work continues quietly.
-Before a chat rotates, it must create its handoff so the replacement chat can immediately continue useful work.
+Preserve a verified rollback before deploying a behavior-changing candidate. Use a no-save exit for validation restarts unless a specifically named test fixture is being created.
 
-## Non-disruptive status and handoff continuation rule
+Do not overwrite protected baseline saves. Test fixtures must be clearly named and separately verifiable.
 
-A user status/check-in request (for example: "update?", "how are we doing?", "what are we working on?", or equivalent) is observational only. It MUST NOT pause, cancel, reset, de-arm, or strand already-authorized work.
+## 7. Repository hygiene
 
-For every Front/Worker/Analyzer phase and every agent handoff:
-1. recover/report the authoritative durable/runtime state;
-2. preserve the existing active assignment unless the user explicitly changes it;
-3. immediately resume or dispatch the next executable step after the status response;
-4. never treat protocol entry, routing, or handoff creation as task execution by itself;
-5. a routed/claimed packet may not remain idle when its prerequisites pass: the receiving agent must begin useful work, register/dispatch deterministic work when required, or record a concrete blocker;
-6. terminal work must checkpoint, hand off, and automatically pull the next safe objective while Office is OPEN;
-7. only explicit stop/hold/OFFLINE/CLOSED direction, a real blocker, required authorization/manual action, or unresolved policy decision may halt forward work.
+The active repository contains only material needed to build, test, observe, review, or reproduce current evidence.
 
-Every structured handoff must carry this continuation contract so replacement agents inherit it without relying on chat history.
+Research spikes must be distilled into a short durable note or report before their working trees are deleted. Raw telemetry, caches, videos, temporary staging trees, controller state, handoff machinery, and local runtime artifacts do not belong in the active repository.
 
-## Ready-work dispatch and evidence-reuse rule
+`README.md` must describe the current state honestly enough for a fresh reviewer to understand what is proven and what is not.
 
-Durable memory of a next_action is not progress by itself. While Office is OPEN, whenever a safe next_action is executable and its prerequisites pass, the controller MUST dispatch or execute it in the same continuation cycle. A ready packet may not remain parked in ROUTED, REASONING_READY, PLAN_READY, or equivalent passive state waiting for a user check-in.
+## 8. Release direction
 
-Terminal evidence must advance automatically through the phase chain:
-EXECUTE terminal -> VERIFY reasoning -> classification -> bounded repair/PLAN -> EXECUTE, subject only to explicit stop conditions and repair budgets.
+The intended final ClanAI module is standalone. Development harnesses may be used for observation and validation, but release behavior must not depend on TestRunner, command buses, office/controller machinery, absolute project paths, or external research state.
+## 9. Reviewability
 
-Accepted partial evidence is cumulative. Once an acceptance sub-gate has authoritative evidence and is recorded in do_not_repeat/accepted_partial_evidence, later validators and agents MUST reuse it unless new contradictory evidence appears. Do not require natural event ordering that is not itself part of the product requirement. Narrow subsequent runs to the smallest unresolved proof.
+Keep current behavioral source under `src/`, reproducible evidence under `Reports/`, and test entry points under `Tests/`.
 
-Operational productivity is measured by evidence-producing transitions and accepted gates, not by recovery, routing, protocol entry, indexing, or status reporting alone.
+When an experiment supersedes an earlier implementation, preserve the meaningful result in Reports and remove redundant active scaffolding.
 
-## Single-controller identity rule
-
-There is one operational ChatGPT controller chat for BannerlordAI at a time. "Coder", "Analyzer", "Front", PLAN, EXECUTE, and VERIFY are logical phases/safeguard modes inside that one controller, not separate agents that must wait on or hand work to each other.
-
-Internal phase labels must never create an ownership wait. The same controller that finishes EXECUTE immediately performs VERIFY when required, then routes/executes the next safe step. Structured handoff is primarily for rotating this controller chat to its successor when chat capacity/retirement requires it.
-
-Durable coder_status/analyzer_status artifacts remain evidence/checklist receipts only. They do not represent independent workers and must not cause the controller to stop for another agent.
-
+A reviewer should be able to start at README, find the relevant source, locate the matching evidence, and see the current unresolved boundary without consulting chat transcripts.
