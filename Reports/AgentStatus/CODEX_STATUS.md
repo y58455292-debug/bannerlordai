@@ -7,7 +7,7 @@ Phase 2D — kingdom continuity and successor states (ROADMAP.md).
 Phase 2C passed at Bannerlord's supported native boundary.
 
 ## Current state
-READY FOR PHASE 2D NATIVE CONTINUITY AUDIT
+PHASE 2D ARCHITECTURE RESOLVED; READY FOR LUNA SLICE 2D-L1
 
 ## Current candidate
 `v0.22A-ruler-courtship-native-v1`. Built and deployed with verified rollback.
@@ -20,10 +20,10 @@ READY FOR PHASE 2D NATIVE CONTINUITY AUDIT
 - Phase 2C runtime-observed: Banu Ruwaid stayed independent for 81.003 campaign hours; both parties survived, used settlements, fought bandits, and grew from 195 to 205 combined troops with zero custom spawn/recruitment changes and zero Inspector errors.
 
 ## Current blocker / uncertainty
-Ordinary independent NPC clans are explicitly excluded from native military target scoring, and no ordinary NPC kingdom-creation loop was identified. These are now preserved Phase 2C native boundaries. Phase 2D must first audit native ruler succession, kingdom destruction, rebel continuity, and kingdom identity mutation before proposing successor-state architecture.
+The architectural blocker is resolved. NPC kingdom creation remains intentionally unauthorized because no ordinary native loop or fully audited initialization boundary has been identified. Phase 2D-L1 does not need kingdom creation: it establishes persistent, player-visible continuity over native succession and destruction without mutating political authority.
 
 ## Local work warning
 No known unrelated local work. The current v0.22A DLL was restored after the isolated no-save Phase 2C observation.
 
-## Exact next action
-Begin Phase 2D with a read-only native audit of ruler succession, kingdom destruction, rebel-clan transition, and safe kingdom-name/identity surfaces. Do not implement a successor state until its native ownership and lifecycle boundaries are understood.
+## Exact next Luna task
+Implement Phase 2D-L1 `KingdomContinuityBehavior`: observe native `RulingClanChanged`, `KingdomDestroyedEvent`, and `KingdomCreatedEvent`; persist a versioned per-kingdom continuity record containing original/current observed name, immutable recorded culture ID, current ruling clan ID, native succession count/time, and terminal destruction state/time; reconcile safely on new game/load without duplicate notices; emit exactly one concise player-facing notice for a native ruler change or destruction; add focused duplicate/load/null-ruler/culture-immutability tests; build; then run one bounded natural observation, preserving a null if no event occurs. Do not create or rename kingdoms, select rulers, transfer settlements/membership, mutate wars, alter the 28-day timer, accelerate rebels, or use synthetic events as positive evidence.

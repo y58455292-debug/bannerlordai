@@ -1,6 +1,10 @@
-# Sol escalation request — successor-state continuity
+# Sol escalation resolution — successor-state continuity
 
 Date: 2026-09-24
+
+Status: **RESOLVED 2026-09-24**
+
+Resolution: Phase 2D will use an event-driven continuity layer over native political facts. Existing kingdoms retain native ruler election; destroyed kingdom objects remain destroyed; and future successor eligibility requires a naturally landed, distinct lineage such as a natively created and matured rebel clan. No NPC kingdom creation or renaming is authorized yet. The first implementation is limited to a persisted succession/destruction ledger plus player notices. See `Reports/KingdomContinuity/PHASE2D_ARCHITECTURE_DECISION.md`.
 
 ## Requested task
 

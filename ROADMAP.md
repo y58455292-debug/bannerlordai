@@ -165,6 +165,8 @@ A clan that leaves a kingdom should be able to:
 
 ## 2D. Kingdom continuity and successor states
 
+**Status — ARCHITECTURE RESOLVED 2026-09-24.** Preserve native ruler elections and terminal kingdom destruction. Treat matured, naturally landed rebel clans as provenance for possible later successor work, not as automatic kingdoms. Preserve the 28-day landless-independent destruction boundary, native ownership, wars, membership, and culture. The first implementation slice is 2D-L1: a save-safe continuity ledger and player notice driven only by native ruler-change/creation/destruction events; no kingdom creation or renaming. See `Reports/KingdomContinuity/PHASE2D_ARCHITECTURE_DECISION.md`.
+
 Long-horizon political identity should support:
 
 - rulers dying;
