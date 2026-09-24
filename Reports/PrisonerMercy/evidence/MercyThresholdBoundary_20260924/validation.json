@@ -1,0 +1,43 @@
+﻿{
+    "schema":  "BannerlordAI.PrisonerMercyThresholdBoundary.v1",
+    "version":  "v0.21L6-social-loyalty-value-loss",
+    "releaseThreshold":  20,
+    "forcedEvent":  false,
+    "aboveThreshold":  {
+                           "utc":  "2026-09-24T08:35:47.9576293Z",
+                           "actor":  "Tynops",
+                           "actorClan":  "Elaches",
+                           "prisoner":  "Mauriana",
+                           "prisonerClan":  "dey Folcun",
+                           "score":  21.7,
+                           "distanceAboveThreshold":  1.7,
+                           "decision":  "RELEASE",
+                           "source":  "capture-event",
+                           "ageHours":  0.433,
+                           "commit":  {
+                                          "expected":  "ReleasedByChoice",
+                                          "wasPrisoner":  true,
+                                          "prisonPartyId":  "mobile:lord_1_40_party_1",
+                                          "isPrisonerAfter":  false,
+                                          "released":  true
+                                      },
+                           "decisionLog":  "2026-09-24T08:35:47.9576293Z [ClanAI v0.21L6-social-loyalty-value-loss] MERCY_DECISION actor=Tynops actorClan=Elaches custodyId=mobile:lord_1_40_party_1 custodyType=mobile-lord-party prisoner=Mauriana prisonerClan=dey Folcun relation=-1 mercy=1 honor=0 generosity=1 calculating=-1 trust=0 grievance=0 bloodDebt=0 obligation=0 tension=0 clanLeader=True kingdomLeader=False score=21.7 threshold=20 decision=RELEASE source=capture-event ageHours=0.433 evaluated=55 releases=2 keeps=53",
+                           "commitLog":  "2026-09-24T08:35:47.9576293Z [ClanAI v0.21L6-social-loyalty-value-loss] MERCY_DECISION_COMMIT actor=Tynops prisoner=Mauriana expected=ReleasedByChoice wasPrisoner=True prisonPartyId=mobile:lord_1_40_party_1 isPrisonerAfter=False released=True commits=2"
+                       },
+    "belowThreshold":  {
+                           "utc":  "2026-09-24T08:35:47.9576293Z",
+                           "actor":  "Hophtalamos",
+                           "actorClan":  "Argoros",
+                           "prisoner":  "Floraidh",
+                           "prisonerClan":  "dey Fortes",
+                           "score":  19.8,
+                           "distanceBelowThreshold":  0.2,
+                           "decision":  "KEEP",
+                           "source":  "capture-event",
+                           "ageHours":  0.433,
+                           "matchingReleaseCommitCount":  0,
+                           "decisionLog":  "2026-09-24T08:35:47.9576293Z [ClanAI v0.21L6-social-loyalty-value-loss] MERCY_DECISION actor=Hophtalamos actorClan=Argoros custodyId=mobile:CharacterObject_3111_party_1 custodyType=mobile-lord-party prisoner=Floraidh prisonerClan=dey Fortes relation=-34 mercy=1 honor=1 generosity=0 calculating=0 trust=0 grievance=0 bloodDebt=0 obligation=0 tension=0 clanLeader=False kingdomLeader=False score=19.8 threshold=20 decision=KEEP source=capture-event ageHours=0.433 evaluated=56 releases=2 keeps=54"
+                       },
+    "result":  "BOUNDARY_CHARACTERIZED_ABOVE_RELEASE_COMMIT_AND_BELOW_KEEP",
+    "gateStatus":  "boundary_case_verified"
+}
