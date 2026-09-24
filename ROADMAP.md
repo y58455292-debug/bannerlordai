@@ -152,7 +152,7 @@ Clans retain their own evaluation.
 
 ## 2C. Independent clans as real political actors
 
-**Status — ACTIVE / NATIVE BOUNDARY AUDITED 2026-09-24.** Native code confirms that non-eliminated independent NPC clans retain daily finance and lord-party spawning/rebuilding. Ordinary independent NPC clans are explicitly excluded from native military raid/siege/defense target scoring, and no ordinary NPC kingdom-creation loop was identified. Existing evidence already proves natural independence, evaluation by multiple kingdoms, native rejection, and later positive native recruitment. Next: one bounded runtime observation of independent party survival or rebuilding; preserve a null and do not alter native spawn, recruitment, courtship, ownership, or faction limits. See `Reports/IndependentClans/PHASE2C_NATIVE_CAPABILITY_AUDIT.md`.
+**Status — PROVEN AT NATIVE BOUNDARY 2026-09-24.** Native code confirms that non-eliminated independent NPC clans retain daily finance and lord-party spawning/rebuilding. In a bounded 81.003-hour run, independent Banu Ruwaid retained two active parties, used settlements, fought bandits, and grew from 195 to 205 combined troops without custom spawning or recruitment. Existing evidence also proves evaluation by multiple kingdoms, native rejection, and later positive native recruitment. Ordinary independent NPC clans are explicitly excluded from native raid/siege/defense target scoring, and no ordinary NPC kingdom-creation loop was identified; those gaps were preserved rather than bypassed. See `Reports/IndependentClans/PHASE2C_RUNTIME_RESULT.md`. **Next milestone: 2D kingdom continuity and successor states.**
 
 A clan that leaves a kingdom should be able to:
 

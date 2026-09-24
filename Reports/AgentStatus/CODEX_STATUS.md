@@ -1,13 +1,13 @@
 # Codex Status
 
 ## Current task
-Phase 2C — independent clans as real political actors (ROADMAP.md).
+Phase 2D — kingdom continuity and successor states (ROADMAP.md).
 
 ## Last completed checkpoint
-Phase 2B passed its preregistered strong runtime win condition with the `v0.22A-ruler-courtship-native-v1` candidate.
+Phase 2C passed at Bannerlord's supported native boundary.
 
 ## Current state
-PHASE 2C NATIVE CAPABILITY AUDITED; RUNTIME REBUILD OBSERVATION NEXT
+READY FOR PHASE 2D NATIVE CONTINUITY AUDIT
 
 ## Current candidate
 `v0.22A-ruler-courtship-native-v1`. Built and deployed with verified rollback.
@@ -17,12 +17,13 @@ PHASE 2C NATIVE CAPABILITY AUDITED; RUNTIME REBUILD OBSERVATION NEXT
 - Build-proven: `dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj -c Release` succeeds with 0 errors and the inherited `System.ValueTuple` warning.
 - Runtime-observed / causal / boundary-crossing / committed in-world: Vlandia selected naturally independent Banu Ruwaid, native combined surplus was +8,050, native AI barter was attempted, and post-state confirmed Banu Ruwaid in Vlandia.
 - The 2B protocol requires native candidate eligibility, native clan and kingdom values, positive combined surplus, `ExecuteAiBarter`, and post-state confirmation. No direct faction transfer or synthetic score/relation manipulation is allowed.
+- Phase 2C runtime-observed: Banu Ruwaid stayed independent for 81.003 campaign hours; both parties survived, used settlements, fought bandits, and grew from 195 to 205 combined troops with zero custom spawn/recruitment changes and zero Inspector errors.
 
 ## Current blocker / uncertainty
-Bannerlord's native daily clan loop supports independent NPC finance and lord-party rebuilding, but ordinary independent NPC clans are explicitly excluded from native military target scoring. No ordinary NPC kingdom-creation loop was identified. These are native boundaries, not reasons to fabricate territory or a successor kingdom.
+Ordinary independent NPC clans are explicitly excluded from native military target scoring, and no ordinary NPC kingdom-creation loop was identified. These are now preserved Phase 2C native boundaries. Phase 2D must first audit native ruler succession, kingdom destruction, rebel continuity, and kingdom identity mutation before proposing successor-state architecture.
 
 ## Local work warning
-No known unrelated local work. The Phase 2B implementation checkpoint should be clean after its focused commit.
+No known unrelated local work. The current v0.22A DLL was restored after the isolated no-save Phase 2C observation.
 
 ## Exact next action
-Run one bounded observation from the existing independent Banu Ruwaid boundary: record its clan/party state, advance a limited independent interval, and record survival or native respawn/rebuilding. Preserve a null. Do not alter party limits, spawn scores, recruitment, courtship valuations, or membership.
+Begin Phase 2D with a read-only native audit of ruler succession, kingdom destruction, rebel-clan transition, and safe kingdom-name/identity surfaces. Do not implement a successor state until its native ownership and lifecycle boundaries are understood.
