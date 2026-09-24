@@ -56,6 +56,8 @@ Reach a coherent, stable build that the user can play as a **full integrated dem
 
 The demo should show the strongest proven systems working together in a normal campaign.
 
+**Status — PASSED 2026-09-24.** The v0.21M integrated candidate passed build/invariant checks, loaded the protected Syronea baseline after proper main-menu readiness, advanced 100.987 campaign hours without a crash, emitted proven player-visible state, created and reloaded a separate guarded demo-gate save, restored persisted ClanAI systems, and advanced again after reload. See `Reports/Demo/PHASE1_DEMO_GATE_RESULT.md`. The initial premature `LOAD_SAVE` NullReference was traced to a development-runner sequencing error (issuing the command before `GauntletInitialScreen` existed), not a ClanAI campaign-load failure.
+
 ## Demo blockers
 
 Fix only issues that prevent:

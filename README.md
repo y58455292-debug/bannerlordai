@@ -8,6 +8,8 @@ The active mod source is `src/ClanAI`. `src/BannerlordInspector` is the observat
 
 The current ClanAI source corresponds to `v0.21M-player-visibility-v1`. It builds successfully against the local Bannerlord assemblies. The proven Social 5B work concerns autonomous clan loyalty and voluntary kingdom leaving; the separate target-kingdom switch boundary remains unproven.
 
+The Phase 1 demo-first integration gate passed on 2026-09-24. The integrated candidate loaded the protected Syronea baseline, advanced 100.987 campaign hours without a crash, emitted proven player-visible state, created and reloaded a separate guarded demo-gate save, restored persisted ClanAI systems, and advanced again after reload. The playable validation fixture is `ClanAI V020V PERSIST DEMO GATE V021M 20260924` (SHA-256 `A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427`). See `Reports/Demo/PHASE1_DEMO_GATE_RESULT.md`.
+
 A real causal chain has been demonstrated:
 
 1. an AI clan experiences a real campaign event;

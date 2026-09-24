@@ -1,0 +1,101 @@
+{
+  "schema": "BannerlordAI.DemoIntegrationGate.v1",
+  "date": "2026-09-24",
+  "repoHeadAtValidation": "26f4398fe44e7eec8a280b3e75e8b671bab58e12",
+  "result": "PHASE1_DEMO_GATE_PASS_NO_KNOWN_BLOCKER",
+  "demoCandidateReady": true,
+  "liveCandidate": {
+    "version": "v0.21M-player-visibility-v1+c583672261862a764233e2305290d323f9acd134",
+    "sha256": "74574BA34A9A9072E9FB256D1A7C25E54780CF5B4B7A1DD54B211A4AEC66CBB3"
+  },
+  "currentMainBuild": {
+    "version": "v0.21M-player-visibility-v1+26f4398fe44e7eec8a280b3e75e8b671bab58e12",
+    "sha256": "E8753AC3B4341B64FD0E58D66D59089413F37344FDC01DCA19079113010AA3F2",
+    "note": "No gameplay-code commits landed after f88a055; the runtime-proven DLL was not replaced solely to change embedded revision metadata."
+  },
+  "rollback": {
+    "path": "Builds/Rollback/ClanAI_v021L6_pre_player_visibility_20260924.dll",
+    "sha256": "5A8FA3E07471D31FDC046E4301ACD09B2D59C4785850E9643B03169F898D2D00"
+  },
+  "buildAndTests": {
+    "clanAIBuild": "PASS_0_ERRORS",
+    "knownBuildWarning": "System.ValueTuple version conflict",
+    "prisonerMercyThresholdInvariant": "PASS",
+    "providerExecutionPackageFixtures": "PASS_44_CHECKS"
+  },
+  "baseline": {
+    "save": "ClanAI V020V PERSIST SAFE SYRONEA MERCY 20260923",
+    "sha256Before": "A6EA4D14077DBC41E814086B435B5FEF79E385EA096E07A97A81493D62133D3C",
+    "sha256After": "A6EA4D14077DBC41E814086B435B5FEF79E385EA096E07A97A81493D62133D3C",
+    "loaded": true,
+    "playerHero": "Manan",
+    "partySettlement": "town_ES7",
+    "partyPosition": "792.4435,446.1407"
+  },
+  "launchReadiness": {
+    "prematureLoadAttempt": {
+      "result": "command_failed_NullReferenceException",
+      "cause": "LOAD_SAVE was issued after module_loaded but before the actual GauntletInitialScreen existed",
+      "classification": "development harness sequencing error, not a ClanAI campaign-load failure"
+    },
+    "correctedProcedure": "wait for BannerlordInspector /screen topScreen to be GauntletInitialScreen before LOAD_SAVE",
+    "correctedBaselineLoad": "PASS",
+    "safeModePromptAfterForcedFailedLaunch": "dismissed with No; normal configured module stack preserved"
+  },
+  "initialization": {
+    "warState": "restored",
+    "mercyThreshold": 20,
+    "socialLedger": "restored",
+    "socialDefectionPatch": "ready",
+    "socialLoyaltyPatch": "ready",
+    "playerVisibility": "ready",
+    "companionDutyMemory": "restored",
+    "companionExperienceMemory": "restored",
+    "negativeOutcomeMemory": "restored"
+  },
+  "continuousWindow": {
+    "startCampaignHours": 649390.28325872228,
+    "endCampaignHours": 649491.27044636116,
+    "advancedCampaignHours": 100.987,
+    "crashObserved": false,
+    "gameRespondingAtEnd": true,
+    "eventCounts": {
+      "playerVisibility": 2,
+      "siegeTracking": 2,
+      "loyaltyConsiderations": 53,
+      "targetDefectionConsiderations": 6,
+      "mercyDecisions": 49,
+      "recruitmentRelated": 657
+    },
+    "playerVisibilityLines": [
+      "PLAYER_VISIBILITY message=ClanAI: Khuzait war strain: 2% (0 active wars, 0 besieged holdings, 3% scar load).",
+      "PLAYER_VISIBILITY message=ClanAI: fen Morcar's loyalty is shaken by the loss of Rhemtoil Castle."
+    ]
+  },
+  "saveRoundTrip": {
+    "createdSave": "ClanAI V020V PERSIST DEMO GATE V021M 20260924",
+    "createdSaveSha256": "A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427",
+    "createdWithoutOverwrite": true,
+    "reloadFromFreshMainMenu": "PASS",
+    "reloadedCampaignHours": 649491.27044636116,
+    "postReloadState": {
+      "warState": "scars=18 activeSieges=1 raids=20 losses=2 objectives=2 restored=True",
+      "socialLedgerRecords": 453,
+      "directClanLossRecords": 1,
+      "companionDutyRecords": 69,
+      "experienceMemoryHeroes": 216,
+      "negativeOutcomeRecords": 138,
+      "mercyThreshold": 20
+    },
+    "postReloadAdvanceHours": 2.406,
+    "postReloadGameResponding": true,
+    "topScreen": "NavalDLC.View.Map.NavalMapScreen"
+  },
+  "knownNonBlockersAndUnknowns": [
+    "Target-kingdom defection/join boundary remains unproven.",
+    "A hands-on player battle was not separately forced during this gate; natural world sieges, recruitment, diplomacy/loyalty and settlement waiting were exercised.",
+    "The packaged mod still requires NavalDLC v1.3.3; that dependency was present for this validation and was not relaxed.",
+    "This is a first integrated demo candidate, not final release hardening or long-run generational validation."
+  ],
+  "prohibitedManipulationUsed": false
+}
