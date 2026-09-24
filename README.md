@@ -6,7 +6,7 @@ The active mod source is `src/ClanAI`. `src/BannerlordInspector` is the observat
 
 ## Current state
 
-The current ClanAI source corresponds to the Phase 2A research candidate `v0.21M3-defection-leave-carry-v1`. It builds successfully against the local Bannerlord assemblies. The last fully demo-gated integrated candidate remains `v0.21M-player-visibility-v1`. Proven Social 5B behavior includes autonomous clan loyalty and voluntary kingdom leaving; the separate target-kingdom switch boundary remains unproven.
+The current ClanAI source corresponds to the Phase 2B implementation candidate `v0.22A-ruler-courtship-native-v1`. It builds successfully against the local Bannerlord assemblies. The candidate adds a ruler-initiated scan for the best eligible independent clan by Bannerlord's native kingdom desirability score and invokes only the native join barter when the unmodified combined native value is positive. This Phase 2B behavior is implemented and build-proven, but not yet runtime-observed or gameplay-proven. The last fully demo-gated integrated candidate remains `v0.21M-player-visibility-v1`. Proven Social 5B behavior includes autonomous clan loyalty and voluntary kingdom leaving; the separate target-kingdom switch boundary remains unproven.
 
 The Phase 1 demo-first integration gate passed on 2026-09-24. The integrated candidate loaded the protected Syronea baseline, advanced 100.987 campaign hours without a crash, emitted proven player-visible state, created and reloaded a separate guarded demo-gate save, restored persisted ClanAI systems, and advanced again after reload. The playable validation fixture is `ClanAI V020V PERSIST DEMO GATE V021M 20260924` (SHA-256 `A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427`). See `Reports/Demo/PHASE1_DEMO_GATE_RESULT.md`.
 
@@ -66,6 +66,12 @@ The closest candidate was Vezhoving → Nord at -180,954 with affordability sati
 **Target-kingdom autonomous defection remains unproven.** The project will not keep instrumenting or tuning this surface in an open-ended loop. Phase 2A is preserved as a timeboxed blocker/null and the roadmap moves to **Phase 2B — ruler recruitment / clan courtship**.
 
 See `Reports/ClanLoyalty/PHASE2_DEFECTION_BOUNDARY_PROTOCOL.md`, `PHASE2_DEFECTION_IMPLEMENTATION_DECISION.md`, and `PHASE2_DEFECTION_M3_ATTEMPT_RESULT.md`.
+
+### Phase 2B ruler recruitment / clan courtship
+
+The first Phase 2B candidate is now implemented and build-proven. On each NPC ruling clan's daily tick it mirrors the relevant native eligibility and safety gates, selects the eligible independent clan with the highest native `GetScoreOfKingdomToGetClan`, evaluates both sides of the ordinary non-defecting `JoinKingdomAsClanBarterable`, and calls only `BarterManager.ExecuteAiBarter` when the native combined surplus is positive. It adds no custom score or direct faction transfer.
+
+Runtime characterization and a native committed join remain outstanding. See `Reports/ClanRecruitment/PHASE2B_RECRUITMENT_PROTOCOL.md` and `PHASE2B_IMPLEMENTATION_CANDIDATE.md`.
 
 ## In-game visibility
 

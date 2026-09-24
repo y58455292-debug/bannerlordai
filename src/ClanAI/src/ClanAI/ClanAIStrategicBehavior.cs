@@ -269,7 +269,7 @@ namespace ClanAI
             @"D:\BannerlordAIResearch\Telemetry\ClanAI\sessions";
 
         private const string Version =
-            "v0.21M3-defection-leave-carry-v1";
+            "v0.22A-ruler-courtship-native-v1";
 
         private static string _sessionLogPath;
         internal static string SessionLogPath { get { return _sessionLogPath; } }
