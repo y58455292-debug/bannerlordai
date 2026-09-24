@@ -1,0 +1,29 @@
+﻿{
+    "schema":  "BannerlordAI.PrisonerMercyV1Threshold20Proof.v1",
+    "proofId":  "PrisonerMercyV1_Threshold20Proof_20260923_183422_992",
+    "provenance":  "reconstructed_from_verified_live_result_after_cleanup",
+    "originalLocalPath":  "D:\\BannerlordAIResearch\\Longitudinal\\LiveValidation\\PrisonerMercyV1_Threshold20Proof_20260923_183422_992\\validation.json",
+    "originalLocalFileRecovered":  false,
+    "note":  "The original local-only validation.json was never committed and was removed during repository cleanup. This receipt preserves the previously verified live result without claiming byte-for-byte recovery.",
+    "version":  "v0.21J-prisoner-mercy-custody",
+    "dllSha256":  "5C08E6540F43C0CB9CDEEC89B2DE4994CC0B9EC41718855C623D921FF8E81227",
+    "releaseThreshold":  20,
+    "decisionRule":  "score \u003e= releaseThreshold",
+    "forcedEvent":  false,
+    "actor":  "Andros",
+    "prisoner":  "Nereida",
+    "score":  30.3,
+    "decision":  "RELEASE",
+    "captivityReleaseDetail":  "ReleasedByChoice",
+    "commit":  {
+                   "wasPrisoner":  true,
+                   "isPrisonerAfter":  false,
+                   "released":  true
+               },
+    "worldConsequence":  {
+                             "socialLedgerUpdated":  true,
+                             "worldMemoryUpdated":  true
+                         },
+    "result":  "NATURAL_THRESHOLD20_RELEASE_COMMIT_VERIFIED",
+    "gateStatus":  "threshold_behavior_proof_only_boundary_characterization_pending"
+}
