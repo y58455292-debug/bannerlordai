@@ -71,7 +71,7 @@ See `Reports/ClanLoyalty/PHASE2_DEFECTION_BOUNDARY_PROTOCOL.md`, `PHASE2_DEFECTI
 
 The first Phase 2B candidate is now implemented and build-proven. On each NPC ruling clan's daily tick it mirrors the relevant native eligibility and safety gates, selects the eligible independent clan with the highest native `GetScoreOfKingdomToGetClan`, evaluates both sides of the ordinary non-defecting `JoinKingdomAsClanBarterable`, and calls only `BarterManager.ExecuteAiBarter` when the native combined surplus is positive. It adds no custom score or direct faction transfer.
 
-Runtime characterization and a native committed join remain outstanding. See `Reports/ClanRecruitment/PHASE2B_RECRUITMENT_PROTOCOL.md` and `PHASE2B_IMPLEMENTATION_CANDIDATE.md`.
+Runtime validation passed the preregistered strong win condition. Vlandia selected naturally independent Banu Ruwaid; native values were clan +649 and kingdom +7,401 for a combined +8,050; ClanAI invoked only the native AI barter; and post-state confirmed Banu Ruwaid joined Vlandia. See `Reports/ClanRecruitment/PHASE2B_RUNTIME_RESULT.md`.
 
 ## In-game visibility
 

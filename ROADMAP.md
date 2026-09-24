@@ -127,6 +127,8 @@ Current work should first explain the observed score-scale mismatch. Any stronge
 
 ## 2B. Ruler recruitment / clan courtship
 
+**Status — PROVEN 2026-09-24.** The first native-only ruler-courtship candidate selected naturally independent Banu Ruwaid for Vlandia by native kingdom desirability. Native clan value +649 and kingdom value +7,401 produced +8,050 combined surplus; ClanAI invoked only `ExecuteAiBarter`; and post-state confirmed membership in Vlandia. See `Reports/ClanRecruitment/PHASE2B_RUNTIME_RESULT.md`. **Next milestone: 2C independent clans as real political actors.**
+
 Rulers should actively identify and attempt to recruit useful clans.
 
 Potential considerations:
