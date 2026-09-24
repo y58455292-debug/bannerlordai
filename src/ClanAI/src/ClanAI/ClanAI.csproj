@@ -6,8 +6,8 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
     <AssemblyName>ClanAI</AssemblyName>
-    <FileVersion>0.21.12.0</FileVersion>
-    <InformationalVersion>v0.21M-player-visibility-v1</InformationalVersion>
+    <FileVersion>0.21.12.1</FileVersion>
+    <InformationalVersion>v0.21M1-defection-loss-observe</InformationalVersion>
     <RootNamespace>ClanAI</RootNamespace>
   </PropertyGroup>
 

@@ -165,6 +165,21 @@ namespace ClanAI
             int adjustedDemand = ctx.AdjustedClanValue < 0 ? -ctx.AdjustedClanValue : 0;
             float affordable = kingdom.Leader == null ? 0f : kingdom.Leader.Gold * 0.5f;
 
+            float directLossPressure;
+            double directLossAgeHours;
+            int directLossCount;
+            string directLossSettlements;
+            float directLossValue;
+
+            bool hasDirectLoss =
+                SocialLoyaltyClanLossMemory.TryGetPressure(
+                    clan1,
+                    out directLossPressure,
+                    out directLossAgeHours,
+                    out directLossCount,
+                    out directLossSettlements,
+                    out directLossValue);
+
             bool nativeWould = nativeSum > 0 && nativeDemand <= affordable;
             bool adjustedWould = adjustedSum > 0 && adjustedDemand <= affordable;
             bool committed = clan1.Kingdom == kingdom;
@@ -191,6 +206,14 @@ namespace ClanAI
                 " nativeDemand=" + nativeDemand +
                 " adjustedDemand=" + adjustedDemand +
                 " affordable=" + F(affordable) +
+                " directLossObserved=" + hasDirectLoss +
+                " directLossPressure=" + F(hasDirectLoss ? directLossPressure : 0f) +
+                " directLossValue=" + F(hasDirectLoss ? directLossValue : 0f) +
+                " directLossCount=" + (hasDirectLoss ? directLossCount : 0) +
+                " directLossYoungestAgeHours=" +
+                (hasDirectLoss
+                    ? directLossAgeHours.ToString("0.###", CultureInfo.InvariantCulture)
+                    : "0") +
                 " nativeWouldDefect=" + nativeWould +
                 " adjustedWouldDefect=" + adjustedWould +
                 " committed=" + committed +

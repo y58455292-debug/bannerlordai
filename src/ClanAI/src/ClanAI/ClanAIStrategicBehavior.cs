@@ -269,7 +269,7 @@ namespace ClanAI
             @"D:\BannerlordAIResearch\Telemetry\ClanAI\sessions";
 
         private const string Version =
-            "v0.21M-player-visibility-v1";
+            "v0.21M1-defection-loss-observe";
 
         private static string _sessionLogPath;
         internal static string SessionLogPath { get { return _sessionLogPath; } }
