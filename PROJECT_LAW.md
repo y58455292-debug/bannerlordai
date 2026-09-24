@@ -79,3 +79,5 @@ At every mission checkpoint, before beginning the next major feature or mileston
 6. only then begin the next major milestone.
 
 GitHub is authoritative at mission boundaries. Do not rely on stale chat, controller, handoff, or local state when newer repository guidance exists.
+
+Mission-boundary synchronization is **not** an authorization gate. If the current roadmap or repository guidance already identifies the next milestone and there is no explicit user hold, unresolved blocker, or conflicting newer direction, proceed directly to that next milestone after the sync. Do not wait for fresh user permission merely because a checkpoint was reached.
