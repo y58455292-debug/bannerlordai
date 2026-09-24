@@ -6,7 +6,7 @@ The active mod source is `src/ClanAI`. `src/BannerlordInspector` is the observat
 
 ## Current state
 
-The current ClanAI source corresponds to `v0.21M-player-visibility-v1`. It builds successfully against the local Bannerlord assemblies. The proven Social 5B work concerns autonomous clan loyalty and voluntary kingdom leaving; the separate target-kingdom switch boundary remains unproven.
+The current ClanAI source corresponds to the Phase 2A research candidate `v0.21M3-defection-leave-carry-v1`. It builds successfully against the local Bannerlord assemblies. The last fully demo-gated integrated candidate remains `v0.21M-player-visibility-v1`. Proven Social 5B behavior includes autonomous clan loyalty and voluntary kingdom leaving; the separate target-kingdom switch boundary remains unproven.
 
 The Phase 1 demo-first integration gate passed on 2026-09-24. The integrated candidate loaded the protected Syronea baseline, advanced 100.987 campaign hours without a crash, emitted proven player-visible state, created and reloaded a separate guarded demo-gate save, restored persisted ClanAI systems, and advanced again after reload. The playable validation fixture is `ClanAI V020V PERSIST DEMO GATE V021M 20260924` (SHA-256 `A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427`). See `Reports/Demo/PHASE1_DEMO_GATE_RESULT.md`.
 
@@ -50,13 +50,22 @@ On 2026-09-24, Banu Ruwaid naturally lost Vladiv Castle by siege. Bannerlord val
 
 This satisfies the preregistered Phase 1 win condition for the **voluntary leave-current-kingdom** path. It does not prove the separate target-kingdom defection/join bias can cross its own boundary.
 
-### Phase 2 target-kingdom defection characterization
+### Phase 2A target-kingdom defection
 
-A post-preregistration v0.21M run collected 15 natural `ConsiderDefection` samples: one memory-modified case, zero adjusted YES decisions, and zero commits. The closest natural candidate was Vezhoving → Nord at adjusted sum -169,423 with affordability already satisfied. The current social-defection absolute cap is 25,000, so even a theoretical maximum positive modifier would not have flipped that observed case. Memory/target alignment was also sparse: only one of the 15 sampled target choices had a non-zero memory modifier.
+Phase 2A was timeboxed after the initial scale-mismatch evidence. Native-score inspection showed that Bannerlord's clan-side defection value already contains the current-kingdom leave score, so M3 made one evidence-backed implementation attempt: target-specific social memory remains separately capped at 25,000, while the already-proven voluntary-leave memory modifier is carried only into Bannerlord's embedded leave component.
 
-This is evidence of an observed scale mismatch, not proof that a future naturally closer candidate cannot occur. Target-kingdom autonomous defection remains **unproven**, and the cap has not been increased.
+The bounded M3 proof advanced 486.070 campaign hours and produced 27 natural `ConsiderDefection` samples:
 
-See `Reports/ClanLoyalty/PHASE2_DEFECTION_BOUNDARY_PROTOCOL.md`, `Reports/ClanLoyalty/PHASE2_DEFECTION_INITIAL_RESULT.md`, and `Reports/ClanLoyalty/PHASE2_DEFECTION_SCALE_NOTE.md`.
+- target-specific modifier non-zero: 4;
+- leave-memory carry non-zero: 0;
+- adjusted YES: 0;
+- committed target switch: 0.
+
+The closest candidate was Vezhoving → Nord at -180,954 with affordability satisfied. No sampled clan had an active non-zero leave-memory modifier during the M3 window, so the new carry path was not naturally exercised.
+
+**Target-kingdom autonomous defection remains unproven.** The project will not keep instrumenting or tuning this surface in an open-ended loop. Phase 2A is preserved as a timeboxed blocker/null and the roadmap moves to **Phase 2B — ruler recruitment / clan courtship**.
+
+See `Reports/ClanLoyalty/PHASE2_DEFECTION_BOUNDARY_PROTOCOL.md`, `PHASE2_DEFECTION_IMPLEMENTATION_DECISION.md`, and `PHASE2_DEFECTION_M3_ATTEMPT_RESULT.md`.
 
 ## In-game visibility
 

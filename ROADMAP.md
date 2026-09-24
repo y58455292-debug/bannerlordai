@@ -106,6 +106,8 @@ After this gate, return to the ordered roadmap and deeper debugging.
 
 ## 2A. Finish target-kingdom defection
 
+**Status — TIMEBOXED / UNPROVEN 2026-09-24.** One evidence-backed M3 implementation attempt carried the already-proven leave-memory modifier into Bannerlord's embedded native leave component while keeping target-specific memory under the existing 25,000 cap. A bounded natural run produced 27 `ConsiderDefection` samples, four target-memory modifiers, zero non-zero leave-memory carries, zero adjusted YES decisions, and zero commits. Closest observed candidate was Vezhoving → Nord at -180,954 with affordability satisfied. Per the Phase 2A timebox, preserve this blocker/null and do not continue instrumenting or tuning the surface now. Target-kingdom autonomous defection remains unproven. **Next milestone: 2B ruler recruitment / clan courtship.**
+
 Objective:
 
 A clan can naturally decide that its current kingdom is no longer preferable, evaluate a specific target kingdom, and actually join that kingdom through Bannerlord's native action path.
