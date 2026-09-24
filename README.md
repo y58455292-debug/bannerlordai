@@ -48,6 +48,14 @@ On 2026-09-24, Banu Ruwaid naturally lost Vladiv Castle by siege. Bannerlord val
 
 This satisfies the preregistered Phase 1 win condition for the **voluntary leave-current-kingdom** path. It does not prove the separate target-kingdom defection/join bias can cross its own boundary.
 
+### Phase 2 target-kingdom defection characterization
+
+A post-preregistration v0.21M run collected 15 natural `ConsiderDefection` samples: one memory-modified case, zero adjusted YES decisions, and zero commits. The closest natural candidate was Vezhoving → Nord at adjusted sum -169,423 with affordability already satisfied. The current social-defection absolute cap is 25,000, so even a theoretical maximum positive modifier would not have flipped that observed case. Memory/target alignment was also sparse: only one of the 15 sampled target choices had a non-zero memory modifier.
+
+This is evidence of an observed scale mismatch, not proof that a future naturally closer candidate cannot occur. Target-kingdom autonomous defection remains **unproven**, and the cap has not been increased.
+
+See `Reports/ClanLoyalty/PHASE2_DEFECTION_BOUNDARY_PROTOCOL.md`, `Reports/ClanLoyalty/PHASE2_DEFECTION_INITIAL_RESULT.md`, and `Reports/ClanLoyalty/PHASE2_DEFECTION_SCALE_NOTE.md`.
+
 ## In-game visibility
 
 `v0.21M-player-visibility-v1` adds native Bannerlord message-feed visibility for major clan loyalty shocks, committed voluntary departures, committed target-kingdom defections, and the player kingdom's war-strain state.
