@@ -1,0 +1,3 @@
+# Retained research note
+
+The removed Research tree contained speculative DeepSeek/DeepAstra assessments, context-compaction methods, and a runtime-API indexing spike. The durable lesson retained from that work is methodological: inspect or decompile the current Bannerlord runtime surface, identify the native authority point for a decision, and bind any ClanAI intervention narrowly to that point before changing behavior; keep the resulting evidence compact and repository-resident rather than depending on external-model assessments, context-controller machinery, or large research dumps. No removed Research artifact is required to build the current mod or reproduce the clan-loyalty evidence.

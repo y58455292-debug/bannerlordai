@@ -1,8 +1,0 @@
-{
-  "schema": "BannerlordAI.UserLaunchApproval.v1",
-  "approved": true,
-  "scope": "MATURE_OFFICE_V1",
-  "approved_at": "2026-09-19T19:58:00-07:00",
-  "condition": "Do not launch until ChatGPT Projects/chats are organized to ChatGPTProjectLayout.v1, legacy chats are moved/archived per verified plan, and organized chat-to-task sequence is ready for test.",
-  "launch_now": false
-}
