@@ -152,6 +152,8 @@ Clans retain their own evaluation.
 
 ## 2C. Independent clans as real political actors
 
+**Status — ACTIVE / NATIVE BOUNDARY AUDITED 2026-09-24.** Native code confirms that non-eliminated independent NPC clans retain daily finance and lord-party spawning/rebuilding. Ordinary independent NPC clans are explicitly excluded from native military raid/siege/defense target scoring, and no ordinary NPC kingdom-creation loop was identified. Existing evidence already proves natural independence, evaluation by multiple kingdoms, native rejection, and later positive native recruitment. Next: one bounded runtime observation of independent party survival or rebuilding; preserve a null and do not alter native spawn, recruitment, courtship, ownership, or faction limits. See `Reports/IndependentClans/PHASE2C_NATIVE_CAPABILITY_AUDIT.md`.
+
 A clan that leaves a kingdom should be able to:
 
 - remain independent;

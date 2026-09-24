@@ -7,7 +7,7 @@ Phase 2C — independent clans as real political actors (ROADMAP.md).
 Phase 2B passed its preregistered strong runtime win condition with the `v0.22A-ruler-courtship-native-v1` candidate.
 
 ## Current state
-READY FOR NEXT MILESTONE
+PHASE 2C NATIVE CAPABILITY AUDITED; RUNTIME REBUILD OBSERVATION NEXT
 
 ## Current candidate
 `v0.22A-ruler-courtship-native-v1`. Built and deployed with verified rollback.
@@ -19,10 +19,10 @@ READY FOR NEXT MILESTONE
 - The 2B protocol requires native candidate eligibility, native clan and kingdom values, positive combined surplus, `ExecuteAiBarter`, and post-state confirmation. No direct faction transfer or synthetic score/relation manipulation is allowed.
 
 ## Current blocker / uncertainty
-No Phase 2B blocker remains. Long-run tuning remains later roadmap work.
+Bannerlord's native daily clan loop supports independent NPC finance and lord-party rebuilding, but ordinary independent NPC clans are explicitly excluded from native military target scoring. No ordinary NPC kingdom-creation loop was identified. These are native boundaries, not reasons to fabricate territory or a successor kingdom.
 
 ## Local work warning
 No known unrelated local work. The Phase 2B implementation checkpoint should be clean after its focused commit.
 
 ## Exact next action
-Commit the Phase 2B runtime evidence, sync GitHub `main`, re-read roadmap guidance, then begin Phase 2C with the smallest evidence-producing audit of independent-clan native capabilities and gaps.
+Run one bounded observation from the existing independent Banu Ruwaid boundary: record its clan/party state, advance a limited independent interval, and record survival or native respawn/rebuilding. Preserve a null. Do not alter party limits, spawn scores, recruitment, courtship valuations, or membership.
