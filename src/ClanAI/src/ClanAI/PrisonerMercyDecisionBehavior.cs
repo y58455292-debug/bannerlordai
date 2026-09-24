@@ -49,6 +49,7 @@ namespace ClanAI
     internal static class PrisonerMercyDecision
     {
         private const float ReleaseThreshold = 20f;
+        private const float LockedReleaseThreshold = 20f;
         private const double MaxPendingAgeHours = 12.0;
 
         private sealed class PendingCapture
@@ -71,8 +72,21 @@ namespace ClanAI
         private static long _keepDecisions;
         private static long _releaseCommits;
 
+        private static void AssertReleaseThresholdLock()
+        {
+            if (Math.Abs(ReleaseThreshold - LockedReleaseThreshold) > 0.001f)
+            {
+                throw new InvalidOperationException(
+                    "PRISONER_MERCY_THRESHOLD_DRIFT expected=" +
+                    F(LockedReleaseThreshold) +
+                    " actual=" +
+                    F(ReleaseThreshold));
+            }
+        }
+
         internal static void Reset()
         {
+            AssertReleaseThresholdLock();
             Pending.Clear();
             _queued = 0;
             _evaluated = 0;
