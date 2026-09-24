@@ -62,3 +62,20 @@ Keep current behavioral source under `src/`, reproducible evidence under `Report
 When an experiment supersedes an earlier implementation, preserve the meaningful result in Reports and remove redundant active scaffolding.
 
 A reviewer should be able to start at README, find the relevant source, locate the matching evidence, and see the current unresolved boundary without consulting chat transcripts.
+
+## 10. Mission-boundary repository synchronization
+
+Do not interrupt an active experiment or implementation merely to check for repository updates.
+
+A mission checkpoint occurs when the current requested milestone has been completed, bounded by a committed null result, or blocked with committed evidence. Small follow-up fixes that are clearly part of the same milestone may continue without a roadmap resync.
+
+At every mission checkpoint, before beginning the next major feature or milestone:
+
+1. commit the completed work and matching evidence;
+2. fetch/pull the current `main` branch from GitHub;
+3. re-read `PROJECT_LAW.md`, `README.md`, and any current roadmap/vision files;
+4. inspect commits that landed while the mission was active;
+5. reconcile newer user direction or repository roadmap changes with local state;
+6. only then begin the next major milestone.
+
+GitHub is authoritative at mission boundaries. Do not rely on stale chat, controller, handoff, or local state when newer repository guidance exists.

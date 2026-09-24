@@ -134,3 +134,5 @@ The current local build has zero compilation errors. The Bannerlord/Harmony depe
 ## Working rules
 
 Working code must be committed at least daily in small focused commits with descriptive messages. Experimental claims, including null results, must have matching source/evidence artifacts in the repository before they are treated as project progress. Snapshot mega-commits and chat-only progress are not acceptable project state.
+
+Do not interrupt an active experiment or implementation merely to check for repository updates. At a natural mission checkpoint—completed milestone, committed null result, or committed blocker—sync current `main`, re-read the project law/README/current roadmap guidance, reconcile newer commits or user direction, and only then begin the next major milestone. GitHub is authoritative at mission boundaries.
