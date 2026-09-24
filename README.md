@@ -6,7 +6,7 @@ The active mod source is `src/ClanAI`. `src/BannerlordInspector` is the observat
 
 ## Current state
 
-The current ClanAI source corresponds to `v0.21L6-social-loyalty-value-loss`. It builds successfully against the local Bannerlord assemblies. The active Social 5B work concerns autonomous clan loyalty, leaving a kingdom, and switching kingdoms.
+The current ClanAI source corresponds to `v0.21M-player-visibility-v1`. It builds successfully against the local Bannerlord assemblies. The proven Social 5B work concerns autonomous clan loyalty and voluntary kingdom leaving; the separate target-kingdom switch boundary remains unproven.
 
 A real causal chain has been demonstrated:
 
@@ -47,6 +47,12 @@ An earlier natural sample of 60 leave considerations produced no native leave de
 On 2026-09-24, Banu Ruwaid naturally lost Vladiv Castle by siege. Bannerlord valued the lost holding at 1,801,322 native settlement-value units. At a later natural leave check while the clan was in Aserai, its native leave value was -250,332. The decayed direct-loss memory was capped to +312,915, producing an adjusted value of +62,583. The log recorded `nativeWouldLeave=False`, `adjustedWouldLeave=True`, and `committed=True`; read-only Inspector verification then showed the clan independent.
 
 This satisfies the preregistered Phase 1 win condition for the **voluntary leave-current-kingdom** path. It does not prove the separate target-kingdom defection/join bias can cross its own boundary.
+
+## In-game visibility
+
+`v0.21M-player-visibility-v1` adds native Bannerlord message-feed visibility for major clan loyalty shocks, committed voluntary departures, committed target-kingdom defections, and the player kingdom's war-strain state. The corrected war-strain path is runtime-proven on the safe Syronea baseline: it stays silent during load and emits the first war-strain message after campaign time resumes. Loyalty/leave/defection notification call sites are implemented and build-proven, but a fresh natural runtime re-observation of those messages is still pending because the dev harness stalled while reloading the Urikskala fixture.
+
+See `Reports/Visibility/2026-09-24-player-visibility-v1.md`.
 
 ## Loyalty memory and clamps
 

@@ -202,6 +202,16 @@ namespace ClanAI
                 " positiveFlips=" + _positiveFlips +
                 " retainedByMemory=" + _retainedByMemory +
                 " commits=" + _commits);
+
+            PlayerVisibilityLayer.NotifyLoyaltyConsider(
+                clan,
+                ctx.OldKingdom,
+                ctx.NativeValue,
+                ctx.SocialModifier,
+                ctx.AdjustedValue,
+                nativeWouldLeave,
+                adjustedWouldLeave,
+                committed);
         }
 
         private static int ComputeLoyaltyModifier(

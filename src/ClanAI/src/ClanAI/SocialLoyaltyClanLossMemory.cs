@@ -166,6 +166,10 @@ namespace ClanAI
                 CountForClan(record.ClanId) +
                 " recorded=" + _recorded +
                 " source=OnSettlementOwnerChangedEvent");
+
+            PlayerVisibilityLayer.NotifyHoldingLoss(
+                oldOwner.Clan,
+                settlement);
         }
 
         internal static bool TryGetPressure(

@@ -455,6 +455,7 @@ namespace ClanAI
         {
             FinalizePendingSieges(false);
             KingdomObjectiveLayer.VerifyPendingCommitsFromWorld();
+            PlayerVisibilityLayer.NotifyWarStrain();
         }
 
         internal static void OnDailyTick()
@@ -465,6 +466,7 @@ namespace ClanAI
             EnsureActiveWarObjectives(false);
             UpdateObjectiveProgress();
             RecomputeAllStrain("daily");
+            PlayerVisibilityLayer.NotifyWarStrain();
         }
 
         internal static float GetWarStrain(Kingdom kingdom)
@@ -478,6 +480,46 @@ namespace ClanAI
                 StrainByKingdom.TryGetValue(kingdom.StringId, out state);
             }
             return state == null ? 0f : state.WarStrain;
+        }
+
+        internal static bool TryGetWarStrainState(
+            Kingdom kingdom,
+            out float strain,
+            out int activeWars,
+            out int besiegedSettlements,
+            out float scarLoad)
+        {
+            strain = 0f;
+            activeWars = 0;
+            besiegedSettlements = 0;
+            scarLoad = 0f;
+
+            if (kingdom == null ||
+                string.IsNullOrEmpty(kingdom.StringId))
+                return false;
+
+            StrainState state;
+            if (!StrainByKingdom.TryGetValue(
+                kingdom.StringId,
+                out state))
+            {
+                RecomputeStrain(
+                    kingdom,
+                    "visibility");
+                StrainByKingdom.TryGetValue(
+                    kingdom.StringId,
+                    out state);
+            }
+
+            if (state == null)
+                return false;
+
+            strain = state.WarStrain;
+            activeWars = state.ActiveWars;
+            besiegedSettlements =
+                state.BesiegedSettlements;
+            scarLoad = state.ScarLoad;
+            return true;
         }
 
         internal static bool TryGetActiveObjectiveFor(

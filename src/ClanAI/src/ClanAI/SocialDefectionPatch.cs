@@ -199,6 +199,13 @@ namespace ClanAI
                 " positiveFlips=" + _positiveFlips +
                 " blockedNative=" + _blockedNative +
                 " commits=" + _commits);
+
+            PlayerVisibilityLayer.NotifyDefectionConsider(
+                clan1,
+                ctx.OldKingdom,
+                kingdom,
+                ctx.SocialModifier,
+                committed);
         }
 
         private static int ComputeSocialModifier(

@@ -146,6 +146,7 @@ namespace ClanAI
             SocialDefectionPatch.BeginSession();
             SocialLoyaltyClanLossMemory.BeginSession();
             SocialLoyaltyPatch.BeginSession();
+            PlayerVisibilityLayer.BeginSession();
             StrategicCommitmentLayer.Reset();
             CompanionDutyMemory.BeginSession();
             CompanionExperienceMemory.BeginSession();
@@ -268,7 +269,7 @@ namespace ClanAI
             @"D:\BannerlordAIResearch\Telemetry\ClanAI\sessions";
 
         private const string Version =
-            "v0.21L6-social-loyalty-value-loss";
+            "v0.21M-player-visibility-v1";
 
         private static string _sessionLogPath;
         internal static string SessionLogPath { get { return _sessionLogPath; } }
