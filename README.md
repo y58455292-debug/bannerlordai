@@ -16,7 +16,7 @@ A real causal chain has been demonstrated:
 4. ClanAI biases only the clan-side native barter value;
 5. Bannerlord keeps authority over the >0 decision threshold and the actual `ChangeKingdomAction`.
 
-This is a causal score result, not proof of a completed autonomous defection.
+Phase 1 now proves the voluntary leave-current-kingdom boundary: a natural holding loss can push a native negative leave value above zero and Bannerlord's own leave path can commit the departure. The separate target-kingdom switch/join boundary remains a different surface.
 ### Rhemtoil / L5 result
 
 fen Morcar lost Rhemtoil Castle in a real siege. 317.338 campaign hours later Bannerlord naturally evaluated whether the clan should leave Battania. The recorded exact-clan holding loss moved the native leave value from -3,955,367 to -3,955,259: a +108 adjustment.
@@ -42,7 +42,11 @@ At a natural loyalty check 50.017 campaign hours after the loss:
 - committed: false
 An earlier natural sample of 60 leave considerations produced no native leave decisions, no adjusted leave decisions, and no commits. The least-loyal sampled clan was still about 191,000 points below the >0 leave boundary.
 
-**No clan has yet left a kingdom because of this system.** A real boundary crossing and native leave commit remain unproven.
+### Phase 1 boundary proof / Banu Ruwaid
+
+On 2026-09-24, Banu Ruwaid naturally lost Vladiv Castle by siege. Bannerlord valued the lost holding at 1,801,322 native settlement-value units. At a later natural leave check while the clan was in Aserai, its native leave value was -250,332. The decayed direct-loss memory was capped to +312,915, producing an adjusted value of +62,583. The log recorded `nativeWouldLeave=False`, `adjustedWouldLeave=True`, and `committed=True`; read-only Inspector verification then showed the clan independent.
+
+This satisfies the preregistered Phase 1 win condition for the **voluntary leave-current-kingdom** path. It does not prove the separate target-kingdom defection/join bias can cross its own boundary.
 
 ## Loyalty memory and clamps
 
@@ -96,6 +100,7 @@ For the current loyalty slice, start with:
 - `src/ClanAI/src/ClanAI/SocialDefectionPatch.cs`
 - `src/ClanAI/src/ClanAI/SocialLedger.cs`
 - `src/ClanAI/src/ClanAI/ClanAIStrategicBehavior.cs`
+- `Reports/ClanLoyalty/PHASE1_BOUNDARY_RESULT.md`
 - `Reports/ClanLoyalty/2026-09-23-clan-loyalty.md`
 
 Machine-readable supporting evidence is under `Reports/ClanLoyalty/evidence/`.

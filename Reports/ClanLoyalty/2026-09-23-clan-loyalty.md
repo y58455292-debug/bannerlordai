@@ -102,3 +102,11 @@ The machine-readable evidence retained beside this report is:
 - \`evidence/l6_nevyansk_value_scaled.json\`
 
 These replace the need to keep the corresponding Longitudinal validation dump directories in the active repository.
+
+## Superseding Phase 1 result — 2026-09-24
+
+The "no clan has yet left" statement above was correct for the 2026-09-23 evidence state. It is superseded by `PHASE1_BOUNDARY_RESULT.md`.
+
+Banu Ruwaid later lost Vladiv Castle naturally by siege. At a natural Aserai leave check, its native value was -250,332; L6 applied +312,915 of decayed direct-loss pressure, producing +62,583. The native leave path reported `adjustedWouldLeave=True`, `committed=True`, and `kingdomAfter=<independent>`. A post-run read-only Inspector check showed the clan with no kingdom.
+
+This proves the voluntary leave-current-kingdom boundary for the tested L6 path. It does not prove the separate target-kingdom switch/join boundary.
