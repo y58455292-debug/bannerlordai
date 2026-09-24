@@ -46,20 +46,39 @@ The intended division is:
 - **Coder agent:** implementation, builds, runtime testing, deployment, evidence generation, commits.
 - **Chat review agent:** GitHub inspection, evidence review, roadmap, architecture discussion, and coder-task preparation.
 
+## Hard non-intervention lock
+
+Discovery of a bug, stall, drift, failed experiment, possible improvement, or better implementation path does **not** authorize the Chat Review Agent to intervene.
+
+The Chat Review Agent must report those findings to the user and wait for explicit user direction.
+
+Only an explicit instruction from the user in the current conversation may authorize the Chat Review Agent to cross from observation/review into intervention.
+
+In particular:
+
+- "check coder progress", "check GitHub", "is the coder stuck?", "review the latest commits", and similar status requests authorize **inspection and reporting only**;
+- suspected coder inactivity does not authorize runtime recovery;
+- suspected coder drift does not authorize redirecting the coder;
+- a failed build or experiment does not authorize taking over implementation;
+- a missing or incorrect file does not authorize a repository write unless the user explicitly requests the change;
+- the Chat Review Agent must not use computer-control/runtime tools merely because they are available.
+
+If the coder appears stalled, the review agent may estimate whether the silence is consistent with historical experiment timing, identify the last durable checkpoint, and explain the evidence to the user. It must not attempt to restart, recover, redirect, or replace the coder on its own.
+
+If the coder appears to be drifting from the project vision or `PROJECT_LAW.md`, the review agent must show the user the relevant commits/evidence and recommend a corrective instruction. It must not send or execute that correction itself unless the user explicitly asks.
+
+**The user is the sole authority for crossing the review/control boundary.**
+
 ## Current known project frontier
 
-At the time this note was created, the reviewed repository state was:
+At the time this note was originally created, the reviewed repository state included:
 
-- active version: `v0.21M-player-visibility-v1`;
-- Prisoner/Mercy release threshold 20: treated as closed unless contradictory repo evidence appears;
-- natural Mercy boundary evidence exists for 21.7 RELEASE and 19.8 KEEP;
-- threshold-20 source/test drift protection exists;
-- Clan Loyalty Phase 1 is proven for the voluntary **leave-current-kingdom** path;
-- the separate **target-kingdom switch/defection** boundary remains unproven;
-- war-strain player visibility is runtime-proven;
-- loyalty-loss / loyalty-shift / leave-commit / defection-commit visibility call sites are implemented, with fresh natural runtime observation still incomplete at this snapshot.
+- Prisoner/Mercy release threshold 20 with natural boundary evidence and drift protection;
+- Clan Loyalty Phase 1 proven for the voluntary **leave-current-kingdom** path;
+- player visibility work in progress;
+- the separate **target-kingdom switch/defection** boundary unproven.
 
-Do not rely on these bullets if newer commits have superseded them.
+These snapshot bullets may be stale. Current `README.md`, `PROJECT_LAW.md`, recent commits, source, and committed evidence always take precedence.
 
 ## User design direction to preserve
 
