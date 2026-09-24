@@ -226,7 +226,7 @@ namespace ClanAI
                 true);
         }
 
-        internal static int ComputeLoyaltyModifierForObservation(
+        internal static int ComputeLoyaltyModifierForDefectionCarry(
             Clan sourceClan,
             Kingdom currentKingdom,
             int nativeValue)

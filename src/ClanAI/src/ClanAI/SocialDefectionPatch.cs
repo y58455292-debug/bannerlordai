@@ -31,7 +31,11 @@ namespace ClanAI
             internal int NativeClanValue;
             internal int AdjustedClanValue;
             internal int TargetKingdomValue;
-            internal int SocialModifier;
+            internal int TargetSocialModifier;
+            internal int LeaveMemoryModifier;
+            internal int TotalModifier;
+            internal int NativeLeaveValue;
+            internal bool LeaveMemoryAvailable;
             internal bool SawClanValue;
             internal bool SawTargetValue;
         }
@@ -79,7 +83,8 @@ namespace ClanAI
             ClanAIPostVanilla.WriteExternalLog(
                 "SOCIAL_DEFECTION_PATCH_INSTALLED relativeCap=" + F(RelativeCap) +
                 " absoluteCap=" + AbsoluteCap +
-                " minCap=" + MinimumMeaningfulCap);
+                " minCap=" + MinimumMeaningfulCap +
+                " leaveCarry=True targetMemoryOnly=True");
         }
 
         internal static void BeginSession()
@@ -92,7 +97,7 @@ namespace ClanAI
             _commits = 0;
 
             ClanAIPostVanilla.WriteExternalLog(
-                "SOCIAL_DEFECTION_SESSION_READY mode=ai-defection-barter-memory-bias");
+                "SOCIAL_DEFECTION_SESSION_READY mode=ai-defection-native-leave-carry");
         }
 
         private static void ConsiderPrefix(Clan clan1, Kingdom kingdom)
@@ -127,21 +132,91 @@ namespace ClanAI
             if (factionForEvaluation == ctx.SourceClan)
             {
                 int native = __result;
-                int modifier = ComputeSocialModifier(
-                    ctx.SourceClan,
-                    ctx.OldKingdom,
-                    ctx.TargetKingdom,
-                    native);
+
+                int targetSocialModifier =
+                    ComputeTargetSocialModifier(
+                        ctx.SourceClan,
+                        ctx.TargetKingdom,
+                        native);
+
+                int nativeLeaveValue = 0;
+                int leaveMemoryModifier = 0;
+                bool leaveMemoryAvailable = false;
+
+                try
+                {
+                    if (Campaign.Current != null &&
+                        Campaign.Current.Models != null &&
+                        Campaign.Current.Models.DiplomacyModel != null &&
+                        ctx.OldKingdom != null)
+                    {
+                        nativeLeaveValue =
+                            (int)Campaign.Current.Models.DiplomacyModel
+                                .GetScoreOfClanToLeaveKingdom(
+                                    ctx.SourceClan,
+                                    ctx.OldKingdom);
+
+                        leaveMemoryModifier =
+                            SocialLoyaltyPatch
+                                .ComputeLoyaltyModifierForDefectionCarry(
+                                    ctx.SourceClan,
+                                    ctx.OldKingdom,
+                                    nativeLeaveValue);
+
+                        leaveMemoryAvailable = true;
+                    }
+                }
+                catch
+                {
+                    nativeLeaveValue = 0;
+                    leaveMemoryModifier = 0;
+                    leaveMemoryAvailable = false;
+                }
+
+                int totalModifier =
+                    targetSocialModifier +
+                    leaveMemoryModifier;
 
                 ctx.NativeClanValue = native;
-                ctx.SocialModifier = modifier;
-                ctx.AdjustedClanValue = native + modifier;
+                ctx.TargetSocialModifier = targetSocialModifier;
+                ctx.LeaveMemoryModifier = leaveMemoryModifier;
+                ctx.TotalModifier = totalModifier;
+                ctx.NativeLeaveValue = nativeLeaveValue;
+                ctx.LeaveMemoryAvailable = leaveMemoryAvailable;
+                ctx.AdjustedClanValue =
+                    native +
+                    totalModifier;
                 ctx.SawClanValue = true;
 
-                if (modifier != 0)
+                if (totalModifier != 0)
                 {
                     __result = ctx.AdjustedClanValue;
                     _modified++;
+                }
+
+                if (leaveMemoryModifier != 0)
+                {
+                    ClanAIPostVanilla.WriteExternalLog(
+                        "SOCIAL_DEFECTION_LEAVE_MEMORY clan=" +
+                        ctx.SourceClan.Name +
+                        " leader=" +
+                        (ctx.SourceClan.Leader == null
+                            ? "<none>"
+                            : ctx.SourceClan.Leader.Name.ToString()) +
+                        " from=" +
+                        (ctx.OldKingdom == null
+                            ? "<none>"
+                            : ctx.OldKingdom.Name.ToString()) +
+                        " target=" +
+                        ctx.TargetKingdom.Name +
+                        " nativeLeaveValue=" +
+                        nativeLeaveValue +
+                        " leaveMemoryModifier=" +
+                        leaveMemoryModifier +
+                        " targetSocialModifier=" +
+                        targetSocialModifier +
+                        " totalModifier=" +
+                        totalModifier);
                 }
             }
             else if (factionForEvaluation.MapFaction == ctx.TargetKingdom)
@@ -180,55 +255,6 @@ namespace ClanAI
                     out directLossSettlements,
                     out directLossValue);
 
-            int nativeLeaveValue = 0;
-            int carryLeaveModifier = 0;
-            bool leaveObservationAvailable = false;
-
-            try
-            {
-                if (Campaign.Current != null &&
-                    Campaign.Current.Models != null &&
-                    Campaign.Current.Models.DiplomacyModel != null &&
-                    ctx.OldKingdom != null)
-                {
-                    nativeLeaveValue =
-                        (int)Campaign.Current.Models.DiplomacyModel
-                            .GetScoreOfClanToLeaveKingdom(
-                                clan1,
-                                ctx.OldKingdom);
-
-                    carryLeaveModifier =
-                        SocialLoyaltyPatch
-                            .ComputeLoyaltyModifierForObservation(
-                                clan1,
-                                ctx.OldKingdom,
-                                nativeLeaveValue);
-
-                    leaveObservationAvailable = true;
-                }
-            }
-            catch
-            {
-                leaveObservationAvailable = false;
-                nativeLeaveValue = 0;
-                carryLeaveModifier = 0;
-            }
-
-            int carryAdjustedClanValue =
-                ctx.AdjustedClanValue +
-                carryLeaveModifier;
-            int carryAdjustedSum =
-                carryAdjustedClanValue +
-                ctx.TargetKingdomValue;
-            int carryDemand =
-                carryAdjustedClanValue < 0
-                    ? -carryAdjustedClanValue
-                    : 0;
-            bool carryWould =
-                leaveObservationAvailable &&
-                carryAdjustedSum > 0 &&
-                carryDemand <= affordable;
-
             bool nativeWould = nativeSum > 0 && nativeDemand <= affordable;
             bool adjustedWould = adjustedSum > 0 && adjustedDemand <= affordable;
             bool committed = clan1.Kingdom == kingdom;
@@ -247,7 +273,10 @@ namespace ClanAI
                 " from=" + (ctx.OldKingdom == null ? "<none>" : ctx.OldKingdom.Name.ToString()) +
                 " target=" + kingdom.Name +
                 " nativeClanValue=" + ctx.NativeClanValue +
-                " socialModifier=" + ctx.SocialModifier +
+                " targetSocialModifier=" + ctx.TargetSocialModifier +
+                " leaveMemoryModifier=" + ctx.LeaveMemoryModifier +
+                " socialModifier=" + ctx.TotalModifier +
+                " totalModifier=" + ctx.TotalModifier +
                 " adjustedClanValue=" + ctx.AdjustedClanValue +
                 " targetValue=" + ctx.TargetKingdomValue +
                 " nativeSum=" + nativeSum +
@@ -263,16 +292,15 @@ namespace ClanAI
                 (hasDirectLoss
                     ? directLossAgeHours.ToString("0.###", CultureInfo.InvariantCulture)
                     : "0") +
-                " leaveObservationAvailable=" + leaveObservationAvailable +
-                " nativeLeaveValue=" + nativeLeaveValue +
-                " carryLeaveModifier=" + carryLeaveModifier +
-                " carryAdjustedClanValue=" + carryAdjustedClanValue +
-                " carryAdjustedSum=" + carryAdjustedSum +
-                " carryDemand=" + carryDemand +
-                " carryWouldDefect=" + carryWould +
+                " leaveMemoryAvailable=" + ctx.LeaveMemoryAvailable +
+                " nativeLeaveValue=" + ctx.NativeLeaveValue +
                 " nativeWouldDefect=" + nativeWould +
                 " adjustedWouldDefect=" + adjustedWould +
                 " committed=" + committed +
+                " kingdomAfter=" +
+                (clan1.Kingdom == null
+                    ? "<independent>"
+                    : clan1.Kingdom.Name.ToString()) +
                 " considerations=" + _considerations +
                 " modified=" + _modified +
                 " positiveFlips=" + _positiveFlips +
@@ -283,119 +311,102 @@ namespace ClanAI
                 clan1,
                 ctx.OldKingdom,
                 kingdom,
-                ctx.SocialModifier,
+                ctx.TotalModifier,
                 committed);
         }
 
-        private static int ComputeSocialModifier(
+        private static int ComputeTargetSocialModifier(
             Clan sourceClan,
-            Kingdom oldKingdom,
             Kingdom targetKingdom,
             int nativeValue)
         {
-            if (sourceClan == null || sourceClan.Leader == null ||
-                oldKingdom == null || oldKingdom.RulingClan == null ||
-                targetKingdom == null || targetKingdom.RulingClan == null)
+            if (sourceClan == null ||
+                sourceClan.Leader == null ||
+                targetKingdom == null ||
+                targetKingdom.RulingClan == null)
+            {
+                return 0;
+            }
+
+            int targetTrust;
+            int targetGrievance;
+            int targetBloodDebt;
+            int targetObligation;
+            int targetTension;
+
+            int targetClanTrust;
+            int targetClanGrievance;
+            int targetClanBloodDebt;
+            int targetClanObligation;
+            int targetClanTension;
+            int targetClanRecords;
+
+            bool hasTargetLeader =
+                SocialLedger.TryGetState(
+                    sourceClan.Leader,
+                    targetKingdom.RulingClan,
+                    out targetTrust,
+                    out targetGrievance,
+                    out targetBloodDebt,
+                    out targetObligation,
+                    out targetTension);
+
+            bool hasTargetClan =
+                SocialLedger.TryGetClanAggregateStateForKingdom(
+                    sourceClan,
+                    targetKingdom,
+                    out targetClanTrust,
+                    out targetClanGrievance,
+                    out targetClanBloodDebt,
+                    out targetClanObligation,
+                    out targetClanTension,
+                    out targetClanRecords);
+
+            if (!hasTargetLeader && !hasTargetClan)
                 return 0;
 
-            int oldTrust, oldGrievance, oldBloodDebt, oldObligation, oldTension;
-            int newTrust, newGrievance, newBloodDebt, newObligation, newTension;
-            int oldClanTrust, oldClanGrievance, oldClanBloodDebt, oldClanObligation, oldClanTension;
-            int newClanTrust, newClanGrievance, newClanBloodDebt, newClanObligation, newClanTension;
-            int oldClanRecords;
-            int newClanRecords;
+            float targetLeaderIndex =
+                hasTargetLeader
+                    ? TargetLiegeMemoryIndex(
+                        targetTrust,
+                        targetGrievance,
+                        targetBloodDebt,
+                        targetObligation,
+                        targetTension)
+                    : 0f;
 
-            bool hasOldLeader = SocialLedger.TryGetState(
-                sourceClan.Leader,
-                oldKingdom.RulingClan,
-                out oldTrust,
-                out oldGrievance,
-                out oldBloodDebt,
-                out oldObligation,
-                out oldTension);
-
-            bool hasNewLeader = SocialLedger.TryGetState(
-                sourceClan.Leader,
-                targetKingdom.RulingClan,
-                out newTrust,
-                out newGrievance,
-                out newBloodDebt,
-                out newObligation,
-                out newTension);
-
-            bool hasOldClan = SocialLedger.TryGetClanAggregateStateForKingdom(
-                sourceClan,
-                oldKingdom,
-                out oldClanTrust,
-                out oldClanGrievance,
-                out oldClanBloodDebt,
-                out oldClanObligation,
-                out oldClanTension,
-                out oldClanRecords);
-
-            bool hasNewClan = SocialLedger.TryGetClanAggregateStateForKingdom(
-                sourceClan,
-                targetKingdom,
-                out newClanTrust,
-                out newClanGrievance,
-                out newClanBloodDebt,
-                out newClanObligation,
-                out newClanTension,
-                out newClanRecords);
-
-            if (!hasOldLeader && !hasNewLeader && !hasOldClan && !hasNewClan)
-                return 0;
-
-            float oldLeaderIndex = hasOldLeader
-                ? CurrentLiegeMemoryIndex(
-                    oldTrust,
-                    oldGrievance,
-                    oldBloodDebt,
-                    oldObligation,
-                    oldTension)
-                : 0f;
-            float oldClanIndex = hasOldClan
-                ? CurrentLiegeMemoryIndex(
-                    oldClanTrust,
-                    oldClanGrievance,
-                    oldClanBloodDebt,
-                    oldClanObligation,
-                    oldClanTension)
-                : 0f;
-            float newLeaderIndex = hasNewLeader
-                ? TargetLiegeMemoryIndex(
-                    newTrust,
-                    newGrievance,
-                    newBloodDebt,
-                    newObligation,
-                    newTension)
-                : 0f;
-            float newClanIndex = hasNewClan
-                ? TargetLiegeMemoryIndex(
-                    newClanTrust,
-                    newClanGrievance,
-                    newClanBloodDebt,
-                    newClanObligation,
-                    newClanTension)
-                : 0f;
+            float targetClanIndex =
+                hasTargetClan
+                    ? TargetLiegeMemoryIndex(
+                        targetClanTrust,
+                        targetClanGrievance,
+                        targetClanBloodDebt,
+                        targetClanObligation,
+                        targetClanTension)
+                    : 0f;
 
             float memoryIndex =
-                BlendMemory(hasOldLeader, oldLeaderIndex, hasOldClan, oldClanIndex) +
-                BlendMemory(hasNewLeader, newLeaderIndex, hasNewClan, newClanIndex);
+                BlendMemory(
+                    hasTargetLeader,
+                    targetLeaderIndex,
+                    hasTargetClan,
+                    targetClanIndex);
 
             if (memoryIndex > 100f)
                 memoryIndex = 100f;
             else if (memoryIndex < -100f)
                 memoryIndex = -100f;
 
-            float cap = Math.Min(
-                AbsoluteCap,
-                Math.Max(
-                    MinimumMeaningfulCap,
-                    Math.Abs(nativeValue) * RelativeCap));
+            float cap =
+                Math.Min(
+                    AbsoluteCap,
+                    Math.Max(
+                        MinimumMeaningfulCap,
+                        Math.Abs(nativeValue) * RelativeCap));
 
-            int modifier = (int)Math.Round(
-                cap * (memoryIndex / 100f));
+            int modifier =
+                (int)Math.Round(
+                    cap * (memoryIndex / 100f));
 
             if (modifier > AbsoluteCap)
                 modifier = AbsoluteCap;
@@ -405,61 +416,41 @@ namespace ClanAI
             if (modifier != 0)
             {
                 ClanAIPostVanilla.WriteExternalLog(
-                    "SOCIAL_DEFECTION_MEMORY clan=" + sourceClan.Name +
-                    " leader=" + sourceClan.Leader.Name +
-                    " from=" + oldKingdom.Name +
-                    " target=" + targetKingdom.Name +
-                    " nativeValue=" + nativeValue +
-                    " memoryIndex=" + F(memoryIndex) +
-                    " cap=" + F(cap) +
-                    " modifier=" + modifier +
-                    " oldLeaderState=" + StateLabel(
-                        hasOldLeader,
-                        oldTrust,
-                        oldGrievance,
-                        oldBloodDebt,
-                        oldObligation,
-                        oldTension) +
-                    " oldClanState=" + StateLabel(
-                        hasOldClan,
-                        oldClanTrust,
-                        oldClanGrievance,
-                        oldClanBloodDebt,
-                        oldClanObligation,
-                        oldClanTension) +
-                    " oldClanRecords=" + oldClanRecords +
-                    " targetLeaderState=" + StateLabel(
-                        hasNewLeader,
-                        newTrust,
-                        newGrievance,
-                        newBloodDebt,
-                        newObligation,
-                        newTension) +
-                    " targetClanState=" + StateLabel(
-                        hasNewClan,
-                        newClanTrust,
-                        newClanGrievance,
-                        newClanBloodDebt,
-                        newClanObligation,
-                        newClanTension) +
-                    " targetClanRecords=" + newClanRecords);
+                    "SOCIAL_DEFECTION_TARGET_MEMORY clan=" +
+                    sourceClan.Name +
+                    " leader=" +
+                    sourceClan.Leader.Name +
+                    " target=" +
+                    targetKingdom.Name +
+                    " nativeValue=" +
+                    nativeValue +
+                    " memoryIndex=" +
+                    F(memoryIndex) +
+                    " cap=" +
+                    F(cap) +
+                    " modifier=" +
+                    modifier +
+                    " targetLeaderState=" +
+                    StateLabel(
+                        hasTargetLeader,
+                        targetTrust,
+                        targetGrievance,
+                        targetBloodDebt,
+                        targetObligation,
+                        targetTension) +
+                    " targetClanState=" +
+                    StateLabel(
+                        hasTargetClan,
+                        targetClanTrust,
+                        targetClanGrievance,
+                        targetClanBloodDebt,
+                        targetClanObligation,
+                        targetClanTension) +
+                    " targetClanRecords=" +
+                    targetClanRecords);
             }
 
             return modifier;
-        }
-
-        private static float CurrentLiegeMemoryIndex(
-            int trust,
-            int grievance,
-            int bloodDebt,
-            int obligation,
-            int tension)
-        {
-            return grievance * 0.50f +
-                   bloodDebt * 0.70f +
-                   tension * 0.25f -
-                   trust * 0.35f -
-                   obligation * 0.45f;
         }
 
         private static float TargetLiegeMemoryIndex(

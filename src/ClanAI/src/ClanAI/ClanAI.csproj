@@ -6,8 +6,8 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
     <AssemblyName>ClanAI</AssemblyName>
-    <FileVersion>0.21.12.2</FileVersion>
-    <InformationalVersion>v0.21M2-defection-leave-observe</InformationalVersion>
+    <FileVersion>0.21.12.3</FileVersion>
+    <InformationalVersion>v0.21M3-defection-leave-carry-v1</InformationalVersion>
     <RootNamespace>ClanAI</RootNamespace>
   </PropertyGroup>
 
