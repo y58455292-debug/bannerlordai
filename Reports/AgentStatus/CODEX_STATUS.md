@@ -1,42 +1,30 @@
 # Codex Status
 
 ## Current task
-Finish the already-started Phase 2D-L1 save/reload proof, then return to Phase 3 territorial responsibility.
+Continue from the completed Phase 2D-L1 persistence checkpoint into the already-defined Phase 3 Home Responsibility deterministic test seam.
 
 ## Last completed checkpoint
-Phase 2C passed at Bannerlord's supported native boundary. Phase 2D-L1 is implemented, build-proven, deployed with rollback, and runtime-proven for initial seven-kingdom reconciliation.
+Phase 2D-L1 save/reload continuity is runtime-proven.
+
+The uniquely named test save `ClanAI V020V PERSIST PHASE2D L1 CONTINUITY 20260925 0130` materialized through TestRunner with `SAVE_TEST_END ... exists=True`. On a fresh configured-module launch, the save was loaded directly once from initialized `GauntletInitialScreen`. TestRunner reached `CAMPAIGN_READY` at saved campaign hour `649514.89141922223`.
+
+ClanAI then logged:
+- `KINGDOM_CONTINUITY_RESTORE records=7 found=True schema=1 mutation=False`;
+- two `KINGDOM_CONTINUITY_RECONCILED active=7 records=7 mutation=False` passes;
+- zero `KINGDOM_CONTINUITY_SUCCESSION` or `KINGDOM_CONTINUITY_DESTROYED` callbacks during the reload window.
+
+Because succession/destruction callbacks are the only continuity paths that emit those player notices and reconciliation emits no notice, the reload produced no duplicate succession/destruction notice. The continuity behavior performed no native political mutation. The protected demo-gate fixture was not overwritten.
+
+Exact evidence: `Reports/KingdomContinuity/evidence/phase2d_l1_reload_20260925.txt`.
 
 ## Current state
-PHASE 2D-L1 SAVE MATERIALIZATION PROVEN; RELOAD IN PROGRESS; PHASE 3 OFFLINE SOURCE AUDIT COMPLETE.
-
-The uniquely named test save `ClanAI V020V PERSIST PHASE2D L1 CONTINUITY 20260925 0130` was created through TestRunner and verified with `SAVE_TEST_END ... exists=True`. The protected demo-gate fixture was not overwritten.
-
-The configured-module launch path is already proven. After `EXIT_NOSAVE`, Bannerlord/TestRunner/watchdog absence is expected process shutdown, not a new blocker. Relaunch through the recorded configured-module path; do not rediscover alternate launch methods.
-
-The TestRunner interface is also established through Desktop Commander:
-- command bus: `D:\BannerlordAIResearch\Automation\TestRunner\command.txt`
-- status: `D:\BannerlordAIResearch\Automation\TestRunner\status.txt`
-
-When status reports `escape_menu_open`, write `CLOSE_ESCAPE_MENU` and verify it clears. `menu_active:town_wait_menus` is separate and is not an escape-overlay condition.
-
-## Current reload
-A fresh configured-module launch reached `campaignReady=True` on the protected fixture and accepted `LOAD_SAVE ClanAI V020V PERSIST PHASE2D L1 CONTINUITY 20260925 0130`.
-
-Latest status names that test save but still reports `screen_active:GameLoadingScreen`. Do **not** issue another load while this state is current. Loading has not yet completed, so continuity restore, seven-record restoration, duplicate-notice absence, and post-load political state remain unverified.
+PHASE 2D-L1 ROUND TRIP PROVEN; PHASE 3 DETERMINISTIC TEST SEAM NEXT.
 
 ## Exact next action
-Poll/read the existing TestRunner status/logs until the loading screen clears and the loaded campaign is ready. Do not resend `LOAD_SAVE` unless there is affirmative evidence the current load failed.
-
-Once ready, verify:
-1. continuity restore/reconcile succeeds;
-2. seven continuity records are present;
-3. no duplicate succession/destruction notice is emitted from load reconciliation;
-4. no native political mutation occurred.
-
-Then commit the result/evidence and update README/roadmap status as needed. Only after that checkpoint continue the already-defined Phase 3 deterministic Home Responsibility test seam.
+Re-read current GitHub `main` at the mission boundary, then use `Reports/TerritorialResponsibility/PHASE3_SOURCE_AUDIT.md` as the Phase 3 contract. Add deterministic tests for the existing Home Responsibility pure eligibility/factor logic only. Do not generate native candidates, bypass native target selection, or replace post-vanilla behavior/target verification.
 
 ## Resource discipline
-Do not re-debug the configured launch path, TestRunner command bus, escape-menu command, or save materialization unless new evidence shows one of them failed. These paths are already established. Preserve Codex/tool usage for missing implementation or evidence.
+Do not re-debug the configured launch path, TestRunner command bus, `CLOSE_ESCAPE_MENU`, save materialization, or Phase 2D-L1 reload. Those are proven. Preserve Codex/coder usage for missing implementation and evidence.
 
 ## Local/deployment note
-The L1 DLL was deployed only with Bannerlord closed and has a verified rollback at `D:\BannerlordAIResearch\Builds\Rollback_Phase2D_L1_20260924_ClanAI`. The protected demo-gate save remains the baseline fixture; use only uniquely named test saves for validation.
+The L1 DLL was deployed only with Bannerlord closed and has a verified rollback at `D:\BannerlordAIResearch\Builds\Rollback_Phase2D_L1_20260924_ClanAI`. The final product remains a standalone installable offline Bannerlord mod; TestRunner, Inspector, Codex, ChatGPT, Desktop Commander, watchdogs, and other development infrastructure are validation-only and must not become runtime dependencies.
