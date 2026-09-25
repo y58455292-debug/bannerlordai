@@ -1,0 +1,46 @@
+Phase 3 Kingdom Objective runtime proof
+Date: 2026-09-25 UTC
+Candidate commit: 96813b4e9fe4951118f2dc5b4427bffc4cb58fc1
+
+DEPLOYMENT
+Bannerlord closed before copy.
+candidate_sha256=4124AA4F79D452E28B0C08892B1642CD77ED2DFA9F698129405C603A4E69AA2D
+previous_live_sha256=5A88AC72C6154680A6B009F7C9A5E262CA4BE8F71AFC54B7A0C1F3057AA64B9C
+rollback_path=D:\BannerlordAIResearch\Builds\Rollback_Phase3_KingdomObjective_20260925_ClanAI
+rollback_sha256=5A88AC72C6154680A6B009F7C9A5E262CA4BE8F71AFC54B7A0C1F3057AA64B9C
+deployed_sha256=4124AA4F79D452E28B0C08892B1642CD77ED2DFA9F698129405C603A4E69AA2D
+
+PROTECTED FIXTURE
+name=ClanAI V020V PERSIST DEMO GATE V021M 20260924
+sha256=A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+mtime_utc=2026-09-24T17:20:12.2384633Z
+save_command_issued=false
+
+BOUND
+planned_max_campaign_hours=72
+start_campaign_hours=649491.27044636116
+paused_campaign_hours=649519.49430022226
+elapsed_campaign_hours=28.2238538611
+result=qualifying_event_observed_before_bound
+
+RUNNER
+2026-09-25T04:50:55.3954725Z [TestRunner v0.1] RUNNER_LOAD version=v0.2.10.24-auto-encounter-resolver-v2
+2026-09-25T04:52:35.7967605Z [TestRunner v0.1] COMMAND command=LOAD_SAVE ClanAI V020V PERSIST DEMO GATE V021M 20260924 result=operator_load_save_started:ClanAI V020V PERSIST DEMO GATE V021M 20260924 timeControl=<none>
+2026-09-25T04:52:42.8024045Z [TestRunner v0.1] CAMPAIGN_INSTANCE generation=1
+2026-09-25T04:52:42.8034031Z [TestRunner v0.1] CAMPAIGN_READY timeControl=Stop
+2026-09-25T04:53:23.4666514Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=Stop
+2026-09-25T04:53:38.4427815Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-25T04:54:52.0510717Z [TestRunner v0.1] COMMAND command=PAUSE result=paused timeControl=Stop
+2026-09-25T04:55:56.4983102Z [TestRunner v0.1] COMMAND command=EXIT_NOSAVE result=exit_scheduled timeControl=Stop
+
+SELECTED QUALIFYING EVENT
+2026-09-25T04:54:00.4723208Z [ClanAI v0.22A-ruler-courtship-native-v1] KINGDOM_OBJECTIVE_ACCEPTED actor=Culharn partyId=lord_5_9_party_1 kingdom=Battania ruler=Rath enemy=Calradian Empire reason=BorderSecurity objective=CaptureSpecificSettlement objectiveTarget=Uthelaim Castle staging=Pendraic Castle,Seonon,Nevyansk Castle readiness=1 foodDays=23 objectiveCandidates=3 directCandidates=0 stagingCandidates=3 competitiveCandidates=1 bestCompetitiveCandidate=GoToSettlement:Pendraic Castle bestCompetitiveRatio=0.981 minimumRequiredFactor=1.044 beforeWinnerScore=3.756 before=RaidSettlement:Stathymos after=GoToSettlement:Pendraic Castle winnerChanged=True objectiveWon=True winningMode=staging-1 winningActionTarget=Pendraic Castle acceptances=74
+2026-09-25T04:54:00.4723208Z [ClanAI v0.22A-ruler-courtship-native-v1] KINGDOM_OBJECTIVE_WINNER_CHANGE actor=Culharn partyId=lord_5_9_party_1 kingdom=Battania ruler=Rath reason=BorderSecurity objective=CaptureSpecificSettlement objectiveTarget=Uthelaim Castle actionTarget=Pendraic Castle mode=staging-1 before=RaidSettlement:Stathymos after=GoToSettlement:Pendraic Castle factor=1.55 winnerChanges=13
+2026-09-25T04:54:00.8474758Z [ClanAI v0.22A-ruler-courtship-native-v1] KINGDOM_OBJECTIVE_COMMIT_CHECK actor=Culharn partyId=lord_5_9_party_1 kingdom=Battania ruler=Rath reason=BorderSecurity objective=CaptureSpecificSettlement objectiveTarget=Uthelaim Castle actionTarget=Pendraic Castle mode=staging-1 expected=GoToSettlement:Pendraic Castle actualDefault=GoToSettlement actualShort=GoToSettlement actualTarget=Pendraic Castle arrivedMatch=True matched=True expired=False ageHours=0.454 attempts=1 source=hourly-world checks=13 matches=13
+
+NATIVE AUTHORITY
+No source tuning or redesign was made after the deterministic checkpoint.
+No direct party-order command was issued.
+No faction, settlement, or war mutation was issued.
+No synthetic target/action was injected.
+Existing wiring guard remains PASS: native candidates, composer ownership, and post-vanilla commit verification preserved.

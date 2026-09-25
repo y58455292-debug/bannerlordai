@@ -59,3 +59,10 @@ When the composer reports a new objective winner, the layer only stores a pendin
 ## Boundary and next milestone
 
 No runtime deployment was performed. The next milestone is exactly one bounded runtime proof that a natural ruler objective changes a native candidate winner and Bannerlord commits the selected behavior/target. This checkpoint stops before that runtime proof.
+
+
+## Runtime follow-up — proven 2026-09-25
+
+The next bounded runtime milestone passed without changing the deterministic candidate. During a read-only run capped at 72 campaign hours, Culharn naturally received Battania ruler Rath's `BorderSecurity / CaptureSpecificSettlement / Uthelaim Castle` objective. Bannerlord's existing candidate winner was `RaidSettlement:Stathymos`. The existing staging candidate `GoToSettlement:Pendraic Castle` had competitive ratio 0.981; the unchanged 1.55 staging factor changed the composer winner to that candidate. The post-vanilla verifier then observed `actualDefault=GoToSettlement`, `actualShort=GoToSettlement`, `actualTarget=Pendraic Castle`, and `matched=True`.
+
+The run stopped after 28.224 campaign hours, used no synthetic target/action or direct party order, exited without saving, and left the protected fixture hash unchanged. See `Reports/TerritorialResponsibility/PHASE3_KINGDOM_OBJECTIVE_RUNTIME_RESULT.md`.
