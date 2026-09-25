@@ -1,0 +1,85 @@
+Phase 3 Strategic Commitment bounded runtime proof
+Date: 2026-09-25 UTC
+Candidate commit: 681f73e7f96fdd813534e05e3297f178d1eb0aac
+RESULT=BOUNDED_NULL
+
+DEPLOYMENT
+bannerlord_closed_before_copy=true
+candidate_sha256=0267089ABE829248F145A468355041C17A91B8945816A8210BA0C6AD23CB4B5E
+previous_live_sha256=F8C5E2AE389ADB29034CF18DE6DAA293C6F13571A4AA3F15CABA13E744A0B338
+rollback_path=D:\BannerlordAIResearch\Builds\Rollback_Phase3_StrategicCommitment_20260925_ClanAI
+rollback_sha256=F8C5E2AE389ADB29034CF18DE6DAA293C6F13571A4AA3F15CABA13E744A0B338
+deployed_sha256=0267089ABE829248F145A468355041C17A91B8945816A8210BA0C6AD23CB4B5E
+
+EXPERIMENTAL SWITCHES
+visual_war_marker_exists=false
+
+TEMPORARY COMMITMENT CONFIG
+installed_config=ClanAI/Data/StrategicCommitment.cfg
+during_run=Mode=Apply
+apply_config_sha256=2BB156FAD4751D151D0BB232CDED413C720BE1E34DD5C782EEA3ADE823FE4F92
+fresh_reset=2026-09-25T06:12:04.3835927Z STRATEGIC_COMMITMENT_RESET mode=Apply status=configured_apply factor=1.1 maxAgeHours=12
+tracked_repo_config=Mode=Observe
+
+PROTECTED FIXTURE
+name=ClanAI V020V PERSIST DEMO GATE V021M 20260924
+sha256_after=A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+mtime_utc_after=2026-09-24T17:20:12.2384633Z
+save_command_issued=false
+
+QUALIFYING BOUND
+planned_max_campaign_hours=72
+start_campaign_hours=649491.27044636116
+strict_end_campaign_hours=649563.27044636116
+first_poll_after_end=649563.46863080561
+first_poll_overshoot_hours=0.19818444445
+qualifying_result=no_apply_no_commit_check
+
+STOP CONTROL
+pause_processed_campaign_hours=649573.63734283333
+pause_processing_overshoot_is_outside_qualifying_window=true
+apply_count_through_stop_and_exit=0
+commit_check_count_through_stop_and_exit=0
+
+CURRENT SESSION COUNTS
+STRATEGIC_COMMITMENT_RESET=1
+STRATEGIC_COMMITMENT_APPLY=0
+STRATEGIC_COMMITMENT_COMMIT_CHECK=0
+STRATEGIC_COMMITMENT_FAILURE=0
+STRATEGIC_COMMITMENT_WOULD_RETAIN=0
+
+RUNNER
+2026-09-25T06:11:54.6483053Z [TestRunner v0.1] COMMAND command=LOAD_SAVE ClanAI V020V PERSIST DEMO GATE V021M 20260924 result=operator_load_save_started:ClanAI V020V PERSIST DEMO GATE V021M 20260924 timeControl=<none>
+2026-09-25T06:12:00.5998366Z [TestRunner v0.1] CAMPAIGN_INSTANCE generation=1
+2026-09-25T06:12:00.6008370Z [TestRunner v0.1] CAMPAIGN_READY timeControl=Stop
+2026-09-25T06:12:39.3501417Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-25T06:14:59.6836218Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-25T06:15:42.1126019Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-25T06:15:47.8760144Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-25T06:16:09.5786065Z [TestRunner v0.1] COMMAND command=PAUSE result=paused timeControl=Stop
+2026-09-25T06:17:11.8752901Z [TestRunner v0.1] COMMAND command=EXIT_NOSAVE result=exit_scheduled timeControl=Stop
+
+RESTORATION
+bannerlord_running_after_exit=false
+installed_config_after=Mode=Observe
+installed_observe_config_sha256=B29F5139D1B13C701E6F91D634D5D6D57B709E6BD0933CCD6C7276FB57864398
+tracked_repo_config_after=Mode=Observe
+visual_war_marker_exists_after=false
+live_sha256_after=0267089ABE829248F145A468355041C17A91B8945816A8210BA0C6AD23CB4B5E
+rollback_exists_after=true
+rollback_sha256_after=F8C5E2AE389ADB29034CF18DE6DAA293C6F13571A4AA3F15CABA13E744A0B338
+
+NATIVE AUTHORITY
+retention_factor=1.10 unchanged
+max_age_hours=12 unchanged
+coarse_state_classification_changed=false
+score_tuning=false
+candidate_insertion=false
+synthetic_target=false
+synthetic_action=false
+direct_order=false
+behavior_assignment=false
+target_assignment=false
+faction_mutation=false
+settlement_mutation=false
+war_mutation=false
