@@ -1,50 +1,66 @@
 # Codex Status
 
 ## Current task
-Phase 3 Visual War bounded runtime proof is complete. Stop at this checkpoint; do not broaden or retune the system as part of this milestone.
+Stop at the completed Phase 3 Strategic Commitment deterministic / standalone-safe checkpoint. Do not deploy or run the commitment campaign proof as part of this checkpoint.
 
 ## Current state
-PHASE 2D-L1 ROUND TRIP PROVEN; PHASE 3 HOME RESPONSIBILITY DETERMINISTIC SEAM PASSED; PHASE 3 KINGDOM OBJECTIVE WINNER-CHANGE + NATIVE COMMIT RUNTIME PROVEN; PHASE 3 VISUAL WAR DETERMINISTIC / STANDALONE SEAM PASSED; PHASE 3 VISUAL WAR WINNER-CHANGE + NATIVE COMMIT RUNTIME PROVEN.
+PHASE 2D-L1 ROUND TRIP PROVEN; PHASE 3 HOME RESPONSIBILITY DETERMINISTIC SEAM PASSED; PHASE 3 KINGDOM OBJECTIVE WINNER-CHANGE + NATIVE COMMIT RUNTIME PROVEN; PHASE 3 VISUAL WAR WINNER-CHANGE + NATIVE COMMIT RUNTIME PROVEN; PHASE 3 STRATEGIC COMMITMENT DETERMINISTIC / STANDALONE SEAM PASSED.
 
-## Visual War runtime proof
-Candidate source remained unchanged from commit `b79e64201914c97a354d5bc411a54a80d6fa7745`.
+## Strategic Commitment checkpoint
+The existing commitment behavior was not redesigned and no strategic category was added.
 
-Deployment:
-- candidate DLL SHA-256: `F8C5E2AE389ADB29034CF18DE6DAA293C6F13571A4AA3F15CABA13E744A0B338`;
-- prior live / rollback SHA-256: `4124AA4F79D452E28B0C08892B1642CD77ED2DFA9F698129405C603A4E69AA2D`;
-- rollback: `D:\BannerlordAIResearch\Builds\Rollback_Phase3_VisualWar_20260925_ClanAI`.
+Pure `StrategicCommitmentPolicy` now isolates the existing retention rules:
+- factor remains 1.10;
+- maximum age remains 12 campaign hours;
+- no prior state or same objective -> no retention;
+- cross-state change -> no retention;
+- negative age -> failure/no retention;
+- age exactly 12 hours remains eligible; >12 expires;
+- previous objective must still be an existing finite positive native candidate;
+- natural score must be finite and positive;
+- retained score is `previousScore * 1.10`;
+- retention requires retained score strictly greater than natural score;
+- exact equality does not retain;
+- Observe never applies;
+- Apply may rescale only the existing previous native candidate.
 
-Visual War was enabled only through the module-local `ClanAI/Data/ENABLE_VISUAL_WAR_LAB.txt` marker. Fresh campaign reset reported `VISUAL_WAR_RESET enabled=True`. The marker was removed after `EXIT_NOSAVE`, so Visual War is OFF by default again.
+`ActorStrategicBlackboard` coarse-state classification and candidate-signature lookup remain unchanged. `StrategicDecisionComposer` remains the score owner and final-winner authority.
 
-The observation was capped at 72 campaign hours and stopped after 29.915 hours when a qualifying defensive proof was observed.
+## Standalone config
+The absolute development path `D:\BannerlordAIResearch\Data\StrategicCommitment.cfg` is removed.
 
-Selected proof:
-- actor: Arthamund;
-- state: 112 men, readiness 0.868, food 26;
-- reason: `frontier-defense`;
-- native/current winner before Visual War: `PatrolAroundPoint:Sibir`;
-- existing native candidate after Visual War: `PatrolAroundPoint:Goleryn`;
-- final composed blackboard objective: `PatrolAroundPoint:Goleryn`;
-- verifier expectation: `PatrolAroundPoint` / Goleryn;
-- Bannerlord actual default: `PatrolAroundPoint`;
-- Bannerlord actual target: Goleryn with the same settlement id;
-- `behaviorMatch=True`;
-- `targetMatch=True`;
-- `matched=True`;
-- `expired=False`;
-- commit-check age: 6.06 campaign hours.
+The config now resolves to:
+`<module-root>/Data/StrategicCommitment.cfg`.
 
-No factor/threshold tuning, new role, synthetic target/action, direct party order, candidate insertion, faction mutation, settlement mutation, or war mutation was used.
+Safe defaults remain:
+- missing/unresolved config -> Observe;
+- invalid mode -> Observe;
+- tracked config -> `Mode=Observe`;
+- only explicit `Mode=Apply` enables Apply.
 
-The protected demo fixture remained unchanged at SHA-256 `A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427` with its original timestamp.
+No development-tool dependency was introduced.
+
+## Validation
+- policy tests: `PASS ... checks=34`;
+- config/path tests: `PASS ... checks=13`;
+- runtime-wiring invariant: PASS;
+- no-mutation invariant: PASS;
+- standalone-path invariant: PASS;
+- Release build: 0 errors, 1 inherited `System.ValueTuple` warning;
+- built DLL SHA-256: `B9FAADFF957E8412934D8FD16EAF2BD498F2F1D431AF78DDABC08354B4F6F5D0`.
+
+No DLL was deployed and no Strategic Commitment runtime success is claimed.
 
 ## Evidence
-- `Reports/TerritorialResponsibility/PHASE3_VISUAL_WAR_DETERMINISTIC_TEST_RESULT.md`
-- `Reports/TerritorialResponsibility/PHASE3_VISUAL_WAR_COMMIT_VERIFIER_RESULT.md`
-- `Reports/TerritorialResponsibility/PHASE3_VISUAL_WAR_RUNTIME_RESULT.md`
-- `Reports/TerritorialResponsibility/evidence/phase3_visual_war_runtime_20260925.txt`
+- `Reports/TerritorialResponsibility/PHASE3_STRATEGIC_COMMITMENT_DETERMINISTIC_TEST_RESULT.md`
+- `Reports/TerritorialResponsibility/evidence/phase3_strategic_commitment_deterministic_20260925.txt`
+
+## Exact next milestone
+One bounded runtime proof with the existing layer explicitly in Apply mode: a previous objective remains an already-existing positive Bannerlord candidate, a new natural winner appears in the same coarse state within 12 campaign hours, the unchanged 1.10 retention factor makes the previous candidate the composer winner, and Bannerlord later commits that retained native behavior/target.
+
+Do not tune the factor/age, add categories, create targets/candidates, or issue orders to manufacture the proof.
 
 ## Resource discipline
-Do not rerun or re-debug Phase 2D, launch/TestRunner/save handling, Home Responsibility, Kingdom Objective, the Visual War deterministic seam, commit verifier, or this runtime proof unless new evidence establishes a defect.
+Do not revisit Visual War, Kingdom Objective, Home Responsibility, Phase 2D, launch/TestRunner/save handling, or prior proven seams unless new evidence establishes a defect.
 
 The final product remains a standalone installable offline Bannerlord mod. TestRunner, Inspector, Codex, ChatGPT, Desktop Commander, watchdogs, and other development infrastructure are validation-only and are not runtime dependencies.

@@ -1,0 +1,70 @@
+Phase 3 Strategic Commitment deterministic / standalone checkpoint
+Date: 2026-09-25 UTC
+Repository base: 231a317b15f81a0d6afb0a1d517ec5fe5b6e8fea
+
+COMMAND
+dotnet run --project Tests/TerritorialResponsibility/StrategicCommitmentPolicy/StrategicCommitmentPolicyTests.csproj -c Release
+
+RESULT
+PASS Strategic Commitment policy tests checks=34
+same-state age/score gates, strict retention boundary, and Observe/Apply semantics preserved
+
+COMMAND
+dotnet run --project Tests/TerritorialResponsibility/StrategicCommitmentConfig/StrategicCommitmentConfigTests.csproj -c Release
+
+RESULT
+PASS Strategic Commitment config tests checks=13
+module-local path and missing/invalid Observe defaults preserved
+
+COMMAND
+python Tests/TerritorialResponsibility/test_strategic_commitment_runtime_wiring.py
+
+RESULT
+PASS Strategic Commitment runtime wiring
+existing native candidate lookup and composer-owned previous-candidate rescale preserved
+
+COMMAND
+python Tests/TerritorialResponsibility/test_strategic_commitment_no_mutation.py
+
+RESULT
+PASS Strategic Commitment no-mutation invariant
+no order/target/candidate/faction/settlement/war mutation APIs introduced
+
+COMMAND
+python Tests/TerritorialResponsibility/test_strategic_commitment_standalone_path.py
+
+RESULT
+PASS Strategic Commitment standalone path
+config resolves module-locally and tracked/missing/invalid defaults remain Observe
+
+COMMAND
+dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj -c Release
+
+RESULT
+Build succeeded.
+1 Warning(s)
+0 Error(s)
+
+KNOWN WARNING
+Inherited System.ValueTuple version conflict.
+
+BUILD SHA-256
+B9FAADFF957E8412934D8FD16EAF2BD498F2F1D431AF78DDABC08354B4F6F5D0
+
+POLICY CONSTANTS
+RetentionFactor=1.10
+MaxAgeHours=12.0
+
+CONFIG
+old=D:\BannerlordAIResearch\Data\StrategicCommitment.cfg
+new=<module-root>\Data\StrategicCommitment.cfg
+tracked=Mode=Observe
+missing=Observe
+invalid=Observe
+explicit_apply_only=Mode=Apply
+
+DEPLOYMENT
+none
+
+RUNTIME SUCCESS CLAIM
+none

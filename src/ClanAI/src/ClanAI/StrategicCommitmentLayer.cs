@@ -8,8 +8,10 @@ namespace ClanAI
 {
     internal static class StrategicCommitmentLayer
     {
-        internal const float RetentionFactor = 1.10f;
-        internal const double MaxAgeHours = 12.0;
+        internal const float RetentionFactor =
+            StrategicCommitmentPolicy.RetentionFactor;
+        internal const double MaxAgeHours =
+            StrategicCommitmentPolicy.MaxAgeHours;
 
         private static long _evaluations;
         private static long _priorStateFound;
@@ -149,18 +151,26 @@ namespace ClanAI
                         weak,
                         composer);
 
-                if (naturalState != previous.State)
+                double ageHours =
+                    CampaignTime.Now.ToHours -
+                    previous.ObjectiveSinceHours;
+
+                StrategicCommitmentContextResult context =
+                    StrategicCommitmentPolicy.EvaluateContext(
+                        true,
+                        false,
+                        naturalState == previous.State,
+                        ageHours);
+
+                if (context.CrossState)
                 {
                     Interlocked.Increment(
                         ref _crossStateSkipped);
 
                     return;
                 }
-                double ageHours =
-                    CampaignTime.Now.ToHours -
-                    previous.ObjectiveSinceHours;
 
-                if (ageHours < 0.0)
+                if (context.NegativeAge)
                 {
                     Interlocked.Increment(
                         ref _failures);
@@ -178,13 +188,16 @@ namespace ClanAI
                     return;
                 }
 
-                if (ageHours > MaxAgeHours)
+                if (context.Expired)
                 {
                     Interlocked.Increment(
                         ref _ageExpired);
 
                     return;
                 }
+
+                if (!context.Continue)
+                    return;
 
                 float previousScore;
 
@@ -196,9 +209,8 @@ namespace ClanAI
                         out previousScore);
 
                 if (previousIndex < 0 ||
-                    previousScore <= 0f ||
-                    float.IsNaN(previousScore) ||
-                    float.IsInfinity(previousScore))
+                    !StrategicCommitmentPolicy.ValidPositiveScore(
+                        previousScore))
                 {
                     Interlocked.Increment(
                         ref _previousMissing);
@@ -216,32 +228,32 @@ namespace ClanAI
                             .AIBehaviorScores[naturalWinner]
                             .Item2);
 
-                if (naturalScore <= 0f ||
-                    float.IsNaN(naturalScore) ||
-                    float.IsInfinity(naturalScore))
-                {
+                StrategicCommitmentMode mode =
+                    StrategicCommitmentConfig.Mode;
+
+                StrategicCommitmentScoreResult scoreDecision =
+                    StrategicCommitmentPolicy.EvaluateScores(
+                        true,
+                        previousScore,
+                        naturalScore,
+                        mode);
+
+                if (!scoreDecision.NaturalScoreValid)
                     return;
-                }
 
-                float retainedScore =
-                    previousScore *
-                    RetentionFactor;
-
-                if (retainedScore <= naturalScore)
+                if (!scoreDecision.WouldRetain)
                     return;
 
                 Interlocked.Increment(
                     ref _wouldRetain);
 
+                float retainedScore =
+                    scoreDecision.RetainedScore;
+
                 float requiredFactor =
-                    naturalScore /
-                    previousScore;
+                    scoreDecision.RequiredFactor;
 
-                StrategicCommitmentMode mode =
-                    StrategicCommitmentConfig.Mode;
-
-                if (mode ==
-                    StrategicCommitmentMode.Apply)
+                if (scoreDecision.Apply)
                 {
                     composer.ApplyFactor(
                         previousIndex,

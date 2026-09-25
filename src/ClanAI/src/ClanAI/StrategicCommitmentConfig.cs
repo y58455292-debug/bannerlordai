@@ -11,8 +11,14 @@ namespace ClanAI
 
     internal static class StrategicCommitmentConfig
     {
-        internal const string ConfigPath =
-            @"D:\BannerlordAIResearch\Data\StrategicCommitment.cfg";
+        internal const string ConfigFileName =
+            "StrategicCommitment.cfg";
+
+        internal static readonly string ConfigPath =
+            ResolveConfigPath(
+                typeof(StrategicCommitmentConfig)
+                    .Assembly
+                    .Location);
 
         private static readonly object Sync =
             new object();
@@ -40,6 +46,61 @@ namespace ClanAI
                 return _status;
             }
         }
+        internal static string ResolveConfigPath(
+            string assemblyLocation)
+        {
+            if (string.IsNullOrWhiteSpace(
+                    assemblyLocation))
+            {
+                return null;
+            }
+
+            try
+            {
+                string binaryDirectory =
+                    Path.GetDirectoryName(
+                        Path.GetFullPath(
+                            assemblyLocation));
+
+                if (string.IsNullOrEmpty(
+                        binaryDirectory))
+                {
+                    return null;
+                }
+
+                DirectoryInfo platformDirectory =
+                    new DirectoryInfo(
+                        binaryDirectory);
+
+                DirectoryInfo binDirectory =
+                    platformDirectory.Parent;
+
+                DirectoryInfo moduleDirectory =
+                    binDirectory == null
+                        ? null
+                        : binDirectory.Parent;
+
+                if (binDirectory == null ||
+                    moduleDirectory == null ||
+                    !string.Equals(
+                        binDirectory.Name,
+                        "bin",
+                        StringComparison.OrdinalIgnoreCase))
+                {
+                    return null;
+                }
+
+                return Path.Combine(
+                    moduleDirectory.FullName,
+                    "Data",
+                    ConfigFileName);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         internal static void EnsureLoaded()
         {
             if (_loaded)
@@ -52,7 +113,9 @@ namespace ClanAI
 
                 try
                 {
-                    if (!File.Exists(ConfigPath))
+                    if (string.IsNullOrEmpty(
+                            ConfigPath) ||
+                        !File.Exists(ConfigPath))
                     {
                         _mode =
                             StrategicCommitmentMode.Observe;
