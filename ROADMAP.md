@@ -306,6 +306,8 @@ Apply the same underlying ecology to player and AI where practical.
 
 ## 4C. Troop tiers matter
 
+**Phase 4C troop-quality native-capability/design audit — PASSED OFFLINE 2026-09-25.** Native occupied volunteer quality uses the same `VolunteerModel.GetDailyVolunteerProductionProbability` first gate as refill, then independently requires `UpgradeTargets`, current tier below native `MaxVolunteerTier=4`, a second `log2(notable.Power/currentTier)*0.01` roll, and native direct target selection. Volunteer reordering also moves higher-quality troops toward later, slower native slots. Therefore the smallest v1 seam is **not** a new wrapper and not direct mutation: later extend the existing `LocalManpowerVolunteerModel` so empty slots keep Phase 4B exactly, non-upgradeable occupied slots pass through, and only occupied upgrade-eligible slots receive a pure quality first-gate multiplier. Notable power, tier, culture/tree, RNG and mutation remain native. Candidate local components remain High/Mid/Low 1.00/0.95/0.80, security 0.80..1.00, active raid/siege 0.50, but quality uses a separate candidate floor `0.50` instead of Phase 4B's 0.35 because native quality already has two additional scarcity gates. This is a safety bound, not balance proof. Party XP/upgrades, garrison training/transfers, prisoners, mercenaries and post-defeat recreation remain separate veteran-recovery paths. **Next bounded milestone: offline-only pure quality policy + occupied wrapper branch + deterministic/no-mutation/standalone tests; no runtime or deployment until that passes.** See `Reports/Manpower/PHASE4C_TROOP_QUALITY_NATIVE_CAPABILITY_AUDIT.md`.
+
 Rebuilding numbers should be easier than rebuilding veteran quality.
 
 Conceptual sources:

@@ -1,0 +1,107 @@
+PHASE 4C TROOP QUALITY NATIVE-CAPABILITY AUDIT
+Date: 2026-09-25 UTC
+Base GitHub main: 1c937ec6ec5c5caac9098a356fb0cafee926681a
+Bannerlord launched: NO
+DLL deployed: NO
+Gameplay source changed: NO
+Phase 4B retuned: NO
+Phase 4A reopened: NO
+Phase 5 started: NO
+
+NATIVE BINARY
+TaleWorlds.CampaignSystem.dll
+SHA256=5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+
+VOLUNTEER QUALITY PIPELINE
+- DefaultVolunteerModel.MaxVolunteerTier=4
+- GetBasicVolunteer:
+  rural notable + castle-bound village => culture EliteBasicTroop
+  otherwise => culture BasicTroop
+- every slot first calls VolunteerModel.GetDailyVolunteerProductionProbability
+- empty success => native basic/elite-basic fill
+- occupied success + UpgradeTargets + current tier<4 => second native quality roll
+- second quality roll=log2(notable.Power/currentTier)*0.01
+- second success => one direct native UpgradeTargets element selected with native RNG
+- at most one direct upgrade edge per slot/day iteration
+- no recursive re-upgrade in the same slot/day iteration
+- changed slots reorder by troop level plus mounted offset
+- higher quality tends to later, slower-probability indices
+
+NATIVE QUALITY SCARCITY ALREADY USES
+- slot index
+- notable power
+- current troop tier
+- MaxVolunteerTier
+- UpgradeTargets
+- native RNG
+- native policy/perk/game-option effects in first gate
+
+OTHER QUALITY PATHS
+- player manual troop upgrades
+- AI/non-main PartyUpgrader after map events + daily
+- daily PartyTrainingModel XP
+- battle/perk/recovery XP
+- garrison volunteer recruitment
+- base garrison BasicTroop growth
+- garrison daily XP and native upgrades
+- garrison transfers
+- prisoner recruitment at existing quality
+- town mercenary upgraded-tree supply
+- post-defeat recreation
+- Phase4A recreation example T1=6,T2=4,T3=6,T4=1,T5=4
+- minor-faction map recruitment of BasicTroop
+
+SELECTED PHASE4C SEAM
+Use the existing selected LocalManpowerVolunteerModel.
+Do not add a second VolunteerModel wrapper.
+
+EMPTY SLOT
+- preserve Phase4B exactly
+
+OCCUPIED NON-UPGRADE-ELIGIBLE
+- exact native passthrough
+
+OCCUPIED UPGRADE-ELIGIBLE
+- future pure Phase4C policy adjusts only first native probability gate
+- native notable-power/tier second roll unchanged
+- native UpgradeTargets unchanged
+- native RNG unchanged
+- native slot mutation unchanged
+
+CANDIDATE LOCAL QUALITY COMPONENTS
+population High=1.00 Mid=0.95 Low=0.80
+security existing 0.80..1.00 curve, full at 50
+acute raid/siege=0.50
+qualityMultiplier=clamp(population*security*acute,0.50,1.00)
+p_quality=clamp(p_native*qualityMultiplier,0,1)
+
+QUALITY FLOOR RATIONALE
+0.50 is a safety bound, NOT balance proof.
+It is higher than Phase4B's 0.35 because native quality already has:
+- slower later slots
+- a separate notable-power/current-tier second roll
+- MaxVolunteerTier
+- one direct edge per day
+This avoids compounding scarcity into excessive stall without evidence.
+
+EXCLUDED NEW MULTIPLIERS
+- current tier
+- notable power
+- culture
+- troop type/tree
+- settlement-type bonus
+- loyalty
+- militia/garrison
+- War Strain
+- social/political memory
+- Home Responsibility
+
+SAFETY
+Bannerlord running=False
+live ClanAI DLL unchanged during audit:
+9CB64EA90774A391D442FC32F460EF09E1D2901AEE3EBB194386E37A96F1C896
+
+CHECKPOINT
+No source/tests added.
+No build needed because runtime source is unchanged.
+Next: separately bounded offline-only Phase4C policy + occupied branch + tests.

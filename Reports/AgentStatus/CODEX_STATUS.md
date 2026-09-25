@@ -2,118 +2,94 @@
 
 ## Current checkpoint
 
-Phase 4B Local Manpower v1 is now **implemented, build-proven, and runtime-observed for the minimum required probability contract**. A native volunteer-slot mutation after a Local Manpower evaluation was also observed.
+Phase 4C has begun with the required **offline Troop Tiers / veteran-quality native-capability design audit**.
 
-**Balance is not proven. Phase 4C has not started.**
+**Audit result: PASS — a clean shared native quality seam exists. No Phase 4C gameplay source is implemented in this checkpoint.**
 
-Validated policy checkpoint: `88aff823d055b0b951d263f8259f5c3537ed6bfd`  
-Observation-only runtime checkpoint: `5a6b9757b33a33f356f537cced6a74051ca04e30`  
-Runtime DLL SHA-256: `9CB64EA90774A391D442FC32F460EF09E1D2901AEE3EBB194386E37A96F1C896`
+Phase 4A remains closed. Phase 4B remains implemented/build-proven/runtime-observed at its accepted contract and is not retuned.
 
-The pure policy blob remained unchanged from the offline implementation checkpoint. The runtime hash differs from the previous offline DLL only because minimum observation-only telemetry was added and revalidated.
+## Native quality seam
 
-## Runtime proof
+Bannerlord's daily notable volunteer update uses the same selected `VolunteerModel.GetDailyVolunteerProductionProbability` as the first gate for both empty-slot refill and occupied-slot quality progression.
 
-The protected fixture started at `649491.27044636116`. Required proof was complete by `649491.450873`, only **0.18042663884 campaign hours** later. Pause acknowledgement occurred at `649491.6858864167`, **0.41544005554 hours** after start, far inside the 168-hour maximum.
+For an occupied volunteer, native quality then independently requires:
 
-### Selected model
+- `UpgradeTargets`;
+- current tier below native `MaxVolunteerTier=4`;
+- a second native `log2(notable.Power/currentTier)*0.01` roll;
+- native RNG selection of one direct `UpgradeTargets` target.
 
-Runtime logged:
+At most one direct native upgrade edge can occur for a slot in one daily update.
 
-- inner: `DefaultVolunteerModel`;
-- wrapper: `LocalManpowerVolunteerModel`;
-- selected wrapper: true;
-- policy: empty slots only.
+Changed volunteer slots are reordered by level/mounted weight, which tends to place higher-quality troops in later slots whose native first-gate probability is already lower.
 
-### Healthy empty passthrough
+Native quality is therefore already materially slower than raw refill.
 
-Vinela, High hearth `624.9296`, security `99.15879`, no raid/siege:
+## Selected Phase 4C-v1 architecture
 
-- native `0.08823674`;
-- multiplier `1`;
-- final `0.08823674`.
+Do **not** add another `VolunteerModel` wrapper.
 
-### Degraded empty slowdown
+Later extend the existing selected `LocalManpowerVolunteerModel` with:
 
-Lysia, Mid hearth `412.8728`, security `91.290535`, no raid/siege:
+- empty slot -> existing Phase 4B behavior unchanged;
+- occupied but not native-upgrade-eligible -> exact native passthrough;
+- occupied + upgrade-eligible -> separate pure Phase 4C quality policy adjusts only the first native probability gate.
 
-- native `0.525`;
-- population factor `0.95`;
-- security factor `1`;
-- acute factor `1`;
-- multiplier `0.95`;
-- final `0.498749971`.
+Native notable power, current tier, `MaxVolunteerTier`, `UpgradeTargets`, RNG, culture/tree and actual slot mutation remain untouched.
 
-This was a natural degraded locality; no state was manufactured.
+## Candidate quality policy
 
-### Occupied passthrough
+Use the already-audited local context components:
 
-Vinela occupied slot:
+- population: High 1.00, Mid 0.95, Low 0.80;
+- security: existing 0.80..1.00 curve, full at 50;
+- active raid/siege: 0.50.
 
-- native `0.525`;
-- final `0.525`;
-- reason `occupied-slot-native-passthrough`.
+Use a **separate quality safety floor**:
 
-### Native mutation authority
+`qualityMultiplier = clamp(population * security * acute, 0.50, 1.00)`
 
-Immediately after the Lysia degraded evaluation, the native daily volunteer update changed Sanion's slot from empty to:
+`p_quality = clamp(p_native * qualityMultiplier, 0, 1)`
 
-`imperial_vigla_recruit[tier=2,culture=empire]`
+The 0.50 floor is a safety bound, not a balance claim. It is intentionally higher than Phase 4B's 0.35 floor because volunteer quality already has the slower slot-index gate plus the native notable-power/current-tier second gate.
 
-The telemetry records `source=native-daily-volunteer-update` and `mutationByClanAI=False`.
+Healthy secure territory preserves vanilla quality progression exactly.
 
-Additional native fills/transitions occurred naturally in Lysia, Arpotis, Marunath, and Aegosca.
+## Other native veteran-recovery paths
 
-No telemetry error occurred.
+Volunteer quality is not the only path.
 
-## Runtime scope not exercised
+Native quality can also recover through party XP/upgrading, daily training, battle/perk XP, garrison XP/upgrades and transfers, prisoner recruitment, mercenary pools, and post-defeat recreation.
 
-This run did **not** runtime-exercise:
+Phase 4A proved one recreated native party naturally contained T1-T5 troops before settlement interaction.
 
-- Low population;
-- security below 50;
-- missing-security passthrough;
-- active raid/siege factor 0.50;
-- minimum multiplier 0.35;
-- natural AI/garrison consumption of a visible notable slot under the new wrapper.
+Phase 4C-v1 therefore targets only the shared notable-volunteer quality source.
 
-Shared-pool consumption therefore remains supported by the native-capability audit but was not newly runtime-observed in this brief run.
+## Native binary
 
-No extension was performed after the required proof plus native fill completed.
+`TaleWorlds.CampaignSystem.dll`
 
-## Safety
+SHA-256:
 
-Bannerlord was closed before deployment. Rollback hash:
+`5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F`
 
-`0D23F4A66E0A1E4413E879C97E963C7DB923D8D6B4421291105D8565120CD5A8`
+See:
 
-Strategic Commitment remained `Mode=Observe`; Visual War remained OFF.
+- `Reports/Manpower/PHASE4C_TROOP_QUALITY_NATIVE_CAPABILITY_AUDIT.md`
+- `Reports/Manpower/evidence/phase4c_troop_quality_native_capability_audit_20260925.txt`
 
-The run used `EXIT_NOSAVE`; fresh command-history scan found zero save commands.
+## Next bounded milestone
 
-Protected fixture remained unchanged:
+Separately implement **offline only**:
 
-`A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427`  
-`2026-09-24T17:20:12.2384633Z`
+- pure Phase 4C troop-quality probability policy;
+- occupied upgrade-eligible branch in the existing wrapper;
+- Phase 4B empty behavior locked unchanged;
+- deterministic/delegation/no-mutation/standalone tests;
+- Release build.
 
-Bannerlord is closed and rollback remains intact.
+Do not launch Bannerlord or deploy until that offline checkpoint passes.
 
-## Evidence
-
-- `Reports/Manpower/PHASE4B_LOCAL_MANPOWER_V1_RUNTIME_RESULT.md`
-- `Reports/Manpower/evidence/phase4b_local_manpower_v1_runtime_20260925.txt`
-- offline implementation: `Reports/Manpower/PHASE4B_LOCAL_MANPOWER_V1_OFFLINE_IMPLEMENTATION_RESULT.md`
-- native audit: `Reports/Manpower/PHASE4B_LOCAL_MANPOWER_NATIVE_CAPABILITY_AUDIT.md`
-
-## Capability status
-
-Implemented: **yes**.  
-Build-proven: **yes**.  
-Runtime-observed: **yes**.  
-Native mutation observed: **yes**.  
-Shared AI/garrison consumption observed: **no**.  
-Balance proven: **no**.
-
-Stop at this Phase 4B checkpoint. Do not begin Phase 4C in the same task.
+Do not begin Phase 5.
 
 Final product direction remains a standalone, installable, offline Bannerlord mod with no runtime dependency on ChatGPT, Codex, Desktop Commander, TestRunner, watchdogs, external IO, or development-machine absolute paths.
