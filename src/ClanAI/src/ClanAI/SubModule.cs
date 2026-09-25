@@ -154,6 +154,7 @@ namespace ClanAI
                 {
                     InstallGlobalAiModelMirror(starter);
                     InstallLocalManpowerVolunteerModel(starter);
+                    LocalBanditControlPatch.Install();
 
                     ClanAIPostVanilla.WriteExternalLog(
                         "WRAPPER_PASS_THROUGH global_ai_model_wrapper=enabled mutation=disabled ai_hourly_patch=disabled");

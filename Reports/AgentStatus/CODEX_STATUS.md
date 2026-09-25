@@ -2,11 +2,11 @@
 
 ## Current checkpoint
 
-Phase 5 has begun with the required **offline Security / Patrols / Banditry / Local Control native-capability audit**.
+Phase 5-v1 has completed its **offline-only Local Bandit Control implementation checkpoint**.
 
-**Audit result: PASS — a clean bounded native looter spawn-site seam exists. No Phase 5 gameplay source is implemented in this checkpoint.**
+**Implementation result: PASS — the audited town/village ambient-looter spawn-site weight modifier is implemented and build-proven. Runtime observation and balance proof have NOT been performed.**
 
-Phase 4A remains closed. Phase 4B and Phase 4C remain unchanged at their accepted implemented/build-proven/runtime-observed checkpoints. Their balance remains unproven. Phase 6 has not started.
+The implementation uses only native Security, preserves unsupported/hideout results exactly, changes only the returned relative spawn-site weight through a postfix, and adds no party/world mutation. Phase 4A remains closed. Phase 4B and Phase 4C remain unchanged at their accepted implemented/build-proven/runtime-observed checkpoints; their balance remains unproven. Phase 6 has not started.
 
 ## Native ecology finding
 
@@ -25,11 +25,11 @@ Native bandit counts are already bounded by `DefaultBanditDensityModel` and `Ban
 
 ## Selected Phase 5-v1 seam
 
-The recommended first seam is native:
+The implemented v1 seam is native:
 
 `BanditSpawnCampaignBehavior.GetSpawnChanceInSettlement(Settlement)`
 
-Use a narrow postfix/result modifier **only for town/village candidates**, which are the ambient looter spawn anchors.
+A narrow postfix/result modifier applies **only for town/village candidates** with usable Security, which are the ambient looter spawn anchors.
 
 Hideout candidates pass through native exactly.
 
@@ -101,20 +101,13 @@ SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 
 - `Reports/Security/PHASE5_SECURITY_BANDITRY_NATIVE_CAPABILITY_AUDIT.md`
 - `Reports/Security/evidence/phase5_security_banditry_native_capability_audit_20260925.txt`
+- `Reports/Security/PHASE5_LOCAL_BANDIT_CONTROL_V1_OFFLINE_IMPLEMENTATION_RESULT.md`
+- `Reports/Security/evidence/phase5_local_bandit_control_v1_validation_20260925.txt`
 
 ## Next bounded milestone
 
-Separately implement **offline only**:
+The next milestone is a **separately authorized bounded Phase 5 runtime characterization of this exact validated candidate**.
 
-- pure Security-to-looter-spawn-weight policy;
-- narrow result modifier on native `GetSpawnChanceInSettlement`;
-- town/village-only application;
-- hideout passthrough;
-- deterministic/no-mutation/standalone tests;
-- Release build.
-
-Do not launch Bannerlord or deploy until that offline checkpoint passes.
-
-Do not begin Phase 6.
+Do not launch it from this offline checkpoint. Do not retune the 0.75..1.25 bounds, add additional inputs, broaden the seam, or begin Phase 6.
 
 Final product direction remains standalone, installable, and offline with no runtime development-tool dependency.

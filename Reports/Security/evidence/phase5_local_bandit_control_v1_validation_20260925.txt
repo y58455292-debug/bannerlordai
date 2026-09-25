@@ -1,0 +1,71 @@
+﻿PHASE5_LOCAL_BANDIT_CONTROL_V1_OFFLINE_VALIDATION
+DATE_UTC 2026-09-25
+BASE 9ee0d3ce5b1b80a795a82fc2e2123d44bf73794f
+BANNERLORD_PROCESS_GUARD PASS_NOT_RUNNING
+CAMPAIGN_DLL_SHA256 5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+POLICY_SOURCE_SHA256 890DED9CAA10B1A4E84ACE80FBE5788E96E00FCE17654325E5EB94B5494A3FC2
+PATCH_SOURCE_SHA256 DBBA71F9AF3B17957EAF7AB00CD192A6EFABEAD0A00E1F59880D92A619F82B15
+COMMAND dotnet run --project Tests\Security\Phase5LocalBanditControlPolicy\Phase5LocalBanditControlPolicyTests.csproj -c Release
+PASS Phase 5 local bandit control policy checks=24
+EXIT 0
+COMMAND python Tests\Security\test_phase5_local_bandit_control_invariants.py
+PASS Phase 5 exact postfix/result-only wiring invariant
+PASS Phase 5 town/village-only Security input invariant
+PASS Phase 5 no-mutation invariant
+PASS Phase 5 standalone-path invariant
+PASS Phase 4B/4C pure policy preservation invariant
+EXIT 0
+COMMAND dotnet run --project Tests\Security\Phase5PatchResolution\Phase5PatchResolutionTests.csproj -c Release
+PASS Phase 5 private patch resolution checks=14
+EXIT 0
+PRESERVATION_SUITE_FROM_SAME_WORKTREE
+PASS Phase 4B/4C pure policy preservation invariant
+PASS Phase 4A recovery no-mutation/standalone invariant
+PASS Phase 4A recovery wiring
+PASS Phase 4A same-hero recreation wiring and original-observer preservation
+PASS Phase 4A same-hero recreation no-mutation and standalone invariant
+PASS Phase 4B Local Manpower selected-model delegation invariant
+PASS Phase 4B Local Manpower no-mutation invariant
+PASS Phase 4B Local Manpower standalone-path invariant
+PASS Phase 4C selected-wrapper branch invariant
+PASS Phase 4C native eligibility read-only invariant
+PASS Phase 4C no-mutation invariant
+PASS Phase 4C standalone-path invariant
+PASS Phase 4B policy byte-for-byte preservation invariant
+PASS Phase 4A same-hero recreation policy checks=43
+PASS Phase 4A recovery policy tests checks=20
+PASS Phase 4B local manpower probability policy checks=50
+PASS Phase 4B VolunteerModel delegation checks=13
+PASS Phase 4C VolunteerModel branch/delegation checks=23
+PASS Phase 4C troop quality probability policy checks=69
+PASS KingdomObjective runtime wiring
+PASS HomeResponsibility runtime wiring
+PASS Strategic Commitment verifier observation-only invariant
+PASS Strategic Commitment commit verifier wiring
+PASS Strategic Commitment no-mutation invariant
+PASS Strategic Commitment runtime wiring
+PASS Strategic Commitment standalone path
+PASS VisualWar commit verifier no-mutation invariant
+PASS VisualWar commit verifier wiring
+PASS VisualWar runtime wiring
+PASS VisualWar standalone activation path
+PASS KingdomObjective policy tests cases=34
+PASS Strategic Commitment commit policy tests checks=20
+PASS Strategic Commitment config tests checks=13
+PASS Strategic Commitment policy tests checks=34
+PASS HomeResponsibility policy tests cases=10
+PASS VisualWar commit policy tests checks=22
+PASS VisualWar policy tests checks=32
+ALL_PRESERVATION_TESTS_PASS
+COMMAND dotnet build src\ClanAI\src\ClanAI\ClanAI.csproj -c Release
+Build succeeded.
+    1 Warning(s)
+    0 Error(s)
+EXIT 0
+CANDIDATE_DLL_SHA256 D104BA8F0246C25E23FC9BF78FB73B57CBEEC22568F3797CE77365C8094C8AB2
+LIVE_DLL_SHA256_READ_ONLY F8EC94C8973C180F7BEA688016B272C690728A188D61EF05166E3ED51AE445DC
+BANNERLORD_PROCESS_GUARD_FINAL PASS_NOT_RUNNING
+DEPLOYMENT NOT_PERFORMED
+RUNTIME_CHARACTERIZATION NOT_PERFORMED
+BALANCE_PROOF NOT_PERFORMED
+RESULT PASS
