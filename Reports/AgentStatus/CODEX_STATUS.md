@@ -1,30 +1,32 @@
 # Codex Status
 
 ## Current task
-Continue from the completed Phase 2D-L1 persistence checkpoint into the already-defined Phase 3 Home Responsibility deterministic test seam.
+Phase 3 Home Responsibility deterministic seam is complete and checkpointed. Do not broaden the runtime behavior without the next evidence-driven Phase 3 slice.
 
 ## Last completed checkpoint
-Phase 2D-L1 save/reload continuity is runtime-proven.
+Phase 2D-L1 save/reload continuity is runtime-proven, including seven restored records, zero duplicate succession/destruction callbacks on reload, and `mutation=False`.
 
-The uniquely named test save `ClanAI V020V PERSIST PHASE2D L1 CONTINUITY 20260925 0130` materialized through TestRunner with `SAVE_TEST_END ... exists=True`. On a fresh configured-module launch, the save was loaded directly once from initialized `GauntletInitialScreen`. TestRunner reached `CAMPAIGN_READY` at saved campaign hour `649514.89141922223`.
-
-ClanAI then logged:
-- `KINGDOM_CONTINUITY_RESTORE records=7 found=True schema=1 mutation=False`;
-- two `KINGDOM_CONTINUITY_RECONCILED active=7 records=7 mutation=False` passes;
-- zero `KINGDOM_CONTINUITY_SUCCESSION` or `KINGDOM_CONTINUITY_DESTROYED` callbacks during the reload window.
-
-Because succession/destruction callbacks are the only continuity paths that emit those player notices and reconciliation emits no notice, the reload produced no duplicate succession/destruction notice. The continuity behavior performed no native political mutation. The protected demo-gate fixture was not overwritten.
-
-Exact evidence: `Reports/KingdomContinuity/evidence/phase2d_l1_reload_20260925.txt`.
+Phase 3 then completed the exact offline seam defined by `Reports/TerritorialResponsibility/PHASE3_SOURCE_AUDIT.md`.
 
 ## Current state
-PHASE 2D-L1 ROUND TRIP PROVEN; PHASE 3 DETERMINISTIC TEST SEAM NEXT.
+PHASE 2D-L1 ROUND TRIP PROVEN; PHASE 3 HOME RESPONSIBILITY DETERMINISTIC SEAM PASSED.
 
-## Exact next action
-Re-read current GitHub `main` at the mission boundary, then use `Reports/TerritorialResponsibility/PHASE3_SOURCE_AUDIT.md` as the Phase 3 contract. Add deterministic tests for the existing Home Responsibility pure eligibility/factor logic only. Do not generate native candidates, bypass native target selection, or replace post-vanilla behavior/target verification.
+The Phase 3 seam:
+- extracts pure `HomeResponsibilityPolicy` factor/eligibility logic with no Bannerlord types;
+- preserves Bannerlord's native candidate list and current composer score;
+- preserves the existing actor-at-war and actor-clan ownership boundaries;
+- preserves pending winner expectations and post-vanilla behavior/target commit verification;
+- passes ten deterministic policy cases;
+- passes the runtime-wiring invariant;
+- builds ClanAI Release with 0 errors and the inherited `System.ValueTuple` warning.
+
+No Phase 3 DLL was deployed and no new campaign behavior is claimed from this offline checkpoint.
+
+## Evidence
+- `Reports/KingdomContinuity/evidence/phase2d_l1_reload_20260925.txt`
+- `Reports/TerritorialResponsibility/PHASE3_DETERMINISTIC_TEST_RESULT.md`
 
 ## Resource discipline
-Do not re-debug the configured launch path, TestRunner command bus, `CLOSE_ESCAPE_MENU`, save materialization, or Phase 2D-L1 reload. Those are proven. Preserve Codex/coder usage for missing implementation and evidence.
+Do not re-debug the configured launch path, TestRunner command bus, `CLOSE_ESCAPE_MENU`, save materialization, Phase 2D-L1 reload, or the Phase 3 pure policy seam unless new evidence shows a defect.
 
-## Local/deployment note
-The L1 DLL was deployed only with Bannerlord closed and has a verified rollback at `D:\BannerlordAIResearch\Builds\Rollback_Phase2D_L1_20260924_ClanAI`. The final product remains a standalone installable offline Bannerlord mod; TestRunner, Inspector, Codex, ChatGPT, Desktop Commander, watchdogs, and other development infrastructure are validation-only and must not become runtime dependencies.
+The final product remains a standalone installable offline Bannerlord mod. TestRunner, Inspector, Codex, ChatGPT, Desktop Commander, watchdogs, and other development infrastructure are validation-only and must not become runtime dependencies.

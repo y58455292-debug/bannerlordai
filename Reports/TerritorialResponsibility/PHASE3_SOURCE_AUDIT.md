@@ -34,3 +34,8 @@ No code defect is established by this audit. These are scope gaps for the next r
 ## Next offline implementation slice
 
 Add focused deterministic tests around the pure decision portion of `HomeResponsibilityLayer`, extracting only the minimum helper needed to test eligibility and score factors without Bannerlord runtime objects. Preserve the native candidate list, existing owner/war/weak-state gates, the current factor values, and the post-vanilla commit check. Cover owned versus foreign settlement candidates, threatened owned settlements, weak recovery, and ordinary home/patrol/defense candidates. Run the focused tests and Release build offline. Do not deploy or claim campaign behavior from those tests. A later runtime check must use the established Inspector/TestRunner interface after it is available; it must not run against or disturb the current live session.
+
+
+## Follow-up checkpoint
+
+The deterministic seam defined above was completed on 2026-09-25. The runtime layer now delegates only pure eligibility/factor selection to `HomeResponsibilityPolicy`; ten standalone cases pass, a wiring guard preserves native candidate and post-vanilla commit verification, and the ClanAI Release build succeeds with 0 errors. No deployment or new runtime claim was made. See `Reports/TerritorialResponsibility/PHASE3_DETERMINISTIC_TEST_RESULT.md`.

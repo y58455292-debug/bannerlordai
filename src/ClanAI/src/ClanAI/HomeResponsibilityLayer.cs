@@ -9,12 +9,6 @@ namespace ClanAI
 {
     internal static class HomeResponsibilityLayer
     {
-        private const float WarGoHomeFactor = 1.15f;
-        private const float WarPatrolFactor = 1.25f;
-        private const float WarDefendFactor = 1.30f;
-        private const float ThreatFactor = 1.60f;
-        private const float RecoveryFactor = 1.35f;
-
         private static long _evaluations;
         private static long _applications;
         private static long _winnerChanges;
@@ -72,7 +66,9 @@ namespace ClanAI
                     " clan=" + clan.Name.ToString());
             }
 
-            if (!WorldScopeContext.EligibleIndependentLordAtWar(actor))
+            bool actorEligibleAtWar =
+                WorldScopeContext.EligibleIndependentLordAtWar(actor);
+            if (!actorEligibleAtWar)
                 return;
 
             _evaluations++;
@@ -92,46 +88,28 @@ namespace ClanAI
             {
                 AIBehaviorData data = thinkParams.AIBehaviorScores[i].Item1;
                 Settlement settlement = data.Party as Settlement;
-                if (settlement == null || !SameClan(settlement.OwnerClan, clan))
+                if (settlement == null)
                     continue;
+
                 float rawScore = thinkParams.AIBehaviorScores[i].Item2;
                 float baseScore = composer.CurrentScore(i, rawScore);
-                if (baseScore <= 0f)
+                HomeResponsibilityPolicyResult decision =
+                    HomeResponsibilityPolicy.Evaluate(
+                        actorEligibleAtWar,
+                        SameClan(settlement.OwnerClan, clan),
+                        baseScore,
+                        settlement.IsUnderSiege,
+                        settlement.IsUnderRaid,
+                        weak,
+                        PolicyBehavior(data.AiBehavior));
+                if (!decision.Apply)
                     continue;
 
-                float factor = 1f;
-                string reason = null;
-                bool threatened = settlement.IsUnderSiege || settlement.IsUnderRaid;
-
-                if (threatened)
-                {
-                    factor = ThreatFactor;
-                    reason = settlement.IsUnderSiege ? "home-under-siege" : "home-under-raid";
-                }
-                else if (weak && data.AiBehavior == AiBehavior.GoToSettlement)
-                {
-                    factor = RecoveryFactor;
-                    reason = "recover-at-home";
-                }
-                else if (data.AiBehavior == AiBehavior.DefendSettlement)
-                {
-                    factor = WarDefendFactor;
-                    reason = "defend-home-at-war";
-                }
-                else if (data.AiBehavior == AiBehavior.PatrolAroundPoint)
-                {
-                    factor = WarPatrolFactor;
-                    reason = "patrol-home-at-war";
-                }
-                else if (data.AiBehavior == AiBehavior.GoToSettlement)
-                {
-                    factor = WarGoHomeFactor;
-                    reason = "stay-near-home-at-war";
-                }
-                if (factor <= 1.001f)
-                    continue;
-
-                changes.Add(Tuple.Create(i, baseScore, factor, reason));
+                changes.Add(Tuple.Create(
+                    i,
+                    baseScore,
+                    decision.Factor,
+                    decision.Reason));
             }
 
             if (changes.Count == 0)
@@ -246,6 +224,17 @@ namespace ClanAI
                     return true;
             }
             return false;
+        }
+
+        private static HomeResponsibilityBehaviorKind PolicyBehavior(AiBehavior behavior)
+        {
+            if (behavior == AiBehavior.GoToSettlement)
+                return HomeResponsibilityBehaviorKind.GoToSettlement;
+            if (behavior == AiBehavior.DefendSettlement)
+                return HomeResponsibilityBehaviorKind.DefendSettlement;
+            if (behavior == AiBehavior.PatrolAroundPoint)
+                return HomeResponsibilityBehaviorKind.PatrolAroundPoint;
+            return HomeResponsibilityBehaviorKind.Other;
         }
 
         private static bool SameClan(Clan a, Clan b)

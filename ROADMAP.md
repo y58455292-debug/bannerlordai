@@ -189,7 +189,7 @@ Do not predetermine which kingdom survives.
 
 Make territory feel owned, defended, neglected, or contested based on actual noble behavior.
 
-**Offline checkpoint — source audit complete 2026-09-25.** Existing Home Responsibility remains bounded to Bannerlord-provided, positive-scoring candidates at clan-owned settlements for eligible independent lords at war; it modifies scores and verifies the native behavior/target after selection. The audit found no concrete defect and records scope gaps and a focused offline test seam in `Reports/TerritorialResponsibility/PHASE3_SOURCE_AUDIT.md`. Next: add deterministic tests for its pure eligibility/factor logic without generating native candidates or replacing post-vanilla commit verification.
+**Deterministic seam — PASSED 2026-09-25.** Existing Home Responsibility remains bounded to Bannerlord-provided, positive-scoring candidates at clan-owned settlements for eligible independent lords at war. Its ownership/score/factor selection is now isolated in a pure `HomeResponsibilityPolicy`; ten deterministic cases cover actor eligibility, foreign ownership, non-positive scores, threat precedence, weak recovery, defense, patrol, ordinary home movement, and unrelated behavior. A wiring invariant preserves the native candidate list and post-vanilla behavior/target commit check. Release build: 0 errors with the inherited `System.ValueTuple` warning. No DLL was deployed and this checkpoint makes no new runtime claim. See `Reports/TerritorialResponsibility/PHASE3_DETERMINISTIC_TEST_RESULT.md`.
 
 Rulers and nobles should not all behave as if joining the largest offensive army is always the correct choice.
 
