@@ -17,6 +17,7 @@ Null results are evidence and must be retained beside positive results when they
 Commit working code at least daily. Prefer small focused commits with descriptive messages. Do not use snapshot mega-commits as the normal workflow.
 
 Behavior-changing work should be committed separately from repository cleanup or documentation-only changes whenever practical.
+
 ## 4. Native-authority rule
 
 ClanAI should influence Bannerlord through bounded, auditable decision surfaces rather than replacing native world authority.
@@ -36,6 +37,7 @@ For every behavioral claim, record enough evidence to reconstruct:
 - whether the triggering world event was natural or forced.
 
 A score change is not an action commit. A causal modifier is not a completed autonomous behavior.
+
 ## 6. Deployment safety
 
 Do not replace the live mod DLL while Bannerlord is running.
@@ -54,7 +56,12 @@ Research spikes must be distilled into a short durable note or report before the
 
 ## 8. Release direction
 
-The intended final ClanAI module is standalone. Development harnesses may be used for observation and validation, but release behavior must not depend on TestRunner, command buses, office/controller machinery, absolute project paths, or external research state.
+The final ClanAI product must be a standalone, installable, offline Bannerlord mod.
+
+Development harnesses and agents may be used for implementation, observation, validation, and evidence only. Release behavior must not depend on Codex, ChatGPT, Desktop Commander, TestRunner, watchdogs, command buses, office/controller machinery, external agents, absolute development-machine paths, or external research state.
+
+Development convenience must never become a runtime dependency of the finished mod.
+
 ## 9. Reviewability
 
 Keep current behavioral source under `src/`, reproducible evidence under `Reports/`, and test entry points under `Tests/`.
@@ -72,8 +79,8 @@ A mission checkpoint occurs when the current requested milestone has been comple
 At every mission checkpoint, before beginning the next major feature or milestone:
 
 1. commit the completed work and matching evidence;
-2. fetch/pull the current `main` branch from GitHub;
-3. re-read `PROJECT_LAW.md`, `README.md`, and any current roadmap/vision files;
+2. push/synchronize the current work with GitHub `main`;
+3. re-read `PROJECT_LAW.md`, `README.md`, and current roadmap/vision files;
 4. inspect commits that landed while the mission was active;
 5. reconcile newer user direction or repository roadmap changes with local state;
 6. only then begin the next major milestone.
@@ -81,3 +88,13 @@ At every mission checkpoint, before beginning the next major feature or mileston
 GitHub is authoritative at mission boundaries. Do not rely on stale chat, controller, handoff, or local state when newer repository guidance exists.
 
 Mission-boundary synchronization is **not** an authorization gate. If the current roadmap or repository guidance already identifies the next milestone and there is no explicit user hold, unresolved blocker, or conflicting newer direction, proceed directly to that next milestone after the sync. Do not wait for fresh user permission merely because a checkpoint was reached.
+
+## 11. Resource-discipline rule
+
+Preserve development-agent usage for work that materially advances the mod.
+
+Before spending substantial agent/tool effort, check whether the repository already contains the answer, proof, command path, build result, or prior null result. Do not repeat audits, reverse-engineering, builds, runtime runs, launcher investigations, or tooling discovery that accepted evidence already resolves unless a new defect or changed state requires it.
+
+Prefer the smallest safe action that can produce the missing evidence or implementation. Tooling problems should be fixed only to the extent needed to continue the current milestone; they are not themselves product features.
+
+At checkpoints, record enough durable state in GitHub that a fresh agent can continue without reconstructing the project from chat history.
