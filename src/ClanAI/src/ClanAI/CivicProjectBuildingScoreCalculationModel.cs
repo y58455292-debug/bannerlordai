@@ -78,10 +78,25 @@ namespace ClanAI
                     loyalty,
                     nativeRebelliousThreshold);
 
-            return SelectResult(
+            Building finalResult =
+                SelectResult(
+                    nativeResult,
+                    festivalAndGames,
+                    decision.PreferFestivalAndGames);
+
+            CivicProjectRuntimeTelemetry.ObserveEvaluation(
+                town,
                 nativeResult,
-                festivalAndGames,
-                decision.PreferFestivalAndGames);
+                finalResult,
+                contextValid,
+                isNpcTown,
+                isConstructionIdle,
+                hasFestivalAndGamesProject,
+                loyalty,
+                nativeRebelliousThreshold,
+                decision);
+
+            return finalResult;
         }
 
         internal static Building SelectResult(
@@ -216,5 +231,3 @@ namespace ClanAI
         }
     }
 }
-
-[executed on device: DESKTOP-JO4B7VH (fd6618f4-5715-46b1-8665-68172ef15169)]

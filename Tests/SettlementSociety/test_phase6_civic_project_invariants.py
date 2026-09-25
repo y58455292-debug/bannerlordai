@@ -1,4 +1,4 @@
-from pathlib import Path
+﻿from pathlib import Path
 import hashlib
 import re
 
@@ -8,11 +8,14 @@ BASE = ROOT / "src" / "ClanAI" / "src" / "ClanAI"
 policy_path = BASE / "CivicProjectSelectionPolicy.cs"
 wrapper_path = BASE / "CivicProjectBuildingScoreCalculationModel.cs"
 submodule_path = BASE / "SubModule.cs"
+telemetry_path = BASE / "CivicProjectRuntimeTelemetry.cs"
 
 policy = policy_path.read_text(encoding="utf-8")
 wrapper = wrapper_path.read_text(encoding="utf-8")
 submodule = submodule_path.read_text(encoding="utf-8")
-runtime = policy + "\n" + wrapper
+telemetry = telemetry_path.read_text(encoding="utf-8")
+gameplay_runtime = policy + "\n" + wrapper
+runtime = gameplay_runtime + "\n" + telemetry
 
 failed = []
 
@@ -87,7 +90,7 @@ for token in (
     if token not in submodule:
         failed.append("missing installer compatibility token: " + token)
 
-# Runtime Phase 6 source must not mutate world state or bypass the native commit.
+# Gameplay Phase 6 source must not mutate world state or bypass the native commit.
 for forbidden in (
     "new Building(",
     "BuildingHelper.ChangeDefaultBuilding",
@@ -111,10 +114,47 @@ for forbidden in (
     "[Saveable",
     "SyncData(",
 ):
-    if forbidden in runtime:
+    if forbidden in gameplay_runtime:
         failed.append("Phase 6 direct mutation/save token: " + forbidden)
 
-# Standalone runtime path: no external IO, network, processes, harnesses, or dev paths.
+# Runtime telemetry may observe the exact native commit seam, but only through a postfix.
+for token in (
+    "typeof(BuildingHelper)",
+    "nameof(BuildingHelper.ChangeDefaultBuilding)",
+    "nameof(ChangeDefaultBuildingPostfix)",
+    "postfix: new HarmonyMethod(postfix)",
+    "source=native-BuildingHelper.ChangeDefaultBuilding",
+    "mutationByClanAI=False",
+):
+    if token not in telemetry:
+        failed.append("missing observation-only telemetry token: " + token)
+
+for forbidden in (
+    "prefix:",
+    "transpiler:",
+    "finalizer:",
+    "new Building(",
+    "Town.Loyalty =",
+    ".Loyalty =",
+    "CurrentDefaultBuilding =",
+    "BuildingsInProgress.Enqueue",
+    "BuildingsInProgress.Dequeue",
+    "BuildingsInProgress.Clear",
+    "Buildings.Add(",
+    "SetBuildingProgress",
+    "ChangeRelationAction",
+    ".Prosperity =",
+    ".Security =",
+    ".Militia =",
+    "ChangeOwner",
+    "ChangeGovernorAction",
+    "[Saveable",
+    "SyncData(",
+):
+    if forbidden in telemetry:
+        failed.append("Phase 6 telemetry mutation/control token: " + forbidden)
+
+# Standalone runtime path: no direct external IO, network, processes, harnesses, or dev paths.
 for forbidden in (
     "System.IO",
     "File.",
@@ -137,6 +177,9 @@ for forbidden in (
 if re.search(r'@?"[A-Za-z]:[\\/]', runtime):
     failed.append("Phase 6 absolute development-machine path")
 
+if hashlib.sha256(policy_path.read_bytes()).hexdigest().upper() != "2AE3008F7FF5E3F13135425B4B970C0C9E5F24869228F43DCDB19BEF215C41A3":
+    failed.append("Phase 6 pure policy byte-for-byte preservation invariant")
+
 # Preserve accepted policy blobs from Phase 4B, Phase 4C and Phase 5.
 expected_blobs = {
     "LocalManpowerProbabilityPolicy.cs": "f8b21dabb9df38df85fc0f83e6cfcad1a083f713",
@@ -157,6 +200,7 @@ if failed:
 print("PASS Phase 6 civic-project NPC-only/idle-town wiring invariant")
 print("PASS Phase 6 civic-project no-mutation invariant")
 print("PASS Phase 6 civic-project standalone-path invariant")
+print("PASS Phase 6 civic-project observation-only telemetry invariant")
+print("PASS Phase 6 pure policy byte-for-byte preservation invariant")
 print("PASS Phase 4B/4C and Phase 5 preservation invariant")
 
-[executed on device: DESKTOP-JO4B7VH (fd6618f4-5715-46b1-8665-68172ef15169)]

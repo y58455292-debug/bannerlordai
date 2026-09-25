@@ -100,8 +100,17 @@ namespace ClanAI
             BuildingScoreCalculationModel current =
                 starter.GetModel<BuildingScoreCalculationModel>();
 
-            if (current == null ||
-                current is CivicProjectBuildingScoreCalculationModel)
+            if (current == null)
+            {
+                ClanAIPostVanilla.WriteExternalLog(
+                    "CIVIC_PROJECT_MODEL_SKIPPED" +
+                    " inner=<none>" +
+                    " reason=no-current-model" +
+                    " mutation=False");
+                return;
+            }
+
+            if (current is CivicProjectBuildingScoreCalculationModel)
             {
                 return;
             }
@@ -109,6 +118,12 @@ namespace ClanAI
             if (!CivicProjectBuildingScoreCalculationModel
                     .SupportsInnerModel(current))
             {
+                ClanAIPostVanilla.WriteExternalLog(
+                    "CIVIC_PROJECT_MODEL_SKIPPED" +
+                    " inner=" +
+                    current.GetType().FullName +
+                    " reason=unsupported-inner-model" +
+                    " mutation=False");
                 return;
             }
 
@@ -129,6 +144,11 @@ namespace ClanAI
                 throw new System.InvalidOperationException(
                     "Phase 6 CivicProject BuildingScoreCalculationModel was not selected");
             }
+
+            CivicProjectRuntimeTelemetry.Install(
+                starter,
+                wrapper,
+                current);
         }
 
         private static void InstallLocalManpowerVolunteerModel(
@@ -217,5 +237,3 @@ namespace ClanAI
 }
 
 
-
-[executed on device: DESKTOP-JO4B7VH (fd6618f4-5715-46b1-8665-68172ef15169)]
