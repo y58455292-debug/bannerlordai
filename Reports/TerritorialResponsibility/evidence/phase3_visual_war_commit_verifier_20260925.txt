@@ -1,0 +1,65 @@
+Phase 3 Visual War observation-only commit verifier
+Date: 2026-09-25 UTC
+Repository base: bc1ebe07e884f35b8fb218eab30c27e444a3d465
+
+COMMAND
+dotnet run --project Tests/TerritorialResponsibility/VisualWarCommit/VisualWarCommitPolicyTests.csproj -c Release
+
+RESULT
+PASS VisualWar commit policy tests checks=22
+creation, native behavior/target matching, arrival matching, and expiry preserved
+
+COMMAND
+python Tests/TerritorialResponsibility/test_visual_war_commit_verifier_wiring.py
+
+RESULT
+PASS VisualWar commit verifier wiring
+expectation-on-winner-change and later native-state observation preserved
+
+COMMAND
+python Tests/TerritorialResponsibility/test_visual_war_commit_verifier_no_mutation.py
+
+RESULT
+PASS VisualWar commit verifier no-mutation invariant
+no movement/order/target/faction/settlement/war mutation APIs introduced
+
+REGRESSION
+dotnet run --project Tests/TerritorialResponsibility/VisualWarPolicyTests.csproj -c Release
+PASS VisualWar policy tests checks=32
+defense/offense/rear-security factors and weak exclusions preserved
+activation marker resolves module-locally and remains absent-by-default
+
+python Tests/TerritorialResponsibility/test_visual_war_runtime_wiring.py
+PASS VisualWar runtime wiring
+native candidates/world classification/composer ownership preserved
+
+python Tests/TerritorialResponsibility/test_visual_war_standalone_path.py
+PASS VisualWar standalone activation path
+activation is module-local Data/ENABLE_VISUAL_WAR_LAB.txt and OFF when absent
+
+BUILD
+dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj -c Release
+Build succeeded.
+1 Warning(s)
+0 Error(s)
+
+KNOWN WARNING
+Inherited System.ValueTuple version conflict.
+
+BUILD SHA-256
+F8C5E2AE389ADB29034CF18DE6DAA293C6F13571A4AA3F15CABA13E744A0B338
+
+VERIFIER
+creation=only after Visual War composer winner change
+observation=later normal AI tick
+settlement target state=TargetSettlement|ShortTermTargetSettlement|BesiegedSettlement|CurrentSettlement
+mobile target state=TargetParty|ShortTermTargetParty
+behavior state=DefaultBehavior|ShortTermBehavior
+expiry_campaign_hours=18
+remove_on=match_or_expiry
+
+DEPLOYMENT
+none
+
+RUNTIME SUCCESS CLAIM
+none

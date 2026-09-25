@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
@@ -29,6 +30,9 @@ namespace ClanAI
         private static long _banditEngageCandidates;
         private static long _rearSecurityEligible;
         private static long _rearSecurityWeakSkips;
+        private static long _commitChecks;
+        private static long _commitMatches;
+        private static long _commitExpiries;
 
         private sealed class SettlementContext
         {
@@ -71,6 +75,11 @@ namespace ClanAI
                 new Dictionary<string, string>(
                     StringComparer.Ordinal);
 
+        private static readonly Dictionary<string, VisualWarCommitExpectation>
+            PendingCommitByParty =
+                new Dictionary<string, VisualWarCommitExpectation>(
+                    StringComparer.Ordinal);
+
         public static bool Enabled
         {
             get
@@ -110,11 +119,15 @@ namespace ClanAI
             _banditEngageCandidates = 0;
             _rearSecurityEligible = 0;
             _rearSecurityWeakSkips = 0;
+            _commitChecks = 0;
+            _commitMatches = 0;
+            _commitExpiries = 0;
 
             ContextBySettlement.Clear();
             WalledByFaction.Clear();
             BanditPartyIds.Clear();
             LastVisualSelectionByParty.Clear();
+            PendingCommitByParty.Clear();
 
             ClanAIPostVanilla.WriteExternalLog(
                 "VISUAL_WAR_RESET enabled=" + Enabled);
@@ -126,6 +139,8 @@ namespace ClanAI
             StrategicDecisionComposer.Frame composer,
             ActorBlackboard.State blackboard)
         {
+            VerifyPendingCommit(actor);
+
             if (!Enabled ||
                 actor == null ||
                 actor.LeaderHero == null ||
@@ -367,9 +382,14 @@ namespace ClanAI
                     changes);
 
             string partyKey =
-                string.IsNullOrEmpty(actor.StringId)
-                    ? actor.Name.ToString()
-                    : actor.StringId;
+                PartyKey(actor);
+
+            RecordPendingCommit(
+                actor,
+                thinkParams,
+                afterIndex,
+                winnerReason,
+                partyKey);
 
             string visualSelection =
                 winnerReason +
@@ -427,6 +447,222 @@ namespace ClanAI
                 _weakFrontierDefenseSkips;
 
             ClanAIPostVanilla.WriteExternalLog(text);
+        }
+
+        private static void RecordPendingCommit(
+            MobileParty actor,
+            PartyThinkParams thinkParams,
+            int winnerIndex,
+            string reason,
+            string partyKey)
+        {
+            if (actor == null ||
+                thinkParams == null ||
+                winnerIndex < 0 ||
+                winnerIndex >= thinkParams.AIBehaviorScores.Count ||
+                string.IsNullOrEmpty(partyKey))
+            {
+                return;
+            }
+
+            AIBehaviorData winner =
+                thinkParams.AIBehaviorScores[winnerIndex].Item1;
+
+            string targetName;
+            string targetKey =
+                CandidateTargetKey(
+                    winner,
+                    out targetName);
+
+            VisualWarCommitExpectation expectation =
+                VisualWarCommitPolicy.CreateExpectation(
+                    partyKey,
+                    actor.LeaderHero == null
+                        ? actor.Name.ToString()
+                        : actor.LeaderHero.Name.ToString(),
+                    PolicyBehavior(winner.AiBehavior),
+                    targetKey,
+                    targetName,
+                    reason,
+                    CampaignTime.Now.ToHours);
+
+            if (expectation != null)
+                PendingCommitByParty[partyKey] = expectation;
+        }
+
+        private static void VerifyPendingCommit(
+            MobileParty actor)
+        {
+            if (actor == null)
+                return;
+
+            string partyKey =
+                PartyKey(actor);
+
+            VisualWarCommitExpectation pending;
+            if (!PendingCommitByParty.TryGetValue(
+                    partyKey,
+                    out pending))
+            {
+                return;
+            }
+
+            _commitChecks++;
+
+            string actualTargetKey = null;
+            string actualTargetName = "<none>";
+            string arrivedTargetKey = null;
+            string arrivedTargetName = "<none>";
+
+            if (pending.ExpectedTargetKey.StartsWith(
+                    "S:",
+                    StringComparison.Ordinal))
+            {
+                Settlement actualSettlement =
+                    actor.TargetSettlement ??
+                    actor.ShortTermTargetSettlement ??
+                    actor.BesiegedSettlement ??
+                    actor.CurrentSettlement;
+
+                actualTargetKey =
+                    SettlementTargetKey(actualSettlement);
+                actualTargetName =
+                    actualSettlement == null
+                        ? "<none>"
+                        : actualSettlement.Name.ToString();
+
+                arrivedTargetKey =
+                    SettlementTargetKey(
+                        actor.CurrentSettlement);
+                arrivedTargetName =
+                    actor.CurrentSettlement == null
+                        ? "<none>"
+                        : actor.CurrentSettlement.Name.ToString();
+            }
+            else if (pending.ExpectedTargetKey.StartsWith(
+                         "P:",
+                         StringComparison.Ordinal))
+            {
+                MobileParty actualParty =
+                    actor.TargetParty ??
+                    actor.ShortTermTargetParty;
+
+                actualTargetKey =
+                    MobilePartyTargetKey(actualParty);
+                actualTargetName =
+                    actualParty == null
+                        ? "<none>"
+                        : actualParty.Name.ToString();
+            }
+
+            VisualWarCommitCheckResult result =
+                VisualWarCommitPolicy.Evaluate(
+                    pending,
+                    PolicyBehavior(actor.DefaultBehavior),
+                    PolicyBehavior(actor.ShortTermBehavior),
+                    actualTargetKey,
+                    arrivedTargetKey,
+                    CampaignTime.Now.ToHours);
+
+            if (result.Remove)
+            {
+                PendingCommitByParty.Remove(partyKey);
+
+                if (result.Matched)
+                    _commitMatches++;
+                else if (result.Expired)
+                    _commitExpiries++;
+            }
+
+            ClanAIPostVanilla.WriteExternalLog(
+                "VISUAL_WAR_COMMIT_CHECK" +
+                " actor=" + pending.ActorName +
+                " partyId=" + pending.PartyId +
+                " reason=" + pending.Reason +
+                " expectedBehavior=" + pending.ExpectedBehavior +
+                " expectedTarget=" + pending.ExpectedTargetName +
+                " expectedTargetKey=" + pending.ExpectedTargetKey +
+                " actualDefault=" + actor.DefaultBehavior +
+                " actualShort=" + actor.ShortTermBehavior +
+                " actualTarget=" + actualTargetName +
+                " actualTargetKey=" + (actualTargetKey ?? "<none>") +
+                " arrivedTarget=" + arrivedTargetName +
+                " arrivedTargetKey=" + (arrivedTargetKey ?? "<none>") +
+                " behaviorMatch=" + result.BehaviorMatch +
+                " targetMatch=" + result.TargetMatch +
+                " arrivedMatch=" + result.ArrivedMatch +
+                " matched=" + result.Matched +
+                " expired=" + result.Expired +
+                " ageHours=" +
+                    result.AgeHours.ToString(
+                        "0.###",
+                        CultureInfo.InvariantCulture) +
+                " checks=" + _commitChecks +
+                " matches=" + _commitMatches +
+                " expiries=" + _commitExpiries);
+        }
+
+        private static string PartyKey(
+            MobileParty actor)
+        {
+            if (actor == null)
+                return "<null>";
+
+            if (!string.IsNullOrEmpty(actor.StringId))
+                return actor.StringId;
+
+            if (actor.LeaderHero != null &&
+                !string.IsNullOrEmpty(
+                    actor.LeaderHero.StringId))
+            {
+                return actor.LeaderHero.StringId;
+            }
+
+            return actor.Name.ToString();
+        }
+
+        private static string CandidateTargetKey(
+            AIBehaviorData data,
+            out string targetName)
+        {
+            Settlement settlement =
+                data.Party as Settlement;
+            if (settlement != null)
+            {
+                targetName =
+                    settlement.Name.ToString();
+                return SettlementTargetKey(settlement);
+            }
+
+            MobileParty party =
+                data.Party as MobileParty;
+            if (party != null)
+            {
+                targetName =
+                    party.Name.ToString();
+                return MobilePartyTargetKey(party);
+            }
+
+            targetName = "<none>";
+            return null;
+        }
+
+        private static string SettlementTargetKey(
+            Settlement settlement)
+        {
+            return settlement == null ||
+                   string.IsNullOrEmpty(settlement.StringId)
+                ? null
+                : "S:" + settlement.StringId;
+        }
+
+        private static string MobilePartyTargetKey(
+            MobileParty party)
+        {
+            return party == null ||
+                   string.IsNullOrEmpty(party.StringId)
+                ? null
+                : "P:" + party.StringId;
         }
 
         private static void EnsureWorldContext()
