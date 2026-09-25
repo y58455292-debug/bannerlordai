@@ -8,14 +8,16 @@ BASE = ROOT / "src" / "ClanAI" / "src" / "ClanAI"
 
 policy_path = BASE / "LocalBanditControlPolicy.cs"
 patch_path = BASE / "LocalBanditControlPatch.cs"
+telemetry_path = BASE / "LocalBanditControlRuntimeTelemetry.cs"
 submodule_path = BASE / "SubModule.cs"
 phase4b_path = BASE / "LocalManpowerProbabilityPolicy.cs"
 phase4c_path = BASE / "TroopQualityProbabilityPolicy.cs"
 
 policy = policy_path.read_text(encoding="utf-8")
 patch = patch_path.read_text(encoding="utf-8")
+telemetry = telemetry_path.read_text(encoding="utf-8")
 submodule = submodule_path.read_text(encoding="utf-8")
-phase5_runtime = policy + "\n" + patch
+phase5_runtime = policy + "\n" + patch + "\n" + telemetry
 
 failed = []
 
@@ -37,6 +39,7 @@ for token in (
     "private static void SpawnWeightPostfix(",
     "Settlement __0",
     "ref float __result",
+    "float nativeWeight = __result;",
     "LocalBanditCandidateKind.Unsupported ||",
     "!hasSecurity ||",
     "!LocalBanditControlPolicy.IsFinite(security)",
@@ -68,7 +71,7 @@ for token in (
     "else if (settlement.IsVillage)",
     "LocalBanditCandidateKind.Village",
     "settlement.Village.Bound",
-    "bound.Town.Security",
+    "boundSettlement.Town.Security",
 ):
     if token not in patch:
         failed.append("missing candidate/security filter: " + token)
@@ -86,7 +89,7 @@ for forbidden in (
     "HourlyTickClanEvent",
     "DefaultBanditDensityModel",
 ):
-    if forbidden in patch:
+    if forbidden in phase5_runtime:
         failed.append("broader bandit seam reference: " + forbidden)
 
 # Pure policy is TaleWorlds-free and contains exactly the selected v1 bounds.
@@ -174,7 +177,10 @@ for forbidden in (
 if re.search(r'@?"[A-Za-z]:[\\/]', phase5_runtime):
     failed.append("Phase 5 absolute development-machine path")
 
-# Phase 4 policy blobs must remain byte-for-byte unchanged.
+# The accepted Phase 5 gameplay policy and Phase 4 policies must remain
+# byte-for-byte unchanged while runtime telemetry is added.
+if git_blob_sha(policy_path) != "7b3d119f274ddf884167f8fd337815d8ba6e6c47":
+    failed.append("Phase 5 pure policy blob changed")
 if git_blob_sha(phase4b_path) != "f8b21dabb9df38df85fc0f83e6cfcad1a083f713":
     failed.append("Phase 4B pure policy blob changed")
 if git_blob_sha(phase4c_path) != "d7b997d7c99e2d768bff97bf10057748547a32e8":
@@ -190,4 +196,5 @@ print("PASS Phase 5 exact postfix/result-only wiring invariant")
 print("PASS Phase 5 town/village-only Security input invariant")
 print("PASS Phase 5 no-mutation invariant")
 print("PASS Phase 5 standalone-path invariant")
+print("PASS Phase 5 pure policy byte-for-byte preservation invariant")
 print("PASS Phase 4B/4C pure policy preservation invariant")

@@ -79,6 +79,8 @@ namespace ClanAI
                 target,
                 postfix: new HarmonyMethod(postfix));
 
+            LocalBanditControlRuntimeTelemetry.Install();
+
             _installed = true;
         }
 
@@ -87,8 +89,10 @@ namespace ClanAI
             ref float __result)
         {
             Settlement settlement = __0;
+            float nativeWeight = __result;
             LocalBanditCandidateKind candidateKind =
                 LocalBanditCandidateKind.Unsupported;
+            Settlement boundSettlement = null;
             bool hasSecurity = false;
             float security = 0.0f;
 
@@ -113,14 +117,14 @@ namespace ClanAI
 
                     if (settlement.Village != null)
                     {
-                        Settlement bound =
+                        boundSettlement =
                             settlement.Village.Bound;
 
-                        if (bound != null &&
-                            bound.Town != null)
+                        if (boundSettlement != null &&
+                            boundSettlement.Town != null)
                         {
                             security =
-                                bound.Town.Security;
+                                boundSettlement.Town.Security;
                             hasSecurity = true;
                         }
                     }
@@ -132,17 +136,51 @@ namespace ClanAI
                 !hasSecurity ||
                 !LocalBanditControlPolicy.IsFinite(security))
             {
+                string reason =
+                    candidateKind ==
+                        LocalBanditCandidateKind.Unsupported
+                        ? "unsupported-candidate"
+                        : (!hasSecurity
+                            ? "missing-security"
+                            : "non-finite-security");
+
+                LocalBanditControlRuntimeTelemetry
+                    .ObserveEvaluation(
+                        settlement,
+                        boundSettlement,
+                        candidateKind,
+                        hasSecurity,
+                        security,
+                        nativeWeight,
+                        1.0f,
+                        nativeWeight,
+                        false,
+                        reason);
+
                 return;
             }
 
             LocalBanditControlResult result =
                 LocalBanditControlPolicy.Evaluate(
-                    __result,
+                    nativeWeight,
                     hasSecurity,
                     security,
                     candidateKind);
 
             __result = result.FinalWeight;
+
+            LocalBanditControlRuntimeTelemetry
+                .ObserveEvaluation(
+                    settlement,
+                    boundSettlement,
+                    candidateKind,
+                    hasSecurity,
+                    security,
+                    nativeWeight,
+                    result.ControlMultiplier,
+                    result.FinalWeight,
+                    result.ContextApplied,
+                    "security-relative-weight");
         }
     }
 }
