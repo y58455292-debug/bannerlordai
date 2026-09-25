@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net11.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="VisualWarProgram.cs" />
+    <Compile Include="../../src/ClanAI/src/ClanAI/VisualWarPolicy.cs"
+             Link="VisualWarPolicy.cs" />
+    <Compile Include="../../src/ClanAI/src/ClanAI/VisualWarActivation.cs"
+             Link="VisualWarActivation.cs" />
+  </ItemGroup>
+</Project>

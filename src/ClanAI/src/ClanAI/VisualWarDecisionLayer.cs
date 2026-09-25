@@ -10,8 +10,9 @@ namespace ClanAI
 {
     public static class VisualWarDecisionLayer
     {
-        private const string EnablePath =
-            @"D:\BannerlordAIResearch\Data\ENABLE_VISUAL_WAR_LAB.txt";
+        private static readonly string EnablePath =
+            VisualWarActivation.ResolveEnablePath(
+                typeof(VisualWarDecisionLayer).Assembly.Location);
 
         private static DateTime _nextSwitchCheck = DateTime.MinValue;
         private static bool _enabled;
@@ -79,7 +80,9 @@ namespace ClanAI
                 if (now >= _nextSwitchCheck)
                 {
                     _nextSwitchCheck = now.AddSeconds(2);
-                    _enabled = File.Exists(EnablePath);
+                    _enabled =
+                        !string.IsNullOrEmpty(EnablePath) &&
+                        File.Exists(EnablePath);
                 }
 
                 return _enabled;
@@ -172,8 +175,9 @@ namespace ClanAI
             }
 
             bool weakForRecovery =
-                readiness < 0.72f ||
-                foodDays < 3;
+                VisualWarPolicy.IsWeakForRecovery(
+                    readiness,
+                    foodDays);
 
             bool skippedWeakActiveDefense =
                 false;
@@ -217,75 +221,30 @@ namespace ClanAI
 
                     if (context != null)
                     {
-                        if (SameFaction(
-                                actor.MapFaction,
-                                settlement.MapFaction) &&
-                            IsDefensiveTravel(data.AiBehavior))
-                        {
-                            float pressure =
-                                context.UnderAttack
-                                    ? 1f
-                                    : context.FrontierScore;
+                        VisualWarPolicyResult decision =
+                            VisualWarPolicy.EvaluateSettlementCandidate(
+                                baseScore,
+                                PolicyBehavior(data.AiBehavior),
+                                weakForRecovery,
+                                SameFaction(
+                                    actor.MapFaction,
+                                    settlement.MapFaction),
+                                actor.MapFaction.IsAtWarWith(
+                                    settlement.MapFaction),
+                                context.FrontierScore,
+                                context.UnderAttack,
+                                SameFaction(
+                                    actor.MapFaction,
+                                    context.NearestEnemyFaction));
 
-                            if (pressure > 0f)
-                            {
-                                if (context.UnderAttack &&
-                                    !weakForRecovery)
-                                {
-                                    factor =
-                                        1f +
-                                        (0.22f * pressure) +
-                                        0.10f;
+                        if (decision.WeakActiveDefenseSkip)
+                            skippedWeakActiveDefense = true;
 
-                                    if (factor > 1.35f)
-                                        factor = 1.35f;
+                        if (decision.WeakFrontierDefenseSkip)
+                            skippedWeakFrontierDefense = true;
 
-                                    reason =
-                                        "active-defense";
-                                }
-                                else if (!context.UnderAttack &&
-                                    !weakForRecovery)
-                                {
-                                    factor =
-                                        1f +
-                                        (0.22f * pressure);
-
-                                    if (factor > 1.35f)
-                                        factor = 1.35f;
-
-                                    reason =
-                                        "frontier-defense";
-                                }
-                                else if (context.UnderAttack)
-                                {
-                                    skippedWeakActiveDefense =
-                                        true;
-                                }
-                                else
-                                {
-                                    skippedWeakFrontierDefense =
-                                        true;
-                                }
-                            }
-                        }
-                        else if (
-                            actor.MapFaction.IsAtWarWith(
-                                settlement.MapFaction) &&
-                            IsAggressive(data.AiBehavior) &&
-                            context.FrontierScore > 0f &&
-                            SameFaction(
-                                actor.MapFaction,
-                                context.NearestEnemyFaction) &&
-                            !weakForRecovery)
-                        {
-                            factor =
-                                1f +
-                                (0.16f *
-                                 context.FrontierScore);
-
-                            reason =
-                                "frontier-offense";
-                        }
+                        factor = decision.Factor;
+                        reason = decision.Reason;
                     }
                 }
                 else if (
@@ -301,35 +260,31 @@ namespace ClanAI
                     {
                         _engagePartyMobileTargets++;
 
-                        if (IsBandit(targetParty))
-                        {
+                        bool banditTarget =
+                            IsBandit(targetParty);
+
+                        if (banditTarget)
                             _banditEngageCandidates++;
-
-                            if (!weakForRecovery &&
-                                men > 0 &&
-                                men <= 160)
-                            {
-                                _rearSecurityEligible++;
-
-                                factor =
-                                    men <= 90
-                                        ? 1.25f
-                                        : 1.15f;
-
-                                reason =
-                                    "rear-security";
-                            }
-                            else if (weakForRecovery &&
-                                men > 0 &&
-                                men <= 160)
-                            {
-                                _rearSecurityWeakSkips++;
-                            }
-                        }
                         else
-                        {
                             _engagePartyNonBanditTargets++;
-                        }
+
+                        VisualWarPolicyResult decision =
+                            VisualWarPolicy.EvaluateEngagePartyCandidate(
+                                baseScore,
+                                PolicyBehavior(data.AiBehavior),
+                                weakForRecovery,
+                                men,
+                                true,
+                                banditTarget);
+
+                        if (decision.RearSecurityEligible)
+                            _rearSecurityEligible++;
+
+                        if (decision.RearSecurityWeakSkip)
+                            _rearSecurityWeakSkips++;
+
+                        factor = decision.Factor;
+                        reason = decision.Reason;
                     }
                 }
 
@@ -834,28 +789,24 @@ namespace ClanAI
                     party.StringId);
         }
 
-        private static bool IsDefensiveTravel(
+        private static VisualWarBehaviorKind PolicyBehavior(
             AiBehavior behavior)
         {
-            return
-                behavior ==
-                    AiBehavior.GoToSettlement ||
-                behavior ==
-                    AiBehavior.DefendSettlement ||
-                behavior ==
-                    AiBehavior.PatrolAroundPoint;
-        }
-
-        private static bool IsAggressive(
-            AiBehavior behavior)
-        {
-            return
-                behavior ==
-                    AiBehavior.RaidSettlement ||
-                behavior ==
-                    AiBehavior.BesiegeSettlement ||
-                behavior ==
-                    AiBehavior.AssaultSettlement;
+            if (behavior == AiBehavior.GoToSettlement)
+                return VisualWarBehaviorKind.GoToSettlement;
+            if (behavior == AiBehavior.DefendSettlement)
+                return VisualWarBehaviorKind.DefendSettlement;
+            if (behavior == AiBehavior.PatrolAroundPoint)
+                return VisualWarBehaviorKind.PatrolAroundPoint;
+            if (behavior == AiBehavior.RaidSettlement)
+                return VisualWarBehaviorKind.RaidSettlement;
+            if (behavior == AiBehavior.BesiegeSettlement)
+                return VisualWarBehaviorKind.BesiegeSettlement;
+            if (behavior == AiBehavior.AssaultSettlement)
+                return VisualWarBehaviorKind.AssaultSettlement;
+            if (behavior == AiBehavior.EngageParty)
+                return VisualWarBehaviorKind.EngageParty;
+            return VisualWarBehaviorKind.Other;
         }
 
         private static bool SameFaction(
@@ -1021,4 +972,3 @@ namespace ClanAI
 
     }
 }
-

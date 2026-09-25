@@ -1,42 +1,51 @@
 # Codex Status
 
 ## Current task
-Phase 3 Kingdom Objective bounded runtime proof is complete. Stop at this checkpoint; do not broaden or retune the system as part of this milestone.
+Stop at the completed Phase 3 Visual War deterministic / standalone-safe checkpoint. Do not deploy or run the Visual War campaign proof as part of this checkpoint.
 
 ## Current state
-PHASE 2D-L1 ROUND TRIP PROVEN; PHASE 3 HOME RESPONSIBILITY DETERMINISTIC SEAM PASSED; PHASE 3 KINGDOM OBJECTIVE DETERMINISTIC SEAM PASSED; PHASE 3 KINGDOM OBJECTIVE WINNER-CHANGE + NATIVE COMMIT RUNTIME PROVEN.
+PHASE 2D-L1 ROUND TRIP PROVEN; PHASE 3 HOME RESPONSIBILITY DETERMINISTIC SEAM PASSED; PHASE 3 KINGDOM OBJECTIVE WINNER-CHANGE + NATIVE COMMIT RUNTIME PROVEN; PHASE 3 VISUAL WAR DETERMINISTIC / STANDALONE SEAM PASSED.
 
-## Runtime proof
-Candidate source remained unchanged from commit `96813b4e9fe4951118f2dc5b4427bffc4cb58fc1`.
+## Visual War checkpoint
+The existing `VisualWarDecisionLayer` was not redesigned and no new strategic role was added.
 
-The deployed DLL was built from authoritative source with 0 errors and SHA-256:
-`4124AA4F79D452E28B0C08892B1642CD77ED2DFA9F698129405C603A4E69AA2D`.
+The layer now delegates only its existing pure decision rules to `VisualWarPolicy`:
+- weak threshold remains readiness <0.72 or food <3 days;
+- active settlement defense remains capped by the existing 1.35 defense cap;
+- frontier defense remains `1 + 0.22 * frontierScore`, capped at 1.35;
+- frontier offense remains `1 + 0.16 * frontierScore`;
+- rear-security remains bandit-only, >0 and <=160 men, with 1.25 at <=90 men and 1.15 at 91-160;
+- non-positive native scores and unrelated behaviors remain untouched.
 
-A verified rollback of the prior installed DLL is at:
-`D:\BannerlordAIResearch\Builds\Rollback_Phase3_KingdomObjective_20260925_ClanAI`
-with SHA-256:
-`5A88AC72C6154680A6B009F7C9A5E262CA4BE8F71AFC54B7A0C1F3057AA64B9C`.
+Runtime wiring still preserves Bannerlord candidate generation and native targets, the existing settlement/world-context and bandit classification, `StrategicDecisionComposer` score ownership, and ActorStrategicBlackboard's existing Visual War reason classification.
 
-Using the protected demo fixture read-only, the observation was capped at 72 campaign hours and stopped after 28.224 hours when a qualifying proof was observed.
+## Standalone activation
+The absolute development path `D:\BannerlordAIResearch\Data\ENABLE_VISUAL_WAR_LAB.txt` is removed from this layer.
 
-Selected proof:
-- natural ruler objective: Battania / ruler Rath / `BorderSecurity` / `CaptureSpecificSettlement` / Uthelaim Castle;
-- Bannerlord-provided objective-related candidates: 3, all staging;
-- native before winner: `RaidSettlement:Stathymos`, score 3.756;
-- existing competitive staging candidate: `GoToSettlement:Pendraic Castle`, ratio 0.981;
-- unchanged applied staging factor: 1.55;
-- adjusted winner: `GoToSettlement:Pendraic Castle`;
-- `winnerChanged=True`, `objectiveWon=True`;
-- post-vanilla commit: `actualDefault=GoToSettlement`, `actualShort=GoToSettlement`, `actualTarget=Pendraic Castle`, `matched=True`.
+The optional switch now resolves from the installed ClanAI assembly to:
+`<module-root>/Data/ENABLE_VISUAL_WAR_LAB.txt`.
 
-No direct party order, faction mutation, settlement mutation, war mutation, or synthetic target/action was used. The run exited with `EXIT_NOSAVE`. The protected fixture retained SHA-256 `A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427` and its original timestamp.
+Missing marker remains OFF. No marker was added, so this cleanup does not silently enable Visual War. No development-tool dependency was introduced.
+
+## Validation
+- `dotnet run --project Tests/TerritorialResponsibility/VisualWarPolicyTests.csproj -c Release` -> `PASS VisualWar policy tests checks=32`;
+- `python Tests/TerritorialResponsibility/test_visual_war_runtime_wiring.py` -> PASS;
+- `python Tests/TerritorialResponsibility/test_visual_war_standalone_path.py` -> PASS;
+- Release build -> 0 errors, 1 inherited `System.ValueTuple` warning;
+- built DLL SHA-256: `F038F0160B3A39B4175DBE0BD7C6B81F6EB7AD052D904EA413DC71682076DEA1`.
+
+No DLL was deployed and no Visual War runtime behavior is newly claimed.
 
 ## Evidence
-- `Reports/TerritorialResponsibility/PHASE3_KINGDOM_OBJECTIVE_DETERMINISTIC_TEST_RESULT.md`
-- `Reports/TerritorialResponsibility/PHASE3_KINGDOM_OBJECTIVE_RUNTIME_RESULT.md`
-- `Reports/TerritorialResponsibility/evidence/phase3_kingdom_objective_runtime_20260925.txt`
+- `Reports/TerritorialResponsibility/PHASE3_VISUAL_WAR_DETERMINISTIC_TEST_RESULT.md`
+- `Reports/TerritorialResponsibility/evidence/phase3_visual_war_deterministic_20260925.txt`
+
+## Exact next milestone
+One bounded runtime proof that an existing Visual War defensive/security contribution changes a Bannerlord-native candidate winner and Bannerlord commits the selected native behavior/target.
+
+Do not tune factors, add roles, add candidates/targets, or broaden into `StrategicCommitmentLayer` for that proof.
 
 ## Resource discipline
-Do not re-run or re-debug Phase 2D, launch flow, TestRunner, save/load, Home Responsibility, the Kingdom Objective deterministic seam, or this runtime proof unless new evidence establishes a defect.
+Do not revisit Phase 2D, launch/TestRunner/save handling, Home Responsibility, or the Kingdom Objective proof unless new evidence establishes a defect.
 
 The final product remains a standalone installable offline Bannerlord mod. TestRunner, Inspector, Codex, ChatGPT, Desktop Commander, watchdogs, and other development infrastructure are validation-only and are not runtime dependencies.

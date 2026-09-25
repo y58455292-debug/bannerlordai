@@ -1,0 +1,51 @@
+Phase 3 Visual War deterministic / standalone checkpoint
+Date: 2026-09-25 UTC
+Repository base: f3512c7b2c8cc434df879b179773d91435c11a5b
+
+COMMAND
+dotnet run --project Tests/TerritorialResponsibility/VisualWarPolicyTests.csproj -c Release
+
+RESULT
+PASS VisualWar policy tests checks=32
+defense/offense/rear-security factors and weak exclusions preserved
+activation marker resolves module-locally and remains absent-by-default
+
+COMMAND
+python Tests/TerritorialResponsibility/test_visual_war_runtime_wiring.py
+
+RESULT
+PASS VisualWar runtime wiring
+native candidates/world classification/composer ownership preserved
+
+COMMAND
+python Tests/TerritorialResponsibility/test_visual_war_standalone_path.py
+
+RESULT
+PASS VisualWar standalone activation path
+activation is module-local Data/ENABLE_VISUAL_WAR_LAB.txt and OFF when absent
+
+COMMAND
+dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj -c Release
+
+RESULT
+Build succeeded.
+1 Warning(s)
+0 Error(s)
+
+KNOWN WARNING
+Inherited System.ValueTuple version conflict.
+
+BUILD SHA-256
+F038F0160B3A39B4175DBE0BD7C6B81F6EB7AD052D904EA413DC71682076DEA1
+
+STANDALONE ACTIVATION
+old=D:\BannerlordAIResearch\Data\ENABLE_VISUAL_WAR_LAB.txt
+new=<module-root>\Data\ENABLE_VISUAL_WAR_LAB.txt
+default_when_marker_absent=OFF
+tracked_marker_added=false
+
+DEPLOYMENT
+none
+
+RUNTIME CLAIM
+none

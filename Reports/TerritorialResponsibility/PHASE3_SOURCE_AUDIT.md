@@ -39,3 +39,8 @@ Add focused deterministic tests around the pure decision portion of `HomeRespons
 ## Follow-up checkpoint
 
 The deterministic seam defined above was completed on 2026-09-25. The runtime layer now delegates only pure eligibility/factor selection to `HomeResponsibilityPolicy`; ten standalone cases pass, a wiring guard preserves native candidate and post-vanilla commit verification, and the ClanAI Release build succeeds with 0 errors. No deployment or new runtime claim was made. See `Reports/TerritorialResponsibility/PHASE3_DETERMINISTIC_TEST_RESULT.md`.
+
+
+## Visual War deterministic / standalone follow-up
+
+The next bounded Phase 3 offline seam completed on 2026-09-25. `VisualWarDecisionLayer` now delegates only its existing weak/exclusion and defense/offense/rear-security factor decisions to pure `VisualWarPolicy`, while native candidates, world-context classification, composer score ownership, and ActorStrategicBlackboard reason classification remain unchanged. The old absolute `D:\BannerlordAIResearch\Data\ENABLE_VISUAL_WAR_LAB.txt` switch was replaced with a module-local optional marker at `<module-root>/Data/ENABLE_VISUAL_WAR_LAB.txt`; absence remains OFF, so the cleanup does not enable behavior by default. Thirty-two deterministic checks, the runtime-wiring guard, the standalone-path guard, and the Release build all pass. No DLL was deployed and no new runtime claim was made. See `Reports/TerritorialResponsibility/PHASE3_VISUAL_WAR_DETERMINISTIC_TEST_RESULT.md`.
