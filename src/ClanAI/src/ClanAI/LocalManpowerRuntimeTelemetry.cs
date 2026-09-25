@@ -21,6 +21,11 @@ namespace ClanAI
             internal bool SlotIsEmpty;
             internal float NativeProbability;
             internal LocalManpowerProbabilityResult Result;
+            internal CharacterObject VolunteerBefore;
+            internal int MaxVolunteerTier;
+            internal bool NativeUpgradeEligible;
+            internal CharacterObject[] DirectUpgradeTargets;
+            internal TroopQualityProbabilityResult QualityResult;
         }
 
         private sealed class SlotSnapshot
@@ -55,6 +60,10 @@ namespace ClanAI
         private static bool _loggedDegradedEmpty;
         private static bool _loggedOccupied;
         private static bool _loggedUnsupported;
+        private static bool _loggedQualityNonUpgradeable;
+        private static bool _loggedQualityHealthy;
+        private static bool _loggedQualityDegraded;
+        private static bool _loggedNativeQualityUpgrade;
 
         internal static void Install()
         {
@@ -234,6 +243,134 @@ namespace ClanAI
                     result);
         }
 
+        internal static void ObserveTroopQualityEvaluation(
+            Hero notable,
+            int slotIndex,
+            Settlement settlement,
+            CharacterObject volunteer,
+            int maxVolunteerTier,
+            bool nativeUpgradeEligible,
+            float nativeProbability,
+            TroopQualityProbabilityResult result)
+        {
+            try
+            {
+                ObserveTroopQualityEvaluationUnsafe(
+                    notable,
+                    slotIndex,
+                    settlement,
+                    volunteer,
+                    maxVolunteerTier,
+                    nativeUpgradeEligible,
+                    nativeProbability,
+                    result);
+            }
+            catch (Exception ex)
+            {
+                LogTelemetryError(
+                    "observe-troop-quality",
+                    ex);
+            }
+        }
+
+        private static void ObserveTroopQualityEvaluationUnsafe(
+            Hero notable,
+            int slotIndex,
+            Settlement settlement,
+            CharacterObject volunteer,
+            int maxVolunteerTier,
+            bool nativeUpgradeEligible,
+            float nativeProbability,
+            TroopQualityProbabilityResult result)
+        {
+            if (result == null)
+            {
+                result = TroopQualityProbabilityPolicy.Evaluate(
+                    nativeProbability,
+                    false,
+                    LocalManpowerPopulationBand.Unknown,
+                    false,
+                    0.0f,
+                    false);
+            }
+
+            CharacterObject[] directTargets =
+                volunteer == null ||
+                volunteer.UpgradeTargets == null
+                    ? new CharacterObject[0]
+                    : (CharacterObject[])
+                        volunteer.UpgradeTargets.Clone();
+
+            if (ReferenceEquals(
+                    settlement,
+                    _currentDailySettlement))
+            {
+                CurrentDailyEvaluations[
+                    SlotKey(notable, slotIndex)] =
+                    new EvaluationRecord
+                    {
+                        Notable = notable,
+                        SlotIndex = slotIndex,
+                        SlotKnown = true,
+                        SlotIsEmpty = false,
+                        NativeProbability = nativeProbability,
+                        VolunteerBefore = volunteer,
+                        MaxVolunteerTier = maxVolunteerTier,
+                        NativeUpgradeEligible =
+                            nativeUpgradeEligible,
+                        DirectUpgradeTargets =
+                            directTargets,
+                        QualityResult = result
+                    };
+            }
+
+            string sample;
+            bool log = false;
+
+            if (!nativeUpgradeEligible)
+            {
+                sample = "quality-nonupgradeable";
+                if (!_loggedQualityNonUpgradeable)
+                {
+                    _loggedQualityNonUpgradeable = true;
+                    log = true;
+                }
+            }
+            else if (result.QualityMultiplier >= 0.999999f)
+            {
+                sample = "quality-healthy";
+                if (!_loggedQualityHealthy)
+                {
+                    _loggedQualityHealthy = true;
+                    log = true;
+                }
+            }
+            else
+            {
+                sample = "quality-degraded";
+                if (!_loggedQualityDegraded)
+                {
+                    _loggedQualityDegraded = true;
+                    log = true;
+                }
+            }
+
+            if (log)
+            {
+                LogTroopQualityEvaluation(
+                    sample,
+                    notable,
+                    slotIndex,
+                    settlement,
+                    volunteer,
+                    maxVolunteerTier,
+                    nativeUpgradeEligible,
+                    nativeProbability,
+                    directTargets,
+                    result);
+            }
+        }
+
         private static void DailyPrefix(
             Settlement settlement,
             out DailySnapshot __state)
@@ -275,6 +412,11 @@ namespace ClanAI
 
                 Dictionary<string, SlotSnapshot> after =
                     CaptureSlots(settlement);
+
+                ObserveNativeQualityUpgrades(
+                    settlement,
+                    __state.Slots,
+                    after);
 
                 foreach (var pair in __state.Slots)
                 {
@@ -326,6 +468,134 @@ namespace ClanAI
                 CurrentDailyEvaluations.Clear();
                 _currentDailySettlement = null;
             }
+        }
+
+        private static void ObserveNativeQualityUpgrades(
+            Settlement settlement,
+            Dictionary<string, SlotSnapshot> before,
+            Dictionary<string, SlotSnapshot> after)
+        {
+            if (_loggedNativeQualityUpgrade)
+                return;
+
+            foreach (EvaluationRecord evaluation
+                     in CurrentDailyEvaluations.Values)
+            {
+                if (evaluation == null ||
+                    !evaluation.NativeUpgradeEligible ||
+                    evaluation.QualityResult == null ||
+                    evaluation.VolunteerBefore == null ||
+                    evaluation.DirectUpgradeTargets == null ||
+                    evaluation.DirectUpgradeTargets.Length == 0)
+                {
+                    continue;
+                }
+
+                int sourceBefore = CountTroopForNotable(
+                    before,
+                    evaluation.Notable,
+                    evaluation.VolunteerBefore);
+                int sourceAfter = CountTroopForNotable(
+                    after,
+                    evaluation.Notable,
+                    evaluation.VolunteerBefore);
+
+                if (sourceAfter >= sourceBefore)
+                    continue;
+
+                foreach (CharacterObject target
+                         in evaluation.DirectUpgradeTargets)
+                {
+                    if (target == null)
+                        continue;
+
+                    int targetBefore = CountTroopForNotable(
+                        before,
+                        evaluation.Notable,
+                        target);
+                    int targetAfter = CountTroopForNotable(
+                        after,
+                        evaluation.Notable,
+                        target);
+
+                    if (targetAfter <= targetBefore)
+                        continue;
+
+                    _loggedNativeQualityUpgrade = true;
+
+                    ClanAIPostVanilla.WriteExternalLog(
+                        "TROOP_QUALITY_NATIVE_UPGRADE" +
+                        " campaignHour=" +
+                            D(CampaignTime.Now.ToHours) +
+                        SettlementFields(settlement) +
+                        NotableFields(evaluation.Notable) +
+                        " evaluatedSlot=" +
+                            evaluation.SlotIndex +
+                        " before=" +
+                            TroopFields(
+                                evaluation.VolunteerBefore) +
+                        " after=" +
+                            TroopFields(target) +
+                        " directUpgradeTarget=True" +
+                        " sourceCountBefore=" +
+                            sourceBefore +
+                        " sourceCountAfter=" +
+                            sourceAfter +
+                        " targetCountBefore=" +
+                            targetBefore +
+                        " targetCountAfter=" +
+                            targetAfter +
+                        QualityEvaluationFields(evaluation) +
+                        " source=native-daily-volunteer-update" +
+                        " mutationByClanAI=False");
+                    return;
+                }
+            }
+        }
+
+        private static int CountTroopForNotable(
+            Dictionary<string, SlotSnapshot> slots,
+            Hero notable,
+            CharacterObject troop)
+        {
+            int count = 0;
+
+            foreach (SlotSnapshot snapshot
+                     in slots.Values)
+            {
+                if (snapshot == null ||
+                    !SameNotable(
+                        snapshot.Notable,
+                        notable))
+                {
+                    continue;
+                }
+
+                if (SameTroop(
+                        snapshot.Troop,
+                        troop))
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        private static bool SameNotable(
+            Hero a,
+            Hero b)
+        {
+            if (ReferenceEquals(a, b))
+                return true;
+
+            if (a == null || b == null)
+                return false;
+
+            return string.Equals(
+                a.StringId,
+                b.StringId,
+                StringComparison.Ordinal);
         }
 
         private static void RecruitPrefix(
@@ -459,6 +729,167 @@ namespace ClanAI
                 " mutationByClanAI=False");
         }
 
+        private static void LogTroopQualityEvaluation(
+            string sample,
+            Hero notable,
+            int slotIndex,
+            Settlement settlement,
+            CharacterObject volunteer,
+            int maxVolunteerTier,
+            bool nativeUpgradeEligible,
+            float nativeProbability,
+            CharacterObject[] directTargets,
+            TroopQualityProbabilityResult result)
+        {
+            LocalManpowerPopulationBand band =
+                PopulationBandSafe(settlement);
+
+            bool hasSecurity;
+            float security;
+            SecuritySafe(
+                settlement,
+                out hasSecurity,
+                out security);
+
+            ClanAIPostVanilla.WriteExternalLog(
+                "TROOP_QUALITY_EVAL_SAMPLE" +
+                " sample=" + sample +
+                " campaignHour=" + D(CampaignTime.Now.ToHours) +
+                SettlementFields(settlement) +
+                NotableFields(notable) +
+                " slot=" + slotIndex +
+                " slotState=occupied" +
+                " volunteer=" + TroopFields(volunteer) +
+                " currentTier=" +
+                    (volunteer == null
+                        ? "<unavailable>"
+                        : volunteer.Tier.ToString(
+                            CultureInfo.InvariantCulture)) +
+                " maxVolunteerTier=" + maxVolunteerTier +
+                " upgradeTargetsCount=" +
+                    (directTargets == null
+                        ? 0
+                        : directTargets.Length) +
+                " directUpgradeTargets=" +
+                    DirectTargetFields(directTargets) +
+                " nativeUpgradeEligible=" +
+                    nativeUpgradeEligible +
+                " eligibilityReason=" +
+                    QualityEligibilityReason(
+                        volunteer,
+                        maxVolunteerTier) +
+                " populationBand=" + band +
+                RawPopulationFields(settlement) +
+                " securityAvailable=" + hasSecurity +
+                " security=" +
+                    (hasSecurity ? F(security) : "<unavailable>") +
+                " underRaid=" +
+                    (settlement != null && settlement.IsUnderRaid) +
+                " underSiege=" +
+                    (settlement != null && settlement.IsUnderSiege) +
+                " nativeProbability=" + F(nativeProbability) +
+                " populationFactor=" + F(result.PopulationFactor) +
+                " securityFactor=" + F(result.SecurityFactor) +
+                " acuteFactor=" + F(result.AcuteFactor) +
+                " qualityMultiplier=" +
+                    F(result.QualityMultiplier) +
+                " finalProbability=" +
+                    F(result.FinalProbability) +
+                " applied=" + result.Applied +
+                " branch=" +
+                    (nativeUpgradeEligible
+                        ? "phase4c-quality-first-gate"
+                        : "occupied-native-passthrough") +
+                " reason=" + Safe(result.Reason) +
+                " mutationByClanAI=False");
+        }
+
+        private static string QualityEvaluationFields(
+            EvaluationRecord evaluation)
+        {
+            if (evaluation == null ||
+                evaluation.QualityResult == null)
+            {
+                return " qualityEvaluation=<unavailable>";
+            }
+
+            TroopQualityProbabilityResult result =
+                evaluation.QualityResult;
+
+            return
+                " qualityEvaluation=True" +
+                " evaluationSlotState=occupied" +
+                " evaluatedVolunteer=" +
+                    TroopFields(evaluation.VolunteerBefore) +
+                " currentTier=" +
+                    (evaluation.VolunteerBefore == null
+                        ? "<unavailable>"
+                        : evaluation.VolunteerBefore.Tier.ToString(
+                            CultureInfo.InvariantCulture)) +
+                " maxVolunteerTier=" +
+                    evaluation.MaxVolunteerTier +
+                " upgradeTargetsCount=" +
+                    (evaluation.DirectUpgradeTargets == null
+                        ? 0
+                        : evaluation.DirectUpgradeTargets.Length) +
+                " directUpgradeTargets=" +
+                    DirectTargetFields(
+                        evaluation.DirectUpgradeTargets) +
+                " nativeUpgradeEligible=" +
+                    evaluation.NativeUpgradeEligible +
+                " nativeProbability=" +
+                    F(evaluation.NativeProbability) +
+                " populationFactor=" +
+                    F(result.PopulationFactor) +
+                " securityFactor=" +
+                    F(result.SecurityFactor) +
+                " acuteFactor=" +
+                    F(result.AcuteFactor) +
+                " qualityMultiplier=" +
+                    F(result.QualityMultiplier) +
+                " finalProbability=" +
+                    F(result.FinalProbability) +
+                " evaluationReason=" +
+                    Safe(result.Reason);
+        }
+
+        private static string DirectTargetFields(
+            CharacterObject[] targets)
+        {
+            if (targets == null ||
+                targets.Length == 0)
+            {
+                return "<none>";
+            }
+
+            var values = new List<string>();
+            foreach (CharacterObject target in targets)
+            {
+                values.Add(TroopFields(target));
+            }
+
+            return string.Join(",", values.ToArray());
+        }
+
+        private static string QualityEligibilityReason(
+            CharacterObject volunteer,
+            int maxVolunteerTier)
+        {
+            if (volunteer == null)
+                return "no-volunteer";
+
+            if (volunteer.UpgradeTargets == null ||
+                volunteer.UpgradeTargets.Length == 0)
+            {
+                return "no-upgrade-targets";
+            }
+
+            if (volunteer.Tier >= maxVolunteerTier)
+                return "tier-at-or-above-max";
+
+            return "native-upgrade-eligible";
+        }
+
         private static Dictionary<string, SlotSnapshot>
             CaptureSlots(Settlement settlement)
         {
@@ -540,11 +971,14 @@ namespace ClanAI
         private static string EvaluationFields(
             EvaluationRecord evaluation)
         {
-            if (evaluation == null ||
-                evaluation.Result == null)
-            {
+            if (evaluation == null)
                 return " evaluation=<unavailable>";
-            }
+
+            if (evaluation.QualityResult != null)
+                return QualityEvaluationFields(evaluation);
+
+            if (evaluation.Result == null)
+                return " evaluation=<unavailable>";
 
             return
                 " evaluationSlotState=" +

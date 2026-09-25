@@ -122,6 +122,25 @@ namespace ClanAI
                             slotIsEmpty,
                             nativeUpgradeEligible))
                 {
+                    TroopQualityProbabilityResult qualityPassthrough =
+                        TroopQualityProbabilityPolicy.Evaluate(
+                            nativeProbability,
+                            false,
+                            LocalManpowerPopulationBand.Unknown,
+                            false,
+                            0.0f,
+                            false);
+
+                    LocalManpowerRuntimeTelemetry.ObserveTroopQualityEvaluation(
+                        hero,
+                        index,
+                        settlement,
+                        volunteer,
+                        maxVolunteerTier,
+                        false,
+                        nativeProbability,
+                        qualityPassthrough);
+
                     LocalManpowerRuntimeTelemetry.ObserveEvaluation(
                         hero,
                         index,
@@ -135,7 +154,11 @@ namespace ClanAI
                 }
 
                 return EvaluateOccupiedQualitySlot(
+                    hero,
+                    index,
                     settlement,
+                    volunteer,
+                    maxVolunteerTier,
                     nativeProbability);
             }
 
@@ -214,7 +237,11 @@ namespace ClanAI
         }
 
         private static float EvaluateOccupiedQualitySlot(
+            Hero hero,
+            int index,
             Settlement settlement,
+            CharacterObject volunteer,
+            int maxVolunteerTier,
             float nativeProbability)
         {
             LocalManpowerPopulationBand populationBand;
@@ -222,13 +249,26 @@ namespace ClanAI
                     settlement,
                     out populationBand))
             {
-                return TroopQualityProbabilityPolicy.Evaluate(
+                TroopQualityProbabilityResult passthrough =
+                    TroopQualityProbabilityPolicy.Evaluate(
+                        nativeProbability,
+                        false,
+                        LocalManpowerPopulationBand.Unknown,
+                        false,
+                        0.0f,
+                        false);
+
+                LocalManpowerRuntimeTelemetry.ObserveTroopQualityEvaluation(
+                    hero,
+                    index,
+                    settlement,
+                    volunteer,
+                    maxVolunteerTier,
+                    true,
                     nativeProbability,
-                    false,
-                    LocalManpowerPopulationBand.Unknown,
-                    false,
-                    0.0f,
-                    false).FinalProbability;
+                    passthrough);
+
+                return passthrough.FinalProbability;
             }
 
             bool hasSecurity;
@@ -243,14 +283,26 @@ namespace ClanAI
                 LocalManpowerProbabilityPolicy.IsFinite(
                     security);
 
-            return TroopQualityProbabilityPolicy.Evaluate(
+            TroopQualityProbabilityResult result =
+                TroopQualityProbabilityPolicy.Evaluate(
+                    nativeProbability,
+                    contextValid,
+                    populationBand,
+                    hasSecurity,
+                    security,
+                    IsAcuteDisruption(settlement));
+
+            LocalManpowerRuntimeTelemetry.ObserveTroopQualityEvaluation(
+                hero,
+                index,
+                settlement,
+                volunteer,
+                maxVolunteerTier,
+                true,
                 nativeProbability,
-                contextValid,
-                populationBand,
-                hasSecurity,
-                security,
-                IsAcuteDisruption(settlement))
-                .FinalProbability;
+                result);
+
+            return result.FinalProbability;
         }
 
         public override CharacterObject GetBasicVolunteer(

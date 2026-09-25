@@ -133,7 +133,7 @@ namespace ClanAI
                 " wrapper=" + wrapper.GetType().FullName +
                 " selected=" + selected.GetType().FullName +
                 " selectedWrapper=True" +
-                " policy=empty-slots-only" +
+                " policy=phase4b-empty+phase4c-occupied-native-eligible" +
                 " mutation=False");
 
             LocalManpowerRuntimeTelemetry.Install();
