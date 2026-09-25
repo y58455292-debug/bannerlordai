@@ -1,32 +1,43 @@
 # Codex Status
 
 ## Current task
-Phase 3 Home Responsibility deterministic seam is complete and checkpointed. Do not broaden the runtime behavior without the next evidence-driven Phase 3 slice.
+Stop at the completed Phase 3 Kingdom Objective deterministic checkpoint. The next milestone is a single bounded runtime proof of the existing ruler-objective path.
 
-## Last completed checkpoint
+## Last completed checkpoints
 Phase 2D-L1 save/reload continuity is runtime-proven, including seven restored records, zero duplicate succession/destruction callbacks on reload, and `mutation=False`.
 
-Phase 3 then completed the exact offline seam defined by `Reports/TerritorialResponsibility/PHASE3_SOURCE_AUDIT.md`.
+Phase 3 Home Responsibility completed its pure deterministic policy seam with native-candidate and post-vanilla commit boundaries preserved.
+
+Phase 3 Kingdom Objective has now completed the next bounded deterministic seam.
 
 ## Current state
-PHASE 2D-L1 ROUND TRIP PROVEN; PHASE 3 HOME RESPONSIBILITY DETERMINISTIC SEAM PASSED.
+PHASE 2D-L1 ROUND TRIP PROVEN; PHASE 3 HOME RESPONSIBILITY DETERMINISTIC SEAM PASSED; PHASE 3 KINGDOM OBJECTIVE DETERMINISTIC SEAM PASSED.
 
-The Phase 3 seam:
-- extracts pure `HomeResponsibilityPolicy` factor/eligibility logic with no Bannerlord types;
-- preserves Bannerlord's native candidate list and current composer score;
-- preserves the existing actor-at-war and actor-clan ownership boundaries;
-- preserves pending winner expectations and post-vanilla behavior/target commit verification;
-- passes ten deterministic policy cases;
+The Kingdom Objective seam:
+- extracts the existing readiness/supply and urgent-home-threat refusal rules into pure `KingdomObjectivePolicy`;
+- extracts the existing direct/staging factor tables and staging rank penalty/floor;
+- preserves the 0.45 competitive-ratio threshold and 1.025 winner margin;
+- preserves max direct factor 2.50 and max staging factor 2.25;
+- preserves Bannerlord-provided candidate generation and composer-based score modification;
+- preserves final composer winner selection and post-vanilla behavior/target verification;
+- passes 34 deterministic policy cases;
 - passes the runtime-wiring invariant;
-- builds ClanAI Release with 0 errors and the inherited `System.ValueTuple` warning.
+- builds ClanAI Release with 0 errors and only the inherited `System.ValueTuple` warning.
 
-No Phase 3 DLL was deployed and no new campaign behavior is claimed from this offline checkpoint.
+No DLL was deployed and no new runtime behavior is claimed.
 
 ## Evidence
 - `Reports/KingdomContinuity/evidence/phase2d_l1_reload_20260925.txt`
 - `Reports/TerritorialResponsibility/PHASE3_DETERMINISTIC_TEST_RESULT.md`
+- `Reports/TerritorialResponsibility/PHASE3_KINGDOM_OBJECTIVE_DETERMINISTIC_TEST_RESULT.md`
+- `Reports/TerritorialResponsibility/evidence/phase3_kingdom_objective_deterministic_20260925.txt`
+
+## Exact next milestone
+Run one bounded runtime proof using the established validation interface: observe a natural ruler objective, show that the existing Kingdom Objective contribution changes Bannerlord's native candidate winner, then verify Bannerlord commits the selected behavior/target through the existing post-vanilla commit check.
+
+Do not broaden runtime behavior or tune factors to manufacture the proof.
 
 ## Resource discipline
-Do not re-debug the configured launch path, TestRunner command bus, `CLOSE_ESCAPE_MENU`, save materialization, Phase 2D-L1 reload, or the Phase 3 pure policy seam unless new evidence shows a defect.
+Do not re-debug Phase 2D, launch flow, TestRunner, save/load, Home Responsibility, or the Kingdom Objective deterministic seam unless new evidence establishes a defect.
 
 The final product remains a standalone installable offline Bannerlord mod. TestRunner, Inspector, Codex, ChatGPT, Desktop Commander, watchdogs, and other development infrastructure are validation-only and must not become runtime dependencies.

@@ -10,19 +10,6 @@ namespace ClanAI
 {
     internal static class KingdomObjectiveLayer
     {
-        private const float BesiegeFactor = 1.75f;
-        private const float AssaultFactor = 1.65f;
-        private const float GoToFactor = 1.50f;
-        private const float PatrolFactor = 1.35f;
-        private const float StagingGoToFactor = 1.55f;
-        private const float StagingPatrolFactor = 1.40f;
-        private const float StagingDefendFactor = 1.30f;
-        private const float MaxDirectOrderFactor = 2.50f;
-        private const float MaxStagingOrderFactor = 2.25f;
-        private const float MinimumCompetitiveRatio = 0.45f;
-        private const float WinnerMargin = 1.025f;
-        private const float MinimumReadiness = 0.72f;
-        private const int MinimumFoodDays = 3;
         private const double PendingLifetimeHours = 18.0;
         private const double InfoLogCooldownHours = 6.0;
 
@@ -103,8 +90,11 @@ namespace ClanAI
                 foodDays = -1;
             }
 
-            if (readiness < MinimumReadiness ||
-                (foodDays >= 0 && foodDays < MinimumFoodDays))
+            string refusal = KingdomObjectivePolicy.RefusalReason(
+                readiness,
+                foodDays,
+                false);
+            if (refusal != null)
             {
                 _refusals++;
                 LogInfo(
@@ -118,13 +108,19 @@ namespace ClanAI
                     " target=" + TargetName(objective.Target) +
                     " readiness=" + F(readiness) +
                     " foodDays=" + foodDays +
-                    " refusal=low-readiness-or-supplies");
+                    " refusal=" + refusal);
                 return;
             }
 
-            if (WorldScopeContext.HasOtherUrgentClanThreat(
+            bool urgentClanHomeThreat =
+                WorldScopeContext.HasOtherUrgentClanThreat(
                     actor,
-                    objective.Target == null ? null : objective.Target.StringId))
+                    objective.Target == null ? null : objective.Target.StringId);
+            refusal = KingdomObjectivePolicy.RefusalReason(
+                readiness,
+                foodDays,
+                urgentClanHomeThreat);
+            if (refusal != null)
             {
                 _refusals++;
                 LogInfo(
@@ -138,7 +134,7 @@ namespace ClanAI
                     " target=" + TargetName(objective.Target) +
                     " readiness=" + F(readiness) +
                     " foodDays=" + foodDays +
-                    " refusal=urgent-clan-home-threat");
+                    " refusal=" + refusal);
                 return;
             }
 
@@ -204,53 +200,40 @@ namespace ClanAI
                 if (!direct && !isStaging)
                     continue;
 
-                float baseFactor = direct
-                    ? FactorFor(data.AiBehavior)
-                    : StagingFactorFor(data.AiBehavior, rank);
-                if (baseFactor <= 1.001f)
-                    continue;
-
                 float raw = thinkParams.AIBehaviorScores[i].Item2;
                 float baseScore = composer.CurrentScore(i, raw);
-                if (baseScore <= 0f)
+                KingdomObjectiveCandidateDecision decision =
+                    KingdomObjectivePolicy.EvaluateCandidate(
+                        direct,
+                        isStaging,
+                        rank,
+                        PolicyBehavior(data.AiBehavior),
+                        baseScore,
+                        beforeWinnerScore);
+                if (!decision.Apply)
                     continue;
 
-                float competitiveRatio = beforeWinnerScore > 0f
-                    ? baseScore / beforeWinnerScore
-                    : 1f;
-                float requiredFactor = beforeWinnerScore > 0f
-                    ? (beforeWinnerScore * WinnerMargin) / baseScore
-                    : baseFactor;
-                float maxFactor = direct
-                    ? MaxDirectOrderFactor
-                    : MaxStagingOrderFactor;
-                float factor = baseFactor;
-
-                if (competitiveRatio >= MinimumCompetitiveRatio)
+                if (decision.Competitive)
                 {
                     competitiveCandidates++;
-                    if (competitiveRatio > bestCompetitiveRatio)
+                    if (decision.CompetitiveRatio > bestCompetitiveRatio)
                     {
-                        bestCompetitiveRatio = competitiveRatio;
+                        bestCompetitiveRatio = decision.CompetitiveRatio;
                         bestCompetitiveCandidate =
                             data.AiBehavior + ":" + settlement.Name.ToString();
                     }
-                    if (requiredFactor < minimumRequiredFactor)
-                        minimumRequiredFactor = requiredFactor;
-
-                    if (requiredFactor <= maxFactor)
-                        factor = Math.Max(baseFactor, requiredFactor);
+                    if (decision.RequiredWinnerFactor < minimumRequiredFactor)
+                        minimumRequiredFactor = decision.RequiredWinnerFactor;
                 }
 
-                string mode = direct ? "direct" : "staging-" + (rank + 1);
                 composer.ApplyFactor(
                     i,
                     "kingdom-objective",
                     baseScore,
-                    factor,
-                    "ruler-objective:" + objective.Reason + ":" + mode);
-                applied[i] = factor;
-                appliedMode[i] = mode;
+                    decision.AppliedFactor,
+                    "ruler-objective:" + objective.Reason + ":" + decision.Mode);
+                applied[i] = decision.AppliedFactor;
+                appliedMode[i] = decision.Mode;
                 appliedSettlement[i] = settlement;
                 candidateCount++;
                 if (direct) directCandidates++; else stagingCandidates++;
@@ -313,7 +296,10 @@ namespace ClanAI
                 " winningActionTarget=" + TargetName(winningSettlement) +
                 " acceptances=" + _acceptances);
 
-            if (!winnerChanged || !objectiveWon || winningSettlement == null)
+            if (!KingdomObjectivePolicy.ShouldCreatePendingCommit(
+                    winnerChanged,
+                    objectiveWon,
+                    winningSettlement != null))
                 return;
 
             _winnerChanges++;
@@ -448,35 +434,20 @@ namespace ClanAI
                 " matches=" + _commitMatches);
         }
 
-        private static float FactorFor(AiBehavior behavior)
+        private static KingdomObjectiveBehaviorKind PolicyBehavior(
+            AiBehavior behavior)
         {
             if (behavior == AiBehavior.BesiegeSettlement)
-                return BesiegeFactor;
+                return KingdomObjectiveBehaviorKind.BesiegeSettlement;
             if (behavior == AiBehavior.AssaultSettlement)
-                return AssaultFactor;
+                return KingdomObjectiveBehaviorKind.AssaultSettlement;
             if (behavior == AiBehavior.GoToSettlement)
-                return GoToFactor;
+                return KingdomObjectiveBehaviorKind.GoToSettlement;
             if (behavior == AiBehavior.PatrolAroundPoint)
-                return PatrolFactor;
-            return 1f;
-        }
-
-        private static float StagingFactorFor(
-            AiBehavior behavior,
-            int rank)
-        {
-            float factor;
-            if (behavior == AiBehavior.GoToSettlement)
-                factor = StagingGoToFactor;
-            else if (behavior == AiBehavior.PatrolAroundPoint)
-                factor = StagingPatrolFactor;
-            else if (behavior == AiBehavior.DefendSettlement)
-                factor = StagingDefendFactor;
-            else
-                return 1f;
-
-            float rankPenalty = Math.Max(0, rank) * 0.10f;
-            return Math.Max(1.10f, factor - rankPenalty);
+                return KingdomObjectiveBehaviorKind.PatrolAroundPoint;
+            if (behavior == AiBehavior.DefendSettlement)
+                return KingdomObjectiveBehaviorKind.DefendSettlement;
+            return KingdomObjectiveBehaviorKind.Other;
         }
 
         private static List<Settlement> FindStagingSettlements(

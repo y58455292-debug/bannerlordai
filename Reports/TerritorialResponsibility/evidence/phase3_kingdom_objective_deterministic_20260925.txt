@@ -1,0 +1,30 @@
+Phase 3 Kingdom Objective deterministic seam
+Date: 2026-09-25 UTC
+
+COMMAND
+dotnet run --project Tests/TerritorialResponsibility/KingdomObjectivePolicyTests.csproj -c Release
+
+RESULT
+PASS KingdomObjective policy tests cases=34
+refusals: readiness/food then urgent clan-home threat
+native candidate factors: direct/staging with bounded winner escalation
+pending commit requires winnerChanged + objectiveWon + settlement
+
+COMMAND
+python Tests/TerritorialResponsibility/test_kingdom_objective_runtime_wiring.py
+
+RESULT
+PASS KingdomObjective runtime wiring
+native candidates, composer ownership, and post-vanilla commit verification preserved
+
+COMMAND
+dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj -c Release
+
+RESULT
+Build succeeded.
+1 Warning(s)
+0 Error(s)
+
+Known warning: inherited System.ValueTuple version conflict.
+Deployment: none.
+Runtime claim: none.
