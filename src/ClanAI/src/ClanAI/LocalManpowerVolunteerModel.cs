@@ -62,11 +62,13 @@ namespace ClanAI
                     index,
                     settlement);
 
+            CharacterObject volunteer;
             bool slotIsEmpty;
             bool slotKnown =
                 TryGetSlotState(
                     hero,
                     index,
+                    out volunteer,
                     out slotIsEmpty);
 
             if (!slotKnown)
@@ -105,18 +107,51 @@ namespace ClanAI
                         0.0f,
                         false);
 
-                LocalManpowerRuntimeTelemetry.ObserveEvaluation(
-                    hero,
-                    index,
-                    settlement,
-                    true,
-                    false,
-                    nativeProbability,
-                    passthrough);
+                int maxVolunteerTier =
+                    _inner.MaxVolunteerTier;
 
-                return passthrough.FinalProbability;
+                bool nativeUpgradeEligible =
+                    TroopQualityVolunteerEligibility
+                        .IsNativeUpgradeEligible(
+                            volunteer,
+                            maxVolunteerTier);
+
+                if (!TroopQualityProbabilityPolicy
+                        .ShouldApplyToOccupiedSlot(
+                            slotKnown,
+                            slotIsEmpty,
+                            nativeUpgradeEligible))
+                {
+                    LocalManpowerRuntimeTelemetry.ObserveEvaluation(
+                        hero,
+                        index,
+                        settlement,
+                        true,
+                        false,
+                        nativeProbability,
+                        passthrough);
+
+                    return passthrough.FinalProbability;
+                }
+
+                return EvaluateOccupiedQualitySlot(
+                    settlement,
+                    nativeProbability);
             }
 
+            return EvaluateEmptySlot(
+                hero,
+                index,
+                settlement,
+                nativeProbability);
+        }
+
+        private static float EvaluateEmptySlot(
+            Hero hero,
+            int index,
+            Settlement settlement,
+            float nativeProbability)
+        {
             LocalManpowerPopulationBand populationBand;
             if (!TryGetPopulationBand(
                     settlement,
@@ -178,6 +213,46 @@ namespace ClanAI
             return result.FinalProbability;
         }
 
+        private static float EvaluateOccupiedQualitySlot(
+            Settlement settlement,
+            float nativeProbability)
+        {
+            LocalManpowerPopulationBand populationBand;
+            if (!TryGetPopulationBand(
+                    settlement,
+                    out populationBand))
+            {
+                return TroopQualityProbabilityPolicy.Evaluate(
+                    nativeProbability,
+                    false,
+                    LocalManpowerPopulationBand.Unknown,
+                    false,
+                    0.0f,
+                    false).FinalProbability;
+            }
+
+            bool hasSecurity;
+            float security;
+            ResolveSecurity(
+                settlement,
+                out hasSecurity,
+                out security);
+
+            bool contextValid =
+                !hasSecurity ||
+                LocalManpowerProbabilityPolicy.IsFinite(
+                    security);
+
+            return TroopQualityProbabilityPolicy.Evaluate(
+                nativeProbability,
+                contextValid,
+                populationBand,
+                hasSecurity,
+                security,
+                IsAcuteDisruption(settlement))
+                .FinalProbability;
+        }
+
         public override CharacterObject GetBasicVolunteer(
             Hero hero)
         {
@@ -193,8 +268,10 @@ namespace ClanAI
         private static bool TryGetSlotState(
             Hero hero,
             int index,
+            out CharacterObject volunteer,
             out bool slotIsEmpty)
         {
+            volunteer = null;
             slotIsEmpty = false;
 
             if (hero == null ||
@@ -207,6 +284,10 @@ namespace ClanAI
 
             slotIsEmpty =
                 hero.VolunteerTypes[index] == null;
+
+            volunteer =
+                hero.VolunteerTypes[index];
+
             return true;
         }
 

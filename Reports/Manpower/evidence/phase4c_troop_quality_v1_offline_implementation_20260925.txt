@@ -1,0 +1,101 @@
+PHASE 4C TROOP QUALITY V1 OFFLINE IMPLEMENTATION EVIDENCE
+Date: 2026-09-25 UTC
+Base GitHub main: 1dfdc48323c65c350bfaa8353e8d8f83c5e70542
+
+RUNTIME STATUS
+Bannerlord launched=NO
+DLL deployed=NO
+Campaign run=NO
+Phase5 started=NO
+Phase4B retuned=NO
+
+SOURCE BLOBS
+LocalManpowerProbabilityPolicy.cs=f8b21dabb9df38df85fc0f83e6cfcad1a083f713
+TroopQualityProbabilityPolicy.cs=d7b997d7c99e2d768bff97bf10057748547a32e8
+TroopQualityVolunteerEligibility.cs=2b1bf1e093da055c095bbf734d42b587e9cc478e
+LocalManpowerVolunteerModel.cs=8066c5226f55a17e3d26c02175e571561f49f75b
+SubModule.cs=cb605fa3497f921057c05490b0de53d8f2921efb
+
+PHASE4B BYTE-FOR-BYTE PRESERVATION
+expected LocalManpowerProbabilityPolicy blob=f8b21dabb9df38df85fc0f83e6cfcad1a083f713
+actual LocalManpowerProbabilityPolicy blob=f8b21dabb9df38df85fc0f83e6cfcad1a083f713
+match=True
+
+PHASE4C QUALITY
+population High=1.00 Mid=0.95 Low=0.80
+security same audited 0.80..1.00 curve
+acute raid/siege=0.50
+qualityMultiplier=clamp(population*security*acute,0.50,1.00)
+occupied native-upgrade-eligible p_quality=clamp(p_native*qualityMultiplier,0,1)
+
+NATIVE ELIGIBILITY
+volunteer exists
+UpgradeTargets non-null/non-empty
+current Tier < selected inner MaxVolunteerTier
+read-only
+no target selection
+no slot mutation
+
+WRAPPER
+single selected wrapper remains LocalManpowerVolunteerModel
+inner production call count in source=1
+invalid slot -> native-safe passthrough
+empty slot -> existing Phase4B EvaluateEmptySlot
+occupied non-upgradeable -> native passthrough
+occupied upgrade-eligible -> EvaluateOccupiedQualitySlot
+inner MaxVolunteerTier used for eligibility
+no second VolunteerModel wrapper
+
+NEW TESTS
+PASS Phase 4C troop quality probability policy checks=69
+PASS Phase 4C VolunteerModel branch/delegation checks=23
+PASS Phase 4C selected-wrapper branch invariant
+PASS Phase 4C native eligibility read-only invariant
+PASS Phase 4C no-mutation invariant
+PASS Phase 4C standalone-path invariant
+PASS Phase 4B policy byte-for-byte preservation invariant
+
+PRESERVED PHASE4B
+PASS Phase 4B local manpower probability policy checks=50
+PASS Phase 4B VolunteerModel delegation checks=13
+PASS Phase 4B Local Manpower selected-model delegation invariant
+PASS Phase 4B Local Manpower no-mutation invariant
+PASS Phase 4B Local Manpower standalone-path invariant
+
+PRESERVED PHASE4A
+PASS Phase 4A same-hero recreation policy checks=43
+PASS Phase 4A recovery policy tests checks=20
+PASS Phase 4A same-hero recreation wiring and original-observer preservation
+PASS Phase 4A same-hero recreation no-mutation and standalone invariant
+PASS Phase 4A recovery wiring
+PASS Phase 4A recovery no-mutation/standalone invariant
+
+PRESERVED TERRITORIAL
+PASS HomeResponsibility runtime wiring
+PASS KingdomObjective runtime wiring
+PASS VisualWar runtime wiring
+PASS VisualWar standalone activation path
+PASS Strategic Commitment runtime wiring
+PASS Strategic Commitment no-mutation invariant
+PASS Strategic Commitment standalone path
+
+RELEASE
+Build succeeded.
+1 Warning(s)
+0 Error(s)
+warning=existing MSB3277 System.ValueTuple conflict
+builtPhase4CDllSha256=A266E8A77E1BFA44EE8420C7F4023A8C470932340168B0A813E6C952DCFB6D6C
+
+NO DEPLOYMENT
+bannerlordRunning=False
+installedLiveDllSha256=9CB64EA90774A391D442FC32F460EF09E1D2901AEE3EBB194386E37A96F1C896
+builtPhase4CDllDiffersFromLive=True
+
+CAPABILITY
+implemented=True
+buildProven=True
+runtimeObserved=False
+balanceProven=False
+
+NEXT
+Separately authorized bounded Phase4C runtime characterization only.
