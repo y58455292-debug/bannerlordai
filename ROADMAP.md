@@ -165,7 +165,7 @@ A clan that leaves a kingdom should be able to:
 
 ## 2D. Kingdom continuity and successor states
 
-**Status — ARCHITECTURE RESOLVED 2026-09-24.** Preserve native ruler elections and terminal kingdom destruction. Treat matured, naturally landed rebel clans as provenance for possible later successor work, not as automatic kingdoms. Preserve the 28-day landless-independent destruction boundary, native ownership, wars, membership, and culture. The first implementation slice is 2D-L1: a save-safe continuity ledger and player notice driven only by native ruler-change/creation/destruction events; no kingdom creation or renaming. See `Reports/KingdomContinuity/PHASE2D_ARCHITECTURE_DECISION.md`.
+**Status — ARCHITECTURE RESOLVED; 2D-L1 IMPLEMENTED/BUILD-PROVEN; RUNTIME SAVE/LOAD VALIDATION BLOCKED BY TOOL ACCESS (NOT GAMEPLAY FAILURE) 2026-09-25.** Preserve native ruler elections and terminal kingdom destruction. Treat matured, naturally landed rebel clans as provenance for possible later successor work, not as automatic kingdoms. Preserve the 28-day landless-independent destruction boundary, native ownership, wars, membership, and culture. The 2D-L1 save/load round trip and duplicate-notice validation are timeboxed until the established Inspector/TestRunner interface is available; the current session did not issue a save command. Native `town_wait_menus` is valid and is not itself a blocker. See `Reports/KingdomContinuity/PHASE2D_ARCHITECTURE_DECISION.md` and `Reports/AgentStatus/CODEX_STATUS.md`.
 
 Long-horizon political identity should support:
 
@@ -188,6 +188,8 @@ Do not predetermine which kingdom survives.
 ## Goal
 
 Make territory feel owned, defended, neglected, or contested based on actual noble behavior.
+
+**Offline checkpoint — source audit complete 2026-09-25.** Existing Home Responsibility remains bounded to Bannerlord-provided, positive-scoring candidates at clan-owned settlements for eligible independent lords at war; it modifies scores and verifies the native behavior/target after selection. The audit found no concrete defect and records scope gaps and a focused offline test seam in `Reports/TerritorialResponsibility/PHASE3_SOURCE_AUDIT.md`. Next: add deterministic tests for its pure eligibility/factor logic without generating native candidates or replacing post-vanilla commit verification.
 
 Rulers and nobles should not all behave as if joining the largest offensive army is always the correct choice.
 
