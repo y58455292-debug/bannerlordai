@@ -1,0 +1,56 @@
+﻿PHASE5_LOCAL_BANDIT_CONTROL_V1_RUNTIME_CHARACTERIZATION
+DATE_UTC 2026-09-25
+GAMEPLAY_COMMIT 0093c8d3d27d2252b9e13572441ab73bbe121dea
+TELEMETRY_CANDIDATE_COMMIT 08e82ac8cf0f3fc126129fbc77206fb8733ba636
+RUNTIME_DLL_SHA256 E4DB15DAF5C437F45F559CADDD3F385CE062416D2896EE451826D961D9DDDF7A
+START_CAMPAIGN_HOUR 649491.27044636116
+MINIMUM_PROOF_CAMPAIGN_HOUR 649510.79714630556
+MINIMUM_PROOF_ELAPSED_HOURS 19.526699944399297
+HIDEOUT_PROOF_CAMPAIGN_HOUR 649510.81641863892
+PAUSE_ACK_CAMPAIGN_HOUR 649579.19519833336
+PAUSE_ACK_ELAPSED_HOURS 87.924751972197555
+MAX_BOUND_HOURS 168
+PROTECTED_FIXTURE ClanAI V020V PERSIST DEMO GATE V021M 20260924
+PROTECTED_FIXTURE_SHA256_BEFORE A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+PROTECTED_FIXTURE_TIMESTAMP_BEFORE 2026-09-24T17:20:12.2384633Z
+PROTECTED_FIXTURE_SHA256_AFTER A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+PROTECTED_FIXTURE_TIMESTAMP_AFTER 2026-09-24T17:20:12.2384633Z
+PROTECTED_FIXTURE_UNCHANGED True
+STRATEGIC_COMMITMENT Mode=Observe
+VISUAL_WAR_MARKER_EXISTS False
+ROLLBACK_SHA256 F8EC94C8973C180F7BEA688016B272C690728A188D61EF05166E3ED51AE445DC
+LIVE_DLL_SHA256_AFTER E4DB15DAF5C437F45F559CADDD3F385CE062416D2896EE451826D961D9DDDF7A
+SAVE_COMMAND_COUNT 0
+PHASE5_TELEMETRY_ERROR_COUNT 0
+BANNERLORD_CLOSED_AFTER True
+
+EXACT_PHASE5_RUNTIME_LINES
+2026-09-25T21:04:38.0445406Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_BANDIT_CONTROL_TELEMETRY_INSTALLED source=phase5-runtime-observation mutation=False
+2026-09-25T21:04:45.5946353Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_BANDIT_CONTROL_TELEMETRY_READY campaignHour=649491.27044636116 mutation=False
+2026-09-25T21:05:48.1777543Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_BANDIT_CONTROL_EVAL sample=town+secure campaignHour=649510.79714630556 settlementId=town_ES7 settlement=Syronea candidateKind=Town policyKind=Town boundSettlementId=<none> boundSettlement=<none> securityAvailable=True security=100 nativeWeight=1 controlMultiplier=0.75 finalWeight=0.75 applied=True reason=security-relative-weight hook=postfix originalExecuted=True mutationByClanAI=False
+2026-09-25T21:05:48.1777543Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_BANDIT_CONTROL_EVAL sample=village campaignHour=649510.79714630556 settlementId=village_ES7_1 settlement=Psotai candidateKind=Village policyKind=Village boundSettlementId=town_ES7 boundSettlement=Syronea securityAvailable=True security=100 nativeWeight=1 controlMultiplier=0.75 finalWeight=0.75 applied=True reason=security-relative-weight hook=postfix originalExecuted=True mutationByClanAI=False
+2026-09-25T21:05:48.1777543Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_BANDIT_CONTROL_EVAL sample=weak campaignHour=649510.79714630556 settlementId=castle_village_K4_1 settlement=Tepes candidateKind=Village policyKind=Village boundSettlementId=castle_K4 boundSettlement=Tepes_Castle securityAvailable=True security=43.85594 nativeWeight=1 controlMultiplier=1.03072023 finalWeight=1.03072023 applied=True reason=security-relative-weight hook=postfix originalExecuted=True mutationByClanAI=False
+2026-09-25T21:05:48.1777543Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_BANDIT_CONTROL_EVAL sample=near-neutral campaignHour=649510.79714630556 settlementId=castle_village_EW6_1 settlement=Hertogea candidateKind=Village policyKind=Village boundSettlementId=castle_EW6 boundSettlement=Hertogea_Castle securityAvailable=True security=50.7775078 nativeWeight=0.25 controlMultiplier=0.996112466 finalWeight=0.249028116 applied=True reason=security-relative-weight hook=postfix originalExecuted=True mutationByClanAI=False
+2026-09-25T21:05:48.1787545Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_BANDIT_CONTROL_NATIVE_LOOTER_CREATED campaignHour=649510.79714630556 partyId=looters_50217 party=Looters clanId=looters culture=looters template=looters_template partyComponent=TaleWorlds.CampaignSystem.Party.PartyComponents.BanditPartyComponent homeSettlementId=castle_village_A6_2 homeSettlement=Lamesa source=native-mobile-party-created-event mutationByClanAI=False
+2026-09-25T21:05:48.1912720Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_BANDIT_CONTROL_EVAL sample=missing-security+hideout campaignHour=649510.81641863892 settlementId=hideout_seaside_6 settlement=Hideout candidateKind=Hideout policyKind=Unsupported boundSettlementId=<none> boundSettlement=<none> securityAvailable=False security=<unavailable> nativeWeight=0.111111112 controlMultiplier=1 finalWeight=0.111111112 applied=False reason=unsupported-candidate hook=postfix originalExecuted=True mutationByClanAI=False
+
+FRESH_TESTRUNNER_LINES
+2026-09-25T21:03:52.8033747Z [TestRunner v0.1] INCIDENT_PATCH applied
+2026-09-25T21:03:52.8158897Z [TestRunner v0.1] NAVAL_CAMPAIGN_SHIP_VISUAL_GUARD applied target=NavalDLC.View.Map.Visuals.NavalMobilePartyVisual.AddShipVisual mode=suppress_visual_only
+2026-09-25T21:03:52.8163920Z [TestRunner v0.1] RUNNER_LOAD version=v0.2.10.24-auto-encounter-resolver-v2
+2026-09-25T21:04:35.5958909Z [TestRunner v0.1] COMMAND command=LOAD_SAVE ClanAI V020V PERSIST DEMO GATE V021M 20260924 result=operator_load_save_started:ClanAI V020V PERSIST DEMO GATE V021M 20260924 timeControl=<none>
+2026-09-25T21:04:41.4767353Z [TestRunner v0.1] CAMPAIGN_INSTANCE generation=1
+2026-09-25T21:04:41.4777350Z [TestRunner v0.1] CAMPAIGN_READY timeControl=Stop
+2026-09-25T21:05:16.1425961Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-25T21:05:31.4284301Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-25T21:05:33.4853098Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-25T21:06:00.6016122Z [TestRunner v0.1] NAVAL_CAMPAIGN_SHIP_VISUAL_SUPPRESSED count=1
+2026-09-25T21:06:19.8772108Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-25T21:06:21.9190214Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-25T21:07:02.3290584Z [TestRunner v0.1] COMMAND command=PAUSE result=paused timeControl=Stop
+2026-09-25T21:07:25.6031202Z [TestRunner v0.1] COMMAND command=EXIT_NOSAVE result=exit_scheduled timeControl=Stop
+
+RESULT STRONG_PASS
+NATIVE_LOOTER_CREATION_OBSERVED True
+HIDEOUT_PASSTHROUGH_RUNTIME_OBSERVED True
+BALANCE_PROVEN False

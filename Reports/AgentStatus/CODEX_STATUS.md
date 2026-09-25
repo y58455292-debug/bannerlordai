@@ -2,11 +2,11 @@
 
 ## Current checkpoint
 
-Phase 5-v1 has completed its **offline-only Local Bandit Control implementation checkpoint**.
+Phase 5-v1 has completed its **bounded Local Bandit Control runtime characterization**.
 
-**Implementation result: PASS — the audited town/village ambient-looter spawn-site weight modifier is implemented and build-proven. Runtime observation and balance proof have NOT been performed.**
+**Runtime result: STRONG PASS — the audited town/village ambient-looter spawn-site weight modifier is implemented, build-proven, and runtime-observed. Native looter creation and hideout passthrough were also observed naturally. Balance remains unproven.**
 
-The implementation uses only native Security, preserves unsupported/hideout results exactly, changes only the returned relative spawn-site weight through a postfix, and adds no party/world mutation. Phase 4A remains closed. Phase 4B and Phase 4C remain unchanged at their accepted implemented/build-proven/runtime-observed checkpoints; their balance remains unproven. Phase 6 has not started.
+The exact Security-only gameplay policy from `0093c8d3d27d2252b9e13572441ab73bbe121dea` remained unchanged. Minimum proof completed after 19.527 campaign hours: secure Syronea applied 0.75 to native weight 1, naturally weak Tepes village used bound-castle Security 43.85594 and raised native weight 1 to 1.03072023, and village-bound Security resolved correctly. A native looter was created by Bannerlord and a hideout invocation passed through exactly with `applied=False`. Phase 4A remains closed. Phase 4B and Phase 4C remain unchanged; their balance remains unproven. Phase 6 has not started.
 
 ## Native ecology finding
 
@@ -103,11 +103,15 @@ SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 - `Reports/Security/evidence/phase5_security_banditry_native_capability_audit_20260925.txt`
 - `Reports/Security/PHASE5_LOCAL_BANDIT_CONTROL_V1_OFFLINE_IMPLEMENTATION_RESULT.md`
 - `Reports/Security/evidence/phase5_local_bandit_control_v1_validation_20260925.txt`
+- `Reports/Security/PHASE5_LOCAL_BANDIT_CONTROL_V1_RUNTIME_TELEMETRY_VALIDATION.md`
+- `Reports/Security/evidence/phase5_local_bandit_control_v1_runtime_telemetry_validation_20260925.txt`
+- `Reports/Security/PHASE5_LOCAL_BANDIT_CONTROL_V1_RUNTIME_RESULT.md`
+- `Reports/Security/evidence/phase5_local_bandit_control_v1_runtime_20260925.txt`
 
 ## Next bounded milestone
 
-The next milestone is a **separately authorized bounded Phase 5 runtime characterization of this exact validated candidate**.
+The Phase 5-v1 runtime characterization checkpoint is complete.
 
-Do not launch it from this offline checkpoint. Do not retune the 0.75..1.25 bounds, add additional inputs, broaden the seam, or begin Phase 6.
+Stop here. Do not retune the 0.75..1.25 bounds or add Phase 5 inputs from this characterization alone. Phase 6 remains not started in this task.
 
 Final product direction remains standalone, installable, and offline with no runtime development-tool dependency.
