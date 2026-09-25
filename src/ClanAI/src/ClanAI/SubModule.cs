@@ -94,6 +94,43 @@ namespace ClanAI
             }
         }
 
+        private static void InstallCivicProjectBuildingScoreCalculationModel(
+            CampaignGameStarter starter)
+        {
+            BuildingScoreCalculationModel current =
+                starter.GetModel<BuildingScoreCalculationModel>();
+
+            if (current == null ||
+                current is CivicProjectBuildingScoreCalculationModel)
+            {
+                return;
+            }
+
+            if (!CivicProjectBuildingScoreCalculationModel
+                    .SupportsInnerModel(current))
+            {
+                return;
+            }
+
+            var wrapper =
+                new CivicProjectBuildingScoreCalculationModel(
+                    current);
+
+            starter.AddModel<BuildingScoreCalculationModel>(
+                wrapper);
+
+            BuildingScoreCalculationModel selected =
+                starter.GetModel<BuildingScoreCalculationModel>();
+
+            if (!object.ReferenceEquals(
+                    selected,
+                    wrapper))
+            {
+                throw new System.InvalidOperationException(
+                    "Phase 6 CivicProject BuildingScoreCalculationModel was not selected");
+            }
+        }
+
         private static void InstallLocalManpowerVolunteerModel(
             CampaignGameStarter starter)
         {
@@ -154,6 +191,7 @@ namespace ClanAI
                 {
                     InstallGlobalAiModelMirror(starter);
                     InstallLocalManpowerVolunteerModel(starter);
+                    InstallCivicProjectBuildingScoreCalculationModel(starter);
                     LocalBanditControlPatch.Install();
 
                     ClanAIPostVanilla.WriteExternalLog(
@@ -179,3 +217,5 @@ namespace ClanAI
 }
 
 
+
+[executed on device: DESKTOP-JO4B7VH (fd6618f4-5715-46b1-8665-68172ef15169)]
