@@ -192,3 +192,10 @@ The next milestone remains one bounded runtime proof where:
 - an existing Visual War defensive/security contribution changes a Bannerlord-native candidate winner;
 - Bannerlord later commits the expected native behavior/target;
 - `VISUAL_WAR_COMMIT_CHECK` records `matched=True`.
+
+
+## Runtime follow-up — proven 2026-09-25
+
+The bounded runtime milestone passed on the unchanged candidate from `b79e64201914c97a354d5bc411a54a80d6fa7745`. With Visual War enabled only by the module-local marker, Arthamund naturally produced a `frontier-defense` winner change from `PatrolAroundPoint:Sibir` to the existing native candidate `PatrolAroundPoint:Goleryn`. The final strategic blackboard still showed `PatrolAroundPoint:Goleryn` as the composed winner. On a later normal AI observation, the new verifier read Bannerlord's native state and recorded `actualDefault=PatrolAroundPoint`, `actualTarget=Goleryn`, `behaviorMatch=True`, `targetMatch=True`, and `matched=True`.
+
+The run stopped inside a 72-hour bound after 29.915 campaign hours, exited without saving, preserved the protected fixture hash/timestamp, and removed the temporary activation marker so Visual War is OFF by default again. No factor/threshold tuning, synthetic target/action, direct party order, candidate insertion, or world mutation was used. See `Reports/TerritorialResponsibility/PHASE3_VISUAL_WAR_RUNTIME_RESULT.md`.

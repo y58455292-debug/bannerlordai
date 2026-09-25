@@ -1,0 +1,60 @@
+Phase 3 Visual War bounded runtime proof
+Date: 2026-09-25 UTC
+Candidate commit: b79e64201914c97a354d5bc411a54a80d6fa7745
+
+DEPLOYMENT
+Bannerlord_closed_before_copy=true
+candidate_sha256=F8C5E2AE389ADB29034CF18DE6DAA293C6F13571A4AA3F15CABA13E744A0B338
+previous_live_sha256=4124AA4F79D452E28B0C08892B1642CD77ED2DFA9F698129405C603A4E69AA2D
+rollback_path=D:\BannerlordAIResearch\Builds\Rollback_Phase3_VisualWar_20260925_ClanAI
+rollback_sha256=4124AA4F79D452E28B0C08892B1642CD77ED2DFA9F698129405C603A4E69AA2D
+deployed_sha256=F8C5E2AE389ADB29034CF18DE6DAA293C6F13571A4AA3F15CABA13E744A0B338
+
+ACTIVATION
+marker_path=<Bannerlord module>\ClanAI\Data\ENABLE_VISUAL_WAR_LAB.txt
+marker_sha256_during_run=D1F84444C6B76EDE1AE8D148C825F28CD83FA2C21376775302CE94E1680AB9BF
+fresh_reset=2026-09-25T05:33:24.5740526Z VISUAL_WAR_RESET enabled=True
+marker_removed_after_exit=true
+marker_exists_after=false
+
+PROTECTED FIXTURE
+name=ClanAI V020V PERSIST DEMO GATE V021M 20260924
+sha256_after=A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+mtime_utc_after=2026-09-24T17:20:12.2384633Z
+save_command_issued=false
+
+BOUND
+planned_max_campaign_hours=72
+start_campaign_hours=649491.27044636116
+paused_campaign_hours=649521.18544391671
+elapsed_campaign_hours=29.91499755555
+result=qualifying_defensive_commit_observed_before_bound
+
+RUNNER
+2026-09-25T05:32:29.3263027Z [TestRunner v0.1] RUNNER_LOAD version=v0.2.10.24-auto-encounter-resolver-v2
+2026-09-25T05:33:14.9922491Z [TestRunner v0.1] COMMAND command=LOAD_SAVE ClanAI V020V PERSIST DEMO GATE V021M 20260924 result=operator_load_save_started:ClanAI V020V PERSIST DEMO GATE V021M 20260924 timeControl=<none>
+2026-09-25T05:33:20.7976980Z [TestRunner v0.1] CAMPAIGN_INSTANCE generation=1
+2026-09-25T05:33:20.7976980Z [TestRunner v0.1] CAMPAIGN_READY timeControl=Stop
+2026-09-25T05:33:37.3593018Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-25T05:34:09.7957803Z [TestRunner v0.1] COMMAND command=PAUSE result=paused timeControl=Stop
+2026-09-25T05:34:58.5323796Z [TestRunner v0.1] COMMAND command=EXIT_NOSAVE result=exit_scheduled timeControl=Stop
+
+SELECTED WINNER CHANGE
+2026-09-25T05:33:39.6975958Z [ClanAI v0.22A-ruler-courtship-native-v1] VISUAL_WAR_WINNER_CHANGE actor=Arthamund party=Arthamund's Party men=112 readiness=0.868 foodDays=26 before=PatrolAroundPoint:Sibir after=PatrolAroundPoint:Goleryn reason=frontier-defense previousVisual=<none> applications=10 winnerChanges=1 selectionChanges=1 repeatsSuppressed=0 weakFrontierSkips=15
+
+FINAL COMPOSED OBSERVATION
+2026-09-25T05:33:39.6975958Z [ClanAI v0.22A-ruler-courtship-native-v1] ACTOR_BLACKBOARD_BORN actor=Arthamund state=Defend objective=PatrolAroundPoint:Goleryn winnerScore=3.61009574 runnerScore=3.49321747 gapPct=0.0323753953
+
+SELECTED COMMIT CHECK
+2026-09-25T05:33:44.7457195Z [ClanAI v0.22A-ruler-courtship-native-v1] VISUAL_WAR_COMMIT_CHECK actor=Arthamund partyId=lord_4_181_party_1 reason=frontier-defense expectedBehavior=PatrolAroundPoint expectedTarget=Goleryn expectedTargetKey=S:castle_village_EW5_2 actualDefault=PatrolAroundPoint actualShort=GoToPoint actualTarget=Goleryn actualTargetKey=S:castle_village_EW5_2 arrivedTarget=<none> arrivedTargetKey=<none> behaviorMatch=True targetMatch=True arrivedMatch=False matched=True expired=False ageHours=6.06 checks=1 matches=1 expiries=0
+
+NATIVE AUTHORITY
+factor_tuning=false
+new_roles=false
+synthetic_target_or_action=false
+direct_party_order=false
+candidate_insertion=false
+faction_mutation=false
+settlement_mutation=false
+war_mutation=false
+source_changed_after_candidate=false
