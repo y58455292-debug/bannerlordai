@@ -7,8 +7,10 @@ BASE = ROOT / "src" / "ClanAI" / "src" / "ClanAI"
 
 policy = (BASE / "LocalManpowerProbabilityPolicy.cs").read_text(encoding="utf-8")
 wrapper = (BASE / "LocalManpowerVolunteerModel.cs").read_text(encoding="utf-8")
+telemetry = (BASE / "LocalManpowerRuntimeTelemetry.cs").read_text(encoding="utf-8")
 submodule = (BASE / "SubModule.cs").read_text(encoding="utf-8")
 combined = policy + "\n" + wrapper
+runtime_observation = combined + "\n" + telemetry
 
 failed = []
 
@@ -19,6 +21,8 @@ for token in (
     "starter.AddModel<VolunteerModel>(",
     "starter.GetModel<VolunteerModel>()",
     "InstallLocalManpowerVolunteerModel(starter);",
+    "LocalManpowerRuntimeTelemetry.Install();",
+    "LOCAL_MANPOWER_MODEL_SELECTED",
 ):
     if token not in submodule:
         failed.append("missing selected-model wiring: " + token)
@@ -61,13 +65,27 @@ for token in (
     if token not in wrapper:
         failed.append("missing native local input: " + token)
 
-# Occupied slots must return native without entering local context calculations.
-occupied_pattern = re.compile(
-    r"if\s*\(!slotIsEmpty\)\s*\{\s*return\s+LocalManpowerProbabilityPolicy\s*\.SanitizeProbability\(nativeProbability\);",
-    re.S,
-)
-if not occupied_pattern.search(wrapper):
-    failed.append("occupied slot is not an immediate native passthrough")
+# Occupied slots must stay on the native passthrough path and must not
+# enter town/village local-factor classification before returning.
+occupied_start = wrapper.find("if (!slotIsEmpty)")
+occupied_end = wrapper.find(
+    "LocalManpowerPopulationBand populationBand;",
+    occupied_start)
+if occupied_start < 0 or occupied_end < 0:
+    failed.append("occupied slot passthrough branch missing")
+else:
+    occupied_branch = wrapper[occupied_start:occupied_end]
+    for token in (
+        "LocalManpowerProbabilityPolicy.Evaluate(",
+        "nativeProbability,",
+        "false,",
+        "LocalManpowerPopulationBand.Unknown",
+        "return passthrough.FinalProbability;",
+    ):
+        if token not in occupied_branch:
+            failed.append("occupied slot passthrough missing: " + token)
+    if "TryGetPopulationBand(" in occupied_branch:
+        failed.append("occupied slot entered local population classification")
 
 # Wrapper must not introduce its own RNG or direct world mutation.
 for forbidden in (
@@ -84,7 +102,7 @@ for forbidden in (
     r"\.\s*(?:Militia|Prosperity|Hearth|Security)\s*=(?!=)",
     r"\.\s*GarrisonParty\s*=(?!=)",
 ):
-    if re.search(forbidden, combined):
+    if re.search(forbidden, runtime_observation):
         failed.append("mutation/RNG forbidden pattern: " + forbidden)
 
 # V1 exclusions: no War Strain, political state, troop-quality or culture factor input.
@@ -112,7 +130,7 @@ for forbidden in (
     r"\bWebRequest\b",
     r"\bSocket\b",
 ):
-    if re.search(forbidden, combined):
+    if re.search(forbidden, runtime_observation):
         failed.append("external IO in Phase 4B source: " + forbidden)
 
 for forbidden in (
@@ -124,10 +142,10 @@ for forbidden in (
     "watchdog",
     "D:\\BannerlordAIResearch",
 ):
-    if forbidden in combined:
+    if forbidden in runtime_observation:
         failed.append("development runtime dependency: " + forbidden)
 
-if re.search(r'@?"[A-Za-z]:[\\/]', combined):
+if re.search(r'@?"[A-Za-z]:[\\/]', runtime_observation):
     failed.append("absolute development-machine path in Phase 4B source")
 
 # Policy shape stays numeric/pure.

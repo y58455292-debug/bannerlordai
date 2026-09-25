@@ -63,19 +63,58 @@ namespace ClanAI
                     settlement);
 
             bool slotIsEmpty;
-            if (!TryGetSlotState(
+            bool slotKnown =
+                TryGetSlotState(
                     hero,
                     index,
-                    out slotIsEmpty))
+                    out slotIsEmpty);
+
+            if (!slotKnown)
             {
-                return LocalManpowerProbabilityPolicy
-                    .SanitizeProbability(nativeProbability);
+                LocalManpowerProbabilityResult passthrough =
+                    LocalManpowerProbabilityPolicy.Evaluate(
+                        nativeProbability,
+                        false,
+                        false,
+                        LocalManpowerPopulationBand.Unknown,
+                        false,
+                        0.0f,
+                        false);
+
+                LocalManpowerRuntimeTelemetry.ObserveEvaluation(
+                    hero,
+                    index,
+                    settlement,
+                    false,
+                    false,
+                    nativeProbability,
+                    passthrough);
+
+                return passthrough.FinalProbability;
             }
 
             if (!slotIsEmpty)
             {
-                return LocalManpowerProbabilityPolicy
-                    .SanitizeProbability(nativeProbability);
+                LocalManpowerProbabilityResult passthrough =
+                    LocalManpowerProbabilityPolicy.Evaluate(
+                        nativeProbability,
+                        false,
+                        true,
+                        LocalManpowerPopulationBand.Unknown,
+                        false,
+                        0.0f,
+                        false);
+
+                LocalManpowerRuntimeTelemetry.ObserveEvaluation(
+                    hero,
+                    index,
+                    settlement,
+                    true,
+                    false,
+                    nativeProbability,
+                    passthrough);
+
+                return passthrough.FinalProbability;
             }
 
             LocalManpowerPopulationBand populationBand;
@@ -83,8 +122,26 @@ namespace ClanAI
                     settlement,
                     out populationBand))
             {
-                return LocalManpowerProbabilityPolicy
-                    .SanitizeProbability(nativeProbability);
+                LocalManpowerProbabilityResult passthrough =
+                    LocalManpowerProbabilityPolicy.Evaluate(
+                        nativeProbability,
+                        true,
+                        false,
+                        LocalManpowerPopulationBand.Unknown,
+                        false,
+                        0.0f,
+                        false);
+
+                LocalManpowerRuntimeTelemetry.ObserveEvaluation(
+                    hero,
+                    index,
+                    settlement,
+                    true,
+                    true,
+                    nativeProbability,
+                    passthrough);
+
+                return passthrough.FinalProbability;
             }
 
             bool hasSecurity;
@@ -108,6 +165,15 @@ namespace ClanAI
                     hasSecurity,
                     security,
                     IsAcuteDisruption(settlement));
+
+            LocalManpowerRuntimeTelemetry.ObserveEvaluation(
+                hero,
+                index,
+                settlement,
+                true,
+                true,
+                nativeProbability,
+                result);
 
             return result.FinalProbability;
         }

@@ -106,6 +106,9 @@ namespace ClanAI
                 return;
             }
 
+            string innerType =
+                current.GetType().FullName;
+
             var wrapper =
                 new LocalManpowerVolunteerModel(
                     current);
@@ -123,6 +126,17 @@ namespace ClanAI
                 throw new System.InvalidOperationException(
                     "Local Manpower VolunteerModel was not selected");
             }
+
+            ClanAIPostVanilla.WriteExternalLog(
+                "LOCAL_MANPOWER_MODEL_SELECTED" +
+                " inner=" + innerType +
+                " wrapper=" + wrapper.GetType().FullName +
+                " selected=" + selected.GetType().FullName +
+                " selectedWrapper=True" +
+                " policy=empty-slots-only" +
+                " mutation=False");
+
+            LocalManpowerRuntimeTelemetry.Install();
         }
 
         protected override void InitializeGameStarter(
