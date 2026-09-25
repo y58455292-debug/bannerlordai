@@ -281,6 +281,8 @@ Distinguish:
 
 ## 4B. Local manpower
 
+**Phase 4B local-manpower native-capability/design audit — PASSED OFFLINE 2026-09-25.** Native daily notable volunteer regeneration is controlled through the selected `VolunteerModel`; player recruitment, ordinary AI lord recruitment, and garrison auto recruitment consume the same six notable `VolunteerTypes` slots. The selected v1 boundary is a delegating `VolunteerModel` that adjusts only empty-slot `GetDailyVolunteerProductionProbability`: native occupied-slot upgrading, culture/troop type, relation gates, costs, AI/player decisions and all actual mutations remain authoritative. The first candidate uses native town prosperity/village hearth level, local/bound security and active raid/siege, clamped to 0.35..1.00 so it can only slow vanilla refill, never boost or stop it. Direct loyalty/militia/garrison/history/pressure inputs and War Strain are deferred; the latter already has an active AI-only recruitment throttle and must not be double-applied. No gameplay code, runtime run or deployment occurred. **Next bounded milestone: offline-only pure policy + delegating VolunteerModel wrapper + deterministic/no-mutation/standalone tests; do not deploy until that passes.** See `Reports/Manpower/PHASE4B_LOCAL_MANPOWER_NATIVE_CAPABILITY_AUDIT.md`.
+
 Recruit availability should reflect conditions such as:
 
 - settlement type;

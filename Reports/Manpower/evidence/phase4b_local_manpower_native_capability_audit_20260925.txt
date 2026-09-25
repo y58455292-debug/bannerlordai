@@ -1,0 +1,131 @@
+PHASE 4B LOCAL MANPOWER NATIVE-CAPABILITY AUDIT
+Date: 2026-09-25 UTC
+Base GitHub main: 5b1ee40453c8d4f040fcf66ff100cc5596583901
+Campaign launched: NO
+DLL deployed: NO
+Gameplay source changed: NO
+Phase 4C started: NO
+
+NATIVE BINARIES RELIED UPON
+TaleWorlds.CampaignSystem.dll
+SHA256=5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+
+TaleWorlds.CampaignSystem.ViewModelCollection.dll
+SHA256=76279E43C1E27B86BD0E1AA35AA407345725C7B208AC170E0EE0174C1A7ADF2A
+
+NATIVE PIPELINE FINDINGS
+- RecruitmentCampaignBehavior registers DailyTickSettlementEvent.
+- Daily settlement update evaluates living recruit-capable notables with six VolunteerTypes slots.
+- Each slot calls Campaign.Current.Models.VolunteerModel.GetDailyVolunteerProductionProbability(hero,index,settlement).
+- Successful empty-slot production uses VolunteerModel.GetBasicVolunteer.
+- Successful occupied-slot production may upgrade via native UpgradeTargets, notable power and MaxVolunteerTier.
+- DefaultVolunteerModel MaxVolunteerTier=4.
+- DefaultVolunteerModel GetBasicVolunteer returns culture EliteBasicTroop for rural notable in a castle-bound village; otherwise culture BasicTroop.
+- Default daily probability has slot-index decay plus kingdom fief-count compensation, Cantons, mounted-slot perk, and game recruitment-rate option.
+- Local security and village hearth do not directly enter DefaultVolunteerModel volunteer production.
+- Local town prosperity only enters indirectly through the kingdom-wide fief-count compensation, not as a direct settlement multiplier.
+- RecruitmentVM reads notable VolunteerTypes and clears the exact purchased slot for player recruitment.
+- Ordinary AI settlement recruitment reads the same VolunteerTypes and clears the exact recruited slot.
+- Garrison auto recruitment can consume the same notable slots from the fortification/bound villages.
+- Garrison base change separately can add BasicTroop without visible volunteer slots.
+- Minor-faction AI parties have a separate map-recruit path outside settlements that does not consume notable slots.
+
+NATIVE LOCAL VALUES
+Town.GetProsperityLevel:
+  Low < 2000
+  Mid >= 2000 and < 5000
+  High >= 5000
+
+Village.GetHearthLevel:
+  Low < 200
+  Mid >= 200 and < 600
+  High >= 600
+
+Town.Security:
+  native maximum 100
+  native drift midpoint 50
+  native notable-relation/tax positive threshold includes 75
+  native security change already incorporates garrison, looted village, siege, hideout, prosperity, policies and patrol effects
+
+Native public/readable state also includes:
+- Settlement.IsTown / IsVillage / IsUnderRaid / IsRaided / IsUnderSiege
+- Village.VillageState / Village.Hearth
+- Town.Loyalty / Militia / GarrisonParty / Prosperity / Security
+- Settlement.Militia
+- notable culture and VolunteerTypes
+
+EXISTING BANNERLORDAI STATE
+WarStrainRecruitmentPatch:
+  target=RecruitmentCampaignBehavior.GetRecruitVolunteerFromIndividual
+  scope=AI lord recruitment attempts
+  rate=max(0.60, 1 - 0.40 * warStrain)
+  implication=AI-only acquisition throttle already exists; do not double-apply shared war strain in Phase4B-v1
+
+WarStrainEconomicPatches:
+  recruit cost factor uses strain * 0.50
+  military upkeep factor uses strain * 0.35
+  separate economic pressure; not local volunteer-production seam
+
+WarStateTracker:
+  GetWarStrain(Kingdom) is reusable 0..1 kingdom-wide state
+  strain uses active wars, besieged settlements, scar load
+  private raid records use a 30-day window
+  no clean exposed local raid-history or war-duration value chosen for v1
+
+SELECTED SEAM
+Delegating VolunteerModel wrapper around the currently selected VolunteerModel.
+Delegate everything unchanged except GetDailyVolunteerProductionProbability.
+Adjust EMPTY slots only.
+Do not mutate VolunteerTypes directly.
+
+PHASE4B-v1 CANDIDATE POLICY
+populationFactor:
+  native High=1.00
+  native Mid=0.95
+  native Low=0.80
+
+securityFactor:
+  0.80 + 0.20 * clamp(security,0,50)/50
+  clamp to [0.80,1.00]
+  town uses own Town.Security
+  village uses bound fortification Town.Security when available
+  missing security -> 1.00
+
+acuteFactor:
+  active under raid or under siege -> 0.50
+  otherwise -> 1.00
+
+localMultiplier =
+  clamp(populationFactor * securityFactor * acuteFactor, 0.35, 1.00)
+
+for empty slot:
+  p_final = clamp(p_native * localMultiplier, 0, 1)
+
+for occupied slot:
+  p_final = p_native exactly
+
+v1 DIRECT EXCLUSIONS
+- loyalty
+- militia
+- garrison strength
+- explicit recent battle history
+- explicit historical raid scalar
+- war duration
+- war strain
+- recruitment-pressure history
+- explicit peace timer
+- culture/troop type/tier modifiers
+- political memory / Home Responsibility state
+
+RATIONALE
+- prevent correlated/double-counted inputs
+- keep quality/Phase4C untouched
+- avoid double-suppressing AI through existing WarStrainRecruitmentPatch
+- let native hearth/prosperity/security recovery encode recovery time
+- keep native culture, troop tree, relation access and actual mutations authoritative
+- healthy secure territory stays at vanilla rate
+- damaged territory slows but floor prevents permanent collapse
+
+NEXT STEP
+Offline-only pure policy + delegating VolunteerModel wrapper + tests/invariants.
+No runtime wiring/deployment in this audit checkpoint.
