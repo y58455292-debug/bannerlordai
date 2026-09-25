@@ -2,70 +2,78 @@
 
 ## Current checkpoint
 
-Phase 4B has begun with the required **offline Local Manpower native-capability/design audit**. The audit passes: Bannerlord exposes a clean shared volunteer-supply seam through the selected `VolunteerModel`. No Phase 4B gameplay code is implemented or wired in this checkpoint, no campaign was launched, and no DLL was deployed.
+Phase 4B Local Manpower v1 is **implemented and build-proven offline, but not runtime-observed**.
 
-Phase 4A remains closed and unchanged. Its accepted evidence is now design input, not a reason to rerun recovery characterization.
+The implementation follows the audited native seam: a delegating `VolunteerModel` wraps Bannerlord's already-selected model and modifies only empty-slot daily volunteer production probability. Bannerlord was not launched, no DLL was deployed, and no campaign was run.
 
-## Selected Phase 4B-v1 seam
+Phase 4A remains closed and unchanged. Phase 4C is not started.
 
-Native `RecruitmentCampaignBehavior` performs notable volunteer production once per settlement daily and calls `VolunteerModel.GetDailyVolunteerProductionProbability` for each of six notable volunteer slots.
+## Phase 4B-v1 implementation
 
-The proposed implementation is a **delegating VolunteerModel wrapper** around the currently selected native/model instance. It will delegate every native method unchanged except the daily production probability.
+New source:
 
-Only **empty volunteer slots** are eligible for Phase 4B scaling. Occupied slots return the exact native probability so native volunteer upgrading/tier progression remains unchanged for Phase 4C.
+- `LocalManpowerProbabilityPolicy.cs`
+- `LocalManpowerVolunteerModel.cs`
+- selected-model registration in `SubModule.cs`
 
-The first candidate local multiplier uses only:
+For normal native probabilities, occupied slots and unsupported contexts pass through unchanged. Only supported empty slots receive the audited population/security/acute multiplier.
 
-- native town prosperity level or village hearth/prosperity level;
-- native local/bound-town security;
-- active raid/siege as an acute disruption.
+The wrapper uses native town/village `GetProsperityLevel()`, town/bound-town `Security`, and active `IsUnderRaid`/`IsUnderSiege`. It does not add historical `IsRaided`, War Strain, culture/tier, militia/garrison, political/social, or Home Responsibility inputs.
 
-Candidate bounds:
+All other `VolunteerModel` members delegate unchanged, and the inner production method is called exactly once.
 
-- population: High 1.00, Mid 0.95, Low 0.80;
-- security: 0.80 at security 0, rising to 1.00 by native midpoint 50;
-- active raid/siege: 0.50;
-- final local multiplier clamped to 0.35..1.00;
-- final probability never exceeds the selected native result.
+## Validation
 
-Healthy secure territory therefore stays at vanilla refill rate; damaged territory recovers more slowly but never stops.
+```
+PASS Phase 4B local manpower probability policy checks=50
+PASS Phase 4B VolunteerModel delegation checks=13
+PASS Phase 4B Local Manpower selected-model delegation invariant
+PASS Phase 4B Local Manpower no-mutation invariant
+PASS Phase 4B Local Manpower standalone-path invariant
+```
 
-## Native pipeline / parity
+All Phase 4A tests remain green. Relevant Home Responsibility, Kingdom Objective, Visual War, and Strategic Commitment invariants also pass.
 
-The same six notable `VolunteerTypes` slots are consumed by:
+Release:
 
-- the native player recruitment UI;
-- ordinary AI lord settlement recruitment;
-- garrison auto recruitment.
+```
+Build succeeded.
+1 Warning(s)
+0 Error(s)
+```
 
-Therefore the proposed local supply ecology naturally affects player and AI supply through shared native state without direct pool mutation.
+The warning is the inherited MSB3277 `System.ValueTuple` conflict.
 
-Separate native paths remain separate: minor-faction map recruitment, Phase 4A post-defeat initial troops, base garrison growth, mercenary stocks, prisoners and other recovery systems.
+Offline build SHA-256:
 
-## Explicit v1 exclusions
+`7A90733AA467127720ABA9426BC6BCE6975B7A514043A677FDBFEA19B56CAEE9`
 
-Do not directly use loyalty, militia, garrison strength, recent-battle history, explicit raid history, war duration, recruitment-pressure history, peace timers, culture/tier modifiers, political memory or Home Responsibility state in the first policy.
+Installed live DLL remained:
 
-Kingdom War Strain is also deferred from v1. The repository already has an AI-only `WarStrainRecruitmentPatch` with `rate=max(0.60,1-0.40*strain)`; adding shared strain production suppression now would double-suppress AI recruitment. A future bounded migration can retire that AI-only throttle and move a modest strain factor into shared production if desired.
+`0D23F4A66E0A1E4413E879C97E963C7DB923D8D6B4421291105D8565120CD5A8`
 
-## Native binaries
+Bannerlord was not running. The Phase 4B build was not deployed.
 
-Offline audit relied on:
+War Strain and Phase 4A source remain byte-for-byte unchanged.
 
-- `TaleWorlds.CampaignSystem.dll` SHA-256 `5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F`
-- `TaleWorlds.CampaignSystem.ViewModelCollection.dll` SHA-256 `76279E43C1E27B86BD0E1AA35AA407345725C7B208AC170E0EE0174C1A7ADF2A`
+## Capability status
 
-See `Reports/Manpower/PHASE4B_LOCAL_MANPOWER_NATIVE_CAPABILITY_AUDIT.md` and its evidence file.
+Implemented: **yes**.  
+Build-proven: **yes**.  
+Runtime-observed: **no**.
 
-## Next bounded milestone
+No campaign-effect or balance claim is made.
 
-Implement **offline only**:
+## Evidence
 
-- pure local-manpower probability policy;
-- delegating `VolunteerModel` wrapper;
-- deterministic tests;
-- no-mutation and standalone invariants.
+- `Reports/Manpower/PHASE4B_LOCAL_MANPOWER_V1_OFFLINE_IMPLEMENTATION_RESULT.md`
+- `Reports/Manpower/evidence/phase4b_local_manpower_v1_offline_implementation_20260925.txt`
+- design: `Reports/Manpower/PHASE4B_LOCAL_MANPOWER_NATIVE_CAPABILITY_AUDIT.md`
 
-Do not launch a campaign or deploy the Phase 4B model until that offline implementation is separately validated. Phase 4C is not started.
+## Next milestone
 
-Final product direction remains a standalone, installable, offline Bannerlord mod with no runtime dependency on ChatGPT, Codex, Desktop Commander, TestRunner, watchdogs, external IO or development-machine absolute paths.
+The next milestone is a **separately authorized bounded runtime characterization** of this exact validated Phase 4B model.
+
+Do not launch that proof from this checkpoint. Do not start Phase 4C.
+
+Final product direction remains a standalone, installable, offline Bannerlord mod with no runtime dependency on ChatGPT, Codex, Desktop Commander, TestRunner, watchdogs, external IO, or development-machine absolute paths.

@@ -1,0 +1,78 @@
+PHASE 4B LOCAL MANPOWER V1 OFFLINE IMPLEMENTATION EVIDENCE
+Date: 2026-09-25 UTC
+Base: 13a9541743f7f5243a15f4c18a63220421b5974c
+Bannerlord launched: NO
+DLL deployed: NO
+Campaign run: NO
+Phase 4A reopened: NO
+Phase 4C started: NO
+
+SOURCE BLOBS
+LocalManpowerProbabilityPolicy.cs=f8b21dabb9df38df85fc0f83e6cfcad1a083f713
+LocalManpowerVolunteerModel.cs=7cfba50587c417200680ab9f604e34e6c79030d6
+SubModule.cs=c4a50ae1148c5ceadc26168e6a865619a1a57361
+
+PRESERVED BLOBS
+WarStrainRecruitmentPatch.cs=dc25c2f333badb1d059c0ba1b2c1a4e9d6d2370d
+Phase4ARecoveryObserverBehavior.Recreation.cs=0c735316e3ce9a0c32189909518ed8f99d4670e0
+Phase4ARecreationLinkPolicy.cs=b926af2d6495005fca62d2d40757e82553c706c0
+
+POLICY
+population High=1.00 Mid=0.95 Low=0.80
+security=clamp(0.80 + 0.20 * clamp(security,0,50)/50,0.80,1.00)
+acute IsUnderRaid/IsUnderSiege=0.50 otherwise=1.00
+localMultiplier=clamp(population*security*acute,0.35,1.00)
+empty p_final=clamp(p_native*localMultiplier,0,1)
+occupied normal finite native probability=exact passthrough
+
+DELEGATION
+wraps starter.GetModel<VolunteerModel>()
+AddModel<VolunteerModel>(wrapper)
+selected reference verified
+MaxVolunteerTier delegated
+MaximumIndexHeroCanRecruitFromHero delegated
+MaximumIndexGarrisonCanRecruitFromHero delegated
+GetBasicVolunteer delegated
+CanHaveRecruits delegated
+inner GetDailyVolunteerProductionProbability called exactly once
+
+NEW TESTS
+PASS Phase 4B local manpower probability policy checks=50
+PASS Phase 4B VolunteerModel delegation checks=13
+PASS Phase 4B Local Manpower selected-model delegation invariant
+PASS Phase 4B Local Manpower no-mutation invariant
+PASS Phase 4B Local Manpower standalone-path invariant
+
+PHASE 4A
+PASS Phase 4A same-hero recreation policy checks=43
+PASS Phase 4A recovery policy tests checks=20
+PASS Phase 4A same-hero recreation wiring and original-observer preservation
+PASS Phase 4A same-hero recreation no-mutation and standalone invariant
+PASS Phase 4A recovery wiring
+PASS Phase 4A recovery no-mutation/standalone invariant
+
+RELEVANT EXISTING INVARIANTS
+PASS HomeResponsibility runtime wiring
+PASS KingdomObjective runtime wiring
+PASS VisualWar runtime wiring
+PASS VisualWar standalone activation path
+PASS Strategic Commitment runtime wiring
+PASS Strategic Commitment no-mutation invariant
+PASS Strategic Commitment standalone path
+
+RELEASE
+Build succeeded.
+1 Warning(s)
+0 Error(s)
+warning=existing MSB3277 System.ValueTuple conflict
+built_sha256=7A90733AA467127720ABA9426BC6BCE6975B7A514043A677FDBFEA19B56CAEE9
+
+NO DEPLOYMENT
+bannerlord_running=False
+installed_live_sha256=0D23F4A66E0A1E4413E879C97E963C7DB923D8D6B4421291105D8565120CD5A8
+
+STATUS
+implemented=True
+build_proven=True
+runtime_observed=False
+balance_proven=False

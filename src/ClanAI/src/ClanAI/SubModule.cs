@@ -94,6 +94,37 @@ namespace ClanAI
             }
         }
 
+        private static void InstallLocalManpowerVolunteerModel(
+            CampaignGameStarter starter)
+        {
+            VolunteerModel current =
+                starter.GetModel<VolunteerModel>();
+
+            if (current == null ||
+                current is LocalManpowerVolunteerModel)
+            {
+                return;
+            }
+
+            var wrapper =
+                new LocalManpowerVolunteerModel(
+                    current);
+
+            starter.AddModel<VolunteerModel>(
+                wrapper);
+
+            VolunteerModel selected =
+                starter.GetModel<VolunteerModel>();
+
+            if (!object.ReferenceEquals(
+                    selected,
+                    wrapper))
+            {
+                throw new System.InvalidOperationException(
+                    "Local Manpower VolunteerModel was not selected");
+            }
+        }
+
         protected override void InitializeGameStarter(
             Game game,
             IGameStarter gameStarterObject)
@@ -108,6 +139,7 @@ namespace ClanAI
                 if (starter != null)
                 {
                     InstallGlobalAiModelMirror(starter);
+                    InstallLocalManpowerVolunteerModel(starter);
 
                     ClanAIPostVanilla.WriteExternalLog(
                         "WRAPPER_PASS_THROUGH global_ai_model_wrapper=enabled mutation=disabled ai_hourly_patch=disabled");
