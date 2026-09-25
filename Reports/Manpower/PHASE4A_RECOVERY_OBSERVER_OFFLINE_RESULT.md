@@ -154,3 +154,12 @@ No DLL was deployed as part of this offline checkpoint.
 Run one natural Phase 4A characterization with a maximum 168 campaign-hour observation window. Qualifying evidence should follow at least one naturally created / post-battle severely depleted / otherwise severely depleted AI lord party through early rebuilding, preserving first observed roster, pre-first-settlement roster, settlement visits, party growth, volunteer/garrison deltas where available, and only evidence-supported source labels.
 
 If no qualifying recovery case develops within the bound, record the null without manufacturing a defeat or recruitment event.
+
+
+## Runtime follow-up — first characterization passed
+
+The observer candidate from `dfa18f3e56a90fbe90c6467a4680e2d545fadcf4` completed a natural runtime characterization within 39.623 campaign hours. Kulyat of the Forest People began at 37/133 troops before any observed settlement visit, then gained +7 at Sibir while volunteers fell 20->13 and garrison remained 423, +9 at Kvol while volunteers fell 18->9, +4 on a later Sibir visit while garrison remained 424, and +8 at Radakmed while volunteers fell 18->10. Four additional +1 increases occurred outside observed settlement visits and remain `OtherOrUnknownNativeSource`.
+
+The same run observed native lord-party creation with non-zero troops before settlement interaction, natural defeated-side post-battle parties with wounded troops, and an Iara castle visit where party +7 matched garrison -7 with volunteers unchanged, supporting a garrison withdrawal.
+
+No gameplay mutation was used. See `Reports/Manpower/PHASE4A_RECOVERY_CHARACTERIZATION_RESULT.md`.
