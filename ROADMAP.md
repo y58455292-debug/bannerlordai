@@ -252,6 +252,8 @@ Recruit availability should emerge locally from world conditions.
 
 ## 4A. Prove vanilla AI recovery behavior first
 
+**Phase 4A recovery observer — OFFLINE READY 2026-09-25.** A minimal observation-only campaign behavior now tracks naturally created or severely depleted NPC lord parties (including post-battle subjects), logs roster health/tier/limit/food and settlement chronology, snapshots notable volunteer pools and garrisons before/after visits where available, and classifies growth conservatively as recruitment-supported, garrison-withdrawal-supported, mixed, other/unknown, or unknown. Troop growth alone never proves a source. Twenty deterministic classification checks, native-event wiring, no-mutation/standalone invariants, and Release build pass with 0 errors. No recruitment/manpower behavior changed. **Next: one natural characterization capped at 168 campaign hours; record either a supported recovery chain or an honest null.** See `Reports/Manpower/PHASE4A_RECOVERY_OBSERVER_OFFLINE_RESULT.md`.
+
 Before changing recruitment, use observation-only evidence to determine how AI lords actually rebuild on the supported Bannerlord version.
 
 Measure:
