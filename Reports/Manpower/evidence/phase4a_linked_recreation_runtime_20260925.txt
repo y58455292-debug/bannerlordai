@@ -1,0 +1,136 @@
+PHASE 4A SAME-HERO LINKED RECREATION - BOUNDED NATURAL RUNTIME NULL
+Source candidate: 0b58b55d7ffd42381340a61a510ba4eaa040754b
+Candidate DLL SHA-256: 0FE236EDA21FFED93F14003A588C5A97712A5CED66341413612244C40BF1F755
+
+PROVENANCE AND COVERAGE
+Recovered completed single-run artifacts; no second runtime run launched on resumption.
+Local evidence directory: D:\BannerlordAIResearch\Builds\Phase4A_LinkedRecreation_20260925
+Complete scoped capture: linked_events.txt
+Original game log: D:\BannerlordAIResearch\Telemetry\ClanAI\logs\clanai.log
+Read-only re-verification filtered PHASE4A_LINK_ lines from the exact reset line below to the end of the original log. The resulting list equaled linked_events.txt line-for-line and in order.
+Full scoped capture line count: 93
+UTF-8 / LF-normalized SHA-256: 70d5652bf308188eea7c45fab2f02f0027b5ac001004bfbaf946af275cdf3fdc
+This repository file is an explicitly selected exact excerpt plus full-run counts and safety/control records. It is not the complete 93-line capture.
+
+FULL-CAPTURE COUNTS (RECOMPUTED FROM ORIGINAL-MATCHED LINES)
+PHASE4A_LINK_RESET=1
+PHASE4A_LINK_DEFEAT_UNRESOLVED=28
+PHASE4A_LINK_PARTY_DESTROYED=28
+PHASE4A_LINK_CREATION=36
+PHASE4A_LINK_DEFEAT=0
+linked_creations=0
+linked_first_settlement_boundaries=0
+completeChain_True=0
+PHASE4A_LINK_OBSERVER_ERROR=0
+creation_classification_GenericNativePartyCreation=36
+All 36 creations: linked=False
+All 28 unresolved defeats: reason=no-native-leader-at-defeat
+Counts are telemetry occurrences, not unique battles.
+
+RETAINED DEPLOYMENT RECORD (JSON VALUES TRANSCRIBED)
+utc=2026-09-25T07:10:33.0826504Z
+candidateCommit=0b58b55d7ffd42381340a61a510ba4eaa040754b
+sourceVerifiedFiles=57
+bannerlordClosedBeforeCopy=true
+candidateSha256=0FE236EDA21FFED93F14003A588C5A97712A5CED66341413612244C40BF1F755
+rollbackPath=D:\BannerlordAIResearch\Builds\Rollback_Phase4A_LinkedRecreation_20260925_ClanAI
+rollbackSha256=5CA45B7AE095E9B3F6F77E06FCCA287414FBAC7D345648AAAD58F39EA1919BF6
+savePath=C:\Users\csala\OneDrive\Documents\Mount and Blade II Bannerlord\Game Saves\ClanAI V020V PERSIST DEMO GATE V021M 20260924.sav
+saveSha256Before=A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+saveTimestampBefore=2026-09-24T17:20:12.2384633Z
+commitment=Mode=Observe
+visualWarMarker=false
+
+EXACT RETAINED RUNTIME RESULT
+{
+  "candidate": "0b58b55d7ffd42381340a61a510ba4eaa040754b",
+  "start": 649491.2704463612,
+  "cap": 649659.2704463612,
+  "maxHours": 168,
+  "pauseTrigger": 649655.2704463612,
+  "wallLimitSeconds": 600,
+  "startUtc": "2026-09-25T07:14:11.447395+00:00",
+  "stopReason": "bounded-window-stop-margin",
+  "stoppedUtc": "2026-09-25T07:17:20.917019+00:00",
+  "pausedHours": 649655.55165025,
+  "paused": true,
+  "controls": 5,
+  "qualifying": null
+}
+Observer reset's full-precision start: 649491.27044636116
+Elapsed campaign hours (decimal subtraction): 164.28120388884
+Margin below 168 campaign hours: 3.71879611116
+
+EXACT EXTERNAL CONTROL CHRONOLOGY
+2026-09-25T07:14:11.466415+00:00 command=FAST
+2026-09-25T07:14:21.516450+00:00 command=CLOSE_ESCAPE_MENU
+2026-09-25T07:15:13.028925+00:00 command=CLOSE_ESCAPE_MENU
+2026-09-25T07:15:37.145157+00:00 command=CLOSE_ESCAPE_MENU
+2026-09-25T07:16:13.079558+00:00 command=CLOSE_ESCAPE_MENU
+2026-09-25T07:17:13.124124+00:00 command=CLOSE_ESCAPE_MENU
+2026-09-25T07:17:20.665326+00:00 command=PAUSE
+
+EXACT TESTRUNNER SESSION/COMMAND CHRONOLOGY
+2026-09-25T07:11:23.5046573Z [TestRunner v0.1] INCIDENT_PATCH applied
+2026-09-25T07:11:23.5171645Z [TestRunner v0.1] NAVAL_CAMPAIGN_SHIP_VISUAL_GUARD applied target=NavalDLC.View.Map.Visuals.NavalMobilePartyVisual.AddShipVisual mode=suppress_visual_only
+2026-09-25T07:11:23.5171645Z [TestRunner v0.1] RUNNER_LOAD version=v0.2.10.24-auto-encounter-resolver-v2
+2026-09-25T07:13:28.9389829Z [TestRunner v0.1] COMMAND command=LOAD_SAVE ClanAI V020V PERSIST DEMO GATE V021M 20260924 result=operator_load_save_started:ClanAI V020V PERSIST DEMO GATE V021M 20260924 timeControl=<none>
+2026-09-25T07:13:35.0763691Z [TestRunner v0.1] CAMPAIGN_INSTANCE generation=1
+2026-09-25T07:13:35.0773790Z [TestRunner v0.1] CAMPAIGN_READY timeControl=Stop
+2026-09-25T07:14:11.6110673Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-25T07:14:21.5986446Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-25T07:14:50.8750691Z [TestRunner v0.1] NAVAL_CAMPAIGN_SHIP_VISUAL_SUPPRESSED count=1
+2026-09-25T07:15:13.1199968Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-25T07:15:37.2772498Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-25T07:16:13.1068308Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-25T07:17:13.1741445Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-25T07:17:20.7676897Z [TestRunner v0.1] COMMAND command=PAUSE result=paused timeControl=Stop
+2026-09-25T07:18:20.1430510Z [TestRunner v0.1] COMMAND command=EXIT_NOSAVE result=exit_scheduled timeControl=Stop
+
+EXACT SELECTED OBSERVER EVENTS - RESET, UNRESOLVED DEFEAT, DESTRUCTION, GENERIC CREATION
+2026-09-25T07:13:38.9209634Z [ClanAI v0.22A-ruler-courtship-native-v1] PHASE4A_LINK_RESET campaignHour=649491.27044636116 maxHours=168 mode=observe-only heroIdentityRequired=True
+2026-09-25T07:14:37.9689054Z [ClanAI v0.22A-ruler-courtship-native-v1] PHASE4A_LINK_DEFEAT_UNRESOLVED heroId=lord_4_14 partyId=lord_4_14_party_1 campaignHour=649510.19073411112 reason=no-native-leader-at-defeat linked=False
+2026-09-25T07:14:37.9875355Z [ClanAI v0.22A-ruler-courtship-native-v1] PHASE4A_LINK_PARTY_DESTROYED heroId=lord_4_14 hero=Morcon nativePartyId=lord_4_14_party_1 campaignHour=649510.19073411112 source=MobilePartyDestroyed
+2026-09-25T07:14:45.3066015Z [ClanAI v0.22A-ruler-courtship-native-v1] PHASE4A_LINK_CREATION heroId=CharacterObject_21212 hero=Zvatim_of_the_Lake_Rats nativePartyId=CharacterObject_21212_party_1 partyId=CharacterObject_21212_party_1 party=Zvatim_of_the_Lake_Rats'_Party actor=Zvatim_of_the_Lake_Rats clan=Lake_Rats kingdom=Khuzait campaignHour=649519.01666175 linked=False classification=GenericNativePartyCreation priorPartyGone=False initialBeforeSettlement=True rosterAvailable=True regularTroops=28 defeatHour=<none> defeatedPartyId=<none> roster=Total=29,Healthy=29,Wounded=0,Heroes=1,T0=0,T1=0,T2=16,T3=8,T4=4,T5=0,T6=0,T7Plus=0 partyLimit=114 partyRatio=0.254385978 foodDays=19 food=28 currentSettlement=<none> targetSettlement=<none>
+
+EXACT SELECTED OBSERVER EVENTS - MIKRI AND TEMEON, NOT ACCEPTED LINKS
+2026-09-25T07:16:27.5724632Z [ClanAI v0.22A-ruler-courtship-native-v1] PHASE4A_LINK_DEFEAT_UNRESOLVED heroId=CharacterObject_19413 partyId=CharacterObject_19413_party_1 campaignHour=649604.22173575 reason=no-native-leader-at-defeat linked=False
+2026-09-25T07:16:27.5734695Z [ClanAI v0.22A-ruler-courtship-native-v1] PHASE4A_LINK_PARTY_DESTROYED heroId=CharacterObject_19413 hero=Mikri_of_the_Forest_People nativePartyId=CharacterObject_19413_party_1 campaignHour=649604.22173575 source=MobilePartyDestroyed
+2026-09-25T07:16:35.2736012Z [ClanAI v0.22A-ruler-courtship-native-v1] PHASE4A_LINK_CREATION heroId=CharacterObject_1801 hero=Temeon nativePartyId=CharacterObject_1801_party_1 partyId=CharacterObject_1801_party_1 party=Temeon's_Party actor=Temeon clan=Legion_of_the_Betrayed kingdom=Battania campaignHour=649613.46155177779 linked=False classification=GenericNativePartyCreation priorPartyGone=False initialBeforeSettlement=True rosterAvailable=True regularTroops=28 defeatHour=<none> defeatedPartyId=<none> roster=Total=29,Healthy=29,Wounded=0,Heroes=1,T0=0,T1=0,T2=16,T3=8,T4=4,T5=0,T6=0,T7Plus=0 partyLimit=119 partyRatio=0.243697479 foodDays=17 food=26 currentSettlement=<none> targetSettlement=<none>
+2026-09-25T07:16:37.3120425Z [ClanAI v0.22A-ruler-courtship-native-v1] PHASE4A_LINK_CREATION heroId=CharacterObject_19413 hero=Mikri_of_the_Forest_People nativePartyId=CharacterObject_19413_party_1 partyId=CharacterObject_19413_party_1 party=Mikri_of_the_Forest_People's_Party actor=Mikri_of_the_Forest_People clan=Forest_People kingdom=Battania campaignHour=649615.90802380559 linked=False classification=GenericNativePartyCreation priorPartyGone=False initialBeforeSettlement=True rosterAvailable=True regularTroops=28 defeatHour=<none> defeatedPartyId=<none> roster=Total=29,Healthy=28,Wounded=1,Heroes=1,T0=0,T1=0,T2=16,T3=8,T4=4,T5=0,T6=0,T7Plus=0 partyLimit=109 partyRatio=0.266055048 foodDays=15 food=22 currentSettlement=<none> targetSettlement=<none>
+2026-09-25T07:16:58.7440725Z [ClanAI v0.22A-ruler-courtship-native-v1] PHASE4A_LINK_DEFEAT_UNRESOLVED heroId=CharacterObject_19413 partyId=CharacterObject_19413_party_1 campaignHour=649641.62796008331 reason=no-native-leader-at-defeat linked=False
+2026-09-25T07:16:58.7440725Z [ClanAI v0.22A-ruler-courtship-native-v1] PHASE4A_LINK_PARTY_DESTROYED heroId=CharacterObject_19413 hero=Mikri_of_the_Forest_People nativePartyId=CharacterObject_19413_party_1 campaignHour=649641.62796008331 source=MobilePartyDestroyed
+2026-09-25T07:17:00.9023747Z [ClanAI v0.22A-ruler-courtship-native-v1] PHASE4A_LINK_DEFEAT_UNRESOLVED heroId=CharacterObject_1801 partyId=CharacterObject_1801_party_1 campaignHour=649644.21692925 reason=no-native-leader-at-defeat linked=False
+2026-09-25T07:17:00.9023747Z [ClanAI v0.22A-ruler-courtship-native-v1] PHASE4A_LINK_PARTY_DESTROYED heroId=CharacterObject_1801 hero=Temeon nativePartyId=CharacterObject_1801_party_1 campaignHour=649644.21692925 source=MobilePartyDestroyed
+
+RETAINED CLEANUP RECORD (JSON VALUES TRANSCRIBED)
+utc=2026-09-25T07:19:01.3865075Z
+exit=EXIT_NOSAVE
+bannerlordRunning=false
+fixtureSha256=A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+fixtureTimestamp=2026-09-24T17:20:12.2384633Z
+fixtureUnchanged=true
+commitment=Mode=Observe
+visualWarMarker=false
+rollbackSha256=5CA45B7AE095E9B3F6F77E06FCCA287414FBAC7D345648AAAD58F39EA1919BF6
+liveSha256=0FE236EDA21FFED93F14003A588C5A97712A5CED66341413612244C40BF1F755
+
+FRESH READ-ONLY RESUMPTION VERIFICATION, 2026-09-25 UTC
+A fresh process query found no Bannerlord process.
+Fixture SHA-256 recomputed from bytes: A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+Fixture mtime_ns: 1790270412238463300
+Fixture LastWriteTimeUtc.ToString('o'): 2026-09-24T17:20:12.2384633Z
+Rollback SHA-256 recomputed from bytes: 5CA45B7AE095E9B3F6F77E06FCCA287414FBAC7D345648AAAD58F39EA1919BF6
+At 2026-09-25T07:43:40.269804+00:00, installed and staged candidate DLLs both recomputed to: 0FE236EDA21FFED93F14003A588C5A97712A5CED66341413612244C40BF1F755
+Installed StrategicCommitment.cfg: Mode=Observe
+Installed ClanAI/Data/ENABLE_VISUAL_WAR_LAB.txt exists: False
+Original game-log scoped lines equal retained capture: True
+Observer error lines in the scoped log: []
+No game launch, redeployment, save, source/config change, or gameplay action was performed during this verification.
+
+CONSERVATIVE DISPOSITION
+Overall run: bounded null; complete-chain pass condition unmet.
+All creation labels: GenericNativePartyCreation; linked=False.
+No accepted post-defeat recreation classification, no inferred free respawn troops, no invented pre-settlement boundary or growth.
+The accepted identity/distinct-party requirements are unchanged.
+Stop at Phase 4A; no run extension, repeat, or Phase 4B.

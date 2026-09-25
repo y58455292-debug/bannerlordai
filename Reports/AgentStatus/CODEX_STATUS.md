@@ -1,24 +1,30 @@
 # Codex Status
 
-## Current task
-Phase 4A same-hero defeat-to-native-recreation observer is offline validated. Continue only to the single natural characterization authorized for this slice, capped at 168 campaign hours, then checkpoint the result and stop. Do not start Phase 4B.
+## Current checkpoint
+Phase 4A same-hero defeat-to-native-recreation runtime characterization is closed with a **bounded null**. The single retained natural run advanced 164.28120388884 campaign hours inside the 168-hour maximum. No complete qualifying same-hero chain was observed. Stop here; do not extend or repeat the run and do not start Phase 4B.
+
+On resumption, GitHub main was verified at `0b58b55d7ffd42381340a61a510ba4eaa040754b`. The already-completed runtime artifacts were found locally, verified against the original game log, and checkpointed rather than launching a second characterization. Local staging was not treated as authoritative without verification.
+
+## Runtime result
+The 93-line scoped observer capture exactly matches the original game log from its session reset: 1 reset, 28 `PHASE4A_LINK_DEFEAT_UNRESOLVED`, 28 `PHASE4A_LINK_PARTY_DESTROYED`, and 36 `PHASE4A_LINK_CREATION` records. All creations have `linked=False` and classification `GenericNativePartyCreation`. There are zero accepted defeat-link records, linked creations, first-settlement link boundaries, complete chains, or `PHASE4A_LINK_OBSERVER_ERROR` records.
+
+Every unresolved defeat record reports `reason=no-native-leader-at-defeat`. Cached hero IDs and later destruction evidence do not satisfy the existing native-leader-at-defeat identity rule. Mikri's later generic creation with 28 regular troops is not promoted to a post-defeat recreation claim. No claim of free respawn troops, zero-troop linked recreation, or linked-but-incomplete recreation is supported by this run.
+
+## Safety and unchanged candidate
+The retained deployment record documents Bannerlord closed before deployment and rollback SHA-256 `5CA45B7AE095E9B3F6F77E06FCCA287414FBAC7D345648AAAD58F39EA1919BF6`. The tested candidate and installed DLL remain SHA-256 `0FE236EDA21FFED93F14003A588C5A97712A5CED66341413612244C40BF1F755`.
+
+The run used the protected fixture without saving, acknowledged PAUSE, issued `EXIT_NOSAVE`, and closed Bannerlord. Fresh verification confirmed fixture SHA-256 `A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427` and modification time `2026-09-24T17:20:12.2384633Z` unchanged, rollback intact, installed Strategic Commitment `Mode=Observe`, and Visual War marker absent. No observer/source/configuration changes, forced battles, forced recreations, or gameplay mutations were made for this characterization or its checkpoint recovery.
 
 ## Preserved checkpoints
-Phase 3 Strategic Commitment remains a bounded runtime null. Phase 4A's first characterization remains accepted: Kulyat 37->69 with +28 recruitment-supported and +4 unresolved; Iara's +7 party/-7 garrison supported a withdrawal; generic native creations were not proven post-defeat respawns. Do not reopen these proofs.
+Phase 3 Strategic Commitment remains a bounded runtime null. Phase 4A's first characterization remains accepted: Kulyat 37->69 with +28 recruitment-supported and +4 unresolved; Iara's +7 party/-7 garrison supported a withdrawal; generic native creations were not proven post-defeat respawns. These proofs were not reopened.
 
-## New seam
-The existing recovery behavior has a partial observation file and one registration call. Existing recovery telemetry/classification is unchanged. New evidence links only a native defeated-side hero StringId to that same hero's later distinct native party creation, with prior destruction or disappearance. It captures creation roster/context and follows the first settlement boundary. Missing identity, unavailable/contaminated pre-settlement state, and generic creations retain conservative labels.
+The linked observer's existing offline results remain unchanged: 35 linkage policy checks; wiring/original-observer preservation and no-mutation/standalone invariants; the prior 20 recovery policy checks and both invariants; Release 0 errors with the inherited System.ValueTuple warning. No rebuild was necessary for this evidence-only checkpoint.
 
-## Validation
-35 same-hero recreation policy checks PASS; event wiring/original-observer preservation PASS; no-mutation/standalone invariant PASS; existing 20 recovery policy checks and both existing invariants PASS. Release: 0 errors, inherited System.ValueTuple warning only. Built DLL SHA-256: `0FE236EDA21FFED93F14003A588C5A97712A5CED66341413612244C40BF1F755`.
+## Evidence and limits
+- `Reports/Manpower/PHASE4A_LINKED_RECREATION_RUNTIME_RESULT.md`
+- `Reports/Manpower/evidence/phase4a_linked_recreation_runtime_20260925.txt`
+- Existing seam/validation: `Reports/Manpower/PHASE4A_LINKED_RECREATION_OBSERVER_RESULT.md`
 
-No DLL deployed or runtime success claimed at this source checkpoint.
+The new evidence file retains exact selected event lines, full-capture counts/hash, deployment and cleanup records, control chronology, and fresh verification. The complete 93-line capture remains in the recorded local evidence directory; it was verified line-for-line, not silently relabeled. This null constrains what this run and identity seam proved; it does not establish that native post-defeat recreation never happens.
 
-## Runtime constraints
-Natural defeat/recreation only. No troop/order/target/score/economy/settlement/faction/war changes. Protected fixture read-only; verified rollback; EXIT_NOSAVE; fixture hash/timestamp unchanged. Strategic Commitment must remain Mode=Observe and Visual War OFF. A complete same-hero first-settlement chain or a bounded null ends the milestone. No tuning or run extension.
-
-## Evidence
-`Reports/Manpower/PHASE4A_LINKED_RECREATION_OBSERVER_RESULT.md`
-`Reports/Manpower/evidence/phase4a_linked_recreation_validation_20260925.txt`
-
-Final product remains a standalone, installable, offline mod. Development harnesses are validation-only; the new observer has no development-machine path or runtime tooling dependency.
+Final product direction is unchanged: a standalone, installable, offline mod with no runtime dependency on ChatGPT, Codex, Desktop Commander, TestRunner, watchdogs, or development-machine absolute paths. Development harnesses are evidence-only. This checkpoint changes documentation/evidence only and adds no release/runtime dependency.
