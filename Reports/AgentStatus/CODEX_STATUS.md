@@ -1,67 +1,24 @@
 # Codex Status
 
 ## Current task
-Stop at the completed first Phase 4A vanilla AI recovery characterization checkpoint. Do not implement Phase 4B yet.
+Phase 4A same-hero defeat-to-native-recreation observer is offline validated. Continue only to the single natural characterization authorized for this slice, capped at 168 campaign hours, then checkpoint the result and stop. Do not start Phase 4B.
 
-## Current state
-PHASE 3 CLOSED WITH STRATEGIC COMMITMENT RUNTIME BOUNDED NULL. PHASE 4A OBSERVATION SEAM PASSED OFFLINE AND FIRST NATURAL RECOVERY CHARACTERIZATION PASSED.
+## Preserved checkpoints
+Phase 3 Strategic Commitment remains a bounded runtime null. Phase 4A's first characterization remains accepted: Kulyat 37->69 with +28 recruitment-supported and +4 unresolved; Iara's +7 party/-7 garrison supported a withdrawal; generic native creations were not proven post-defeat respawns. Do not reopen these proofs.
 
-## Phase 4A observer
-Observation-only behavior is committed at `dfa18f3e56a90fbe90c6467a4680e2d545fadcf4`.
+## New seam
+The existing recovery behavior has a partial observation file and one registration call. Existing recovery telemetry/classification is unchanged. New evidence links only a native defeated-side hero StringId to that same hero's later distinct native party creation, with prior destruction or disappearance. It captures creation roster/context and follows the first settlement boundary. Missing identity, unavailable/contaminated pre-settlement state, and generic creations retain conservative labels.
 
-Validation:
-- recovery classification policy: 20 checks PASS;
-- native wiring invariant: PASS;
-- no-mutation / standalone invariant: PASS;
-- Release build: 0 errors, 1 inherited `System.ValueTuple` warning;
-- candidate DLL SHA-256: `5CA45B7AE095E9B3F6F77E06FCCA287414FBAC7D345648AAAD58F39EA1919BF6`.
+## Validation
+35 same-hero recreation policy checks PASS; event wiring/original-observer preservation PASS; no-mutation/standalone invariant PASS; existing 20 recovery policy checks and both existing invariants PASS. Release: 0 errors, inherited System.ValueTuple warning only. Built DLL SHA-256: `0FE236EDA21FFED93F14003A588C5A97712A5CED66341413612244C40BF1F755`.
 
-## First natural characterization
-Bound: maximum 168 campaign hours. Stopped after 39.623 hours when qualifying evidence was already sufficient.
+No DLL deployed or runtime success claimed at this source checkpoint.
 
-Primary subject: Kulyat of the Forest People, Battania.
-
-- start: 37/133 troops, ratio 0.278, healthy 37, wounded 0;
-- before first settlement at Sibir after 0.861h: still 37 troops;
-- Sibir 1: 37->44, volunteers 20->13, garrison 423->423 -> `SettlementRecruitmentSupported`;
-- Kvol: 44->53, volunteers 18->9 -> `SettlementRecruitmentSupported`;
-- outside visit: 53->54 -> `OtherOrUnknownNativeSource`;
-- Sibir 2: 54->58, volunteers 20->15, garrison 424->424 -> `SettlementRecruitmentSupported`;
-- Radakmed: 58->66, volunteers 18->10 -> `SettlementRecruitmentSupported`;
-- later outside-visit +1 steps reached 69 and remain unknown.
-
-Kulyat accounting:
-- net gain: +32;
-- settlement-supported gain: +28;
-- outside-settlement unresolved gain: +4.
-
-Supporting observations:
-- two native `MobilePartyCreated` lord parties appeared outside settlements with 29 and 17 troops already present; this proves initial troops on native creation but does not prove those creations were specifically post-defeat respawns;
-- natural defeated-side post-battle snapshots captured Stohrith, Elta, and Megenhelda with substantial wounded rosters;
-- Iara at Ab Comer Castle: party 67->74, volunteers 0->0, garrison 219->212 -> `GarrisonWithdrawalSupported`.
-
-Session labels:
-- recruitment-supported: 26;
-- garrison-withdrawal-supported: 1;
-- other/unknown native source: 21;
-- initial presence before settlement: 2.
-
-Counts are telemetry occurrences, not global rates.
-
-## Safety
-- `EXIT_NOSAVE` completed;
-- protected fixture hash/timestamp unchanged;
-- rollback preserved;
-- commitment remains `Mode=Observe`;
-- Visual War remains OFF;
-- no recruitment/manpower/economy/party/garrison/world mutation was introduced.
+## Runtime constraints
+Natural defeat/recreation only. No troop/order/target/score/economy/settlement/faction/war changes. Protected fixture read-only; verified rollback; EXIT_NOSAVE; fixture hash/timestamp unchanged. Strategic Commitment must remain Mode=Observe and Visual War OFF. A complete same-hero first-settlement chain or a bounded null ends the milestone. No tuning or run extension.
 
 ## Evidence
-- `Reports/Manpower/PHASE4A_RECOVERY_OBSERVER_OFFLINE_RESULT.md`
-- `Reports/Manpower/PHASE4A_RECOVERY_CHARACTERIZATION_RESULT.md`
-- `Reports/Manpower/evidence/phase4a_recovery_characterization_20260925.txt`
+`Reports/Manpower/PHASE4A_LINKED_RECREATION_OBSERVER_RESULT.md`
+`Reports/Manpower/evidence/phase4a_linked_recreation_validation_20260925.txt`
 
-## Resource discipline
-This is a characterization checkpoint, not authorization to implement Phase 4B. Preserve unknown source labels; do not convert count growth into inferred recruitment without pool/garrison evidence. Do not reopen Phase 3 or Phase 2 absent a new defect.
-
-The final product remains standalone and offline; development harnesses remain validation-only.
+Final product remains a standalone, installable, offline mod. Development harnesses are validation-only; the new observer has no development-machine path or runtime tooling dependency.

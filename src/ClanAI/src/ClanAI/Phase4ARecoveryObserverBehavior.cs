@@ -10,7 +10,7 @@ using TaleWorlds.Core;
 
 namespace ClanAI
 {
-    public sealed class Phase4ARecoveryObserverBehavior
+    public sealed partial class Phase4ARecoveryObserverBehavior
         : CampaignBehaviorBase
     {
         private const double MaxTrackHours = 168.0;
@@ -64,6 +64,7 @@ namespace ClanAI
 
         public override void RegisterEvents()
         {
+            RegisterRecreationLinkEvents();
             CampaignEvents.OnSessionLaunchedEvent
                 .AddNonSerializedListener(
                     this,

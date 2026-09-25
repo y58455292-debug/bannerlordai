@@ -1,0 +1,18 @@
+BASE=6ea934ee00c7a6ccc011240d48a6e63fa6de2327
+UTC=2026-09-25T07:08:32.7348118Z
+PASS Phase 4A same-hero recreation policy checks=35
+PASS Phase 4A same-hero recreation wiring and original-observer preservation
+PASS Phase 4A same-hero recreation no-mutation and standalone invariant
+PASS Phase 4A recovery policy tests checks=20
+source labels require supporting volunteer/garrison evidence; unsupported growth remains unknown
+PASS Phase 4A recovery wiring
+native creation/battle/hourly/settlement observations and conservative source classification are wired
+PASS Phase 4A recovery no-mutation/standalone invariant
+observer introduces no troop/recruit/garrison/order/world mutation and no dev-machine runtime path
+    1 Warning(s)
+    0 Error(s)
+Time Elapsed 00:00:00.46
+BUILD_EXIT=0
+BUILD_SHA256=0FE236EDA21FFED93F14003A588C5A97712A5CED66341413612244C40BF1F755
+Warning: inherited MSB3277 System.ValueTuple conflict.
+Runtime result: not yet observed at this source checkpoint.
