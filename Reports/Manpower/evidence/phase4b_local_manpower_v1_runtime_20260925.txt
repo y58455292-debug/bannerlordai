@@ -1,0 +1,94 @@
+PHASE 4B LOCAL MANPOWER V1 RUNTIME EVIDENCE
+Date: 2026-09-25 UTC
+
+PROVENANCE
+offlinePolicyCommit=88aff823d055b0b951d263f8259f5c3537ed6bfd
+telemetryRuntimeCommit=5a6b9757b33a33f356f537cced6a74051ca04e30
+policyBlob=f8b21dabb9df38df85fc0f83e6cfcad1a083f713
+runtimeDllSha256=9CB64EA90774A391D442FC32F460EF09E1D2901AEE3EBB194386E37A96F1C896
+priorOfflineDllSha256=7A90733AA467127720ABA9426BC6BCE6975B7A514043A677FDBFEA19B56CAEE9
+
+BOUND
+start=649491.27044636116
+healthyOccupiedHour=649491.370873
+healthyOccupiedElapsedHours=0.10042663884
+degradedFillHour=649491.450873
+degradedFillElapsedHours=0.18042663884
+paused=649491.6858864167
+pausedElapsedHours=0.41544005554
+maxHours=168
+stopReason=minimum-proof-plus-native-fill
+
+MODEL SELECTION
+2026-09-25T09:04:41.0617285Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_MANPOWER_MODEL_SELECTED inner=TaleWorlds.CampaignSystem.GameComponents.DefaultVolunteerModel wrapper=ClanAI.LocalManpowerVolunteerModel selected=ClanAI.LocalManpowerVolunteerModel selectedWrapper=True policy=empty-slots-only mutation=False
+
+TELEMETRY INSTALL
+2026-09-25T09:04:41.0702483Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_MANPOWER_TELEMETRY_INSTALLED dailyTarget=TaleWorlds.CampaignSystem.CampaignBehaviors.RecruitmentCampaignBehavior.UpdateVolunteersOfNotablesInSettlement recruitTarget=TaleWorlds.CampaignSystem.CampaignBehaviors.RecruitmentCampaignBehavior.GetRecruitVolunteerFromIndividual mutation=False
+
+OCCUPIED PASSTHROUGH
+2026-09-25T09:05:53.2147456Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_MANPOWER_EVAL_SAMPLE sample=occupied campaignHour=649491.370873 settlementId=village_EW4_3 settlement=Vinela kind=Village notableId=CharacterObject_2344 notable=Calytos_of_Vinela notableCulture=empire slot=0 slotKnown=True slotState=occupied populationBand=High prosperity=<n/a> hearth=624.9296 securityAvailable=True security=99.15879 underRaid=False underSiege=False nativeProbability=0.525 populationFactor=1 securityFactor=1 acuteFactor=1 localMultiplier=1 finalProbability=0.525 applied=False reason=occupied-slot-native-passthrough mutationByClanAI=False
+
+HEALTHY EMPTY PASSTHROUGH
+2026-09-25T09:05:53.2157445Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_MANPOWER_EVAL_SAMPLE sample=healthy-empty campaignHour=649491.370873 settlementId=village_EW4_3 settlement=Vinela kind=Village notableId=CharacterObject_2344 notable=Calytos_of_Vinela notableCulture=empire slot=5 slotKnown=True slotState=empty populationBand=High prosperity=<n/a> hearth=624.9296 securityAvailable=True security=99.15879 underRaid=False underSiege=False nativeProbability=0.08823674 populationFactor=1 securityFactor=1 acuteFactor=1 localMultiplier=1 finalProbability=0.08823674 applied=False reason=healthy-native-rate mutationByClanAI=False
+
+DEGRADED EMPTY SLOWDOWN
+2026-09-25T09:05:53.3998055Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_MANPOWER_EVAL_SAMPLE sample=degraded-empty campaignHour=649491.450873 settlementId=castle_village_EW1_2 settlement=Lysia kind=Village notableId=CharacterObject_2340 notable=Sanion_of_Lysia notableCulture=empire slot=0 slotKnown=True slotState=empty populationBand=Mid prosperity=<n/a> hearth=412.8728 securityAvailable=True security=91.290535 underRaid=False underSiege=False nativeProbability=0.525 populationFactor=0.95 securityFactor=1 acuteFactor=1 localMultiplier=0.95 finalProbability=0.498749971 applied=True reason=local-manpower-slowdown mutationByClanAI=False
+
+NATIVE DAILY SLOT TRANSITION FOR SAME SAMPLE
+2026-09-25T09:05:53.4008062Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_MANPOWER_NATIVE_SLOT_TRANSITION campaignHour=649491.450873 settlementId=castle_village_EW1_2 settlement=Lysia kind=Village notableId=CharacterObject_2340 notable=Sanion_of_Lysia notableCulture=empire slot=0 before=<empty> after=imperial_vigla_recruit[tier=2,culture=empire] transition=fill-or-reorder-into-empty-slot evaluationSlotState=empty nativeProbability=0.525 populationFactor=0.95 securityFactor=1 acuteFactor=1 localMultiplier=0.95 finalProbability=0.498749971 evaluationReason=local-manpower-slowdown source=native-daily-volunteer-update mutationByClanAI=False
+
+ADDITIONAL NATIVE TRANSITIONS
+2026-09-25T09:05:53.4008062Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_MANPOWER_NATIVE_SLOT_TRANSITION campaignHour=649491.450873 settlementId=castle_village_EW1_2 settlement=Lysia kind=Village notableId=CharacterObject_18103 notable=Narmys_of_Lysia notableCulture=empire slot=0 before=<empty> after=imperial_recruit[tier=1,culture=empire] transition=fill-or-reorder-into-empty-slot evaluationSlotState=empty nativeProbability=0.525 populationFactor=0.95 securityFactor=1 acuteFactor=1 localMultiplier=0.95 finalProbability=0.498749971 evaluationReason=local-manpower-slowdown source=native-daily-volunteer-update mutationByClanAI=False
+2026-09-25T09:05:53.4008062Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_MANPOWER_NATIVE_SLOT_TRANSITION campaignHour=649491.450873 settlementId=castle_village_EW1_2 settlement=Lysia kind=Village notableId=CharacterObject_19251 notable=Aphanys_of_Lysia notableCulture=empire slot=0 before=<empty> after=imperial_vigla_recruit[tier=2,culture=empire] transition=fill-or-reorder-into-empty-slot evaluationSlotState=empty nativeProbability=0.525 populationFactor=0.95 securityFactor=1 acuteFactor=1 localMultiplier=0.95 finalProbability=0.498749971 evaluationReason=local-manpower-slowdown source=native-daily-volunteer-update mutationByClanAI=False
+2026-09-25T09:05:53.5360301Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_MANPOWER_NATIVE_SLOT_TRANSITION campaignHour=649491.530873 settlementId=village_EW4_1 settlement=Arpotis kind=Village notableId=CharacterObject_2337 notable=Joculos_of_Arpotis notableCulture=empire slot=3 before=<empty> after=imperial_recruit[tier=1,culture=empire] transition=fill-or-reorder-into-empty-slot evaluationSlotState=empty nativeProbability=0.18007499 populationFactor=1 securityFactor=1 acuteFactor=1 localMultiplier=1 finalProbability=0.18007499 evaluationReason=healthy-native-rate source=native-daily-volunteer-update mutationByClanAI=False
+2026-09-25T09:05:53.5455476Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_MANPOWER_NATIVE_SLOT_TRANSITION campaignHour=649491.530873 settlementId=town_B1 settlement=Marunath kind=Town notableId=CharacterObject_11114 notable=Egan_the_Furtrader notableCulture=battania slot=0 before=<empty> after=battanian_volunteer[tier=1,culture=battania] transition=fill-or-reorder-into-empty-slot evaluationSlotState=empty nativeProbability=0.525 populationFactor=1 securityFactor=1 acuteFactor=1 localMultiplier=1 finalProbability=0.525 evaluationReason=healthy-native-rate source=native-daily-volunteer-update mutationByClanAI=False
+2026-09-25T09:05:53.5455476Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_MANPOWER_NATIVE_SLOT_TRANSITION campaignHour=649491.530873 settlementId=town_B1 settlement=Marunath kind=Town notableId=CharacterObject_12864 notable=Cadfin_the_Factor notableCulture=battania slot=0 before=<empty> after=battanian_volunteer[tier=1,culture=battania] transition=fill-or-reorder-into-empty-slot evaluationSlotState=empty nativeProbability=0.525 populationFactor=1 securityFactor=1 acuteFactor=1 localMultiplier=1 finalProbability=0.525 evaluationReason=healthy-native-rate source=native-daily-volunteer-update mutationByClanAI=False
+2026-09-25T09:05:53.5455476Z [ClanAI v0.22A-ruler-courtship-native-v1] LOCAL_MANPOWER_NATIVE_SLOT_TRANSITION campaignHour=649491.530873 settlementId=town_B1 settlement=Marunath kind=Town notableId=CharacterObject_13845 notable=Pelisor_the_Dyer notableCulture=battania slot=0 before=<empty> after=battanian_volunteer[tier=1,culture=battania] transition=fill-or-reorder-into-empty-slot evaluationSlotState=empty nativeProbability=0.525 populationFactor=1 securityFactor=1 acuteFactor=1 localMultiplier=1 finalProbability=0.525 evaluationReason=healthy-native-rate source=native-daily-volunteer-update mutationByClanAI=False
+
+RUNTIME FLAGS
+model=True
+healthy=True
+degraded=True
+occupied=True
+nativeFillTransition=True
+sharedConsumption=False
+telemetryError=False
+minimumPass=True
+
+CONTROL
+2026-09-25T09:05:42.637718+00:00 command=FAST
+2026-09-25T09:05:52.691263+00:00 command=CLOSE_ESCAPE_MENU
+2026-09-25T09:05:53.695951+00:00 command=PAUSE
+finalStatus.timeControl=Stop
+finalStatus.campaignHours=649491.6858864167
+finalStatus.lastCommand=EXIT_NOSAVE
+finalStatus.lastResult=exit_scheduled
+freshSaveCommands=0
+
+DEPLOYMENT
+bannerlordClosedBeforeCopy=True
+candidateSha256=9CB64EA90774A391D442FC32F460EF09E1D2901AEE3EBB194386E37A96F1C896
+liveBeforeSha256=0D23F4A66E0A1E4413E879C97E963C7DB923D8D6B4421291105D8565120CD5A8
+rollbackSha256=0D23F4A66E0A1E4413E879C97E963C7DB923D8D6B4421291105D8565120CD5A8
+StrategicCommitment=Mode=Observe
+VisualWar=False
+fixtureBeforeSha256=A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+fixtureBeforeTimestamp=2026-09-24T17:20:12.2384633Z
+
+CLEANUP
+EXIT_NOSAVE
+bannerlordRunning=False
+fixtureUnchanged=True
+fixtureSha256=A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+fixtureTimestamp=2026-09-24T17:20:12.2384633Z
+rollbackSha256=0D23F4A66E0A1E4413E879C97E963C7DB923D8D6B4421291105D8565120CD5A8
+StrategicCommitment=Mode=Observe
+VisualWar=False
+
+CLASSIFICATION
+implemented=True
+buildProven=True
+runtimeObserved=True
+nativeMutationObserved=True
+sharedConsumptionObserved=False
+balanceProven=False

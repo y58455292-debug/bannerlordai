@@ -2,78 +2,118 @@
 
 ## Current checkpoint
 
-Phase 4B Local Manpower v1 is **implemented and build-proven offline, but not runtime-observed**.
+Phase 4B Local Manpower v1 is now **implemented, build-proven, and runtime-observed for the minimum required probability contract**. A native volunteer-slot mutation after a Local Manpower evaluation was also observed.
 
-The implementation follows the audited native seam: a delegating `VolunteerModel` wraps Bannerlord's already-selected model and modifies only empty-slot daily volunteer production probability. Bannerlord was not launched, no DLL was deployed, and no campaign was run.
+**Balance is not proven. Phase 4C has not started.**
 
-Phase 4A remains closed and unchanged. Phase 4C is not started.
+Validated policy checkpoint: `88aff823d055b0b951d263f8259f5c3537ed6bfd`  
+Observation-only runtime checkpoint: `5a6b9757b33a33f356f537cced6a74051ca04e30`  
+Runtime DLL SHA-256: `9CB64EA90774A391D442FC32F460EF09E1D2901AEE3EBB194386E37A96F1C896`
 
-## Phase 4B-v1 implementation
+The pure policy blob remained unchanged from the offline implementation checkpoint. The runtime hash differs from the previous offline DLL only because minimum observation-only telemetry was added and revalidated.
 
-New source:
+## Runtime proof
 
-- `LocalManpowerProbabilityPolicy.cs`
-- `LocalManpowerVolunteerModel.cs`
-- selected-model registration in `SubModule.cs`
+The protected fixture started at `649491.27044636116`. Required proof was complete by `649491.450873`, only **0.18042663884 campaign hours** later. Pause acknowledgement occurred at `649491.6858864167`, **0.41544005554 hours** after start, far inside the 168-hour maximum.
 
-For normal native probabilities, occupied slots and unsupported contexts pass through unchanged. Only supported empty slots receive the audited population/security/acute multiplier.
+### Selected model
 
-The wrapper uses native town/village `GetProsperityLevel()`, town/bound-town `Security`, and active `IsUnderRaid`/`IsUnderSiege`. It does not add historical `IsRaided`, War Strain, culture/tier, militia/garrison, political/social, or Home Responsibility inputs.
+Runtime logged:
 
-All other `VolunteerModel` members delegate unchanged, and the inner production method is called exactly once.
+- inner: `DefaultVolunteerModel`;
+- wrapper: `LocalManpowerVolunteerModel`;
+- selected wrapper: true;
+- policy: empty slots only.
 
-## Validation
+### Healthy empty passthrough
 
-```
-PASS Phase 4B local manpower probability policy checks=50
-PASS Phase 4B VolunteerModel delegation checks=13
-PASS Phase 4B Local Manpower selected-model delegation invariant
-PASS Phase 4B Local Manpower no-mutation invariant
-PASS Phase 4B Local Manpower standalone-path invariant
-```
+Vinela, High hearth `624.9296`, security `99.15879`, no raid/siege:
 
-All Phase 4A tests remain green. Relevant Home Responsibility, Kingdom Objective, Visual War, and Strategic Commitment invariants also pass.
+- native `0.08823674`;
+- multiplier `1`;
+- final `0.08823674`.
 
-Release:
+### Degraded empty slowdown
 
-```
-Build succeeded.
-1 Warning(s)
-0 Error(s)
-```
+Lysia, Mid hearth `412.8728`, security `91.290535`, no raid/siege:
 
-The warning is the inherited MSB3277 `System.ValueTuple` conflict.
+- native `0.525`;
+- population factor `0.95`;
+- security factor `1`;
+- acute factor `1`;
+- multiplier `0.95`;
+- final `0.498749971`.
 
-Offline build SHA-256:
+This was a natural degraded locality; no state was manufactured.
 
-`7A90733AA467127720ABA9426BC6BCE6975B7A514043A677FDBFEA19B56CAEE9`
+### Occupied passthrough
 
-Installed live DLL remained:
+Vinela occupied slot:
+
+- native `0.525`;
+- final `0.525`;
+- reason `occupied-slot-native-passthrough`.
+
+### Native mutation authority
+
+Immediately after the Lysia degraded evaluation, the native daily volunteer update changed Sanion's slot from empty to:
+
+`imperial_vigla_recruit[tier=2,culture=empire]`
+
+The telemetry records `source=native-daily-volunteer-update` and `mutationByClanAI=False`.
+
+Additional native fills/transitions occurred naturally in Lysia, Arpotis, Marunath, and Aegosca.
+
+No telemetry error occurred.
+
+## Runtime scope not exercised
+
+This run did **not** runtime-exercise:
+
+- Low population;
+- security below 50;
+- missing-security passthrough;
+- active raid/siege factor 0.50;
+- minimum multiplier 0.35;
+- natural AI/garrison consumption of a visible notable slot under the new wrapper.
+
+Shared-pool consumption therefore remains supported by the native-capability audit but was not newly runtime-observed in this brief run.
+
+No extension was performed after the required proof plus native fill completed.
+
+## Safety
+
+Bannerlord was closed before deployment. Rollback hash:
 
 `0D23F4A66E0A1E4413E879C97E963C7DB923D8D6B4421291105D8565120CD5A8`
 
-Bannerlord was not running. The Phase 4B build was not deployed.
+Strategic Commitment remained `Mode=Observe`; Visual War remained OFF.
 
-War Strain and Phase 4A source remain byte-for-byte unchanged.
+The run used `EXIT_NOSAVE`; fresh command-history scan found zero save commands.
+
+Protected fixture remained unchanged:
+
+`A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427`  
+`2026-09-24T17:20:12.2384633Z`
+
+Bannerlord is closed and rollback remains intact.
+
+## Evidence
+
+- `Reports/Manpower/PHASE4B_LOCAL_MANPOWER_V1_RUNTIME_RESULT.md`
+- `Reports/Manpower/evidence/phase4b_local_manpower_v1_runtime_20260925.txt`
+- offline implementation: `Reports/Manpower/PHASE4B_LOCAL_MANPOWER_V1_OFFLINE_IMPLEMENTATION_RESULT.md`
+- native audit: `Reports/Manpower/PHASE4B_LOCAL_MANPOWER_NATIVE_CAPABILITY_AUDIT.md`
 
 ## Capability status
 
 Implemented: **yes**.  
 Build-proven: **yes**.  
-Runtime-observed: **no**.
+Runtime-observed: **yes**.  
+Native mutation observed: **yes**.  
+Shared AI/garrison consumption observed: **no**.  
+Balance proven: **no**.
 
-No campaign-effect or balance claim is made.
-
-## Evidence
-
-- `Reports/Manpower/PHASE4B_LOCAL_MANPOWER_V1_OFFLINE_IMPLEMENTATION_RESULT.md`
-- `Reports/Manpower/evidence/phase4b_local_manpower_v1_offline_implementation_20260925.txt`
-- design: `Reports/Manpower/PHASE4B_LOCAL_MANPOWER_NATIVE_CAPABILITY_AUDIT.md`
-
-## Next milestone
-
-The next milestone is a **separately authorized bounded runtime characterization** of this exact validated Phase 4B model.
-
-Do not launch that proof from this checkpoint. Do not start Phase 4C.
+Stop at this Phase 4B checkpoint. Do not begin Phase 4C in the same task.
 
 Final product direction remains a standalone, installable, offline Bannerlord mod with no runtime dependency on ChatGPT, Codex, Desktop Commander, TestRunner, watchdogs, external IO, or development-machine absolute paths.
