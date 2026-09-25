@@ -1,30 +1,81 @@
 # Codex Status
 
 ## Current checkpoint
-Phase 4A same-hero defeat-to-native-recreation runtime characterization is closed with a **bounded null**. The single retained natural run advanced 164.28120388884 campaign hours inside the 168-hour maximum. No complete qualifying same-hero chain was observed. Stop here; do not extend or repeat the run and do not start Phase 4B.
 
-On resumption, GitHub main was verified at `0b58b55d7ffd42381340a61a510ba4eaa040754b`. The already-completed runtime artifacts were found locally, verified against the original game log, and checkpointed rather than launching a second characterization. Local staging was not treated as authoritative without verification.
+Phase 4A same-hero defeat-to-native-recreation runtime characterization remains **closed with the existing bounded null**: 164.28120388884 campaign hours, zero accepted defeat links, zero linked recreations, and zero complete chains. Do not rerun or extend that characterization and do not start Phase 4B.
 
-## Runtime result
-The 93-line scoped observer capture exactly matches the original game log from its session reset: 1 reset, 28 `PHASE4A_LINK_DEFEAT_UNRESOLVED`, 28 `PHASE4A_LINK_PARTY_DESTROYED`, and 36 `PHASE4A_LINK_CREATION` records. All creations have `linked=False` and classification `GenericNativePartyCreation`. There are zero accepted defeat-link records, linked creations, first-settlement link boundaries, complete chains, or `PHASE4A_LINK_OBSERVER_ERROR` records.
+A narrow follow-up **offline defeat-identity boundary review is now complete**. Native sequencing proves why the prior observer lost identity: non-player battle result application can remove a defeated party leader before `MapEventEnded`. A minimal observation-only fix now captures exact native battle participants earlier through `MapEventStarted` and `OnPartyAddedToMapEventEvent`.
 
-Every unresolved defeat record reports `reason=no-native-leader-at-defeat`. Cached hero IDs and later destruction evidence do not satisfy the existing native-leader-at-defeat identity rule. Mikri's later generic creation with 28 regular troops is not promoted to a post-defeat recreation claim. No claim of free respawn troops, zero-troop linked recreation, or linked-but-incomplete recreation is supported by this run.
+No runtime campaign was launched for this checkpoint. Runtime same-hero recreation proof remains unproven.
 
-## Safety and unchanged candidate
-The retained deployment record documents Bannerlord closed before deployment and rollback SHA-256 `5CA45B7AE095E9B3F6F77E06FCCA287414FBAC7D345648AAAD58F39EA1919BF6`. The tested candidate and installed DLL remain SHA-256 `0FE236EDA21FFED93F14003A588C5A97712A5CED66341413612244C40BF1F755`.
+## Defeat identity seam
 
-The run used the protected fixture without saving, acknowledged PAUSE, issued `EXIT_NOSAVE`, and closed Bannerlord. Fresh verification confirmed fixture SHA-256 `A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427` and modification time `2026-09-24T17:20:12.2384633Z` unchanged, rollback intact, installed Strategic Commitment `Mode=Observe`, and Visual War marker absent. No observer/source/configuration changes, forced battles, forced recreations, or gameplay mutations were made for this characterization or its checkpoint recovery.
+Each early participant capture binds:
 
-## Preserved checkpoints
-Phase 3 Strategic Commitment remains a bounded runtime null. Phase 4A's first characterization remains accepted: Kulyat 37->69 with +28 recruitment-supported and +4 unresolved; Iara's +7 party/-7 garrison supported a withdrawal; generic native creations were not proven post-defeat respawns. These proofs were not reopened.
+- exact `MapEvent` reference;
+- exact `PartyBase` reference;
+- exact `MobileParty` reference;
+- native battle side;
+- stable leader hero `StringId`;
+- capture hour/source.
 
-The linked observer's existing offline results remain unchanged: 35 linkage policy checks; wiring/original-observer preservation and no-mutation/standalone invariants; the prior 20 recovery policy checks and both invariants; Release 0 errors with the inherited System.ValueTuple warning. No rebuild was necessary for this evidence-only checkpoint.
+At `MapEventEnded`, defeat identity is accepted only if the cached battle, `PartyBase`, `MobileParty`, and side match the exact defeated-side participant. If a live end-time hero identity still exists it must match the captured `StringId`. Another battle, another party instance, side mismatch, clan/name-only state, or later destruction alone cannot establish the defeat.
 
-## Evidence and limits
+The downstream recreation rules are unchanged: ordinal same-hero StringId, distinct native recreated party, prior old-party destruction/absence, time bound, creation roster, and first-settlement boundary remain required.
+
+## Native evidence
+
+Reviewed `TaleWorlds.CampaignSystem.dll` SHA-256:
+
+`5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F`
+
+Offline reflection/decompilation established:
+
+- `MapEventStarted` exposes `MapEvent, PartyBase, PartyBase`;
+- `OnPartyAddedToMapEventEvent` exposes a joined `PartyBase`;
+- native event initialization assigns sides before the start callback;
+- defeated-member result processing can call `MobileParty.RemovePartyLeader()`;
+- `MapEventEnded` is dispatched later.
+
+See `Reports/Manpower/PHASE4A_DEFEAT_IDENTITY_BOUNDARY_REVIEW.md` and its evidence file.
+
+## Validation
+
+Final results:
+
+```
+PASS Phase 4A same-hero recreation policy checks=43
+PASS Phase 4A same-hero recreation wiring and original-observer preservation
+PASS Phase 4A same-hero recreation no-mutation and standalone invariant
+PASS Phase 4A recovery policy tests checks=20
+PASS Phase 4A recovery wiring
+PASS Phase 4A recovery no-mutation/standalone invariant
+1 Warning(s)
+0 Error(s)
+```
+
+The warning is the inherited MSB3277 `System.ValueTuple` conflict. Release DLL SHA-256 for this observer-only source:
+
+`0D23F4A66E0A1E4413E879C97E963C7DB923D8D6B4421291105D8565120CD5A8`
+
+No development-machine absolute runtime path, external IO, serialized observer state, gameplay mutation, or development-tool runtime dependency was introduced.
+
+## Preserved evidence
+
+The completed bounded-null report remains authoritative for its run:
+
 - `Reports/Manpower/PHASE4A_LINKED_RECREATION_RUNTIME_RESULT.md`
 - `Reports/Manpower/evidence/phase4a_linked_recreation_runtime_20260925.txt`
-- Existing seam/validation: `Reports/Manpower/PHASE4A_LINKED_RECREATION_OBSERVER_RESULT.md`
 
-The new evidence file retains exact selected event lines, full-capture counts/hash, deployment and cleanup records, control chronology, and fresh verification. The complete 93-line capture remains in the recorded local evidence directory; it was verified line-for-line, not silently relabeled. This null constrains what this run and identity seam proved; it does not establish that native post-defeat recreation never happens.
+The earlier Phase 4A recovery characterization also remains accepted: Kulyat 37->69 with +28 recruitment-supported and +4 unresolved; Iara's +7 party/-7 garrison supported a withdrawal; generic native creations were not proven post-defeat respawns.
 
-Final product direction is unchanged: a standalone, installable, offline mod with no runtime dependency on ChatGPT, Codex, Desktop Commander, TestRunner, watchdogs, or development-machine absolute paths. Development harnesses are evidence-only. This checkpoint changes documentation/evidence only and adds no release/runtime dependency.
+New offline boundary evidence:
+
+- `Reports/Manpower/PHASE4A_DEFEAT_IDENTITY_BOUNDARY_REVIEW.md`
+- `Reports/Manpower/evidence/phase4a_defeat_identity_boundary_review_20260925.txt`
+
+## Stop condition
+
+This checkpoint makes **no runtime recreation claim** and authorizes no campaign run by itself. Preserve the bounded null, preserve conservative identity semantics, and stop before Phase 4B.
+
+Final product direction is unchanged: a standalone, installable, offline mod with no runtime dependency on ChatGPT, Codex, Desktop Commander, TestRunner, watchdogs, development-machine absolute paths, or other development harnesses.

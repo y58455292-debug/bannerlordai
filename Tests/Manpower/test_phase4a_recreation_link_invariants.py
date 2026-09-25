@@ -18,13 +18,19 @@ assert hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
 assert observer.count('RegisterRecreationLinkEvents();') == 1
 
 expected_events = {
-    'OnSessionLaunchedEvent', 'MapEventEnded', 'MobilePartyDestroyed',
-    'MobilePartyCreated', 'HourlyTickPartyEvent',
-    'BeforeSettlementEnteredEvent', 'AfterSettlementEntered',
+    'OnSessionLaunchedEvent', 'MapEventStarted', 'OnPartyAddedToMapEventEvent',
+    'MapEventEnded', 'MobilePartyDestroyed', 'MobilePartyCreated',
+    'HourlyTickPartyEvent', 'BeforeSettlementEnteredEvent', 'AfterSettlementEntered',
 }
 assert set(re.findall(r'CampaignEvents\.(\w+)', link)) == expected_events
 for token in ('!battle.HasWinner', 'battle.DefeatedSide', 'battle.PartiesOnSide(battle.DefeatedSide)',
-              'party.LeaderHero.StringId', 'DefeatsByHero[identity.HeroId]',
+              'CampaignEvents.MapEventStarted', 'CampaignEvents.OnPartyAddedToMapEventEvent',
+              'RememberBattleSide(battle, BattleSideEnum.Attacker', 'RememberBattleSide(battle, BattleSideEnum.Defender',
+              'party.MapEvent', 'party.Side', 'ReferenceEquals(captured.Battle, battle)',
+              'ReferenceEquals(captured.Party, oldParty)', 'ReferenceEquals(captured.MobileParty, mobile)',
+              'ReferenceEquals(mobile.Party, oldParty)', 'captured.Side == battle.DefeatedSide',
+              'Phase4ARecreationLinkPolicy.CanAcceptDefeatIdentity(', 'party.LeaderHero.StringId',
+              'DefeatsByHero[identity.HeroId]',
               'DefeatsByHero.TryGetValue(identity.HeroId', 'Phase4ARecreationLinkPolicy.CanLink(',
               '!ReferenceEquals(defeat.OldParty, party.Party)', 'NativePartyStillPresent(defeat.OldParty)',
               'DestroyedParties.ContainsKey(defeat.OldParty)', 'NativeCreationsSeen.Add(party.Party)',
@@ -36,6 +42,15 @@ for event in ('PHASE4A_LINK_DEFEAT', 'PHASE4A_LINK_PARTY_DESTROYED', 'PHASE4A_LI
               'PHASE4A_LINK_FIRST_SETTLEMENT_PRE', 'PHASE4A_LINK_INCOMPLETE'):
     assert '"' + event + '"' in link
 assert not re.search(r'\bClan\b', policy) and 'TaleWorlds' not in policy
+assert 'BattleParticipants.Clear()' in link
+defeat_body = link.split('private static void ObserveDefeatedHeroes(MapEvent battle)', 1)[1].split(
+    'private static void ObserveLinkedDestruction(MobileParty party)', 1)[0]
+destruction_body = link.split('private static void ObserveLinkedDestruction(MobileParty party)', 1)[1].split(
+    'private static bool NativePartyStillPresent', 1)[0]
+assert 'DestroyedParties' not in defeat_body, 'later destruction must not establish defeat identity'
+assert 'new DefeatLink' not in destruction_body, 'destruction callback must not create defeat identity'
+assert 'LinkIdentityFields(evidence)' in defeat_body
+assert '.HeroName' not in defeat_body and '.ActualClan' not in defeat_body, 'name/clan matching is forbidden'
 assert 'DefeatsByHero.Clear()' in link and 'PendingRecreations.Clear()' in link
 print('PASS Phase 4A same-hero recreation wiring and original-observer preservation')
 

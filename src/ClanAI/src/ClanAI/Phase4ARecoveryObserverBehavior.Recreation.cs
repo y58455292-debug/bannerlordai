@@ -21,6 +21,16 @@ namespace ClanAI
             internal PartyBase OldParty;
             internal double Hour;
         }
+        private sealed class BattleParticipantIdentity
+        {
+            internal MapEvent Battle;
+            internal PartyBase Party;
+            internal MobileParty MobileParty;
+            internal BattleSideEnum Side;
+            internal RecreationIdentity Identity;
+            internal double Hour;
+            internal string Source;
+        }
         private sealed class RecreationTrack
         {
             internal RecreationIdentity Identity;
@@ -32,6 +42,8 @@ namespace ClanAI
         }
         private static readonly Dictionary<PartyBase, RecreationIdentity> RecreationIdentities =
             new Dictionary<PartyBase, RecreationIdentity>();
+        private static readonly Dictionary<PartyBase, BattleParticipantIdentity> BattleParticipants =
+            new Dictionary<PartyBase, BattleParticipantIdentity>();
         private static readonly Dictionary<string, DefeatLink> DefeatsByHero =
             new Dictionary<string, DefeatLink>(StringComparer.Ordinal);
         private static readonly Dictionary<PartyBase, double> DestroyedParties =
@@ -47,6 +59,10 @@ namespace ClanAI
         {
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this,
                 new Action<CampaignGameStarter>(s => ObserveRecreationSafely(ResetRecreationLinks)));
+            CampaignEvents.MapEventStarted.AddNonSerializedListener(this,
+                new Action<MapEvent, PartyBase, PartyBase>((e, a, d) => ObserveRecreationSafely(() => ObserveBattleStarted(e))));
+            CampaignEvents.OnPartyAddedToMapEventEvent.AddNonSerializedListener(this,
+                new Action<PartyBase>(p => ObserveRecreationSafely(() => ObserveBattleParticipantAdded(p))));
             CampaignEvents.MapEventEnded.AddNonSerializedListener(this,
                 new Action<MapEvent>(e => ObserveRecreationSafely(() => ObserveDefeatedHeroes(e))));
             CampaignEvents.MobilePartyDestroyed.AddNonSerializedListener(this,
@@ -73,7 +89,7 @@ namespace ClanAI
 
         private static void ResetRecreationLinks()
         {
-            RecreationIdentities.Clear(); DefeatsByHero.Clear(); DestroyedParties.Clear();
+            RecreationIdentities.Clear(); BattleParticipants.Clear(); DefeatsByHero.Clear(); DestroyedParties.Clear();
             PendingRecreations.Clear(); NativeCreationsSeen.Clear(); SettlementEntriesSeen.Clear();
             RecreationObservationFault = false;
             RecreationSessionHour = CampaignTime.Now.ToHours;
@@ -101,34 +117,116 @@ namespace ClanAI
             return identity;
         }
 
-        private static void ObserveDefeatedHeroes(MapEvent battle)
+        private static void ObserveBattleStarted(MapEvent battle)
         {
-            if (!RecreationWindowOpen() || battle == null || !battle.HasWinner ||
-                (battle.DefeatedSide != BattleSideEnum.Attacker && battle.DefeatedSide != BattleSideEnum.Defender)) return;
-            var parties = battle.PartiesOnSide(battle.DefeatedSide);
+            if (!RecreationWindowOpen() || battle == null) return;
+            RememberBattleSide(battle, BattleSideEnum.Attacker, "MapEventStarted");
+            RememberBattleSide(battle, BattleSideEnum.Defender, "MapEventStarted");
+        }
+
+        private static void ObserveBattleParticipantAdded(PartyBase party)
+        {
+            if (!RecreationWindowOpen() || party == null || party.MapEvent == null) return;
+            BattleSideEnum side = party.Side;
+            if (side != BattleSideEnum.Attacker && side != BattleSideEnum.Defender) return;
+            RememberBattleParticipant(party.MapEvent, party, side, "OnPartyAddedToMapEventEvent");
+        }
+
+        private static void RememberBattleSide(MapEvent battle, BattleSideEnum side, string source)
+        {
+            var parties = battle.PartiesOnSide(side);
             if (parties == null) return;
             foreach (var participant in parties)
+                RememberBattleParticipant(battle, participant.Party, side, source);
+        }
+
+        private static void RememberBattleParticipant(
+            MapEvent battle, PartyBase party, BattleSideEnum side, string source)
+        {
+            if (battle == null || party == null || party.MobileParty == null) return;
+            MobileParty mobile = party.MobileParty;
+            if (!EligibleLordParty(mobile) || !ReferenceEquals(mobile.Party, party)) return;
+            RecreationIdentity identity = RememberRecreationIdentity(mobile);
+            if (identity == null) return;
+            BattleParticipants[party] = new BattleParticipantIdentity {
+                Battle = battle, Party = party, MobileParty = mobile, Side = side, Identity = identity,
+                Hour = CampaignTime.Now.ToHours, Source = source
+            };
+        }
+
+        private static void ForgetBattleParticipants(MapEvent battle)
+        {
+            if (battle == null) return;
+            var remove = new List<PartyBase>();
+            foreach (var pair in BattleParticipants)
+                if (ReferenceEquals(pair.Value.Battle, battle)) remove.Add(pair.Key);
+            foreach (PartyBase party in remove) BattleParticipants.Remove(party);
+        }
+
+        private static void ObserveDefeatedHeroes(MapEvent battle)
+        {
+            if (!RecreationWindowOpen() || battle == null) return;
+            try
             {
-                PartyBase oldParty = participant.Party;
-                MobileParty mobile = oldParty == null ? null : oldParty.MobileParty;
-                // A cached name/clan alone is not accepted as the defeated hero.
-                RecreationIdentity identity = RememberRecreationIdentity(mobile);
-                if (identity == null)
+                if (!battle.HasWinner ||
+                    (battle.DefeatedSide != BattleSideEnum.Attacker &&
+                     battle.DefeatedSide != BattleSideEnum.Defender)) return;
+                var parties = battle.PartiesOnSide(battle.DefeatedSide);
+                if (parties == null) return;
+                foreach (var participant in parties)
                 {
-                    RecreationIdentity cached;
-                    if (oldParty != null && RecreationIdentities.TryGetValue(oldParty, out cached))
-                        ClanAIPostVanilla.WriteExternalLog("PHASE4A_LINK_DEFEAT_UNRESOLVED heroId=" + cached.HeroId +
-                            " partyId=" + cached.PartyId + " campaignHour=" + D(CampaignTime.Now.ToHours) +
-                            " reason=no-native-leader-at-defeat linked=False");
-                    continue;
+                    PartyBase oldParty = participant.Party;
+                    MobileParty mobile = oldParty == null ? null : oldParty.MobileParty;
+                    BattleParticipantIdentity captured = null;
+                    bool haveCapture = oldParty != null &&
+                        BattleParticipants.TryGetValue(oldParty, out captured);
+                    bool sameBattle = haveCapture && ReferenceEquals(captured.Battle, battle);
+                    bool sameParty = haveCapture && mobile != null &&
+                        ReferenceEquals(captured.Party, oldParty) &&
+                        ReferenceEquals(captured.MobileParty, mobile) &&
+                        ReferenceEquals(mobile.Party, oldParty);
+                    bool sameSide = haveCapture && captured.Side == battle.DefeatedSide;
+                    RecreationIdentity liveIdentity = RememberRecreationIdentity(mobile);
+                    string capturedHeroId = captured == null || captured.Identity == null
+                        ? null : captured.Identity.HeroId;
+                    string liveHeroId = liveIdentity == null ? null : liveIdentity.HeroId;
+                    bool accepted = Phase4ARecreationLinkPolicy.CanAcceptDefeatIdentity(
+                        sameBattle, sameParty, sameSide, capturedHeroId, liveHeroId);
+                    if (!accepted)
+                    {
+                        RecreationIdentity evidence = captured == null ? null : captured.Identity;
+                        if (evidence == null && oldParty != null)
+                            RecreationIdentities.TryGetValue(oldParty, out evidence);
+                        string reason = !haveCapture ? "no-same-battle-participant-capture" :
+                            !sameBattle ? "participant-from-different-battle" :
+                            !sameParty ? "participant-party-mismatch" :
+                            !sameSide ? "participant-side-mismatch" :
+                            "live-leader-identity-mismatch";
+                        ClanAIPostVanilla.WriteExternalLog("PHASE4A_LINK_DEFEAT_UNRESOLVED" +
+                            LinkIdentityFields(evidence) +
+                            " campaignHour=" + D(CampaignTime.Now.ToHours) +
+                            " defeatedSide=" + battle.DefeatedSide +
+                            " reason=" + reason + " linked=False");
+                        continue;
+                    }
+                    RecreationIdentity identity = liveIdentity ?? captured.Identity;
+                    double now = CampaignTime.Now.ToHours;
+                    var defeat = new DefeatLink { Identity = identity, OldParty = oldParty, Hour = now };
+                    DefeatsByHero[identity.HeroId] = defeat;
+                    ClanAIPostVanilla.WriteExternalLog("PHASE4A_LINK_DEFEAT" + LinkIdentityFields(identity) +
+                        IdentityFields(mobile) + " campaignHour=" + D(now) + " defeatedSide=" + battle.DefeatedSide +
+                        " heroIdentitySource=" + (liveIdentity == null
+                            ? "native-leader-at-same-battle-participant-capture"
+                            : "native-leader-at-map-event-end-confirmed-by-same-battle-participant") +
+                        " participantSource=" + captured.Source +
+                        " participantCaptureHour=" + D(captured.Hour) +
+                        " participantSide=" + captured.Side +
+                        DestructionFields(defeat) + " roster=" + RosterFields(CaptureRoster(mobile)));
                 }
-                double now = CampaignTime.Now.ToHours;
-                var defeat = new DefeatLink { Identity = identity, OldParty = oldParty, Hour = now };
-                DefeatsByHero[identity.HeroId] = defeat;
-                ClanAIPostVanilla.WriteExternalLog("PHASE4A_LINK_DEFEAT" + LinkIdentityFields(identity) +
-                    IdentityFields(mobile) + " campaignHour=" + D(now) + " defeatedSide=" + battle.DefeatedSide +
-                    " heroIdentitySource=native-leader-at-map-event-end" + DestructionFields(defeat) +
-                    " roster=" + RosterFields(CaptureRoster(mobile)));
+            }
+            finally
+            {
+                ForgetBattleParticipants(battle);
             }
         }
 

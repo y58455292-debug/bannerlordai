@@ -23,6 +23,16 @@ namespace ClanAI
                 string.Equals(defeatedHeroId, createdHeroId, StringComparison.Ordinal);
         }
 
+        internal static bool CanAcceptDefeatIdentity(
+            bool sameBattle, bool sameParty, bool sameSide,
+            string capturedHeroId, string liveHeroId)
+        {
+            return sameBattle && sameParty && sameSide &&
+                !string.IsNullOrWhiteSpace(capturedHeroId) &&
+                (string.IsNullOrWhiteSpace(liveHeroId) ||
+                 SameHero(capturedHeroId, liveHeroId));
+        }
+
         internal static bool InWindow(double start, double now)
         {
             return !double.IsNaN(start) && !double.IsInfinity(start) &&

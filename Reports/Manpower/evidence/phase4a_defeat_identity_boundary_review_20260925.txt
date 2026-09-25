@@ -1,0 +1,70 @@
+Phase 4A defeat identity boundary — offline evidence
+Date: 2026-09-25 UTC
+Base GitHub main: 67a848e3366782090fbcb6ea3dcabd78d9297cc7
+Runtime campaign launched: NO
+Phase 4B started: NO
+
+NATIVE BINARY
+TaleWorlds.CampaignSystem.dll
+SHA256=5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+
+REFLECTION FINDINGS
+MapEventStarted :: IMbEvent<MapEvent, PartyBase, PartyBase>
+OnPartyAddedToMapEventEvent :: IMbEvent<PartyBase>
+MapEventEnded :: IMbEvent<MapEvent>
+
+OFFLINE NATIVE ORDERING FINDINGS
+- MapEvent.Initialize assigns attacker/defender MapEventSide, adds map-event/inside-settlement parties, then dispatches CampaignEventDispatcher.OnMapEventStarted.
+- MapEvent.AddInvolvedPartyInternal dispatches CampaignEventDispatcher.OnPartyAddedToMapEvent after the party is involved in the event.
+- For a non-player battle victory, OnBattleWon calls CalculateAndCommitMapEventResults.
+- CalculateAndCommitMapEventResults may call CaptureDefeatedPartyMembers.
+- CaptureDefeatedPartyMembers calls MobileParty.RemovePartyLeader when the defeated hero is that party's leader.
+- FinalizeEventAux dispatches CampaignEventDispatcher.OnMapEventEnded after the result-processing path above.
+
+CONCLUSION
+MapEventEnded is too late to require MobileParty.LeaderHero as the sole defeat identity source. An exact participant identity captured from MapEventStarted / OnPartyAddedToMapEventEvent can be used later only when the same MapEvent reference, same PartyBase reference, same MobileParty reference, and same defeated side all match. This is not generic cached identity.
+
+IMPLEMENTED OBSERVATION GATES
+- exact MapEvent reference
+- exact PartyBase reference
+- exact MobileParty reference
+- captured BattleSideEnum
+- stable hero StringId from native leader at participant capture
+- live end identity, when available, must match captured StringId
+- destruction callback cannot create DefeatLink
+- clan/name are not matching keys
+- existing same-hero recreation, distinct-new-party, prior-party-gone, time and settlement gates unchanged
+
+VALIDATION COMMANDS
+dotnet run --project Tests/Manpower/Phase4ALinkage/Phase4ALinkageTests.csproj -c Release
+python Tests/Manpower/test_phase4a_recreation_link_invariants.py
+dotnet run --project Tests/Manpower/Phase4ARecoveryPolicy/Phase4ARecoveryPolicyTests.csproj -c Release
+python Tests/Manpower/test_phase4a_recovery_wiring.py
+python Tests/Manpower/test_phase4a_recovery_no_mutation.py
+dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj -c Release
+
+FINAL OUTPUT
+PASS Phase 4A same-hero recreation policy checks=43
+PASS Phase 4A same-hero recreation wiring and original-observer preservation
+PASS Phase 4A same-hero recreation no-mutation and standalone invariant
+PASS Phase 4A recovery policy tests checks=20
+PASS Phase 4A recovery wiring
+PASS Phase 4A recovery no-mutation/standalone invariant
+1 Warning(s)
+0 Error(s)
+
+BUILD
+ClanAI.dll SHA256=0D23F4A66E0A1E4413E879C97E963C7DB923D8D6B4421291105D8565120CD5A8
+Warning=Inherited MSB3277 System.ValueTuple conflict only
+
+NEGATIVE IDENTITY CASES EXPLICITLY COVERED
+- captured identity from another battle -> rejected
+- different PartyBase/MobileParty -> rejected
+- different side -> rejected
+- clan/name-only with no stable StringId -> rejected
+- later destruction identity alone -> rejected
+- live hero mismatch -> rejected
+
+SCOPE
+No runtime launch, deployment, save, troop/recruit/garrison/order/target/score/faction/settlement/war mutation, identity weakening, generic-creation relabel, or Phase 4B work occurred.
+The prior 164.28120388884-hour bounded null remains closed and authoritative for that run.

@@ -16,6 +16,22 @@ internal static class Program
         Check(!Phase4ARecreationLinkPolicy.SameHero("Hero_1", "hero_1"), "ordinal identity");
         Check(!Phase4ARecreationLinkPolicy.SameHero(null, null), "missing identities");
         Check(!Phase4ARecreationLinkPolicy.SameHero(" ", " "), "blank identities");
+        Check(Phase4ARecreationLinkPolicy.CanAcceptDefeatIdentity(
+            true, true, true, "hero_1", null), "same-battle exact-party capture survives missing end leader");
+        Check(Phase4ARecreationLinkPolicy.CanAcceptDefeatIdentity(
+            true, true, true, "hero_1", "hero_1"), "live leader can confirm captured identity");
+        Check(!Phase4ARecreationLinkPolicy.CanAcceptDefeatIdentity(
+            false, true, true, "hero_1", null), "cached identity from another battle rejected");
+        Check(!Phase4ARecreationLinkPolicy.CanAcceptDefeatIdentity(
+            true, false, true, "hero_1", null), "different native party rejected");
+        Check(!Phase4ARecreationLinkPolicy.CanAcceptDefeatIdentity(
+            true, true, false, "hero_1", null), "different battle side rejected");
+        Check(!Phase4ARecreationLinkPolicy.CanAcceptDefeatIdentity(
+            true, true, true, null, null), "clan or name without stable hero id rejected");
+        Check(!Phase4ARecreationLinkPolicy.CanAcceptDefeatIdentity(
+            false, false, false, "hero_1", null), "later destruction identity alone cannot establish defeat");
+        Check(!Phase4ARecreationLinkPolicy.CanAcceptDefeatIdentity(
+            true, true, true, "hero_1", "hero_2"), "live hero mismatch rejects captured identity");
         Check(Phase4ARecreationLinkPolicy.CanLink("h", "h", 10, 20, true, true), "defeat to same hero new party");
         Check(!Phase4ARecreationLinkPolicy.CanLink("h", "other", 10, 20, true, true), "unrelated hero");
         Check(!Phase4ARecreationLinkPolicy.CanLink("h", "h", 10, 20, false, true), "surviving same party is not recreation");
