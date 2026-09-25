@@ -380,6 +380,8 @@ This system should connect directly to noble territorial responsibility.
 
 # Phase 6 — Settlement society and vanilla capability audit
 
+**Phase 6 Settlement Society / Vanilla Capability Audit — COMPLETE OFFLINE 2026-09-25.** The twelve requested domains were mapped from player and NPC perspectives using targeted source inspection of the supported `TaleWorlds.CampaignSystem.dll` and `SandBox.dll`; no campaign was launched and no gameplay source was changed. The deeper issues/notables/governor review found that NPC settlement visitors already resolve eligible issues opportunistically, issue effects already feed native settlement/notable models, NPC clans already assign governors, and workshops/caravans/alleys already have meaningful native lifecycle behavior. Three candidate seams were ranked. The selected first Phase 6-v1 target is a bounded selected-model decision seam: when an **NPC town is idle and below the selected native rebellious-state loyalty threshold**, prefer its existing native **Festival and Games** daily project at the normal `BuildingScoreCalculationModel.GetNextDailyBuilding(Town)` opportunity. The audited default daily selector is random; Bannerlord already owns the 1% consideration cadence, existing project identities/effects, construction queue, save state, and final `BuildingHelper.ChangeDefaultBuilding` commit. **Phase 6 gameplay implementation: NOT STARTED. Phase 7: NOT STARTED. Next milestone: separate offline-only implementation/validation of this exact seam; do not launch or deploy from this audit checkpoint.** See `Reports/SettlementSociety/PHASE6_SETTLEMENT_SOCIETY_CAPABILITY_AUDIT.md`.
+
 ## Goal
 
 Audit Bannerlord from both perspectives:

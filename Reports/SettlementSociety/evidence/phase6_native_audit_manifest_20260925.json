@@ -1,0 +1,564 @@
+{
+  "base": "bb46ee809b6d33bfc75d80a805e16ca4b734c88c",
+  "native_types": [
+    {
+      "type": "TaleWorlds.CampaignSystem.Issues.IssueManager",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "289db16fa154a2ce55f5923f8850e77ec6971657e78f75828fb8ca893d488984",
+      "lines": 831
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.Issues.IssueBase",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "0b886d5a5c73baad231220dab73d2c39f95590f698422fa78f35626f5e065e94",
+      "lines": 1053
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.GameComponents.DefaultIssueModel",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "cf016a6c758f568463dba2b5a19fb2ef183943fdfa090a5e8de3991cb4716bb3",
+      "lines": 146
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.GovernorCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "018cf15ccacec311e0f4b60319af64835a0828096cdfb21e896971e18ab0920b",
+      "lines": 297
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.NotablesCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "4ff4237ab8cc2cb19349e1620fb4afda53a3bc45aab8455a6b40d8d62ee021ab",
+      "lines": 422
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.NotablePowerManagementBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "04997dc73ea1d3695e3867279945b2df586190a97ec0d5c0f07fd808459797a2",
+      "lines": 66
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.NotableSupportersCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "40f9c3b89ac3392202fde87e76ba197d5368e5c6593a5e84397efcb7344a344b",
+      "lines": 149
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.GameComponents.DefaultNotablePowerModel",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "1f8d59eac250c4edd3a6610e319a77e92281a79f2f122c78a920abbe460ec1e7",
+      "lines": 149
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.GameComponents.DefaultSettlementSecurityModel",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "b698a440d12416b8f3592874d07f572532590f14b1b55c59c38be7261e7c55b6",
+      "lines": 324
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.GameComponents.DefaultSettlementProsperityModel",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "06c09d27b35cc185e80cfcc02c6cdac7647cc930d4a5a1cdb596952e61f5d32d",
+      "lines": 211
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.WorkshopsCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "17fe5a1f02d1e9324a94a04abca8dc8400a7e40db9963eb0c78802cb6247d780",
+      "lines": 1428
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.GameComponents.DefaultWorkshopModel",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "c11067043b9886c405fd639d893a85bd98c98d9841281e51b43b510b7930f037",
+      "lines": 107
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.WorkshopsCharactersCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "de05ab56c1bbb4d9b70e0f32a90887a9041543a6f98a03d66dd89eb68b385a03",
+      "lines": 457
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CaravansCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "0ce2d50f26826af88a949a01c0fc2ee2232c47e700dbd1f0200e65875691a834",
+      "lines": 2242
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.VillagerCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "931b90861ba640b6b01c87652a680dc70eaaa44af3e7bf8fbae368fe089fb102",
+      "lines": 925
+    },
+    {
+      "type": "SandBox.CampaignBehaviors.AlleyCampaignBehavior",
+      "dll": "SandBox.dll",
+      "dll_sha256": "16af436c569675eb30e22514bb755e6fb3612afce38f6cc55d1748d079c19c1a",
+      "decomp_sha256": "b7fad6aab8154925224c268957f1f554150a054bf11eab10827817944c4df5df",
+      "lines": 1153
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.GameComponents.DefaultAlleyModel",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "697450ccf80ee0b54552e4424d2161f8edb899970dda74a0fba5299ccefd96f5",
+      "lines": 359
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CrimeCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "7763a716330e7240523d4a502590787118f7a8bb94cae9ab465d3950dcbcd5cd",
+      "lines": 359
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiVisitSettlementBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "6798de039c820487c0c557cba244d410c7844f26b4a3dc281692d6427ffa7281",
+      "lines": 810
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.PartiesSellPrisonerCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "a43a83bbea3ed8b6c953790099c338ebad3352e64995a5f5debc0907ef4bb193",
+      "lines": 88
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.PrisonerReleaseCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "b1a7c84230cb08b3ae56c358d1417872aeb4d2cb629e9c6ca27b814959062e49",
+      "lines": 328
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.RansomOfferCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "bacf2680c6262e9d79c162a431c36473bcfa249866403e0b1c6518683be1c302",
+      "lines": 262
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.PrisonerRecruitCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "9c8a057fea306102fb3d017a47d5a40b890ff467d777021c8447e3b78a57e4d3",
+      "lines": 88
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.RecruitPrisonersCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "aafb0ea68782a10ce026876fa5ea0d55203ec03627e59799bee602e4e03a6dda",
+      "lines": 138
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CompanionRolesCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "72f4e02b5cffc5b4eecc5b2f2a300868e2d1bfa3a6045bf6b264100f4c1d59b3",
+      "lines": 897
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CompanionsCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "220423089d8b758334c3fcef55c85be607ff3a1820415fc555109854240ac34c",
+      "lines": 517
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.GarrisonTroopsCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "f2f9df1e542551de5c48d323f5b70ef42e4798f5a91d1f393ad1796761dafdd5",
+      "lines": 633
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.GameComponents.DefaultSettlementMilitiaModel",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "3ac845c7260a429cdae2b8b23b40f8954cea0e609d6e32df2c5a402487e99b07",
+      "lines": 180
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.GameComponents.DefaultSettlementGarrisonModel",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "196d4d73bf8ac78467072388f94033517f86e5457e13a69f64de29c111994343",
+      "lines": 92
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.IssuesCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "9da3d08461b5bf38cbd9f69bf0e8fd09b4febfff671241ab51b226a21070027d",
+      "lines": 1007
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterRelationCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "d95a74c9f166a7c8aa6bea4c656df568d9943eb920b461651456413a47382b93",
+      "lines": 474
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.BuildingsCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "9ff6c99a2cdd7905ad45dc370cec437f98e22a56ca1876d86e47e43b69689817",
+      "lines": 188
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.VillageHealCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "4dd20c9730432c69c83cdc57066a18d68c53ec000aa2918e453c62041077f017",
+      "lines": 37
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.VillageGoodProductionCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "f43d7281b8f65de092df259ffac7a4908daecec0dcbbf13e816180828c720001",
+      "lines": 211
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.Issues.DefaultIssueEffects",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "e1cdea2ab50e8aad59cd923a23573f27690d522a1b7dd445e68fc4d35b29732f",
+      "lines": 94
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.Issues.HeadmanNeedsGrainIssueBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "cd3aa0a7066f35e832fbec4b5881fa9d680537b9786052d35a65c234c3966fc3",
+      "lines": 844
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.Issues.MerchantNeedsHelpWithOutlawsIssueQuestBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "c1087ad4106cc90d618e852bcc53a2c994829ba72529d5b13a67c8b073fa2383",
+      "lines": 852
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.Issues.NearbyBanditBaseIssueBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "56af279daa4e50c5d887c6de75250365bc7b3fb2b04e6edbd1093843d4f96f62",
+      "lines": 708
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.RecruitmentCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "ae890089daafac693add5f177872f3a6b59e08b3d4a7e71bfa9b946f27f6d65d",
+      "lines": 869
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.GarrisonRecruitmentCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "ac47cb98ff98c94f4dc8cda0ddfc5198953fb9b52a6186dd1ba1e8e84a308275",
+      "lines": 231
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.LogEntries.IssueQuestLogEntry",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "bf7f021546919cfba681de382553b253076311607224e37f619db47294ce6284",
+      "lines": 101
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.LogEntries.IssueQuestStartLogEntry",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "15650788de837e1ef88c345f5a91cd711db4f051ac9821ed1e0ea86e44de7a88",
+      "lines": 47
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.LogEntries.LogEntryHistory",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "164572da7ee9a91408775b6d10bdaf0516ea1e0903d691458bfa53c574fca39d",
+      "lines": 195
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.GameComponents.DefaultCaravanModel",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "08800465521b9b2dcf76a954ec5605ef2e1324b22134d8ca34f86de087b2bd3f",
+      "lines": 68
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.DefaultLogsCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "f6eca4f1cfe6df7326e777de9c336eef8dc15844f5c8ac6483c1934d95fcc84a",
+      "lines": 245
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.JournalLogsCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "c87757b39eabfea4c1ac1668496b8dff6a4ab66ee94855f4fb940d1cde72dbe7",
+      "lines": 150
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.ClanVariablesCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "f25125f1a87bba05950ce8cc7317c7159439774547a227c01bf1fce86cd19872",
+      "lines": 512
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.HeroSpawnCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "f1330006c9531235660a41ac87d0e2a89eb6c4ebfe429fe116da63721387662d",
+      "lines": 492
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.ExecutionCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "ecf7c76f37442d7cf515805e1c0521f4c8a9e2d410d3f61038e6a9b1681a4034",
+      "lines": 633
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.GameComponents.DefaultBuildingScoreCalculationModel",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "55baab1f026bdf4c1700c4959ee6975fd5f79f3975c7ab1615087f8b2cbe6596",
+      "lines": 20
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.PlayerTownVisitCampaignBehavior",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "9fd57137789c1d1b40d17e5aef172bc0ffd33f96d8a03628570a9ae40e6562cf",
+      "lines": 1495
+    },
+    {
+      "type": "SandBox.CampaignBehaviors.ClanMemberRolesCampaignBehavior",
+      "dll": "SandBox.dll",
+      "dll_sha256": "16af436c569675eb30e22514bb755e6fb3612afce38f6cc55d1748d079c19c1a",
+      "decomp_sha256": "cf34d606407ba881f3116e94b706ab980314656215328921558010eb87ce07fa",
+      "lines": 549
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.Settlements.Buildings.DefaultBuildingTypes",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "26aa4dbe8783d9fbe0860badd1c8cabd7dd4b69ca9fc5da8fec624ca52b453ee",
+      "lines": 332
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.GameComponents.DefaultBuildingEffectModel",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "a9970419d955153851c0eac3a67cfe4267527a6d02353b329d4e77612773842f",
+      "lines": 39
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.GameComponents.DefaultSettlementLoyaltyModel",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "362fc77dbcfdc7af70acdbbb6e7f34ef54b7dbcff7ff75ef4d84f0fe960530f9",
+      "lines": 301
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.ComponentInterfaces.BuildingScoreCalculationModel",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "845f788303a219ff82d696cb0822d71a0f25b49e56510934ae4b6e531aa2933a",
+      "lines": 12
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.Settlements.Town",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "762030b3bb46813d88e3d855f45db93fad8b1fdb18cae88629a0dff42f0590ba",
+      "lines": 767
+    },
+    {
+      "type": "Helpers.BuildingHelper",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "571aa6e0b37217bd0e06124390717c34848df646641427e39637651104ae3351",
+      "lines": 131
+    },
+    {
+      "type": "TaleWorlds.CampaignSystem.Settlements.Buildings.Building",
+      "dll": "TaleWorlds.CampaignSystem.dll",
+      "dll_sha256": "5b23c3e36d7a5d6d47c47eab075e9e2b1cc8d1aa53c79e135fa2b5ef434ebc5f",
+      "decomp_sha256": "f6122382d7e5957bf704d58b9f6025e961fdfb9b1332c5265dbdeede04f37e85",
+      "lines": 256
+    }
+  ],
+  "clanai_sources": [
+    {
+      "file": "src/ClanAI/src/ClanAI/HomeResponsibilityLayer.cs",
+      "sha256": "6f658a05101677ba0eaf43b886ea5af5c6eebe138911bf3a86dc762872265773",
+      "git_blob": "61f7e561a55e192c4e0d7372fa2baf7a110566a0",
+      "lines": 266
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/HomeResponsibilityPolicy.cs",
+      "sha256": "7b7a31ea8f7831f3aa5d48ac492d414b1b2619985e8205be9f5289d00e3294aa",
+      "git_blob": "bb86a005ac8202a3a8dc806abae9e8a19065704f",
+      "lines": 72
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/VisualWarDecisionLayer.cs",
+      "sha256": "f056b0eda78a0ad3381063cc32d05122f4aa7c4efcc9dec1a93ea8b085b8f447",
+      "git_blob": "d667f4f8c352adc827a765bfa1b00b4c8877febf",
+      "lines": 1210
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/KingdomObjectiveLayer.cs",
+      "sha256": "26b82b86fcf756d1e90d16900d83d913e93f56d2eb13694615e00ab224118aea",
+      "git_blob": "cbf9e6bb0eb47cb1be55beb1ccfd1bfae909afac",
+      "lines": 550
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/StrategicCommitmentLayer.cs",
+      "sha256": "5e1f3921c15fcc8063a0151c46655739b1618dfe8b40acae10231a15e095c953",
+      "git_blob": "57fa1a98682223453e461a17d3df0e98c4fae935",
+      "lines": 734
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/WarStateBehavior.cs",
+      "sha256": "04626187392580f74a841c972f9a480c8498cb5c629cd21a272c008275281dc4",
+      "git_blob": "ae8f886c9c7862bab372b7d1fefd10a2bcfffc32",
+      "lines": 1632
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/WarStrainRecruitmentPatch.cs",
+      "sha256": "2864c225a62b9ef0bd7b5f6444c6334e260bdae50d846da1574b7b82c31aa87e",
+      "git_blob": "dc25c2f333badb1d059c0ba1b2c1a4e9d6d2370d",
+      "lines": 227
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/WarStrainEconomicPatches.cs",
+      "sha256": "bdb2dcc7d19cf98b9d590a9982eea343b2a3c36766c1ff85318259e319fbc820",
+      "git_blob": "1f2afc20fc41965198412563e9794718ac9f59f1",
+      "lines": 263
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/LocalManpowerVolunteerModel.cs",
+      "sha256": "ce2244dd5c71b41636be4cd86f43b3de4446863bec93636ccc59e59d92c9d882",
+      "git_blob": "872341e7eaeb8c17841053a0e5e546ea3a49e762",
+      "lines": 437
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/LocalManpowerProbabilityPolicy.cs",
+      "sha256": "cca6abf387d98f02e97e54ffd1d68b0e23aabe6450672cfaed30ac8ab67ffd49",
+      "git_blob": "f8b21dabb9df38df85fc0f83e6cfcad1a083f713",
+      "lines": 176
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/TroopQualityProbabilityPolicy.cs",
+      "sha256": "f1b683ad4169054f73816ed052c51fcd4f46412d74cb0ac6e6bfa274e72a6534",
+      "git_blob": "d7b997d7c99e2d768bff97bf10057748547a32e8",
+      "lines": 137
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/LocalBanditControlPolicy.cs",
+      "sha256": "890ded9caa10b1a4e84ace80fbe5788e96e00fce17654325e5eb94b5494a3fc2",
+      "git_blob": "7b3d119f274ddf884167f8fd337815d8ba6e6c47",
+      "lines": 134
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/LocalBanditControlPatch.cs",
+      "sha256": "438e908477cd8c864510bbf0d364c1d65e0f2e76a7c099f53d05a2d333e63e85",
+      "git_blob": "987c9f428d3182ee4bdef170c99644fc2e5669c1",
+      "lines": 186
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/PrisonerMercyDecisionBehavior.cs",
+      "sha256": "6671c1cddf672744998786171cf4a4eb4410927cfbd2efe08be5e27ae9ee1999",
+      "git_blob": "6eac7167df3160027d74de086b82b50e073d3c6e",
+      "lines": 512
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/CompanionDutyMemory.cs",
+      "sha256": "55f4c05ed035c89ff466b4fb3043634d8dc700411cbeca2abc3af06a1f6a775f",
+      "git_blob": "00c39f0649e84de97969a03b7577cf1dc2781de8",
+      "lines": 578
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/CompanionExperienceMemory.cs",
+      "sha256": "c7ec084bbf1908fd7d4bbcea17d9bda509bd31c2eb75b58e1fdc190f4cc741ca",
+      "git_blob": "90739697811d3761fb2b23cad38c4b5b2e5a4fe5",
+      "lines": 815
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/CompanionNegativeOutcomeMemory.cs",
+      "sha256": "e639c9c1501fffb02a82fdeda614abcec887293a56eb7d5dedd05b8ad59972b8",
+      "git_blob": "5b3e4e6fd0d20a301724a99d7048b2db393c7631",
+      "lines": 579
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/SocialLedger.cs",
+      "sha256": "92b7549521ab6d125d41b5e5e450d4b414cfec52a3dcdd9066f58f6fb06c2291",
+      "git_blob": "2421b5e560becbb65d36111cc05ef770c074b974",
+      "lines": 1197
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/SocialLoyaltyPatch.cs",
+      "sha256": "ae764ecfdc8dd6000aa83db013145737e4350face081142e4737e5de8a53a656",
+      "git_blob": "4ad202955b91c46778bf166d59b73b035166f8ec",
+      "lines": 459
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/SocialDefectionPatch.cs",
+      "sha256": "1f152e383227463c8ceee4a6b2b55484dab26009e068d5d93ba528d5522cc6bf",
+      "git_blob": "02bcf45bbba303c413b33bb1b5f522ebb7573010",
+      "lines": 508
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/SocialLoyaltyClanLossMemory.cs",
+      "sha256": "8b7793dfbc33e7d93e1bbad35f0cb7b1f36e484c2eb71b959b4f387b4f6d1b30",
+      "git_blob": "70caad55ccf2ce5aa0e72cf0849d38cf91aee474",
+      "lines": 512
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/RulerClanCourtshipBehavior.cs",
+      "sha256": "696b339d37d756937816d1efc0f0db2255b258154f0ec2b9c51294a698fcb42c",
+      "git_blob": "a83d0f334f11747a3796759295dec487bec1200a",
+      "lines": 320
+    },
+    {
+      "file": "src/ClanAI/src/ClanAI/KingdomContinuityBehavior.cs",
+      "sha256": "98a436fee09b9ea29f721497c82fdbd103cc93bfd6b52e003f074398af6e8847",
+      "git_blob": "548e835c4014ec83c5b6c102ac287628dbd9b780",
+      "lines": 337
+    }
+  ],
+  "runtime_executed": false,
+  "note": "Targeted decompiler outputs remain local; listing a type is not exhaustive semantic review of every member.",
+  "source_preservation": {
+    "files_checked": 370,
+    "changed": []
+  }
+}

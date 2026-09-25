@@ -2,11 +2,13 @@
 
 ## Current checkpoint
 
-Phase 5-v1 has completed its **bounded Local Bandit Control runtime characterization**.
+Phase 6 has completed its first **offline-only Settlement Society / Vanilla Capability Audit**.
 
-**Runtime result: STRONG PASS — the audited town/village ambient-looter spawn-site weight modifier is implemented, build-proven, and runtime-observed. Native looter creation and hideout passthrough were also observed naturally. Balance remains unproven.**
+**Audit result: COMPLETE — the twelve requested settlement/society domains were mapped from both player and NPC perspectives, current ClanAI overlap was checked, three bounded candidate seams were ranked, and one first Phase 6-v1 target was identified. No Phase 6 gameplay source has been implemented.**
 
-The exact Security-only gameplay policy from `0093c8d3d27d2252b9e13572441ab73bbe121dea` remained unchanged. Minimum proof completed after 19.527 campaign hours: secure Syronea applied 0.75 to native weight 1, naturally weak Tepes village used bound-castle Security 43.85594 and raised native weight 1 to 1.03072023, and village-bound Security resolved correctly. A native looter was created by Bannerlord and a hideout invocation passed through exactly with `applied=False`. Phase 4A remains closed. Phase 4B and Phase 4C remain unchanged; their balance remains unproven. Phase 6 has not started.
+Selected first target: **needs-aware native daily civic-project selection for low-loyalty, idle NPC towns**, using the existing `BuildingScoreCalculationModel.GetNextDailyBuilding(Town)` decision seam and the existing native Festival and Games project. The audited default selector chooses daily projects randomly; the native caller already owns cadence and commits the selected existing project through `BuildingHelper.ChangeDefaultBuilding`. The proposed future wrapper would preserve native project objects/effects, the construction queue, player choices, save state and final mutation authority.
+
+The deeper issues/notables audit found that NPC settlement visitors already have a native opportunistic issue-resolution path, NPC clans already assign governors, workshops/caravans/gangs already have meaningful native lifecycle behavior, and several tempting Phase 6 features would duplicate native or existing ClanAI systems. Phase 4A remains closed. Phase 4B/4C and Phase 5-v1 remain unchanged and runtime-observed; their balance remains unproven. Phase 7 has not started.
 
 ## Native ecology finding
 
@@ -107,11 +109,16 @@ SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 - `Reports/Security/evidence/phase5_local_bandit_control_v1_runtime_telemetry_validation_20260925.txt`
 - `Reports/Security/PHASE5_LOCAL_BANDIT_CONTROL_V1_RUNTIME_RESULT.md`
 - `Reports/Security/evidence/phase5_local_bandit_control_v1_runtime_20260925.txt`
+- `Reports/SettlementSociety/PHASE6_SETTLEMENT_SOCIETY_CAPABILITY_AUDIT.md`
+- `Reports/SettlementSociety/evidence/phase6_native_audit_evidence_20260925.md`
+- `Reports/SettlementSociety/evidence/phase6_native_audit_manifest_20260925.json`
 
 ## Next bounded milestone
 
-The Phase 5-v1 runtime characterization checkpoint is complete.
+The Phase 6 capability-audit checkpoint is complete. Phase 6 gameplay implementation is **NOT STARTED**.
 
-Stop here. Do not retune the 0.75..1.25 bounds or add Phase 5 inputs from this characterization alone. Phase 6 remains not started in this task.
+The next bounded milestone is a separate **offline-only implementation and validation** of the selected low-loyalty idle-town civic-project choice seam. It must preserve the audited default-model compatibility boundary, call the selected native daily selector exactly once, return only an existing native daily-project reference, and introduce no direct settlement mutation or new save state.
+
+Do not launch Bannerlord or deploy from this audit checkpoint. Do not retune Phase 4/5. Do not begin Phase 7.
 
 Final product direction remains standalone, installable, and offline with no runtime development-tool dependency.
