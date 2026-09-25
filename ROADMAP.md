@@ -337,6 +337,8 @@ Recovery must remain possible over time in healthy, secure, prosperous territory
 
 # Phase 5 — Security, patrols, banditry, and local control
 
+**Phase 5 native-capability/design audit — PASSED OFFLINE 2026-09-25.** Native bandit pressure is not one loop: looters refill against a global support limit, culture bandits refill against infested-hideout population, hideouts re-infest under their own caps, and native Guard House patrols/lord initiative provide real suppression. The smallest v1 seam is the existing private local score `BanditSpawnCampaignBehavior.GetSpawnChanceInSettlement(Settlement)`, applied only to normal town/village candidates used by ambient looter spawn selection; hideout calls remain exact native passthrough. Use native Security as the only first local-control input (town own Security; village bound-town Security; missing context passthrough) because native Security already aggregates garrison, looted villages, siege, nearby infested hideouts, patrol-party bonuses and other order effects. Candidate factor: `clamp(1.25 - 0.005*Security,0.75,1.25)`, neutral at Security 50. This changes only relative looter location weight, not total looter cap/refill, templates, creation, movement or destruction. Home Responsibility and Visual War remain independent and unchanged. **Next bounded milestone: offline-only pure Security spawn-weight policy + narrow postfix/result modifier + no-mutation/standalone tests; no runtime/deployment before that passes.** See `Reports/Security/PHASE5_SECURITY_BANDITRY_NATIVE_CAPABILITY_AUDIT.md`.
+
 ## Goal
 
 Bandit pressure should increasingly reflect weak control rather than feeling like an unlimited disconnected spawn loop.

@@ -2,174 +2,119 @@
 
 ## Current checkpoint
 
-Phase 4C Troop Quality v1 is now **implemented, build-proven, and runtime-observed**.
+Phase 5 has begun with the required **offline Security / Patrols / Banditry / Local Control native-capability audit**.
 
-A native direct-target volunteer quality upgrade after a Phase 4C evaluation was also observed.
+**Audit result: PASS — a clean bounded native looter spawn-site seam exists. No Phase 5 gameplay source is implemented in this checkpoint.**
 
-**Balance remains unproven. Phase 5 has not started.**
+Phase 4A remains closed. Phase 4B and Phase 4C remain unchanged at their accepted implemented/build-proven/runtime-observed checkpoints. Their balance remains unproven. Phase 6 has not started.
 
-Offline policy/source checkpoint:
+## Native ecology finding
 
-`51084dd61928308373b72f0fd252720601fd2756`
+Bannerlord does not use one universal bandit spawn path.
 
-Observation-only telemetry checkpoint:
+Ambient native systems include separate:
 
-`7fb5355b1db215a7bd0164baf082ebae13c76704`
+- global looter population refill;
+- culture-bandit populations tied to infested hideouts;
+- hideout infestation/replacement;
+- quest/incident/deserter bandits;
+- native Guard House patrol parties;
+- generic lord/patrol combat suppression.
 
-Runtime DLL SHA-256:
+Native bandit counts are already bounded by `DefaultBanditDensityModel` and `BanditSpawnCampaignBehavior`.
 
-`F8EC94C8973C180F7BEA688016B272C690728A188D61EF05166E3ED51AE445DC`
+## Selected Phase 5-v1 seam
 
-The Phase 4B and Phase 4C policy blobs remained unchanged from the offline implementation checkpoint.
+The recommended first seam is native:
 
-## Runtime proof
+`BanditSpawnCampaignBehavior.GetSpawnChanceInSettlement(Settlement)`
 
-Protected-fixture start:
+Use a narrow postfix/result modifier **only for town/village candidates**, which are the ambient looter spawn anchors.
 
-`649491.27044636116`
+Hideout candidates pass through native exactly.
 
-Minimum A-E proof completed at:
+This changes only **where** native looter pressure is relatively likely to appear. It does not change global looter quantity, hideout-bandit production, culture/templates, party creation, movement, or removal.
 
-`649492.04582108336`
+## Local-control input
 
-Elapsed:
+Use **Security only**.
 
-**0.77537472220 campaign hours**
+Town:
 
-Pause acknowledgement:
+`Town.Security`
 
-`649492.34227611113`
+Village:
 
-Elapsed:
+bound fortification `Town.Security` when safely available.
 
-**1.07182974997 campaign hours**
+Missing Security -> native passthrough.
 
-Stop reason:
+Security is deliberately the only v1 input because native Security already aggregates garrison, looted villages, siege, nearby infested hideouts, patrol-party bonuses, policies/projects/issues/perks and native drift.
 
-`minimum-phase4c-proof`
+Native bandit victories/defeats and hideout clearing also change nearby Security, creating an existing control feedback loop.
 
-### Wrapper
+## Candidate first safety bounds
 
-Runtime selected:
+`controlMultiplier = clamp(1.25 - 0.005 * clamp(Security,0,100), 0.75, 1.25)`
 
-- inner `DefaultVolunteerModel`;
-- wrapper `LocalManpowerVolunteerModel`;
-- selected wrapper = true.
+Examples:
 
-### Phase 4B preservation
+- Security 0 -> 1.25;
+- 25 -> 1.125;
+- 50 -> 1.00;
+- 75 -> 0.875;
+- 100 -> 0.75.
 
-Vinela empty slot:
+`finalSpawnWeight = nativeSpawnWeight * controlMultiplier`
 
-- High population;
-- security 99.15879;
-- native `0.08823674`;
-- final `0.08823674`.
+This is a relative **selection weight**, not a spawn-rate multiplier.
 
-### Occupied non-upgradeable
+The bounds are first-candidate safety limits, not balance claims.
 
-Tarcutis:
+Native global looter caps/refill remain untouched and secure territory never receives a zero weight.
 
-- `imperial_heavy_horseman`, tier 4;
-- selected max tier 4;
-- direct target exists but native eligibility is false at max tier;
-- native `0.08823674`;
-- final `0.08823674`;
-- branch = native passthrough.
+## Native patrol/lord suppression
 
-### Healthy quality
+Native towns with Guard Houses already generate culture-native patrol parties.
 
-Vinela:
+Native AI already gives patrols stronger willingness/range against bandits, while independent lords can engage bandits through the generic initiative system when strength/distance/readiness permit.
 
-- `imperial_recruit`, tier 1;
-- two direct native targets;
-- native-upgrade-eligible;
-- High population, security 99.15879;
-- quality multiplier 1;
-- native/final `0.525`.
+No custom patrol party type is needed.
 
-### Naturally degraded quality
+## Existing BannerlordAI interactions
 
-Lysia:
+Home Responsibility already biases native home patrol/defend candidates during war but does not spawn or target bandits directly.
 
-- `imperial_vigla_recruit`, tier 2;
-- direct target `imperial_equite`;
-- Mid hearth `412.8728`;
-- security 91.290535;
-- no raid/siege;
-- native `0.367499977`;
-- quality multiplier `0.95`;
-- final `0.349124968`.
+Visual War already contains an optional rear-security bandit `EngageParty` modifier (weak recovery skip; approximately 1.25 for <=90 men and 1.15 for <=160). Phase 5-v1 should not retune or require that system.
 
-No degradation was manufactured.
+WarState raid/scar memory is deferred to avoid double counting damage already represented by native Security.
 
-### Native quality mutation
+## Native binaries
 
-Dradios:
+`TaleWorlds.CampaignSystem.dll`  
+SHA-256 `5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F`
 
-- before `imperial_archer` tier 2;
-- direct native target `imperial_trained_archer` tier 3;
-- source count 1 -> 0;
-- target count 0 -> 1;
-- `directUpgradeTarget=True`;
-- source = native daily volunteer update;
-- `mutationByClanAI=False`.
-
-This is a strong runtime proof that Bannerlord retains second-gate RNG, target selection and actual volunteer mutation.
-
-## Runtime scope not exercised
-
-This run did not independently runtime-exercise:
-
-- Low-population quality factor;
-- security below 50;
-- missing-security quality passthrough;
-- active raid/siege quality factor;
-- Phase 4C 0.50 floor.
-
-Those remain deterministic/build-proven, not newly runtime-proven.
-
-No tuning is justified from this short characterization.
-
-## Supporting shared-pool evidence
-
-The run naturally logged native AI consumption of visible notable volunteer slots. The full relevant trace contains 31 `LOCAL_MANPOWER_SHARED_POOL_CONSUMPTION` lines.
-
-This is supporting parity evidence only and was not a Phase 4C pass requirement. No separate garrison-consumption claim is made.
-
-## Safety
-
-Bannerlord was closed before deployment.
-
-Rollback SHA-256:
-
-`9CB64EA90774A391D442FC32F460EF09E1D2901AEE3EBB194386E37A96F1C896`
-
-The run used `EXIT_NOSAVE`; fresh command history contains zero save commands.
-
-Protected fixture remained unchanged:
-
-`A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427`  
-`2026-09-24T17:20:12.2384633Z`
-
-Strategic Commitment remained `Mode=Observe`; Visual War remained OFF; Bannerlord is closed; rollback remains intact.
+`SandBox.dll`  
+SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 
 ## Evidence
 
-- `Reports/Manpower/PHASE4C_TROOP_QUALITY_V1_RUNTIME_RESULT.md`
-- `Reports/Manpower/evidence/phase4c_troop_quality_v1_runtime_20260925.txt`
-- offline implementation: `Reports/Manpower/PHASE4C_TROOP_QUALITY_V1_OFFLINE_IMPLEMENTATION_RESULT.md`
-- audit: `Reports/Manpower/PHASE4C_TROOP_QUALITY_NATIVE_CAPABILITY_AUDIT.md`
+- `Reports/Security/PHASE5_SECURITY_BANDITRY_NATIVE_CAPABILITY_AUDIT.md`
+- `Reports/Security/evidence/phase5_security_banditry_native_capability_audit_20260925.txt`
 
-## Capability status
+## Next bounded milestone
 
-Implemented: **yes**.  
-Build-proven: **yes**.  
-Runtime-observed: **yes**.  
-Native quality mutation observed: **yes**.  
-Balance-proven: **no**.
+Separately implement **offline only**:
 
-Stop at this Phase 4C checkpoint.
+- pure Security-to-looter-spawn-weight policy;
+- narrow result modifier on native `GetSpawnChanceInSettlement`;
+- town/village-only application;
+- hideout passthrough;
+- deterministic/no-mutation/standalone tests;
+- Release build.
 
-Do not begin Phase 5 in the same task.
+Do not launch Bannerlord or deploy until that offline checkpoint passes.
 
-Final product direction remains a standalone, installable, offline Bannerlord mod with no runtime dependency on ChatGPT, Codex, Desktop Commander, TestRunner, watchdogs, external IO or development-machine absolute paths.
+Do not begin Phase 6.
+
+Final product direction remains standalone, installable, and offline with no runtime development-tool dependency.

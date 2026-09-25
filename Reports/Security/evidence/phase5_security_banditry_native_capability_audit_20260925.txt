@@ -1,0 +1,156 @@
+PHASE 5 SECURITY / BANDITRY NATIVE-CAPABILITY AUDIT
+Date: 2026-09-25 UTC
+Base GitHub main: e802e8d893c6bb310d165e13e23a3a162529eac0
+Bannerlord launched: NO
+DLL deployed: NO
+Campaign run: NO
+Phase4 changed: NO
+Phase6 started: NO
+
+NATIVE BINARIES
+TaleWorlds.CampaignSystem.dll
+SHA256=5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+
+SandBox.dll
+SHA256=16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A
+
+BANDIT DENSITY DEFAULTS
+min bandit parties inside hideout for infestation=2
+max parties inside each hideout=3
+max parties around each hideout=3
+max hideouts per normal bandit faction=9
+initial hideouts per normal bandit faction=7
+minimum hideout mission bandit troops=10
+normal max looter support=270
+deserter max support=50
+
+AMBIENT SPAWN
+BanditSpawnCampaignBehavior:
+events=MobilePartyCreated,MobilePartyDestroyed,SettlementEntered,DailyTick,HourlyTickClan,GameLoaded,HomeHideoutChanged,new-game followup
+night looter refill ratio=0.07
+night culture-bandit refill ratio=0.10
+culture bandit target deficit=infestedHideouts*(3 inside+3 around)-current parties
+looter target limit=min(allInfestedHideouts*7,native max support)
+
+LOOTER SPAWN
+SelectARandomSettlementForLooterParty
+candidate set=all towns + villages
+weight=GetSpawnChanceInSettlement(settlement)
+creation=BanditPartyComponent.CreateLooterParty
+template=looter clan DefaultPartyTemplate
+looter spawn radius factor=1.5
+native position code avoids player-near spawn where possible
+
+CULTURE BANDIT SPAWN
+candidate=infested same-culture hideout
+weight=GetSpawnChanceInSettlement(hideout.Settlement)
+creation=BanditPartyComponent.CreateBanditParty
+template=bandit clan DefaultPartyTemplate
+v1 recommendation=PASS THROUGH hideout candidates
+
+NATIVE SPAWN-SITE WEIGHT
+GetSpawnChanceInSettlement:
+if cached home bandit count >0 => 1/count^2
+else => 1
+purpose=native anti-clumping
+no direct Security/prosperity/hearth/raid/war/garrison/patrol/lord input
+
+HIDEOUT
+IsInfested derived from resident bandit count >=2
+daily replacement below max9
+new infestation adds minimum2 bandit parties
+bandit AI preserves near-minimum resident population
+roaming bandits return to same-culture hideouts based on distance/loot/prisoners/current hideout population
+visible infested hideouts can receive native boss party
+player clear battle expels surviving parties and hides site; dormant site can later re-infest
+
+NATIVE SUPPRESSION
+party destruction through normal combat/map events
+native patrol parties from owned non-rebel towns with Guard House
+Guard House patrol respawn duration approx L1=10d,L2=8d,L3=6d
+patrol templates remain culture-native
+patrol attacker relative factor against bandit approx1.2
+PatrolAroundPoint attacker distance factor against bandit/lord enemy=3.5
+normal independent lords can engage bandits via generic initiative strength/distance/readiness logic
+army conditions explicitly skip opportunistic bandit targets
+no ambient mass-delete cleanup loop identified
+
+SECURITY FEEDBACK
+DefaultSettlementSecurityModel includes:
+nearby infested hideout=-2
+looted bound village=-2
+under siege=-3
+garrison contribution
+native patrol-party contribution
+policy/governor/project/issue/perk effects
+security drift midpoint=50
+bandit victory over civilian reduces nearby Security by defeated strength*0.005
+bandit defeat increases nearby Security by defeated bandit strength*0.005
+hideout clear nearby Security gain=+6
+
+BANNERLORDAI PHASE3
+Home Responsibility biases native own-clan GoToSettlement/Defend/Patrol candidates during war; no direct bandit spawn rule
+Visual War rear-security bandit EngageParty modifier:
+  weak-for-recovery skip
+  <=90 men factor1.25
+  <=160 men factor1.15
+Phase5 v1 must not retune or depend on these factors
+WarState raid history deferred to avoid double counting native Security damage
+
+SELECTED PHASE5-V1 SEAM
+postfix/result modifier:
+BanditSpawnCampaignBehavior.GetSpawnChanceInSettlement(Settlement)
+
+scope:
+town/village only
+hideout exact passthrough
+
+SECURITY SOURCE
+town => Town.Security
+village => Village.Bound?.Town?.Security
+missing => exact native passthrough
+
+CANDIDATE FACTOR
+controlMultiplier=clamp(1.25 - 0.005*clamp(Security,0,100),0.75,1.25)
+Security0=1.25
+Security25=1.125
+Security50=1.00
+Security75=0.875
+Security100=0.75
+finalSpawnWeight=nativeSpawnWeight*controlMultiplier
+
+SAFETY
+relative selection weight only
+global looter cap unchanged
+night refill ratio unchanged
+positive native weight never forced to zero
+max local boost=25 percent
+max local suppression=25 percent
+native anti-clumping retained
+native CreateLooterParty retained
+culture/hideout bandit path unchanged
+
+EXCLUDED V1 INPUTS
+prosperity/hearth
+raid/siege direct scalar
+historical raids
+hideout count
+nearby bandit count
+garrison
+militia
+patrol presence
+lord presence
+Home Responsibility
+Visual War
+WarState/WarScar
+Reason: mostly already represented by Security/native anti-clumping/global caps/real combat, or would add volatile double counting.
+
+NO SOURCE ADDED
+No Release build required for this documentation-only audit.
+Bannerlord running=False
+live ClanAI DLL remained Phase4C runtime candidate:
+F8EC94C8973C180F7BEA688016B272C690728A188D61EF05166E3ED51AE445DC
+
+NEXT
+offline-only pure security spawn-weight policy + narrow result modifier + tests
+no runtime/deployment until separately validated
