@@ -1,0 +1,76 @@
+﻿PHASE6_CIVIC_PROJECT_V1_RUNTIME_CHARACTERIZATION
+DATE_UTC 2026-09-25
+GAMEPLAY_CHECKPOINT f9b873bdd416e24e2b2643631ab3bc1a7a03f6e3
+IMPLEMENTATION_CHECKPOINT 3bd55ce1d54de3739d049598e5c1497a2f8f6ff8
+TELEMETRY_COMMIT f0fe5b86aa71bd0df349d05858fc6ab203fcf30b
+RUNTIME_DLL_SHA256 2909ADE31B427E122FDDE539229BD0A4A2B4FA91C84CFD3AB63D0C8EB6F729D7
+START_CAMPAIGN_HOUR 649491.27044636116
+PAUSE_CAMPAIGN_HOUR 649647.05848927773
+ELAPSED_CAMPAIGN_HOURS 155.78804291656706
+MAX_BOUND_HOURS 168
+STOP_REASON conservative-bound-margin-no-natural-qualifying-low-loyalty-town
+CIVIC_EVAL_COUNT 12
+NPC_TOWN_EVAL_COUNT 2
+GENUINE_SUBSTITUTION_COUNT 0
+NATIVE_COMMIT_COUNT 12
+TELEMETRY_ERROR_COUNT 0
+SAVE_COMMAND_COUNT 0
+PROTECTED_FIXTURE_SHA256_BEFORE A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+PROTECTED_FIXTURE_TIMESTAMP_BEFORE 2026-09-24T17:20:12.2384633Z
+PROTECTED_FIXTURE_SHA256_AFTER A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+PROTECTED_FIXTURE_TIMESTAMP_AFTER 2026-09-24T17:20:12.2384633Z
+PROTECTED_FIXTURE_UNCHANGED True
+ROLLBACK_SHA256 E4DB15DAF5C437F45F559CADDD3F385CE062416D2896EE451826D961D9DDDF7A
+LIVE_DLL_SHA256_AFTER 2909ADE31B427E122FDDE539229BD0A4A2B4FA91C84CFD3AB63D0C8EB6F729D7
+STRATEGIC_COMMITMENT Mode=Observe
+VISUAL_WAR_MARKER_EXISTS False
+BANNERLORD_CLOSED_AFTER True
+
+MODEL_SELECTION
+2026-09-25T23:41:10.1926554Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_MODEL_ACTIVE campaignHour=649491.27044636116 selected=ClanAI.CivicProjectBuildingScoreCalculationModel selectedWrapper=True inner=TaleWorlds.CampaignSystem.GameComponents.DefaultBuildingScoreCalculationModel exactAuditedInner=True mutation=False
+
+NPC_TOWN_EVALUATIONS
+2026-09-25T23:44:46.8587643Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_EVAL campaignHour=649589.59721172217 settlementId=town_EW2 settlement=Zeonica npcTown=True constructionIdle=False queueCount=1 contextValid=True festivalAvailable=True loyalty=91.3676147 nativeThreshold=25 nativeResultId=building_settlement_daily_festival_and_games nativeResult=Festival_and_Games nativeIsFestival=True finalResultId=building_settlement_daily_festival_and_games finalResult=Festival_and_Games finalIsFestival=True finalExistingReference=True preferFestival=False substitution=False reason=ConstructionActive mutationByClanAI=False
+2026-09-25T23:45:32.7726865Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_EVAL campaignHour=649611.50918086106 settlementId=town_B1 settlement=Marunath npcTown=True constructionIdle=True queueCount=0 contextValid=True festivalAvailable=True loyalty=94.79668 nativeThreshold=25 nativeResultId=building_settlement_daily_train_militia nativeResult=Train_Militia nativeIsFestival=False finalResultId=building_settlement_daily_train_militia finalResult=Train_Militia finalIsFestival=False finalExistingReference=True preferFestival=False substitution=False reason=LoyaltyNotBelowThreshold mutationByClanAI=False
+
+NATIVE_COMMIT_OBSERVATIONS
+2026-09-25T23:42:21.7949980Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_NATIVE_COMMIT campaignHour=649494.18097902776 settlementId=castle_EN3 settlement=Rhesos_Castle nativeResultId=building_castle_daily_slacken_garrison nativeResult=Slacken_Garrison committedResultId=building_castle_daily_slacken_garrison committedResult=Slacken_Garrison committedIsFestival=False preferredFestival=False substitution=False reason=InvalidContext currentDefaultMatches=False ageHours=0 source=native-BuildingHelper.ChangeDefaultBuilding observer=postfix mutationByClanAI=False
+2026-09-25T23:42:26.1913958Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_NATIVE_COMMIT campaignHour=649499.46285066672 settlementId=castle_B8 settlement=Uthelaim_Castle nativeResultId=building_castle_daily_raise_troops nativeResult=Raise_Troops committedResultId=building_castle_daily_raise_troops committedResult=Raise_Troops committedIsFestival=False preferredFestival=False substitution=False reason=InvalidContext currentDefaultMatches=False ageHours=0 source=native-BuildingHelper.ChangeDefaultBuilding observer=postfix mutationByClanAI=False
+2026-09-25T23:42:29.6401633Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_NATIVE_COMMIT campaignHour=649503.60138225 settlementId=castle_A1 settlement=Tubilis_Castle nativeResultId=building_castle_daily_drills nativeResult=Drills committedResultId=building_castle_daily_drills committedResult=Drills committedIsFestival=False preferredFestival=False substitution=False reason=InvalidContext currentDefaultMatches=False ageHours=0 source=native-BuildingHelper.ChangeDefaultBuilding observer=postfix mutationByClanAI=False
+2026-09-25T23:42:31.7474446Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_NATIVE_COMMIT campaignHour=649506.1297605 settlementId=castle_ES1 settlement=Odrysa_Castle nativeResultId=building_castle_daily_raise_troops nativeResult=Raise_Troops committedResultId=building_castle_daily_raise_troops committedResult=Raise_Troops committedIsFestival=False preferredFestival=False substitution=False reason=InvalidContext currentDefaultMatches=False ageHours=0 source=native-BuildingHelper.ChangeDefaultBuilding observer=postfix mutationByClanAI=False
+2026-09-25T23:42:49.3971115Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_NATIVE_COMMIT campaignHour=649527.29257958336 settlementId=castle_A2 settlement=Sahel_Castle nativeResultId=building_castle_daily_drills nativeResult=Drills committedResultId=building_castle_daily_drills committedResult=Drills committedIsFestival=False preferredFestival=False substitution=False reason=InvalidContext currentDefaultMatches=False ageHours=0 source=native-BuildingHelper.ChangeDefaultBuilding observer=postfix mutationByClanAI=False
+2026-09-25T23:42:57.5796331Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_NATIVE_COMMIT campaignHour=649537.11189191672 settlementId=castle_B1 settlement=Ab_Comer_Castle nativeResultId=building_castle_daily_slacken_garrison nativeResult=Slacken_Garrison committedResultId=building_castle_daily_slacken_garrison committedResult=Slacken_Garrison committedIsFestival=False preferredFestival=False substitution=False reason=InvalidContext currentDefaultMatches=False ageHours=0 source=native-BuildingHelper.ChangeDefaultBuilding observer=postfix mutationByClanAI=False
+2026-09-25T23:43:54.5499610Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_NATIVE_COMMIT campaignHour=649561.11723658338 settlementId=castle_B1 settlement=Ab_Comer_Castle nativeResultId=building_castle_daily_irrigation nativeResult=Irrigation committedResultId=building_castle_daily_irrigation committedResult=Irrigation committedIsFestival=False preferredFestival=False substitution=False reason=InvalidContext currentDefaultMatches=False ageHours=0 source=native-BuildingHelper.ChangeDefaultBuilding observer=postfix mutationByClanAI=False
+2026-09-25T23:44:42.5601105Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_NATIVE_COMMIT campaignHour=649584.4401583611 settlementId=castle_K5 settlement=Khimli_Castle nativeResultId=building_castle_daily_slacken_garrison nativeResult=Slacken_Garrison committedResultId=building_castle_daily_slacken_garrison committedResult=Slacken_Garrison committedIsFestival=False preferredFestival=False substitution=False reason=InvalidContext currentDefaultMatches=True ageHours=0 source=native-BuildingHelper.ChangeDefaultBuilding observer=postfix mutationByClanAI=False
+2026-09-25T23:44:46.8587643Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_NATIVE_COMMIT campaignHour=649589.59721172217 settlementId=town_EW2 settlement=Zeonica nativeResultId=building_settlement_daily_festival_and_games nativeResult=Festival_and_Games committedResultId=building_settlement_daily_festival_and_games committedResult=Festival_and_Games committedIsFestival=True preferredFestival=False substitution=False reason=ConstructionActive currentDefaultMatches=False ageHours=0 source=native-BuildingHelper.ChangeDefaultBuilding observer=postfix mutationByClanAI=False
+2026-09-25T23:45:00.1924031Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_NATIVE_COMMIT campaignHour=649605.59928963892 settlementId=castle_N4 settlement=Brunmark_Castle nativeResultId=building_castle_daily_drills nativeResult=Drills committedResultId=building_castle_daily_drills committedResult=Drills committedIsFestival=False preferredFestival=False substitution=False reason=InvalidContext currentDefaultMatches=False ageHours=0 source=native-BuildingHelper.ChangeDefaultBuilding observer=postfix mutationByClanAI=False
+2026-09-25T23:45:32.7726865Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_NATIVE_COMMIT campaignHour=649611.50918086106 settlementId=town_B1 settlement=Marunath nativeResultId=building_settlement_daily_train_militia nativeResult=Train_Militia committedResultId=building_settlement_daily_train_militia committedResult=Train_Militia committedIsFestival=False preferredFestival=False substitution=False reason=LoyaltyNotBelowThreshold currentDefaultMatches=True ageHours=0 source=native-BuildingHelper.ChangeDefaultBuilding observer=postfix mutationByClanAI=False
+2026-09-25T23:45:59.6626193Z [ClanAI v0.22A-ruler-courtship-native-v1] CIVIC_PROJECT_NATIVE_COMMIT campaignHour=649643.77801616665 settlementId=castle_B7 settlement=Aster_Castle nativeResultId=building_castle_daily_irrigation nativeResult=Irrigation committedResultId=building_castle_daily_irrigation committedResult=Irrigation committedIsFestival=False preferredFestival=False substitution=False reason=InvalidContext currentDefaultMatches=True ageHours=0 source=native-BuildingHelper.ChangeDefaultBuilding observer=postfix mutationByClanAI=False
+
+FRESH_TESTRUNNER_LINES
+2026-09-25T23:39:10.1884046Z [TestRunner v0.1] INCIDENT_PATCH applied
+2026-09-25T23:39:10.2024268Z [TestRunner v0.1] NAVAL_CAMPAIGN_SHIP_VISUAL_GUARD applied target=NavalDLC.View.Map.Visuals.NavalMobilePartyVisual.AddShipVisual mode=suppress_visual_only
+2026-09-25T23:39:10.2024268Z [TestRunner v0.1] RUNNER_LOAD version=v0.2.10.24-auto-encounter-resolver-v2
+2026-09-25T23:41:00.2829593Z [TestRunner v0.1] COMMAND command=LOAD_SAVE ClanAI V020V PERSIST DEMO GATE V021M 20260924 result=operator_load_save_started:ClanAI V020V PERSIST DEMO GATE V021M 20260924 timeControl=<none>
+2026-09-25T23:41:06.2107199Z [TestRunner v0.1] CAMPAIGN_INSTANCE generation=1
+2026-09-25T23:41:06.2107199Z [TestRunner v0.1] CAMPAIGN_READY timeControl=Stop
+2026-09-25T23:42:03.9584216Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-25T23:42:18.8561859Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-25T23:42:20.9880457Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-25T23:42:48.0733045Z [TestRunner v0.1] NAVAL_CAMPAIGN_SHIP_VISUAL_SUPPRESSED count=1
+2026-09-25T23:43:39.3321647Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-25T23:43:41.3970186Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-25T23:44:30.9498548Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-25T23:44:32.9849233Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-25T23:45:30.0543278Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-25T23:45:32.1066001Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-25T23:46:29.8800675Z [TestRunner v0.1] COMMAND command=PAUSE result=paused timeControl=Stop
+2026-09-25T23:46:41.9299273Z [TestRunner v0.1] COMMAND command=EXIT_NOSAVE result=exit_scheduled timeControl=Stop
+
+RESULT BOUNDED_NULL_TARGET_BRANCH
+RUNTIME_OBSERVED True
+GENUINE_FESTIVAL_SUBSTITUTION_OBSERVED False
+NATIVE_FINAL_COMMIT_OBSERVED True
+SUBSTITUTED_FESTIVAL_NATIVE_COMMIT_OBSERVED False
+PLAYER_LEGIBLE NOT_YET_PROVEN
+BALANCE_PROVEN False

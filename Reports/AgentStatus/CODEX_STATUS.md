@@ -2,13 +2,13 @@
 
 ## Current checkpoint
 
-Phase 6-v1 has completed its **offline-only civic-project implementation and deterministic validation checkpoint**.
+Phase 6-v1 has completed its first **bounded civic-project runtime characterization**.
 
-**Implementation result: PASS — needs-aware Festival and Games selection for low-loyalty, idle NPC towns is implemented and build-proven. Runtime observation, native final commit, player legibility, and balance proof have NOT been performed.**
+**Runtime result: BOUNDED NULL FOR THE TARGET SUBSTITUTION BRANCH — the selected wrapper and native final commit authority are runtime-observed, but no naturally qualifying low-loyalty NPC-town evaluation occurred inside 155.788 campaign hours. Genuine Festival substitution remains runtime-unobserved.**
 
-A game-assembly-free `CivicProjectSelectionPolicy` applies only the audited NPC-town / idle-construction / Festival-available / native-loyalty-threshold gates. `CivicProjectBuildingScoreCalculationModel` delegates the currently selected audited default building selector, calls `GetNextDailyBuilding(Town)` exactly once, and by default returns the exact native result. Only when the bounded policy applies does it return the town's existing native Festival and Games `Building` reference. Bannerlord still owns daily consideration cadence, the actual `BuildingHelper.ChangeDefaultBuilding` commit, project effects, save/load, construction queues, and player choices.
+The active selected model was exactly `CivicProjectBuildingScoreCalculationModel` wrapping the audited `DefaultBuildingScoreCalculationModel`. Two natural NPC-town evaluations occurred. Zeonica was an active-construction passthrough; Marunath was an idle high-loyalty passthrough at loyalty 94.79668 versus native threshold 25, preserving native `Train Militia` exactly. Bannerlord's native `BuildingHelper.ChangeDefaultBuilding` path then committed the returned choices, with `mutationByClanAI=False`. No evaluated NPC town crossed the strict low-loyalty gate, so no `preferFestival=True`, genuine substitution, or substituted-Festival native commit is claimed.
 
-Compatibility is conservative: the wrapper installs only when the currently selected inner model is the exact audited `DefaultBuildingScoreCalculationModel`; unknown/foreign/derived selectors are left untouched. The rebellious-state threshold is read from the selected native `SettlementLoyaltyModel` and is not hardcoded. Phase 4A remains closed. Phase 4B/4C and Phase 5-v1 remain unchanged and runtime-observed; their balance remains unproven. Phase 7 has not started.
+Observation-only telemetry was committed before deployment at `f0fe5b86aa71bd0df349d05858fc6ab203fcf30b`; runtime DLL SHA-256 was `2909ADE31B427E122FDDE539229BD0A4A2B4FA91C84CFD3AB63D0C8EB6F729D7`. The protected fixture was unchanged, zero save commands and zero telemetry errors occurred, Strategic Commitment remained Observe, Visual War remained OFF, rollback stayed intact, and Bannerlord closed after `EXIT_NOSAVE`. Phase 4A remains closed. Phase 4B/4C and Phase 5-v1 remain unchanged; their balance remains unproven. Phase 7 has not started.
 
 ## Native ecology finding
 
@@ -114,15 +114,16 @@ SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 - `Reports/SettlementSociety/evidence/phase6_native_audit_manifest_20260925.json`
 - `Reports/SettlementSociety/PHASE6_CIVIC_PROJECT_V1_OFFLINE_IMPLEMENTATION_RESULT.md`
 - `Reports/SettlementSociety/evidence/phase6_civic_project_v1_offline_validation_20260925.txt`
+- `Reports/SettlementSociety/evidence/phase6_civic_project_v1_runtime_telemetry_validation_20260925.txt`
+- `Reports/SettlementSociety/PHASE6_CIVIC_PROJECT_V1_RUNTIME_RESULT.md`
+- `Reports/SettlementSociety/evidence/phase6_civic_project_v1_runtime_20260925.txt`
 
 ## Next bounded milestone
 
-The Phase 6-v1 offline implementation checkpoint is complete.
+The first Phase 6-v1 runtime characterization is complete as a bounded target-branch null.
 
-The next bounded milestone is a **separately authorized runtime characterization** of this exact validated civic-project candidate. It must first verify that the Phase 6 wrapper is actually the selected building-score model in the loaded module stack, then observe a natural qualifying low-loyalty idle NPC town and Bannerlord's own final project commit if one occurs within the bound.
+Preserve the result. Do not lower the native loyalty threshold, change native daily-project cadence, alter loyalty, clear construction queues, force Festival and Games, broaden the Phase 6 input set, or patch `BuildingHelper.ChangeDefaultBuilding` merely to obtain a positive substitution.
 
-Do not launch or deploy from this offline checkpoint. Do not broaden the Phase 6 input set or patch `BuildingHelper.ChangeDefaultBuilding`. Do not retune Phase 4/5 or begin Phase 7.
+Stop at this checkpoint. Do not begin another Phase 6 feature or Phase 7 in the same task.
 
 Final product direction remains standalone, installable, and offline with no runtime development-tool dependency.
-
-[executed on device: DESKTOP-JO4B7VH (fd6618f4-5715-46b1-8665-68172ef15169)]
