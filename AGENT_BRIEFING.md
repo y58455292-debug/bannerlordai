@@ -16,9 +16,6 @@ The integrated mod has passed its playable demo gate; ruler recruitment and inde
 - Campaign time then advanced 100.987 hours without a crash or unresponsive state.
 - A separate guarded demo save was created, exited, reloaded, and advanced another 2.406 campaign hours while responsive.
 - Restored state after reload included WarState, SocialLedger, direct clan-loss memory, companion duty memory, experience memory, negative-outcome memory, and the Mercy threshold.
-- Exact runtime messages in the same window included:
-  - `PLAYER_VISIBILITY message=ClanAI: Khuzait war strain: 2% (0 active wars, 0 besieged holdings, 3% scar load).`
-  - `PLAYER_VISIBILITY message=ClanAI: fen Morcar's loyalty is shaken by the loss of Rhemtoil Castle.`
 - Evidence: `Reports/Demo/PHASE1_DEMO_GATE_RESULT.md`.
 
 ### Prisoner Mercy makes opposite decisions on opposite sides of the threshold
@@ -51,8 +48,7 @@ The integrated mod has passed its playable demo gate; ruler recruitment and inde
 
 ### Independent clans remain active and can recover without custom spawning or recruitment
 - Banu Ruwaid stayed independent for 81.003 campaign hours with two active lord parties.
-- Initial combined healthy troops: 195.
-- Final combined healthy troops: 205.
+- Initial combined healthy troops: 195; final combined healthy troops: 205.
 - During the observation the parties used settlements, replenished food, and one party initiated and won a native field battle against Looters.
 - Final Inspector result: 0 total errors, 0 distinct errors, 0 fatal errors.
 - Evidence: `Reports/IndependentClans/PHASE2C_RUNTIME_RESULT.md`.
@@ -62,7 +58,6 @@ The integrated mod has passed its playable demo gate; ruler recruitment and inde
 - On campaign load the exact runtime line was `KINGDOM_CONTINUITY_RECONCILED active=7 records=7 mutation=False`.
 - The campaign then advanced 76.401 hours with zero Inspector errors.
 - No ruler, kingdom, settlement, faction, war, or timer state was changed by the behavior.
-- This proves registration and initial reconciliation only; it does not yet prove persistence or event notices.
 - Evidence: `Reports/KingdomContinuity/PHASE2D_L1_RUNTIME_RESULT.md`.
 
 ## What is currently broken
@@ -71,7 +66,7 @@ The integrated mod has passed its playable demo gate; ruler recruitment and inde
 - Symptom: TestRunner logged `SAVE_TEST_BEGIN` and `SAVE_TEST_RETURNED`, but no new save file appeared.
 - Final verifier result: `SAVE_TEST_FAILED ... reason=verify_timeout`.
 - Last seen: the current kingdom-continuity runtime validation, after the seven-record reconciliation.
-- Already ruled out: compile failure, campaign-load failure, ledger-registration failure, and an overwritten protected baseline; the build passed, the campaign loaded, seven records reconciled, and the protected baseline remained untouched.
+- Already ruled out: compile failure, campaign-load failure, ledger-registration failure, and an overwritten protected baseline.
 - Not yet ruled out: whether the save request is queued/asynchronous, blocked by game/menu state, or verified against the wrong completion signal/path.
 
 ### Native menu state can block unattended fast-forward
