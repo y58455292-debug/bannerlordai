@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
 
 namespace ClanAI
 {
@@ -23,7 +25,27 @@ namespace ClanAI
         private static long _wouldRetain;
         private static long _applied;
         private static long _actualRetains;
+        private static long _commitChecks;
+        private static long _commitMatches;
+        private static long _commitExpiries;
         private static long _failures;
+
+        private sealed class PendingCommit
+        {
+            internal string PartyId;
+            internal string ActorName;
+            internal AiBehavior ExpectedBehavior;
+            internal string ExpectedTargetKey;
+            internal string ExpectedTargetName;
+            internal string PreviousObjectiveLabel;
+            internal string PreviousObjectiveSignature;
+            internal double CreatedAtHours;
+        }
+
+        private static readonly Dictionary<string, PendingCommit>
+            PendingCommitByParty =
+                new Dictionary<string, PendingCommit>(
+                    StringComparer.Ordinal);
 
         internal static void Reset()
         {
@@ -37,7 +59,12 @@ namespace ClanAI
             Interlocked.Exchange(ref _wouldRetain, 0);
             Interlocked.Exchange(ref _applied, 0);
             Interlocked.Exchange(ref _actualRetains, 0);
+            Interlocked.Exchange(ref _commitChecks, 0);
+            Interlocked.Exchange(ref _commitMatches, 0);
+            Interlocked.Exchange(ref _commitExpiries, 0);
             Interlocked.Exchange(ref _failures, 0);
+
+            PendingCommitByParty.Clear();
 
             StrategicCommitmentConfig.EnsureLoaded();
 
@@ -79,6 +106,12 @@ namespace ClanAI
                 Interlocked.Read(ref _applied) +
                 " commitmentActualRetains=" +
                 Interlocked.Read(ref _actualRetains) +
+                " commitmentCommitChecks=" +
+                Interlocked.Read(ref _commitChecks) +
+                " commitmentCommitMatches=" +
+                Interlocked.Read(ref _commitMatches) +
+                " commitmentCommitExpiries=" +
+                Interlocked.Read(ref _commitExpiries) +
                 " commitmentFailures=" +
                 Interlocked.Read(ref _failures);
         }
@@ -90,6 +123,8 @@ namespace ClanAI
         {
             try
             {
+                VerifyPendingCommit(actor);
+
                 if (actor == null ||
                     actor.LeaderHero == null ||
                     thinkParams == null ||
@@ -287,6 +322,21 @@ namespace ClanAI
                     {
                         Interlocked.Increment(
                             ref _actualRetains);
+
+                        if (StrategicCommitmentCommitPolicy
+                            .ShouldCreateExpectation(
+                                mode ==
+                                    StrategicCommitmentMode.Apply,
+                                scoreDecision.Apply,
+                                retained,
+                                retained))
+                        {
+                            RecordPendingCommit(
+                                actor,
+                                thinkParams,
+                                afterWinner,
+                                previous);
+                        }
                     }
 
                     LogDecision(
@@ -333,6 +383,301 @@ namespace ClanAI
                     ex.GetType().Name);
             }
         }
+        private static void RecordPendingCommit(
+            MobileParty actor,
+            PartyThinkParams thinkParams,
+            int winnerIndex,
+            ActorStrategicBlackboard.CommitmentState previous)
+        {
+            if (actor == null ||
+                thinkParams == null ||
+                previous == null ||
+                winnerIndex < 0 ||
+                winnerIndex >=
+                    thinkParams.AIBehaviorScores.Count)
+            {
+                return;
+            }
+
+            AIBehaviorData winner =
+                thinkParams
+                    .AIBehaviorScores[winnerIndex]
+                    .Item1;
+
+            string targetName;
+            string targetKey =
+                CandidateTargetKey(
+                    winner,
+                    previous.ObjectiveSignature,
+                    out targetName);
+
+            string partyId =
+                PartyKey(actor);
+
+            if (string.IsNullOrEmpty(partyId) ||
+                string.IsNullOrEmpty(targetKey))
+            {
+                return;
+            }
+
+            PendingCommitByParty[partyId] =
+                new PendingCommit
+                {
+                    PartyId = partyId,
+                    ActorName =
+                        actor.LeaderHero == null
+                            ? actor.Name.ToString()
+                            : actor.LeaderHero.Name.ToString(),
+                    ExpectedBehavior =
+                        winner.AiBehavior,
+                    ExpectedTargetKey =
+                        targetKey,
+                    ExpectedTargetName =
+                        targetName,
+                    PreviousObjectiveLabel =
+                        previous.ObjectiveLabel,
+                    PreviousObjectiveSignature =
+                        previous.ObjectiveSignature,
+                    CreatedAtHours =
+                        CampaignTime.Now.ToHours
+                };
+        }
+
+        private static void VerifyPendingCommit(
+            MobileParty actor)
+        {
+            if (actor == null)
+                return;
+
+            string partyId =
+                PartyKey(actor);
+
+            PendingCommit pending;
+            if (!PendingCommitByParty.TryGetValue(
+                    partyId,
+                    out pending))
+            {
+                return;
+            }
+
+            _commitChecks++;
+
+            string actualTargetKey = null;
+            string actualTargetName = "<none>";
+            string arrivedTargetKey = null;
+            string arrivedTargetName = "<none>";
+
+            if (pending.ExpectedTargetKey.StartsWith(
+                    "S:",
+                    StringComparison.Ordinal))
+            {
+                Settlement actualSettlement =
+                    actor.TargetSettlement ??
+                    actor.ShortTermTargetSettlement ??
+                    actor.BesiegedSettlement ??
+                    actor.CurrentSettlement;
+
+                actualTargetKey =
+                    SettlementTargetKey(
+                        actualSettlement);
+
+                actualTargetName =
+                    actualSettlement == null
+                        ? "<none>"
+                        : actualSettlement.Name.ToString();
+
+                arrivedTargetKey =
+                    SettlementTargetKey(
+                        actor.CurrentSettlement);
+
+                arrivedTargetName =
+                    actor.CurrentSettlement == null
+                        ? "<none>"
+                        : actor.CurrentSettlement.Name.ToString();
+            }
+            else if (pending.ExpectedTargetKey.StartsWith(
+                         "P:",
+                         StringComparison.Ordinal))
+            {
+                MobileParty actualParty =
+                    actor.TargetParty ??
+                    actor.ShortTermTargetParty;
+
+                actualTargetKey =
+                    MobilePartyTargetKey(
+                        actualParty);
+
+                actualTargetName =
+                    actualParty == null
+                        ? "<none>"
+                        : actualParty.Name.ToString();
+            }
+
+            StrategicCommitmentCommitCheckResult result =
+                StrategicCommitmentCommitPolicy.Evaluate(
+                    pending.ExpectedBehavior.ToString(),
+                    pending.ExpectedTargetKey,
+                    actor.DefaultBehavior.ToString(),
+                    actor.ShortTermBehavior.ToString(),
+                    actualTargetKey,
+                    arrivedTargetKey,
+                    pending.CreatedAtHours,
+                    CampaignTime.Now.ToHours);
+
+            if (result.Remove)
+            {
+                PendingCommitByParty.Remove(
+                    partyId);
+
+                if (result.Matched)
+                    _commitMatches++;
+                else if (result.Expired)
+                    _commitExpiries++;
+            }
+
+            ClanAIPostVanilla.WriteExternalLog(
+                "STRATEGIC_COMMITMENT_COMMIT_CHECK" +
+                " actor=" + pending.ActorName +
+                " partyId=" + pending.PartyId +
+                " previous=" +
+                    pending.PreviousObjectiveLabel +
+                " previousSignature=" +
+                    pending.PreviousObjectiveSignature +
+                " expectedBehavior=" +
+                    pending.ExpectedBehavior +
+                " expectedTarget=" +
+                    pending.ExpectedTargetName +
+                " expectedTargetKey=" +
+                    pending.ExpectedTargetKey +
+                " actualDefault=" +
+                    actor.DefaultBehavior +
+                " actualShort=" +
+                    actor.ShortTermBehavior +
+                " actualTarget=" +
+                    actualTargetName +
+                " actualTargetKey=" +
+                    (actualTargetKey ?? "<none>") +
+                " arrivedTarget=" +
+                    arrivedTargetName +
+                " arrivedTargetKey=" +
+                    (arrivedTargetKey ?? "<none>") +
+                " behaviorMatch=" +
+                    result.BehaviorMatch +
+                " targetMatch=" +
+                    result.TargetMatch +
+                " arrivedMatch=" +
+                    result.ArrivedMatch +
+                " matched=" +
+                    result.Matched +
+                " expired=" +
+                    result.Expired +
+                " ageHours=" +
+                    result.AgeHours.ToString(
+                        "0.###",
+                        CultureInfo.InvariantCulture) +
+                " checks=" +
+                    _commitChecks +
+                " matches=" +
+                    _commitMatches +
+                " expiries=" +
+                    _commitExpiries);
+        }
+
+        private static string PartyKey(
+            MobileParty actor)
+        {
+            if (actor == null)
+                return null;
+
+            if (!string.IsNullOrEmpty(
+                    actor.StringId))
+            {
+                return actor.StringId;
+            }
+
+            if (actor.LeaderHero != null &&
+                !string.IsNullOrEmpty(
+                    actor.LeaderHero.StringId))
+            {
+                return actor.LeaderHero.StringId;
+            }
+
+            return actor.Name.ToString();
+        }
+
+        private static string CandidateTargetKey(
+            AIBehaviorData data,
+            string objectiveSignature,
+            out string targetName)
+        {
+            Settlement settlement =
+                data.Party as Settlement;
+
+            if (settlement != null)
+            {
+                targetName =
+                    settlement.Name.ToString();
+
+                return
+                    SettlementTargetKey(
+                        settlement);
+            }
+
+            MobileParty party =
+                data.Party as MobileParty;
+
+            if (party != null)
+            {
+                targetName =
+                    party.Name.ToString();
+
+                return
+                    MobilePartyTargetKey(
+                        party);
+            }
+
+            targetName = "<point>";
+
+            if (string.IsNullOrEmpty(
+                    objectiveSignature))
+            {
+                return null;
+            }
+
+            int separator =
+                objectiveSignature.IndexOf('|');
+
+            if (separator < 0 ||
+                separator + 1 >=
+                    objectiveSignature.Length)
+            {
+                return null;
+            }
+
+            return objectiveSignature.Substring(
+                separator + 1);
+        }
+
+        private static string SettlementTargetKey(
+            Settlement settlement)
+        {
+            return settlement == null ||
+                   string.IsNullOrEmpty(
+                       settlement.StringId)
+                ? null
+                : "S:" + settlement.StringId;
+        }
+
+        private static string MobilePartyTargetKey(
+            MobileParty party)
+        {
+            return party == null ||
+                   string.IsNullOrEmpty(
+                       party.StringId)
+                ? null
+                : "P:" + party.StringId;
+        }
+
         private static void LogDecision(
             string kind,
             MobileParty actor,

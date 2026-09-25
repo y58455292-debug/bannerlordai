@@ -1,0 +1,76 @@
+Phase 3 Strategic Commitment observation-only commit verifier
+Date: 2026-09-25 UTC
+Repository base: 5e44a6f3606acb8d06d71f4b3e3e2b3f0ad0bf75
+
+COMMAND
+dotnet run --project Tests/TerritorialResponsibility/StrategicCommitmentCommit/StrategicCommitmentCommitPolicyTests.csproj -c Release
+
+RESULT
+PASS Strategic Commitment commit policy tests checks=20
+retained-Apply creation gates, native behavior/target matching, and 18-hour expiry preserved
+
+COMMAND
+python Tests/TerritorialResponsibility/test_strategic_commitment_commit_verifier_wiring.py
+
+RESULT
+PASS Strategic Commitment commit verifier wiring
+pending expectation creation is downstream of explicit Apply, applied factor, final previous-objective winner, and retained=True
+
+COMMAND
+python Tests/TerritorialResponsibility/test_strategic_commitment_commit_verifier_observation_only.py
+
+RESULT
+PASS Strategic Commitment verifier observation-only invariant
+later verifier reads native behavior/target state only and removes pending state on policy match/expiry
+
+REGRESSION
+dotnet run --project Tests/TerritorialResponsibility/StrategicCommitmentPolicy/StrategicCommitmentPolicyTests.csproj -c Release
+PASS Strategic Commitment policy tests checks=34
+same-state age/score gates, strict retention boundary, and Observe/Apply semantics preserved
+
+dotnet run --project Tests/TerritorialResponsibility/StrategicCommitmentConfig/StrategicCommitmentConfigTests.csproj -c Release
+PASS Strategic Commitment config tests checks=13
+module-local path and missing/invalid Observe defaults preserved
+
+python Tests/TerritorialResponsibility/test_strategic_commitment_runtime_wiring.py
+PASS Strategic Commitment runtime wiring
+existing native candidate lookup and composer-owned previous-candidate rescale preserved
+
+python Tests/TerritorialResponsibility/test_strategic_commitment_no_mutation.py
+PASS Strategic Commitment no-mutation invariant
+no order/target/candidate/faction/settlement/war mutation APIs introduced
+
+python Tests/TerritorialResponsibility/test_strategic_commitment_standalone_path.py
+PASS Strategic Commitment standalone path
+config resolves module-locally and tracked/missing/invalid defaults remain Observe
+
+BUILD
+dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj -c Release
+Build succeeded.
+1 Warning(s)
+0 Error(s)
+
+KNOWN WARNING
+Inherited System.ValueTuple version conflict.
+
+BUILD SHA-256
+0267089ABE829248F145A468355041C17A91B8945816A8210BA0C6AD23CB4B5E
+
+COMMIT VERIFIER
+creation=explicit Apply + factor applied + final previous objective winner + retained=True
+pending_lifetime_campaign_hours=18
+commitment_eligibility_MaxAgeHours=12 unchanged
+settlement_state=TargetSettlement|ShortTermTargetSettlement|BesiegedSettlement|CurrentSettlement
+mobile_state=TargetParty|ShortTermTargetParty
+behavior_state=DefaultBehavior|ShortTermBehavior
+remove_on=match_or_expiry
+
+CONFIG
+tracked=Mode=Observe
+apply_default=false
+
+DEPLOYMENT
+none
+
+RUNTIME SUCCESS CLAIM
+none

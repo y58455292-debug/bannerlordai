@@ -5,8 +5,9 @@ ROOT = Path(__file__).resolve().parents[2]
 BASE = ROOT / "src" / "ClanAI" / "src" / "ClanAI"
 LAYER = (BASE / "StrategicCommitmentLayer.cs").read_text(encoding="utf-8")
 POLICY = (BASE / "StrategicCommitmentPolicy.cs").read_text(encoding="utf-8")
+COMMIT_POLICY = (BASE / "StrategicCommitmentCommitPolicy.cs").read_text(encoding="utf-8")
 CONFIG = (BASE / "StrategicCommitmentConfig.cs").read_text(encoding="utf-8")
-combined = LAYER + "\n" + POLICY + "\n" + CONFIG
+combined = LAYER + "\n" + POLICY + "\n" + COMMIT_POLICY + "\n" + CONFIG
 
 forbidden = (
     "AIBehaviorScores.Add",
