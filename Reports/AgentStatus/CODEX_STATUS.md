@@ -2,80 +2,82 @@
 
 ## Current checkpoint
 
-Phase 4A same-hero defeat-to-native-recreation runtime characterization remains **closed with the existing bounded null**: 164.28120388884 campaign hours, zero accepted defeat links, zero linked recreations, and zero complete chains. Do not rerun or extend that characterization and do not start Phase 4B.
+Phase 4A corrected same-hero defeat-to-native-recreation runtime characterization is **PASSED** and closed at the first complete qualifying chain. Do not rerun it immediately and do not start Phase 4B.
 
-A narrow follow-up **offline defeat-identity boundary review is now complete**. Native sequencing proves why the prior observer lost identity: non-player battle result application can remove a defeated party leader before `MapEventEnded`. A minimal observation-only fix now captures exact native battle participants earlier through `MapEventStarted` and `OnPartyAddedToMapEventEvent`.
+Candidate commit: `55cb7ded907510ebab2a5e0210f8cccb28b8605f`  
+Release DLL SHA-256: `0D23F4A66E0A1E4413E879C97E963C7DB923D8D6B4421291105D8565120CD5A8`
 
-No runtime campaign was launched for this checkpoint. Runtime same-hero recreation proof remains unproven.
+The earlier 164.281-hour old-observer run remains a bounded null and is not reinterpreted.
 
-## Defeat identity seam
+## Strong positive chain
 
-Each early participant capture binds:
+Megenhelda (`heroId=lord_4_3_1`) provides the first complete same-hero causal chain.
 
-- exact `MapEvent` reference;
-- exact `PartyBase` reference;
-- exact `MobileParty` reference;
-- native battle side;
-- stable leader hero `StringId`;
-- capture hour/source.
+At campaign hour `649520.37804783334`, the corrected observer accepted her defeated-side identity from `MapEventStarted` participant capture even though the live end-time leader was absent (`actor=<none>`). The accepted line records `participantSide=Defender` and native `defeatedSide=Defender`; the logger is downstream of exact `MapEvent`, `PartyBase`, and `MobileParty` reference checks.
 
-At `MapEventEnded`, defeat identity is accepted only if the cached battle, `PartyBase`, `MobileParty`, and side match the exact defeated-side participant. If a live end-time hero identity still exists it must match the captured `StringId`. Another battle, another party instance, side mismatch, clan/name-only state, or later destruction alone cannot establish the defeat.
+The old party emitted `MobilePartyDestroyed` at the same campaign hour.
 
-The downstream recreation rules are unchanged: ordinal same-hero StringId, distinct native recreated party, prior old-party destruction/absence, time bound, creation roster, and first-settlement boundary remain required.
+At `649603.91058702779`, 83.532539194449782 campaign hours later, the same hero StringId received a distinct native party creation. The observer recorded `linked=True`, `priorPartyGone=True`, and classification `PostDefeatNativeRecreationInitialTroopsSupported`.
 
-## Native evidence
+Creation roster outside settlement:
 
-Reviewed `TaleWorlds.CampaignSystem.dll` SHA-256:
+- total 22;
+- heroes 1;
+- regular troops 21;
+- healthy 22;
+- wounded 0;
+- T1 6, T2 4, T3 6, T4 1, T5 4;
+- party limit 138;
+- ratio 0.1594203;
+- food 26;
+- current settlement none;
+- target settlement none.
 
-`5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F`
+At `649613.50488125`, the first pre-entry boundary was Pravend. The roster was still 22, pre-settlement net change was 0, observed positive growth was 0, and `completeChain=True`.
 
-Offline reflection/decompilation established:
+## Bound and session evidence
 
-- `MapEventStarted` exposes `MapEvent, PartyBase, PartyBase`;
-- `OnPartyAddedToMapEventEvent` exposes a joined `PartyBase`;
-- native event initialization assigns sides before the start callback;
-- defeated-member result processing can call `MobileParty.RemovePartyLeader()`;
-- `MapEventEnded` is dispatched later.
+Observer session start: `649491.27044636116`.
 
-See `Reports/Manpower/PHASE4A_DEFEAT_IDENTITY_BOUNDARY_REVIEW.md` and its evidence file.
+The qualifying chain completed after **122.23443488884 campaign hours**, inside the 168-hour maximum. Pause acknowledgement occurred at 122.49796913884 elapsed hours.
 
-## Validation
+Through the qualifying cutoff:
 
-Final results:
+- accepted defeats: 31;
+- unresolved defeats: 168;
+- party-destruction events: 21;
+- native creations: 25;
+- generic creations: 24;
+- linked recreations: 1;
+- complete chains: 1;
+- observer errors: 0.
 
-```
-PASS Phase 4A same-hero recreation policy checks=43
-PASS Phase 4A same-hero recreation wiring and original-observer preservation
-PASS Phase 4A same-hero recreation no-mutation and standalone invariant
-PASS Phase 4A recovery policy tests checks=20
-PASS Phase 4A recovery wiring
-PASS Phase 4A recovery no-mutation/standalone invariant
-1 Warning(s)
-0 Error(s)
-```
+One additional unresolved record arrived during pause latency after the qualifying cutoff and is preserved but excluded from the proof window.
 
-The warning is the inherited MSB3277 `System.ValueTuple` conflict. Release DLL SHA-256 for this observer-only source:
+## Safety
 
-`0D23F4A66E0A1E4413E879C97E963C7DB923D8D6B4421291105D8565120CD5A8`
+Bannerlord was closed before deployment. A rollback was created and verified.
 
-No development-machine absolute runtime path, external IO, serialized observer state, gameplay mutation, or development-tool runtime dependency was introduced.
+The protected fixture was loaded without saving and exited via `EXIT_NOSAVE`. Its SHA-256 and timestamp remained unchanged:
 
-## Preserved evidence
+`A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427`  
+`2026-09-24T17:20:12.2384633Z`
 
-The completed bounded-null report remains authoritative for its run:
+Strategic Commitment remained `Mode=Observe`; Visual War remained OFF. Fresh TestRunner chronology contains zero save commands. Bannerlord is closed.
 
-- `Reports/Manpower/PHASE4A_LINKED_RECREATION_RUNTIME_RESULT.md`
-- `Reports/Manpower/evidence/phase4a_linked_recreation_runtime_20260925.txt`
+No source, troop, recruitment, volunteer, garrison, economy, target, order, score, faction, settlement, battle, destruction, recreation, or war-state mutation was introduced for this characterization.
 
-The earlier Phase 4A recovery characterization also remains accepted: Kulyat 37->69 with +28 recruitment-supported and +4 unresolved; Iara's +7 party/-7 garrison supported a withdrawal; generic native creations were not proven post-defeat respawns.
+## Evidence
 
-New offline boundary evidence:
-
+- `Reports/Manpower/PHASE4A_CORRECTED_LINKED_RECREATION_RUNTIME_RESULT.md`
+- `Reports/Manpower/evidence/phase4a_corrected_linked_recreation_runtime_20260925.txt`
 - `Reports/Manpower/PHASE4A_DEFEAT_IDENTITY_BOUNDARY_REVIEW.md`
-- `Reports/Manpower/evidence/phase4a_defeat_identity_boundary_review_20260925.txt`
+- preserved old-observer null: `Reports/Manpower/PHASE4A_LINKED_RECREATION_RUNTIME_RESULT.md`
 
-## Stop condition
+## Scope closure
 
-This checkpoint makes **no runtime recreation claim** and authorizes no campaign run by itself. Preserve the bounded null, preserve conservative identity semantics, and stop before Phase 4B.
+This proves one natural same-hero native post-defeat recreation with regular troops already present before first settlement interaction. It does not establish a universal respawn amount or the exact native troop-selection formula.
 
-Final product direction is unchanged: a standalone, installable, offline mod with no runtime dependency on ChatGPT, Codex, Desktop Commander, TestRunner, watchdogs, development-machine absolute paths, or other development harnesses.
+Stop at this Phase 4A checkpoint. Phase 4B is not started.
+
+Final product direction remains a standalone, installable, offline mod with no runtime dependency on ChatGPT, Codex, Desktop Commander, TestRunner, watchdogs, external IO, or development-machine absolute paths.
