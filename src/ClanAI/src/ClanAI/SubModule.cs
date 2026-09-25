@@ -123,6 +123,7 @@ namespace ClanAI
                     starter.AddBehavior(new PrisonerMercyDecisionBehavior());
                     starter.AddBehavior(new WarStateBehavior());
                     starter.AddBehavior(new RulerClanCourtshipBehavior());
+                    starter.AddBehavior(new KingdomContinuityBehavior());
                 }
             }
         }

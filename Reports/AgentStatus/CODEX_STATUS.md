@@ -7,7 +7,7 @@ Phase 2D — kingdom continuity and successor states (ROADMAP.md).
 Phase 2C passed at Bannerlord's supported native boundary.
 
 ## Current state
-PHASE 2D ARCHITECTURE RESOLVED; READY FOR LUNA SLICE 2D-L1
+PHASE 2D-L1 IMPLEMENTED; BUILD/INITIAL RUNTIME RECONCILIATION PROVEN; SAVE/LOAD AND NATIVE EVENT NOTICE NOT YET PROVEN
 
 ## Current candidate
 `v0.22A-ruler-courtship-native-v1`. Built and deployed with verified rollback.
@@ -20,10 +20,10 @@ PHASE 2D ARCHITECTURE RESOLVED; READY FOR LUNA SLICE 2D-L1
 - Phase 2C runtime-observed: Banu Ruwaid stayed independent for 81.003 campaign hours; both parties survived, used settlements, fought bandits, and grew from 195 to 205 combined troops with zero custom spawn/recruitment changes and zero Inspector errors.
 
 ## Current blocker / uncertainty
-The architectural blocker is resolved. NPC kingdom creation remains intentionally unauthorized because no ordinary native loop or fully audited initialization boundary has been identified. Phase 2D-L1 does not need kingdom creation: it establishes persistent, player-visible continuity over native succession and destruction without mutating political authority.
+NPC kingdom creation remains intentionally unauthorized because no ordinary native loop or fully audited initialization boundary has been identified. The L1 behavior does not need kingdom creation: it observes native succession and destruction without mutating political authority. The protected campaign loaded with seven active kingdoms and seven continuity records; the bounded 76.401-hour natural observation produced no native lifecycle event (honest null). TestRunner's separately named save verification timed out and did not create a file, so persistence/reload is not yet proven. The native town-wait/escape menu repeatedly blocked further fast-forward. See `Reports/KingdomContinuity/PHASE2D_L1_RUNTIME_RESULT.md`.
 
 ## Local work warning
-No known unrelated local work. The current v0.22A DLL was restored after the isolated no-save Phase 2C observation.
+No known unrelated local work. The L1 DLL is deployed locally with verified rollback at `D:\BannerlordAIResearch\Builds\Rollback_Phase2D_L1_20260924_ClanAI`; its SHA-256 is recorded in the runtime result. The protected demo-gate save was not overwritten.
 
 ## Exact next Luna task
-Implement Phase 2D-L1 `KingdomContinuityBehavior`: observe native `RulingClanChanged`, `KingdomDestroyedEvent`, and `KingdomCreatedEvent`; persist a versioned per-kingdom continuity record containing original/current observed name, immutable recorded culture ID, current ruling clan ID, native succession count/time, and terminal destruction state/time; reconcile safely on new game/load without duplicate notices; emit exactly one concise player-facing notice for a native ruler change or destruction; add focused duplicate/load/null-ruler/culture-immutability tests; build; then run one bounded natural observation, preserving a null if no event occurs. Do not create or rename kingdoms, select rulers, transfer settlements/membership, mutate wars, alter the 28-day timer, accelerate rebels, or use synthetic events as positive evidence.
+Resume Phase 2D-L1 validation only: diagnose why TestRunner did not materialize the separately named save, then use the established safe TestRunner path to create a uniquely named test save and reload it, proving the seven continuity records restore/reconcile with no duplicate notices and without touching the protected baseline. Continue bounded natural observation only within the existing native time-control boundary; retain null if no succession/destruction occurs. Do not change the ledger design unless the save/load evidence demonstrates a concrete defect. Do not create or rename kingdoms, select rulers, transfer settlements/membership, mutate wars, alter the 28-day timer, accelerate rebels, or use synthetic events as positive evidence. L1 remains incomplete until actual save/load proof and one natural native lifecycle event/notice are obtained.
