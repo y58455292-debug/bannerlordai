@@ -1,0 +1,313 @@
+PHASE6_CIVIC_PROJECT_V1_OFFLINE_VALIDATION
+DATE_UTC 2026-09-25
+BASE_COMMIT 3bd55ce1d54de3739d049598e5c1497a2f8f6ff8
+CAMPAIGN_DLL_SHA256 5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+BANNERLORD_PROCESS_GUARD PASS_NOT_RUNNING
+
+COMMAND [Phase6 policy] dotnet run --project Tests\SettlementSociety\Phase6CivicProjectPolicy\Phase6CivicProjectPolicyTests.csproj -c Release
+PASS Phase 6 civic-project policy checks=23
+EXIT 0
+
+COMMAND [Phase6 delegation] dotnet run --project Tests\SettlementSociety\Phase6CivicProjectDelegation\Phase6CivicProjectDelegationTests.csproj -c Release
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277: Found conflicts between different versions of "System.ValueTuple" that could not be resolved. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277: There was a conflict between "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" and "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" was chosen because it was primary and "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" was not. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     References which depend on "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" [C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll]. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     References which depend on or have been unified to "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" []. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Backports.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Backports.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Utils.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Utils.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Core.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Core.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+PASS Phase 6 civic-project delegation checks=14
+EXIT 0
+
+COMMAND [Phase6 invariants] python Tests\SettlementSociety\test_phase6_civic_project_invariants.py
+PASS Phase 6 civic-project NPC-only/idle-town wiring invariant
+PASS Phase 6 civic-project no-mutation invariant
+PASS Phase 6 civic-project standalone-path invariant
+PASS Phase 4B/4C and Phase 5 preservation invariant
+EXIT 0
+
+COMMAND [Phase4A recovery no mutation] python Tests\Manpower\test_phase4a_recovery_no_mutation.py
+PASS Phase 4A recovery no-mutation/standalone invariant
+observer introduces no troop/recruit/garrison/order/world mutation and no dev-machine runtime path
+EXIT 0
+
+COMMAND [Phase4A recovery wiring] python Tests\Manpower\test_phase4a_recovery_wiring.py
+PASS Phase 4A recovery wiring
+native creation/battle/hourly/settlement observations and conservative source classification are wired
+EXIT 0
+
+COMMAND [Phase4A recreation invariants] python Tests\Manpower\test_phase4a_recreation_link_invariants.py
+PASS Phase 4A same-hero recreation wiring and original-observer preservation
+PASS Phase 4A same-hero recreation no-mutation and standalone invariant
+EXIT 0
+
+COMMAND [Phase4B invariants] python Tests\Manpower\test_phase4b_local_manpower_invariants.py
+PASS Phase 4B Local Manpower selected-model delegation invariant
+PASS Phase 4B Local Manpower no-mutation invariant
+PASS Phase 4B Local Manpower standalone-path invariant
+EXIT 0
+
+COMMAND [Phase4C invariants] python Tests\Manpower\test_phase4c_troop_quality_invariants.py
+PASS Phase 4C selected-wrapper branch invariant
+PASS Phase 4C native eligibility read-only invariant
+PASS Phase 4C no-mutation invariant
+PASS Phase 4C standalone-path invariant
+PASS Phase 4B policy byte-for-byte preservation invariant
+EXIT 0
+
+COMMAND [Phase4A linkage policy] dotnet run --project Tests\Manpower\Phase4ALinkage\Phase4ALinkageTests.csproj -c Release
+PASS Phase 4A same-hero recreation policy checks=43
+EXIT 0
+
+COMMAND [Phase4A recovery policy] dotnet run --project Tests\Manpower\Phase4ARecoveryPolicy\Phase4ARecoveryPolicyTests.csproj -c Release
+PASS Phase 4A recovery policy tests checks=20
+source labels require supporting volunteer/garrison evidence; unsupported growth remains unknown
+EXIT 0
+
+COMMAND [Phase4B policy] dotnet run --project Tests\Manpower\Phase4BLocalManpowerPolicy\Phase4BLocalManpowerPolicyTests.csproj -c Release
+PASS Phase 4B local manpower probability policy checks=50
+EXIT 0
+
+COMMAND [Phase4B delegation] dotnet run --project Tests\Manpower\Phase4BVolunteerDelegation\Phase4BVolunteerDelegationTests.csproj -c Release
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277: Found conflicts between different versions of "System.ValueTuple" that could not be resolved. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277: There was a conflict between "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" and "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" was chosen because it was primary and "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" was not. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     References which depend on "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" [C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll]. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     References which depend on or have been unified to "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" []. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Backports.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Backports.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Utils.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Utils.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Core.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Core.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+PASS Phase 4B VolunteerModel delegation checks=13
+EXIT 0
+
+COMMAND [Phase4C delegation] dotnet run --project Tests\Manpower\Phase4CTroopQualityDelegation\Phase4CTroopQualityDelegationTests.csproj -c Release
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277: Found conflicts between different versions of "System.ValueTuple" that could not be resolved. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277: There was a conflict between "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" and "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" was chosen because it was primary and "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" was not. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     References which depend on "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" [C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll]. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     References which depend on or have been unified to "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" []. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Backports.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Backports.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Utils.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Utils.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Core.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Core.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+PASS Phase 4C VolunteerModel branch/delegation checks=23
+EXIT 0
+
+COMMAND [Phase4C policy] dotnet run --project Tests\Manpower\Phase4CTroopQualityPolicy\Phase4CTroopQualityPolicyTests.csproj -c Release
+PASS Phase 4C troop quality probability policy checks=69
+EXIT 0
+
+COMMAND [Phase5 policy] dotnet run --project Tests\Security\Phase5LocalBanditControlPolicy\Phase5LocalBanditControlPolicyTests.csproj -c Release
+PASS Phase 5 local bandit control policy checks=24
+EXIT 0
+
+COMMAND [Phase5 resolution] dotnet run --project Tests\Security\Phase5PatchResolution\Phase5PatchResolutionTests.csproj -c Release
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277: Found conflicts between different versions of "System.ValueTuple" that could not be resolved. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277: There was a conflict between "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" and "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" was chosen because it was primary and "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" was not. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     References which depend on "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" [C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll]. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     References which depend on or have been unified to "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" []. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Backports.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Backports.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Utils.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Utils.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Core.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Core.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+PASS Phase 5 private patch resolution checks=14
+EXIT 0
+
+COMMAND [Phase5 invariants] python Tests\Security\test_phase5_local_bandit_control_invariants.py
+PASS Phase 5 exact postfix/result-only wiring invariant
+PASS Phase 5 town/village-only Security input invariant
+PASS Phase 5 no-mutation invariant
+PASS Phase 5 standalone-path invariant
+PASS Phase 5 pure policy byte-for-byte preservation invariant
+PASS Phase 4B/4C pure policy preservation invariant
+EXIT 0
+
+COMMAND [KingdomObjective wiring] python Tests\TerritorialResponsibility\test_kingdom_objective_runtime_wiring.py
+PASS KingdomObjective runtime wiring
+native candidates, composer ownership, and post-vanilla commit verification preserved
+EXIT 0
+
+COMMAND [HomeResponsibility wiring] python Tests\TerritorialResponsibility\test_runtime_wiring.py
+PASS HomeResponsibility runtime wiring
+native candidate list and post-vanilla commit verification preserved
+EXIT 0
+
+COMMAND [StrategicCommitment observer] python Tests\TerritorialResponsibility\test_strategic_commitment_commit_verifier_observation_only.py
+PASS Strategic Commitment verifier observation-only invariant
+later verifier reads native behavior/target state only and removes pending state on policy match/expiry
+EXIT 0
+
+COMMAND [StrategicCommitment commit wiring] python Tests\TerritorialResponsibility\test_strategic_commitment_commit_verifier_wiring.py
+PASS Strategic Commitment commit verifier wiring
+pending expectation creation is downstream of explicit Apply, applied factor, final previous-objective winner, and retained=True
+EXIT 0
+
+COMMAND [StrategicCommitment no mutation] python Tests\TerritorialResponsibility\test_strategic_commitment_no_mutation.py
+PASS Strategic Commitment no-mutation invariant
+no order/target/candidate/faction/settlement/war mutation APIs introduced
+EXIT 0
+
+COMMAND [StrategicCommitment runtime wiring] python Tests\TerritorialResponsibility\test_strategic_commitment_runtime_wiring.py
+PASS Strategic Commitment runtime wiring
+existing native candidate lookup and composer-owned previous-candidate rescale preserved
+EXIT 0
+
+COMMAND [StrategicCommitment standalone] python Tests\TerritorialResponsibility\test_strategic_commitment_standalone_path.py
+PASS Strategic Commitment standalone path
+config resolves module-locally and tracked/missing/invalid defaults remain Observe
+EXIT 0
+
+COMMAND [VisualWar commit no mutation] python Tests\TerritorialResponsibility\test_visual_war_commit_verifier_no_mutation.py
+PASS VisualWar commit verifier no-mutation invariant
+no movement/order/target/faction/settlement/war mutation APIs introduced
+EXIT 0
+
+COMMAND [VisualWar commit wiring] python Tests\TerritorialResponsibility\test_visual_war_commit_verifier_wiring.py
+PASS VisualWar commit verifier wiring
+expectation-on-winner-change and later native-state observation preserved
+EXIT 0
+
+COMMAND [VisualWar runtime wiring] python Tests\TerritorialResponsibility\test_visual_war_runtime_wiring.py
+PASS VisualWar runtime wiring
+native candidates/world classification/composer ownership preserved
+EXIT 0
+
+COMMAND [VisualWar standalone] python Tests\TerritorialResponsibility\test_visual_war_standalone_path.py
+PASS VisualWar standalone activation path
+activation is module-local Data/ENABLE_VISUAL_WAR_LAB.txt and OFF when absent
+EXIT 0
+
+COMMAND [KingdomObjective policy] dotnet run --project Tests\TerritorialResponsibility\KingdomObjectivePolicyTests.csproj -c Release
+PASS KingdomObjective policy tests cases=34
+refusals: readiness/food then urgent clan-home threat
+native candidate factors: direct/staging with bounded winner escalation
+pending commit requires winnerChanged + objectiveWon + settlement
+EXIT 0
+
+COMMAND [StrategicCommitment commit policy] dotnet run --project Tests\TerritorialResponsibility\StrategicCommitmentCommit\StrategicCommitmentCommitPolicyTests.csproj -c Release
+PASS Strategic Commitment commit policy tests checks=20
+retained-Apply creation gates, native behavior/target matching, and 18-hour expiry preserved
+EXIT 0
+
+COMMAND [StrategicCommitment config] dotnet run --project Tests\TerritorialResponsibility\StrategicCommitmentConfig\StrategicCommitmentConfigTests.csproj -c Release
+PASS Strategic Commitment config tests checks=13
+module-local path and missing/invalid Observe defaults preserved
+EXIT 0
+
+COMMAND [StrategicCommitment policy] dotnet run --project Tests\TerritorialResponsibility\StrategicCommitmentPolicy\StrategicCommitmentPolicyTests.csproj -c Release
+PASS Strategic Commitment policy tests checks=34
+same-state age/score gates, strict retention boundary, and Observe/Apply semantics preserved
+EXIT 0
+
+COMMAND [HomeResponsibility policy] dotnet run --project Tests\TerritorialResponsibility\TerritorialResponsibilityPolicyTests.csproj -c Release
+PASS HomeResponsibility policy tests cases=10
+native-candidate eligibility preserved: actor-war, ownership, positive score
+factors: threat=1.60 recovery=1.35 defend=1.30 patrol=1.25 home=1.15
+EXIT 0
+
+COMMAND [VisualWar commit policy] dotnet run --project Tests\TerritorialResponsibility\VisualWarCommit\VisualWarCommitPolicyTests.csproj -c Release
+PASS VisualWar commit policy tests checks=22
+creation, native behavior/target matching, arrival matching, and expiry preserved
+EXIT 0
+
+COMMAND [VisualWar policy] dotnet run --project Tests\TerritorialResponsibility\VisualWarPolicyTests.csproj -c Release
+PASS VisualWar policy tests checks=32
+defense/offense/rear-security factors and weak exclusions preserved
+activation marker resolves module-locally and remains absent-by-default
+EXIT 0
+
+COMMAND [Release build] dotnet build src\ClanAI\src\ClanAI\ClanAI.csproj -c Release
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(385,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277: Found conflicts between different versions of "System.ValueTuple" that could not be resolved. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277: There was a conflict between "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" and "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" was chosen because it was primary and "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" was not. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     References which depend on "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" [C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll]. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     References which depend on or have been unified to "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" []. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Backports.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Backports.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Utils.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Utils.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Core.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Core.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+  ClanAI -> D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\bin\Release\netstandard2.0\ClanAI.dll
+
+Build succeeded.
+
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277: Found conflicts between different versions of "System.ValueTuple" that could not be resolved. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277: There was a conflict between "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" and "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" was chosen because it was primary and "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" was not. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     References which depend on "System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" [C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll]. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\System.ValueTuple.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:     References which depend on or have been unified to "System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" []. [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Backports.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Backports.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Utils.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Utils.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:         C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Core.dll [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:           Project file item includes which caused reference "C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\MonoMod.Core.dll". [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+C:\Program Files\dotnet\sdk\11.0.100-rc.1.26425.128\Microsoft.Common.CurrentVersion.targets(2468,5): warning MSB3277:             0Harmony [D:\BannerlordAIResearch\Builds\Phase6_Offline_Audit_bb46\bannerlordai-bb46ee809b6d33bfc75d80a805e16ca4b734c88c\src\ClanAI\src\ClanAI\ClanAI.csproj]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.10
+EXIT 0
+CANDIDATE_DLL_SHA256 2C2C89D5D1086CF119E7D439F08538F4552645A047738B32240144283CD12CE3
+POLICY_SOURCE_SHA256 2AE3008F7FF5E3F13135425B4B970C0C9E5F24869228F43DCDB19BEF215C41A3
+WRAPPER_SOURCE_SHA256 8BDC5D04487C958C008F97FCAC07AD5AED4A9B4F5F38097C9BE7C93DE982686C
+BANNERLORD_PROCESS_GUARD_FINAL PASS_NOT_RUNNING
+DEPLOYMENT NOT_PERFORMED
+RUNTIME_CHARACTERIZATION NOT_PERFORMED
+NATIVE_FINAL_COMMIT_OBSERVED NO
+PLAYER_LEGIBILITY NOT_YET_PROVEN
+BALANCE_PROVEN NO
+RESULT PASS
+
+[executed on device: DESKTOP-JO4B7VH (fd6618f4-5715-46b1-8665-68172ef15169)]

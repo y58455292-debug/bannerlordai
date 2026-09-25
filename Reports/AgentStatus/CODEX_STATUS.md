@@ -2,13 +2,13 @@
 
 ## Current checkpoint
 
-Phase 6 has completed its first **offline-only Settlement Society / Vanilla Capability Audit**.
+Phase 6-v1 has completed its **offline-only civic-project implementation and deterministic validation checkpoint**.
 
-**Audit result: COMPLETE — the twelve requested settlement/society domains were mapped from both player and NPC perspectives, current ClanAI overlap was checked, three bounded candidate seams were ranked, and one first Phase 6-v1 target was identified. No Phase 6 gameplay source has been implemented.**
+**Implementation result: PASS — needs-aware Festival and Games selection for low-loyalty, idle NPC towns is implemented and build-proven. Runtime observation, native final commit, player legibility, and balance proof have NOT been performed.**
 
-Selected first target: **needs-aware native daily civic-project selection for low-loyalty, idle NPC towns**, using the existing `BuildingScoreCalculationModel.GetNextDailyBuilding(Town)` decision seam and the existing native Festival and Games project. The audited default selector chooses daily projects randomly; the native caller already owns cadence and commits the selected existing project through `BuildingHelper.ChangeDefaultBuilding`. The proposed future wrapper would preserve native project objects/effects, the construction queue, player choices, save state and final mutation authority.
+A game-assembly-free `CivicProjectSelectionPolicy` applies only the audited NPC-town / idle-construction / Festival-available / native-loyalty-threshold gates. `CivicProjectBuildingScoreCalculationModel` delegates the currently selected audited default building selector, calls `GetNextDailyBuilding(Town)` exactly once, and by default returns the exact native result. Only when the bounded policy applies does it return the town's existing native Festival and Games `Building` reference. Bannerlord still owns daily consideration cadence, the actual `BuildingHelper.ChangeDefaultBuilding` commit, project effects, save/load, construction queues, and player choices.
 
-The deeper issues/notables audit found that NPC settlement visitors already have a native opportunistic issue-resolution path, NPC clans already assign governors, workshops/caravans/gangs already have meaningful native lifecycle behavior, and several tempting Phase 6 features would duplicate native or existing ClanAI systems. Phase 4A remains closed. Phase 4B/4C and Phase 5-v1 remain unchanged and runtime-observed; their balance remains unproven. Phase 7 has not started.
+Compatibility is conservative: the wrapper installs only when the currently selected inner model is the exact audited `DefaultBuildingScoreCalculationModel`; unknown/foreign/derived selectors are left untouched. The rebellious-state threshold is read from the selected native `SettlementLoyaltyModel` and is not hardcoded. Phase 4A remains closed. Phase 4B/4C and Phase 5-v1 remain unchanged and runtime-observed; their balance remains unproven. Phase 7 has not started.
 
 ## Native ecology finding
 
@@ -112,13 +112,17 @@ SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 - `Reports/SettlementSociety/PHASE6_SETTLEMENT_SOCIETY_CAPABILITY_AUDIT.md`
 - `Reports/SettlementSociety/evidence/phase6_native_audit_evidence_20260925.md`
 - `Reports/SettlementSociety/evidence/phase6_native_audit_manifest_20260925.json`
+- `Reports/SettlementSociety/PHASE6_CIVIC_PROJECT_V1_OFFLINE_IMPLEMENTATION_RESULT.md`
+- `Reports/SettlementSociety/evidence/phase6_civic_project_v1_offline_validation_20260925.txt`
 
 ## Next bounded milestone
 
-The Phase 6 capability-audit checkpoint is complete. Phase 6 gameplay implementation is **NOT STARTED**.
+The Phase 6-v1 offline implementation checkpoint is complete.
 
-The next bounded milestone is a separate **offline-only implementation and validation** of the selected low-loyalty idle-town civic-project choice seam. It must preserve the audited default-model compatibility boundary, call the selected native daily selector exactly once, return only an existing native daily-project reference, and introduce no direct settlement mutation or new save state.
+The next bounded milestone is a **separately authorized runtime characterization** of this exact validated civic-project candidate. It must first verify that the Phase 6 wrapper is actually the selected building-score model in the loaded module stack, then observe a natural qualifying low-loyalty idle NPC town and Bannerlord's own final project commit if one occurs within the bound.
 
-Do not launch Bannerlord or deploy from this audit checkpoint. Do not retune Phase 4/5. Do not begin Phase 7.
+Do not launch or deploy from this offline checkpoint. Do not broaden the Phase 6 input set or patch `BuildingHelper.ChangeDefaultBuilding`. Do not retune Phase 4/5 or begin Phase 7.
 
 Final product direction remains standalone, installable, and offline with no runtime development-tool dependency.
+
+[executed on device: DESKTOP-JO4B7VH (fd6618f4-5715-46b1-8665-68172ef15169)]
