@@ -124,6 +124,12 @@ def main() -> int:
         print(f"next_burst_max_hours={format_decimal(safe_hours)}")
         print(f"suggested_next_burst_seconds={format_decimal(suggested_seconds)}")
 
+    print("CONTROL_REQUIREMENTS_BEFORE_ADVANCE=")
+    print("CHECK_TIME_PAUSED_CONFIRMED=[ ]")
+    print("CHECK_MENU_PAUSED_CONFIRMED=[ ]")
+    print("CHECK_DUAL_PAUSED_CONFIRMED=[ ]")
+    print("CHECK_LAST_DAYLONG_KNOWN=[ ]")
+    print("CHECK_CUTOFF_MARGIN_POSITIVE=[ ]")
     print(f"decision={decision}")
     return 0
 

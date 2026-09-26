@@ -1,0 +1,83 @@
+PHASE8B-I4R3P DUAL-PAUSE PROTOCOL — OFFLINE VALIDATION
+date=2026-09-26 UTC
+parent=59719f4cedf45e83bc3cd2187b5a3905bd3924b8
+scope=offline protocol/helper validation only
+
+I4R2_AUDIT
+authorized_calibration=1.0 second normal speed
+measured_calibration_hours=0.216
+escape_menu_ack_after_calibration=SUCCESS
+save_started_from_acknowledged_menu=YES
+post_save_time_pause_independently_latched=NO
+post_save_escape_overlay_present=NO
+first_uncontrolled_saved_delta_hours=9.936
+last_saved_elapsed_hours=10.152
+final_elapsed_hours=UNKNOWN
+diagnostic_save_after_failure=YES; classified procedural mistake
+failure_class=test-control
+ClanAI_defect_demonstrated=NO
+
+DUAL_LATCH
+TIME_PAUSED_CONFIRMED=fresh live native paused/zero-speed observation required
+MENU_PAUSED_CONFIRMED=fresh live native Escape-overlay observation required
+DUAL_PAUSED_CONFIRMED=both current acknowledgements required
+advance_state_machine=DUAL_PAUSED_CONFIRMED -> ADVANCE_AUTHORIZED -> ADVANCING -> TIME_PAUSE_REQUESTED -> TIME_PAUSED_CONFIRMED -> MENU_PAUSE_REQUESTED -> DUAL_PAUSED_CONFIRMED
+save_state_machine=DUAL_PAUSED_CONFIRMED -> SAVE_AUTHORIZED -> SAVE_IN_PROGRESS -> POST_SAVE_TIME_VERIFY -> TIME_PAUSED_CONFIRMED -> MENU_PAUSE_REQUESTED -> DUAL_PAUSED_CONFIRMED
+save_completion_is_pause_ack=NO
+metadata_before_dual_pause=FORBIDDEN
+unsafe_state_window_switching=FORBIDDEN
+diagnostic_save_after_control_loss=FORBIDDEN
+
+UNSAFE_STATES
+ADVANCING
+TIME_PAUSE_REQUESTED
+MENU_PAUSE_REQUESTED
+SAVE_IN_PROGRESS
+POST_SAVE_TIME_VERIFY
+
+BOUNDS
+fresh_process_recalibration=REQUIRED
+historical_I4R2_rate_assumed_constant=NO
+ordinary_expected_burst_max_hours=2
+near_target_expected_burst_max_hours=1
+pre_save_target_hours=20..28
+pre_save_hard_cutoff_hours=30
+post_reload_target_hours=4..8
+post_reload_hard_cutoff_hours=10
+total_hard_cutoff_hours=40
+
+HELPER
+path=Automation/ReleaseSmoke/measure_daylong.py
+placement=repository-only
+calculation_behavior=unchanged
+operator_dual-pause_checklist=added
+pixel_inspection=NO
+game_or_UI_commands=NO
+Bannerlord_launch=NO
+save_load_or_mutation=NO
+network_or_API=NO
+
+TEST_RESULTS
+PASS Phase 8B-I4R3P helper repository-only/read-only/no-network invariant
+PASS Phase 8B-I4R3P helper arithmetic/checklist/non-mutation invariant
+PASS Phase 8B-I4R3P dual-latch/save-state/unsafe-switch invariant
+
+PRESERVATION
+packaged_ClanAI_dll_sha256=A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+packaged_ClanAI_dll_git_blob=a5fc3923b31e482960026a0044dd1b21d6e6d00a
+package_manifest_git_blob=1addeceb9435952162b1c63fe60282775c1a081e
+I4_report_git_blob=1626fb486c97b19f97d30c578cb24ffdfcc2bd73
+I4_evidence_git_blob=1fa4ca0701eb1ec4d5a8cd9f6f88d80042a63dac
+I4R1_report_git_blob=3db335dbaaae7792b4af5eb8f38d887876adcb30
+I4R1_evidence_git_blob=218e1a9d434f841fcb6d55c82cf2f97bd7eb3277
+I4R2_report_git_blob=92d89f187e364b520f739a9e9f4da091aeccc07d
+I4R2_evidence_git_blob=eeb9cb5d8b14f8c987e3c1f0eed424ce75578017
+package_or_DLL_changed=NO
+gameplay_source_changed=NO
+save_keys_or_schema_changed=NO
+Bannerlord_launched=NO
+ClanAI_built_or_deployed=NO
+live_smoke_started=NO
+
+READY_FOR_FRESH_I4R3=YES
+
