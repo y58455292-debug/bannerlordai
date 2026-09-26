@@ -1,0 +1,190 @@
+PHASE8B-I4R1 RELEASE PROFILE SMOKE - FOCUSED RETAINED EVIDENCE
+RESULT FAIL
+Source checkpoint: cf259e62f3854bae5eb044659d4d58999d186427
+Fresh Bannerlord process: 39676
+Failure: campaign-hour control violation. No guarded save or reload attempted.
+This is not a continuation of the previous I4 process or its guarded save.
+Native DayLong values, not screenshots/calendar/wall time, control all elapsed-hour conclusions.
+The numeric arithmetic is exact for the rounded native metadata strings, not native internal ticks.
+Summary fields below are reformatted retained values; explicitly quoted native/UI receipt lines are copied verbatim.
+
+PREFLIGHT_RETAINED_VALUES
+utc=2026-09-26T04:29:54.412133+00:00
+protectedSave=ClanAI V020V PERSIST DEMO GATE V021M 20260924.sav
+protectedDayLong=1039.761
+protectedSHA256=A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+protectedTimestampUtc=2026-09-24T17:20:12.2384633Z
+protectedMtimeNs=1790270412238463300
+buildPerformed=false
+redeploymentPerformed=false
+rollbackVerified=true
+harmonyVersion=v2.4.2.248
+harmony0DllSHA256=2EDDA13A18954B79795BAC0D7E0E8FDF0BFA05B96552D6056D90F446CD0A2AB2
+moduleDataExists=false
+moduleLogsExists=false
+evidenceOptIn=false
+visualWarMarker=false
+strategicCommitmentOverride=false
+oldFailedI4SaveSHA256=2DC7EFBD2E5697BB90020407DE088623C5D1D9BB4098A0CB6E06A0AD46481F1B
+oldFailedI4SaveMtimeNs=1790395632739826600
+
+PACKAGE_MANIFEST_BEFORE_AND_AFTER
+bin/Win64_Shipping_Client/ClanAI.dll | bytes=335872 | sha256=A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+SubModule.xml | bytes=1177 | sha256=287609EEBE39EE00D693CD1C354362C64878F40950BCD787D505F20F065B333D
+README.md | bytes=999 | sha256=2B8D181068E8CFC38BB518B1EB144BCBA979E7B57EDE49420213811ABB8C6E7E
+Exactly these three files remained installed. This retry's rollback is a verified copy of the same three-file package; the old I4 rollback was not reused or changed.
+
+RETAINED_CONTROLLING_MEASUREMENTS
+All writes below target BI4R1 PROBE.sav. No guarded save was created.
+label=p00_baseline | stage=pre-save | DayLong=1039.761 | elapsedFromProtectedHours=0.000 | postReloadHours=null | bytes=9042335 | mtime_ns=1790397322812189200 | sha256=4B2D3F46D66393322B203E58955C8EFE65F6B29C270943A10004794B2683DA1A | readUtc=2026-09-26T04:36:04.139427+00:00
+label=p01_after_burst | stage=pre-save | DayLong=1039.851 | elapsedFromProtectedHours=2.160 | postReloadHours=null | bytes=9186197 | mtime_ns=1790397482905537000 | sha256=09DBFE1AF3AA4AEBF87AADF400DE08F0FE3ED86235539BAE5F4A854FE654C87A | readUtc=2026-09-26T04:38:52.148431+00:00
+label=p02_after_burst | stage=pre-save | DayLong=1040.068 | elapsedFromProtectedHours=7.368 | postReloadHours=null | bytes=9259671 | mtime_ns=1790397661537538500 | sha256=6A5349704D1996C2C855BA49BBE3C1A197B587A7BC3BDE1DFF5A1998DD30B672 | readUtc=2026-09-26T04:41:40.882510+00:00
+label=p03_after_burst_pause_recovery | stage=pre-save | DayLong=1041.662 | elapsedFromProtectedHours=45.624 | postReloadHours=null | bytes=9039723 | mtime_ns=1790397789699689400 | sha256=1F5CE683773DD6FF480426D3662D468AF8FE1476AEEF4B71C67AAECA64D4DBFE | readUtc=2026-09-26T04:43:44.738639+00:00
+
+CONTROLLING_ARITHMETIC
+(1039.761 - 1039.761) * 24 = 0.000
+(1039.851 - 1039.761) * 24 = 2.160
+(1040.068 - 1039.761) * 24 = 7.368
+(1041.662 - 1039.761) * 24 = 45.624
+preSaveCutoff=30
+postReloadCutoff=10 (not exercised)
+totalCutoff=40
+preSaveExcess=15.624
+totalExcess=5.624
+No additional advancement burst, guarded save, or reload followed the failed measurement.
+
+EXACT_RETAINED_UI_CONTROL_RECEIPTS
+These record requested inputs, not guaranteed successful pause acknowledgements.
+{"utc": "2026-09-26T04:30:46.091330+00:00", "action": "fresh-normal-launch", "pid": 39676, "modules": "_MODULES_*Bannerlord.Harmony*Native*SandBoxCore*BirthAndDeath*CustomBattle*Sandbox*StoryMode*NavalDLC*ClanAI*_MODULES_", "testRunnerIncluded": false, "inspectorIncluded": false, "fixtureNavalCompatibility": true}
+{"utc": "2026-09-26T04:32:44.514347+00:00", "action": "main-menu-observed", "clean": true}
+{"utc": "2026-09-26T04:33:38.924399+00:00", "action": "load-protected-fixture", "name": "ClanAI V020V PERSIST DEMO GATE V021M 20260924", "baselineDayLong": "1039.761"}
+{"utc": "2026-09-26T04:34:44.529469+00:00", "action": "protected-campaign-ready", "pausedMenuObserved": true, "baselineDayLong": "1039.761"}
+{"utc": "2026-09-26T04:36:21.790418+00:00", "action": "deliberate-short-advance-begin", "label": "b01", "seconds": 2, "lastMeasuredTotal": "0.000"}
+{"utc": "2026-09-26T04:36:25.366873+00:00", "action": "deliberate-short-advance-ended-pause-requested", "label": "b01"}
+{"utc": "2026-09-26T04:39:27.396442+00:00", "action": "deliberate-short-advance-begin", "label": "b02", "seconds": 4, "lastMeasuredTotal": "2.160"}
+{"utc": "2026-09-26T04:39:32.944322+00:00", "action": "deliberate-short-advance-ended-pause-requested", "label": "b02"}
+{"utc": "2026-09-26T04:41:59.573950+00:00", "action": "deliberate-short-advance-begin", "label": "b03", "seconds": 4, "lastMeasuredTotal": "7.368"}
+{"utc": "2026-09-26T04:41:59.922080+00:00", "action": "native-ui-click", "x": 960, "y": 295}
+{"utc": "2026-09-26T04:42:00.305495+00:00", "action": "native-ui-click", "x": 1103, "y": 1060}
+{"utc": "2026-09-26T04:42:04.656954+00:00", "action": "native-ui-click", "x": 1028, "y": 1060}
+{"utc": "2026-09-26T04:42:05.141410+00:00", "action": "deliberate-short-advance-ended-pause-requested", "label": "b03"}
+{"utc": "2026-09-26T04:43:44.739639+00:00", "action": "native-DayLong-controlling-measurement", "label": "p03_after_burst_pause_recovery", "stage": "pre-save", "name": "BI4R1 PROBE.sav", "dayLong": "1041.662", "elapsedFromProtectedHours": "45.624", "postReloadHours": null, "sha256": "1F5CE683773DD6FF480426D3662D468AF8FE1476AEEF4B71C67AAECA64D4DBFE", "bytes": 9039723, "mtime_ns": 1790397789699689400, "pausedMenuVerified": true}
+{"utc": "2026-09-26T04:44:04.078206+00:00", "action": "FAIL-stop-no-guarded-save-no-reload", "cause": "campaign-hour-control-violation", "lastProbeDayLong": "1041.662", "elapsedHours": "45.624", "preSaveCap": 30, "totalCap": 40}
+{"utc": "2026-09-26T04:44:30.051483+00:00", "action": "native-ui-click", "x": 1087, "y": 572}
+{"utc": "2026-09-26T04:44:30.052551+00:00", "action": "confirmed-native-exit-without-saving"}
+{"utc": "2026-09-26T04:45:04.883017+00:00", "action": "native-ui-click", "x": 306, "y": 785}
+{"utc": "2026-09-26T04:45:04.884021+00:00", "action": "native-exit-game-selected"}
+
+FAILED_PAUSE_SCREENSHOT_PROVENANCE
+Screenshots remain local; their names are operator labels, not evidence that the requested action succeeded.
+b03_paused.png | bytes=4203322 | mtime_ns=1790397725492262900 | sha256=37E9812433C855094CF32245B57FA4E1A1F94F17842E2CD711D293FD589E3D4F
+Visual inspection: fast-forward active, no pause menu and no PAUSED indicator. This does not support a successful pause acknowledgement.
+b03_confirm_pause_now.png | bytes=2898560 | mtime_ns=1790397754781964200 | sha256=AD062B10EBC6ED93AA9DDD988D53861184587B1B69E3F6EEFD6E474AC7767A16
+Visual inspection: recovery screenshot shows the native pause menu.
+p03_paused.png | bytes=2896924 | mtime_ns=1790397790815788600 | sha256=0C71D93992E8E43A0FABA321359AD71D29ECAE54D333694F118DC9E3196E3520
+Visual inspection: native pause menu before reading final probe metadata.
+13_fail_exit_confirmation.png | bytes=2837822 | mtime_ns=1790397844854737800 | sha256=B8CDB7924039D97FA2996CE75A35EA7BEF36EF2C84B6FA7880CC5DEE39E51A35
+Visual inspection: native exit dialog explicitly states it will not save the game.
+14_exit_to_main_menu.png | bytes=2929635 | mtime_ns=1790397872251270600 | sha256=F3159E6DF55C3328AB36D9F4F1F08753EC5F10F43070FB429EE88D71E469CA93
+Visual inspection: ordinary main menu after no-save exit.
+
+CURRENT_RUN_NATIVE_LOG_SOURCE_MANIFEST
+rgl_log_39676.txt | bytes=333223 | sha256=E533653D49538325480759AD7C2E8444DAD54ADB38B7B367EDC1B7203A7153B6
+rgl_log_errors_39676.txt | bytes=181 | sha256=B7826BF41A39ACF229284979673D66FA7C4157D6234BFF2CCDAFE6C9D2920564
+watchdog_log_39676.txt | bytes=13106 | sha256=36EE98F20DC04F0F7C15F47B521853C05335A622E2783D17F173B8969895C39A
+
+EXACT_NATIVE_LOG_RECEIPTS_WITH_1_BASED_SOURCE_LINES
+rgl_log_39676.txt:78: [21:30:50.597] Command Args: /singleplayer _MODULES_*Bannerlord.Harmony*Native*SandBoxCore*BirthAndDeath*CustomBattle*Sandbox*StoryMode*NavalDLC*ClanAI*_MODULES_
+rgl_log_39676.txt:836: [21:31:19.698] Loading assembly: ..\..\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\0Harmony.dll
+rgl_log_39676.txt:839: [21:31:19.701] Assembly load result: SUCCESS 
+rgl_log_39676.txt:886: [21:31:20.229] Loading assembly: ..\..\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\Bannerlord.Harmony.dll
+rgl_log_39676.txt:889: [21:31:20.233] Assembly load result: SUCCESS 
+rgl_log_39676.txt:1016: [21:31:22.082] Loading assembly: ..\..\Modules\ClanAI\bin\Win64_Shipping_Client\ClanAI.dll
+rgl_log_39676.txt:1019: [21:31:22.085] Assembly load result: SUCCESS 
+rgl_log_39676.txt:3785: [21:33:41.261] Initializing saved game begin... 
+rgl_log_39676.txt:3801: [21:33:42.958] Initializing saved game end... 
+rgl_log_39676.txt:4266: [21:33:57.597] Loading Save Game 
+rgl_log_39676.txt:4360: [21:35:20.714] SaveAsCurrentGame: BI4R1 PROBE 
+rgl_log_39676.txt:4413: [21:35:22.821] ------Successfully saved------ 
+rgl_log_39676.txt:4484: [21:38:01.025] SaveAsCurrentGame: BI4R1 PROBE 
+rgl_log_39676.txt:4541: [21:38:02.964] ------Successfully saved------ 
+rgl_log_39676.txt:4626: [21:40:59.691] SaveAsCurrentGame: BI4R1 PROBE 
+rgl_log_39676.txt:4679: [21:41:01.540] ------Successfully saved------ 
+rgl_log_39676.txt:4802: [21:43:07.778] SaveAsCurrentGame: BI4R1 PROBE 
+rgl_log_39676.txt:4855: [21:43:09.708] ------Successfully saved------ 
+rgl_log_39676.txt:5078: [21:45:05.209] Final_cleanup...
+rgl_log_39676.txt:5090: [21:45:05.392] There are no living managed objects. 
+rgl_log_39676.txt:5092: [21:45:05.392] Managed Interface deleted.
+watchdog_log_39676.txt:136: EXIT_PROCESS_DEBUG_EVENT occurred. Detaching...
+
+CURRENT_RUN_NATIVE_ERRORS_AND_EXCEPTION_WORD_MATCHES
+No ClanAI/Harmony exception trace was found. These other native records are retained without attributing them to ClanAI.
+rgl_log_39676.txt:1531: [21:31:26.838] Could not find the event index for: event:/mission/ambient/detail/warning_bells
+rgl_log_39676.txt:2258: [21:31:26.844] Could not find the event index for: event:/mission/tutorial/vo/fighting/warning
+rgl_log_39676.txt:2303: [21:31:26.844] Could not find the event index for: event:/multiplayer/warning_bells_attacker
+rgl_log_39676.txt:2304: [21:31:26.844] Could not find the event index for: event:/multiplayer/warning_bells_defender
+rgl_log_39676.txt:2518: [21:31:26.846] Could not find the event index for: event:/ui/mission/multiplayer/pointwarning
+rgl_log_39676.txt:4219: [21:33:53.660] Granite Error in Graphine::Granite::Internal::ContextImplementation::DestroyCache: The specified GPU cache is not part of this context
+rgl_log_39676.txt:4220: [21:33:53.660] Granite Error in Graphine::Granite::Internal::ContextImplementation::DestroyCache: The specified GPU cache is not part of this context
+rgl_log_39676.txt:4221: [21:33:53.660] Granite Error in Graphine::Granite::Internal::ContextImplementation::DestroyCache: The specified GPU cache is not part of this context
+rgl_log_39676.txt:5094: Error: Non-Zero Device Reference Count! (ERC3323)
+watchdog_log_39676.txt:9: Waiting for an exception event...
+The last line is the native watchdog waiting message, not an observed exception or an external development watchdog requirement.
+
+PID_ERROR_LOG_VERBATIM
+Starting new log file...
+[21:30:49.797] 25 Sep 2026 Friday 21:30 Pacific Daylight Time
+[21:30:49.797] Computer: DESKTOP-JO4B7VH User: csala
+[21:30:49.797] Build Version: 122374
+
+SCAN_ACCOUNTING
+Scope: only the three native logs for this fresh PID, current module contents, and before/after size/mtime comparison of 84 existing research telemetry files.
+Case-insensitive literal scan, normalizing path separators, found no matches for D:/BannerlordAIResearch, ChatGPT, Codex, Desktop Commander, TestRunner, command-bus, command bus, or command_bus.
+forbiddenMatches=[]
+nativeSuccessfulSaveCount=4
+nativeSaveNames=BI4R1 PROBE; BI4R1 PROBE; BI4R1 PROBE; BI4R1 PROBE
+guardedSaveCount=0
+guardedReloadCount=0
+moduleLogsPresent=false
+researchFilesChecked=84
+researchChanges={}
+No exhaustive network/file-access trace was collected. The research directory was not removed or access-blocked. Initial load receipts are not reload proof.
+
+FINAL_CLEANUP_RETAINED_VALUES
+utc=2026-09-26T04:46:08.062624+00:00
+processExitCode=4294967295
+bannerlordClosed=true
+protectedFixtureSHA256=A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+protectedFixtureTimestampUtc=2026-09-24T17:20:12.2384633Z
+protectedFixtureMtimeNs=1790270412238463300
+protectedFixtureUnchanged=true
+protectedDayLong=1039.761
+oldFailedSaveUnchanged=true
+rollbackUnchanged=true
+rollbackDllSHA256=A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+finalInstalledDllSHA256=A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+moduleDataExists=false
+moduleLogsExists=false
+EvidenceOptIn=false
+VisualWarMarker=false
+StrategicCommitmentOverride=false
+A separate process/hash/timestamp readback at 2026-09-26T04:45:40.0426010Z also verified Bannerlord absent and the same protected fixture identity.
+
+REQUIRED_STATUS
+classification=FAIL
+pre_save_last_measured_hours=45.624
+guarded_save_name=NOT CREATED
+guarded_save_daylong=NOT APPLICABLE
+guarded_save_success=NOT PERFORMED
+guarded_reload=NOT PERFORMED
+post_reload_probe_daylong=NOT EXERCISED
+post_reload_elapsed_hours=NOT EXERCISED
+total_last_measured_hours=45.624
+forbidden_development_dependency_references_observed=NO in current-PID scan
+research_telemetry_created=NO in checked locations
+duplicate_initialization_lifecycle_issue_observed=NO before exit; reload-specific check NOT EXERCISED
+protected_fixture_unchanged=YES
+gameplay_policy_changed=NO
+save_schema_changed=NO
+ready_for_next_release_hardening_checkpoint=NO
+No experiment restart, continuation, or product repair was attempted after the controlling probe crossed the cutoffs.

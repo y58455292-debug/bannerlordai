@@ -2,6 +2,18 @@
 
 ## Current checkpoint
 
+Phase 8B-I4R1's fresh controlled retry is closed as **FAIL — campaign-hour control violation**, not a demonstrated ClanAI package defect.
+
+The exact packaged DLL `A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5` was used without rebuilding, substituting, or redeploying. The main menu and protected campaign loaded without research modules or configuration overrides. Native protected `DayLong=1039.761` and the required hash/timestamp were verified before launch.
+
+The disposable `BI4R1 PROBE` measured cumulative progression of **0.000, 2.160, 7.368, and 45.624 hours**. The third burst's pause request did not leave the game paused; the next controlling probe exposed an overrun of both the 30-hour pre-save cutoff and 40-hour total maximum. No guarded save was created, no reload occurred, and no further advancement was requested after the failed measurement. The 20–28-hour and post-reload 4–8-hour windows remain unproven.
+
+There were four successful native probe writes only. Native no-save exit and Exit Game completed; Bannerlord is closed. The protected fixture, previous I4 guarded save, retry rollback, and installed package are unchanged. No research telemetry was created in checked locations; no forbidden development references or ClanAI/Harmony exception trace was found in the current-PID scan. Native graphics/shutdown messages and the nonzero process return code are retained without attribution to ClanAI. No exhaustive network/file-access proof is claimed.
+
+See `Reports/Release/PHASE8B_I4R1_RELEASE_PROFILE_RUNTIME_SMOKE_RESULT.md` and `Reports/Release/evidence/phase8b_i4r1_release_profile_smoke_20260926.txt`. **Ready for next release-hardening checkpoint: NO.** Stop at this retry's failure checkpoint; no continuation, replacement run, gameplay fix, or further milestone is authorized by its result.
+
+## Preserved Phase 8B-I4 failed attempt
+
 Phase 8B-I4's release-profile runtime smoke attempt is closed as **FAIL — invalid/incomplete test-control attempt**, not a demonstrated ClanAI package defect.
 
 The exact packaged v0.22.0 DLL from `fa91c05f9523dd2000883bd84e573d0d7dddf467` was deployed without rebuilding: SHA-256 `A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5`. Harmony satisfied the declared version, the normal main menu was reached, and the protected campaign loaded with no Evidence profile, Visual War marker, Strategic Commitment override, Inspector, or TestRunner in the selected runtime module set. NavalDLC was retained only for the protected fixture's compatibility.
@@ -30,7 +42,7 @@ Phase 8 has started. Phase 8A's offline release-readiness audit is **COMPLETE**.
 
 No gameplay source, balance, save schema, or accepted evidence changed in that audit. Bannerlord was not launched, no DLL was deployed, and no runtime work was performed. See `Reports/Release/PHASE8A_RELEASE_READINESS_AUDIT.md`.
 
-That audit selected **Phase 8B-I1 — standalone path and release-profile seam** as its next step: a deterministic module-local path resolver and default release diagnostics gate, removal of development-machine path dependence, default exclusion of experiment-only observers/proof telemetry, and offline preservation of save keys/gameplay wiring. I3's later package checkpoint is preserved above; I4's actual failed runtime attempt is the current checkpoint.
+That audit selected **Phase 8B-I1 — standalone path and release-profile seam** as its next step: a deterministic module-local path resolver and default release diagnostics gate, removal of development-machine path dependence, default exclusion of experiment-only observers/proof telemetry, and offline preservation of save keys/gameplay wiring. I3's later package checkpoint is preserved above; I4 and I4R1's failed runtime attempts are preserved above.
 
 ## Preserved Phase 7C-I3 bounded null
 
@@ -137,6 +149,8 @@ SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 
 ## Evidence
 
+- `Reports/Release/PHASE8B_I4R1_RELEASE_PROFILE_RUNTIME_SMOKE_RESULT.md`
+- `Reports/Release/evidence/phase8b_i4r1_release_profile_smoke_20260926.txt`
 - `Reports/Release/PHASE8B_I4_RELEASE_PROFILE_RUNTIME_SMOKE_RESULT.md`
 - `Reports/Release/evidence/phase8b_i4_release_profile_smoke_20260926.txt`
 - `Reports/Security/PHASE5_SECURITY_BANDITRY_NATIVE_CAPABILITY_AUDIT.md`
@@ -165,7 +179,7 @@ SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 
 ## Next bounded milestone
 
-The requested Phase 8B-I4 smoke has not passed. This attempt is closed with exact failure evidence; it does not establish a reproducible ClanAI defect or justify a gameplay change. The guarded reload/post-reload checks remain unproven.
+The requested Phase 8B-I4 and I4R1 smokes have not passed. Both attempts are closed with exact failure evidence; neither establishes a reproducible ClanAI defect or justifies a gameplay change. The guarded reload/post-reload checks remain unproven.
 
 Stop at this checkpoint. Do not rebuild, substitute the package, repeat this attempt, start a product fix, or begin another release-hardening milestone as part of the same task. Further runtime work requires a separately bounded task with reliable campaign-hour stop control.
 
