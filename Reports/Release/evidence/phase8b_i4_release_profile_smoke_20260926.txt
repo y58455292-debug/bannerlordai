@@ -1,0 +1,256 @@
+PHASE8B-I4 RELEASE-PROFILE SMOKE — FOCUSED RUNTIME EVIDENCE
+Runtime date: 2026-09-26 UTC / 2026-09-25 PDT
+Source/package commit: fa91c05f9523dd2000883bd84e573d0d7dddf467
+Classification: FAIL
+Failure class: operator/test-control 48-hour bound violation; guarded reload not performed.
+No reproduced ClanAI package defect is established by this failed smoke attempt.
+No rebuild, replacement run, policy modification, or save-schema modification was performed.
+
+Evidence conventions:
+- Native log lines below retain their 1-based source line numbers and local PDT timestamps.
+- Desktop action records use UTC.
+- Counts/comparisons are post-run read-only analysis, not runtime instrumentation.
+- Native save DayLong values are rounded strings; their difference is not an exact internal tick measurement.
+- The pre-save elapsed interval is NOT the final total elapsed time; unsaved time advanced afterward.
+
+SOURCE FILE MANIFEST (SHA-256)
+rgl_log_21940.txt | bytes=325792 | E5483BCC3312E3C7CAFF40B17E9B2712830A7416339EA986A36DD1ECA8761BB6
+rgl_log_errors_21940.txt | bytes=181 | DC4A485958B69F6B3E96D216C0A85C80E57E2396377370A74868789BF82957D1
+watchdog_log_21940.txt | bytes=6149 | 7E1E9F502995B0046C41163BBD5C3854B60BD338580E800889403B94A709B5ED
+preflight.json | 827198FD83F33D59F66A385EE399151933262D109612112BA8ABF7E1A52E14A4
+launch.json | B65BA29DA466D252D6CDF159FFD4DCC52F5C85A735AC5180DC13EA1686860DEF
+guarded_metadata.json | 635CDDD1E18813F7D4A89CA988B7DE752510ABC8E780A91D0A2F3BCC504D56D9
+ui_actions.jsonl | B8C863FC6D0B1056ABD0100EBEABFA3DBD8C83AC8EE60CC3F54FC330A4509EAC
+cleanup.json | 18C91BA4A1EF8362D3FA3CADEEB11B93AA13BE12AE46267C70A823C71F53CF82
+protected_fixture_final.json | C360AF33088E3A4F040DCB97E401FF4E490DD986322EBD14E0250AF77C82D538
+
+Local observation workspace:
+C:\Users\csala\AppData\Local\Temp\ClanAI_Phase8BI4_fa91_20260926
+Native PID-specific logs:
+C:\ProgramData\Mount and Blade II Bannerlord\logs
+The workspace and observation helpers are not installed in ClanAI or added as runtime dependencies.
+
+PACKAGE IDENTITY — VERIFIED BEFORE LAUNCH AND AT CLEANUP
+bin\Win64_Shipping_Client\ClanAI.dll | bytes=335872 | A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+SubModule.xml | bytes=1177 | 287609EEBE39EE00D693CD1C354362C64878F40950BCD787D505F20F065B333D
+README.md | bytes=999 | 2B8D181068E8CFC38BB518B1EB144BCBA979E7B57EDE49420213811ABB8C6E7E
+Exact three-file package downloaded from the pinned commit. No build command was run.
+Old module moved to rollback_ClanAI before the new module directory was copied in; all old file size/hash/mtime entries verified unchanged at cleanup.
+Rollback DLL SHA-256: 6B3DC310C7491C2D976F34C9DBF64A3CF9A756B1077BCAD29C4E6577767C4364
+
+PREFLIGHT EXTRACT — VALUES RECORDED AT 2026-09-26T03:48:46.915642+00:00
+harmonyVersion=v2.4.2.248
+harmonySHA256=2EDDA13A18954B79795BAC0D7E0E8FDF0BFA05B96552D6056D90F446CD0A2AB2
+nativeModuleVersions=v1.5.3
+NavalDLC=v1.3.3; retained for protected-fixture compatibility, not a ClanAI dependency
+DataExists=false
+RuntimeProfileConfigExists=false
+EvidenceOptIn=false
+VisualWarMarkerExists=false
+StrategicCommitmentOverrideExists=false
+buildPerformed=false
+developmentHarnessesInLaunch=false
+protectedFixtureSha256=A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+protectedFixtureTimestampUtc=2026-09-24T17:20:12.2384633Z
+protectedFixtureMtimeNs=1790270412238463300
+No module-local Data directory existed. Profile/default-mode assertions rely on the exact package's documented defaults and absent overrides, not a force-set runtime configuration.
+
+LAUNCH.JSON — RETAINED VALUES
+{
+    "utc": "2026-09-26T03:49:24.4250240Z",
+    "pid": 21940,
+    "args": "_MODULES_*Bannerlord.Harmony*Native*SandBoxCore*BirthAndDeath*CustomBattle*Sandbox*StoryMode*NavalDLC*ClanAI*_MODULES_",
+    "fixtureNavalCompatibility": true,
+    "testRunnerIncluded": false,
+    "inspectorIncluded": false
+}
+
+VISUAL OBSERVATIONS (not inferred telemetry)
+main_menu.png: normal main menu reached, no visible loader exception.
+ui_205434_748231.png: protected DEMO fixture selected in Saved Campaigns.
+ui_205457_190746.png: native Module Mismatch dialog identifies historical BannerlordInspector removal and ClanAI version difference; loading allowed.
+ui_205546_627561.png: loaded campaign in Syronea, PAUSED, Autumn 3 1127.
+capture_210434_272984.png: overlong save name rejected by native 30-character UI limit; no file created.
+capture_210645_748562.png: valid short name BI4_20260926_0407 entered.
+capture_210713_554709.png: campaign after the single successful guarded save; actual native filename normalized to spaces.
+capture_210743_728206.png: later unsaved state at Autumn 6 1127, Escape menu open; exact final hour was not captured.
+capture_210828_607543.png: Exit dialog explicitly says it will not save the game and will return to Main Menu.
+These screenshot files are retained locally; this text does not claim they are bundled in the repository.
+
+EXACT NATIVE SAVE HEADER FIELDS
+Protected fixture filename: ClanAI V020V PERSIST DEMO GATE V021M 20260924.sav
+Protected header:
+Modules=Bannerlord.Harmony;Native;SandBoxCore;BirthAndDeath;CustomBattle;Sandbox;BannerlordInspector;NavalDLC;ClanAI
+Module_ClanAI=v0.1.0.0
+Module_Bannerlord.Harmony=v2.4.2.248
+ApplicationVersion=v1.5.3.122374
+CreationTime=639258420101745448
+UniqueGameId=ZJtX6IZXozIG
+DayLong=1039.761
+CharacterName=Manan
+
+Guarded new filename: BI4 20260926 0407.sav
+Guarded header:
+Modules=Bannerlord.Harmony;Native;SandBoxCore;BirthAndDeath;CustomBattle;Sandbox;NavalDLC;ClanAI
+Module_ClanAI=v0.22.0.0
+Module_Bannerlord.Harmony=v2.4.2.248
+ApplicationVersion=v1.5.3.122374
+CreationTime=639259672306603672
+UniqueGameId=ZJtX6IZXozIG
+DayLong=1041.941
+CharacterName=Manan
+Guarded bytes=9045534
+Guarded SHA-256=2DC7EFBD2E5697BB90020407DE088623C5D1D9BB4098A0CB6E06A0AD46481F1B
+
+TIME CALCULATION — READ-ONLY ANALYSIS OF METADATA
+(1041.941 - 1039.761) * 24 = 52.320 campaign hours before saving.
+Requested pre-save target: approximately 24 hours.
+Authorized hard maximum: 48 campaign hours.
+Excess at the save already: approximately 4.320 hours.
+Final total elapsed: NOT CAPTURED; additional unsaved progression occurred after saving.
+Guarded reload: NOT PERFORMED.
+Post-reload progression: NOT EXERCISED.
+The operator failed to control/measure the bound early enough. No replacement experiment was run.
+
+EXACT RGL_LOG_21940.TXT LINES (1-BASED)
+5: [20:49:25.810] Loading xml file: $BASE/Modules/Bannerlord.Harmony/SubModule.xml.
+6: [20:49:25.811] Loading xml file: $BASE/Modules/BannerlordInspector/SubModule.xml.
+8: [20:49:25.811] Loading xml file: $BASE/Modules/ClanAI/SubModule.xml.
+69: [20:49:25.823] Loading xml file: $BASE/Modules/Bannerlord.Harmony/SubModule.xml.
+70: [20:49:25.823] Loading xml file: $BASE/Modules/Native/SubModule.xml.
+71: [20:49:25.824] Loading xml file: $BASE/Modules/SandBoxCore/SubModule.xml.
+72: [20:49:25.824] Loading xml file: $BASE/Modules/BirthAndDeath/SubModule.xml.
+73: [20:49:25.825] Loading xml file: $BASE/Modules/CustomBattle/SubModule.xml.
+74: [20:49:25.825] Loading xml file: $BASE/Modules/SandBox/SubModule.xml.
+75: [20:49:25.825] Loading xml file: $BASE/Modules/StoryMode/SubModule.xml.
+76: [20:49:25.826] Loading xml file: $BASE/Modules/NavalDLC/SubModule.xml.
+77: [20:49:25.827] Loading xml file: $BASE/Modules/ClanAI/SubModule.xml.
+78: [20:49:25.993] Command Args: /singleplayer _MODULES_*Bannerlord.Harmony*Native*SandBoxCore*BirthAndDeath*CustomBattle*Sandbox*StoryMode*NavalDLC*ClanAI*_MODULES_
+836: [20:49:33.438] Loading assembly: ..\..\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\0Harmony.dll
+839: [20:49:33.441] Assembly load result: SUCCESS
+886: [20:49:33.470] Loading assembly: ..\..\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\Bannerlord.Harmony.dll
+889: [20:49:33.473] Assembly load result: SUCCESS
+1016: [20:49:33.655] Loading assembly: ..\..\Modules\ClanAI\bin\Win64_Shipping_Client\ClanAI.dll
+1019: [20:49:33.660] Assembly load result: SUCCESS
+2252: [20:49:36.136] Could not find the event index for: event:/mission/tutorial/vo/fighting/warning
+3828: [20:55:14.255] Initializing saved game begin...
+3844: [20:55:15.963] Initializing saved game end...
+4244: [20:55:19.703] Unofficial modules are used: Bannerlord.Harmony;BannerlordInspector;ClanAI
+4262: [20:55:21.655] Granite Error in Graphine::Granite::Internal::ContextImplementation::DestroyCache: The specified GPU cache is not part of this context
+4263: [20:55:21.655] Granite Error in Graphine::Granite::Internal::ContextImplementation::DestroyCache: The specified GPU cache is not part of this context
+4264: [20:55:21.655] Granite Error in Graphine::Granite::Internal::ContextImplementation::DestroyCache: The specified GPU cache is not part of this context
+4309: [20:55:25.655] Loading Save Game
+4567: [21:07:10.634] Unofficial modules are used: Bannerlord.Harmony;BannerlordInspector;ClanAI
+4571: [21:07:10.659] SaveAsCurrentGame: BI4 20260926 0407
+4575: [21:07:10.662] ------Saving with new context. Save name: BI4 20260926 0407------
+4577: [21:07:10.666] SaveContext::Save block is started.
+4579: [21:07:10.666] SaveContext::CollectObjects block is started.
+4581: [21:07:10.878] SaveContext::CollectObjects completed in 0.211 seconds.
+4583: [21:07:10.879] SaveContext::CollectSaveDataForObject::Objects block is started.
+4585: [21:07:11.240] SaveContext::CollectSaveDataForObject::Objects completed in 0.36 seconds.
+4587: [21:07:11.240] SaveContext::CollectSaveDataForObject::Containers block is started.
+4589: [21:07:12.001] SaveContext::CollectSaveDataForObject::Containers completed in 0.76 seconds.
+4591: [21:07:12.001] SaveContext::Saving Objects block is started.
+4593: [21:07:12.109] SaveContext::Saving Objects completed in 0.106 seconds.
+4595: [21:07:12.109] SaveContext::Saving Containers block is started.
+4597: [21:07:12.207] SaveContext::Saving Containers completed in 0.097 seconds.
+4599: [21:07:12.267] [SaveDataSizeRecord] Header size: 4442322, String Size: 725504, Object Size: 22259708, Container Size: 30061319.
+4602: [21:07:12.267] SaveContext::Save completed in 1.6 seconds.
+4624: [21:07:12.750] ------Successfully saved------
+4883: [21:09:17.786] Exiting network manager...
+4884: [21:09:17.786] Deleting Game... [21:09:17.787] OK!
+4885: [21:09:17.790] Final_cleanup...
+4886: [21:09:17.790] Frame# : 134104.
+4887: [21:09:17.790] Saving options...
+4893: [21:09:17.885] Pre Finalizing Managed Interface...[21:09:17.933] OK!
+4894: [21:09:17.933] Deleting Managed Interface...
+4897: [21:09:17.981] There are no living managed objects.
+4899: [21:09:17.981] Managed Interface deleted.
+4901: Error: Non-Zero Device Reference Count! (ERC3346)
+Native log text is preserved above with trailing blank whitespace omitted; no substantive message content was altered.
+
+ERROR LOG VERBATIM CONTENT
+Starting new log file...
+[20:49:25.661] 25 Sep 2026 Friday 20:49 Pacific Daylight Time
+[20:49:25.661] Computer: DESKTOP-JO4B7VH User: csala
+[20:49:25.661] Build Version: 122374
+
+NATIVE WATCHDOG EXCERPTS (engine diagnostics, not research instrumentation)
+9: Waiting for an exception event...
+12: Debuggee message: #TW#crash_tags.txt#TW#Runtime#TW#Arguments#TW#/singleplayer _MODULES_*Bannerlord.Harmony*Native*SandBoxCore*BirthAndDeath*CustomBattle*Sandbox*StoryMode*NavalDLC*ClanAI*_MODULES_
+27: Debuggee message: #TW#crash_tags.txt#TW#Campaign Dump Integrity#TW#Has Installed Unofficial Modules#TW#Bannerlord.Harmony;BannerlordInspector;ClanAI
+37: Debuggee message: #TW#crash_tags.txt#TW#Used Modules#TW#ClanAI#TW#Exists and Active (Version: v0.22.0.0)
+59: Debuggee message: #TW#crash_tags.txt#TW#Used Modules#TW#ClanAI#TW#Exists and Active (Version: v0.22.0.0)
+Final line: EXIT_PROCESS_DEBUG_EVENT occurred. Detaching...
+Inspector manifest discovery and historical campaign-integrity tags are not silently counted as active Inspector execution. The selected launch and newly written native save module list exclude it. Native watchdog initialization's 'Waiting for an exception event...' is not an exception trace.
+
+CURRENT-RUN SCAN SUMMARY — COMPUTED FROM ALL THREE PID-21940 FILES
+Forbidden dependency text scan: D:\BannerlordAIResearch; Codex; ChatGPT; Desktop Commander / DesktopCommander; TestRunner; command-bus/command bus.
+Matching lines: 0.
+Observed exception traces attributed to ClanAI/Harmony: 0.
+Native graphics/shutdown error lines: retained above; attribution and reproducibility NOT established.
+Native SaveAsCurrentGame lines: 1.
+Native successfully-saved lines: 1.
+Native Loading Save Game lines: 1 (the protected fixture only).
+No guarded reload or second save.
+A current-run engine log containing a native watchdog or network-manager lifecycle message is not itself evidence of a ClanAI development-service requirement.
+
+SELECTED EXACT DESKTOP ACTION RECORDS
+{"utc": "2026-09-26T04:06:43.668062+00:00", "action": "click-single-session", "x": 285, "y": 249}
+{"utc": "2026-09-26T04:06:44.370251+00:00", "action": "click-single-session", "x": 950, "y": 525}
+{"utc": "2026-09-26T04:07:10.342572+00:00", "action": "native-save-confirm-valid-name", "name": "BI4_20260926_0407"}
+{"utc": "2026-09-26T04:07:10.550780+00:00", "action": "click-single-session", "x": 1087, "y": 599}
+{"utc": "2026-09-26T04:07:43.709237+00:00", "action": "pause-after-guarded-save-with-native-menu"}
+{"utc": "2026-09-26T04:08:27.879955+00:00", "action": "stop-failed-smoke-no-reload"}
+{"utc": "2026-09-26T04:08:28.105323+00:00", "action": "click-single-session", "x": 960, "y": 785}
+{"utc": "2026-09-26T04:08:59.608756+00:00", "action": "confirm-exit-to-main-menu-without-saving"}
+{"utc": "2026-09-26T04:08:59.833751+00:00", "action": "click-single-session", "x": 1087, "y": 572}
+Normal main-window close result afterward: GRACEFUL_CLOSE_REQUEST=True; BANNERLORD_CLOSED=True.
+No force termination was used. The exact wall-clock date of the close request was not independently written as a separate event; native shutdown timestamps above are retained.
+
+POST-RUN ARTIFACT COMPARISON
+Module files at cleanup: exactly README.md, SubModule.xml, bin\Win64_Shipping_Client\ClanAI.dll; all required hashes unchanged.
+Module Data exists: false.
+Module Logs exists: false.
+Logs/clanai.log, Logs/Sessions, Logs/episodes.log: not created.
+Phase 4/5/6 proof telemetry or Phase 7B/7C receipts: not created in the live module.
+Existing research telemetry files compared by path, bytes, last-write nanoseconds: 84.
+Changed/new/removed research telemetry paths: [].
+Rollback manifest comparison, including file sizes, hashes, and mtimes: unchanged.
+This is a filesystem/output check, not a complete file-read/network-access trace.
+
+FINAL PROTECTED-FIXTURE READBACK
+{
+    "utc": "2026-09-26T04:13:23.1132327Z",
+    "bannerlordClosed": true,
+    "protectedFixtureSha256": "A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427",
+    "protectedFixtureTimestampUtc": "2026-09-24T17:20:12.2384633Z"
+}
+Exact filesystem mtime before/after: 1790270412238463300 nanoseconds since Unix epoch.
+The intermediate Python microsecond-formatted timestamp was rounded; the final native timestamp and nanosecond equality preserve the full required value.
+
+REQUIRED STATUS
+packaged_dll_sha256=A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+dependency_load=SUCCESS
+main_menu=REACHED
+protected_campaign_load=SUCCESS
+release_default_config=NO_OVERRIDES
+pre_save_elapsed_campaign_hours=52.320_APPROX_FROM_ROUNDED_NATIVE_METADATA
+hard_maximum_campaign_hours=48
+hard_bound_respected=NO
+guarded_save_name=BI4 20260926 0407.sav
+guarded_save_result=SUCCESS_ONCE
+guarded_reload=NOT_PERFORMED
+post_reload_elapsed_hours=NOT_EXERCISED
+final_total_elapsed_hours=NOT_CAPTURED_GREATER_THAN_SAVED_INTERVAL
+forbidden_development_dependency_references_observed=NO_IN_SCANNED_CURRENT_RUN_LOGS
+research_telemetry_created=NO_IN_CHECKED_LOCATIONS
+protected_fixture_unchanged=YES
+rollback_intact=YES
+bannerlord_closed=YES
+gameplay_modified_by_checkpoint=NO
+save_schema_modified=NO
+ready_for_next_release_hardening_checkpoint=NO
+result=FAIL
+
+Limits: no exhaustive syscall/network trace, no guarded reload, no post-reload duplicate-initialization test, no individual feature-completion claims. This is a failed test-control attempt, not proof of a reproduced ClanAI release bug. No rerun or product fix occurred after discovery.

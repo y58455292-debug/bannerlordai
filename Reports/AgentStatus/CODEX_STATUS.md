@@ -2,23 +2,35 @@
 
 ## Current checkpoint
 
+Phase 8B-I4's release-profile runtime smoke attempt is closed as **FAIL — invalid/incomplete test-control attempt**, not a demonstrated ClanAI package defect.
+
+The exact packaged v0.22.0 DLL from `fa91c05f9523dd2000883bd84e573d0d7dddf467` was deployed without rebuilding: SHA-256 `A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5`. Harmony satisfied the declared version, the normal main menu was reached, and the protected campaign loaded with no Evidence profile, Visual War marker, Strategic Commitment override, Inspector, or TestRunner in the selected runtime module set. NavalDLC was retained only for the protected fixture's compatibility.
+
+The operator failed to enforce the 48-campaign-hour maximum. The one successful guarded save, `BI4 20260926 0407.sav`, contains native `DayLong=1041.941` versus the protected fixture's `1039.761`, giving approximately **52.320 pre-save hours**. Further unsaved progression occurred before final pause; exact final elapsed time was not captured. Guarded reload, six-hour post-reload progression, and duplicate-initialization checks were **NOT PERFORMED**. No replacement run or product fix was attempted.
+
+No emitted exception trace attributable to ClanAI/Harmony was observed in the available current-run logs. Native GPU-cache and shutdown device-reference errors are retained without attributing them to ClanAI. The module remained exactly the three package files with no Data/Logs directory; all 84 previously tracked research telemetry files retained their sizes and last-write times. This is not an exhaustive file-access/network trace or proof that every gameplay initializer ran.
+
+The campaign was exited through the normal no-save confirmation and Bannerlord closed gracefully. The protected fixture SHA-256/timestamp and full rollback manifest are unchanged. Exactly one new native save succeeded; it was not reloaded. Gameplay/package source, policies, and save schema were not changed. **Ready for next Phase 8 release-hardening checkpoint: NO.**
+
+See `Reports/Release/PHASE8B_I4_RELEASE_PROFILE_RUNTIME_SMOKE_RESULT.md` and `Reports/Release/evidence/phase8b_i4_release_profile_smoke_20260926.txt`. Stop at this failed smoke checkpoint; do not infer a gameplay fix, claim a release PASS, or rerun it as part of this task.
+
+## Preserved Phase 8B-I3 offline checkpoint
+
 Phase 8B-I3's offline installable-package checkpoint is **COMPLETE**. The committed `src/ClanAI/package/ClanAI` module contains exactly `SubModule.xml`, install notes, and `bin/Win64_Shipping_Client/ClanAI.dll`. The DLL SHA-256 is `A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5`; deterministic size/hash manifest and exact validation evidence are under `Reports/Release/evidence/`.
 
 The package declares external `Bannerlord.Harmony`, excludes NavalDLC and every bundled Harmony/runtime research artifact, ships no PDB or configuration override, and defaults Evidence telemetry OFF, Strategic Commitment to Observe, and Visual War OFF. Release debug-symbol emission was disabled after the offline scan detected an embedded local PDB path; the rebuilt DLL is clean. Phase 8B-I1/I2, save-key, gameplay-policy, and Phase 3–7 preservation gates pass. Release build has 0 errors plus the inherited `System.ValueTuple` warning.
 
-No Bannerlord launch, package deployment, runtime test, gameplay tuning, or save-schema change occurred. See `Reports/Release/PHASE8B_I3_PACKAGE_ASSEMBLY_RESULT.md`.
+No Bannerlord launch, package deployment, runtime test, gameplay tuning, or save-schema change occurred in that I3 offline checkpoint. See `Reports/Release/PHASE8B_I3_PACKAGE_ASSEMBLY_RESULT.md`.
 
-Next milestone: one bounded **release-profile runtime smoke test** of this exact packaged DLL.
-
-## Phase 8A finding
+## Phase 8A finding (historical audit)
 
 Phase 7 is sufficiently characterized for roadmap purposes. Phase 7D synthesized the accepted evidence, preserved the Phase 6 Festival, Phase 7B succession, and Phase 7C-I3 ruling-clan natural-event nulls, and recommended proceeding to release hardening rather than repeating rare-event hunts.
 
-Phase 8 has started. Phase 8A's offline release-readiness audit is **COMPLETE**. It found no production network/API, ChatGPT, Codex, Desktop Commander, watchdog, command-bus, or TestRunner runtime integration, but current main is not yet a standalone release candidate: active runtime paths still target `D:\BannerlordAIResearch`; experiment-only observers and proof telemetry are installed by default; Harmony use is not declared or packaged; module and assembly versions disagree; and the committed package contains only `SubModule.xml`, not an installable DLL/module.
+Phase 8 has started. Phase 8A's offline release-readiness audit is **COMPLETE**. It found no production network/API, ChatGPT, Codex, Desktop Commander, watchdog, command-bus, or TestRunner runtime integration, but its then-current main was not yet a standalone release candidate: active runtime paths still targeted `D:\BannerlordAIResearch`; experiment-only observers and proof telemetry were installed by default; Harmony use was not declared or packaged; module and assembly versions disagreed; and the committed package contained only `SubModule.xml`, not an installable DLL/module.
 
-No gameplay source, balance, save schema, or accepted evidence changed. Bannerlord was not launched, no DLL was deployed, and no runtime work was performed. See `Reports/Release/PHASE8A_RELEASE_READINESS_AUDIT.md`.
+No gameplay source, balance, save schema, or accepted evidence changed in that audit. Bannerlord was not launched, no DLL was deployed, and no runtime work was performed. See `Reports/Release/PHASE8A_RELEASE_READINESS_AUDIT.md`.
 
-Next milestone: **Phase 8B-I1 — standalone path and release-profile seam**. Add a deterministic module-local path resolver and default release diagnostics gate, remove development-machine path dependence, prevent experiment-only observers/proof telemetry from registering in the default release profile, and prove offline that save keys and gameplay-policy wiring are unchanged. Packaging and runtime stability testing remain later checkpoints.
+That audit selected **Phase 8B-I1 — standalone path and release-profile seam** as its next step: a deterministic module-local path resolver and default release diagnostics gate, removal of development-machine path dependence, default exclusion of experiment-only observers/proof telemetry, and offline preservation of save keys/gameplay wiring. I3's later package checkpoint is preserved above; I4's actual failed runtime attempt is the current checkpoint.
 
 ## Preserved Phase 7C-I3 bounded null
 
@@ -125,6 +137,8 @@ SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 
 ## Evidence
 
+- `Reports/Release/PHASE8B_I4_RELEASE_PROFILE_RUNTIME_SMOKE_RESULT.md`
+- `Reports/Release/evidence/phase8b_i4_release_profile_smoke_20260926.txt`
 - `Reports/Security/PHASE5_SECURITY_BANDITRY_NATIVE_CAPABILITY_AUDIT.md`
 - `Reports/Security/evidence/phase5_security_banditry_native_capability_audit_20260925.txt`
 - `Reports/Security/PHASE5_LOCAL_BANDIT_CONTROL_V1_OFFLINE_IMPLEMENTATION_RESULT.md`
@@ -151,11 +165,8 @@ SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 
 ## Next bounded milestone
 
-This Phase 7C-I3 attempt is closed as a **BOUNDED NULL**. The natural ruling-clan event → structural episode → non-personal branch-history retrieval / personal exclusion → guarded save/reload boundary remains unproven.
+The requested Phase 8B-I4 smoke has not passed. This attempt is closed with exact failure evidence; it does not establish a reproducible ClanAI defect or justify a gameplay change. The guarded reload/post-reload checks remain unproven.
 
-Stop here. Do not restart or extend this attempt, force a death/election/succession, change writer/retrieval policy or D1/D2 schema, or begin another Phase 7 experiment or Phase 8 as part of this checkpoint. Further experiments require a separate bounded task.
+Stop at this checkpoint. Do not rebuild, substitute the package, repeat this attempt, start a product fix, or begin another release-hardening milestone as part of the same task. Further runtime work requires a separately bounded task with reliable campaign-hour stop control.
 
 Final product direction remains standalone, installable, and offline with no runtime development-tool dependency.
-
-
-
