@@ -2,13 +2,15 @@
 
 ## Current checkpoint
 
-Phase 7A continuity audit is complete, and Phase 7B has completed its **runtime-preflight telemetry checkpoint**.
+Phase 7B's first natural-succession experiment is complete as a **BOUNDED NULL**.
 
-**Preflight result: READY — the existing candidate can now observe one natural ruler/clan-leader succession plus a guarded save/reload without changing gameplay or persistence semantics. No succession run has been performed.**
+The original Bannerlord process (PID 20740, campaign generation 1) was resumed without restarting, redeploying, resetting telemetry, or selecting a new ruler. Nemos (`lord_1_44`) remained alive and leader of `clan_empire_west_1`, ruling the surviving `calradian_empire` kingdom. No selected-target death, clan-leader change, or ruling-clan succession occurred. No guarded post-succession save/reload was performed.
 
-The preflight adds only session-only observation of native hero death, clan-leader change, ruling-clan change, pre-save and post-reload snapshots. Each ruler snapshot records stable hero/clan/kingdom/family/settlement identities, kingdom-continuity succession count, clan-bound and hero-bound memory counts, WarState/WarScar structural IDs/counts, and a cross-hero person-memory application guard. Existing person-bound memory reads emit requested-vs-resolved hero identity telemetry without changing keys, values, scores, or factors.
+The original chronology began at campaign hour `649491.27044636116` and paused at `652360.40016455553`: **2869.1297181943664 hours** elapsed. Read-only inspection of the loaded native calendar established **2880 hours for five campaign years**, correcting the earlier 10080-hour estimate without changing the calendar or extending the five-year authorization. The stop guard retained a 10.870281805633567-hour margin below the cap.
 
-The Phase 7A `DynastyBranchEpisodeMemory` actor-ID retrieval defect remains intentionally unfixed and byte-for-byte unchanged. No age, death chance, succession, leadership, family, settlement ownership, kingdom state, memory inheritance, or save schema was changed. Release build is green with 0 errors and the inherited `System.ValueTuple` warning. Preflight candidate DLL SHA-256: `B15B7B4D3F77EF40D6080EECF07B0077BA4B0E5ABD176C3C4328166BFB4A3ED0`. Natural target ruler/clan: **NOT YET SELECTED**; select from live session-start snapshots in the future bounded run rather than stale historical state.
+The same preflight DLL remained installed throughout: SHA-256 `B15B7B4D3F77EF40D6080EECF07B0077BA4B0E5ABD176C3C4328166BFB4A3ED0`, from `e6293f191c84b8db51a343ec82c3676a962d179b`. Nemos's final paused live age was `86.4927139` and `IsDead=false`. None of 615 emitted hero-memory-resolution lines reported a cross-hero/deceased-key application; this is not a proof of successor isolation because there was no successor. Guarded reload and duplicate-increment checks remain unexercised. Preflight WarState snapshot fields remained unavailable; the previously recovered selection record retains the 18 initial WarScars and two objectives without claiming a persistence round trip.
+
+`EXIT_NOSAVE` completed. Bannerlord is closed, zero save commands were issued, the protected fixture hash/timestamp are unchanged, rollback is intact, Strategic Commitment remains Observe, and Visual War remains OFF. No gameplay or save-schema changes were made; `DynastyBranchEpisodeMemory` remains unfixed. Phase 4/5/6 were not rerun or retuned. No additional Phase 7 feature was started.
 
 ## Native ecology finding
 
@@ -120,13 +122,13 @@ SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 - `Reports/GenerationalContinuity/PHASE7A_CONTINUITY_NATIVE_AUDIT.md`
 - `Reports/GenerationalContinuity/PHASE7B_SUCCESSION_RUNTIME_PREFLIGHT.md`
 - `Reports/GenerationalContinuity/evidence/phase7b_succession_runtime_preflight_validation_20260925.txt`
+- `Reports/GenerationalContinuity/PHASE7B_SUCCESSION_RUNTIME_RESULT.md`
+- `Reports/GenerationalContinuity/evidence/phase7b_succession_runtime_20260926.txt`
 
 ## Next bounded milestone
 
-The Phase 7B runtime preflight checkpoint is complete.
+This Phase 7B attempt is closed as a bounded null. The selected natural-succession and guarded save/reload boundary remains unproven.
 
-The next separate milestone may run the Phase 7A-selected **bounded natural ruler/clan-leader succession + guarded save/reload** using this exact preflight candidate. Select the target from current live session-start snapshots and preserve the Phase 7A pass/fail rules.
-
-Do not alter age, death chance, native succession, leadership, family, settlements, memory inheritance, or `DynastyBranchEpisodeMemory` to obtain a transition. A run with no natural qualifying succession remains an honest bounded null.
+Stop here. Do not extend or restart this attempt, change the target, force conditions, fix `DynastyBranchEpisodeMemory`, or start another feature merely to obtain a positive result. Further experiments require a new bounded task.
 
 Final product direction remains standalone, installable, and offline with no runtime development-tool dependency.

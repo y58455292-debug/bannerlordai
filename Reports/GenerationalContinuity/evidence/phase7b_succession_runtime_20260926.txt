@@ -1,0 +1,101 @@
+PHASE7B_SUCCESSION_RUNTIME_RESULT
+DATE_UTC 2026-09-26
+SOURCE_COMMIT e6293f191c84b8db51a343ec82c3676a962d179b
+RUNTIME_CANDIDATE_DLL_SHA256 B15B7B4D3F77EF40D6080EECF07B0077BA4B0E5ABD176C3C4328166BFB4A3ED0
+ORIGINAL_SESSION_RESUMED YES
+ORIGINAL_PROCESS_ID 20740
+ORIGINAL_CAMPAIGN_GENERATION 1
+SESSION_LOG ClanAI_20260926_002525_616_v020Q_review.log
+SESSION_LOG_BYTES 120796469
+SESSION_LOG_SHA256 AF033CFBD361E35055CEEB9A29C6B5C95BDA4550FC6B894B79B17283CA51D6DB
+PROTECTED_FIXTURE ClanAI V020V PERSIST DEMO GATE V021M 20260924
+RESULT BOUNDED_NULL
+NATURAL_SELECTED_SUCCESSION_OBSERVED NO
+GUARDED_SAVE_RELOAD_PERFORMED NO
+CROSS_HERO_PERSONAL_MEMORY_APPLICATION_DETECTED NO_IN_EMITTED_EVIDENCE
+DUPLICATE_SUCCESSION_INCREMENT_ON_GUARDED_RELOAD NOT_EXERCISED
+GAMEPLAY_CHANGED NO
+REDEPLOYED_DURING_RESUMPTION NO
+TELEMETRY_RESET_DURING_RESUMPTION NO
+
+ORIGINAL_PROCESS_VERIFICATION
+UTC=2026-09-26T01:14:11.2455482Z
+PID=20740 StartUTC=2026-09-26T00:24:26.8187938Z Responding=True
+campaignHours=652277.98430683336
+campaignGeneration=1
+Second read: utc=2026-09-26T01:14:30.2131743Z campaignHours=652300.83704341669 changeSinceFirstCheck=22.852736583328806
+
+NATIVE_CALENDAR_READS_RETAINED_FROM_RESUMPTION
+[{"path":"type:TaleWorlds.CampaignSystem.CampaignTime.HoursInDay","value":24},{"path":"type:TaleWorlds.CampaignSystem.CampaignTime.DaysInWeek","value":3},{"path":"type:TaleWorlds.CampaignSystem.CampaignTime.WeeksInSeason","value":2},{"path":"type:TaleWorlds.CampaignSystem.CampaignTime.SeasonsInYear","value":4},{"path":"type:TaleWorlds.CampaignSystem.CampaignTime.TimeTicksPerHour","value":36000000},{"path":"type:TaleWorlds.CampaignSystem.CampaignTime.TimeTicksPerYear","value":20736000000}]
+FIVE_NATIVE_YEARS_HOURS 5*24*3*2*4=2880
+ORIGINAL_HOUR_ESTIMATE_10080 CORRECTED_FROM_LOADED_NATIVE_CALENDAR_NOT_A_BOUND_EXTENSION
+START_CAMPAIGN_HOUR 649491.27044636116
+ABSOLUTE_CAP_CAMPAIGN_HOUR 652371.2704463612
+PAUSE_CAMPAIGN_HOUR 652360.40016455553
+ELAPSED_ORIGINAL_RUN_HOURS 2869.1297181943664
+REMAINING_CAP_MARGIN_HOURS 10.870281805633567
+
+RECOVERED_TARGET_SELECTION_RECORD
+{"selectedBy":"oldest-suitable-natural-ruler","heroId":"lord_1_44","heroName":"Nemos","age":81.51159,"clanId":"clan_empire_west_1","kingdomId":"calradian_empire","culture":"empire","clanLeaderId":"lord_1_44","clanOwnedSettlements":["town_EW2","castle_EW3","castle_village_EW3_1","castle_village_EW3_2","village_EW2_2","village_EW2_3","village_EW2_4","town_EW3","village_EW3_2","village_EW3_3"],"spouseId":"lord_1_48_3","childIds":[],"familyIds":["lord_1_48_3"],"kingdomContinuitySuccessionCount":0,"clanLossMemoryCount":0,"nobleMemoryCount":0,"socialLedgerActorCount":1,"companionDutyMemoryCount":0,"companionExperienceMemoryCount":4,"companionNegativeOutcomeCount":1,"dynastyBranchActorEpisodeCount":0,"dynastyBranchTotalEpisodes":2,"socialEpisodeTotal":195,"warState":{"scarCount":18,"scarSettlementIds":["town_EN1","castle_N1","castle_EW6","castle_S7","castle_N9","castle_EW4","castle_B8","town_K1","castle_S8","castle_S3","castle_N1","castle_S8","town_EW1","town_EW1","castle_B8","castle_EW4","castle_S3","castle_B5"],"activeSiegeCount":1,"activeSiegeIds":"castle_EW6","raidRecordCount":20,"raidVillageIds":["village_EN1_2","castle_village_EW6_2","village_EN1_1","castle_village_N9_1","village_EW1_1","castle_village_EW6_2","village_EN1_1","village_K1_2","castle_village_N9_1","village_K1_2","castle_village_N1_1","castle_village_S8_2","village_K1_2","castle_village_N1_1","castle_village_S8_2","castle_village_N9_2","village_EW1_2","village_EW1_2","castle_village_N9_2","village_B4_4"],"lossRecordCount":2,"lossSettlementIds":["castle_S7","castle_B5"],"objectiveCount":2,"objectiveIds":["battania|calradian_empire","calradian_empire|vlandia"],"strainCount":7,"strainKingdomIds":["khuzait","battania","aserai","sturgia","vlandia","nord","calradian_empire"]},"campaignHour":649491.25}
+Note: the selection record's campaignHour is its stored rounded value. The original run baseline above is retained at full precision. WarState fields here are the separately recovered read-only structural snapshot, not successful fields from the GENCONT snapshot below.
+
+EXACT_INITIAL_TARGET_SNAPSHOT
+2026-09-26T00:25:28.5799869Z [ClanAI v0.22A-ruler-courtship-native-v1] GENCONT_RULER_SNAPSHOT stage=post-reload campaignHour=649491.27044636116 targetRulerHeroId=lord_1_44 targetRuler=Nemos rulerDead=False rulingClanId=clan_empire_west_1 kingdomId=calradian_empire kingdomCulture=empire currentClanLeaderId=lord_1_44 clanOwnedSettlements=town_EW2,castle_EW3,castle_village_EW3_1,castle_village_EW3_2,village_EW2_2,village_EW2_3,village_EW2_4,town_EW3,village_EW3_2,village_EW3_3 spouseId=lord_1_48_3 childIds=<none> familyIds=lord_1_48_3 kingdomContinuitySuccessionCount=0 clanLossMemoryCount=0 nobleMemoryCount=0 socialLedgerActorCount=1 companionDutyMemoryCount=0 companionExperienceMemoryCount=4 companionNegativeOutcomeCount=1 dynastyBranchActorEpisodeCount=0 dynastyBranchTotalEpisodes=2 socialEpisodeTotal=195 warScarCount=-1 warScarSettlementIds=<none> activeSiegeCount=-1 activeSiegeIds=<none> raidRecordCount=-1 raidVillageIds=<none> lossRecordCount=-1 lossSettlementIds=<none> objectiveCount=-1 objectiveIds=<none> strainKingdomIds=<none> crossHeroMemoryAppliedDetected=False mutationByClanAI=False
+
+EXACT_LAST_TARGET_SNAPSHOT_IN_SESSION_LOG
+2026-09-26T01:10:57.1588704Z [ClanAI v0.22A-ruler-courtship-native-v1] GENCONT_RULER_SNAPSHOT stage=clan-leader-change campaignHour=652066.45982325 targetRulerHeroId=lord_1_44 targetRuler=Nemos rulerDead=False rulingClanId=clan_empire_west_1 kingdomId=calradian_empire kingdomCulture=empire currentClanLeaderId=lord_1_44 clanOwnedSettlements=town_EW2,castle_EW3,castle_village_EW3_1,castle_village_EW3_2,village_EW2_2,village_EW2_3,village_EW2_4,town_EW3,village_EW3_2,village_EW3_3 spouseId=lord_1_48_3 childIds=<none> familyIds=lord_1_48_3 kingdomContinuitySuccessionCount=0 clanLossMemoryCount=0 nobleMemoryCount=0 socialLedgerActorCount=1 companionDutyMemoryCount=0 companionExperienceMemoryCount=4 companionNegativeOutcomeCount=1 dynastyBranchActorEpisodeCount=0 dynastyBranchTotalEpisodes=2 socialEpisodeTotal=382 warScarCount=-1 warScarSettlementIds=<none> activeSiegeCount=-1 activeSiegeIds=<none> raidRecordCount=-1 raidVillageIds=<none> lossRecordCount=-1 lossSettlementIds=<none> objectiveCount=-1 objectiveIds=<none> strainKingdomIds=<none> crossHeroMemoryAppliedDetected=False mutationByClanAI=False
+This stage label is not a Nemos clan-leader change. No native event line identifying oldLeaderId=lord_1_44 was found.
+
+FINAL_PAUSED_LIVE_READS_BEFORE_EXIT
+{"path":"Kingdom.All[9].StringId","value":"calradian_empire"}
+{"path":"Kingdom.All[9].IsEliminated","value":false}
+{"path":"Kingdom.All[9].RulingClan.StringId","value":"clan_empire_west_1"}
+{"path":"Kingdom.All[9].RulingClan.Leader.StringId","value":"lord_1_44"}
+{"path":"Kingdom.All[9].RulingClan.Leader.IsDead","value":false}
+{"path":"Kingdom.All[9].RulingClan.Leader.Age","value":86.4927139}
+
+STOP_GUARD_RECORD
+{"reason":"five-native-year-bound-conservative-margin","startHour":649491.2704463612,"capHour":652371.2704463612,"pauseHour":652360.4001645555,"elapsedHours":2869.1297181943664,"death":null,"clanLeaderEvent":null,"rulingClanEvent":null,"status":{"schema":"BannerlordAI.TestRunner.v2","utc":"2026-09-26T01:15:20.2700940Z","reason":"tick","campaignReady":"True","timeControl":"Stop","campaignHours":"652360.40016455553","loadedSave":"ClanAI V020V PERSIST DEMO GATE V021M 20260924","campaignGeneration":"1","autoDesiredMode":"<none>","autoResumeCount":"0","blockers":"inquiry_active;menu_active:siege_attacker_left","lastCommand":"PAUSE","lastResult":"paused","decisionType":"<none>","decisionTitle":"<none>","decisionOptionCount":"0","playerHero":"Manan","partySettlement":"town_ES7","partyPosition":"792.4435,446.1407"}}
+
+FULL_ORIGINAL_SESSION_LOG_SCAN
+GENCONT_RULER_SNAPSHOT_COUNT 35
+NEMOS_RULER_SNAPSHOT_COUNT 13
+GENCONT_HERO_MEMORY_RESOLUTION_COUNT 615
+GENCONT_NATIVE_HERO_DEATH_EVENT_LINE_COUNT 548
+GENCONT_NATIVE_CLAN_LEADER_CHANGED_COUNT 29
+SELECTED_TARGET_NATIVE_DEATH_OR_LEADER_OR_RULING_CLAN_EVENT_LINES 0
+GENCONT_PREFLIGHT_ERROR_LINES 0
+CROSS_HERO_TRUE_OR_CROSS_HERO_APPLIED_TRUE_OR_DECEASED_KEY_APPLIED_TRUE_LINES 0
+The scan matched native event lines using heroId=lord_1_44 or oldLeaderId=lord_1_44, or GENCONT_NATIVE_RULING_CLAN_CHANGED with kingdomId=calradian_empire. All other native changes remained unrelated observations. Identity detection scanned crossHero=True, crossHeroMemoryAppliedDetected=True, and deceasedHeroKeyAppliedToDifferentHero=True. No successor boundary is proven by the zero count.
+
+EXACT_REPRESENTATIVE_IDENTITY_LINE
+2026-09-26T00:30:05.7372882Z [ClanAI v0.22A-ruler-courtship-native-v1] GENCONT_HERO_MEMORY_RESOLUTION campaignHour=649491.44206655561 store=CompanionExperienceMemory requestedHeroId=lord_7_1_2 resolvedHeroId=lord_7_1_2 influenceApplied=True crossHero=False resolvedHeroKnownDead=False deceasedHeroKeyAppliedToDifferentHero=False mutationByClanAI=False
+
+FRESH_COMMAND_CHRONOLOGY_FROM_ORIGINAL_BASELINE
+2026-09-26T00:25:15.5709385Z [TestRunner v0.1] COMMAND command=LOAD_SAVE ClanAI V020V PERSIST DEMO GATE V021M 20260924 result=operator_load_save_started:ClanAI V020V PERSIST DEMO GATE V021M 20260924 timeControl=<none>
+2026-09-26T00:29:46.3034111Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=Stop
+2026-09-26T00:29:48.3521406Z [TestRunner v0.1] COMMAND command=AUTO_FAST result=auto_fast_armed timeControl=Stop
+2026-09-26T00:30:03.0397825Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_already_closed timeControl=Stop
+2026-09-26T00:30:05.0895097Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-26T00:30:21.7355782Z [TestRunner v0.1] COMMAND command=AUTO_FAST result=auto_fast_armed timeControl=UnstoppableFastForward
+2026-09-26T00:47:15.8908107Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-26T00:55:02.0469171Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=Stop
+2026-09-26T00:55:02.2544375Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-26T00:55:32.4427524Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-26T01:00:20.7634720Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=UnstoppableFastForward
+2026-09-26T01:04:55.0173476Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-26T01:12:35.4720142Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+2026-09-26T01:15:19.8549387Z [TestRunner v0.1] COMMAND command=PAUSE result=paused timeControl=Stop
+2026-09-26T01:15:42.6623801Z [TestRunner v0.1] COMMAND command=EXIT_NOSAVE result=exit_scheduled timeControl=Stop
+COMMAND_COUNT 15
+SOURCE_FIXTURE_LOAD_COUNT 1
+GUARDED_SAVE_COUNT 0
+GUARDED_RELOAD_COUNT 0
+SAVE_COMMAND_COUNT 0
+
+CLEANUP_VERIFICATION
+{"utc":"2026-09-26T01:16:07.9985485Z","bannerlordClosed":true,"protectedFixtureSha256":"A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427","protectedFixtureTimestampUtc":"2026-09-24T17:20:12.2384633Z","protectedFixtureUnchanged":true,"rollbackSha256":"2909ADE31B427E122FDDE539229BD0A4A2B4FA91C84CFD3AB63D0C8EB6F729D7","rollbackIntact":true,"liveCandidateSha256":"B15B7B4D3F77EF40D6080EECF07B0077BA4B0E5ABD176C3C4328166BFB4A3ED0","strategicCommitment":"Mode=Observe","visualWarMarker":false}
+Initial fixture hash/timestamp and rollback hash were compared against the original runtime_baseline.json. All comparisons passed. The live candidate was not replaced on resumption.
+
+LIMITS
+No selected succession occurred; therefore no guarded post-succession reload, exactly-once increment proof, duplicate-load check, successor personal-memory isolation proof, or structural continuity round trip was performed. No missing WarState value was treated as zero. Raw session log remains local; its digest and focused exact evidence above are retained rather than committing a broad runtime dump.
