@@ -461,7 +461,7 @@ No kingdom is selected to collapse because of plot.
 
 # Phase 8 — Balance, release hardening, and presentation
 
-**Status — STARTED 2026-09-25; PHASE 8A OFFLINE AUDIT COMPLETE.** No runtime work was performed. Current main is not yet a standalone release candidate: development-machine runtime paths, unconditional experiment/proof instrumentation, unresolved Harmony/package dependency declaration, version drift, and the absence of a packaged DLL are concrete blockers. The first recommended implementation checkpoint is **Phase 8B-I1 — standalone path and release-profile seam**, with no gameplay tuning or Bannerlord launch. See `Reports/Release/PHASE8A_RELEASE_READINESS_AUDIT.md`.
+**Status — STARTED 2026-09-25; PHASE 8B-I1 OFFLINE CHECKPOINT COMPLETE.** Active development-machine runtime paths now resolve under the installed module, and a release-safe profile defaults experiment observers, proof telemetry, and research logging OFF while preserving gameplay registration and all save keys. Focused preservation checks and the Release build pass; no runtime work occurred. Harmony/NavalDLC dependency contracts, version reconciliation, and package assembly remain separate blockers. **Next milestone: Phase 8B-I2 dependency/version contract checkpoint.** See `Reports/Release/PHASE8A_RELEASE_READINESS_AUDIT.md` and `Reports/Release/PHASE8B_I1_STANDALONE_PROFILE_RESULT.md`.
 
 Only after the major world loops work:
 
@@ -510,4 +510,5 @@ Do not collapse these into a single "working" label.
 - **Kingdoms and dynasties may change; culture persists.**
 - **Evidence serves gameplay, not the other way around.**
 - **The first integrated demo comes before perfection of every remaining research problem.**
+
 

@@ -9,8 +9,8 @@ namespace ClanAI
 {
     internal static class DynastyMindSeed
     {
-        internal const string ConfigPath =
-            @"D:\BannerlordAIResearch\Data\DynastyMindSeed.cfg";
+        internal static readonly string ConfigPath =
+            ModuleRuntimePaths.Data("DynastyMindSeed.cfg");
 
         private sealed class Entry
         {
@@ -733,7 +733,8 @@ namespace ClanAI
         {
             try
             {
-                if (!File.Exists(ConfigPath))
+                if (string.IsNullOrEmpty(ConfigPath) ||
+                    !File.Exists(ConfigPath))
                 {
                     ClanAIPostVanilla.WriteExternalLog(
                         "DYNASTY_MIND_SEED_MISSING path=" +
@@ -947,3 +948,4 @@ namespace ClanAI
         }
     }
 }
+

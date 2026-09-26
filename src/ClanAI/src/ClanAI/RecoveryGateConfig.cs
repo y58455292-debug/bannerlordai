@@ -11,15 +11,16 @@ namespace ClanAI
 
     internal static class RecoveryGateConfig
     {
-        internal const string ConfigPath =
-            @"D:\BannerlordAIResearch\Data\WeakBanditRecovery.cfg";
+        internal static readonly string ConfigPath =
+            ModuleRuntimePaths.Data("WeakBanditRecovery.cfg");
 
         internal static RecoveryGateMode LoadMode(
             out string status)
         {
             try
             {
-                if (!File.Exists(ConfigPath))
+                if (string.IsNullOrEmpty(ConfigPath) ||
+                    !File.Exists(ConfigPath))
                 {
                     status = "missing_default_suppress";
                     return RecoveryGateMode.Suppress;
@@ -102,3 +103,4 @@ namespace ClanAI
         }
     }
 }
+

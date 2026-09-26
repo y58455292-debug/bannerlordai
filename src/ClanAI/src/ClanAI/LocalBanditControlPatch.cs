@@ -79,7 +79,8 @@ namespace ClanAI
                 target,
                 postfix: new HarmonyMethod(postfix));
 
-            LocalBanditControlRuntimeTelemetry.Install();
+            if (RuntimeProfile.EvidenceEnabled)
+                LocalBanditControlRuntimeTelemetry.Install();
 
             _installed = true;
         }
@@ -184,3 +185,4 @@ namespace ClanAI
         }
     }
 }
+

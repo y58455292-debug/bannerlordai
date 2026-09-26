@@ -11,8 +11,8 @@ namespace ClanAI
 
     internal static class SocialMemoryCausalConfig
     {
-        internal const string ConfigPath =
-            @"D:\BannerlordAIResearch\Data\SocialMemoryCausal.cfg";
+        internal static readonly string ConfigPath =
+            ModuleRuntimePaths.Data("SocialMemoryCausal.cfg");
 
         private static readonly object Sync =
             new object();
@@ -52,7 +52,8 @@ namespace ClanAI
                     return;
                 try
                 {
-                    if (!File.Exists(ConfigPath))
+                    if (string.IsNullOrEmpty(ConfigPath) ||
+                        !File.Exists(ConfigPath))
                     {
                         _mode =
                             SocialMemoryCausalMode.Observe;
@@ -144,3 +145,4 @@ namespace ClanAI
         }
     }
 }
+

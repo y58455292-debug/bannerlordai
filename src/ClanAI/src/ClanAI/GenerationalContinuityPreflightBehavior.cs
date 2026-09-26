@@ -140,6 +140,9 @@ namespace ClanAI
             string resolvedHeroId,
             bool influenceApplied)
         {
+            if (!RuntimeProfile.EvidenceEnabled)
+                return;
+
             string requested = CleanId(requestedHeroId);
             string resolved = CleanId(resolvedHeroId);
             bool crossHero =
@@ -1005,4 +1008,5 @@ namespace ClanAI
         }
     }
 }
+
 

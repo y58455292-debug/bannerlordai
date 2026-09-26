@@ -10,7 +10,8 @@ namespace ClanAI
     // v0.19A: event-history foundation for complexes, not an emotion model.
     public static class SocialEpisodeMemory
     {
-        private const string AuditPath = @"D:\BannerlordAIResearch\Telemetry\ClanAI\episodes.log";
+        private static readonly string AuditPath =
+            ModuleRuntimePaths.Log("episodes.log");
         private static readonly object AuditLock = new object();
         private static SocialEpisodeStore _store = new SocialEpisodeStore();
         private static bool _prepared, _ready, _restored, _capacityReported;
@@ -103,6 +104,12 @@ namespace ClanAI
 
         private static void Audit(string message)
         {
+            if (!RuntimeProfile.EvidenceEnabled ||
+                string.IsNullOrEmpty(AuditPath))
+            {
+                return;
+            }
+
             try
             {
                 lock (AuditLock)
@@ -123,3 +130,4 @@ namespace ClanAI
         }
     }
 }
+

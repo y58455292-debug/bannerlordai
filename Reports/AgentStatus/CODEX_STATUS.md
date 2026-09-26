@@ -2,6 +2,16 @@
 
 ## Current checkpoint
 
+Phase 8B-I1's offline standalone-path and default release-profile checkpoint is **COMPLETE**. Active production `D:\BannerlordAIResearch` paths now resolve under the installed ClanAI module through one deterministic resolver. Missing configuration preserves conservative defaults. A module-local `Data/RuntimeProfile.cfg` defaults safely to Release and requires explicit `Profile=Evidence` opt-in for research instrumentation.
+
+The default Release profile retains gameplay models, patches, behaviors, policy math, thresholds, and all twelve save keys. It does not register the Phase 7B preflight, Phase 4A recovery observer, or Phase 7C-I3 structural observer; it does not install Phase 4/5/6 proof telemetry; and it suppresses research evidence/session/diagnostic logging. Focused profile/path tests, Phase 3–7 preservation invariants, and the Release build passed with 0 errors and the inherited `System.ValueTuple` warning.
+
+No Bannerlord launch, DLL deployment, runtime stability test, gameplay tuning, save-schema change, dependency cleanup, version reconciliation, or packaging occurred. See `Reports/Release/PHASE8B_I1_STANDALONE_PROFILE_RESULT.md`.
+
+Next milestone: a separate offline **Phase 8B-I2 dependency/version contract checkpoint** before package assembly.
+
+## Phase 8A finding
+
 Phase 7 is sufficiently characterized for roadmap purposes. Phase 7D synthesized the accepted evidence, preserved the Phase 6 Festival, Phase 7B succession, and Phase 7C-I3 ruling-clan natural-event nulls, and recommended proceeding to release hardening rather than repeating rare-event hunts.
 
 Phase 8 has started. Phase 8A's offline release-readiness audit is **COMPLETE**. It found no production network/API, ChatGPT, Codex, Desktop Commander, watchdog, command-bus, or TestRunner runtime integration, but current main is not yet a standalone release candidate: active runtime paths still target `D:\BannerlordAIResearch`; experiment-only observers and proof telemetry are installed by default; Harmony use is not declared or packaged; module and assembly versions disagree; and the committed package contains only `SubModule.xml`, not an installable DLL/module.
@@ -146,4 +156,5 @@ This Phase 7C-I3 attempt is closed as a **BOUNDED NULL**. The natural ruling-cla
 Stop here. Do not restart or extend this attempt, force a death/election/succession, change writer/retrieval policy or D1/D2 schema, or begin another Phase 7 experiment or Phase 8 as part of this checkpoint. Further experiments require a separate bounded task.
 
 Final product direction remains standalone, installable, and offline with no runtime development-tool dependency.
+
 

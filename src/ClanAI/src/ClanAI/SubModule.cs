@@ -9,9 +9,12 @@ namespace ClanAI
     {
         protected override void OnSubModuleUnloaded()
         {
-            ClanAIDiagnostics.EndSession("module_unload");
-            ClanAIEvidenceWriter.Shutdown();
-            ClanAIDiagnostics.WriteShutdownHealth();
+            if (RuntimeProfile.EvidenceEnabled)
+            {
+                ClanAIDiagnostics.EndSession("module_unload");
+                ClanAIEvidenceWriter.Shutdown();
+                ClanAIDiagnostics.WriteShutdownHealth();
+            }
             base.OnSubModuleUnloaded();
         }
 
@@ -19,13 +22,17 @@ namespace ClanAI
         protected override void OnApplicationTick(float dt)
         {
             base.OnApplicationTick(dt);
-            ClanAIDiagnostics.Tick();
-            DynastyStructuralRuntimeObserver.FlushPending();
+            if (RuntimeProfile.EvidenceEnabled)
+            {
+                ClanAIDiagnostics.Tick();
+                DynastyStructuralRuntimeObserver.FlushPending();
+            }
         }
 
         public override void OnGameEnd(Game game)
         {
-            ClanAIDiagnostics.EndSession("game_end");
+            if (RuntimeProfile.EvidenceEnabled)
+                ClanAIDiagnostics.EndSession("game_end");
             base.OnGameEnd(game);
         }
 
@@ -146,10 +153,13 @@ namespace ClanAI
                     "Phase 6 CivicProject BuildingScoreCalculationModel was not selected");
             }
 
-            CivicProjectRuntimeTelemetry.Install(
-                starter,
-                wrapper,
-                current);
+            if (RuntimeProfile.EvidenceEnabled)
+            {
+                CivicProjectRuntimeTelemetry.Install(
+                    starter,
+                    wrapper,
+                    current);
+            }
         }
 
         private static void InstallLocalManpowerVolunteerModel(
@@ -194,7 +204,8 @@ namespace ClanAI
                 " policy=phase4b-empty+phase4c-occupied-native-eligible" +
                 " mutation=False");
 
-            LocalManpowerRuntimeTelemetry.Install();
+            if (RuntimeProfile.EvidenceEnabled)
+                LocalManpowerRuntimeTelemetry.Install();
         }
 
         protected override void InitializeGameStarter(
@@ -230,9 +241,12 @@ namespace ClanAI
                     starter.AddBehavior(new WarStateBehavior());
                     starter.AddBehavior(new RulerClanCourtshipBehavior());
                     starter.AddBehavior(new KingdomContinuityBehavior());
-                    starter.AddBehavior(new GenerationalContinuityPreflightBehavior());
-                    starter.AddBehavior(new Phase4ARecoveryObserverBehavior());
-                    starter.AddBehavior(new DynastyStructuralRuntimeObserver());
+                    if (RuntimeProfile.EvidenceEnabled)
+                    {
+                        starter.AddBehavior(new GenerationalContinuityPreflightBehavior());
+                        starter.AddBehavior(new Phase4ARecoveryObserverBehavior());
+                        starter.AddBehavior(new DynastyStructuralRuntimeObserver());
+                    }
                 }
             }
         }

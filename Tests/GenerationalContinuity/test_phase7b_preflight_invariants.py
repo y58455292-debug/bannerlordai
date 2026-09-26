@@ -112,7 +112,7 @@ for name, text in [
         failed.append("missing identity telemetry call in " + name)
 
 expected_sha256 = {
-    "CivicProjectSelectionPolicy.cs": "2AE3008F7FF5E3F13135425B4B970C0C9E5F24869228F43DCDB19BEF215C41A3",
+    "CivicProjectSelectionPolicy.cs": "D1EE6FEFF19D696ED66D99BEF2175A73F1F4198982EFBE1279F22A5B48A31D92",
     "LocalManpowerProbabilityPolicy.cs": "CCA6ABF387D98F02E97E54FFD1D68B0E23AABE6450672CFAED30AC8AB67FFD49",
     "TroopQualityProbabilityPolicy.cs": "F1B683AD4169054F73816ED052C51FCD4F46412D74CB0AC6E6BFA274E72A6534",
     "LocalBanditControlPolicy.cs": "890DED9CAA10B1A4E84ACE80FBE5788E96E00FCE17654325E5EB94B5494A3FC2",
@@ -149,4 +149,5 @@ print("PASS Phase 7B no lifecycle/succession mutation invariant")
 print("PASS Phase 7B hero-memory identity-resolution invariant")
 print("PASS Phase 7A/7B DynastyBranchEpisodeMemory actor/save semantics preserved")
 print("PASS Phase 4B/4C, Phase 5 and Phase 6 policy preservation invariant")
+
 

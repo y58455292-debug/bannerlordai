@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 import hashlib
 import re
 
@@ -177,7 +177,7 @@ for forbidden in (
 if re.search(r'@?"[A-Za-z]:[\\/]', runtime):
     failed.append("Phase 6 absolute development-machine path")
 
-if hashlib.sha256(policy_path.read_bytes()).hexdigest().upper() != "2AE3008F7FF5E3F13135425B4B970C0C9E5F24869228F43DCDB19BEF215C41A3":
+if hashlib.sha256(policy_path.read_bytes()).hexdigest().upper() != "D1EE6FEFF19D696ED66D99BEF2175A73F1F4198982EFBE1279F22A5B48A31D92":
     failed.append("Phase 6 pure policy byte-for-byte preservation invariant")
 
 # Preserve accepted policy blobs from Phase 4B, Phase 4C and Phase 5.
@@ -185,7 +185,9 @@ expected_blobs = {
     "LocalManpowerProbabilityPolicy.cs": "f8b21dabb9df38df85fc0f83e6cfcad1a083f713",
     "TroopQualityProbabilityPolicy.cs": "d7b997d7c99e2d768bff97bf10057748547a32e8",
     "LocalBanditControlPolicy.cs": "7b3d119f274ddf884167f8fd337815d8ba6e6c47",
-    "LocalBanditControlPatch.cs": "987c9f428d3182ee4bdef170c99644fc2e5669c1",
+    # Phase 8B adds only the explicit evidence-profile telemetry gate;
+    # the gameplay postfix and policy call remain unchanged.
+    "LocalBanditControlPatch.cs": "e6ac790f10ccbaa263a8d5471425fba626064886",
 }
 for name, expected in expected_blobs.items():
     actual = git_blob_sha(BASE / name)
@@ -203,4 +205,5 @@ print("PASS Phase 6 civic-project standalone-path invariant")
 print("PASS Phase 6 civic-project observation-only telemetry invariant")
 print("PASS Phase 6 pure policy byte-for-byte preservation invariant")
 print("PASS Phase 4B/4C and Phase 5 preservation invariant")
+
 

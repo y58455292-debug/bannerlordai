@@ -262,11 +262,11 @@ namespace ClanAI
     {
         private static readonly bool HourlyObserveOnly = true;
 
-        private const string LogPath =
-            @"D:\BannerlordAIResearch\Telemetry\ClanAI\logs\clanai.log";
+        private static readonly string LogPath =
+            ModuleRuntimePaths.Log("clanai.log");
 
-        private const string SessionLogDirectory =
-            @"D:\BannerlordAIResearch\Telemetry\ClanAI\sessions";
+        private static readonly string SessionLogDirectory =
+            ModuleRuntimePaths.LogDirectory("Sessions");
 
         private const string Version =
             "v0.22A-ruler-courtship-native-v1";
@@ -287,6 +287,12 @@ namespace ClanAI
 
         public static void Reset()
         {
+            if (!RuntimeProfile.EvidenceEnabled)
+            {
+                _sessionLogPath = null;
+                return;
+            }
+
             try
             {
                 Directory.CreateDirectory(
@@ -819,6 +825,12 @@ namespace ClanAI
         public static void WriteExternalLog(
             string text)
         {
+            if (!RuntimeProfile.EvidenceEnabled ||
+                string.IsNullOrEmpty(LogPath))
+            {
+                return;
+            }
+
             try
             {
                 string line =

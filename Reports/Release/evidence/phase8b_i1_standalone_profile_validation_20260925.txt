@@ -1,0 +1,54 @@
+PHASE8B_I1_STANDALONE_PROFILE_VALIDATION
+date=2026-09-25
+parent=32afeaf77ee8fad8bbc654edd2b95b345f7325b4
+runtimePerformed=False
+bannerlordLaunched=False
+dllDeployed=False
+gameplayPolicyChanged=False
+saveSchemaChanged=False
+
+FOCUSED_PATH_PROFILE_TESTS
+PASS Phase 8B module-local path resolver
+PASS Phase 8B missing/invalid release-safe profile
+PASS Phase 8B explicit evidence-profile opt-in
+
+OFFLINE_RELEASE_INVARIANT
+PASS Phase 8B standalone production dependency/path invariant
+PASS Phase 8B release-default/evidence-opt-in wiring invariant
+PASS Phase 8B gameplay behavior and save-key preservation invariant
+PASS Phase 3/4/5/6/7 policy hash preservation invariant
+
+PRESERVATION
+PASS HomeResponsibility runtime wiring
+PASS KingdomObjective runtime wiring
+PASS VisualWar runtime wiring
+PASS Strategic Commitment runtime wiring
+PASS Phase 4B Local Manpower selected-model delegation/no-mutation/standalone invariants
+PASS Phase 4C selected-wrapper/native-eligibility/no-mutation/standalone invariants
+PASS Phase 5 exact-postfix/Security-input/no-mutation/standalone/policy invariants
+PASS Phase 6 NPC-only/idle-town/no-mutation/standalone/telemetry/policy invariants
+PASS Phase 7C actor retrieval/branch isolation/D1-D2/no-mutation invariants
+PASS Phase 7C-I3 native writer/allowlist/D1-D2/no-mutation invariants
+PASS Phase 7B observation-only/no-save-schema/no-lifecycle-mutation/identity invariants
+
+SAVE_KEYS_UNCHANGED=12
+ClanAI_NobleMemory_v1
+ClanAI_SocialLedger_v1
+ClanAI_SocialEpisodes_v1
+ClanAI_DynastyCanonCutoffHours_v1
+ClanAI_DynastyBranchId_v1
+ClanAI_DynastyBranchEpisodes_v1
+ClanAI_CompanionDutyMemory_v1
+ClanAI_CompanionExperienceMemory_v1
+ClanAI_CompanionNegativeOutcomeMemory_v1
+ClanAI_SocialLoyaltyClanLoss_v2
+ClanAI_WarState_v1
+ClanAI_KingdomContinuity_v1
+
+RELEASE_BUILD
+configuration=Release
+errors=0
+warnings=1
+warning=MSB3277 inherited System.ValueTuple version conflict
+result=PASS
+

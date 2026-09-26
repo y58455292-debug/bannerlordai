@@ -3,26 +3,33 @@ using System.IO;
 
 namespace ClanAI
 {
-    internal enum DynastyMindCausalMode
+    internal enum ClanAIRuntimeProfile
     {
-        Observe,
-        Apply
+        Release,
+        Evidence
     }
 
-    internal static class DynastyMindCausalConfig
+    internal static class RuntimeProfile
     {
+        internal const string ConfigFileName =
+            "RuntimeProfile.cfg";
+
         internal static readonly string ConfigPath =
-            ModuleRuntimePaths.Data("DynastyMindCausal.cfg");
+            ModuleRuntimePaths.Data(ConfigFileName);
 
         private static readonly object Sync = new object();
         private static bool _loaded;
-        private static DynastyMindCausalMode _mode =
-            DynastyMindCausalMode.Observe;
+        private static ClanAIRuntimeProfile _profile =
+            ClanAIRuntimeProfile.Release;
         private static string _status = "not_loaded";
 
-        internal static DynastyMindCausalMode Mode
+        internal static bool EvidenceEnabled
         {
-            get { EnsureLoaded(); return _mode; }
+            get
+            {
+                EnsureLoaded();
+                return _profile == ClanAIRuntimeProfile.Evidence;
+            }
         }
 
         internal static string Status
@@ -30,7 +37,7 @@ namespace ClanAI
             get { EnsureLoaded(); return _status; }
         }
 
-        internal static void EnsureLoaded()
+        private static void EnsureLoaded()
         {
             if (_loaded)
                 return;
@@ -45,27 +52,28 @@ namespace ClanAI
                     if (string.IsNullOrEmpty(ConfigPath) ||
                         !File.Exists(ConfigPath))
                     {
-                        _mode = DynastyMindCausalMode.Observe;
-                        _status = "missing_default_observe";
+                        _profile = ClanAIRuntimeProfile.Release;
+                        _status = "missing_default_release";
                     }
                     else
                     {
-                        _mode = ParseMode(
+                        _profile = Parse(
                             File.ReadAllLines(ConfigPath),
                             out _status);
                     }
                 }
                 catch (Exception ex)
                 {
-                    _mode = DynastyMindCausalMode.Observe;
-                    _status = "read_failed_" + ex.GetType().Name;
+                    _profile = ClanAIRuntimeProfile.Release;
+                    _status = "read_failed_default_release_" +
+                        ex.GetType().Name;
                 }
 
                 _loaded = true;
             }
         }
 
-        internal static DynastyMindCausalMode ParseMode(
+        internal static ClanAIRuntimeProfile Parse(
             string[] lines,
             out string status)
         {
@@ -77,41 +85,42 @@ namespace ClanAI
                     if (line.Length == 0 || line.StartsWith("#"))
                         continue;
 
-                    int eq = line.IndexOf('=');
-                    if (eq <= 0)
+                    int equals = line.IndexOf('=');
+                    if (equals <= 0)
                         continue;
 
-                    string key = line.Substring(0, eq).Trim();
+                    string key = line.Substring(0, equals).Trim();
                     if (!key.Equals(
-                            "Mode",
+                            "Profile",
                             StringComparison.OrdinalIgnoreCase))
+                    {
                         continue;
+                    }
 
-                    string value = line.Substring(eq + 1).Trim();
-
+                    string value = line.Substring(equals + 1).Trim();
                     if (value.Equals(
-                            "Apply",
+                            "Evidence",
                             StringComparison.OrdinalIgnoreCase))
                     {
-                        status = "configured_apply";
-                        return DynastyMindCausalMode.Apply;
+                        status = "configured_evidence";
+                        return ClanAIRuntimeProfile.Evidence;
                     }
 
                     if (value.Equals(
-                            "Observe",
+                            "Release",
                             StringComparison.OrdinalIgnoreCase))
                     {
-                        status = "configured_observe";
-                        return DynastyMindCausalMode.Observe;
+                        status = "configured_release";
+                        return ClanAIRuntimeProfile.Release;
                     }
 
-                    status = "invalid_mode_default_observe";
-                    return DynastyMindCausalMode.Observe;
+                    status = "invalid_profile_default_release";
+                    return ClanAIRuntimeProfile.Release;
                 }
             }
 
-            status = "mode_missing_default_observe";
-            return DynastyMindCausalMode.Observe;
+            status = "profile_missing_default_release";
+            return ClanAIRuntimeProfile.Release;
         }
     }
 }
