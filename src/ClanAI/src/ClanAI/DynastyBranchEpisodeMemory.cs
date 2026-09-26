@@ -43,6 +43,7 @@ namespace ClanAI
         private static int _choiceRecorded;
         private static int _choiceRetrievals;
         private static int _branchHistoryRetrievals;
+        private static int _structuralRecorded;
 
         public static void SyncData(IDataStore dataStore)
         {
@@ -96,6 +97,7 @@ namespace ClanAI
             _choiceRecorded = 0;
             _choiceRetrievals = 0;
             _branchHistoryRetrievals = 0;
+            _structuralRecorded = 0;
 
             ClanAIPostVanilla.WriteExternalLog(
                 "DYNASTY_BRANCH_EPISODE_SESSION_READY" +
@@ -305,6 +307,124 @@ namespace ClanAI
                     "DYNASTY_BRANCH_CHOICE_RECORD_FAILED" +
                     " type=" + ex.GetType().Name +
                     " message=" + Clean(ex.Message));
+
+                return "failed_" + ex.GetType().Name;
+            }
+        }
+
+        internal static string RecordKingdomRulingClanChanged(
+            string kingdomId,
+            string kingdomName,
+            string oldRulingClanId,
+            string newRulingClanId,
+            string oldRulerHeroId,
+            string newRulerHeroId,
+            int successionOrdinal,
+            double campaignHours)
+        {
+            try
+            {
+                if (!_ready)
+                    return "not_ready";
+
+                Hero actor = Hero.MainHero;
+                if (actor == null ||
+                    string.IsNullOrWhiteSpace(actor.StringId))
+                {
+                    return "no_actor";
+                }
+
+                if (Episodes.Count >= Capacity)
+                    return "capacity";
+
+                HashSet<string> existing =
+                    new HashSet<string>(StringComparer.Ordinal);
+
+                for (int i = 0; i < Episodes.Count; i++)
+                {
+                    Episode stored = Episodes[i];
+                    string identity =
+                        DynastyStructuralEpisodePolicy.IdentityFromStoredRow(
+                            stored.BranchId,
+                            stored.Kind,
+                            stored.Detail);
+
+                    if (!string.IsNullOrEmpty(identity))
+                        existing.Add(identity);
+                }
+
+                DynastyStructuralEpisodeDraft draft;
+                bool created =
+                    DynastyStructuralEpisodePolicy.TryCreateRulingClanChanged(
+                        DynastyMindSeed.BranchId,
+                        actor.StringId,
+                        actor.Name == null
+                            ? "<unnamed>"
+                            : actor.Name.ToString(),
+                        kingdomId,
+                        kingdomName,
+                        oldRulingClanId,
+                        newRulingClanId,
+                        oldRulerHeroId,
+                        newRulerHeroId,
+                        successionOrdinal,
+                        campaignHours,
+                        DateTime.UtcNow.ToString("O"),
+                        existing,
+                        out draft);
+
+                if (!created)
+                {
+                    _duplicates++;
+                    return "duplicate_or_invalid";
+                }
+
+                Episode episode = new Episode
+                {
+                    Id = Guid.NewGuid().ToString("N"),
+                    BranchId = draft.BranchId,
+                    CampaignHours = draft.CampaignHours,
+                    ObservedUtc = draft.ObservedUtc,
+                    ActorId = draft.ActorId,
+                    ActorName = draft.ActorName,
+                    Kind = draft.Kind,
+                    ContextId = draft.ContextId,
+                    ContextName = draft.ContextName,
+                    Source = draft.Source,
+                    Detail = draft.Detail,
+                    OptionIndex = draft.OptionIndex,
+                    OptionText = draft.OptionText
+                };
+
+                Episodes.Add(episode);
+                SessionFingerprints.Add(draft.SemanticIdentity);
+                _recorded++;
+                _structuralRecorded++;
+
+                ClanAIPostVanilla.WriteExternalLog(
+                    "DYNASTY_BRANCH_STRUCTURAL_RECORDED" +
+                    " id=" + episode.Id +
+                    " branchId=" + Clean(episode.BranchId) +
+                    " observer=" + Clean(episode.ActorName) +
+                    " observerId=" + Clean(episode.ActorId) +
+                    " kind=" + episode.Kind +
+                    " contextId=" + Clean(episode.ContextId) +
+                    " source=" + Clean(episode.Source) +
+                    " detail=" + Clean(episode.Detail) +
+                    " campaignHours=" + episode.CampaignHours.ToString(
+                        "R", CultureInfo.InvariantCulture) +
+                    " personalMemory=False mutation=False" +
+                    " scoreMutation=False");
+
+                return episode.Id;
+            }
+            catch (Exception ex)
+            {
+                ClanAIPostVanilla.WriteExternalLog(
+                    "DYNASTY_BRANCH_STRUCTURAL_RECORD_FAILED" +
+                    " type=" + ex.GetType().Name +
+                    " message=" + Clean(ex.Message) +
+                    " mutation=False");
 
                 return "failed_" + ex.GetType().Name;
             }
@@ -633,6 +753,7 @@ namespace ClanAI
                 " dynastyBranchChoiceRecorded=" + _choiceRecorded +
                 " dynastyBranchChoiceRetrievals=" + _choiceRetrievals +
                 " dynastyBranchHistoryRetrievals=" + _branchHistoryRetrievals +
+                " dynastyBranchStructuralRecorded=" + _structuralRecorded +
                 " dynastyBranchEpisodeDuplicates=" + _duplicates +
                 " dynastyBranchEpisodeRejected=" + _rejected;
         }
@@ -804,8 +925,7 @@ namespace ClanAI
 
             string kind = f[6];
 
-            if (kind != "IncidentOpened" &&
-                kind != "IncidentChoice")
+            if (!DynastyStructuralEpisodePolicy.IsAcceptedProductionKind(kind))
             {
                 return false;
             }
@@ -831,6 +951,20 @@ namespace ClanAI
                 (!d2 ||
                  optionIndex < 0 ||
                  string.IsNullOrWhiteSpace(optionText)))
+            {
+                return false;
+            }
+
+            if (kind ==
+                    DynastyStructuralEpisodePolicy.RulingClanChangedKind &&
+                (!d2 ||
+                 optionIndex != -1 ||
+                 !string.IsNullOrEmpty(optionText) ||
+                 string.IsNullOrEmpty(
+                    DynastyStructuralEpisodePolicy.IdentityFromStoredRow(
+                        f[1],
+                        kind,
+                        f[10]))))
             {
                 return false;
             }

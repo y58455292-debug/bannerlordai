@@ -134,6 +134,16 @@ namespace ClanAI
             record.SuccessionCount++;
             record.LastSuccessionHours = CampaignTime.Now.ToHours;
 
+            DynastyBranchEpisodeMemory.RecordKingdomRulingClanChanged(
+                record.KingdomId,
+                record.CurrentName,
+                oldRulingClanId,
+                newRulingClanId,
+                LeaderId(oldRulingClan),
+                LeaderId(kingdom.RulingClan),
+                record.SuccessionCount,
+                record.LastSuccessionHours);
+
             string rulerName = kingdom.RulingClan == null || kingdom.RulingClan.Leader == null
                 ? "leadership is vacant"
                 : kingdom.RulingClan.Leader.Name.ToString();
@@ -303,6 +313,13 @@ namespace ClanAI
             return clan == null ? null : clan.StringId;
         }
 
+        private static string LeaderId(Clan clan)
+        {
+            return clan == null || clan.Leader == null
+                ? null
+                : clan.Leader.StringId;
+        }
+
         private static string Encode(string value)
         {
             return string.IsNullOrEmpty(value)
@@ -335,3 +352,4 @@ namespace ClanAI
         }
     }
 }
+

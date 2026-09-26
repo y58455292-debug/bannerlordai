@@ -10,7 +10,7 @@ failed = []
 
 for token in [
     '"ClanAI_DynastyBranchEpisodes_v1"', '"D1"', '"D2"', '"D2|"',
-    'kind != "IncidentOpened"', 'kind != "IncidentChoice"',
+    'IsAcceptedProductionKind(kind)',
     'BuildLatestRetrievalReceipt', 'BuildLatestChoiceRetrievalReceipt',
     'BuildLatestBranchHistoryReceipt', 'SelectLatestActorEpisode',
     'SelectLatestActorChoice', 'SelectLatestBranchHistory',

@@ -1,0 +1,42 @@
+Phase 7C-I3 offline validation
+Base: a6df68ab756aa4045eeffda2f16ce521fc149848
+Date: 2026-09-25
+
+Phase7CStructuralWriterTests
+PASS Phase 7C-I3 structural-writer checks=31
+PASS native authority, deduplication, provenance, retrieval isolation and D2 kind compatibility
+
+Phase7CRetrievalScopeTests
+PASS Phase 7C retrieval-scope checks=19
+PASS actor preservation, history isolation, provenance and no mutation
+
+test_phase7c_i3_structural_writer_invariants.py
+PASS Phase 7C-I3 guarded native-event writer invariant
+PASS Phase 7C-I3 structural allowlist/personal exclusion invariant
+PASS Phase 7C-I3 D1/D2 schema compatibility invariant
+PASS Phase 7C-I3 no political/gameplay mutation invariant
+
+test_phase7c_retrieval_scope_invariants.py
+PASS Phase 7C actor-specific retrieval preservation invariant
+PASS Phase 7C explicit branch-history isolation invariant
+PASS Phase 7C D1/D2 save compatibility invariant
+PASS Phase 7C no gameplay mutation/development dependency invariant
+
+test_phase7b_preflight_invariants.py
+PASS Phase 7B succession preflight observation-only invariant
+PASS Phase 7B no save-schema invariant
+PASS Phase 7B no lifecycle/succession mutation invariant
+PASS Phase 7B hero-memory identity-resolution invariant
+PASS Phase 7A/7B DynastyBranchEpisodeMemory actor/save semantics preserved
+PASS Phase 4B/4C, Phase 5 and Phase 6 policy preservation invariant
+
+Release build
+Build succeeded.
+1 Warning(s) (inherited System.ValueTuple conflict)
+0 Error(s)
+
+Bannerlord launch: NO
+DLL deployment: NO
+Succession experiment: NO
+Runtime observation: NO
+

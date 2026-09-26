@@ -71,6 +71,8 @@ namespace ClanAI
         {
             switch (kind)
             {
+                case "KingdomRulingClanChanged":
+                    return true;
                 case "IncidentOpened":
                 case "IncidentChoice":
                 default:
@@ -110,6 +112,9 @@ namespace ClanAI
             for (int i = 0; i < episodes.Count; i++)
             {
                 DynastyEpisodeDescriptor e = episodes[i];
+
+                if (IsBranchHistoryKind(e.Kind))
+                    continue;
 
                 if (choicesOnly && e.Kind != "IncidentChoice")
                     continue;
