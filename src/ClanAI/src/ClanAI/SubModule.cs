@@ -20,6 +20,7 @@ namespace ClanAI
         {
             base.OnApplicationTick(dt);
             ClanAIDiagnostics.Tick();
+            DynastyStructuralRuntimeObserver.FlushPending();
         }
 
         public override void OnGameEnd(Game game)
@@ -231,6 +232,7 @@ namespace ClanAI
                     starter.AddBehavior(new KingdomContinuityBehavior());
                     starter.AddBehavior(new GenerationalContinuityPreflightBehavior());
                     starter.AddBehavior(new Phase4ARecoveryObserverBehavior());
+                    starter.AddBehavior(new DynastyStructuralRuntimeObserver());
                 }
             }
         }

@@ -1,0 +1,51 @@
+PHASE7C_I3_RUNTIME_TELEMETRY_OFFLINE_VALIDATION
+BASE 12f8f430a8f192e100133a70787e7596e412099b
+DATE_UTC 2026-09-26
+BASE_BUILD_DLL_SHA256 1B682D9682FE22E5EC29ED4836FC9097AB4CD321D3576779AB5DBFA91A20ADDD
+RUNTIME_CANDIDATE_DLL_SHA256 6B3DC310C7491C2D976F34C9DBF64A3CF9A756B1077BCAD29C4E6577767C4364
+OBSERVER_SOURCE_SHA256 3207a5353074cd4fda987bd1ee61bdabfbbd8faf0d31f0634d569c763a03c73e
+
+The new observer only reads native event arguments, existing episode/ledger fields, and the existing production retrieval paths. Event snapshots are flushed on the next application tick after all native event listeners finish. Before-save snapshots run synchronously; post-load snapshots run after load completion. There are no writer calls, new save fields, native actions, or changes to retrieval policy. The writer, structural policy, retrieval policy, public bridge, and continuity ledger are byte-for-byte unchanged from the base.
+
+COMMAND dotnet run --project Tests/GenerationalContinuity/Phase7CStructuralWriter/Phase7CStructuralWriterTests.csproj -c Release
+PASS Phase 7C-I3 structural-writer checks=31
+PASS native authority, deduplication, provenance, retrieval isolation and D2 kind compatibility
+EXIT 0
+COMMAND dotnet run --project Tests/GenerationalContinuity/Phase7CRetrievalScope/Phase7CRetrievalScopeTests.csproj -c Release
+PASS Phase 7C retrieval-scope checks=19
+PASS actor preservation, history isolation, provenance and no mutation
+EXIT 0
+COMMAND python Tests/GenerationalContinuity/test_phase7c_i3_structural_writer_invariants.py
+PASS Phase 7C-I3 guarded native-event writer invariant
+PASS Phase 7C-I3 structural allowlist/personal exclusion invariant
+PASS Phase 7C-I3 D1/D2 schema compatibility invariant
+PASS Phase 7C-I3 no political/gameplay mutation invariant
+EXIT 0
+COMMAND python Tests/GenerationalContinuity/test_phase7c_retrieval_scope_invariants.py
+PASS Phase 7C actor-specific retrieval preservation invariant
+PASS Phase 7C explicit branch-history isolation invariant
+PASS Phase 7C D1/D2 save compatibility invariant
+PASS Phase 7C no gameplay mutation/development dependency invariant
+EXIT 0
+COMMAND python Tests/GenerationalContinuity/test_phase7c_i3_runtime_observer.py
+PASS I3 runtime observer event/retrieval/duplicate evidence wiring
+PASS I3 runtime observer no gameplay mutation, save schema or external dependency
+PASS writer/retrieval/bridge/ledger byte-for-byte preservation
+EXIT 0
+COMMAND dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj -c Release
+Build succeeded.
+    1 Warning(s)
+    0 Error(s)
+EXIT 0
+Warning: inherited System.ValueTuple MSB3277 conflict.
+
+INHERITED_BASE_GUARD_FAILURE (not changed or hidden):
+Before telemetry edits, test_phase7b_preflight_invariants.py failed its CivicProjectSelectionPolicy.cs raw-byte hash check.
+FAIL preserved source changed: CivicProjectSelectionPolicy.cs D1EE6FEFF19D696ED66D99BEF2175A73F1F4198982EFBE1279F22A5B48A31D92
+Normalizing line endings and trailing whitespace reproduces its expected SHA-256 2AE3008F7FF5E3F13135425B4B970C0C9E5F24869228F43DCDB19BEF215C41A3.
+No Phase 4/5/6 policy or old invariant was edited. The focused I3/I1 suites and the new exact-base preservation guard pass.
+
+DEPLOYMENT NOT_PERFORMED_AT_VALIDATION
+RUNTIME_NOT_YET_OBSERVED
+GAMEPLAY_POLICY_CHANGE NO
+SAVE_SCHEMA_CHANGE NO
