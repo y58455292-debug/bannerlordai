@@ -260,6 +260,13 @@ namespace ClanAI
             if (applied == 0)
                 return;
 
+            GenerationalContinuityRuntimeTelemetry
+                .ObserveHeroMemoryResolution(
+                    "CompanionDutyMemory",
+                    heroKey,
+                    record.HeroKey,
+                    true);
+
             _recallApplications++;
             record.RecallUses++;
 

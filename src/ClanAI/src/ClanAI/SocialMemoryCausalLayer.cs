@@ -241,6 +241,13 @@ namespace ClanAI
                             "persistent-social-memory");
                     }
 
+                    GenerationalContinuityRuntimeTelemetry
+                        .ObserveHeroMemoryResolution(
+                            "SocialLedgerStrategicApply",
+                            actor.LeaderHero.StringId,
+                            actor.LeaderHero.StringId,
+                            true);
+
                     afterIndex =
                         composer.CurrentBestIndex(
                             thinkParams);

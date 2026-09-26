@@ -229,11 +229,11 @@ namespace ClanAI
                     starter.AddBehavior(new WarStateBehavior());
                     starter.AddBehavior(new RulerClanCourtshipBehavior());
                     starter.AddBehavior(new KingdomContinuityBehavior());
+                    starter.AddBehavior(new GenerationalContinuityPreflightBehavior());
                     starter.AddBehavior(new Phase4ARecoveryObserverBehavior());
                 }
             }
         }
     }
 }
-
 

@@ -336,6 +336,13 @@ namespace ClanAI
                     factor,
                     reason);
 
+                GenerationalContinuityRuntimeTelemetry
+                    .ObserveHeroMemoryResolution(
+                        "CompanionExperienceMemory",
+                        heroKey,
+                        entry.HeroKey,
+                        true);
+
                 entry.RecallUses++;
                 applications++;
                 appliedFactorByIndex[i] = factor;

@@ -2,13 +2,13 @@
 
 ## Current checkpoint
 
-Phase 6-v1 has completed its first **bounded civic-project runtime characterization**.
+Phase 7A continuity audit is complete, and Phase 7B has completed its **runtime-preflight telemetry checkpoint**.
 
-**Runtime result: BOUNDED NULL FOR THE TARGET SUBSTITUTION BRANCH — the selected wrapper and native final commit authority are runtime-observed, but no naturally qualifying low-loyalty NPC-town evaluation occurred inside 155.788 campaign hours. Genuine Festival substitution remains runtime-unobserved.**
+**Preflight result: READY — the existing candidate can now observe one natural ruler/clan-leader succession plus a guarded save/reload without changing gameplay or persistence semantics. No succession run has been performed.**
 
-The active selected model was exactly `CivicProjectBuildingScoreCalculationModel` wrapping the audited `DefaultBuildingScoreCalculationModel`. Two natural NPC-town evaluations occurred. Zeonica was an active-construction passthrough; Marunath was an idle high-loyalty passthrough at loyalty 94.79668 versus native threshold 25, preserving native `Train Militia` exactly. Bannerlord's native `BuildingHelper.ChangeDefaultBuilding` path then committed the returned choices, with `mutationByClanAI=False`. No evaluated NPC town crossed the strict low-loyalty gate, so no `preferFestival=True`, genuine substitution, or substituted-Festival native commit is claimed.
+The preflight adds only session-only observation of native hero death, clan-leader change, ruling-clan change, pre-save and post-reload snapshots. Each ruler snapshot records stable hero/clan/kingdom/family/settlement identities, kingdom-continuity succession count, clan-bound and hero-bound memory counts, WarState/WarScar structural IDs/counts, and a cross-hero person-memory application guard. Existing person-bound memory reads emit requested-vs-resolved hero identity telemetry without changing keys, values, scores, or factors.
 
-Observation-only telemetry was committed before deployment at `f0fe5b86aa71bd0df349d05858fc6ab203fcf30b`; runtime DLL SHA-256 was `2909ADE31B427E122FDDE539229BD0A4A2B4FA91C84CFD3AB63D0C8EB6F729D7`. The protected fixture was unchanged, zero save commands and zero telemetry errors occurred, Strategic Commitment remained Observe, Visual War remained OFF, rollback stayed intact, and Bannerlord closed after `EXIT_NOSAVE`. Phase 4A remains closed. Phase 4B/4C and Phase 5-v1 remain unchanged; their balance remains unproven. Phase 7 has not started.
+The Phase 7A `DynastyBranchEpisodeMemory` actor-ID retrieval defect remains intentionally unfixed and byte-for-byte unchanged. No age, death chance, succession, leadership, family, settlement ownership, kingdom state, memory inheritance, or save schema was changed. Release build is green with 0 errors and the inherited `System.ValueTuple` warning. Preflight candidate DLL SHA-256: `B15B7B4D3F77EF40D6080EECF07B0077BA4B0E5ABD176C3C4328166BFB4A3ED0`. Natural target ruler/clan: **NOT YET SELECTED**; select from live session-start snapshots in the future bounded run rather than stale historical state.
 
 ## Native ecology finding
 
@@ -117,13 +117,16 @@ SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 - `Reports/SettlementSociety/evidence/phase6_civic_project_v1_runtime_telemetry_validation_20260925.txt`
 - `Reports/SettlementSociety/PHASE6_CIVIC_PROJECT_V1_RUNTIME_RESULT.md`
 - `Reports/SettlementSociety/evidence/phase6_civic_project_v1_runtime_20260925.txt`
+- `Reports/GenerationalContinuity/PHASE7A_CONTINUITY_NATIVE_AUDIT.md`
+- `Reports/GenerationalContinuity/PHASE7B_SUCCESSION_RUNTIME_PREFLIGHT.md`
+- `Reports/GenerationalContinuity/evidence/phase7b_succession_runtime_preflight_validation_20260925.txt`
 
 ## Next bounded milestone
 
-The first Phase 6-v1 runtime characterization is complete as a bounded target-branch null.
+The Phase 7B runtime preflight checkpoint is complete.
 
-Preserve the result. Do not lower the native loyalty threshold, change native daily-project cadence, alter loyalty, clear construction queues, force Festival and Games, broaden the Phase 6 input set, or patch `BuildingHelper.ChangeDefaultBuilding` merely to obtain a positive substitution.
+The next separate milestone may run the Phase 7A-selected **bounded natural ruler/clan-leader succession + guarded save/reload** using this exact preflight candidate. Select the target from current live session-start snapshots and preserve the Phase 7A pass/fail rules.
 
-Stop at this checkpoint. Do not begin another Phase 6 feature or Phase 7 in the same task.
+Do not alter age, death chance, native succession, leadership, family, settlements, memory inheritance, or `DynastyBranchEpisodeMemory` to obtain a transition. A run with no natural qualifying succession remains an honest bounded null.
 
 Final product direction remains standalone, installable, and offline with no runtime development-tool dependency.

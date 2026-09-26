@@ -356,6 +356,18 @@ namespace ClanAI
                 socialModifier +
                 directLossModifier;
 
+            if (hasLeader &&
+                socialModifier != 0 &&
+                sourceClan.Leader != null)
+            {
+                GenerationalContinuityRuntimeTelemetry
+                    .ObserveHeroMemoryResolution(
+                        "SocialLedgerLoyaltyApply",
+                        sourceClan.Leader.StringId,
+                        sourceClan.Leader.StringId,
+                        true);
+            }
+
             if (writeLog && modifier != 0)
             {
                 ClanAIPostVanilla.WriteExternalLog(

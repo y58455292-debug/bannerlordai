@@ -449,6 +449,14 @@ namespace ClanAI
             count = record.Count;
             severity = record.Severity;
             priorBehavior = record.PriorBehavior;
+
+            GenerationalContinuityRuntimeTelemetry
+                .ObserveHeroMemoryResolution(
+                    "CompanionNegativeOutcomeMemory",
+                    heroKey,
+                    record.HeroKey,
+                    false);
+
             return true;
         }
 
@@ -575,5 +583,4 @@ namespace ClanAI
         }
     }
 }
-
 
