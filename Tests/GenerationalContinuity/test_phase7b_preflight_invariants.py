@@ -112,7 +112,6 @@ for name, text in [
         failed.append("missing identity telemetry call in " + name)
 
 expected_sha256 = {
-    "DynastyBranchEpisodeMemory.cs": "C9321A57A5BC82EB2ED6D03474454968E680C5210700EDFFEA7CB54F94097E08",
     "CivicProjectSelectionPolicy.cs": "2AE3008F7FF5E3F13135425B4B970C0C9E5F24869228F43DCDB19BEF215C41A3",
     "LocalManpowerProbabilityPolicy.cs": "CCA6ABF387D98F02E97E54FFD1D68B0E23AABE6450672CFAED30AC8AB67FFD49",
     "TroopQualityProbabilityPolicy.cs": "F1B683AD4169054F73816ED052C51FCD4F46412D74CB0AC6E6BFA274E72A6534",
@@ -123,6 +122,22 @@ for name, expected in expected_sha256.items():
     if actual != expected:
         failed.append(f"preserved source changed: {name} {actual}")
 
+dynasty = (BASE / "DynastyBranchEpisodeMemory.cs").read_text(encoding="utf-8")
+for token in [
+    '"ClanAI_DynastyBranchEpisodes_v1"',
+    '"D1"',
+    '"D2"',
+    '"D2|"',
+    'RecordIncidentOpened',
+    'RecordIncidentChoice',
+    'BuildLatestRetrievalReceipt',
+    'BuildLatestChoiceRetrievalReceipt',
+    'SelectLatestActorEpisode',
+    'SelectLatestActorChoice',
+]:
+    if token not in dynasty:
+        failed.append("Phase 7A/7B dynasty actor/save semantic missing: " + token)
+
 if failed:
     for item in failed:
         print("FAIL", item)
@@ -132,5 +147,6 @@ print("PASS Phase 7B succession preflight observation-only invariant")
 print("PASS Phase 7B no save-schema invariant")
 print("PASS Phase 7B no lifecycle/succession mutation invariant")
 print("PASS Phase 7B hero-memory identity-resolution invariant")
-print("PASS Phase 7A DynastyBranchEpisodeMemory preserved unchanged")
+print("PASS Phase 7A/7B DynastyBranchEpisodeMemory actor/save semantics preserved")
 print("PASS Phase 4B/4C, Phase 5 and Phase 6 policy preservation invariant")
+

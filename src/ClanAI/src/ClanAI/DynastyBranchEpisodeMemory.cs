@@ -42,6 +42,7 @@ namespace ClanAI
         private static int _retrievals;
         private static int _choiceRecorded;
         private static int _choiceRetrievals;
+        private static int _branchHistoryRetrievals;
 
         public static void SyncData(IDataStore dataStore)
         {
@@ -94,6 +95,7 @@ namespace ClanAI
             _retrievals = 0;
             _choiceRecorded = 0;
             _choiceRetrievals = 0;
+            _branchHistoryRetrievals = 0;
 
             ClanAIPostVanilla.WriteExternalLog(
                 "DYNASTY_BRANCH_EPISODE_SESSION_READY" +
@@ -333,40 +335,12 @@ namespace ClanAI
                 string actorId = actor.StringId ?? "";
                 string branchId = DynastyMindSeed.BranchId;
 
-                Episode latest = null;
-                int visibleCount = 0;
+                DynastyEpisodeSelection selection =
+                    DynastyEpisodeRetrievalPolicy.SelectLatestActorEpisode(
+                        BuildDescriptors(), branchId, actorId, now);
 
-                for (int i = 0; i < Episodes.Count; i++)
-                {
-                    Episode e = Episodes[i];
-
-                    if (!string.Equals(
-                            e.ActorId,
-                            actorId,
-                            StringComparison.Ordinal))
-                    {
-                        continue;
-                    }
-
-                    if (!string.Equals(
-                            e.BranchId,
-                            branchId,
-                            StringComparison.Ordinal))
-                    {
-                        continue;
-                    }
-
-                    if (e.CampaignHours > now + 0.000001d)
-                        continue;
-
-                    visibleCount++;
-
-                    if (latest == null ||
-                        e.CampaignHours > latest.CampaignHours)
-                    {
-                        latest = e;
-                    }
-                }
+                Episode latest = FindEpisode(selection.Episode);
+                int visibleCount = selection.VisibleCount;
 
                 if (latest == null)
                     return "";
@@ -469,43 +443,12 @@ namespace ClanAI
 
                 string actorId = actor.StringId ?? "";
                 string branchId = DynastyMindSeed.BranchId;
-                Episode latest = null;
-                int visibleCount = 0;
+                DynastyEpisodeSelection selection =
+                    DynastyEpisodeRetrievalPolicy.SelectLatestActorChoice(
+                        BuildDescriptors(), branchId, actorId, now);
 
-                for (int i = 0; i < Episodes.Count; i++)
-                {
-                    Episode e = Episodes[i];
-
-                    if (e.Kind != "IncidentChoice")
-                        continue;
-
-                    if (!string.Equals(
-                            e.ActorId,
-                            actorId,
-                            StringComparison.Ordinal) ||
-                        !string.Equals(
-                            e.BranchId,
-                            branchId,
-                            StringComparison.Ordinal) ||
-                        e.CampaignHours > now + 0.000001d)
-                    {
-                        continue;
-                    }
-
-                    visibleCount++;
-
-                    if (latest == null ||
-                        e.CampaignHours > latest.CampaignHours ||
-                        (Math.Abs(
-                            e.CampaignHours -
-                            latest.CampaignHours) <= 0.000001d &&
-                         string.CompareOrdinal(
-                            e.ObservedUtc,
-                            latest.ObservedUtc) > 0))
-                    {
-                        latest = e;
-                    }
-                }
+                Episode latest = FindEpisode(selection.Episode);
+                int visibleCount = selection.VisibleCount;
 
                 if (latest == null)
                     return "";
@@ -585,6 +528,102 @@ namespace ClanAI
             }
         }
 
+        public static string BuildLatestBranchHistoryReceipt(
+            string retrievalContext)
+        {
+            try
+            {
+                if (!_ready)
+                    return "";
+
+                double now;
+                try
+                {
+                    now = CampaignTime.Now.ToHours;
+                }
+                catch
+                {
+                    return "";
+                }
+
+                string branchId = DynastyMindSeed.BranchId;
+                DynastyEpisodeSelection selection =
+                    DynastyEpisodeRetrievalPolicy.SelectLatestBranchHistory(
+                        BuildDescriptors(), branchId, now);
+
+                Episode latest = FindEpisode(selection.Episode);
+                if (latest == null)
+                    return "";
+
+                _branchHistoryRetrievals++;
+
+                StringBuilder sb = new StringBuilder();
+                sb.Append("{");
+                sb.Append("\"schema\":\"BannerlordAI.DynastyBranchHistoryRetrieval.v1\",");
+                sb.Append("\"mode\":\"observe\",");
+                sb.Append("\"contextType\":\"branch-history\",");
+                sb.Append("\"personalMemory\":false,");
+                sb.Append("\"branchId\":");
+                sb.Append(Json(branchId));
+                sb.Append(",\"retrievalContext\":");
+                sb.Append(Json(retrievalContext));
+                sb.Append(",\"currentCampaignHours\":");
+                sb.Append(now.ToString("R", CultureInfo.InvariantCulture));
+                sb.Append(",\"visibleHistoryCount\":");
+                sb.Append(selection.VisibleCount.ToString(CultureInfo.InvariantCulture));
+                sb.Append(",\"latestHistory\":{");
+                sb.Append("\"id\":");
+                sb.Append(Json(latest.Id));
+                sb.Append(",\"kind\":");
+                sb.Append(Json(latest.Kind));
+                sb.Append(",\"actor\":");
+                sb.Append(Json(latest.ActorName));
+                sb.Append(",\"actorId\":");
+                sb.Append(Json(latest.ActorId));
+                sb.Append(",\"knownByHours\":");
+                sb.Append(latest.CampaignHours.ToString("R", CultureInfo.InvariantCulture));
+                sb.Append(",\"observedUtc\":");
+                sb.Append(Json(latest.ObservedUtc));
+                sb.Append(",\"contextId\":");
+                sb.Append(Json(latest.ContextId));
+                sb.Append(",\"contextName\":");
+                sb.Append(Json(latest.ContextName));
+                sb.Append(",\"source\":");
+                sb.Append(Json(latest.Source));
+                sb.Append(",\"detail\":");
+                sb.Append(Json(latest.Detail));
+                sb.Append(",\"provenancePreserved\":true");
+                sb.Append(",\"branchValid\":true");
+                sb.Append(",\"futureLeak\":false");
+                sb.Append("},\"scoreMutation\":false}");
+
+                string receipt = sb.ToString();
+
+                ClanAIPostVanilla.WriteExternalLog(
+                    "DYNASTY_BRANCH_HISTORY_RETRIEVED" +
+                    " branchId=" + Clean(branchId) +
+                    " originalActor=" + Clean(latest.ActorName) +
+                    " originalActorId=" + Clean(latest.ActorId) +
+                    " visibleHistoryCount=" + selection.VisibleCount +
+                    " latestKind=" + Clean(latest.Kind) +
+                    " retrievalContext=" + Clean(retrievalContext) +
+                    " contextType=branch-history" +
+                    " personalMemory=False provenancePreserved=True" +
+                    " futureLeak=False scoreMutation=False");
+
+                return receipt;
+            }
+            catch (Exception ex)
+            {
+                ClanAIPostVanilla.WriteExternalLog(
+                    "DYNASTY_BRANCH_HISTORY_RETRIEVE_FAILED" +
+                    " type=" + ex.GetType().Name +
+                    " message=" + Clean(ex.Message));
+
+                return "";
+            }
+        }
+
         public static string SummaryFields()
         {
             return
@@ -593,8 +632,46 @@ namespace ClanAI
                 " dynastyBranchEpisodeRetrievals=" + _retrievals +
                 " dynastyBranchChoiceRecorded=" + _choiceRecorded +
                 " dynastyBranchChoiceRetrievals=" + _choiceRetrievals +
+                " dynastyBranchHistoryRetrievals=" + _branchHistoryRetrievals +
                 " dynastyBranchEpisodeDuplicates=" + _duplicates +
                 " dynastyBranchEpisodeRejected=" + _rejected;
+        }
+
+        private static List<DynastyEpisodeDescriptor> BuildDescriptors()
+        {
+            List<DynastyEpisodeDescriptor> result =
+                new List<DynastyEpisodeDescriptor>(Episodes.Count);
+
+            for (int i = 0; i < Episodes.Count; i++)
+            {
+                Episode e = Episodes[i];
+                result.Add(new DynastyEpisodeDescriptor
+                {
+                    SourceIndex = i,
+                    Id = e.Id,
+                    BranchId = e.BranchId,
+                    CampaignHours = e.CampaignHours,
+                    ObservedUtc = e.ObservedUtc,
+                    ActorId = e.ActorId,
+                    ActorName = e.ActorName,
+                    Kind = e.Kind
+                });
+            }
+
+            return result;
+        }
+
+        private static Episode FindEpisode(
+            DynastyEpisodeDescriptor descriptor)
+        {
+            if (descriptor == null ||
+                descriptor.SourceIndex < 0 ||
+                descriptor.SourceIndex >= Episodes.Count)
+            {
+                return null;
+            }
+
+            return Episodes[descriptor.SourceIndex];
         }
 
         private static List<string> ExportRows()
@@ -857,3 +934,4 @@ namespace ClanAI
         }
     }
 }
+

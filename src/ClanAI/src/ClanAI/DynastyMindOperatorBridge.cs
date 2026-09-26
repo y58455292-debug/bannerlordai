@@ -74,5 +74,14 @@ namespace ClanAI
                 DynastyBranchEpisodeMemory.BuildLatestChoiceRetrievalReceipt(
                     retrievalContext);
         }
+
+        public static string RetrieveLatestDynastyHistory(
+            string retrievalContext)
+        {
+            return
+                DynastyBranchEpisodeMemory.BuildLatestBranchHistoryReceipt(
+                    retrievalContext);
+        }
     }
 }
+
