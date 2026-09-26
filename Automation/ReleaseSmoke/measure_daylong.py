@@ -126,10 +126,11 @@ def main() -> int:
 
     print("CONTROL_REQUIREMENTS_BEFORE_ADVANCE=")
     print("CHECK_TIME_PAUSED_CONFIRMED=[ ]")
-    print("CHECK_MENU_PAUSED_CONFIRMED=[ ]")
-    print("CHECK_DUAL_PAUSED_CONFIRMED=[ ]")
     print("CHECK_LAST_DAYLONG_KNOWN=[ ]")
     print("CHECK_CUTOFF_MARGIN_POSITIVE=[ ]")
+    print("CONTROL_REQUIREMENTS_BEFORE_SAVE_OR_LOAD=")
+    print("CHECK_TIME_PAUSED_CONFIRMED_FOR_NAVIGATION=[ ]")
+    print("CHECK_MENU_OPEN_CONFIRMED=[ ]")
     print(f"decision={decision}")
     return 0
 

@@ -1,0 +1,95 @@
+PHASE8B-I4R4P NATIVE TIME-PAUSE PROTOCOL — OFFLINE VALIDATION
+date=2026-09-26 UTC
+parent=184242d8db0671375805f71899bf89ab82ab35e4
+scope=offline protocol/helper validation only
+
+I4R3_AUDIT
+protected_probe_DayLong=1039.761
+authorized_calibration=1.0 second normal speed
+native_time_pause_after_burst=POSITIVELY_CONFIRMED
+synthetic_Escape_attempt_1=MENU_ABSENT; time remained paused
+synthetic_Escape_attempt_2=MENU_ABSENT; time remained paused
+advancement_permanently_stopped=YES
+native_lower_left_menu_button=SUCCESS for safe exit; time remained paused
+campaign_time_safety_mechanism=WORKED
+unreliable_mechanism=synthetic keyboard menu invocation
+failure_class=test-control/UI-control
+ClanAI_defect_demonstrated=NO
+
+PRIMARY_LATCH
+campaign_safety_latch=TIME_PAUSED_CONFIRMED only
+confirmation=fresh live observation of native paused/zero-speed state
+synthetic_Escape_required=NO
+MENU_OPEN_CONFIRMED=UI navigation only
+preferred_menu_path=native clickable lower-left campaign menu button
+
+STATE_MACHINES
+advance=TIME_PAUSED_CONFIRMED -> ADVANCE_AUTHORIZED -> ADVANCING -> TIME_PAUSE_REQUESTED -> TIME_PAUSED_CONFIRMED
+save=TIME_PAUSED_CONFIRMED -> MENU_OPEN_CONFIRMED -> SAVE_AUTHORIZED -> SAVE_IN_PROGRESS -> POST_SAVE_TIME_VERIFY -> TIME_PAUSED_CONFIRMED
+post_Save_time_verification=MANDATORY
+metadata_requires_TIME_PAUSED_CONFIRMED=YES
+menu_required_for_metadata=NO
+
+UNSAFE_WINDOW_SWITCH_STATES
+ADVANCING
+TIME_PAUSE_REQUESTED
+SAVE_IN_PROGRESS
+POST_SAVE_TIME_VERIFY
+window_switch_allowed_only_from_TIME_PAUSED_CONFIRMED=YES
+
+FAILURE_HANDLING
+diagnostic_save_after_time_control_loss=FORBIDDEN
+resume_after_time_control_loss=FORBIDDEN
+extra_calibration_after_time_control_loss=FORBIDDEN
+menu_failure_while_time_paused=UI navigation retry, not immediate time-control failure
+
+BOUNDS
+fresh_process_recalibration=REQUIRED
+historical_rate_assumed_constant=NO
+ordinary_expected_burst_max_hours=2
+near_target_expected_burst_max_hours=1
+pre_save_target_hours=20..28
+pre_save_hard_cutoff_hours=30
+post_reload_target_hours=4..8
+post_reload_hard_cutoff_hours=10
+total_hard_cutoff_hours=40
+
+HELPER
+path=Automation/ReleaseSmoke/measure_daylong.py
+placement=repository-only
+calculation_behavior=unchanged
+advance_checklist=time pause,last DayLong,cutoff margin
+save_load_checklist=time pause,menu open
+pixel_inspection=NO
+game_or_UI_commands=NO
+Bannerlord_launch=NO
+save_load_or_mutation=NO
+network_or_API=NO
+
+TEST_RESULTS
+PASS Phase 8B-I4R3P historical protocol/helper superseding-checklist compatibility invariants
+PASS Phase 8B-I4R4P helper repository-only/read-only/no-network invariant
+PASS Phase 8B-I4R4P helper arithmetic/checklist/non-mutation invariant
+PASS Phase 8B-I4R4P time-latch/menu-navigation/save-verification invariant
+
+PRESERVATION
+packaged_ClanAI_dll_sha256=A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+packaged_ClanAI_dll_git_blob=a5fc3923b31e482960026a0044dd1b21d6e6d00a
+package_manifest_git_blob=1addeceb9435952162b1c63fe60282775c1a081e
+I4_report_git_blob=1626fb486c97b19f97d30c578cb24ffdfcc2bd73
+I4_evidence_git_blob=1fa4ca0701eb1ec4d5a8cd9f6f88d80042a63dac
+I4R1_report_git_blob=3db335dbaaae7792b4af5eb8f38d887876adcb30
+I4R1_evidence_git_blob=218e1a9d434f841fcb6d55c82cf2f97bd7eb3277
+I4R2_report_git_blob=92d89f187e364b520f739a9e9f4da091aeccc07d
+I4R2_evidence_git_blob=eeb9cb5d8b14f8c987e3c1f0eed424ce75578017
+I4R3_report_git_blob=8a1ad8073c93fa38ae31a56ce66934ec4de6d0eb
+I4R3_evidence_git_blob=8267b91c00946f6dee14b56d6123df5795e849e9
+package_or_DLL_changed=NO
+gameplay_source_changed=NO
+save_keys_or_schema_changed=NO
+Bannerlord_launched=NO
+ClanAI_built_or_deployed=NO
+live_smoke_started=NO
+
+READY_FOR_FRESH_I4R4=YES
+
