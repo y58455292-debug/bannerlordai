@@ -2,13 +2,13 @@
 
 ## Current checkpoint
 
-Phase 8B-I2's offline dependency/version contract checkpoint is **COMPLETE**. ClanAI now declares the canonical external `Bannerlord.Harmony` module dependency, does not bundle Harmony runtime assemblies, and no longer declares NavalDLC because production source/assets have no NavalDLC dependency. Module, assembly, file, informational, and runtime labels are reconciled to the Phase 8 pre-1.0 identity `v0.22.0` (`0.22.0.0` for numeric assembly/file metadata).
+Phase 8B-I3's offline installable-package checkpoint is **COMPLETE**. The committed `src/ClanAI/package/ClanAI` module contains exactly `SubModule.xml`, install notes, and `bin/Win64_Shipping_Client/ClanAI.dll`. The DLL SHA-256 is `A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5`; deterministic size/hash manifest and exact validation evidence are under `Reports/Release/evidence/`.
 
-The project build contract now exposes configurable Bannerlord install/bin/Harmony-bin MSBuild properties while retaining the current Steam path only as a developer fallback. Phase 8B-I1 standalone paths/profile, all twelve save keys, gameplay policy hashes, and Phase 3–7 invariants remain preserved. Focused tests and the Release build passed with 0 errors and the inherited `System.ValueTuple` warning.
+The package declares external `Bannerlord.Harmony`, excludes NavalDLC and every bundled Harmony/runtime research artifact, ships no PDB or configuration override, and defaults Evidence telemetry OFF, Strategic Commitment to Observe, and Visual War OFF. Release debug-symbol emission was disabled after the offline scan detected an embedded local PDB path; the rebuilt DLL is clean. Phase 8B-I1/I2, save-key, gameplay-policy, and Phase 3–7 preservation gates pass. Release build has 0 errors plus the inherited `System.ValueTuple` warning.
 
-No Bannerlord launch, DLL deployment, runtime test, gameplay tuning, save-schema change, or package assembly occurred. See `Reports/Release/PHASE8B_I2_DEPENDENCY_VERSION_RESULT.md`.
+No Bannerlord launch, package deployment, runtime test, gameplay tuning, or save-schema change occurred. See `Reports/Release/PHASE8B_I3_PACKAGE_ASSEMBLY_RESULT.md`.
 
-Next milestone: a separate **Phase 8 package assembly and offline package-content validation checkpoint**.
+Next milestone: one bounded **release-profile runtime smoke test** of this exact packaged DLL.
 
 ## Phase 8A finding
 

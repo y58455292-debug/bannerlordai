@@ -15,6 +15,11 @@
     <BannerlordHarmonyBinDir Condition="'$(BannerlordHarmonyBinDir)' == ''">$(BannerlordInstallDir)\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client</BannerlordHarmonyBinDir>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
   <ItemGroup>
     <Reference Include="TaleWorlds.Library">
       <HintPath>$(BannerlordBinDir)\TaleWorlds.Library.dll</HintPath>

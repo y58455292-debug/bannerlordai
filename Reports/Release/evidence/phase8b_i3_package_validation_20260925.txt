@@ -1,0 +1,78 @@
+PHASE8B-I3 PACKAGE ASSEMBLY AND OFFLINE VALIDATION
+date=2026-09-25
+parent=ab138baf2ec8f5842d104792a21433bc0ab85e2c
+package_root=src/ClanAI/package/ClanAI
+package_manifest=Reports/Release/evidence/phase8b_i3_package_manifest_20260925.txt
+package_zip=NOT_CREATED
+
+PACKAGE_CONTENT
+README.md|997|33FE8B4D69AFF62C5F3561006EBF6FA108C3534BA64BE768F696777BC86AABB7
+SubModule.xml|1175|E0AFAE223573B14A95B7DB2ECF44816724229D2066887C21D3623748C0C1E33D
+bin/Win64_Shipping_Client/ClanAI.dll|335872|A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+
+MODULE_CONTRACT
+module_id=ClanAI
+module_version=v0.22.0
+dll_name=ClanAI.dll
+entry_point=ClanAI.ClanAISubModule
+required_dependencies=Native,SandBoxCore,Sandbox,StoryMode,Bannerlord.Harmony
+external_harmony_version=v2.4.2.248
+NavalDLC_required=NO
+Harmony_bundled=NO
+
+COMPILED_METADATA
+ASSEMBLY_VERSION=0.22.0.0
+FILE_VERSION=0.22.0.0
+PRODUCT_VERSION=v0.22.0
+DLL_REFERENCES=0Harmony,netstandard,TaleWorlds.CampaignSystem,TaleWorlds.Core,TaleWorlds.Library,TaleWorlds.Localization,TaleWorlds.MountAndBlade,TaleWorlds.ObjectSystem
+
+RELEASE_DEFAULTS
+RuntimeProfile.cfg_shipped=NO
+Evidence_profile_default=OFF
+ENABLE_VISUAL_WAR_LAB.txt_shipped=NO
+Visual_War_default=OFF
+StrategicCommitment.cfg_shipped=NO
+Strategic_Commitment_default=Observe
+WeakBanditRecovery.cfg_shipped=NO
+Weak_Bandit_Recovery_default=Suppress
+
+FORBIDDEN_SCAN
+D:\BannerlordAIResearch=ABSENT
+local_user_build_path=ABSENT
+ChatGPT=ABSENT
+Codex=ABSENT
+Desktop_Commander=ABSENT
+TestRunner=ABSENT
+watchdog=ABSENT
+http_or_https_runtime_token=ABSENT
+Reports_Tests_Automation_Logs=ABSENT
+PDB_or_deps_json=ABSENT
+save_fixture_or_video=ABSENT
+unexpected_files=ABSENT
+
+TESTS
+PASS Phase 8B-I3 exact package-content invariant
+PASS Phase 8B-I3 module/dependency contract invariant
+PASS Phase 8B-I3 forbidden path/runtime dependency invariant
+PASS Phase 8B-I3 release-default/save-key invariant
+PASS Phase 8B-I3 deterministic package-manifest invariant
+PASS Phase 8B-I1 standalone path/profile and Phase 3-7 hash preservation invariants
+PASS Phase 8B-I2 Harmony/NavalDLC/version/build-root and save-key preservation invariants
+PASS Phase 7C retrieval-scope and structural-writer preservation invariants
+
+BUILD
+configuration=Release
+debug_symbols=false
+debug_type=none
+errors=0
+warnings=1 inherited System.ValueTuple conflict
+
+INSTALLABLE_MODULE_ASSEMBLED=YES
+PACKAGE_CONTENT_VALIDATION=PASS
+GAMEPLAY_CHANGED=NO
+SAVE_SCHEMA_CHANGED=NO
+BANNERLORD_LAUNCHED=NO
+PACKAGE_DEPLOYED=NO
+RUNTIME_TESTED=NO
+READY_FOR_RELEASE_PROFILE_RUNTIME_SMOKE=YES
+
