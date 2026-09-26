@@ -998,3 +998,11 @@ namespace ClanAI
             Exception ex)
         {
             ClanAIPostVanilla.WriteExternalLog(
+                "GENCONT_PREFLIGHT_ERROR" +
+                " stage=" + Safe(stage) +
+                " type=" + ex.GetType().Name +
+                " mutationByClanAI=False");
+        }
+    }
+}
+

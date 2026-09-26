@@ -998,3 +998,207 @@ namespace ClanAI
             Hero actor,
             Clan targetClan)
         {
+            if (actor == null ||
+                actor.Clan == null ||
+                targetClan == null)
+            {
+                return null;
+            }
+
+            string actorHeroId =
+                SafeId(
+                    actor.StringId,
+                    actor.Name.ToString());
+
+            string actorClanId =
+                SafeId(
+                    actor.Clan.StringId,
+                    actor.Clan.Name.ToString());
+
+            string targetClanId =
+                SafeId(
+                    targetClan.StringId,
+                    targetClan.Name.ToString());
+
+            string key =
+                actorHeroId +
+                ">" +
+                targetClanId;
+
+            Record record;
+
+            if (Records.TryGetValue(
+                key,
+                out record))
+            {
+                return record;
+            }
+
+            record =
+                new Record();
+
+            record.ActorHeroId =
+                actorHeroId;
+
+            record.ActorHeroName =
+                actor.Name.ToString();
+
+            record.ActorClanId =
+                actorClanId;
+
+            record.ActorClanName =
+                actor.Clan.Name.ToString();
+
+            record.TargetClanId =
+                targetClanId;
+
+            record.TargetClanName =
+                targetClan.Name.ToString();
+
+            record.Considerations = 0;
+            record.LastRelation = 0;
+
+            record.Trust = 0;
+            record.Grievance = 0;
+            record.BloodDebt = 0;
+            record.Obligation = 0;
+            record.Tension = 0;
+
+            record.LastAction = "";
+            record.LastTarget = "";
+
+            Records.Add(
+                key,
+                record);
+
+            return record;
+        }
+
+        private static bool IsAggressive(
+            AiBehavior behavior)
+        {
+            return
+                behavior == AiBehavior.RaidSettlement ||
+                behavior == AiBehavior.BesiegeSettlement ||
+                behavior == AiBehavior.AssaultSettlement ||
+                behavior == AiBehavior.EngageParty;
+        }
+
+        private static int GetRelation(
+            Hero actor,
+            Hero target)
+        {
+            if (actor == null ||
+                target == null)
+            {
+                return 0;
+            }
+
+            try
+            {
+                if (!_relationResolved)
+                {
+                    _relationResolved = true;
+
+                    Type type =
+                        typeof(Hero)
+                        .Assembly
+                        .GetType(
+                            "TaleWorlds.CampaignSystem.CharacterRelationManager",
+                            false);
+
+                    if (type != null)
+                    {
+                        _relationMethod =
+                            type.GetMethod(
+                                "GetHeroRelation",
+                                BindingFlags.Public |
+                                BindingFlags.NonPublic |
+                                BindingFlags.Static,
+                                null,
+                                new Type[]
+                                {
+                                    typeof(Hero),
+                                    typeof(Hero)
+                                },
+                                null);
+                    }
+                }
+
+                if (_relationMethod == null)
+                    return 0;
+
+                object result =
+                    _relationMethod.Invoke(
+                        null,
+                        new object[]
+                        {
+                            actor,
+                            target
+                        });
+
+                if (result == null)
+                    return 0;
+
+                return Convert.ToInt32(result);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        private static int Clamp(
+            int value,
+            int min,
+            int max)
+        {
+            if (value < min)
+                return min;
+
+            if (value > max)
+                return max;
+
+            return value;
+        }
+
+        private static string SafeId(
+            string id,
+            string fallback)
+        {
+            return string.IsNullOrEmpty(id)
+                ? fallback
+                : id;
+        }
+
+        private static string B64(
+            string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                return "";
+
+            return Convert.ToBase64String(
+                Encoding.UTF8.GetBytes(value));
+        }
+
+        private static string FromB64(
+            string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                return "";
+
+            try
+            {
+                return Encoding.UTF8.GetString(
+                    Convert.FromBase64String(value));
+            }
+            catch
+            {
+                return "";
+            }
+        }
+    }
+}
+
+
+
