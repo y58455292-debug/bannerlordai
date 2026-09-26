@@ -431,6 +431,8 @@ Do not automatically add AI behavior to every menu action. Prioritize interactio
 
 ## Goal
 
+**Status — SUFFICIENTLY CHARACTERIZED 2026-09-25.** Accepted runs cover almost five native years and almost two native years, ordinary kingdom-continuity reload restored seven records without duplicate notices or political mutation, and deterministic Phase 7C work preserves personal-versus-structural history semantics. Natural player succession and ruling-clan-change events remained bounded nulls and must not be hunted again merely to force positive evidence. See `Reports/GenerationalContinuity/PHASE7D_MULTIYEAR_EVIDENCE_SYNTHESIS.md`. **Next milestone: Phase 8 release hardening.**
+
 Prove the simulation remains coherent across long campaigns and new generations.
 
 Long-run tests should examine:
@@ -458,6 +460,8 @@ No kingdom is selected to collapse because of plot.
 ---
 
 # Phase 8 — Balance, release hardening, and presentation
+
+**Status — STARTED 2026-09-25; PHASE 8A OFFLINE AUDIT COMPLETE.** No runtime work was performed. Current main is not yet a standalone release candidate: development-machine runtime paths, unconditional experiment/proof instrumentation, unresolved Harmony/package dependency declaration, version drift, and the absence of a packaged DLL are concrete blockers. The first recommended implementation checkpoint is **Phase 8B-I1 — standalone path and release-profile seam**, with no gameplay tuning or Bannerlord launch. See `Reports/Release/PHASE8A_RELEASE_READINESS_AUDIT.md`.
 
 Only after the major world loops work:
 
@@ -506,3 +510,4 @@ Do not collapse these into a single "working" label.
 - **Kingdoms and dynasties may change; culture persists.**
 - **Evidence serves gameplay, not the other way around.**
 - **The first integrated demo comes before perfection of every remaining research problem.**
+

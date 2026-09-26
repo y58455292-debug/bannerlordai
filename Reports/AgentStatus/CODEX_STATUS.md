@@ -2,7 +2,17 @@
 
 ## Current checkpoint
 
-Phase 7C-I3's already-completed runtime characterization is now closed as a **BOUNDED NULL** using retained local evidence. This checkpoint adds only the runtime result, focused evidence, and this status update; no campaign was launched, rerun, extended, or redeployed for closure.
+Phase 7 is sufficiently characterized for roadmap purposes. Phase 7D synthesized the accepted evidence, preserved the Phase 6 Festival, Phase 7B succession, and Phase 7C-I3 ruling-clan natural-event nulls, and recommended proceeding to release hardening rather than repeating rare-event hunts.
+
+Phase 8 has started. Phase 8A's offline release-readiness audit is **COMPLETE**. It found no production network/API, ChatGPT, Codex, Desktop Commander, watchdog, command-bus, or TestRunner runtime integration, but current main is not yet a standalone release candidate: active runtime paths still target `D:\BannerlordAIResearch`; experiment-only observers and proof telemetry are installed by default; Harmony use is not declared or packaged; module and assembly versions disagree; and the committed package contains only `SubModule.xml`, not an installable DLL/module.
+
+No gameplay source, balance, save schema, or accepted evidence changed. Bannerlord was not launched, no DLL was deployed, and no runtime work was performed. See `Reports/Release/PHASE8A_RELEASE_READINESS_AUDIT.md`.
+
+Next milestone: **Phase 8B-I1 — standalone path and release-profile seam**. Add a deterministic module-local path resolver and default release diagnostics gate, remove development-machine path dependence, prevent experiment-only observers/proof telemetry from registering in the default release profile, and prove offline that save keys and gameplay-policy wiring are unchanged. Packaging and runtime stability testing remain later checkpoints.
+
+## Preserved Phase 7C-I3 bounded null
+
+Phase 7C-I3's already-completed runtime characterization remains closed as a **BOUNDED NULL** using retained local evidence. No campaign was launched, rerun, extended, or redeployed for its closure.
 
 The experiment watched for the next natural `CampaignEvents.RulingClanChanged` in **any surviving kingdom**, not Nemos or a particular ruler. Structural-writer checkpoint: `12f8f430a8f192e100133a70787e7596e412099b`. Observation-only runtime checkpoint: `3056a69f114b0acc85dfb4ed12a89fc6347b70d9`. Runtime/final DLL SHA-256: `6B3DC310C7491C2D976F34C9DBF64A3CF9A756B1077BCAD29C4E6577767C4364`.
 
@@ -136,3 +146,4 @@ This Phase 7C-I3 attempt is closed as a **BOUNDED NULL**. The natural ruling-cla
 Stop here. Do not restart or extend this attempt, force a death/election/succession, change writer/retrieval policy or D1/D2 schema, or begin another Phase 7 experiment or Phase 8 as part of this checkpoint. Further experiments require a separate bounded task.
 
 Final product direction remains standalone, installable, and offline with no runtime development-tool dependency.
+
