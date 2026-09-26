@@ -141,7 +141,7 @@ namespace ClanAI
             _nextAt = Stopwatch.GetTimestamp() + 30L * Stopwatch.Frequency;
             long sequence = ++_sequence;
             var text = new StringBuilder(8192);
-            text.AppendLine("BEGIN_DIAGNOSTIC_SNAPSHOT schema=v1 build=v0.20V-dynasty-lived-choice-shadow"
+            text.AppendLine("BEGIN_DIAGNOSTIC_SNAPSHOT schema=v1 build=" + ReleaseIdentity.Version
                 + " sequence=" + sequence + " utc=" + DateTime.UtcNow.ToString("O")
                 + " reason=" + reason + " terminal=" + terminal);
             text.AppendLine("sessionLog=" + ClanAIPostVanilla.SessionLogPath);
@@ -184,3 +184,4 @@ namespace ClanAI
         }
     }
 }
+

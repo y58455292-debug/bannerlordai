@@ -2,7 +2,7 @@
 <Module>
   <Name value="ClanAI" />
   <Id value="ClanAI" />
-  <Version value="v0.1.0" />
+  <Version value="v0.22.0" />
   <RequiredBaseVersion value="v1.5.3" />
   <DefaultModule value="false" />
   <ModuleCategory value="Singleplayer" />
@@ -25,8 +25,8 @@
       DependentVersion="v1.5.3"
       Optional="false" />
     <DependedModule
-      Id="NavalDLC"
-      DependentVersion="v1.3.3"
+      Id="Bannerlord.Harmony"
+      DependentVersion="v2.4.2.248"
       Optional="false" />
   </DependedModules>
 
@@ -46,3 +46,4 @@
     </SubModule>
   </SubModules>
 </Module>
+

@@ -117,7 +117,7 @@ namespace ClanAI
                     ClanAIEvidenceWriter.AppendLine(
                         AuditPath,
                         DateTime.UtcNow.ToString("O") +
-                        " [ClanAI v0.20B] run=" +
+                        " [ClanAI " + ReleaseIdentity.Version + "] run=" +
                         _runId +
                         " " +
                         message);
@@ -130,4 +130,5 @@ namespace ClanAI
         }
     }
 }
+
 

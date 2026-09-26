@@ -2,13 +2,13 @@
 
 ## Current checkpoint
 
-Phase 8B-I1's offline standalone-path and default release-profile checkpoint is **COMPLETE**. Active production `D:\BannerlordAIResearch` paths now resolve under the installed ClanAI module through one deterministic resolver. Missing configuration preserves conservative defaults. A module-local `Data/RuntimeProfile.cfg` defaults safely to Release and requires explicit `Profile=Evidence` opt-in for research instrumentation.
+Phase 8B-I2's offline dependency/version contract checkpoint is **COMPLETE**. ClanAI now declares the canonical external `Bannerlord.Harmony` module dependency, does not bundle Harmony runtime assemblies, and no longer declares NavalDLC because production source/assets have no NavalDLC dependency. Module, assembly, file, informational, and runtime labels are reconciled to the Phase 8 pre-1.0 identity `v0.22.0` (`0.22.0.0` for numeric assembly/file metadata).
 
-The default Release profile retains gameplay models, patches, behaviors, policy math, thresholds, and all twelve save keys. It does not register the Phase 7B preflight, Phase 4A recovery observer, or Phase 7C-I3 structural observer; it does not install Phase 4/5/6 proof telemetry; and it suppresses research evidence/session/diagnostic logging. Focused profile/path tests, Phase 3–7 preservation invariants, and the Release build passed with 0 errors and the inherited `System.ValueTuple` warning.
+The project build contract now exposes configurable Bannerlord install/bin/Harmony-bin MSBuild properties while retaining the current Steam path only as a developer fallback. Phase 8B-I1 standalone paths/profile, all twelve save keys, gameplay policy hashes, and Phase 3–7 invariants remain preserved. Focused tests and the Release build passed with 0 errors and the inherited `System.ValueTuple` warning.
 
-No Bannerlord launch, DLL deployment, runtime stability test, gameplay tuning, save-schema change, dependency cleanup, version reconciliation, or packaging occurred. See `Reports/Release/PHASE8B_I1_STANDALONE_PROFILE_RESULT.md`.
+No Bannerlord launch, DLL deployment, runtime test, gameplay tuning, save-schema change, or package assembly occurred. See `Reports/Release/PHASE8B_I2_DEPENDENCY_VERSION_RESULT.md`.
 
-Next milestone: a separate offline **Phase 8B-I2 dependency/version contract checkpoint** before package assembly.
+Next milestone: a separate **Phase 8 package assembly and offline package-content validation checkpoint**.
 
 ## Phase 8A finding
 
@@ -156,5 +156,6 @@ This Phase 7C-I3 attempt is closed as a **BOUNDED NULL**. The natural ruling-cla
 Stop here. Do not restart or extend this attempt, force a death/election/succession, change writer/retrieval policy or D1/D2 schema, or begin another Phase 7 experiment or Phase 8 as part of this checkpoint. Further experiments require a separate bounded task.
 
 Final product direction remains standalone, installable, and offline with no runtime development-tool dependency.
+
 
 

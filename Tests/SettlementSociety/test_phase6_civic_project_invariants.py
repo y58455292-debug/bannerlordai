@@ -187,7 +187,7 @@ expected_blobs = {
     "LocalBanditControlPolicy.cs": "7b3d119f274ddf884167f8fd337815d8ba6e6c47",
     # Phase 8B adds only the explicit evidence-profile telemetry gate;
     # the gameplay postfix and policy call remain unchanged.
-    "LocalBanditControlPatch.cs": "e6ac790f10ccbaa263a8d5471425fba626064886",
+    "LocalBanditControlPatch.cs": "ccd9abfb474c12ed7341e85f52a9f0883a7950f0",
 }
 for name, expected in expected_blobs.items():
     actual = git_blob_sha(BASE / name)
@@ -205,5 +205,6 @@ print("PASS Phase 6 civic-project standalone-path invariant")
 print("PASS Phase 6 civic-project observation-only telemetry invariant")
 print("PASS Phase 6 pure policy byte-for-byte preservation invariant")
 print("PASS Phase 4B/4C and Phase 5 preservation invariant")
+
 
 

@@ -212,7 +212,7 @@ namespace ClanAI
 
             if (dispatcherType == null)
                 throw new Exception(
-                    "ClanAI v0.9: CampaignEventDispatcher not found");
+                    "ClanAI " + ReleaseIdentity.Version + ": CampaignEventDispatcher not found");
 
             MethodInfo target =
                 AccessTools.Method(
@@ -226,7 +226,7 @@ namespace ClanAI
 
             if (target == null)
                 throw new Exception(
-                    "ClanAI v0.9: AiHourlyTick method not found");
+                    "ClanAI " + ReleaseIdentity.Version + ": AiHourlyTick method not found");
 
             MethodInfo postfix =
                 typeof(ClanAIPostVanilla)
@@ -237,7 +237,7 @@ namespace ClanAI
 
             if (postfix == null)
                 throw new Exception(
-                    "ClanAI v0.9: postfix not found");
+                    "ClanAI " + ReleaseIdentity.Version + ": postfix not found");
 
             Harmony harmony =
                 new Harmony(
@@ -269,7 +269,7 @@ namespace ClanAI
             ModuleRuntimePaths.LogDirectory("Sessions");
 
         private const string Version =
-            "v0.22A-ruler-courtship-native-v1";
+            ReleaseIdentity.Version;
 
         private static string _sessionLogPath;
         internal static string SessionLogPath { get { return _sessionLogPath; } }
@@ -304,7 +304,7 @@ namespace ClanAI
                         "ClanAI_" +
                         DateTime.UtcNow.ToString(
                             "yyyyMMdd_HHmmss_fff") +
-                        "_v020Q_review.log");
+                        "_v0.22.0.log");
             }
             catch
             {
@@ -870,6 +870,7 @@ namespace ClanAI
         }
     }
 }
+
 
 
 

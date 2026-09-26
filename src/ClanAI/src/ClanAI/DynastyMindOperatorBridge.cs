@@ -5,7 +5,7 @@ namespace ClanAI
     public static class DynastyMindOperatorBridge
     {
         public static string Version =>
-            "v0.20V-dynasty-lived-choice-shadow";
+            ReleaseIdentity.Version;
 
         public static string ObserveDeliberation(
             string decisionType,
@@ -84,4 +84,5 @@ namespace ClanAI
         }
     }
 }
+
 

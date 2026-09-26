@@ -1,0 +1,65 @@
+PHASE8B-I2 DEPENDENCY/VERSION VALIDATION
+date=2026-09-25
+parent=c071c117a89a2085eeffd1b435573f7c0c2e8bcb
+scope=offline only
+
+HARMONY
+module_id=Bannerlord.Harmony
+declared_version=v2.4.2.248
+optional=false
+model=external declared dependency
+project_reference_private=false
+bundled_harmony_runtime=false
+custom_loader=false
+
+NAVALDLC
+production_assembly_reference=false
+production_namespace_or_type_reference=false
+production_asset_or_api_dependency=false
+required_module_dependency=false
+
+VERSION
+module_version=v0.22.0
+assembly_version=0.22.0.0
+file_version=0.22.0.0
+product_informational_version=v0.22.0
+runtime_identity=v0.22.0
+
+PORTABLE_BUILD_SEAM
+BannerlordInstallDir=configurable_with_current_developer_fallback
+BannerlordBinDir=configurable
+BannerlordHarmonyBinDir=configurable
+all_TaleWorlds_hint_paths=property_based
+Harmony_hint_path=property_based
+
+FOCUSED_TESTS
+PASS Phase 8B-I2 external Harmony dependency/no-bundle invariant
+PASS Phase 8B-I2 NavalDLC non-dependency invariant
+PASS Phase 8B-I2 version identity invariant v0.22.0
+PASS Phase 8B-I2 configurable build-root invariant
+PASS Phase 8B-I1/save-key/gameplay-policy preservation invariant
+PASS Phase 8B standalone production dependency/path invariant
+PASS Phase 8B release-default/evidence-opt-in wiring invariant
+PASS Phase 8B gameplay behavior and save-key preservation invariant
+PASS Phase 3/4/5/6/7 policy hash preservation invariant
+PASS Phase 6 civic-project and Phase 4B/4C/5 preservation invariants
+PASS Phase 7B observation/no-schema/no-lifecycle-mutation invariants
+PASS Phase 7C retrieval-scope, D1/D2, structural-writer, and no-mutation invariants
+
+COMPILED_METADATA
+ASSEMBLY_VERSION=0.22.0.0
+FILE_VERSION=0.22.0.0
+PRODUCT_VERSION=v0.22.0
+
+BUILD
+configuration=Release
+errors=0
+warnings=1 inherited System.ValueTuple conflict
+
+GAMEPLAY_CHANGED=NO
+SAVE_SCHEMA_CHANGED=NO
+BANNERLORD_LAUNCHED=NO
+DLL_DEPLOYED=NO
+RUNTIME_TESTED=NO
+PACKAGE_ASSEMBLED=NO
+

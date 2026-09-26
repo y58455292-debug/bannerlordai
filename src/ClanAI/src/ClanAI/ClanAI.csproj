@@ -6,50 +6,55 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
     <AssemblyName>ClanAI</AssemblyName>
+    <AssemblyVersion>0.22.0.0</AssemblyVersion>
     <FileVersion>0.22.0.0</FileVersion>
-    <InformationalVersion>v0.22A-ruler-courtship-native-v1</InformationalVersion>
+    <InformationalVersion>v0.22.0</InformationalVersion>
     <RootNamespace>ClanAI</RootNamespace>
+    <BannerlordInstallDir Condition="'$(BannerlordInstallDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord</BannerlordInstallDir>
+    <BannerlordBinDir Condition="'$(BannerlordBinDir)' == ''">$(BannerlordInstallDir)\bin\Win64_Shipping_Client</BannerlordBinDir>
+    <BannerlordHarmonyBinDir Condition="'$(BannerlordHarmonyBinDir)' == ''">$(BannerlordInstallDir)\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client</BannerlordHarmonyBinDir>
   </PropertyGroup>
 
   <ItemGroup>
     <Reference Include="TaleWorlds.Library">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Library.dll</HintPath>
+      <HintPath>$(BannerlordBinDir)\TaleWorlds.Library.dll</HintPath>
       <Private>false</Private>
     </Reference>
 
     <Reference Include="TaleWorlds.Core">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Core.dll</HintPath>
+      <HintPath>$(BannerlordBinDir)\TaleWorlds.Core.dll</HintPath>
       <Private>false</Private>
     </Reference>
 
     <Reference Include="TaleWorlds.CampaignSystem">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll</HintPath>
+      <HintPath>$(BannerlordBinDir)\TaleWorlds.CampaignSystem.dll</HintPath>
       <Private>false</Private>
     </Reference>
 
     <Reference Include="TaleWorlds.MountAndBlade">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.dll</HintPath>
+      <HintPath>$(BannerlordBinDir)\TaleWorlds.MountAndBlade.dll</HintPath>
       <Private>false</Private>
     </Reference>
   
     <Reference Include="TaleWorlds.Localization">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Localization.dll</HintPath>
+      <HintPath>$(BannerlordBinDir)\TaleWorlds.Localization.dll</HintPath>
       <Private>false</Private>
     </Reference>
   
     <Reference Include="TaleWorlds.ObjectSystem">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.ObjectSystem.dll</HintPath>
+      <HintPath>$(BannerlordBinDir)\TaleWorlds.ObjectSystem.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\0Harmony.dll</HintPath>
+      <HintPath>$(BannerlordHarmonyBinDir)\0Harmony.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
 </Project>
+
 
 
 
