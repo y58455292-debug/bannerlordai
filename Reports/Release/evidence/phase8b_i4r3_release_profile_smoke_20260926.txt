@@ -1,0 +1,204 @@
+PHASE8B-I4R3 DUAL-PAUSE RELEASE-PROFILE SMOKE — FOCUSED RETAINED EVIDENCE
+RESULT FAIL
+Source checkpoint: 77eb3ae676d792619eaa404de6b5ab5b5152fdfb
+Runtime date: 2026-09-26 UTC; fresh native process: 41608.
+Only one initial probe was saved, before the only calibration burst. No later save, diagnostic save, guarded save, reload, or replacement run occurred.
+Menu acknowledgement failed after calibration. Native time remained visibly paused in the retained recovery views. This is a test-control failure, not a demonstrated ClanAI defect or measured campaign-hour overrun.
+Last saved elapsed=0.000 h BEFORE calibration. Calibration campaign-hours, calibration rate, and final live elapsed=UNKNOWN. No complete-run numeric cutoff proof is claimed.
+Values below are reformatted retained records except the explicitly identified verbatim native log lines. Screenshot names are labels, not acknowledgements.
+
+PREFLIGHT
+utc=2026-09-26T05:48:25.855689+00:00
+sourceCommit=77eb3ae676d792619eaa404de6b5ab5b5152fdfb
+installedMatches=True
+protectedTimestampUtc=2026-09-24T17:20:12.2384633Z
+protectedDayLong=1039.761
+harmonyVersion=v2.4.2.248
+harmony0DllSHA256=2EDDA13A18954B79795BAC0D7E0E8FDF0BFA05B96552D6056D90F446CD0A2AB2
+moduleDataExists=False
+moduleLogsExists=False
+buildPerformed=False
+redeploymentPerformed=False
+researchFilesBefore=84
+probeInitiallyAbsent=True
+bannerlordInitiallyAbsent=True
+protectedFixture={"name": "ClanAI V020V PERSIST DEMO GATE V021M 20260924.sav", "bytes": 9040242, "mtime_ns": 1790270412238463300, "sha256": "A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427"}
+priorNativeSavesInventoried=52
+RuntimeProfile.cfg, Evidence opt-in, Visual War marker and Strategic Commitment override: absent; live module had only committed package files.
+
+PACKAGE_MANIFEST_BEFORE_AND_AFTER
+bin/Win64_Shipping_Client/ClanAI.dll | bytes=335872 | sha256=A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+README.md | bytes=999 | sha256=2B8D181068E8CFC38BB518B1EB144BCBA979E7B57EDE49420213811ABB8C6E7E
+SubModule.xml | bytes=1177 | sha256=287609EEBE39EE00D693CD1C354362C64878F40950BCD787D505F20F065B333D
+
+INITIAL_NATIVE_PROBE
+measurementUtc=2026-09-26T05:54:46.800728+00:00
+save={"name": "BI4R3 PROBE.sav", "bytes": 6463396, "mtime_ns": 1790402045368905700, "sha256": "93F62E2D02C5FBA8CF9CE6DDB30E3B9FD50DE1D98A730CB8AB3B7331E39C8878"}
+nativeDayLong=1039.761
+probeModules=Bannerlord.Harmony;Native;SandBoxCore;BirthAndDeath;CustomBattle;Sandbox;NavalDLC;ClanAI
+Arithmetic: (1039.761 - 1039.761) * 24 = 0.000 campaign hours.
+This is the only saved measurement, not the campaign total at exit.
+
+REPOSITORY_ONLY_HELPER
+helperSHA256=1EB8F6768FF5893F5D975B169AF7B7DC9F888949ABDBC71D9D0ACFE87B67A339
+Command: python Automation/ReleaseSmoke/measure_daylong.py --baseline protected_metadata.json --current p00_initial_metadata.json --target-min-hours 20 --target-max-hours 28 --hard-cutoff-hours 30 --total-baseline protected_metadata.json --total-hard-cutoff-hours 40
+Inputs came from read-only native .sav header extraction: little-endian uint32 JSON length, then JSON List. The helper itself did not open .sav, issue UI/game/save/load commands, or access a network.
+Exact helper output:
+baseline_daylong=1039.761
+current_daylong=1039.761
+elapsed_hours=0.000
+distance_to_target_hours=20.000
+distance_to_hard_cutoff_hours=30.000
+total_elapsed_hours=0.000
+distance_to_total_hard_cutoff_hours=40.000
+CONTROL_REQUIREMENTS_BEFORE_ADVANCE=
+CHECK_TIME_PAUSED_CONFIRMED=[ ]
+CHECK_MENU_PAUSED_CONFIRMED=[ ]
+CHECK_DUAL_PAUSED_CONFIRMED=[ ]
+CHECK_LAST_DAYLONG_KNOWN=[ ]
+CHECK_CUTOFF_MARGIN_POSITIVE=[ ]
+decision=ADVANCE
+Checklist boxes are operator reminders; the independent visual acknowledgements are below.
+
+ALL_AUTHORIZED_BURSTS
+{"actualAuthorizedSeconds": 1.0004836000152864, "advanceUtc": "2026-09-26T05:54:47.520281+00:00", "authorizationUtc": "2026-09-26T05:54:46.812246+00:00", "authorizedSeconds": "1", "cutoffMargin": "30.000", "expectedHours": null, "label": "b00_calibration", "lastDayLong": "1039.761", "pauseRequestedUtc": "2026-09-26T05:54:48.520891+00:00", "rate": null, "speed": "native normal", "targetMargin": "20.000", "totalMargin": "40.000"}
+actualAuthorizedSeconds is an external monotonic input interval, not native campaign time. No post-calibration probe exists, so measured campaign delta/rate is UNKNOWN. No historical I4R2 rate was used.
+
+ALL_POSITIVE_TIME_MENU_AND_DUAL_ACKNOWLEDGEMENTS
+2026-09-26T05:52:52.224575+00:00 | TIME_PAUSED_CONFIRMED | protected-campaign-ready | capture=2026-09-26T05:52:37.182546+00:00 | file=09_campaign_ready.png
+2026-09-26T05:53:11.539618+00:00 | MENU_PAUSED_CONFIRMED | initial-dual-pause | capture=2026-09-26T05:52:53.352803+00:00 | file=10_initial_menu.png
+2026-09-26T05:53:11.539618+00:00 | DUAL_PAUSED_CONFIRMED | initial-dual-pause | time=09_campaign_ready.png | menu=10_initial_menu.png
+2026-09-26T05:54:21.888086+00:00 | TIME_PAUSED_CONFIRMED | p00-post-save | capture=2026-09-26T05:54:06.393685+00:00 | file=13_p00_postsave_time.png
+2026-09-26T05:54:46.648581+00:00 | MENU_PAUSED_CONFIRMED | p00-post-save | capture=2026-09-26T05:54:22.958076+00:00 | file=14_p00_postsave_menu.png
+2026-09-26T05:54:46.648581+00:00 | DUAL_PAUSED_CONFIRMED | p00-post-save | time=13_p00_postsave_time.png | menu=14_p00_postsave_menu.png
+2026-09-26T05:55:09.281497+00:00 | TIME_PAUSED_CONFIRMED | b00-calibration-ended | capture=2026-09-26T05:54:49.802509+00:00 | file=b00_calibration_time_pause.png
+2026-09-26T05:57:09.206295+00:00 | TIME_PAUSED_CONFIRMED | safe-exit-only-time-reconfirmed | capture=2026-09-26T05:56:38.216319+00:00 | file=16_safe_exit_native_menu_click.png
+2026-09-26T05:57:09.206295+00:00 | MENU_PAUSED_CONFIRMED | safe-exit-only-menu-recovered | capture=2026-09-26T05:56:38.216319+00:00 | file=16_safe_exit_native_menu_click.png
+2026-09-26T05:57:09.206295+00:00 | DUAL_PAUSED_CONFIRMED | safe-exit-only-menu-recovered | time=16_safe_exit_native_menu_click.png | menu=16_safe_exit_native_menu_click.png
+
+SAVE_STATE_MACHINE
+One initial Save As from initial dual pause. After the native Save returned, fresh 13_p00_postsave_time.png showed PAUSED and native zero-speed; only after TIME_PAUSED_CONFIRMED was Escape requested. 14_p00_postsave_menu.png showed both controls. Metadata/helper execution followed the dual acknowledgement, not just the save receipt.
+All Save authorizations:
+{"utc": "2026-09-26T05:53:11.548137+00:00", "action": "SAVE_AUTHORIZED", "state": "DUAL_PAUSED_CONFIRMED", "label": "p00_initial", "slot": "BI4R3 PROBE", "timeObservation": "09_campaign_ready.png", "menuObservation": "10_initial_menu.png"}
+Post-save dual-pause reacquisitions: exactly one, p00-post-save.
+Native successful saves: 1 initial probe; overwrites: 0; post-calibration saves: 0; diagnostic saves: 0.
+
+FAILED_MENU_REQUESTS_AND_SAFE_EXIT_RECOVERY
+2026-09-26T05:55:10.398343Z | first Escape response view b00_menu.png | PAUSED/native pause selected; Escape overlay absent.
+2026-09-26T05:55:37.193129Z | observed-absence retry b00_menu_observed_absent_retry.png | PAUSED/native pause selected; Escape overlay absent.
+After the unsuccessful observed retry, failure was latched before the next safe-exit-only input. No further advancement or Save was authorized.
+2026-09-26T05:56:08.223525Z | safe-exit-only window-targeted Escape response 15_safe_exit_menu_recovery.png | PAUSED/native pause selected; Escape overlay absent.
+2026-09-26T05:56:38.216319Z | safe-exit-only native lower-left menu-button click response 16_safe_exit_native_menu_click.png | Escape overlay open; native pause selected.
+Both latches were acknowledged for exit only at 05:57:09.206295Z. Recovery was not used to resume the experiment.
+No metadata/helper/log review, Save, Load, new advancement, or unrelated window work occurred during the menu-recovery sequence. Only live observation and native UI pause/menu recovery inputs were issued.
+The retained observations do not establish why synthetic Escape inputs failed. No dropped/ignored/native-defect diagnosis is claimed. Native menu-button success is exit recovery, not a replacement test.
+
+OTHER_RUNTIME_OBSERVATIONS
+Normal main menu reached. Protected fixture selected by full name; compatibility dialog reported historical Inspector removal and ClanAI version difference, not dependency rejection.
+Syronea campaign usable. After calibration, a native player-facing ClanAI Khuzait war-strain message was visible. No rare event was pursued. This is not proof that every gameplay initializer ran.
+An initial click sequence before campaign load did not open Saved Games; the next observed main-menu retry succeeded. No campaign time or save was involved.
+
+NATIVE_LOG_SOURCE_MANIFEST
+rgl_log_41608.txt | bytes=341059 | sha256=A7F1A56227D094AEA98EF6030EC7ADA94A9373597BB3A9B56FA81D4FCEAB201A
+rgl_log_errors_41608.txt | bytes=181 | sha256=0821CF1546C57A8DC6D2655FF39DC1C015A4E8A7A0B62ADF52349F97DE49E91C
+watchdog_log_41608.txt | bytes=6149 | sha256=EF255E30351BC03E2DC5FD92095547A4D139B253BE3AE79A294624D7D9B862AC
+
+VERBATIM_NATIVE_RECEIPTS_WITH_1_BASED_SOURCE_LINES
+rgl_log_41608.txt:78: [22:49:33.454] Command Args: /singleplayer _MODULES_*Bannerlord.Harmony*Native*SandBoxCore*BirthAndDeath*CustomBattle*Sandbox*StoryMode*NavalDLC*ClanAI*_MODULES_
+rgl_log_41608.txt:841: [22:49:40.371] Loading assembly: ..\..\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\0Harmony.dll
+rgl_log_41608.txt:844: [22:49:40.373] Assembly load result: SUCCESS 
+rgl_log_41608.txt:891: [22:49:40.389] Loading assembly: ..\..\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\Bannerlord.Harmony.dll
+rgl_log_41608.txt:894: [22:49:40.390] Assembly load result: SUCCESS 
+rgl_log_41608.txt:1056: [22:49:40.546] Loading assembly: ..\..\Modules\ClanAI\bin\Win64_Shipping_Client\ClanAI.dll
+rgl_log_41608.txt:1059: [22:49:40.548] Assembly load result: SUCCESS 
+rgl_log_41608.txt:4263: [22:52:17.932] Initializing saved game begin... 
+rgl_log_41608.txt:4279: [22:52:19.722] Initializing saved game end... 
+rgl_log_41608.txt:4744: [22:52:29.671] Loading Save Game 
+rgl_log_41608.txt:4830: [22:54:01.954] SaveAsCurrentGame: BI4R3 PROBE 
+rgl_log_41608.txt:4883: [22:54:05.372] ------Successfully saved------ 
+rgl_log_41608.txt:5131: [22:58:05.703] Final_cleanup...
+rgl_log_41608.txt:5143: [22:58:05.940] There are no living managed objects. 
+rgl_log_41608.txt:5145: [22:58:05.940] Managed Interface deleted.
+watchdog_log_41608.txt:70: EXIT_PROCESS_DEBUG_EVENT occurred. Detaching...
+
+VERBATIM_NATIVE_ERROR_OR_EXCEPTION_WORD_MATCHES
+These messages are retained without diagnosing or attributing them to ClanAI.
+rgl_log_41608.txt:1094: [22:49:41.274] ERROR: TaleWorlds.PSAI.XmlSerializers.dll: Invalid Image 
+rgl_log_41608.txt:1101: [22:49:41.274] ERROR: TaleWorlds.PSAI.XmlSerializers.dll: Invalid Image 
+rgl_log_41608.txt:1599: [22:49:43.681] Could not find the event index for: event:/mission/ambient/detail/warning_bells
+rgl_log_41608.txt:2326: [22:49:43.687] Could not find the event index for: event:/mission/tutorial/vo/fighting/warning
+rgl_log_41608.txt:2371: [22:49:43.687] Could not find the event index for: event:/multiplayer/warning_bells_attacker
+rgl_log_41608.txt:2372: [22:49:43.687] Could not find the event index for: event:/multiplayer/warning_bells_defender
+rgl_log_41608.txt:2586: [22:49:43.689] Could not find the event index for: event:/ui/mission/multiplayer/pointwarning
+rgl_log_41608.txt:4697: [22:52:25.422] Granite Error in Graphine::Granite::Internal::ContextImplementation::DestroyCache: The specified GPU cache is not part of this context
+rgl_log_41608.txt:4698: [22:52:25.422] Granite Error in Graphine::Granite::Internal::ContextImplementation::DestroyCache: The specified GPU cache is not part of this context
+rgl_log_41608.txt:4699: [22:52:25.422] Granite Error in Graphine::Granite::Internal::ContextImplementation::DestroyCache: The specified GPU cache is not part of this context
+rgl_log_41608.txt:5149: Error: Non-Zero Device Reference Count! (ERC2957)
+watchdog_log_41608.txt:9: Waiting for an exception event...
+Dedicated native error log: startup header only.
+Native process return code: 4294967295. Normal native shutdown receipts and process absence were verified; no force termination was used.
+
+RELEASE_SCAN_RESULTS
+Forbidden reference matches: []
+Terms searched case-insensitively with normalized slashes: ["d:/bannerlordairesearch", "chatgpt", "codex", "desktop commander", "testrunner", "command-bus", "command bus", "command_bus", "external development watchdog"]
+Native saved-game initialization count: 1
+Native successful Save count: 1
+No emitted ClanAI/Harmony exception trace was found. No obvious duplicate initialization or attributable duplicate lifecycle/message spam was observed before exit; guarded reload checks NOT EXERCISED.
+No module-local Logs/clanai.log, Logs/Sessions, Logs/episodes.log, Phase 4/5/6 proof telemetry, or Phase 7B/7C experiment receipts appeared. Module Data and Logs directories remained absent.
+All 84 tracked research telemetry files retained their sizes and last-write timestamps. Research changes: {}
+This is not an exhaustive file-access, network, or initializer trace. The research directory remained present. Bannerlord native watchdog diagnostics are not external development-watchdog dependencies.
+
+RETAINED_SCREENSHOT_MANIFEST
+Images remain local. Interpret displayed content, not filenames. Capture timestamps below are UTC; all listed observations were 1920x1080 with the live game foreground handle 17368218.
+03_main_menu.png | 2026-09-26T05:50:15.453272+00:00 | bytes=3916747 | sha256=1CE517642F963BD67CBE9251598DE5FE134870EAE1DF0C06E2815AD23BE892AE
+06_protected_selected.png | 2026-09-26T05:51:37.670364+00:00 | bytes=2246869 | sha256=DAC74843C162015C3982D6DF096EB0B7D72B428394764B52D6672546DFC17FF0
+07_compatibility.png | 2026-09-26T05:51:58.196412+00:00 | bytes=2062154 | sha256=F1F0F2AB63DF6C4067B5EDA1B8E6055B4E464E1CFE8510F36C392D7BA6E17121
+09_campaign_ready.png | 2026-09-26T05:52:37.182546+00:00 | bytes=3290109 | sha256=88630CF5787BE84FAA6034A5EA1ABCA6E62333CE3996F08D15389176164DD17B
+10_initial_menu.png | 2026-09-26T05:52:53.352803+00:00 | bytes=2615522 | sha256=85FB0A73A700157D2378C965E311AB17C6442C011AFCCF70B985F2A78D57B389
+13_p00_postsave_time.png | 2026-09-26T05:54:06.393685+00:00 | bytes=3229200 | sha256=ED0CC64FCAE10B45CD563EBA863FAD974952C4BEC1057CB329E311D0A5608CC9
+14_p00_postsave_menu.png | 2026-09-26T05:54:22.958076+00:00 | bytes=2534049 | sha256=5E5D042F277E292D217051888CC4BC575F3DBF11B8F0FCFC5D905D9DC9C2D48D
+b00_calibration_time_pause.png | 2026-09-26T05:54:49.802509+00:00 | bytes=3372093 | sha256=09416119DF76E1AF157AE7D3E51B3D7E5D2B8EFF2180FE8E4B0E2E641E867E56
+b00_menu.png | 2026-09-26T05:55:10.398343+00:00 | bytes=3333050 | sha256=FA92130BD493496669B22902F870FCD7F9D071D822B9CC32039DAD484ACA8127
+b00_menu_observed_absent_retry.png | 2026-09-26T05:55:37.193129+00:00 | bytes=3262115 | sha256=E75DF3262349223D4A6D47E2F8E693F1B5DC4EA83F0AE6A4986DC382DD8865EA
+15_safe_exit_menu_recovery.png | 2026-09-26T05:56:08.223525+00:00 | bytes=3271817 | sha256=C3F3CE2268E9D7758D5B10BFDE81DFD64BBB4F5D95ABC8F86A06346F660EA5E6
+16_safe_exit_native_menu_click.png | 2026-09-26T05:56:38.216319+00:00 | bytes=2567425 | sha256=A5612DC8CD51CB001F9F84E6EC4C575AAA1C275835494063163EB48C34AAAC12
+17_no_save_exit_dialog.png | 2026-09-26T05:57:10.367739+00:00 | bytes=2511298 | sha256=5A65FE7B707E50DACE8C5FBAB2D2F207EE967B9589C2994DC2EC8B5FB72DFB8D
+18_returned_main_menu.png | 2026-09-26T05:57:39.396649+00:00 | bytes=3196260 | sha256=FA7DEBA2A8A635494C9656FBB39677DB58007CCA3EB5F5C1FAC17FB626C7873B
+
+EXACT_RECORDED_EXIT_ACTIONS
+{"utc": "2026-09-26T05:57:09.210807+00:00", "action": "FAIL-control-stop", "state": "DUAL_PAUSED_CONFIRMED", "cause": "Menu pause latch not re-established after calibration: two fresh observations show native PAUSED but no Escape overlay. Advancement permanently stopped; no further save authorized.", "recovery": "native lower-left menu button opened Escape overlay", "diagnosticSaveCreated": false, "advancementWillResume": false}
+{"utc": "2026-09-26T05:57:36.132135+00:00", "action": "native-no-save-exit-confirmed", "state": "EXITING_CAMPAIGN", "dialogExplicitlyNoSave": true}
+{"utc": "2026-09-26T05:58:05.012251+00:00", "action": "main-menu-after-no-save-exit", "state": "MAIN_MENU", "observation": {"label": "18_returned_main_menu", "file": "18_returned_main_menu.png", "utc": "2026-09-26T05:57:39.396649+00:00", "foreground": 17368218, "width": 1920, "height": 1080}}
+{"utc": "2026-09-26T05:58:05.411273+00:00", "action": "native-exit-game-selected", "state": "EXITING_GAME"}
+
+FINAL_SAFETY_AND_REQUIRED_STATUS
+cleanupUtc=2026-09-26T05:58:39.580020+00:00
+protectedFixture={"name": "ClanAI V020V PERSIST DEMO GATE V021M 20260924.sav", "bytes": 9040242, "mtime_ns": 1790270412238463300, "sha256": "A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427"}
+protectedTimestampUtc=2026-09-24T17:20:12.2384633Z
+protectedDayLong=1039.761
+protectedFixtureUnchanged=YES
+installedPackageUnchanged=YES
+all52PriorNativeSavesUnchanged=YES
+saveChanges={"BI4R3 PROBE.sav": {"before": null, "after": {"name": "BI4R3 PROBE.sav", "bytes": 6463396, "mtime_ns": 1790402045368905700, "sha256": "93F62E2D02C5FBA8CF9CE6DDB30E3B9FD50DE1D98A730CB8AB3B7331E39C8878"}}}
+bannerlordProcessGone=YES
+preSaveTarget20to28Hours=NOT ESTABLISHED
+lastSavedElapsedHours=0.000 BEFORE calibration, not final live total
+calibrationCampaignHours=UNKNOWN
+calibrationHoursPerSecond=NOT ESTABLISHED
+finalElapsedHours=UNKNOWN
+completeRunNumericCutoffProof=NOT ESTABLISHED
+guardedSaveName=NOT CREATED
+guardedSaveDayLong=NOT APPLICABLE
+guardedSaveResult=NOT PERFORMED
+guardedReload=NOT PERFORMED
+postReloadProbes=NONE
+postReloadElapsedHours=NOT EXERCISED
+controlFailure=MENU_PAUSED_CONFIRMED not established after requested Escape inputs; time pause visibly engaged; recovered menu for exit only
+forbiddenDevelopmentReferencesObserved=NO in current-PID scan
+researchTelemetryCreated=NO in checked locations
+duplicateInitializationLifecycleIssueObserved=NO before exit; reload NOT EXERCISED
+gameplayChanged=NO source/policy changes; calibration advanced native campaign state which was discarded
+saveSchemaChanged=NO
+classification=FAIL
+readyForNextPhase8ReleaseHardeningCheckpoint=NO
+Run closed. No diagnostic save, fix, restart, extension, second run, or further milestone.

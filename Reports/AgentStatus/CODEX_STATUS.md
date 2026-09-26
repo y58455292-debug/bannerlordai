@@ -2,6 +2,18 @@
 
 ## Current checkpoint
 
+Phase 8B-I4R3 is closed as **FAIL — menu-pause acknowledgement failure after calibration**, not a demonstrated ClanAI defect. Starting checkpoint: `77eb3ae676d792619eaa404de6b5ab5b5152fdfb`. One fresh native process (`41608`) used the exact packaged DLL `A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5` without rebuilding, substituting, or redeploying. The normal main menu and protected campaign loaded with research modules and configuration overrides excluded.
+
+Initial and post-Save dual pause were positively confirmed. The only native save, `BI4R3 PROBE`, matched protected `DayLong=1039.761` and measured `0.000 h` **before calibration**. The only authorized burst was one second at native normal speed. Native time pause was visibly confirmed afterward, but two observed Escape-key requests failed to show the menu. Advancement stopped permanently. Further menu recovery was for exit only; the native lower-left menu button eventually opened the Escape overlay while native time pause remained selected.
+
+**No post-calibration probe, diagnostic save, guarded save, reload, second burst, or replacement run occurred.** Calibration campaign-hours/rate and final live elapsed time are UNKNOWN. The initial zero-hour saved measurement is not a final total. The 20–28-hour pre-save target, guarded save/reload, 4–8-hour post-reload target, and complete-run numeric cutoff proof remain unestablished.
+
+Native no-save exit and Exit Game completed, and Bannerlord is closed. The protected fixture's exact hash, timestamp, and DayLong were unchanged; the installed three-file package and all 52 pre-existing native saves were unchanged. All 84 tracked research telemetry files retained their sizes/timestamps. No research output or forbidden development references were observed in the checked locations/current-PID scan, and no ClanAI/Harmony exception trace was found. Native loading/graphics/shutdown errors and return code `4294967295` are retained without attribution to ClanAI. No exhaustive network/file-access proof is claimed.
+
+See `Reports/Release/PHASE8B_I4R3_RELEASE_PROFILE_RUNTIME_SMOKE_RESULT.md` and `Reports/Release/evidence/phase8b_i4r3_release_profile_smoke_20260926.txt`. **Ready for next Phase 8 release-hardening checkpoint: NO.** Stop here. No continuation, product fix, restart, diagnostic save, or further milestone is authorized by this result.
+
+## Preserved Phase 8B-I4R3P offline preparation
+
 Phase 8B-I4R3P's offline dual-pause release-smoke protocol is **COMPLETE**. I4, I4R1, and I4R2 remain closed operator/test-control failures; none demonstrates a ClanAI defect. I4R2 proved the Escape overlay alone is insufficient: its one-second calibration stopped correctly, but native Save returned to a moving campaign before the menu was reacquired, making the saved measurement stale. A later diagnostic Save repeated the uncontrolled post-save interval.
 
 The next live retry requires two independent positive latches: a fresh live observation of Bannerlord's native time control at paused/zero speed and a fresh live observation of the Escape menu. Only both together establish `DUAL_PAUSED_CONFIRMED`. Advancement and Save now have separate mandatory state machines; after every Save, time pause must be reacquired and confirmed before the Escape menu, and no metadata/tool/window switching is permitted until dual pause is restored. Loss of either latch ends advancement and forbids diagnostic saves.
@@ -187,7 +199,7 @@ SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 
 ## Next bounded milestone
 
-The requested Phase 8B-I4, I4R1, and I4R2 smokes have not passed. All three attempts are closed with failure evidence; none establishes a reproducible ClanAI defect or justifies a gameplay change. The guarded reload/post-reload checks remain unproven. I4R2's final live elapsed time is unknown, despite the retained 10.152-hour saved measurement.
+The requested Phase 8B-I4, I4R1, I4R2, and I4R3 smokes have not passed. All four attempts are closed with failure evidence; none establishes a reproducible ClanAI defect or justifies a gameplay change. The guarded reload/post-reload checks remain unproven. I4R2's final live elapsed time is unknown despite its retained 10.152-hour saved measurement. I4R3 stopped after menu-acknowledgement failure, with native time visibly paused; its only saved measurement is the initial zero-hour baseline, and no diagnostic save was made. I4R3 calibration campaign-hours and final live elapsed remain unknown.
 
 Stop at this checkpoint. Do not rebuild, substitute the package, repeat this attempt, start a product fix, or begin another release-hardening milestone as part of the same task. Further runtime work requires a separately bounded task with reliable campaign-hour stop control.
 
