@@ -1,0 +1,470 @@
+PHASE7C-I3 COMPLETED RUNTIME: FOCUSED EXACT EVIDENCE
+Result: BOUNDED NULL
+Purpose: documentation-only closure of the retained 2026-09-26 run; no new runtime or validation run.
+Source: retained Phase7CI3_Runtime_12f8_20260926 artifacts and original session/runner logs.
+Verbatim sections preserve retained text; source JSON may have originally rounded binary floating-point values.
+Computed counts below are a fresh read-only scan of the retained complete session and bounded runner-log interval.
+The post-load receipts below belong to the initial protected fixture load, NOT a guarded post-event reload.
+
+SOURCE_MANIFEST_SHA256
+[
+  {
+    "file": "chronology.json",
+    "bytes": 402,
+    "sha256": "F13B442BFCFD24ADF2797C08185571A4361F690FBE2A48204B64214DC2A45848"
+  },
+  {
+    "file": "runtime_baseline.json",
+    "bytes": 1174,
+    "sha256": "25E1D75ADFBD8C4F7BD2F33F2EE06E5C0F65BFC0C23475A79C0A640DA3F12F55"
+  },
+  {
+    "file": "runtime_stop.json",
+    "bytes": 950,
+    "sha256": "B1A8E4E57E93D7C8EE56691D2C84A3E6E7D4E3A52D1C87A5F585B0A98DC74C2D"
+  },
+  {
+    "file": "cleanup.json",
+    "bytes": 592,
+    "sha256": "D6225753C1F08C475F130ED3265DAC07BBA5340DB4B7952A4446F75D3AD50964"
+  },
+  {
+    "file": "final_readonly.json",
+    "bytes": 3190,
+    "sha256": "21EA63F63A604DAC922CB924C42D24684BA8A38BF093FEB22BF0D987FF2229EB"
+  },
+  {
+    "file": "runtime_selected_lines.txt",
+    "bytes": 3700,
+    "sha256": "D9E7D9526586B6E93D09CA1CEDF2A277C99799074C6F3626796C467E13E366B3"
+  },
+  {
+    "file": "native_calendar.json",
+    "bytes": 602,
+    "sha256": "C2D736488C003AA23ECDAFF7166BB7AA6E841E86465B8F245A3C85DB82C3FBF2"
+  },
+  {
+    "file": "event_subscriptions.json",
+    "bytes": 747,
+    "sha256": "284ACDD3DACA5E3187AFE81DF6D6787F887A8960D9BB5C7B3B1ECFDBB5DEC7E4"
+  },
+  {
+    "file": "base_validation.txt",
+    "bytes": 1432,
+    "sha256": "6A6F1A194B58A5053FE09C12FEC95AFA2CCE038A7899347F93129C15920CD06C"
+  },
+  {
+    "file": "telemetry_validation.txt",
+    "bytes": 16558,
+    "sha256": "DE0A8C5EFA9167D357B2BB6F1331139AD23A3E40ADC44C0116B99A01F239C253"
+  }
+]
+
+COMPUTED_SCAN_SUMMARY
+{
+  "sessionFile": "ClanAI_20260926_021237_869_v020Q_review.log",
+  "sessionSHA256": "692D7DBE92B3BDE7A012E405572B2892FF6C4DA6B5820B3FB8E9BB13A7269D53",
+  "sessionBytes": 72980811,
+  "sessionLines": 164924,
+  "I3_and_related_counts": {
+    "DYNASTY_MIND_SEED_READY": 1,
+    "DYNASTY_MIND_ENTRY": 8,
+    "DYNASTY_BRANCH_EPISODE_SESSION_READY": 1,
+    "GENCONT_RULER_SNAPSHOT": 20,
+    "KINGDOM_CONTINUITY_RECONCILED": 1,
+    "I3_RUNTIME_SNAPSHOT": 1,
+    "I3_RUNTIME_LEDGER": 7,
+    "I3_RUNTIME_HISTORY_RECEIPT": 1,
+    "DYNASTY_BRANCH_EPISODE_RETRIEVED": 1,
+    "I3_RUNTIME_PERSONAL_RECEIPT": 1,
+    "DYNASTY_BRANCH_CHOICE_RETRIEVED": 1,
+    "I3_RUNTIME_CHOICE_RECEIPT": 1,
+    "GENCONT_HERO_MEMORY_RESOLUTION": 578,
+    "GENCONT_NATIVE_HERO_DEATH": 268,
+    "GENCONT_NATIVE_CLAN_LEADER_CHANGED": 14
+  },
+  "errorMarkers": {},
+  "commands": [
+    {
+      "line": 401,
+      "text": "2026-09-26T02:12:27.9743819Z [TestRunner v0.1] COMMAND command=LOAD_SAVE ClanAI V020V PERSIST DEMO GATE V021M 20260924 result=operator_load_save_started:ClanAI V020V PERSIST DEMO GATE V021M 20260924 timeControl=<none>"
+    },
+    {
+      "line": 404,
+      "text": "2026-09-26T02:13:58.1256226Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=Stop"
+    },
+    {
+      "line": 405,
+      "text": "2026-09-26T02:13:58.5136809Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward"
+    },
+    {
+      "line": 409,
+      "text": "2026-09-26T02:29:50.6615153Z [TestRunner v0.1] COMMAND command=PAUSE result=paused timeControl=Stop"
+    },
+    {
+      "line": 410,
+      "text": "2026-09-26T02:31:04.5226616Z [TestRunner v0.1] COMMAND command=EXIT_NOSAVE result=exit_scheduled timeControl=Stop"
+    }
+  ],
+  "saveCommands": 0,
+  "safetyMarginHours": 10.958262444473803
+}
+
+BEGIN_RETAINED chronology.json
+{
+  "startCampaignHour": 649491.2704463612,
+  "maxCampaignHours": 1152.0,
+  "absoluteCap": 650643.2704463612,
+  "pauseMarginHours": 12.0,
+  "sessionLog": "D:\\BannerlordAIResearch\\Telemetry\\ClanAI\\sessions\\ClanAI_20260926_021237_869_v020Q_review.log",
+  "gamePid": 34804,
+  "campaignGeneration": 1,
+  "target": "next-natural-ruling-clan-change-in-any-surviving-kingdom",
+  "noSpecificRuler": true
+}
+END_RETAINED chronology.json
+
+BEGIN_RETAINED runtime_baseline.json
+{
+    "utc":  "2026-09-26T02:11:40.0157701Z",
+    "writerCheckpoint":  "12f8f430a8f192e100133a70787e7596e412099b",
+    "telemetryCommit":  "3056a69f114b0acc85dfb4ed12a89fc6347b70d9",
+    "candidateSha256":  "6B3DC310C7491C2D976F34C9DBF64A3CF9A756B1077BCAD29C4E6577767C4364",
+    "liveBeforeSha256":  "B15B7B4D3F77EF40D6080EECF07B0077BA4B0E5ABD176C3C4328166BFB4A3ED0",
+    "rollbackPath":  "D:\\BannerlordAIResearch\\Builds\\Rollback_Phase7CI3_20260926_ClanAI",
+    "rollbackSha256":  "B15B7B4D3F77EF40D6080EECF07B0077BA4B0E5ABD176C3C4328166BFB4A3ED0",
+    "savePath":  "C:\\Users\\csala\\OneDrive\\Documents\\Mount and Blade II Bannerlord\\Game Saves\\ClanAI V020V PERSIST DEMO GATE V021M 20260924.sav",
+    "saveSha256":  "A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427",
+    "saveTimestampUtc":  "2026-09-24T17:20:12.2384633Z",
+    "strategicCommitment":  "Mode=Observe",
+    "visualWarMarker":  false,
+    "maxCampaignHours":  1152,
+    "target":  "next-natural-ruling-clan-transition-any-surviving-kingdom",
+    "runnerLogLines":  397,
+    "campaignDllSha256":  "5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F"
+}
+END_RETAINED runtime_baseline.json
+
+BEGIN_RETAINED runtime_stop.json
+{
+  "reason": "two-native-year-bound-conservative-margin",
+  "startHour": 649491.2704463612,
+  "capHour": 650643.2704463612,
+  "pauseHour": 650632.3121839167,
+  "elapsedHours": 1141.0417375555262,
+  "firstEvent": null,
+  "error": null,
+  "status": {
+    "schema": "BannerlordAI.TestRunner.v2",
+    "utc": "2026-09-26T02:29:50.8637378Z",
+    "reason": "tick",
+    "campaignReady": "True",
+    "timeControl": "Stop",
+    "campaignHours": "650632.31218391669",
+    "loadedSave": "ClanAI V020V PERSIST DEMO GATE V021M 20260924",
+    "campaignGeneration": "1",
+    "autoDesiredMode": "<none>",
+    "autoResumeCount": "0",
+    "blockers": "menu_active:town_wait_menus",
+    "lastCommand": "PAUSE",
+    "lastResult": "paused",
+    "decisionType": "<none>",
+    "decisionTitle": "<none>",
+    "decisionOptionCount": "0",
+    "playerHero": "Manan",
+    "partySettlement": "town_ES7",
+    "partyPosition": "792.4435,446.1407"
+  }
+}
+END_RETAINED runtime_stop.json
+
+BEGIN_RETAINED cleanup.json
+{
+    "utc":  "2026-09-26T02:31:37.1011659Z",
+    "bannerlordClosed":  true,
+    "protectedFixtureSha256":  "A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427",
+    "protectedFixtureTimestampUtc":  "2026-09-24T17:20:12.2384633Z",
+    "protectedFixtureUnchanged":  true,
+    "rollbackSha256":  "B15B7B4D3F77EF40D6080EECF07B0077BA4B0E5ABD176C3C4328166BFB4A3ED0",
+    "rollbackIntact":  true,
+    "liveCandidateSha256":  "6B3DC310C7491C2D976F34C9DBF64A3CF9A756B1077BCAD29C4E6577767C4364",
+    "strategicCommitment":  "Mode=Observe",
+    "visualWarMarker":  false
+}
+END_RETAINED cleanup.json
+
+BEGIN_RETAINED final_readonly.json
+[
+  {
+    "path": "type:ClanAI.DynastyMindSeed.BranchId",
+    "value": "5399123936904b7d90beb7038ae998d1"
+  },
+  {
+    "path": "Hero.MainHero.StringId",
+    "value": "lord_3_12"
+  },
+  {
+    "path": "type:ClanAI.DynastyBranchEpisodeMemory.Episodes.Count",
+    "value": 2
+  },
+  {
+    "path": "type:ClanAI.DynastyBranchEpisodeMemory._structuralRecorded",
+    "value": 0
+  },
+  {
+    "path": "type:ClanAI.DynastyBranchEpisodeMemory._duplicates",
+    "value": 0
+  },
+  {
+    "path": "type:ClanAI.DynastyBranchEpisodeMemory._rejected",
+    "value": 0
+  },
+  {
+    "path": "type:ClanAI.KingdomContinuityLedger.Records.Count",
+    "value": 7
+  },
+  {
+    "path": "type:ClanAI.DynastyBranchEpisodeMemory.Episodes[0].Kind",
+    "value": "IncidentOpened"
+  },
+  {
+    "path": "type:ClanAI.DynastyBranchEpisodeMemory.Episodes[1].Kind",
+    "value": "IncidentChoice"
+  },
+  {
+    "path": "Kingdom.All[0].StringId",
+    "value": "empire"
+  },
+  {
+    "path": "Kingdom.All[0].IsEliminated",
+    "value": true
+  },
+  {
+    "path": "Kingdom.All[0].RulingClan.StringId",
+    "value": "clan_empire_north_1"
+  },
+  {
+    "path": "Kingdom.All[1].StringId",
+    "value": "khuzait"
+  },
+  {
+    "path": "Kingdom.All[1].IsEliminated",
+    "value": false
+  },
+  {
+    "path": "Kingdom.All[1].RulingClan.StringId",
+    "value": "clan_khuzait_1"
+  },
+  {
+    "path": "Kingdom.All[2].StringId",
+    "value": "empire_w"
+  },
+  {
+    "path": "Kingdom.All[2].IsEliminated",
+    "value": true
+  },
+  {
+    "path": "Kingdom.All[2].RulingClan.StringId",
+    "value": "clan_empire_west_1"
+  },
+  {
+    "path": "Kingdom.All[3].StringId",
+    "value": "battania"
+  },
+  {
+    "path": "Kingdom.All[3].IsEliminated",
+    "value": false
+  },
+  {
+    "path": "Kingdom.All[3].RulingClan.StringId",
+    "value": "clan_battania_1"
+  },
+  {
+    "path": "Kingdom.All[4].StringId",
+    "value": "empire_s"
+  },
+  {
+    "path": "Kingdom.All[4].IsEliminated",
+    "value": true
+  },
+  {
+    "path": "Kingdom.All[4].RulingClan.StringId",
+    "value": "clan_empire_south_1"
+  },
+  {
+    "path": "Kingdom.All[5].StringId",
+    "value": "aserai"
+  },
+  {
+    "path": "Kingdom.All[5].IsEliminated",
+    "value": false
+  },
+  {
+    "path": "Kingdom.All[5].RulingClan.StringId",
+    "value": "clan_aserai_1"
+  },
+  {
+    "path": "Kingdom.All[6].StringId",
+    "value": "sturgia"
+  },
+  {
+    "path": "Kingdom.All[6].IsEliminated",
+    "value": false
+  },
+  {
+    "path": "Kingdom.All[6].RulingClan.StringId",
+    "value": "clan_sturgia_4"
+  },
+  {
+    "path": "Kingdom.All[7].StringId",
+    "value": "vlandia"
+  },
+  {
+    "path": "Kingdom.All[7].IsEliminated",
+    "value": false
+  },
+  {
+    "path": "Kingdom.All[7].RulingClan.StringId",
+    "value": "clan_vlandia_1"
+  },
+  {
+    "path": "Kingdom.All[8].StringId",
+    "value": "nord"
+  },
+  {
+    "path": "Kingdom.All[8].IsEliminated",
+    "value": false
+  },
+  {
+    "path": "Kingdom.All[8].RulingClan.StringId",
+    "value": "clan_nord_1"
+  },
+  {
+    "path": "Kingdom.All[9].StringId",
+    "value": "calradian_empire"
+  },
+  {
+    "path": "Kingdom.All[9].IsEliminated",
+    "value": false
+  },
+  {
+    "path": "Kingdom.All[9].RulingClan.StringId",
+    "value": "clan_empire_west_1"
+  }
+]
+END_RETAINED final_readonly.json
+
+BEGIN_RETAINED native_calendar.json
+[
+  {
+    "path": "type:TaleWorlds.CampaignSystem.CampaignTime.HoursInDay",
+    "value": 24
+  },
+  {
+    "path": "type:TaleWorlds.CampaignSystem.CampaignTime.DaysInWeek",
+    "value": 3
+  },
+  {
+    "path": "type:TaleWorlds.CampaignSystem.CampaignTime.WeeksInSeason",
+    "value": 2
+  },
+  {
+    "path": "type:TaleWorlds.CampaignSystem.CampaignTime.SeasonsInYear",
+    "value": 4
+  },
+  {
+    "path": "type:TaleWorlds.CampaignSystem.CampaignTime.TimeTicksPerHour",
+    "value": 36000000
+  },
+  {
+    "path": "type:TaleWorlds.CampaignSystem.CampaignTime.TimeTicksPerYear",
+    "value": 20736000000
+  }
+]
+END_RETAINED native_calendar.json
+
+BEGIN_RETAINED event_subscriptions.json
+{"note":"Every event 'ClanAI' subscribes to. If an event you expected is absent, that feature cannot react to it, however correct its logic is.","eventsKnown":279,"eventsExamined":1,"eventsWithSubscribers":1,"filters":{"campaignEvent":"RulingClanChanged","mod":"ClanAI","onlySubscribed":false},"returned":1,"truncated":false,"busiestMods":[{"mod":"ClanAI","subscriptions":3}],"events":[{"campaignEvent":"RulingClanChanged","subscriberCount":3,"totalOnThisEvent":5,"subscribers":[{"mod":"ClanAI","handler":"ClanAI.DynastyStructuralRuntimeObserver.OnRulingClanChanged"},{"mod":"ClanAI","handler":"ClanAI.GenerationalContinuityPreflightBehavior.OnRulingClanChanged"},{"mod":"ClanAI","handler":"ClanAI.KingdomContinuityLedger.OnRulingClanChanged"}]}]}
+END_RETAINED event_subscriptions.json
+
+EXACT_SESSION_RECEIPTS_WITH_ORIGINAL_1_BASED_LINE_NUMBERS
+70: 2026-09-26T02:12:41.0264731Z [ClanAI v0.22A-ruler-courtship-native-v1] I3_RUNTIME_SNAPSHOT stage=post-load campaignHour=649491.27044636116 branchId=5399123936904b7d90beb7038ae998d1 observerActorId=lord_3_12 structuralRows=0 semanticIdentities=0 mutationByClanAI=False
+71: 2026-09-26T02:12:41.0264731Z [ClanAI v0.22A-ruler-courtship-native-v1] I3_RUNTIME_LEDGER stage=post-load kingdomId=khuzait rulingClanId=clan_khuzait_1 successionOrdinal=0 lastSuccessionHour=0 destroyed=False mutationByClanAI=False
+72: 2026-09-26T02:12:41.0264731Z [ClanAI v0.22A-ruler-courtship-native-v1] I3_RUNTIME_LEDGER stage=post-load kingdomId=battania rulingClanId=clan_battania_1 successionOrdinal=0 lastSuccessionHour=0 destroyed=False mutationByClanAI=False
+73: 2026-09-26T02:12:41.0264731Z [ClanAI v0.22A-ruler-courtship-native-v1] I3_RUNTIME_LEDGER stage=post-load kingdomId=aserai rulingClanId=clan_aserai_1 successionOrdinal=0 lastSuccessionHour=0 destroyed=False mutationByClanAI=False
+74: 2026-09-26T02:12:41.0264731Z [ClanAI v0.22A-ruler-courtship-native-v1] I3_RUNTIME_LEDGER stage=post-load kingdomId=sturgia rulingClanId=clan_sturgia_4 successionOrdinal=0 lastSuccessionHour=0 destroyed=False mutationByClanAI=False
+75: 2026-09-26T02:12:41.0264731Z [ClanAI v0.22A-ruler-courtship-native-v1] I3_RUNTIME_LEDGER stage=post-load kingdomId=vlandia rulingClanId=clan_vlandia_1 successionOrdinal=0 lastSuccessionHour=0 destroyed=False mutationByClanAI=False
+76: 2026-09-26T02:12:41.0264731Z [ClanAI v0.22A-ruler-courtship-native-v1] I3_RUNTIME_LEDGER stage=post-load kingdomId=nord rulingClanId=clan_nord_1 successionOrdinal=0 lastSuccessionHour=0 destroyed=False mutationByClanAI=False
+77: 2026-09-26T02:12:41.0264731Z [ClanAI v0.22A-ruler-courtship-native-v1] I3_RUNTIME_LEDGER stage=post-load kingdomId=calradian_empire rulingClanId=clan_empire_west_1 successionOrdinal=0 lastSuccessionHour=0 destroyed=False mutationByClanAI=False
+78: 2026-09-26T02:12:41.0289807Z [ClanAI v0.22A-ruler-courtship-native-v1] I3_RUNTIME_HISTORY_RECEIPT stage=post-load receipt=null mutationByClanAI=False
+80: 2026-09-26T02:12:41.0309843Z [ClanAI v0.22A-ruler-courtship-native-v1] I3_RUNTIME_PERSONAL_RECEIPT stage=post-load receipt={"schema":"BannerlordAI.DynastyBranchEpisodeRetrieval.v1","mode":"observe","actor":"Manan","actorId":"lord_3_12","branchId":"5399123936904b7d90beb7038ae998d1","retrievalContext":"phase7ci3-post-load","currentCampaignHours":649491.27044636116,"visibleCount":2,"latest":{"id":"70df08d7693d43d39b0dbd56d2b956a5","kind":"IncidentOpened","knownByHours":648650.98507308331,"observedUtc":"2026-09-23T03:23:58.0187857Z","contextId":"incident:soldier-in-debt","contextName":"Soldier in Debt","source":"TestRunner.GauntletMapIncidentView.CreateLayout","detail":"optionCount=3","actorValid":true,"branchValid":true,"futureLeak":false},"scoreMutation":false} mutationByClanAI=False
+82: 2026-09-26T02:12:41.0329811Z [ClanAI v0.22A-ruler-courtship-native-v1] I3_RUNTIME_CHOICE_RECEIPT stage=post-load receipt={"schema":"BannerlordAI.DynastyBranchChoiceRetrieval.v1","mode":"observe","actor":"Manan","actorId":"lord_3_12","branchId":"5399123936904b7d90beb7038ae998d1","retrievalContext":"phase7ci3-post-load","currentCampaignHours":649491.27044636116,"visibleChoiceCount":1,"latestChoice":{"id":"e71f32f6f057474aa5edf09c4dcae795","knownByHours":648650.98507308331,"observedUtc":"2026-09-23T03:23:58.5058273Z","contextId":"incident:soldier-in-debt","contextName":"Soldier in Debt","optionIndex":1,"optionText":"Tell the merchant that he is lucky not to be chased out of camp for gouging your men","source":"TestRunner.Incident.InvokeOption","actorValid":true,"branchValid":true,"futureLeak":false},"scoreMutation":false} mutationByClanAI=False
+
+EXACT_RUNTIME_COMMANDS_WITH_ORIGINAL_1_BASED_LINE_NUMBERS
+401: 2026-09-26T02:12:27.9743819Z [TestRunner v0.1] COMMAND command=LOAD_SAVE ClanAI V020V PERSIST DEMO GATE V021M 20260924 result=operator_load_save_started:ClanAI V020V PERSIST DEMO GATE V021M 20260924 timeControl=<none>
+404: 2026-09-26T02:13:58.1256226Z [TestRunner v0.1] COMMAND command=CLOSE_ESCAPE_MENU result=escape_menu_closed timeControl=Stop
+405: 2026-09-26T02:13:58.5136809Z [TestRunner v0.1] COMMAND command=FAST result=fast_forward timeControl=UnstoppableFastForward
+409: 2026-09-26T02:29:50.6615153Z [TestRunner v0.1] COMMAND command=PAUSE result=paused timeControl=Stop
+410: 2026-09-26T02:31:04.5226616Z [TestRunner v0.1] COMMAND command=EXIT_NOSAVE result=exit_scheduled timeControl=Stop
+
+HISTORICAL_FINAL_FOCUSED_VALIDATION_EXCERPT_NOT_RERUN
+COMMAND dotnet run --project Tests/GenerationalContinuity/Phase7CStructuralWriter/Phase7CStructuralWriterTests.csproj -c Release
+PASS Phase 7C-I3 structural-writer checks=31
+PASS native authority, deduplication, provenance, retrieval isolation and D2 kind compatibility
+EXIT 0
+COMMAND dotnet run --project Tests/GenerationalContinuity/Phase7CRetrievalScope/Phase7CRetrievalScopeTests.csproj -c Release
+PASS Phase 7C retrieval-scope checks=19
+PASS actor preservation, history isolation, provenance and no mutation
+EXIT 0
+COMMAND python Tests/GenerationalContinuity/test_phase7c_i3_structural_writer_invariants.py
+PASS Phase 7C-I3 guarded native-event writer invariant
+PASS Phase 7C-I3 structural allowlist/personal exclusion invariant
+PASS Phase 7C-I3 D1/D2 schema compatibility invariant
+PASS Phase 7C-I3 no political/gameplay mutation invariant
+EXIT 0
+COMMAND python Tests/GenerationalContinuity/test_phase7c_retrieval_scope_invariants.py
+PASS Phase 7C actor-specific retrieval preservation invariant
+PASS Phase 7C explicit branch-history isolation invariant
+PASS Phase 7C D1/D2 save compatibility invariant
+PASS Phase 7C no gameplay mutation/development dependency invariant
+EXIT 0
+COMMAND python Tests/GenerationalContinuity/test_phase7c_i3_runtime_observer.py
+PASS I3 runtime observer event/retrieval/duplicate evidence wiring
+PASS I3 runtime observer no gameplay mutation, save schema or external dependency
+PASS writer/retrieval/bridge/ledger byte-for-byte preservation
+EXIT 0
+COMMAND dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj -c Release
+Build succeeded.
+    1 Warning(s)
+    0 Error(s)
+EXIT 0
+
+EARLIER_BASE_VALIDATION_FAILURE_PRESERVED_NOT_CLEARED
+The earlier base_validation.txt ends with the following separate Phase 7B preservation check; no diagnosis or fix is claimed by this closure.
+COMMAND python Tests/GenerationalContinuity/test_phase7b_preflight_invariants.py
+FAIL preserved source changed: CivicProjectSelectionPolicy.cs D1EE6FEFF19D696ED66D99BEF2175A73F1F4198982EFBE1279F22A5B48A31D92
+
+EXIT 1
+
+BEGIN_CLOSURE_SAFETY_READBACK_NOT_A_RUNTIME_SAMPLE
+{
+    "utc":  "2026-09-26T02:44:30.3300396Z",
+    "bannerlordClosed":  true,
+    "protectedFixtureSha256":  "A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427",
+    "protectedFixtureTimestampUtc":  "2026-09-24T17:20:12.2384633Z",
+    "rollbackSha256":  "B15B7B4D3F77EF40D6080EECF07B0077BA4B0E5ABD176C3C4328166BFB4A3ED0",
+    "liveCandidateSha256":  "6B3DC310C7491C2D976F34C9DBF64A3CF9A756B1077BCAD29C4E6577767C4364",
+    "strategicCommitment":  "Mode=Observe",
+    "visualWarMarker":  false
+}
+END_CLOSURE_SAFETY_READBACK_NOT_A_RUNTIME_SAMPLE
+
+REQUIRED_STATUS
+natural_ruling_clan_transition_observed=NO
+structural_episode_recorded_exactly_once=NO; no qualifying native event occurred
+branch_history_retrieval_proven_for_structural_event=NO
+personal_retrieval_exclusion_runtime_proven_for_structural_event=NO
+guarded_save_reload_performed=NO
+post_reload_duplicate_detected=NOT_EXERCISED
+gameplay_mutation_by_ClanAI=NO
+result=BOUNDED_NULL

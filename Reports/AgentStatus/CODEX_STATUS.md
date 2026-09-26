@@ -2,15 +2,17 @@
 
 ## Current checkpoint
 
-Phase 7B's first natural-succession experiment is complete as a **BOUNDED NULL**.
+Phase 7C-I3's already-completed runtime characterization is now closed as a **BOUNDED NULL** using retained local evidence. This checkpoint adds only the runtime result, focused evidence, and this status update; no campaign was launched, rerun, extended, or redeployed for closure.
 
-The original Bannerlord process (PID 20740, campaign generation 1) was resumed without restarting, redeploying, resetting telemetry, or selecting a new ruler. Nemos (`lord_1_44`) remained alive and leader of `clan_empire_west_1`, ruling the surviving `calradian_empire` kingdom. No selected-target death, clan-leader change, or ruling-clan succession occurred. No guarded post-succession save/reload was performed.
+The experiment watched for the next natural `CampaignEvents.RulingClanChanged` in **any surviving kingdom**, not Nemos or a particular ruler. Structural-writer checkpoint: `12f8f430a8f192e100133a70787e7596e412099b`. Observation-only runtime checkpoint: `3056a69f114b0acc85dfb4ed12a89fc6347b70d9`. Runtime/final DLL SHA-256: `6B3DC310C7491C2D976F34C9DBF64A3CF9A756B1077BCAD29C4E6577767C4364`.
 
-The original chronology began at campaign hour `649491.27044636116` and paused at `652360.40016455553`: **2869.1297181943664 hours** elapsed. Read-only inspection of the loaded native calendar established **2880 hours for five campaign years**, correcting the earlier 10080-hour estimate without changing the calendar or extending the five-year authorization. The stop guard retained a 10.870281805633567-hour margin below the cap.
+The retained chronology started at campaign hour `649491.27044636116` and paused at `650632.31218391669`, with exact recorded elapsed time `1141.0417375555262` hours against the `1152`-hour maximum. Stop reason: `two-native-year-bound-conservative-margin`. No qualifying ruling-clan event was observed, and no new `KingdomRulingClanChanged` row was recorded. Final episode count was 2: the existing personal `IncidentOpened` and `IncidentChoice` rows. Final structural count, `_structuralRecorded`, `_duplicates`, and `_rejected` were all 0; the kingdom-continuity ledger contained 7 records.
 
-The same preflight DLL remained installed throughout: SHA-256 `B15B7B4D3F77EF40D6080EECF07B0077BA4B0E5ABD176C3C4328166BFB4A3ED0`, from `e6293f191c84b8db51a343ec82c3676a962d179b`. Nemos's final paused live age was `86.4927139` and `IsDead=false`. None of 615 emitted hero-memory-resolution lines reported a cross-hero/deceased-key application; this is not a proof of successor isolation because there was no successor. Guarded reload and duplicate-increment checks remain unexercised. Preflight WarState snapshot fields remained unavailable; the previously recovered selection record retains the 18 initial WarScars and two objectives without claiming a persistence round trip.
+The initial branch-history receipt was null. Personal/choice receipts only read existing personal history. Therefore structural-event branch-history retrieval and personal-retrieval exclusion remain runtime-unproven. No guarded save/reload occurred; structural-row persistence, post-reload duplicate detection, exactly-once succession increment, and reload-notice suppression were **NOT EXERCISED**. The initial fixture's `post-load` receipts are not post-event reload proof. Absence of a natural event is not a failure.
 
-`EXIT_NOSAVE` completed. Bannerlord is closed, zero save commands were issued, the protected fixture hash/timestamp are unchanged, rollback is intact, Strategic Commitment remains Observe, and Visual War remains OFF. No gameplay or save-schema changes were made; `DynastyBranchEpisodeMemory` remains unfixed. Phase 4/5/6 were not rerun or retuned. No additional Phase 7 feature was started.
+The retained complete session scan found zero emitted telemetry-error records; the exact run command interval contained zero saves. `EXIT_NOSAVE` completed and Bannerlord was verified closed. Protected fixture SHA-256 `A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427` and timestamp `2026-09-24T17:20:12.2384633Z` were unchanged. Rollback SHA-256 remained `B15B7B4D3F77EF40D6080EECF07B0077BA4B0E5ABD176C3C4328166BFB4A3ED0`; Strategic Commitment remained `Mode=Observe`, and Visual War remained OFF. Writer/retrieval policy, ActorId/BranchId, D1/D2 schema, gameplay, and saved world state were not changed by this closure.
+
+The focused evidence preserves the earlier preparation log's separate Phase 7B civic-policy hash-check failure without claiming it was fixed; historical focused I3 validation is distinguished from runtime proof. No validation suite or prior Phase 4/5/6 experiment was rerun. The earlier Phase 7B Nemos bounded null remains preserved in its own report.
 
 ## Native ecology finding
 
@@ -124,11 +126,13 @@ SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 - `Reports/GenerationalContinuity/evidence/phase7b_succession_runtime_preflight_validation_20260925.txt`
 - `Reports/GenerationalContinuity/PHASE7B_SUCCESSION_RUNTIME_RESULT.md`
 - `Reports/GenerationalContinuity/evidence/phase7b_succession_runtime_20260926.txt`
+- `Reports/GenerationalContinuity/PHASE7C_I3_RUNTIME_RESULT.md`
+- `Reports/GenerationalContinuity/evidence/phase7c_i3_runtime_20260926.txt`
 
 ## Next bounded milestone
 
-This Phase 7B attempt is closed as a bounded null. The selected natural-succession and guarded save/reload boundary remains unproven.
+This Phase 7C-I3 attempt is closed as a **BOUNDED NULL**. The natural ruling-clan event → structural episode → non-personal branch-history retrieval / personal exclusion → guarded save/reload boundary remains unproven.
 
-Stop here. Do not extend or restart this attempt, change the target, force conditions, fix `DynastyBranchEpisodeMemory`, or start another feature merely to obtain a positive result. Further experiments require a new bounded task.
+Stop here. Do not restart or extend this attempt, force a death/election/succession, change writer/retrieval policy or D1/D2 schema, or begin another Phase 7 experiment or Phase 8 as part of this checkpoint. Further experiments require a separate bounded task.
 
 Final product direction remains standalone, installable, and offline with no runtime development-tool dependency.
