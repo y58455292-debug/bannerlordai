@@ -2,16 +2,13 @@
 
 ## Current checkpoint
 
-Phase 8B-I4R1's fresh controlled retry is closed as **FAIL — campaign-hour control violation**, not a demonstrated ClanAI package defect.
+Phase 8B-I4R2P's offline release-smoke control protocol is **COMPLETE**. The prior I4 and I4R1 runs remain closed test-control failures, not ClanAI defects. I4 first measured 52.320 campaign hours only after its guarded save; I4R1 treated sent pause inputs and a filename-labelled screenshot as acknowledgement, allowing its third interval to grow from 7.368 to 45.624 hours before the next probe.
 
-The exact packaged DLL `A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5` was used without rebuilding, substituting, or redeploying. The main menu and protected campaign loaded without research modules or configuration overrides. Native protected `DayLong=1039.761` and the required hash/timestamp were verified before launch.
+The next live retry must use the native Escape/menu overlay as a positive hard-pause acknowledgement with the strict state machine `PAUSED_CONFIRMED -> ADVANCE_AUTHORIZED -> ADVANCING -> PAUSE_REQUESTED -> PAUSED_CONFIRMED`. No other transition from ADVANCING is allowed, and no window/tool/file switch is permitted until the live overlay is visibly confirmed. One repository-only read-only DayLong helper now calculates target/cutoff margins and measured burst guidance; it issues no game/save command and has no network or shipped-runtime role.
 
-The disposable `BI4R1 PROBE` measured cumulative progression of **0.000, 2.160, 7.368, and 45.624 hours**. The third burst's pause request did not leave the game paused; the next controlling probe exposed an overrun of both the 30-hour pre-save cutoff and 40-hour total maximum. No guarded save was created, no reload occurred, and no further advancement was requested after the failed measurement. The 20–28-hour and post-reload 4–8-hour windows remain unproven.
+The exact packaged DLL remains SHA-256 `A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5`; package manifest, gameplay source, save schema, I4 evidence, and I4R1 evidence are unchanged. Bannerlord was not launched, ClanAI was not built/deployed, and no live attempt started. See `Reports/Release/PHASE8B_I4R2P_SMOKE_CONTROL_PROTOCOL.md`.
 
-There were four successful native probe writes only. Native no-save exit and Exit Game completed; Bannerlord is closed. The protected fixture, previous I4 guarded save, retry rollback, and installed package are unchanged. No research telemetry was created in checked locations; no forbidden development references or ClanAI/Harmony exception trace was found in the current-PID scan. Native graphics/shutdown messages and the nonzero process return code are retained without attribution to ClanAI. No exhaustive network/file-access proof is claimed.
-
-See `Reports/Release/PHASE8B_I4R1_RELEASE_PROFILE_RUNTIME_SMOKE_RESULT.md` and `Reports/Release/evidence/phase8b_i4r1_release_profile_smoke_20260926.txt`. **Ready for next release-hardening checkpoint: NO.** Stop at this retry's failure checkpoint; no continuation, replacement run, gameplay fix, or further milestone is authorized by its result.
-
+Next milestone: one separately authorized fresh **Phase 8B-I4R2 live release-profile smoke** using this hard-pause/measured-burst protocol.
 ## Preserved Phase 8B-I4 failed attempt
 
 Phase 8B-I4's release-profile runtime smoke attempt is closed as **FAIL — invalid/incomplete test-control attempt**, not a demonstrated ClanAI package defect.

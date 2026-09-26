@@ -1,0 +1,65 @@
+PHASE8B-I4R2P SMOKE CONTROL PROTOCOL — OFFLINE VALIDATION
+date=2026-09-26 UTC
+parent=39272c1881c22e236ba7e08d4695e90acbba2fee
+scope=offline protocol/helper validation only
+
+FAILURE_CLASSIFICATION
+I4=test-control failure; first authoritative save measurement was 52.320 hours; no ClanAI defect demonstrated
+I4R1=test-control failure; third requested pause was not acknowledged; 7.368 became 45.624 hours; no ClanAI defect demonstrated
+product_fix_justified=NO
+
+CONTROL_PROTOCOL
+hard_pause_ack=native Escape/menu overlay visibly present in a fresh live view
+input_receipt_is_ack=NO
+screenshot_filename_is_ack=NO
+normal_speed_pause_alone_is_ack=NO
+state_machine=PAUSED_CONFIRMED -> ADVANCE_AUTHORIZED -> ADVANCING -> PAUSE_REQUESTED -> PAUSED_CONFIRMED
+other_transition_from_ADVANCING=FORBIDDEN
+window_switch_while_pause_unconfirmed=FORBIDDEN
+unattended_fast_forward=FORBIDDEN
+
+BOUNDS
+pre_save_target_hours=20..28
+pre_save_hard_cutoff_hours=30
+post_reload_target_hours=4..8
+post_reload_hard_cutoff_hours=10
+total_hard_cutoff_hours=40
+normal_expected_burst_max_hours=2 (never more than approximately 3)
+near_target_expected_burst_max_hours=1
+high_speed_before_calibration=FORBIDDEN
+
+HELPER
+path=Automation/ReleaseSmoke/measure_daylong.py
+placement=repository-only; outside shipped package
+inputs=read-only JSON/text native-header metadata containing DayLong
+formula=(currentDayLong-baselineDayLong)*24
+game_commands=NONE
+save_load_commands=NONE
+save_mutation=NONE
+network_or_API=NONE
+
+TEST_RESULTS
+PASS Phase 8B-I4R2P helper read-only/no-network invariant
+PASS Phase 8B-I4R2P DayLong arithmetic/non-mutation invariant
+PASS elapsed 7.368 => ADVANCE before target
+PASS elapsed 20.136 => STOP_TARGET_REACHED
+PASS total elapsed 40.536 => STOP_TOTAL_HARD_CUTOFF
+PASS Phase 8B-I4R2P hard-pause/state-machine/bounds invariant
+
+PRESERVATION
+packaged_ClanAI_dll_sha256=A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+packaged_ClanAI_dll_git_blob=a5fc3923b31e482960026a0044dd1b21d6e6d00a
+package_manifest_git_blob=1addeceb9435952162b1c63fe60282775c1a081e
+I4_report_git_blob=1626fb486c97b19f97d30c578cb24ffdfcc2bd73
+I4_evidence_git_blob=1fa4ca0701eb1ec4d5a8cd9f6f88d80042a63dac
+I4R1_report_git_blob=3db335dbaaae7792b4af5eb8f38d887876adcb30
+I4R1_evidence_git_blob=218e1a9d434f841fcb6d55c82cf2f97bd7eb3277
+package_or_DLL_changed=NO
+gameplay_source_changed=NO
+save_keys_or_schema_changed=NO
+Bannerlord_launched=NO
+ClanAI_built_or_deployed=NO
+live_smoke_started=NO
+
+READY_FOR_FRESH_I4R2=YES
+
