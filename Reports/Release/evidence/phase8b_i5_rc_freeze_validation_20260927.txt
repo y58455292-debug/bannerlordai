@@ -1,0 +1,78 @@
+PHASE8B-I5 RC FREEZE — OFFLINE VALIDATION
+date=2026-09-27 UTC
+parent=44f7bc6cf5b8d449f03232c072d73e27132fb01a
+classification=RC1 READY FOR PLAYER CAMPAIGN
+external_label=ClanAI v0.22.0 RC1
+internal_version=v0.22.0 unchanged
+
+SOURCE_AND_RUNTIME_PROOF
+source_git_commit=44f7bc6cf5b8d449f03232c072d73e27132fb01a
+I4R4_runtime_smoke=PASS
+pre_save_elapsed_hours=20.016
+post_reload_elapsed_hours=4.056
+total_elapsed_hours=24.072
+guarded_save=SUCCESS
+exact_guarded_reload=SUCCESS
+release_telemetry_default_off=YES
+protected_fixture_preserved=YES
+
+RC_ARCHIVE
+path=Releases/ClanAI-v0.22.0-RC1.zip
+bytes=129579
+sha256=A03D183934BCF1C974EA6BCEBBF35CFF3A5413080D6F6634942811AE54C971D6
+entry_order=lexicographic
+entry_timestamp=2026-09-27T00:00:00 for every file
+compression=DEFLATE level 9
+second_build_same_hash=YES
+
+ARCHIVE_ENTRIES
+ClanAI/README.md|999|2B8D181068E8CFC38BB518B1EB144BCBA979E7B57EDE49420213811ABB8C6E7E
+ClanAI/SubModule.xml|1177|287609EEBE39EE00D693CD1C354362C64878F40950BCD787D505F20F065B333D
+ClanAI/bin/Win64_Shipping_Client/ClanAI.dll|335872|A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+unexpected_entries=NONE
+
+MODULE_CONTRACT
+module_id=ClanAI
+module_version=v0.22.0
+entry_point=ClanAI.ClanAISubModule
+required_modules=Native,SandBoxCore,Sandbox,StoryMode,Bannerlord.Harmony
+Bannerlord.Harmony_version=v2.4.2.248
+Harmony_model=external
+NavalDLC_dependency=NO
+PDB=ABSENT
+0Harmony.dll=ABSENT
+Data_overrides=ABSENT
+Evidence_profile_default=OFF
+Visual_War_default=OFF
+Strategic_Commitment_default=Observe
+
+FORBIDDEN_SCAN
+D:\BannerlordAIResearch=ABSENT
+local_user_build_path=ABSENT
+ChatGPT=ABSENT
+Codex=ABSENT
+Desktop_Commander=ABSENT
+TestRunner=ABSENT
+development_watchdog=ABSENT
+http_or_https_runtime_token=ABSENT
+research_test_automation_logs_saves=ABSENT
+
+PRESERVATION
+save_keys=12 unchanged
+Phase_8B_I1_profile_path_invariants=PASS
+Phase_8B_I2_dependency_version_invariants=PASS
+Phase_8B_I3_package_invariants=PASS
+I4R4_PASS_report=UNCHANGED
+gameplay_source_changed=NO
+save_schema_changed=NO
+runtime_DLL_changed=NO
+Bannerlord_launched=NO
+mod_deployed=NO
+runtime_experiment_started=NO
+
+PLAYER_DOCS
+install_instructions=Reports/Release/CLANAI_V0220_RC1_INSTALL.md
+organic_beta_runbook=Reports/Release/CLANAI_V0220_RC1_PLAYER_BETA.md
+ready_for_user_organic_campaign=YES
+next_milestone=Phase 8C organic player campaign / long-run field validation
+

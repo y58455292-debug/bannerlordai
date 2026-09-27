@@ -2,21 +2,17 @@
 
 ## Current checkpoint
 
-Phase 8B-I4R4 release-profile runtime smoke: PASS
+Phase 8B-I5 RC freeze / player-playable internal release candidate: **COMPLETE**
 
-The later fresh runtime launched on 2026-09-27 UTC from `2344ea02c229e9dfa80d649c02902fa794bddc19` as native PID `40224`, after access returned. It is distinct from the earlier **PRELIGHT BLOCKED / NOT EXECUTED** request preserved below and at `Reports/Release/evidence/phase8b_i4r4_preflight_blocked_20260927.txt`. This checkpoint is a reporting-only review/publication of that completed chronology; Bannerlord was not relaunched, no campaign time was added, and no new save/reload/build/deployment occurred.
+The exact Phase 8B-I4R4-tested v0.22.0 package payload is frozen without rebuilding or source changes. The three-file installable archive is `Releases/ClanAI-v0.22.0-RC1.zip`, size `129579` bytes, SHA-256 `A03D183934BCF1C974EA6BCEBBF35CFF3A5413080D6F6634942811AE54C971D6`. Its ClanAI DLL remains byte-identical to the passed runtime candidate: SHA-256 `A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5`.
 
-Retained native metadata independently confirms **20.016 h before guarded save**, **4.056 h after exact guarded reload**, and **24.072 h total**. Protected DayLong was `1039.761`; guarded DayLong `1040.595`; final probe DayLong `1040.764`; final helper decision `STOP_TARGET_REACHED`. All requested target windows and hard cutoffs are satisfied. Actual guarded save: `BI4R4 20260927 05240524.sav` (the duplicated suffix is retained honestly, not silently renamed). Native logs and the matching post-reload probe confirm the reload. There were 24 successful native saves: 23 probe writes and one guarded save; no additional guarded gameplay save followed.
+Offline package validation passes: exact three-file contents; v0.22.0 module identity; external Bannerlord.Harmony dependency; no bundled Harmony, NavalDLC dependency, development path, external-service/runtime-tool dependency, Evidence opt-in, Visual War marker, or unexpected artifact. The inherited standalone-profile, dependency/version, package, save-key, and Phase 3–7 preservation gates remain green. Phase 8B-I4R4's completed runtime PASS remains authoritative and untouched.
 
-Native pause/control views and retained acknowledgements support the bounded run. Zero-progression navigation intervals and observation/refocus issues remain documented. No reproducible ClanAI/Harmony release blocker or obvious attributable duplicate initialization/lifecycle spam was observed. Research instrumentation remained OFF in checked locations; all 84 tracked research telemetry files were unchanged. This is not exhaustive network/file-access, internal-initializer, balance, or long-run proof. Independent log review preserves native XML loading, audio, Granite, and shutdown ERC3039 messages omitted from the earlier scan summary, plus nonzero exit code `4294967295`, without attributing them to ClanAI.
+Player installation notes and the short organic-campaign beta plan are committed at `Reports/Release/CLANAI_V0220_RC1_INSTALL.md` and `Reports/Release/CLANAI_V0220_RC1_PLAYER_BETA.md`. No gameplay, policy math, save schema, DLL, or package payload changed; Bannerlord was not launched or deployed in I5.
 
-Native no-save exit and Exit Game completed; retained cleanup reports zero Bannerlord/TaleWorlds/Watchdog processes. The protected fixture's hash/timestamp/DayLong, all 53 pre-existing saves, and the installed three-file package were unchanged. Exact DLL SHA-256: `A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5`. No gameplay or save schema changed.
+**Release classification: RC1 READY FOR PLAYER CAMPAIGN.**
 
-See `Reports/Release/PHASE8B_I4R4_RELEASE_PROFILE_RUNTIME_SMOKE_RESULT.md` and `Reports/Release/evidence/phase8b_i4r4_release_profile_smoke_20260927.txt`.
-
-**ready for next Phase 8 release-hardening checkpoint: YES**
-
-**Ready for RC freeze: YES.** Recommended next milestone: **Phase 8B-I5 — RC freeze / player-playable release-candidate checkpoint**. Do not start I5 in this reporting-only closure. Stop after the GitHub commit.
+**Next milestone: Phase 8C — player-campaign feedback triage and release stabilization. NOT STARTED.**
 
 ## Preserved earlier I4R4 blocked preflight — historical
 

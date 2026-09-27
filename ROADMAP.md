@@ -461,7 +461,7 @@ No kingdom is selected to collapse because of plot.
 
 # Phase 8 — Balance, release hardening, and presentation
 
-**Status — STARTED 2026-09-25; PHASE 8B-I3 OFFLINE PACKAGE CHECKPOINT COMPLETE.** The committed installable `ClanAI` module contains only its manifest, install notes, and clean Release DLL. It declares external `Bannerlord.Harmony`, excludes NavalDLC/Harmony binaries/research artifacts/config overrides, contains no local-development path, and defaults Evidence telemetry OFF, Strategic Commitment to Observe, and Visual War OFF. Deterministic package manifest, forbidden-content scan, metadata/dependency checks, Phase 8B-I1/I2 gates, save keys, and Phase 3–7 preservation invariants pass; Release build has 0 errors. No launch or deployment occurred. **Next milestone: one bounded release-profile runtime smoke test of the exact packaged DLL.** See `Reports/Release/PHASE8B_I3_PACKAGE_ASSEMBLY_RESULT.md`.
+**Status — STARTED 2026-09-25; PHASE 8B-I5 RC1 FREEZE COMPLETE 2026-09-27.** Phase 8B-I4R4 passed its bounded release-profile save/reload smoke with the exact packaged DLL. Phase 8B-I5 then froze that byte-identical three-file v0.22.0 payload as `Releases/ClanAI-v0.22.0-RC1.zip`, added player installation/beta guidance, and repeated the offline standalone, dependency/version, package, save-key, and Phase 3–7 preservation gates. No gameplay, policy, save-schema, or package-payload change occurred during the freeze. **Release classification: RC1 READY FOR PLAYER CAMPAIGN. Next milestone: Phase 8C player-campaign feedback triage and release stabilization; not started.** See `Reports/Release/PHASE8B_I5_RC_FREEZE_RESULT.md`.
 
 Only after the major world loops work:
 
