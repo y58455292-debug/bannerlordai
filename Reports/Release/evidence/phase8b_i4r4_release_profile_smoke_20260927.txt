@@ -1,0 +1,118 @@
+PHASE8B-I4R4 — FRESH PREFLIGHT ACCESS EVIDENCE
+classification=PRELIGHT BLOCKED
+execution_status=NOT EXECUTED
+runtime_date=NOT APPLICABLE
+artifact_suffix=20260927 (user-requested filename; not a runtime timestamp)
+starting_main=fca92b005d87d04d7c7677d2b2dd7865db6e5da1
+starting_tree=6836cd8d696f8cf42d973cb66fd098bb7b20e46f
+protocol_path=Reports/Release/PHASE8B_I4R4P_TIME_PAUSE_PROTOCOL.md
+protocol_blob=44fb3282c3d6c2d0fde2b2952f295ee94659006a
+status_blob_before=8dbb4bbff060ef9d8af8b5e05ec6dfa69fda7903
+
+AUTHORITY
+Latest user handoff requires machine reachability before any game work.
+Unavailable required machine/runtime access before launch => PRELIGHT BLOCKED.
+Prior unreachable I4R4 request => blocked/not executed, not an executed runtime FAIL.
+I4/I4R1/I4R2/I4R3 remain closed historical test-control failures.
+No previous runtime chronology or saved failure artifact was resumed.
+
+FRESH CONNECTION RECEIPTS — IN ORDER
+1. Remote_Desktop_Commander.list_devices({})
+   Selected returned fields, copied without inference:
+   device_name=DESKTOP-JO4B7VH
+   id=fd6618f4-5715-46b1-8665-68172ef15169
+   status=offline
+   last_seen=2026-09-26T07:23:24.636+00:00
+   last_seen_meaning=historical device heartbeat, not this check's timestamp
+2. Remote_Desktop_Commander.ping(deviceId=fd6618f4-5715-46b1-8665-68172ef15169)
+   returned_is_error=true
+   exact_message_suffix=please connect a device to use remote tools
+   account_identifying_message_prefix=omitted
+   successful_pong=NO
+   per_call_device_utc=NOT PROVIDED
+3. STOP preflight; no remote process/UI/file-access actions issued.
+
+DOCUMENTATION-ONLY WORK AFTER STOP
+GitHub main was read and matched the handoff checkpoint above.
+The immutable I4R4P protocol and current CODEX_STATUS were read.
+Both requested I4R4 report/evidence paths returned 404 at the starting checkpoint.
+The model's separate working container could not directly download the status file
+because DNS resolution failed; GitHub connector reads supplied the content instead.
+This documentation-copy issue was separate from game-machine connectivity.
+A local transcription of CODEX_STATUS was checked against its Git blob before editing.
+Only report, focused evidence, and a checkpoint insertion in CODEX_STATUS are prepared.
+No game-machine access repair, service restart, runtime retry, or alternate run occurred.
+
+REQUIRED VALUES — NOT FRESHLY VERIFIED
+required_dll_sha256=A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+protected_save_name=ClanAI V020V PERSIST DEMO GATE V021M 20260924
+required_protected_sha256=A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+required_protected_timestamp_utc=2026-09-24T17:20:12.2384633Z
+required_protected_daylong=1039.761
+packaged_binary_hash_recomputed=NO
+installed_dll_hash_read=NO
+protected_hash_read=NO
+protected_timestamp_read=NO
+protected_daylong_read=NO
+immutable_mismatch_observed=NO (checks unavailable, not passed)
+existing_Bannerlord_process_state=UNKNOWN
+Harmony_dependency_verified=NO
+live_module_file_set_verified=NO
+runtime_configuration_verified=NO
+
+OPERATIONS AND MEASUREMENTS
+remote_connectivity_queries=2
+remote_shell_or_process_commands=0
+game_UI_inputs=0
+Bannerlord_launches_by_this_task=0
+fresh_runtime_pid=NONE CREATED BY THIS TASK
+protected_or_prior_save_loads=0
+native_save_operations=0
+BI4R4_probe_created=NO
+probe_daylong_measurements=[]
+authorized_burst_durations=[]
+measured_burst_deltas=[]
+calibration_rate=NOT MEASURED
+TIME_PAUSED_CONFIRMED_acknowledgements=[]
+MENU_OPEN_CONFIRMED_acknowledgements=[]
+post_save_time_verifications=[]
+DayLong_helper_executions=0
+pre_save_elapsed_hours=NOT MEASURED
+pre_save_target_20_to_28_hours=NOT EXERCISED
+pre_save_cutoff_30_hours=NOT EXERCISED
+guarded_save_name=NOT CREATED
+guarded_save_daylong=NOT APPLICABLE
+guarded_save_result=NOT PERFORMED
+guarded_reload_result=NOT PERFORMED
+post_reload_probe_measurements=[]
+post_reload_elapsed_hours=NOT MEASURED
+post_reload_target_4_to_8_hours=NOT EXERCISED
+post_reload_cutoff_10_hours=NOT EXERCISED
+total_elapsed_hours=NOT MEASURED
+total_cutoff_40_hours=NOT EXERCISED
+measured_zero_hour_total_claimed=NO
+runtime_time_control_failure=NOT OBSERVED; runtime not started
+runtime_exception_scan=NOT PERFORMED
+forbidden_development_references_observed=NOT CHECKED
+research_telemetry_created=NOT CHECKED on unreachable machine
+duplicate_initialization_lifecycle_check=NOT EXERCISED
+native_no_save_exit=NOT PERFORMED
+Bannerlord_process_absence_verified=NO
+protected_fixture_unchanged=NOT REVERIFIED; no writes issued by this task
+installed_dll_unchanged=NOT REVERIFIED; no deployment issued by this task
+builds=0
+deployments=0
+DLL_substitutions=0
+diagnostic_saves=0
+restarts_or_replacement_runs=0
+gameplay_or_policy_changed_by_this_task=NO
+save_schema_changed_by_this_task=NO
+exhaustive_network_or_file_access_proof=NO
+
+FINAL
+classification=PRELIGHT BLOCKED
+execution_status=NOT EXECUTED
+ClanAI_defect_demonstrated=NO
+ready_for_next_Phase_8_release_hardening_checkpoint=NO
+resume_boundary=any later authorized attempt starts fresh preflight; not this chronology
+STOP

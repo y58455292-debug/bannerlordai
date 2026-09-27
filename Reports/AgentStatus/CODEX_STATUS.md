@@ -2,6 +2,16 @@
 
 ## Current checkpoint
 
+Phase 8B-I4R4's fresh preflight is closed as **PRELIGHT BLOCKED / NOT EXECUTED**. Starting GitHub main: `fca92b005d87d04d7c7677d2b2dd7865db6e5da1`. Remote Desktop Commander reported `DESKTOP-JO4B7VH` offline; a direct device ping also failed with `please connect a device to use remote tools`. This is a before-launch environment-access blocker, not an executed runtime/control FAIL or a demonstrated ClanAI defect. The previous unreachable I4R4 request is likewise blocked/not executed.
+
+No remote process or UI command was issued. No Bannerlord launch, campaign load, probe, calibration, advancement, Save, reload, diagnostic Save, build, deployment, or package substitution occurred. The installed DLL, protected fixture hash/timestamp/DayLong, current process state, configuration, and telemetry were **NOT REVERIFIED**. Runtime measurements and checks are **NOT EXERCISED**, not passed and not a measured zero-hour total.
+
+Only the blocked-preflight report, focused evidence, and this checkpoint insertion are changed. Earlier status text and evidence are preserved. The native-time-pause protocol remains unchanged. See `Reports/Release/PHASE8B_I4R4_RELEASE_PROFILE_RUNTIME_SMOKE_RESULT.md` and `Reports/Release/evidence/phase8b_i4r4_release_profile_smoke_20260927.txt`; the date suffix is the requested artifact name, not a runtime date.
+
+**Ready for next Phase 8 release-hardening checkpoint: NO.** Stop here; no access repair, restart, extension, or substitute run is part of this closure. A later authorized live attempt must begin a fresh preflight once the game machine is reachable. The I4R4 smoke remains unexecuted.
+
+## Preserved Phase 8B-I4R4P offline preparation
+
 Phase 8B-I4R4P's offline native-time-pause protocol is **COMPLETE**. I4, I4R1, I4R2, and I4R3 remain closed test-control failures; none demonstrates a ClanAI defect. I4R3 proved that native campaign time pause stayed visibly reliable after its one-second calibration, while two observed synthetic Escape requests failed to open the menu. Advancement stopped permanently, and the native lower-left menu button later opened the menu for safe exit while time pause remained selected.
 
 `TIME_PAUSED_CONFIRMED` is now the sole campaign-safety latch. The Escape overlay is no longer required for advancement or metadata inspection. `MENU_OPEN_CONFIRMED` is required only for Save/Load navigation, with the native clickable lower-left menu button preferred and synthetic Escape optional. Every Save enters a mandatory post-Save live time verification before metadata, notes, helper use, or window switching. Loss of time-pause integrity ends advancement and forbids diagnostic saves.
