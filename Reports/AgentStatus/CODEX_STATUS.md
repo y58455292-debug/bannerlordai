@@ -2,6 +2,26 @@
 
 ## Current checkpoint
 
+Phase 8B-I4R4 release-profile runtime smoke: PASS
+
+The later fresh runtime launched on 2026-09-27 UTC from `2344ea02c229e9dfa80d649c02902fa794bddc19` as native PID `40224`, after access returned. It is distinct from the earlier **PRELIGHT BLOCKED / NOT EXECUTED** request preserved below and at `Reports/Release/evidence/phase8b_i4r4_preflight_blocked_20260927.txt`. This checkpoint is a reporting-only review/publication of that completed chronology; Bannerlord was not relaunched, no campaign time was added, and no new save/reload/build/deployment occurred.
+
+Retained native metadata independently confirms **20.016 h before guarded save**, **4.056 h after exact guarded reload**, and **24.072 h total**. Protected DayLong was `1039.761`; guarded DayLong `1040.595`; final probe DayLong `1040.764`; final helper decision `STOP_TARGET_REACHED`. All requested target windows and hard cutoffs are satisfied. Actual guarded save: `BI4R4 20260927 05240524.sav` (the duplicated suffix is retained honestly, not silently renamed). Native logs and the matching post-reload probe confirm the reload. There were 24 successful native saves: 23 probe writes and one guarded save; no additional guarded gameplay save followed.
+
+Native pause/control views and retained acknowledgements support the bounded run. Zero-progression navigation intervals and observation/refocus issues remain documented. No reproducible ClanAI/Harmony release blocker or obvious attributable duplicate initialization/lifecycle spam was observed. Research instrumentation remained OFF in checked locations; all 84 tracked research telemetry files were unchanged. This is not exhaustive network/file-access, internal-initializer, balance, or long-run proof. Independent log review preserves native XML loading, audio, Granite, and shutdown ERC3039 messages omitted from the earlier scan summary, plus nonzero exit code `4294967295`, without attributing them to ClanAI.
+
+Native no-save exit and Exit Game completed; retained cleanup reports zero Bannerlord/TaleWorlds/Watchdog processes. The protected fixture's hash/timestamp/DayLong, all 53 pre-existing saves, and the installed three-file package were unchanged. Exact DLL SHA-256: `A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5`. No gameplay or save schema changed.
+
+See `Reports/Release/PHASE8B_I4R4_RELEASE_PROFILE_RUNTIME_SMOKE_RESULT.md` and `Reports/Release/evidence/phase8b_i4r4_release_profile_smoke_20260927.txt`.
+
+**ready for next Phase 8 release-hardening checkpoint: YES**
+
+**Ready for RC freeze: YES.** Recommended next milestone: **Phase 8B-I5 — RC freeze / player-playable release-candidate checkpoint**. Do not start I5 in this reporting-only closure. Stop after the GitHub commit.
+
+## Preserved earlier I4R4 blocked preflight — historical
+
+The following section describes only the earlier inaccessible-machine request at `2344ea02c229e9dfa80d649c02902fa794bddc19`, not the later executed runtime. Its former report remains in that commit; its exact focused evidence is copied to the historical path above.
+
 Phase 8B-I4R4's fresh preflight is closed as **PRELIGHT BLOCKED / NOT EXECUTED**. Starting GitHub main: `fca92b005d87d04d7c7677d2b2dd7865db6e5da1`. Remote Desktop Commander reported `DESKTOP-JO4B7VH` offline; a direct device ping also failed with `please connect a device to use remote tools`. This is a before-launch environment-access blocker, not an executed runtime/control FAIL or a demonstrated ClanAI defect. The previous unreachable I4R4 request is likewise blocked/not executed.
 
 No remote process or UI command was issued. No Bannerlord launch, campaign load, probe, calibration, advancement, Save, reload, diagnostic Save, build, deployment, or package substitution occurred. The installed DLL, protected fixture hash/timestamp/DayLong, current process state, configuration, and telemetry were **NOT REVERIFIED**. Runtime measurements and checks are **NOT EXERCISED**, not passed and not a measured zero-hour total.
@@ -206,8 +226,8 @@ SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`
 
 ## Next bounded milestone
 
-The requested Phase 8B-I4, I4R1, I4R2, and I4R3 smokes have not passed. All four attempts are closed with failure evidence; none establishes a reproducible ClanAI defect or justifies a gameplay change. The guarded reload/post-reload checks remain unproven. I4R2's final live elapsed time is unknown despite its retained 10.152-hour saved measurement. I4R3 stopped after menu-acknowledgement failure, with native time visibly paused; its only saved measurement is the initial zero-hour baseline, and no diagnostic save was made. I4R3 calibration campaign-hours and final live elapsed remain unknown.
+The earlier I4/I4R1/I4R2/I4R3 test-control failures and the I4R4 blocked preflight remain historical. The later I4R4 runtime has now passed the bounded release-profile smoke; its guarded save/reload and post-reload progression are proven within the scope of the corrected report.
 
-Stop at this checkpoint. Do not rebuild, substitute the package, repeat this attempt, start a product fix, or begin another release-hardening milestone as part of the same task. Further runtime work requires a separately bounded task with reliable campaign-hour stop control.
+Recommended next checkpoint: **Phase 8B-I5 — RC freeze / player-playable release-candidate checkpoint**. **Ready for RC freeze: YES.** I5 is not started by this reporting-only closure. Do not rerun the smoke, rebuild, change gameplay, or begin I5 in this task; stop after the GitHub commit.
 
 Final product direction remains standalone, installable, and offline with no runtime development-tool dependency.

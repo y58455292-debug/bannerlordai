@@ -1,118 +1,470 @@
-PHASE8B-I4R4 — FRESH PREFLIGHT ACCESS EVIDENCE
-classification=PRELIGHT BLOCKED
-execution_status=NOT EXECUTED
-runtime_date=NOT APPLICABLE
-artifact_suffix=20260927 (user-requested filename; not a runtime timestamp)
-starting_main=fca92b005d87d04d7c7677d2b2dd7865db6e5da1
-starting_tree=6836cd8d696f8cf42d973cb66fd098bb7b20e46f
-protocol_path=Reports/Release/PHASE8B_I4R4P_TIME_PAUSE_PROTOCOL.md
-protocol_blob=44fb3282c3d6c2d0fde2b2952f295ee94659006a
-status_blob_before=8dbb4bbff060ef9d8af8b5e05ec6dfa69fda7903
+PHASE 8B-I4R4 — COMPLETED RUNTIME / REPORTING-ONLY CLOSURE
+classification=PASS
+runtime_date_utc=2026-09-27
+runtime_local_date=2026-09-26 (Pacific Daylight Time)
+starting_main=2344ea02c229e9dfa80d649c02902fa794bddc19
+starting_tree=4184c121e6ac0068d685dc3e63b17d53f2ac710f
+native_process_id=40224
+local_source_root=C:\Users\csala\AppData\Local\Temp\ClanAI_Phase8BI4R4_2344_20260927_0433
+native_log_root=C:\ProgramData\Mount and Blade II Bannerlord\logs
 
-AUTHORITY
-Latest user handoff requires machine reachability before any game work.
-Unavailable required machine/runtime access before launch => PRELIGHT BLOCKED.
-Prior unreachable I4R4 request => blocked/not executed, not an executed runtime FAIL.
-I4/I4R1/I4R2/I4R3 remain closed historical test-control failures.
-No previous runtime chronology or saved failure artifact was resumed.
+SCOPE / PROVENANCE
+The earlier inaccessible-machine request was PRELIGHT BLOCKED / NOT EXECUTED.
+The later fresh process started only after access returned; this evidence describes that later chronology.
+The original blocked evidence is preserved byte-identically as phase8b_i4r4_preflight_blocked_20260927.txt.
+Historical evidence Git blob=a16224dc0756466eb75ba83ed6dbd629ee9c5b73; bytes=5072.
+The former blocked report remains in starting_main, Git blob=7703c482c1bdaa071984b049ee81d743291ff1fd.
+Reporting closure only: no game launch/input, advancement, save, reload, build, deployment, or source/schema mutation.
+No old controller command buffer was completed or used to issue gameplay actions.
+Review derivatives were made only from retained images. They are not new live observations.
 
-FRESH CONNECTION RECEIPTS — IN ORDER
-1. Remote_Desktop_Commander.list_devices({})
-   Selected returned fields, copied without inference:
-   device_name=DESKTOP-JO4B7VH
-   id=fd6618f4-5715-46b1-8665-68172ef15169
-   status=offline
-   last_seen=2026-09-26T07:23:24.636+00:00
-   last_seen_meaning=historical device heartbeat, not this check's timestamp
-2. Remote_Desktop_Commander.ping(deviceId=fd6618f4-5715-46b1-8665-68172ef15169)
-   returned_is_error=true
-   exact_message_suffix=please connect a device to use remote tools
-   account_identifying_message_prefix=omitted
-   successful_pong=NO
-   per_call_device_utc=NOT PROVIDED
-3. STOP preflight; no remote process/UI/file-access actions issued.
+RETAINED SOURCES REVIEWED
+preflight.json — before-launch package/configuration/fixture/dependency and inventory receipt.
+actions.json — 196 original action records, including 21 authorizations/21 burst receipts, 49 time acknowledgements, 42 menu acknowledgements, 24 save authorizations, selection/load/exit actions.
+measurements.json — 25 original reads, each with native DayLong, save identity, helper command/output and metadata filename.
+protected_metadata.json; guarded_metadata.json; guarded_save_metadata.json; all measurement-label *_metadata.json.
+cleanup.json — post-exit process enumeration, identities, save inventory, research comparison and measurements.
+saves_before.json — 53 existing native-save identities; research_before.json — 84 tracked size/mtime pairs.
+release_scan_paused.json and final_log_scan.json — retained current-PID scans; final scan's error-word summary is incomplete (supplement below).
+PNG observations named in acknowledgement tables, plus main-menu, fixture selection, compatibility, exact guarded selection, post-reload, and no-save-exit images.
+Native log identities below were rehashed during review and matched final_log_scan.json's retained source manifest.
+Raw screenshots/logs and original JSON remain local and were not rewritten for this closure.
 
-DOCUMENTATION-ONLY WORK AFTER STOP
-GitHub main was read and matched the handoff checkpoint above.
-The immutable I4R4P protocol and current CODEX_STATUS were read.
-Both requested I4R4 report/evidence paths returned 404 at the starting checkpoint.
-The model's separate working container could not directly download the status file
-because DNS resolution failed; GitHub connector reads supplied the content instead.
-This documentation-copy issue was separate from game-machine connectivity.
-A local transcription of CODEX_STATUS was checked against its Git blob before editing.
-Only report, focused evidence, and a checkpoint insertion in CODEX_STATUS are prepared.
-No game-machine access repair, service restart, runtime retry, or alternate run occurred.
+NATIVE LOG SOURCE MANIFEST
+name|bytes|SHA256
+rgl_log_40224.txt|415018|DBB1E98FFB17B22A0977D942E5AEBAAA0315FC4487462ABE6FFBE3BBEE626E31
+rgl_log_errors_40224.txt|183|3C0408B99592057687B1918EDB81BBA5C439665601469EBAD7C839C020E55464
+watchdog_log_40224.txt|61889|747E8D7FF54ED06AB7F1C6B3F0EB3DDDCFB9FEC4E93338ED9EFB26D403645C06
+Native line references below use the review's 1-based Python universal-newline/splitlines enumeration. Raw-reader CR/LF line counts can differ. Timestamps and exact text also identify each receipt.
 
-REQUIRED VALUES — NOT FRESHLY VERIFIED
-required_dll_sha256=A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
-protected_save_name=ClanAI V020V PERSIST DEMO GATE V021M 20260924
-required_protected_sha256=A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
-required_protected_timestamp_utc=2026-09-24T17:20:12.2384633Z
-required_protected_daylong=1039.761
-packaged_binary_hash_recomputed=NO
-installed_dll_hash_read=NO
-protected_hash_read=NO
-protected_timestamp_read=NO
-protected_daylong_read=NO
-immutable_mismatch_observed=NO (checks unavailable, not passed)
-existing_Bannerlord_process_state=UNKNOWN
-Harmony_dependency_verified=NO
-live_module_file_set_verified=NO
-runtime_configuration_verified=NO
+PREFLIGHT SELECTED EXACT FIELDS
+utc=2026-09-27T04:34:57.215281+00:00
+connectivity=pong 2026-09-27T04:33:00.175Z
+bannerlord_process_count=0
+package_exact_match=true
+module_data=false
+module_logs=false
+build=false
+deployment=false
+research_files=84
+native_save_count=53
+harmony_version=v2.4.2.248
+harmony0_sha256=2EDDA13A18954B79795BAC0D7E0E8FDF0BFA05B96552D6056D90F446CD0A2AB2
+helper_sha256=E1A3E55B026B94461E8526BB762897C3CF695B757BEA7B49CC14157BA803D2A8
+Package defaults without overrides: Release, Evidence OFF, Visual War OFF, Strategic Commitment Observe.
+No RuntimeProfile.cfg, Evidence opt-in, Visual War marker, or Strategic Commitment override was among the only three installed files.
+This is configuration/default verification, not an internal instrumented profile query.
 
-OPERATIONS AND MEASUREMENTS
-remote_connectivity_queries=2
-remote_shell_or_process_commands=0
-game_UI_inputs=0
-Bannerlord_launches_by_this_task=0
-fresh_runtime_pid=NONE CREATED BY THIS TASK
-protected_or_prior_save_loads=0
-native_save_operations=0
-BI4R4_probe_created=NO
-probe_daylong_measurements=[]
-authorized_burst_durations=[]
-measured_burst_deltas=[]
-calibration_rate=NOT MEASURED
-TIME_PAUSED_CONFIRMED_acknowledgements=[]
-MENU_OPEN_CONFIRMED_acknowledgements=[]
-post_save_time_verifications=[]
-DayLong_helper_executions=0
-pre_save_elapsed_hours=NOT MEASURED
-pre_save_target_20_to_28_hours=NOT EXERCISED
-pre_save_cutoff_30_hours=NOT EXERCISED
-guarded_save_name=NOT CREATED
-guarded_save_daylong=NOT APPLICABLE
-guarded_save_result=NOT PERFORMED
-guarded_reload_result=NOT PERFORMED
-post_reload_probe_measurements=[]
-post_reload_elapsed_hours=NOT MEASURED
-post_reload_target_4_to_8_hours=NOT EXERCISED
-post_reload_cutoff_10_hours=NOT EXERCISED
-total_elapsed_hours=NOT MEASURED
-total_cutoff_40_hours=NOT EXERCISED
-measured_zero_hour_total_claimed=NO
-runtime_time_control_failure=NOT OBSERVED; runtime not started
-runtime_exception_scan=NOT PERFORMED
-forbidden_development_references_observed=NOT CHECKED
-research_telemetry_created=NOT CHECKED on unreachable machine
-duplicate_initialization_lifecycle_check=NOT EXERCISED
-native_no_save_exit=NOT PERFORMED
-Bannerlord_process_absence_verified=NO
-protected_fixture_unchanged=NOT REVERIFIED; no writes issued by this task
-installed_dll_unchanged=NOT REVERIFIED; no deployment issued by this task
-builds=0
-deployments=0
-DLL_substitutions=0
-diagnostic_saves=0
-restarts_or_replacement_runs=0
-gameplay_or_policy_changed_by_this_task=NO
-save_schema_changed_by_this_task=NO
-exhaustive_network_or_file_access_proof=NO
+PACKAGE BEFORE / AFTER
+path|bytes|SHA256
+bin/Win64_Shipping_Client/ClanAI.dll|335872|A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+README.md|999|2B8D181068E8CFC38BB518B1EB144BCBA979E7B57EDE49420213811ABB8C6E7E
+SubModule.xml|1177|287609EEBE39EE00D693CD1C354362C64878F40950BCD787D505F20F065B333D
+Git packaged DLL blob=a5fc3923b31e482960026a0044dd1b21d6e6d00a
 
-FINAL
-classification=PRELIGHT BLOCKED
-execution_status=NOT EXECUTED
-ClanAI_defect_demonstrated=NO
-ready_for_next_Phase_8_release_hardening_checkpoint=NO
-resume_boundary=any later authorized attempt starts fresh preflight; not this chronology
-STOP
+PROTECTED FIXTURE BEFORE / AFTER
+name=ClanAI V020V PERSIST DEMO GATE V021M 20260924.sav
+bytes=9040242
+SHA256=A91F15BF1403F1D29F942C56A1162F431113942CDACCAFE52F4D80303B4CB427
+last_write_utc=2026-09-24T17:20:12.2384633Z
+mtime_ns=1790270412238463300
+DayLong=1039.761
+The retained launch action records a further fixture/package recheck before the single fresh launch.
+Reporting review's read-only .sav header/hash/mtime cross-check matched the retained identities.
+Header reader: little-endian uint32 JSON byte length, then UTF-8 JSON List; no save body modified.
+
+LAUNCH / LOAD RECEIPTS
+2026-09-27T04:36:03.609493Z — fresh-native-launch, PID 40224, build=false, redeployment=false.
+rgl:78 [21:36:08.467] Command Args: /singleplayer _MODULES_*Bannerlord.Harmony*Native*SandBoxCore*BirthAndDeath*CustomBattle*Sandbox*StoryMode*NavalDLC*ClanAI*_MODULES_
+[21:36:39.854] Loading assembly: ..\..\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\0Harmony.dll
+[21:36:39.856] Assembly load result: SUCCESS
+[21:36:40.403] Loading assembly: ..\..\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\Bannerlord.Harmony.dll
+[21:36:40.405] Assembly load result: SUCCESS
+[21:36:42.309] Loading assembly: ..\..\Modules\ClanAI\bin\Win64_Shipping_Client\ClanAI.dll
+[21:36:42.311] Assembly load result: SUCCESS
+2026-09-27T04:38:09.156755Z — main-menu-visually-confirmed; 05_startup_observation.png captured 04:37:45.174204Z.
+2026-09-27T04:39:03.320738Z — protected-fixture-selected by exact name; 07_fixture_search.png.
+2026-09-27T04:39:35.851737Z — normal compatibility dialog: historical BannerlordInspector removed; ClanAI version differs; not dependency rejection.
+rgl:3879 [21:39:38.694] Initializing saved game begin...
+rgl:3895 [21:39:40.485] Initializing saved game end...
+rgl:4360 [21:39:54.842] Loading Save Game
+No research module in selected runtime arguments. NavalDLC retained for the nautical fixture, not added as a package dependency.
+
+ALL NATIVE DAYLONG READS
+Source: measurements.json and each <label>_metadata.json. DayLong strings preserve the retained formatting.
+Derived elapsed = (currentDayLong - stage baseline) * 24; total = (currentDayLong - 1039.761) * 24.
+Stage baselines: protected=1039.761; guarded/post-reload=1040.595.
+All 25 stored metadata values and elapsed/total calculations were independently cross-checked during review.
+The values are exact decimal arithmetic on rounded native header strings, not unrounded game ticks.
+index|label|stage|nativeDayLong|delta_from_previous_h|stage_elapsed_h|total_h
+0|p00_initial|pre-save|1039.761|not-applicable|0.000|0.000
+1|p01_calibration|pre-save|1039.772|0.264|0.264|0.264
+2|p02_after_b01|pre-save|1039.772|0.000|0.264|0.264
+3|p03_after_b02|pre-save|1039.857|2.040|2.304|2.304
+4|p04_after_b03|pre-save|1039.857|0.000|2.304|2.304
+5|p05_after_b04|pre-save|1039.932|1.800|4.104|4.104
+6|p06_after_b05|pre-save|1040.007|1.800|5.904|5.904
+7|p07_after_b06|pre-save|1040.082|1.800|7.704|7.704
+8|p08_after_b07|pre-save|1040.157|1.800|9.504|9.504
+9|p09_after_b08|pre-save|1040.232|1.800|11.304|11.304
+10|p10_after_b09|pre-save|1040.307|1.800|13.104|13.104
+11|p11_after_b10|pre-save|1040.382|1.800|14.904|14.904
+12|p12_after_b11|pre-save|1040.458|1.824|16.728|16.728
+13|p13_after_b12|pre-save|1040.533|1.800|18.528|18.528
+14|p14_after_b13|pre-save|1040.57|0.888|19.416|19.416
+15|p15_after_b14|pre-save|1040.595|0.600|20.016|20.016
+16|guarded_save|pre-save|1040.595|0.000|20.016|20.016
+17|postreload_baseline|post-reload|1040.595|0.000|0.000|20.016
+18|postreload_probe_baseline|post-reload|1040.595|0.000|0.000|20.016
+19|r01_probe|post-reload|1040.595|0.000|0.000|20.016
+20|r02_probe|post-reload|1040.67|1.800|1.800|21.816
+21|r03_probe|post-reload|1040.67|0.000|1.800|21.816
+22|r04_probe|post-reload|1040.708|0.912|2.712|22.728
+23|r05_probe|post-reload|1040.745|0.888|3.600|23.616
+24|r06_probe|post-reload|1040.764|0.456|4.056|24.072
+
+Row 17 postreload_baseline re-reads the guarded file: it is NOT a new native save or independent live-time sample.
+Row 18 is the actual new post-reload disposable probe, matching the guarded baseline.
+Rows 2, 4, 19, 21 are retained zero-progression input intervals; no estimated campaign hours were substituted.
+
+ALL 21 AUTHORIZED BURSTS
+All had helper_decision=ADVANCE and positive stage/total cutoff margins. All used native normal speed.
+Date for every UTC time below is 2026-09-27. Monotonic actual seconds are as recorded, not reconstructed by subtracting wall-clock stamps.
+label|requested_s|expected_h|actual_input_s|start_UTC|pause_request_UTC|target_margin_h|stage_cutoff_margin_h|total_cutoff_margin_h
+b00_calibration|1|unrated-fresh-calibration|1.000895|04:43:41.604055|04:43:42.604943|20.000|30.000|40.000
+b01|6.8|1.7952|6.800585|04:45:09.941042|04:45:16.741556|19.736|29.736|39.736
+b02|6.8|1.7952|6.800934|04:47:12.888747|04:47:19.689643|19.736|29.736|39.736
+b03|6.0|1.8000|6.001288|04:49:27.900501|04:49:33.901677|17.696|27.696|37.696
+b04|6.0|1.8000|6.001388|04:51:43.013978|04:51:49.015070|17.696|27.696|37.696
+b05|6.0|1.8000|6.000862|04:56:23.139932|04:56:29.140852|15.896|25.896|35.896
+b06|6.0|1.8000|6.001067|04:58:45.703161|04:58:51.704143|14.096|24.096|34.096
+b07|6.0|1.8000|6.001857|05:00:33.067749|05:00:39.069577|12.296|22.296|32.296
+b08|6.0|1.8000|6.000691|05:03:43.463994|05:03:49.464672|10.496|20.496|30.496
+b09|6.0|1.8000|6.001682|05:06:10.042284|05:06:16.044076|8.696|18.696|28.696
+b10|6.0|1.8000|6.000689|05:08:50.455177|05:08:56.455859|6.896|16.896|26.896
+b11|6.0|1.8000|6.000924|05:11:51.267813|05:11:57.268911|5.096|15.096|25.096
+b12|6.0|1.8240|6.001030|05:19:45.954811|05:19:51.955902|3.272|13.272|23.272
+b13|3.0|0.9120|3.001041|05:21:22.403159|05:21:25.404015|1.472|11.472|21.472
+b14|2.0|0.6080|2.001140|05:22:40.300800|05:22:42.302039|0.584|10.584|20.584
+r01|6.0|1.8240|6.000546|05:34:25.008813|05:34:31.009558|4.000|10.000|19.984
+r02|6.0|1.8240|6.000919|05:35:35.362676|05:35:41.363645|4.000|10.000|19.984
+r03|3.0|0.9120|3.001328|05:37:18.995634|05:37:21.996790|2.200|8.200|18.184
+r04|3.0|0.9120|3.000899|05:38:58.357588|05:39:01.358490|2.200|8.200|18.184
+r05|3.0|0.9120|3.001643|05:40:49.923633|05:40:52.924995|1.288|7.288|17.272
+r06|1.5|0.4560|1.500570|05:42:32.170730|05:42:33.671292|0.400|6.400|16.384
+
+Calibration expected rate was unknown by design. Fresh measured rate=0.264 h/s; later authorization used the maximum positive rate from this same process, up to 0.304 h/s.
+Expected normal bursts <=2 h; near-target expected bursts <=1 h. b02 realized 2.040 h versus expected 1.7952 h; below 3 h; the next authorization used the updated rate.
+No further pre-save advancement after reaching 20.016 h; no further post-reload advancement after reaching 4.056 h.
+
+ALL 49 TIME_PAUSED_CONFIRMED ACKNOWLEDGEMENTS
+Source=actions.json; action index is zero-based; UTC date=2026-09-27.
+The review examined the referenced retained PAUSED/selected-zero-speed image regions. A filename alone was not used as pause proof.
+action_index|ack_UTC|captured_UTC|retained_image
+4|04:40:47.304874|04:40:07.734885|10_campaign_readiness.png
+5|04:41:18.652552|04:40:48.309161|11_campaign_time_observation.png
+8|04:43:41.361827|04:43:12.279431|15_p00_postsave_time.png
+11|04:44:12.052182|04:43:43.589360|b00_calibration_time_observation.png
+15|04:45:09.724386|04:44:42.628243|p01_calibration_postsave_observation.png
+18|04:46:00.710360|04:45:17.709204|b01_time_observation.png
+23|04:46:43.972036|04:46:04.935073|p02_after_b01_postsave_observation.png
+28|04:47:51.358365|04:47:20.834740|b02_time_observation.png
+32|04:48:53.225868|04:48:23.232512|p03_after_b02_postsave_observation.png
+34|04:49:27.835151|04:48:53.768715|p03_ready_for_next_burst.png
+36|04:50:20.513444|04:49:35.040143|b03_time_observation.png
+40|04:50:57.103058|04:50:26.240578|p04_after_b03_postsave_observation.png
+44|04:52:24.217419|04:51:50.129837|b04_time_observation.png
+48|04:56:22.278906|04:55:51.575102|p05_postsave_ready_observation.png
+52|04:56:54.494111|04:56:30.267425|b05_time_observation.png
+56|04:58:12.914624|04:57:35.187118|p06_after_b05_postsave_observation.png
+60|04:59:25.513247|04:58:52.841466|b06_time_observation.png
+64|05:00:32.198716|05:00:05.491053|p07_after_b06_postsave_observation.png
+68|05:01:26.286323|05:00:40.189418|b07_time_observation.png
+72|05:03:05.622730|05:02:19.044745|p08_after_b07_postsave_observation.png
+76|05:04:27.351354|05:03:50.601127|b08_time_observation.png
+80|05:05:42.133731|05:05:09.360560|p09_after_b08_postsave_observation.png
+84|05:06:46.072806|05:06:17.167471|b09_time_observation.png
+88|05:08:07.766216|05:07:24.405758|p10_after_b09_postsave_observation.png
+92|05:09:49.092562|05:08:57.610607|b10_time_observation.png
+96|05:11:12.621231|05:10:34.223003|p11_after_b10_postsave_observation.png
+100|05:12:32.785150|05:11:58.395597|b11_time_observation.png
+104|05:19:20.152666|05:18:59.407323|p12_after_b11_postsave_observation.png
+108|05:20:07.319435|05:19:53.081593|b12_time_observation.png
+112|05:21:10.923215|05:20:51.982035|p13_postsave_refocus.png
+116|05:21:40.058823|05:21:26.579518|b13_time_observation.png
+120|05:22:14.615184|05:22:00.422751|p14_after_b13_postsave_observation.png
+124|05:23:00.198219|05:22:43.467501|b14_time_observation.png
+128|05:23:35.191132|05:23:21.082246|p15_after_b14_postsave_observation.png
+132|05:26:57.069907|05:26:33.566529|guarded_postsave_time.png
+136|05:29:43.148042|05:29:06.478520|guarded_load_retry.png
+141|05:34:16.707478|05:33:57.007748|postreload_probe_postsave_time.png
+144|05:34:58.291901|05:34:32.176847|r01_time_observation.png
+148|05:35:22.531222|05:35:04.044666|r01_probe_postsave_observation.png
+153|05:36:41.154751|05:36:18.716112|r02_time_observation_retry.png
+157|05:37:08.270785|05:36:46.906455|r02_probe_postsave_observation.png
+160|05:37:49.959985|05:37:23.177464|r03_time_observation.png
+164|05:38:16.617760|05:37:55.716904|r03_probe_postsave_observation.png
+169|05:39:22.560255|05:39:02.542424|r04_time_observation.png
+173|05:40:19.004558|05:39:51.094008|r04_probe_postsave_observation.png
+177|05:41:33.229687|05:41:13.646494|r05_time_observation_retry.png
+181|05:41:59.729568|05:41:38.950378|r05_probe_postsave_observation.png
+185|05:44:25.522077|05:43:52.483210|r06_pause_crop.png
+189|05:45:00.535353|05:44:41.145173|r06_postsave_pause_crop.png
+
+ALL 42 MENU_OPEN_CONFIRMED ACKNOWLEDGEMENTS
+Source=actions.json; action index is zero-based; UTC date=2026-09-27.
+These are navigation acknowledgements, not independent campaign-time safety latches.
+action_index|ack_UTC|captured_UTC|retained_image
+6|04:41:56.437472|04:41:19.624317|12_native_menu.png
+13|04:44:38.428575|04:44:13.085923|p01_menu.png
+21|04:46:00.713862|04:45:17.709204|b01_time_observation.png
+25|04:46:44.122050|04:46:04.935073|p02_after_b01_postsave_observation.png
+30|04:48:17.522554|04:47:52.456756|p03_menu.png
+38|04:50:20.516949|04:49:35.040143|b03_time_observation.png
+42|04:51:42.271932|04:50:58.437874|p04_preburst_menu.png
+46|04:53:02.113501|04:52:25.300019|p05_menu.png
+50|04:56:22.410746|04:55:51.575102|p05_postsave_ready_observation.png
+54|04:57:29.508282|04:56:55.598901|p06_menu.png
+58|04:58:44.961406|04:58:14.172108|p06_preburst_menu.png
+62|04:59:59.818489|04:59:26.590562|p07_menu.png
+66|05:00:32.332348|05:00:05.491053|p07_after_b06_postsave_observation.png
+70|05:02:13.352621|05:01:27.386484|p08_menu.png
+74|05:03:42.728741|05:03:06.854966|p08_preburst_menu.png
+78|05:05:03.654324|05:04:28.456564|p09_menu.png
+82|05:06:09.306381|05:05:43.366631|p09_preburst_menu.png
+86|05:07:18.688716|05:06:47.168480|p10_menu.png
+90|05:08:49.710698|05:08:09.016949|p10_preburst_menu.png
+94|05:10:28.490873|05:09:50.197606|p11_menu.png
+98|05:11:50.521828|05:11:13.966938|p11_preburst_menu.png
+102|05:18:53.700020|05:12:33.893655|p12_menu.png
+106|05:19:45.216328|05:19:31.732754|p12_preburst_menu.png
+110|05:20:21.169259|05:20:08.394620|p13_menu.png
+114|05:21:21.660792|05:20:51.982035|p13_postsave_refocus.png
+118|05:21:54.696498|05:21:41.202176|p14_menu.png
+122|05:22:39.564415|05:22:24.991551|p14_preburst_menu.png
+126|05:23:15.343873|05:23:01.327724|p15_menu.png
+130|05:25:48.057603|05:24:23.545364|guarded_pre_save_menu.png
+134|05:28:19.677587|05:28:03.969096|reload_menu.png
+139|05:30:25.291711|05:29:06.478520|guarded_load_retry.png
+146|05:34:58.298414|05:34:32.176847|r01_time_observation.png
+150|05:35:34.626471|05:35:04.044666|r01_probe_postsave_observation.png
+155|05:36:41.163271|05:36:18.716112|r02_time_observation_retry.png
+162|05:37:49.966503|05:37:23.177464|r03_time_observation.png
+167|05:38:57.625515|05:38:35.555138|r04_preburst_menu.png
+171|05:39:45.397918|05:39:23.651733|r04_probe_menu.png
+175|05:40:49.174462|05:40:31.292205|r05_preburst_menu.png
+179|05:41:33.239198|05:41:13.646494|r05_time_observation_retry.png
+183|05:42:31.422798|05:42:12.742431|r06_preburst_menu.png
+187|05:44:25.529166|05:43:52.483210|r06_pause_crop.png
+192|05:46:34.219061|05:46:12.300228|exit_menu_crop.png
+
+ALL 24 SAVE OPERATIONS / POST-SAVE VERIFICATION MAP
+Every save has a preceding menu acknowledgement and a post-save time acknowledgement before its metadata-read action.
+Indices refer to actions.json; native_success_line refers to rgl_log_40224.txt.
+measurement_label|save_authorization_index|menu_ack_index|postsave_time_ack_index|measurement_action_index|native_success_line
+p00_initial|7|6|8|9|4531
+p01_calibration|14|13|15|16|4602
+p02_after_b01|22|21|23|24|4689
+p03_after_b02|31|30|32|33|4770
+p04_after_b03|39|38|40|41|4849
+p05_after_b04|47|46|48|49|4938
+p06_after_b05|55|54|56|57|5045
+p07_after_b06|63|62|64|65|5134
+p08_after_b07|71|70|72|73|5223
+p09_after_b08|79|78|80|81|5316
+p10_after_b09|87|86|88|89|5407
+p11_after_b10|95|94|96|97|5504
+p12_after_b11|103|102|104|105|5639
+p13_after_b12|111|110|112|113|5720
+p14_after_b13|119|118|120|121|5799
+p15_after_b14|127|126|128|129|5878
+guarded_save|131|130|132|133|6010
+postreload_probe_baseline|140|139|141|142|6912
+r01_probe|147|146|148|149|6983
+r02_probe|156|155|157|158|7076
+r03_probe|163|162|164|165|7147
+r04_probe|172|171|173|174|7228
+r05_probe|180|179|181|182|7315
+r06_probe|188|187|189|190|7402
+GUARDED SAVE / RELOAD / POST-RELOAD BASELINE
+Intended name in authorization action 131: BI4R4 20260927 0524.
+Actual materialized and reloaded filename: BI4R4 20260927 05240524.sav.
+A text-entry retry duplicated the final suffix. No renamed or second guarded save is claimed.
+bytes=6485236
+SHA256=4F57AF375EF3C5B37F9097CB5C60402CD2A7E85C1174098427F0A8E76A5E0422
+mtime_ns=1790486792083627800
+DayLong=1040.595
+pre_save_elapsed=(1040.595 - 1039.761) * 24 = 20.016
+rgl:5957 [22:26:29.076] SaveAsCurrentGame: BI4R4 20260927 05240524
+rgl:5961 [22:26:29.076] ------Saving with new context. Save name: BI4R4 20260927 05240524------
+rgl:6010 [22:26:32.097] ------Successfully saved------
+Guarded post-save PAUSED image: guarded_postsave_time.png; ack action 132.
+Exact longer filename selected in reload_saved_games.png; action 135 at 05:28:42.171395Z names that exact file and DayLong.
+rgl:6256 [22:28:46.787] Initializing saved game begin...
+rgl:6272 [22:28:48.701] Initializing saved game end...
+rgl:6733 [22:28:57.448] Loading Save Game
+Campaign-ready/menu/native-pause image: guarded_load_retry.png, captured 05:29:06.478520Z; ack action 136 at 05:29:43.148042Z.
+Action 137 sets guarded baseline; row 17 is only a guarded-file reread.
+Save As then explicitly selected/overwrote BI4R4 PROBE, not the guarded file. postreload_probe_selected.png and postreload_probe_overwrite_dialog.png are retained.
+rgl:6859 [22:33:51.522] SaveAsCurrentGame: BI4R4 PROBE
+rgl:6912 [22:33:54.622] ------Successfully saved------
+New postreload_probe_baseline nativeDayLong=1040.595; post-save pause ack precedes its read.
+This combined selection/initialization/campaign-return/new-probe evidence confirms reload; the filename 'guarded_load_retry' alone does not.
+
+FINAL PROBE AND EXACT RETAINED HELPER OUTPUT
+name=BI4R4 PROBE.sav
+bytes=6462091
+SHA256=02C07AB03CAE3AB6ABE45BB6783C2C79CDA150A6396172D64E020DF260DC8295
+mtime_ns=1790487868960319300
+measurement_utc=2026-09-27T05:45:00.686405+00:00
+measurement_label=r06_probe
+metadata_file=r06_probe_metadata.json
+Helper is repository-only Automation/ReleaseSmoke/measure_daylong.py; no game/save/load commands or network role.
+Final invocation arguments: --baseline guarded_metadata.json --current r06_probe_metadata.json --target-min-hours 4 --target-max-hours 8 --hard-cutoff-hours 10 --total-baseline protected_metadata.json --total-hard-cutoff-hours 40 --previous r05_probe_metadata.json --burst-seconds 1.50057
+BEGIN_FINAL_HELPER_OUTPUT
+baseline_daylong=1040.595
+current_daylong=1040.764
+elapsed_hours=4.056
+distance_to_target_hours=-0.056
+distance_to_hard_cutoff_hours=5.944
+total_elapsed_hours=24.072
+distance_to_total_hard_cutoff_hours=15.928
+last_burst_hours=0.456
+measured_hours_per_second=0.304
+next_burst_max_hours=1.000
+suggested_next_burst_seconds=3.291
+CONTROL_REQUIREMENTS_BEFORE_ADVANCE=
+CHECK_TIME_PAUSED_CONFIRMED=[ ]
+CHECK_LAST_DAYLONG_KNOWN=[ ]
+CHECK_CUTOFF_MARGIN_POSITIVE=[ ]
+CONTROL_REQUIREMENTS_BEFORE_SAVE_OR_LOAD=
+CHECK_TIME_PAUSED_CONFIRMED_FOR_NAVIGATION=[ ]
+CHECK_MENU_OPEN_CONFIRMED=[ ]
+decision=STOP_TARGET_REACHED
+END_FINAL_HELPER_OUTPUT
+Unchecked checklist fields are reminders, not automated positive acknowledgements. Actual image acknowledgements are tabulated above.
+Action 191 at 05:45:19.173455Z records POST_RELOAD_TARGET_REACHED, advancementStopped=true.
+
+CONTROL / OBSERVATION LIMITS PRESERVED
+Zero-delta intervals: b01, b03, r01, r03. Menu-visible navigation was retained; no discarded or invented progression.
+p05 native save took longer than the initial wait; its later completion/pause view was acknowledged before metadata inspection.
+p13's first post-save foreground check was rejected; refocus and a retained paused/menu view preceded the accepted acknowledgement and metadata read.
+r02, r05, r06 have repeated observations/crops before formal acknowledgements; their initial retained burst views also visibly show PAUSED.
+Some acknowledgements were delayed, including p12's menu acknowledgement. The review does not represent old or delayed labels as continuous real-time instrumentation.
+The retained selected-pause/PAUSED views, ordered acknowledgements, saved deltas, and bounded stop receipts support the completed smoke's time control; they do not prove every instant of screen state or a flawless controller.
+No declared native-time-control failure or post-failure diagnostic save appears in this chronology.
+The later unfinished multiline reporting prompt did not change the completed gameplay measurements and is not a Bannerlord hang.
+
+RELEASE / EXCEPTION REVIEW
+Retained final_log_scan.json forbiddenMatches=[]; ClanAIHarmonyErrorOrExceptionMatches=[].
+Scan terms: d:/bannerlordairesearch, chatgpt, codex, desktop commander, testrunner, command-bus, command bus, command_bus (case-insensitive; path separators normalized).
+No development watchdog dependency was observed; Bannerlord's own native watchdog diagnostics are not such a dependency.
+No module Logs/clanai.log, Logs/Sessions, Logs/episodes.log, Phase 4/5/6 proof output, or Phase 7B/7C receipts observed in checked locations.
+Module Data/Logs absent; module file set exactly unchanged; all 84 tracked research size/mtime pairs reported unchanged.
+No obvious attributable duplicate initialization/lifecycle/message spam in reviewed post-reload views/logs. Exactly two native initialization cycles match the two requested campaign loads, not duplicate initialization.
+No reproducible ClanAI/Harmony release blocker established by the retained run.
+Observability is limited with research telemetry OFF. Not every initializer or exception path was inspected. No exhaustive network/file-access trace. Research directory remained present.
+
+NATIVE MESSAGES — INDEPENDENT RETAINED-LOG REVIEW SUPPLEMENT
+The original final_log_scan.json summary omitted XML/Granite/shutdown error matches. Original scan is preserved, not rewritten. The unchanged retained log supplies the following additional receipts.
+rgl:1092 [21:36:43.448] ERROR: TaleWorlds.PSAI.XmlSerializers.dll: Invalid Image
+rgl:1099 [21:36:43.449] ERROR: TaleWorlds.PSAI.XmlSerializers.dll: Invalid Image
+rgl:4313 [21:39:50.692] Granite Error in Graphine::Granite::Internal::ContextImplementation::DestroyCache: The specified GPU cache is not part of this context
+rgl:4314 [21:39:50.692] Granite Error in Graphine::Granite::Internal::ContextImplementation::DestroyCache: The specified GPU cache is not part of this context
+rgl:4315 [21:39:50.692] Granite Error in Graphine::Granite::Internal::ContextImplementation::DestroyCache: The specified GPU cache is not part of this context
+rgl:7648 Error: Non-Zero Device Reference Count! (ERC3039)
+Warning-named audio-event samples already present in the retained word-match summary (not an exhaustive missing-audio inventory):
+rgl:1605 [21:36:48.396] Could not find the event index for: event:/mission/ambient/detail/warning_bells
+rgl:2332 [21:36:48.401] Could not find the event index for: event:/mission/tutorial/vo/fighting/warning
+rgl:2377 [21:36:48.402] Could not find the event index for: event:/multiplayer/warning_bells_attacker
+rgl:2378 [21:36:48.402] Could not find the event index for: event:/multiplayer/warning_bells_defender
+rgl:2592 [21:36:48.403] Could not find the event index for: event:/ui/mission/multiplayer/pointwarning
+watchdog:9 Waiting for an exception event...
+The watchdog line is startup diagnostics, not an emitted exception event.
+Dedicated rgl_log_errors_40224.txt contains only startup header / date / computer-user / build-version metadata.
+Native messages and exit code 4294967295 are retained without attribution to ClanAI. Logs are not described as error-free.
+
+SAVE / LOAD / EXIT COUNTS AND RECEIPTS
+initializing_saved_game_begin=2
+initializing_saved_game_end=2
+loading_save_game=2
+save_as_current_game=3
+quick_save_current_game=21
+successfully_saved=24
+probe_writes=23
+guarded_writes=1
+postreload_probe_writes=7
+postreload_additional_guarded_gameplay_saves=0
+measurement_reads=25 (one guarded-file reread is not a save)
+Final probe operation:
+rgl:7349 [22:44:25.744] QuickSaveCurrentGame: BI4R4 PROBE
+rgl:7353 [22:44:25.744] ------Saving with new context. Save name: BI4R4 PROBE------
+rgl:7402 [22:44:28.965] ------Successfully saved------
+No later successful save or new guarded save appears before exit.
+2026-09-27T05:46:56.677795Z — native-no-save-exit-confirmed, dialogExplicitlyNoSave=true.
+exit_nosave_confirm_crop.png: 'This will not save your game and return you to the Main Menu. Are you sure you want to exit?'
+2026-09-27T05:46:59.759865Z — retained main_menu_after_exit_crop.png.
+2026-09-27T05:47:22.017835Z — main-menu-after-no-save-exit acknowledged.
+2026-09-27T05:47:22.350678Z — native-exit-game-selected.
+rgl:7630 [22:47:22.709] Final_cleanup...
+rgl:7642 [22:47:23.002] There are no living managed objects.
+rgl:7644 [22:47:23.002] Managed Interface deleted.
+watchdog:599 EXIT_PROCESS_DEBUG_EVENT occurred. Detaching...
+
+CLEANUP SELECTED EXACT FIELDS / INTERPRETATION
+utc=2026-09-27T05:48:09.281169+00:00
+gamePid=40224
+gameProcessExitCode=4294967295
+bannerlordTaleWorldsWatchdogProcesses=""
+The empty retained enumeration means zero matching Bannerlord/TaleWorlds/Watchdog processes; it does not mean a zero process exit code.
+protectedFixtureUnchanged=true
+protectedTimestampUtc=2026-09-24T17:20:12.2384633Z
+protectedDayLong=1039.761
+installedPackageUnchanged=true
+moduleDataExists=false
+moduleLogsExists=false
+priorNativeSaveChanges={}
+newSaveNames=["BI4R4 20260927 05240524.sav", "BI4R4 PROBE.sav"]
+researchFilesBefore=84
+researchFilesAfter=84
+researchChanges={}
+preSaveElapsedHours=20.016
+postReloadElapsedHours=4.056
+totalElapsedHours=24.072
+preSaveCutoffCompliant=true
+postReloadCutoffCompliant=true
+totalCutoffCompliant=true
+The original cleanup result field was PASS; this closure independently checked required supporting evidence rather than treating that field as sufficient proof.
+All 53 pre-existing native saves unchanged; only the disposable probe and single guarded save were new.
+
+INDEPENDENT CLOSURE CONSISTENCY CHECKS
+All 25 DayLong strings matched the corresponding retained metadata extracts.
+Each stored stage elapsed and protected-baseline total matched independent Decimal arithmetic.
+Every measured burst delta matched adjacent retained DayLong differences.
+All non-calibration expected burst sizes respected <=2 h normally / <=1 h near target; stage/total margins were positive.
+Protected, guarded, and final probe read-only hash/size/mtime identities matched preflight/cleanup; protected DayLong remained 1039.761.
+Native log source hashes and byte sizes matched the retained final scan manifest.
+All 49 time-acknowledgement image regions and 42 menu-acknowledgement images were reviewed; key initial/reload/exit images reviewed separately.
+Contact-sheet derivatives are local reporting aids; original screenshots are retained and authoritative.
+
+REQUIRED FINAL STATUS
+retained_runtime_reviewed=YES
+Bannerlord_relaunched=NO
+additional_campaign_advancement=NO
+new_save_or_reload_during_closure=NO
+guarded_save_reload_evidence_confirmed=YES
+pre_save_elapsed=20.016
+post_reload_elapsed=4.056
+total_elapsed=24.072
+final_probe_DayLong=1040.764
+final_helper_decision=STOP_TARGET_REACHED
+release_telemetry_remained_OFF=YES in checked locations
+protected_fixture_unchanged=YES
+gameplay_changed=NO
+save_schema_changed=NO
+classification=PASS
+ready_for_next_Phase8_release_hardening_checkpoint=YES
+ready_for_RC_freeze=YES
+recommended_next_milestone=Phase 8B-I5 — RC freeze / player-playable release-candidate checkpoint
+I5_started=NO
+STOP after GitHub commit and verification. No new runtime needed or authorized by this reporting closure.
