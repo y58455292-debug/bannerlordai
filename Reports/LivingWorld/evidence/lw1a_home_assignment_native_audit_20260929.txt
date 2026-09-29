@@ -1,0 +1,484 @@
+LW1-A HOME ASSIGNMENT NATIVE AUDIT — FOCUSED EVIDENCE
+Date: 2026-09-29
+Authoritative main: cc706af55d771816aa22651742a20bcd681ee2c1
+Root tree: 7b9cebf0d16786057f663da431a68615697a50af
+Codex only; no delegated coder.
+Audit INCOMPLETE: supported native peacetime candidate generator unavailable.
+No Bannerlord launch, build, deploy, gameplay or schema edit.
+
+SOURCE IDENTITIES (Git blob SHA; not SHA-256)
+src/ClanAI/src/ClanAI/HomeResponsibilityLayer.cs 61f7e561a55e192c4e0d7372fa2baf7a110566a0
+src/ClanAI/src/ClanAI/HomeResponsibilityPolicy.cs bb86a005ac8202a3a8dc806abae9e8a19065704f
+src/ClanAI/src/ClanAI/WorldScopeContext.cs 803818008c16ba71c3351fbe8d2a792395e82840
+src/ClanAI/src/ClanAI/StrategicDecisionComposer.cs a684d3995d064aa386f92fbc26561d78437cf09c
+src/ClanAI/src/ClanAI/ClanAIStrategicBehavior.cs 59436842b3f0eced82fc6e8dfa3acdc8c04a4cca
+src/ClanAI/src/ClanAI/CompanionDutyMemory.cs 7c1f7877ea180fac39c1a03da64007daf43afef7
+Tests/TerritorialResponsibility/Program.cs 242ef7497572fab9745d04048ff52f87d43f0e7a
+Tests/TerritorialResponsibility/test_runtime_wiring.py 1a391fb06bb88fe9e3e00c7727ec15cf72637c9a
+Reports/Manpower/PHASE4A_CORRECTED_LINKED_RECREATION_RUNTIME_RESULT.md 2121d5fb730d0191fb6369115c197c712c616d35
+Reports/SettlementSociety/evidence/phase6_native_audit_manifest_20260925.json 7e9b7890c2c58bc5738f63f8ca36a6ac654eb2aa
+Reports/SettlementSociety/evidence/phase6_native_audit_evidence_20260925.md a8cbd6fb8f53e64b6978c66b60167f1e38448dde
+
+INSPECTION / ACCESS BOUNDARY
+GitHub main verified at cc706af55d771816aa22651742a20bcd681ee2c1.
+Latest commits: cc706af LW0; 9ec113e RC1 freeze; 44f7bc6 accepted I4R4 closure.
+Fetched authoritative ClanAI C# source (74 files) into scratch audit-cache; not committed.
+No supported native DLL/full AiVisitSettlement source found under /workspace, /opt, /tmp.
+Repository tree contains packaged ClanAI DLL, not native campaign DLL.
+Library query set: Bannerlord native archive; TaleWorlds.CampaignSystem.dll; AiVisitSettlementBehavior; filename zip/Bannerlord/TaleWorlds/native/bin.
+No supported native archive resolved. Historical experimental patch archives and images are not supported selector source; not imported as proof.
+Remote device inventory: DESKTOP-JO4B7VH offline, last_seen=2026-09-27T11:07:33.503+00:00.
+Inventory read only; no remote process, file command, game command or attempted launch.
+Native source metadata is inherited from accepted Phase 6 evidence, not freshly decompiled in LW1-A.
+Native CampaignSystem SHA-256: 5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+Native SandBox SHA-256: 16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A
+Manifest AiVisitSettlementBehavior: 810 lines; decomp SHA-256 6798de039c820487c0c557cba244d410c7844f26b4a3dc281692d6427ffa7281.
+Retained noncontiguous Phase 6 excerpt file contains no AiVisitSettlementBehavior scoring body.
+Near/far exact-home candidate production, score ranges, player command gates: NOT VERIFIED.
+Absence of source is not proof that native lacks a home candidate.
+
+VALIDATION EXECUTED
+python3 audit-cache/Tests/TerritorialResponsibility/test_runtime_wiring.py
+exit=0
+PASS HomeResponsibility runtime wiring
+native candidate list and post-vanilla commit verification preserved
+Ten compiled HomeResponsibility policy tests/build PASS retained from PHASE3_DETERMINISTIC_TEST_RESULT.md.
+Compiled tests/build NOT rerun in LW1-A.
+No new runtime proof.
+
+ACTIVE SAVE KEYS — current source scan
+ClanAI_NobleMemory_v1
+ClanAI_SocialLedger_v1
+ClanAI_SocialEpisodes_v1
+ClanAI_DynastyCanonCutoffHours_v1
+ClanAI_DynastyBranchId_v1
+ClanAI_DynastyBranchEpisodes_v1
+ClanAI_CompanionDutyMemory_v1
+ClanAI_CompanionExperienceMemory_v1
+ClanAI_CompanionNegativeOutcomeMemory_v1
+ClanAI_SocialLoyaltyClanLoss_v2
+ClanAI_WarState_v1
+ClanAI_KingdomContinuity_v1
+Proposed only: ClanAI_HomeAssignment_v1; D1|base64UTF8(heroId)|base64UTF8(settlementId).
+No key or row is added to code/save state in this task.
+
+PROVENANCE / PRESERVATION
+Frozen RC1 source: 9ec113e738af35254e113fbde7c05babbf3c405d
+RC archive path: Releases/ClanAI-v0.22.0-RC1.zip
+RC archive Git blob: a5124da1390f6bd9d381a4b1fb020f91439c6102
+RC archive inherited SHA-256: A03D183934BCF1C974EA6BCEBBF35CFF3A5413080D6F6634942811AE54C971D6
+Tested package Git tree: 6af297032fd55c03326d50ac3acbe2c9ba64b246
+Tested DLL Git blob: a5fc3923b31e482960026a0044dd1b21d6e6d00a
+Tested DLL inherited SHA-256: A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+Unchanged Git objects preserve accepted bytes/hashes; live installed bytes not reverified.
+
+TARGETED CURRENT-SOURCE EXCERPTS
+
+src/ClanAI/src/ClanAI/HomeResponsibilityPolicy.cs lines 24-69
+24:     internal static class HomeResponsibilityPolicy
+25:     {
+26:         internal const float WarGoHomeFactor = 1.15f;
+27:         internal const float WarPatrolFactor = 1.25f;
+28:         internal const float WarDefendFactor = 1.30f;
+29:         internal const float ThreatFactor = 1.60f;
+30:         internal const float RecoveryFactor = 1.35f;
+31: 
+32:         private static readonly HomeResponsibilityPolicyResult NoChange =
+33:             new HomeResponsibilityPolicyResult(false, 1f, null);
+34: 
+35:         internal static HomeResponsibilityPolicyResult Evaluate(
+36:             bool actorEligibleAtWar,
+37:             bool ownedByActorClan,
+38:             float baseScore,
+39:             bool underSiege,
+40:             bool underRaid,
+41:             bool weak,
+42:             HomeResponsibilityBehaviorKind behavior)
+43:         {
+44:             if (!actorEligibleAtWar || !ownedByActorClan || baseScore <= 0f)
+45:                 return NoChange;
+46: 
+47:             if (underSiege)
+48:                 return Apply(ThreatFactor, "home-under-siege");
+49:             if (underRaid)
+50:                 return Apply(ThreatFactor, "home-under-raid");
+51: 
+52:             if (weak && behavior == HomeResponsibilityBehaviorKind.GoToSettlement)
+53:                 return Apply(RecoveryFactor, "recover-at-home");
+54: 
+55:             if (behavior == HomeResponsibilityBehaviorKind.DefendSettlement)
+56:                 return Apply(WarDefendFactor, "defend-home-at-war");
+57: 
+58:             if (behavior == HomeResponsibilityBehaviorKind.PatrolAroundPoint)
+59:                 return Apply(WarPatrolFactor, "patrol-home-at-war");
+60: 
+61:             if (behavior == HomeResponsibilityBehaviorKind.GoToSettlement)
+62:                 return Apply(WarGoHomeFactor, "stay-near-home-at-war");
+63: 
+64:             return NoChange;
+65:         }
+66: 
+67:         private static HomeResponsibilityPolicyResult Apply(float factor, string reason)
+68:         {
+69:             return new HomeResponsibilityPolicyResult(true, factor, reason);
+
+src/ClanAI/src/ClanAI/WorldScopeContext.cs lines 34-79
+34:         internal static bool EligibleIndependentLordAtWar(MobileParty actor)
+35:         {
+36:             if (actor == null || !actor.IsActive || !actor.IsLordParty ||
+37:                 actor.LeaderHero == null || actor.IsMainParty ||
+38:                 actor.Army != null || actor.MapFaction == null ||
+39:                 actor.ActualClan == null)
+40:                 return false;
+41: 
+42:             return FactionAtWar(actor.MapFaction);
+43:         }
+44: 
+45:         internal static bool FactionAtWar(IFaction faction)
+46:         {
+47:             if (faction == null)
+48:                 return false;
+49: 
+50:             string key = FactionKey(faction);
+51:             double hour = CampaignTime.Now.ToHours;
+52:             WarCacheEntry cached;
+53:             if (WarByFaction.TryGetValue(key, out cached) &&
+54:                 Math.Abs(hour - cached.CampaignHour) < 1.0)
+55:                 return cached.AtWar;
+56: 
+57:             bool atWar = false;
+58:             foreach (Settlement settlement in Settlement.All)
+59:             {
+60:                 if (settlement == null || settlement.MapFaction == null)
+61:                     continue;
+62:                 if (SameFaction(settlement.MapFaction, faction))
+63:                     continue;
+64:                 if (faction.IsAtWarWith(settlement.MapFaction))
+65:                 {
+66:                     atWar = true;
+67:                     break;
+68:                 }
+69:             }
+70: 
+71:             WarByFaction[key] = new WarCacheEntry
+72:             {
+73:                 CampaignHour = hour,
+74:                 AtWar = atWar
+75:             };
+76:             return atWar;
+77:         }
+78: 
+79:         internal static List<Settlement> ThreatenedFactionSettlements(MobileParty actor)
+
+src/ClanAI/src/ClanAI/HomeResponsibilityLayer.cs lines 66-110
+66:                     " clan=" + clan.Name.ToString());
+67:             }
+68: 
+69:             bool actorEligibleAtWar =
+70:                 WorldScopeContext.EligibleIndependentLordAtWar(actor);
+71:             if (!actorEligibleAtWar)
+72:                 return;
+73: 
+74:             _evaluations++;
+75: 
+76:             int beforeIndex = composer.CurrentBestIndex(thinkParams);
+77:             string before = CandidateLabel(thinkParams, beforeIndex);
+78:             float readiness = blackboard != null
+79:                 ? blackboard.Readiness
+80:                 : actor.PartySizeRatio;
+81:             int foodDays = blackboard != null
+82:                 ? blackboard.FoodDays
+83:                 : actor.GetNumDaysForFoodToLast();
+84:             bool weak = readiness < 0.72f || foodDays < 3;
+85: 
+86:             var changes = new List<Tuple<int, float, float, string>>();
+87:             for (int i = 0; i < thinkParams.AIBehaviorScores.Count; i++)
+88:             {
+89:                 AIBehaviorData data = thinkParams.AIBehaviorScores[i].Item1;
+90:                 Settlement settlement = data.Party as Settlement;
+91:                 if (settlement == null)
+92:                     continue;
+93: 
+94:                 float rawScore = thinkParams.AIBehaviorScores[i].Item2;
+95:                 float baseScore = composer.CurrentScore(i, rawScore);
+96:                 HomeResponsibilityPolicyResult decision =
+97:                     HomeResponsibilityPolicy.Evaluate(
+98:                         actorEligibleAtWar,
+99:                         SameClan(settlement.OwnerClan, clan),
+100:                         baseScore,
+101:                         settlement.IsUnderSiege,
+102:                         settlement.IsUnderRaid,
+103:                         weak,
+104:                         PolicyBehavior(data.AiBehavior));
+105:                 if (!decision.Apply)
+106:                     continue;
+107: 
+108:                 changes.Add(Tuple.Create(
+109:                     i,
+110:                     baseScore,
+
+src/ClanAI/src/ClanAI/HomeResponsibilityLayer.cs lines 170-211
+170:                     " winnerChanged=False changes=" + changes.Count);
+171:             }
+172:         }
+173:         private static void VerifyPendingCommit(MobileParty actor)
+174:         {
+175:             if (actor == null || string.IsNullOrEmpty(actor.StringId))
+176:                 return;
+177: 
+178:             PendingCommit pending;
+179:             if (!PendingByParty.TryGetValue(actor.StringId, out pending))
+180:                 return;
+181: 
+182:             PendingByParty.Remove(actor.StringId);
+183:             _commitChecks++;
+184:             Settlement target = actor.TargetSettlement ?? actor.ShortTermTargetSettlement;
+185:             bool behaviorMatch = actor.DefaultBehavior == pending.Behavior ||
+186:                                  actor.ShortTermBehavior == pending.Behavior;
+187:             bool targetMatch = string.IsNullOrEmpty(pending.SettlementId) ||
+188:                                (target != null && string.Equals(
+189:                                    target.StringId, pending.SettlementId, StringComparison.Ordinal));
+190:             bool matched = behaviorMatch && targetMatch;
+191:             if (matched)
+192:             {
+193:                 _commitMatches++;
+194:                 CompanionDutyMemory.RecordSuccessfulHomeDuty(
+195:                     actor,
+196:                     pending.Behavior,
+197:                     target,
+198:                     "home-responsibility-commit");
+199:             }
+200: 
+201:             ClanAIPostVanilla.WriteExternalLog(
+202:                 "HOME_RESPONSIBILITY_COMMIT_CHECK actor=" + pending.ActorName +
+203:                 " partyId=" + actor.StringId +
+204:                 " expected=" + (pending.Label ?? "<none>") +
+205:                 " actualDefault=" + actor.DefaultBehavior +
+206:                 " actualShort=" + actor.ShortTermBehavior +
+207:                 " actualTarget=" + (target == null ? "<none>" : target.Name.ToString()) +
+208:                 " matched=" + matched +
+209:                 " checks=" + _commitChecks +
+210:                 " matches=" + _commitMatches);
+211:         }
+
+src/ClanAI/src/ClanAI/StrategicDecisionComposer.cs lines 77-100
+77:                 float beforeScore,
+78:                 float factor,
+79:                 string reason)
+80:             {
+81:                 if (Completed ||
+82:                     index < 0 ||
+83:                     ThinkParams == null ||
+84:                     index >= CandidateCount ||
+85:                     factor <= 0f)
+86:                 {
+87:                     return;
+88:                 }
+89: 
+90:                 Entry entry;
+91:                 if (!Entries.TryGetValue(index, out entry))
+92:                 {
+93:                     entry = new Entry
+94:                     {
+95:                         Index = index,
+96:                         OriginalScore = beforeScore,
+97:                         WorkingScore = beforeScore
+98:                     };
+99: 
+100:                     Entries.Add(index, entry);
+
+src/ClanAI/src/ClanAI/StrategicDecisionComposer.cs lines 256-284
+256:             PartyThinkParams thinkParams)
+257:         {
+258:             if (frame == null ||
+259:                 frame.Completed)
+260:             {
+261:                 return;
+262:             }
+263: 
+264:             frame.Completed = true;
+265: 
+266:             try
+267:             {
+268:                 if (thinkParams == null ||
+269:                     thinkParams.AIBehaviorScores.Count !=
+270:                         frame.CandidateCount)
+271:                 {
+272:                     Interlocked.Increment(
+273:                         ref _failures);
+274: 
+275:                     ClanAIPostVanilla.WriteExternalLog(
+276:                         "STRATEGIC_COMPOSER_FAILURE" +
+277:                         " reason=candidate-count-changed" +
+278:                         " actor=" +
+279:                         ActorName(frame.Actor));
+280:                     return;
+281:                 }
+282: 
+283:                 int predictedWinner =
+284:                     FindWorkingBestIndex(
+
+src/ClanAI/src/ClanAI/ClanAIStrategicBehavior.cs lines 347-431
+347:             PartyThinkParams __1)
+348:         {
+349:             _dispatcherCalls++;
+350: 
+351:             MobileParty party = __0;
+352:             PartyThinkParams thinkParams = __1;
+353: 
+354:             if (!ClanAISwitch.Enabled ||
+355:                 party == null ||
+356:                 thinkParams == null ||
+357:                 !party.IsLordParty ||
+358:                 party.LeaderHero == null ||
+359:                 party.MapFaction == null ||
+360:                 party.Army != null)
+361:             {
+362:                 return;
+363:             }
+364: 
+365:             if (HourlyObserveOnly)
+366:             {
+367:                 int observedCount =
+368:                     thinkParams.AIBehaviorScores.Count;
+369: 
+370:                 if (observedCount > 0)
+371:                 {
+372:                     DynastyMindSeed.ObserveDecisionContext(
+373:                         party.LeaderHero,
+374:                         "AiHourlyTickComposerScaffold");
+375: 
+376:                     StrategicDecisionComposer.Frame scaffold =
+377:                         StrategicDecisionComposer.Begin(
+378:                             party,
+379:                             thinkParams);
+380: 
+381:                     VisualWarDecisionLayer.Apply(
+382:                         party,
+383:                         thinkParams,
+384:                         scaffold,
+385:                         null);
+386: 
+387:                     CompanionNegativeOutcomeMemory.Observe(party);
+388: 
+389:                     CompanionHoldbackLayer.Apply(
+390:                         party,
+391:                         thinkParams,
+392:                         scaffold);
+393: 
+394:                     HomeResponsibilityLayer.Apply(
+395:                         party,
+396:                         thinkParams,
+397:                         scaffold,
+398:                         null);
+399: 
+400:                     CompanionDutyMemory.Apply(
+401:                         party,
+402:                         thinkParams,
+403:                         scaffold);
+404: 
+405:                     CompanionExperienceMemory.ObserveAndApply(
+406:                         party,
+407:                         thinkParams,
+408:                         scaffold);
+409: 
+410:                     KingdomObjectiveLayer.Apply(
+411:                         party,
+412:                         thinkParams,
+413:                         scaffold);
+414: 
+415:                     CompanionHoldbackLayer.ApplyOutcomeSafety(
+416:                         party,
+417:                         thinkParams,
+418:                         scaffold);
+419: 
+420:                     CompanionHoldbackLayer.ApplyFinalSafety(
+421:                         party,
+422:                         thinkParams,
+423:                         scaffold);
+424: 
+425:                     StrategicDecisionComposer.Complete(
+426:                         scaffold,
+427:                         thinkParams);
+428:                 }
+429: 
+430:                 return;
+431:             }
+
+src/ClanAI/src/ClanAI/CompanionDutyMemory.cs lines 74-104
+74:             List<string> lines = new List<string>();
+75: 
+76:             if (dataStore.IsSaving)
+77:                 lines = ExportSaveLines();
+78: 
+79:             bool found = dataStore.SyncData(
+80:                 "ClanAI_CompanionDutyMemory_v1",
+81:                 ref lines);
+82: 
+83:             if (dataStore.IsLoading)
+84:                 ImportSaveLines(found ? lines : null);
+85:         }
+86: 
+87:         private static List<string> ExportSaveLines()
+88:         {
+89:             var lines = new List<string>();
+90:             foreach (var pair in Records)
+91:             {
+92:                 Record r = pair.Value;
+93:                 lines.Add(
+94:                     B64(r.HeroKey) + "|" +
+95:                     B64(r.ActorName) + "|" +
+96:                     B64(r.SettlementId) + "|" +
+97:                     B64(r.SettlementName) + "|" +
+98:                     ((int)r.Behavior).ToString(CultureInfo.InvariantCulture) + "|" +
+99:                     r.LearnedAtHours.ToString("R", CultureInfo.InvariantCulture) + "|" +
+100:                     r.LastReinforcedHours.ToString("R", CultureInfo.InvariantCulture) + "|" +
+101:                     r.SuccessfulCommits.ToString(CultureInfo.InvariantCulture) + "|" +
+102:                     r.RecallUses.ToString(CultureInfo.InvariantCulture));
+103:             }
+104: 
+
+src/ClanAI/src/ClanAI/CompanionDutyMemory.cs lines 532-540
+532:         private static string HeroKey(MobileParty actor)
+533:         {
+534:             if (actor == null || actor.LeaderHero == null)
+535:                 return null;
+536: 
+537:             return string.IsNullOrEmpty(actor.LeaderHero.StringId)
+538:                 ? actor.LeaderHero.Name.ToString()
+539:                 : actor.LeaderHero.StringId;
+540:         }
+
+IDENTITY EVIDENCE
+Reports/Manpower/PHASE4A_CORRECTED_LINKED_RECREATION_RUNTIME_RESULT.md:
+Megenhelda heroId=lord_4_3_1, distinct PartyBase recreation; displayed party StringId reused.
+Original report explicitly says StringId reuse is not distinct-party proof.
+This is NPC-clan evidence; not automatic player-clan recreation proof.
+
+UI EVIDENCE
+Current ClanAI source scan: no AddGameMenu/AddPlayerLine/AddDialogLine management hook.
+Retained Phase 6 E34: native CampaignGameStarter.AddGameMenuOption("town", ...); AddGameMenuOption("castle", ...).
+Selected surface design: owned town/castle menu, current holding target, small eligible clan-party selector.
+Native selector widget/signature remains uninspected.
+
+DECISION
+Missing exact-home candidate cannot be created by CurrentScore/ApplyFactor/Complete.
+Native candidate availability sufficient: PARTIAL (influence present candidate only; generation unknown).
+Persistence contract/UI surface/performance/war-preservation: selected design, not implementation proof.
+Audit clearance: NO-GO pending source closure.
+Next: LW1-A2 — supported-native peacetime candidate-generation and control-seam source closure.
+No LW1-B begun.
+
+DOCUMENTATION TREE VALIDATION — PASS
+Candidate tree compared recursively against source root tree.
+Exactly four blob paths changed:
+ROADMAP.md
+Reports/AgentStatus/CODEX_STATUS.md
+Reports/LivingWorld/LW1A_HOME_ASSIGNMENT_NATIVE_AUDIT.md
+Reports/LivingWorld/evidence/lw1a_home_assignment_native_audit_20260929.txt
+Every other blob identity unchanged. src root tree unchanged; Releases root tree unchanged;
+tested package tree unchanged; tested DLL blob unchanged; README unchanged.
+Therefore no source/save key/schema/configuration/gameplay/policy/package/RC/DLL change.
+Main rechecked unchanged at source checkpoint immediately before commit.
+Final commit will use source checkpoint as its only parent; main update is non-forced.
+Post-update verification checks exact main SHA, parent, tree and four changed paths.

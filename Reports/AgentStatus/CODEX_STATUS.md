@@ -1,6 +1,32 @@
 # Codex Status
 
-## Current checkpoint — LW0 Living World Direction
+## Current checkpoint — LW1-A Home Assignment audit
+
+**INCOMPLETE — source-access blocker, 2026-09-29.** Current ClanAI candidate-preserving composer, war Home Responsibility, save-key inventory and proposed assignment design are audited. Supported native peacetime candidate generation is not fully accessible; near/far exact-home availability is unresolved. Do not infer a missing candidate can be expressed through score multiplication.
+
+| Field | Status |
+|---|---|
+| LW1-A audit | INCOMPLETE |
+| Bannerlord launched | NO |
+| Gameplay changed | NO |
+| Save schema changed | NO |
+| RC1 changed | NO |
+| Native peacetime home candidate availability sufficient | PARTIAL — present-candidate influence only; generation unresolved |
+| Persistence contract selected | YES — design only |
+| UI seam selected | YES — town/castle menu surface; selector signature pending |
+| Performance design bounded | YES |
+| War Home Responsibility preservation plan defined | YES |
+| Implementation authorized by audit | NO-GO |
+| Exact next checkpoint | LW1-A2 — supported-native peacetime candidate-generation and control-seam source closure |
+
+RC1 remains frozen/playable at `9ec113e738af35254e113fbde7c05babbf3c405d`. No ClanAI build/deployment, policy tuning or package/DLL change. The game machine is offline; no supported native binary/full selector was resolved from available offline inputs. This is an evidence-access blocker, not proof that native home candidates are impossible.
+
+Audit: [LW1A_HOME_ASSIGNMENT_NATIVE_AUDIT.md](../LivingWorld/LW1A_HOME_ASSIGNMENT_NATIVE_AUDIT.md).
+Evidence: [lw1a_home_assignment_native_audit_20260929.txt](../LivingWorld/evidence/lw1a_home_assignment_native_audit_20260929.txt).
+
+Stop after the documentation commit/main verification. Do not begin LW1-A2 or LW1-B in this task.
+
+## Preserved LW0 Living World Direction checkpoint
 
 **COMPLETE — documentation only, 2026-09-29.** RC1 remains frozen/playable at `9ec113e738af35254e113fbde7c05babbf3c405d`. The post-RC1 Living World direction is documented in [LIVING_WORLD_DIRECTION.md](../../LIVING_WORLD_DIRECTION.md), with an ordered LW1–LW9 line in the roadmap. Phase 8C remains active through normal user play as ongoing field validation.
 

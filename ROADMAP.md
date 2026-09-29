@@ -461,7 +461,7 @@ No kingdom is selected to collapse because of plot.
 
 # Phase 8 — Balance, release hardening, and presentation
 
-**Status — STARTED 2026-09-25; PHASE 8B-I5 RC1 FREEZE COMPLETE 2026-09-27.** Phase 8B-I4R4 passed its bounded release-profile save/reload smoke with the exact packaged DLL. Phase 8B-I5 then froze that byte-identical three-file v0.22.0 payload as `Releases/ClanAI-v0.22.0-RC1.zip`, added player installation/beta guidance, and repeated the offline standalone, dependency/version, package, save-key, and Phase 3–7 preservation gates. No gameplay, policy, save-schema, or package-payload change occurred during the freeze. **Release classification: RC1 READY FOR PLAYER CAMPAIGN. Phase 8C continues through normal user play; next development checkpoint: LW1-A — Persistent Home Assignment native-seam/design audit.** See `Reports/Release/PHASE8B_I5_RC_FREEZE_RESULT.md`.
+**Status — STARTED 2026-09-25; PHASE 8B-I5 RC1 FREEZE COMPLETE 2026-09-27.** Phase 8B-I4R4 passed its bounded release-profile save/reload smoke with the exact packaged DLL. Phase 8B-I5 then froze that byte-identical three-file v0.22.0 payload as `Releases/ClanAI-v0.22.0-RC1.zip`, added player installation/beta guidance, and repeated the offline standalone, dependency/version, package, save-key, and Phase 3–7 preservation gates. No gameplay, policy, save-schema, or package-payload change occurred during the freeze. **Release classification: RC1 READY FOR PLAYER CAMPAIGN. Phase 8C continues through normal user play; next development checkpoint: LW1-A2 — supported-native peacetime candidate-generation and control-seam source closure.** See `Reports/Release/PHASE8B_I5_RC_FREEZE_RESULT.md`.
 
 Only after the major world loops work:
 
@@ -495,7 +495,7 @@ LW0 — Living World Direction documentation checkpoint: **COMPLETE**. No gamepl
 
 | Order | Milestone | Status |
 |---|---|---|
-| LW1 | Persistent Home Assignment / Peacetime Responsibility | Planned; not implemented |
+| LW1 | Persistent Home Assignment / Peacetime Responsibility | Planned; not implemented; LW1-A source audit incomplete |
 | LW2 | Governor Local-Need Response | Planned; not implemented |
 | LW3 | Household Autonomy | Planned; not implemented |
 | LW4 | Purposeful Logistics | Planned; not implemented |
@@ -505,7 +505,9 @@ LW0 — Living World Direction documentation checkpoint: **COMPLETE**. No gamepl
 | LW8 | Social Visits / Relationship Activity | Planned; not implemented |
 | LW9 | Settlement Flourishing Integration | Planned; not implemented |
 
-**Next development checkpoint: LW1-A — Persistent Home Assignment native-seam/design audit.** Research native capabilities and existing Home Responsibility before implementation. LW1 is not implemented. This LW0 task stops after its documentation commit and does not begin LW1.
+**LW1-A status: INCOMPLETE, 2026-09-29.** Current composer only rescales existing candidates; supported-native exact-home peacetime candidate availability is unresolved because full selector source/binary was unavailable. Persistence/UI/performance/war-preservation designs are recorded; LW1-B implementation clearance is **NO-GO** pending source closure. See [LW1-A audit](Reports/LivingWorld/LW1A_HOME_ASSIGNMENT_NATIVE_AUDIT.md).
+
+**Next development checkpoint: LW1-A2 — supported-native peacetime candidate-generation and control-seam source closure.** Verify near/far candidate production, player-clan control gates and score formulas, then select at most one precise native-compatible seam if needed. This is source research only, before LW1-B. LW1 remains unimplemented. Stop this LW1-A task after its documentation commit; do not begin A2 or B here.
 
 ---
 
