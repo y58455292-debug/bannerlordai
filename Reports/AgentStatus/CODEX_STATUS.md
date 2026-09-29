@@ -1,6 +1,21 @@
 # Codex Status
 
-## Current checkpoint — LW1-A Home Assignment audit
+## Current checkpoint — LW1-A2 Native source closure
+
+**BLOCKED / INCOMPLETE — 2026-09-29.** Fresh source-access checks confirm DESKTOP-JO4B7VH remains offline and the inspected workspace/current GitHub tree has no supported native assemblies/full peacetime selector. No native-generation/control question has been closed; exact near/far visit/patrol home availability remains **UNKNOWN**. No native-compatible seam is selected.
+
+This is an evidence-access blocker, not proof that native home candidates or lawful seams are impossible. LW1-A's NO-GO remains an implementation hold pending source evidence. **Do not begin LW1-B.**
+
+RC1 remains frozen/playable at `9ec113e738af35254e113fbde7c05babbf3c405d`. Bannerlord launched: **NO**. Gameplay/save schema/RC1 changed: **NO**. Gameplay DLL built: **NO**. ClanAI deployed: **NO**.
+
+**Next checkpoint: resume LW1-A2 with the exact supported TaleWorlds.CampaignSystem.dll and SandBox.dll or complete targeted source with matching binary-hash provenance.** ROADMAP already identifies A2; no sequence change is needed.
+
+Report: [LW1A2_NATIVE_SOURCE_CLOSURE.md](../LivingWorld/LW1A2_NATIVE_SOURCE_CLOSURE.md).
+Evidence: [lw1a2_native_source_access_20260929.txt](../LivingWorld/evidence/lw1a2_native_source_access_20260929.txt).
+
+Stop after this documentation commit/main verification.
+
+## Preserved LW1-A Home Assignment audit checkpoint
 
 **INCOMPLETE — source-access blocker, 2026-09-29.** Current ClanAI candidate-preserving composer, war Home Responsibility, save-key inventory and proposed assignment design are audited. Supported native peacetime candidate generation is not fully accessible; near/far exact-home availability is unresolved. Do not infer a missing candidate can be expressed through score multiplication.
 

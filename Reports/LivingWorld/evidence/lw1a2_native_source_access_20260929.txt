@@ -1,0 +1,66 @@
+LW1-A2 — NATIVE SOURCE ACCESS / BLOCKED CHECKPOINT
+Date: 2026-09-29 UTC
+Source main: 9bd833a3a5788346f01cfbdc78a675ec5d3ad2ca
+Source tree: 7f8f4034ecc65ff0e9cd9fdce4e393a0e0da1769
+Access check: approximately 2026-09-29T23:34Z
+
+GitHub branches/main resolves to source main.
+Required seven files fetched at that immutable ref.
+Recursive source tree not truncated.
+Native path filter: TaleWorlds*.dll / SandBox.dll / AiVisitSettlement / AiMilitaryBehavior
+Matching native input paths: NONE.
+
+Workspace inventory command:
+rg --files /workspace /opt /tmp -g 'TaleWorlds.CampaignSystem.dll' -g 'SandBox.dll' -g '*AiVisitSettlement*' -g '*AiMilitaryBehavior*' 2>/dev/null
+Exit=1, no matching output.
+No claim about inaccessible machines/directories is inferred from that search.
+
+Remote device inventory:
+device=DESKTOP-JO4B7VH
+status=offline
+last_seen=2026-09-27T11:07:33.503+00:00
+No remote file/process/game command issued.
+
+Inherited source-access evidence:
+Reports/LivingWorld/evidence/lw1a_home_assignment_native_audit_20260929.txt
+Earlier Library searches did not resolve supported native archive.
+Not repeated: unrelated historic patch retrieval, policy tests, builds or native audit.
+No newly inspected assembly; no newly computed native binary SHA-256.
+
+Earlier accepted native identities (provenance only):
+TaleWorlds.CampaignSystem.dll SHA256=5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+SandBox.dll SHA256=16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A
+AiVisitSettlementBehavior decomp SHA256=6798de039c820487c0c557cba244d410c7844f26b4a3dc281692d6427ffa7281; lines=810
+Expected v1.5.3 mapping NOT independently verified in A2.
+
+Source/control/generation/score/filter/insert/pruning/commit questions: UNRESOLVED.
+GoToSettlement exact home near: NOT ESTABLISHED.
+GoToSettlement exact home far: NOT ESTABLISHED.
+PatrolAroundPoint exact home near: NOT ESTABLISHED.
+PatrolAroundPoint exact home far: NOT ESTABLISHED.
+DefendSettlement peace/threat generation: UNRESOLVED.
+Native-compatible seam selected: NO.
+Evidence-access blocker does not prove architectural impossibility.
+Implementation clearance: WITHHELD; no LW1-B.
+
+Preservation identities:
+src tree=a14fc265a0ca3cbd3a0979453353b90f3b7ff53b
+Releases tree=57ef798dd5b2803c7da83361c455795b39e1475b
+RC archive blob=a5124da1390f6bd9d381a4b1fb020f91439c6102
+Tested package tree=6af297032fd55c03326d50ac3acbe2c9ba64b246
+Tested DLL blob=a5fc3923b31e482960026a0044dd1b21d6e6d00a
+RC1 source=9ec113e738af35254e113fbde7c05babbf3c405d
+RC archive inherited SHA256=A03D183934BCF1C974EA6BCEBBF35CFF3A5413080D6F6634942811AE54C971D6
+Tested DLL inherited SHA256=A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5
+
+Documentation candidate tree validation:
+Exactly three blob changes allowed:
+Reports/LivingWorld/LW1A2_NATIVE_SOURCE_CLOSURE.md
+Reports/LivingWorld/evidence/lw1a2_native_source_access_20260929.txt
+Reports/AgentStatus/CODEX_STATUS.md
+All other blob identities and src/Releases/package tree identities must match source main.
+Commit single parent=source main; non-forced main update; verify exact new main and diff.
+No game launch/deploy/build/gameplay/save schema/RC bytes change.
+
+Next: resume LW1-A2 with exact supported native DLLs or complete targeted source with hash provenance.
+STOP; do not begin LW1-B.
