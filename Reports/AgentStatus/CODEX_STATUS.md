@@ -1,6 +1,16 @@
 # Codex Status
 
-## Current checkpoint
+## Current checkpoint — LW0 Living World Direction
+
+**COMPLETE — documentation only, 2026-09-29.** RC1 remains frozen/playable at `9ec113e738af35254e113fbde7c05babbf3c405d`. The post-RC1 Living World direction is documented in [LIVING_WORLD_DIRECTION.md](../../LIVING_WORLD_DIRECTION.md), with an ordered LW1–LW9 line in the roadmap. Phase 8C remains active through normal user play as ongoing field validation.
+
+Gameplay changed: **NO**. Policy tuned: **NO**. Save key/schema changed: **NO**. RC archive/tested package/DLL changed: **NO**. Bannerlord launched: **NO**. ClanAI rebuilt or deployed: **NO**.
+
+**Next development checkpoint: LW1-A — Persistent Home Assignment native-seam/design audit.** LW1 is not implemented or started by this task. Stop after the LW0 documentation commit; do not begin LW1 in this task.
+
+Evidence: [LW0_DIRECTION_CHECKPOINT.md](../LivingWorld/LW0_DIRECTION_CHECKPOINT.md).
+
+## Preserved RC1 freeze checkpoint
 
 Phase 8B-I5 RC freeze / player-playable internal release candidate: **COMPLETE**
 
@@ -12,7 +22,7 @@ Player installation notes and the short organic-campaign beta plan are committed
 
 **Release classification: RC1 READY FOR PLAYER CAMPAIGN.**
 
-**Next milestone: Phase 8C — player-campaign feedback triage and release stabilization. NOT STARTED.**
+**At RC1 freeze, the next milestone was Phase 8C field validation. Current direction is recorded above: Phase 8C through normal user play alongside the Living World development line.**
 
 ## Preserved earlier I4R4 blocked preflight — historical
 

@@ -461,7 +461,7 @@ No kingdom is selected to collapse because of plot.
 
 # Phase 8 — Balance, release hardening, and presentation
 
-**Status — STARTED 2026-09-25; PHASE 8B-I5 RC1 FREEZE COMPLETE 2026-09-27.** Phase 8B-I4R4 passed its bounded release-profile save/reload smoke with the exact packaged DLL. Phase 8B-I5 then froze that byte-identical three-file v0.22.0 payload as `Releases/ClanAI-v0.22.0-RC1.zip`, added player installation/beta guidance, and repeated the offline standalone, dependency/version, package, save-key, and Phase 3–7 preservation gates. No gameplay, policy, save-schema, or package-payload change occurred during the freeze. **Release classification: RC1 READY FOR PLAYER CAMPAIGN. Next milestone: Phase 8C player-campaign feedback triage and release stabilization; not started.** See `Reports/Release/PHASE8B_I5_RC_FREEZE_RESULT.md`.
+**Status — STARTED 2026-09-25; PHASE 8B-I5 RC1 FREEZE COMPLETE 2026-09-27.** Phase 8B-I4R4 passed its bounded release-profile save/reload smoke with the exact packaged DLL. Phase 8B-I5 then froze that byte-identical three-file v0.22.0 payload as `Releases/ClanAI-v0.22.0-RC1.zip`, added player installation/beta guidance, and repeated the offline standalone, dependency/version, package, save-key, and Phase 3–7 preservation gates. No gameplay, policy, save-schema, or package-payload change occurred during the freeze. **Release classification: RC1 READY FOR PLAYER CAMPAIGN. Phase 8C continues through normal user play; next development checkpoint: LW1-A — Persistent Home Assignment native-seam/design audit.** See `Reports/Release/PHASE8B_I5_RC_FREEZE_RESULT.md`.
 
 Only after the major world loops work:
 
@@ -476,6 +476,36 @@ Only after the major world loops work:
 - prepare standalone release packaging.
 
 External/provider reasoning should only be integrated if it improves the final game behavior without making the mod dependent on development infrastructure.
+
+---
+
+## Phase 8C — Organic player campaign / field validation
+
+Status: **active through normal user play**.
+
+Preserve organic player feedback, campaign observations and release-stabilization evidence for the frozen RC1 baseline. This is ongoing field validation, not the only post-RC1 development direction. No new campaign run or feedback result is claimed by LW0.
+
+---
+
+# Living World Development Line
+
+Post-RC1 development follows [LIVING_WORLD_DIRECTION.md](LIVING_WORLD_DIRECTION.md). RC1 remains the frozen playable baseline at `9ec113e738af35254e113fbde7c05babbf3c405d`; the archive and tested package are unchanged. Phase 8C continues as field validation alongside this ordered development line.
+
+LW0 — Living World Direction documentation checkpoint: **COMPLETE**. No gameplay changed.
+
+| Order | Milestone | Status |
+|---|---|---|
+| LW1 | Persistent Home Assignment / Peacetime Responsibility | Planned; not implemented |
+| LW2 | Governor Local-Need Response | Planned; not implemented |
+| LW3 | Household Autonomy | Planned; not implemented |
+| LW4 | Purposeful Logistics | Planned; not implemented |
+| LW5 | Kingdom Service Requests | Planned; not implemented |
+| LW6 | Ruler Recruitment of Player Clan | Planned; not implemented |
+| LW7 | Household Advisement | Planned; not implemented |
+| LW8 | Social Visits / Relationship Activity | Planned; not implemented |
+| LW9 | Settlement Flourishing Integration | Planned; not implemented |
+
+**Next development checkpoint: LW1-A — Persistent Home Assignment native-seam/design audit.** Research native capabilities and existing Home Responsibility before implementation. LW1 is not implemented. This LW0 task stops after its documentation commit and does not begin LW1.
 
 ---
 
