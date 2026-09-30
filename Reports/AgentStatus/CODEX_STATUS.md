@@ -1,21 +1,42 @@
 # Codex Status
 
-## Current checkpoint - THEMATRIX v0.1 bounded lord-party border destination filter
+## Current checkpoint - THEMATRIX v0.1 stabilization candidate
 
-**IMPLEMENTED + FOCUSED TESTS + netstandard2.0 RELEASE BUILD PASS. IN-GAME RUNTIME NOT TESTED.**
+**COMPLETE deterministic preservation set and installed-game-target Release build; package verified. NOT DEPLOYED OR RUNTIME-TESTED.**
 
-- User priority: kingdom-wide political borders. Passage is open by default; only an explicit directional kingdom closure can classify a foreign kingdom destination as closed.
-- `KingdomBorderPolicy` reads one supplied settlement and current kingdom IDs. `KingdomBorderClosureConfig` optionally blocks explicitly closed foreign destinations from Bannerlord's existing native visit-candidate list for ordinary non-player kingdom lord parties. Config is empty/default-open and manually supplied for developer demonstration; it is not a gameplay vote or campaign setting.
-- This is settlement-destination filtering only. It does not classify territory between destinations, avoid route crossings, veto entry, or affect villagers/caravans/convoys. War parties/armies, caravans, player parties, non-lords, independent clans and unknown affiliations are passed through. Already selected routes are not forcibly cancelled.
-- Current test run: `Tests/LivingWorld/HomeAssignmentRuntime` - **102 PASS** exercising the production policy and postfix, including nearest-row fail-open, stable tie-break, explicit bypass counters, no bypass for mixed lists, and no invented row for an initially empty list. `Tests/KingdomBorders` 14, Home Assignment 43, and Phase 3 Home Responsibility 10 are earlier results and were not rerun in this checkpoint.
-- Foreign trade agreements require kingdom-wide diplomacy votes; domestic trade remains unrestricted and vanilla income distribution to clans is unchanged. Economy, trade authorization and voting remain future work. Convoys remain tentative.
-- The filter retains exactly one nearest, already-native candidate only when a non-empty candidate list would otherwise be entirely removed. Ties use ordinal settlement `StringId`. The fail-open counter makes that exception visible. This prevents this filter from emptying a non-empty list; it does not guarantee Bannerlord selects a score or prove no-stall behavior.
-- Current `netstandard2.0` Release output SHA-256: `1FFCC6A7BD0E41B81874940D20F22646908CCA3EFE3800E5654689BEF87DE202`; build had 0 errors and 1 inherited `System.ValueTuple` MSB3277 warning. The previously published pre-safeguard package remains SHA-256 `F85382892B293FFABF78B57923A152735E812A033FE9593DEC9B7AEEBE88C8F9`; it was not overwritten or redeployed. No game launched.
-- Public display name is THEMATRIX. Internal module ID, DLL/assembly/namespace, and persistent keys remain ClanAI. RC1 is untouched.
-- Next: the approximate land-control-zone policy decision remains pending; do not implement that heuristic yet. Route/frontier enforcement, villager/caravan access, and transit restrictions remain unimplemented. Coordinate any in-game observation separately; this code change has no runtime proof.
-- LW1-C3 campaign roster/save-reload closure remains deferred and unverified, not passed. The home menu was observed by the player; its presentation was described as messy. No AI movement proof is inferred.
+- Candidate package: `DevBuilds/THEMATRIX-v0.1.0-border-filter-stabilization-dev/`; ZIP: `DevBuilds/THEMATRIX-v0.1.0-border-filter-stabilization-dev.zip`. Assembly informational identity: `v0.1.0-THEMATRIX-stabilization-dev`. Public module display/version remain THEMATRIX v0.1.0; internal module/assembly/save compatibility remains ClanAI.
+- DLL SHA-256 `A4AF12E2D2EDE10A349A930798BAD04B3FBFAA063879CB24A231DD0AD14E3B93`; ZIP SHA-256 `3A1D34766652D241AAF91E3E9F37FE79D6FB02F1B5FE05AEB9EFA184DF6023AE`. The package manifest matched all five files both before and after ZIP extraction. The previous destination-filter package remains unchanged at DLL `F85382892B293FFABF78B57923A152735E812A033FE9593DEC9B7AEEBE88C8F9` / ZIP `E9A8CDDB4A8217CCA30E208A61E4172E45B1823752A0F8865DB2D42FD5F13612`.
+- Complete deterministic set: border policy **14 PASS**, production adapter/roster **104 PASS**, Home Assignment/D1 **43 PASS**, Phase 3 Home Responsibility **10 PASS**. The two net8.0 test suites used a net11.0 command-line target override because .NET 8 targeting packs are absent from this environment; project target frameworks were not edited.
+- Release `netstandard2.0` build against installed Bannerlord references: **0 errors**, 1 inherited `System.ValueTuple` MSB3277 warning. Release DLL SHA-256 matches the packaged DLL above.
+- The directional default-open filter applies to eligible NPC lord settlement visit destinations only. Only the player's main party is exempt; eligible NPC-controlled secondary parties in the player clan kingdom remain subject. A party at war with the specific candidate destination kingdom bypasses that closure; war with another kingdom does not.
+- If all filtered rows are blocked, one is reopened only when it has a non-empty settlement StringId and finite native distance; the lowest distance wins and ordinal StringId breaks ties. Closure is advisory for the reopened settlement and the counters report the bypass. With no such valid row, the list may remain empty. The native selector does not guarantee a score/action or liveness; no runtime no-stall proof exists.
+- Approximate land-control-zone policy remains pending. No route/frontier enforcement, deployment, game launch, save change, or RC1 change occurred. C2 remains installed and C3 save/reload closure remains incomplete as documented below.
+- Report: [LW2 border foundation](../LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md); [stabilization receipt](../LivingWorld/evidence/thematrix_lw2_stabilization_20260930.txt); package [runbook](../../DevBuilds/THEMATRIX-v0.1.0-border-filter-stabilization-dev/DEMO_RUNBOOK.md).
 
-Report: [LW2_KINGDOM_BORDER_FOUNDATION.md](../LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md).
+## Previous checkpoint - THEMATRIX v0.1 limited developer border filter
+
+**LIMITED DEVELOPER DEMO PACKAGE BUILT AND TESTED; NOT DEPLOYED OR RUNTIME-TESTED. This is not full kingdom-border behavior.**
+
+- Candidate: `THEMATRIX v0.1.0`, SHA-256 `F85382892B293FFABF78B57923A152735E812A033FE9593DEC9B7AEEBE88C8F9`. Package folder: `DevBuilds/THEMATRIX-v0.1.0-border-filter-dev/`; distributable ZIP: `DevBuilds/THEMATRIX-v0.1.0-border-filter-dev.zip`. Module ID, DLL name, assembly, and namespaces remain ClanAI.
+- Policy is default-open. Config lines are `ClosedTerritoryKingdomId>ExcludedVisitorKingdomId`; the territory kingdom excludes the visitor kingdom from choosing its settlements as ordinary visit candidates. Uses live kingdom/settlement owner data; no inferred control zones.
+- Production parser and filter are tested directly, not a fixture stub: 98 HomeAssignmentRuntime checks cover missing/empty/malformed/self/reverse/reset/directional rules, ownership changes, actors/exemptions, current target preservation and empty candidate-list diagnostics. Kingdom policy 14 PASS, HomeAssignment policy/persistence 43 PASS, Phase 3 preservation 10 PASS.
+- Actual `netstandard2.0` Release against installed Bannerlord v1.5.3 references: 0 errors, 1 inherited `System.ValueTuple` warning. Existing native diagnostic snapshot includes filter counters without per-candidate file IO.
+- Scope: ordinary eligible NPC lord parties and native visit destinations only. No route crossing/frontier enforcement, entry veto, villagers, caravans, convoys, trade or diplomacy vote integration. Empty native visit list yields no GoToSettlement score; another action is not guaranteed. End-to-end no-stall behavior is unverified. Config is loaded at behavior registration and takes effect after campaign/session reload.
+- No v0.1 deployment, game launch or save action occurred. Do not deploy while the user's current game may be running.
+- Diagnostic access is automatic only in the Evidence runtime profile; there is no public on-demand command. The package defaults to Release and does not ship RuntimeProfile.cfg. The corrected Evidence opt-in, restart/cache behavior, output paths and broader telemetry side effects are in the package runbook.
+- Corrected package ZIP SHA-256: `E9A8CDDB4A8217CCA30E208A61E4172E45B1823752A0F8865DB2D42FD5F13612`; DLL bytes and SHA remain unchanged.
+- Exact installed v1.5.3 route-query inspection found no safe bounded candidate-specific route/sovereignty seam. No route code was added. Current next gate is an API with bounded route geometry and native fallback proof, or an explicit decision on approximate land control-zone semantics; see route safety evidence.
+- Report/evidence: [border checkpoint](../LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md), [validation receipt](../LivingWorld/evidence/thematrix_v0_1_border_destination_filter_20260930.txt), [diagnostic/runbook correction receipt](../LivingWorld/evidence/thematrix_v0_1_diagnostics_runbook_20260930.txt), [route-query safety receipt](../LivingWorld/evidence/native/native_route_query_safety_20260930.txt), and package [runbook](../../DevBuilds/THEMATRIX-v0.1.0-border-filter-dev/DEMO_RUNBOOK.md).
+
+## Restored LW1-C3 deployment and disposable-save status
+
+**The earlier C2 candidate is installed; roster/save-reload runtime verification remains incomplete.**
+
+- Installed path: `C:\\Program Files (x86)\\Steam\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\ClanAI\\bin\\Win64_Shipping_Client\\ClanAI.dll`. Installed C2 SHA-256: `B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563`.
+- Pre-deployment installed DLL SHA-256: `B1911B17A04F42C11AB6E23DB3543AFE788FDFA07EFCF34DCF3638D4AB241271`; matching backup and rollback evidence retained in the authorized task workspace. Installed SubModule.xml was unchanged (SHA-256 `287609EEBE39EE00D693CD1C354362C64878F40950BCD787D505F20F065B333D`).
+- User-selected original save `LW1C LAND FIX 20260930 0436.sav` remains unchanged. Disposable copy `LW1C LAND FIX 20260930 0436 - LW1-C3 DEMO COPY.sav` is byte-identical at 7,855,918 bytes, SHA-256 `C792B001164A9AF911AF5571C092AC7AC7C1C586FE0FC09D7B1988675D4F8D38`.
+- User reported that the Home Assignment menu is present and described its presentation as messy. No stable roster/status audit, AI movement proof, or save/reload verification is claimed. Do not touch the current game.
+- Details and receipts: [C3 deployment status](../LivingWorld/LW1C3_DEPLOYMENT_STATUS.md), [deployment receipt](../LivingWorld/evidence/lw1c3_deployment_20260930.txt), [disposable-copy receipt](../LivingWorld/evidence/lw1c3_disposable_save_20260930.txt).
 
 ## Current checkpoint - LW1-C2 Persistent Household Responsibility Roster
 
@@ -29,10 +50,10 @@ Report: [LW2_KINGDOM_BORDER_FOUNDATION.md](../LivingWorld/LW2_KINGDOM_BORDER_FOU
 - Required actual `netstandard2.0` Release build: **0 errors, 1 inherited MSB3277 `System.ValueTuple` reference-conflict warning**. Focused API compile also passes.
 - Dev candidate: `DevBuilds/ClanAI-v0.23.0-LW1C2-dev/ClanAI.dll`, SHA-256 **`B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563`**.
 - Acceptance audit maps all 25 requested cases to deterministic assertions and static baseline checks in the report. RC1 artifacts, D1 key/schema, factor 1.25, visit seam, and Phase 3 sources remain unchanged.
-- Runtime: **NOT YET TESTED**. Bannerlord launched: **NO**. Deployed: **NO**. No campaign/save activity.
+- At the C2 checkpoint, runtime had not been tested and no deployment/save activity had yet occurred. Later C3 deployment and disposable-copy preparation are recorded in the current status section above.
 - Report: [LW1-C2 persistent household roster](../LivingWorld/LW1C2_PERSISTENT_HOUSEHOLD_ROSTER.md); evidence: [C2 validation receipt](../LivingWorld/evidence/lw1c2_validation_20260930.txt).
 
-**Historical next-checkpoint line (superseded 2026-09-30): LW1-C3 deployment/runtime/save-reload.** That closure remains deferred and unverified; kingdom-wide border work became the user's next AI priority.
+**Historical next checkpoint at the original C2 report: LW1-C3 - deploy persistent-roster dev candidate, verify stable names/statuses in player's organic campaign, finish bounded runtime/save-reload closure.** Deployment and disposable-save prep are recorded above; stable roster/status and save/reload closure remain incomplete.
 
 ## Previous checkpoint - LW1-B Persistent Home Assignment
 
@@ -52,14 +73,14 @@ Report: [LW2_KINGDOM_BORDER_FOUNDATION.md](../LivingWorld/LW2_KINGDOM_BORDER_FOU
 - Dev DLL SHA-256: **EEE566615AA72BFEB01C95D05AE8FCF022271F90A2519319D95AF3C90D6A4622**.
 - Runtime status: **NOT YET TESTED**.
 - Bannerlord launched: **NO**.
-- Deployed: **NO**.
+- At the time of this LW1-B checkpoint: deployed: **NO**.
 - RC1 changed: **NO**. RC1 remains frozen/playable at `9ec113e738af35254e113fbde7c05babbf3c405d`; archive and tested package/DLL unchanged.
 - No direct movement, synthetic AIBehaviorData, teleportation or mandatory external IO added.
 - Broader pre-existing test limitations are recorded in the implementation report; they are not claimed green.
 
 Report: [LW1-B implementation](../LivingWorld/LW1B_HOME_ASSIGNMENT_IMPLEMENTATION.md).
 
-**Exact next checkpoint: LW1-C — deploy the LW1-B dev candidate and run the bounded playable Home Assignment demo/runtime proof.**
+**Historical next checkpoint at the LW1-B checkpoint: LW1-C — deploy the LW1-B dev candidate and run the bounded playable Home Assignment demo/runtime proof.** Later C3 deployment/copy prep is recorded above; runtime closure remains incomplete.
 
 ## Previous checkpoint — LW1-A2R source decision
 

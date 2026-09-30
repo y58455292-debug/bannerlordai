@@ -1,0 +1,27 @@
+THEMATRIX LW2 border-filter stabilization delivery receipt
+Recorded: 2026-09-30 UTC
+Source base: faac143e3b7bcda8bc2b9a250b12dbcee23d22e6
+
+Validation
+- KingdomBorderPolicy: Tests/KingdomBorders, 14 PASS.
+- Production adapter and roster: Tests/LivingWorld/HomeAssignmentRuntime, 104 PASS. Added reverse-order candidate replacement tests for nearest distance and ordinal StringId tie-break. Added synthetic missing-ID and non-finite-distance cases; those rows are not reopened.
+- Home Assignment/D1 policy and persistence: Tests/LivingWorld/HomeAssignment, 43 PASS.
+- Phase 3 Home Responsibility preservation: Tests/TerritorialResponsibility, 10 PASS.
+- The two net8.0 test projects ran with a command-line net11.0 target override because only the .NET 11 preview targeting pack is installed in this execution environment. Project files remain unchanged at net8.0. The other two suites target net11.0 in source.
+- Required installed-game-reference Release build: netstandard2.0, 0 errors, 1 inherited System.ValueTuple MSB3277 conflict warning. AssemblyInformationalVersion is v0.1.0-THEMATRIX-stabilization-dev; AssemblyVersion and AssemblyFileVersion remain 0.23.0.0.
+
+Package
+- New candidate: DevBuilds/THEMATRIX-v0.1.0-border-filter-stabilization-dev/.
+- New distributable: DevBuilds/THEMATRIX-v0.1.0-border-filter-stabilization-dev.zip.
+- DLL SHA-256: A4AF12E2D2EDE10A349A930798BAD04B3FBFAA063879CB24A231DD0AD14E3B93.
+- ZIP SHA-256: 3A1D34766652D241AAF91E3E9F37FE79D6FB02F1B5FE05AEB9EFA184DF6023AE.
+- The package's five-file SHA256SUMS manifest was checked against both the package directory and a fresh extraction of the ZIP; all entries match. The packaged DLL matches the Release output byte-for-byte.
+- Public SubModule identity remains Name=THEMATRIX, Id=ClanAI, Version=v0.1.0. Assembly/DLL and save compatibility identifiers remain unchanged.
+- The earlier destination-filter package remains unchanged: DLL SHA-256 F85382892B293FFABF78B57923A152735E812A033FE9593DEC9B7AEEBE88C8F9; ZIP SHA-256 E9A8CDDB4A8217CCA30E208A61E4172E45B1823752A0F8865DB2D42FD5F13612.
+
+Candidate filter and safety limits
+- The optional directional closure remains default-open and affects only eligible NPC lord settlement visit destinations. Eligible NPC secondary parties in the player's clan kingdom remain subject to the rule; only the player's main party is exempt. A party at war with the candidate destination kingdom bypasses that destination's closure; war with another kingdom does not.
+- For a non-empty all-blocked list, exactly one candidate is retained only when it has a non-empty StringId and finite native distance. The minimum distance wins; ordinal StringId breaks ties. Closure is advisory for that reopened settlement. If all rows lack identity or have NaN/infinite distance, the list can remain empty. The tests exercise this branch synthetically; no such native occurrence is established.
+- Retaining a valid row prevents this filter alone from emptying that native list. It does not guarantee any behavior score/action or prove no-stall runtime behavior. The native selector may retain the party's current action when no score exists. An originally empty list remains empty.
+- CandidateFailOpenEvents and CandidateReopened are in automatic Evidence-profile diagnostic snapshots. There is no on-demand diagnostic command. Evidence mode has broader telemetry/runtime/file-I/O effects; see the package runbook.
+- No physical border/route enforcement, entry veto, land-control heuristic, actor expansion, economy/diplomacy change, deployment, game launch, save change, or RC1 edit occurred. The approximate land-control-zone policy decision remains pending.
