@@ -22,7 +22,10 @@ class Program {
  a.Army=new object();Check(!HomeAssignmentStore.Eligible(a),"army excluded");a.Army=null;
  a.IsMainParty=true;Check(!HomeAssignmentStore.Eligible(a),"main excluded");a.IsMainParty=false;
  a.IsCaravan=true;Check(!HomeAssignmentStore.Eligible(a),"caravan excluded");a.IsCaravan=false;
- a.NavigationCapability=MobileParty.NavigationType.Naval;Check(!HomeAssignmentStore.Eligible(a),"naval excluded");a.NavigationCapability=MobileParty.NavigationType.Default;
+ a.NavigationCapability=MobileParty.NavigationType.All;Check(HomeAssignmentStore.Eligible(a),"ship-capable party on land remains eligible");
+ a.IsCurrentlyAtSea=true;Check(!HomeAssignmentStore.Eligible(a),"ship-capable party currently at sea excluded");
+ a.NavigationCapability=MobileParty.NavigationType.Default;Check(!HomeAssignmentStore.Eligible(a),"current sea state excludes regardless of capability");
+ a.IsCurrentlyAtSea=false;Check(HomeAssignmentStore.Eligible(a),"returning to land restores eligibility");
  a.Ai.IsDisabled=true;Check(!HomeAssignmentStore.Eligible(a),"disabled excluded");a.Ai.IsDisabled=false;
  a.Ai.DoNotMakeNewDecisions=true;Check(!HomeAssignmentStore.Eligible(a),"stopped excluded");a.Ai.DoNotMakeNewDecisions=false;
  a.IsDisbanding=true;Check(!HomeAssignmentStore.Eligible(a),"disbanding excluded");a.IsDisbanding=false;
@@ -35,6 +38,9 @@ class Program {
  postfix.Invoke(null,new object[]{a,list});Check(list.Count==1,"seam does not duplicate existing home");
  AiVisitSettlementBehavior.Suitable=false;list=AiVisitSettlementBehavior.List();postfix.Invoke(null,new object[]{a,list});Check(list.Count==0,"native unsuitable/hostile refusal");AiVisitSettlementBehavior.Suitable=true;
  AiVisitSettlementBehavior.Navigation=MobileParty.NavigationType.None;postfix.Invoke(null,new object[]{a,list});Check(list.Count==0,"native navigation refusal");AiVisitSettlementBehavior.Navigation=MobileParty.NavigationType.Default;
+ a.NavigationCapability=MobileParty.NavigationType.All;AiVisitSettlementBehavior.Navigation=MobileParty.NavigationType.Naval;
+ postfix.Invoke(null,new object[]{a,list});Check(list.Count==0,"ship-capable land party cannot expose a naval home route");AiVisitSettlementBehavior.Navigation=MobileParty.NavigationType.Default;
+ postfix.Invoke(null,new object[]{a,list});Check(list.Count==1,"ship-capable land party can expose native land home route");a.NavigationCapability=MobileParty.NavigationType.Default;
  var think=new PartyThinkParams();think.AIBehaviorScores.Add(Tuple.Create(new AIBehaviorData{Party=home,AiBehavior=AiBehavior.GoToSettlement},1f));
  think.AIBehaviorScores.Add(Tuple.Create(new AIBehaviorData{Party=second,AiBehavior=AiBehavior.GoToSettlement},1.1f));
  var frame=new StrategicDecisionComposer.Frame{CandidateCount=2,BeforeWinner=1};

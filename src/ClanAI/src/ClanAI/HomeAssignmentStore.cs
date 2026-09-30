@@ -79,7 +79,7 @@ namespace ClanAI
                 party.IsDisbanding || party.ActualClan != Clan.PlayerClan || party.MapFaction == null ||
                 party.Ai == null || party.Ai.IsDisabled || party.Ai.DoNotMakeNewDecisions ||
                 party.MapEvent != null || party.SiegeEvent != null || party.AttachedTo != null ||
-                party.NavigationCapability != MobileParty.NavigationType.Default ||
+                party.IsCurrentlyAtSea ||
                 !ValidHero(party.LeaderHero) || party.LeaderHero.IsPrisoner ||
                 !party.LeaderHero.IsActive || party.LeaderHero.PartyBelongedTo != party)
                 return false;

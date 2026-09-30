@@ -51,9 +51,9 @@ namespace TaleWorlds.CampaignSystem.Settlements {
 namespace TaleWorlds.CampaignSystem.Party {
  public class PartyAi {public bool IsDisabled,DoNotMakeNewDecisions;}
  public class MobileParty {
- public enum NavigationType {None,Default,Naval}
+ public enum NavigationType {None,Default,Naval,All}
  public static MobileParty MainParty;
- public bool IsActive=true,IsLordParty=true,IsMainParty,IsCaravan,IsDisbanding;
+ public bool IsActive=true,IsLordParty=true,IsMainParty,IsCaravan,IsDisbanding,IsCurrentlyAtSea;
  public object Army,MapEvent,SiegeEvent,AttachedTo;
  public CampaignSystem.Clan ActualClan;
  public CampaignSystem.IFaction MapFaction;

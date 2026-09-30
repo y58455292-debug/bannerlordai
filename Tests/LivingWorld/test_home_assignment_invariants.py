@@ -10,8 +10,9 @@ for token in ("new AIBehaviorData", "SetMoveGoToSettlement", "SetPosition", "Tel
 store = texts["HomeAssignmentStore.cs"]
 assert "Records.TryGet(id, out saved)" in store
 assert "MBObjectManager" not in store[store.index("internal static bool TryHome"):store.index("internal static Settlement CurrentHome")]
-for token in ("party.IsMainParty", "party.IsCaravan", "party.Army != null", "party.Ai.IsDisabled", "party.Ai.DoNotMakeNewDecisions", "party.IsDisbanding", "party.NavigationCapability", "party.LeaderHero.PartyBelongedTo"):
+for token in ("party.IsMainParty", "party.IsCaravan", "party.Army != null", "party.Ai.IsDisabled", "party.Ai.DoNotMakeNewDecisions", "party.IsDisbanding", "party.IsCurrentlyAtSea", "party.LeaderHero.PartyBelongedTo"):
     assert token in store, token
+assert "party.NavigationCapability" not in store[store.index("internal static bool Eligible"):store.index("internal static bool Peace")]
 assert "home.OwnerClan == Clan.PlayerClan" in store
 assert "home.IsTown || home.IsCastle" in store
 patch = texts["HomeAssignmentVisitPatch.cs"]
