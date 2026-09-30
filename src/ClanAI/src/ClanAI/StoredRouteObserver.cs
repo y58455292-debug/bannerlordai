@@ -12,10 +12,13 @@ namespace ClanAI
     internal static class StoredRouteObserver
     {
         private static readonly StoredRouteObserverBudget Budget = new StoredRouteObserverBudget();
+        private static readonly PreAdmissionObserverErrorReporter PreAdmissionErrors =
+            new PreAdmissionObserverErrorReporter();
 
         internal static void Reset()
         {
             Budget.Reset();
+            PreAdmissionErrors.Reset();
         }
 
         internal static bool IsEligibleNpcLordParty(MobileParty party)
@@ -49,11 +52,8 @@ namespace ClanAI
             {
                 // Includes eligibility and campaign-hour reads: diagnostics never escape
                 // into the campaign AI callback, even if native state is transiently invalid.
-                ClanAIPostVanilla.WriteExternalLog(
-                    "STORED_ROUTE_OBSERVER status=unavailable party=- visitor=- sampled=0 " +
-                    "truncated=False sea=0 unknown=1 errors=1 quotaSkipsTotal=" +
-                    Budget.TotalQuotaSkips + " duplicateSkipsTotal=" + Budget.TotalDuplicateSkips +
-                    " movementMutation=False candidateMutation=False");
+                PreAdmissionErrors.Report(ClanAIPostVanilla.WriteExternalLog,
+                    Budget.TotalQuotaSkips, Budget.TotalDuplicateSkips);
             }
         }
 
@@ -187,6 +187,8 @@ namespace ClanAI
                 " errors=" + errors +
                 " quotaSkipsTotal=" + Budget.TotalQuotaSkips +
                 " duplicateSkipsTotal=" + Budget.TotalDuplicateSkips +
+                " preAdmissionFailuresTotal=" + PreAdmissionErrors.Failures +
+                " preAdmissionErrorLogsSuppressed=" + PreAdmissionErrors.Suppressed +
                 " movementMutation=False candidateMutation=False");
         }
 

@@ -178,11 +178,11 @@ internal static class Program
         int observerFailures = StoredRouteObserverTests.Run();
         if (_failures != 0 || observerFailures != 0)
         {
-            Console.WriteLine("FAIL KingdomBorderPolicy=14 land-zone/route policy cases=31 stored-route observer cases=32 policyFailures=" +
+            Console.WriteLine("FAIL KingdomBorderPolicy=14 land-zone/route policy cases=31 stored-route observer cases=37 policyFailures=" +
                 _failures + " observerFailures=" + observerFailures);
             return 1;
         }
-        Console.WriteLine("PASS KingdomBorderPolicy cases=14; land-zone/route policy cases=31; stored-route observer policy cases=32");
+        Console.WriteLine("PASS KingdomBorderPolicy cases=14; land-zone/route policy cases=31; stored-route observer policy cases=37");
         Console.WriteLine("default=open; only explicit directional closure classifies a foreign kingdom as closed");
         Console.WriteLine("observer reads at most eight stored waypoints; no candidate or movement mutation; runtime native path behavior is not tested here");
         return 0;

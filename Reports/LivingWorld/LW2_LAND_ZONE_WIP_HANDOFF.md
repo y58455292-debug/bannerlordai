@@ -30,12 +30,12 @@ The classifier uses actual local fortification ownership, so an enclave follows 
 
 ## Current validation
 
-- `Tests/KingdomBorders`: **77 PASS**: 14 destination-policy, 31 land-zone/ownership identity, and 32 stored-route observer policy cases.
-- Preservation suites: HomeAssignmentRuntime/roster/adapter **104 PASS**; HomeAssignment/D1 **43 PASS**; Phase 3 Home Responsibility **10 PASS**.
-- `netstandard2.0` Release build against installed Bannerlord v1.5.3 references: **0 errors**, 1 inherited `System.ValueTuple` MSB3277 warning. Identity `v0.1.2-THEMATRIX-stored-route-observer-dev`; final local DLL SHA-256 `1279BDF8881C6BD6B726AEAA54FDF3143B994B0880802E53628099D1AAB15DF7`.
+- `Tests/KingdomBorders`: **82 PASS**: 14 destination-policy, 31 land-zone/ownership identity, and 37 stored-route observer policy cases. The shared injected pre-admission reporter was hit with 10,000 errors and capped at one log write for the session.
+- Preservation suites last passed on `ee8f778`: HomeAssignmentRuntime/roster/adapter **104 PASS**; HomeAssignment/D1 **43 PASS**; Phase 3 Home Responsibility **10 PASS**. Not rerun for this diagnostics-only cap change.
+- `netstandard2.0` Release build against installed Bannerlord v1.5.3 references: **0 errors**, 1 inherited `System.ValueTuple` MSB3277 warning. Identity `v0.1.2-THEMATRIX-stored-route-observer-dev`; final local DLL SHA-256 `09618CF9D7496E19FED5C6B341EA00FB12944947369E5B1F911AE835EA984C91`.
 - Exact commands and validation limits: [stored-route observer receipt](evidence/lw2_stored_route_observer_20260930.txt).
 
-The pure policy tests cover sample-window bounds, campaign-hour quota/reset/duplicate logic, both/neither native navigation validity, exception fail-open, sea and unknown outcomes, directional closure, zone-war versus unrelated-war behavior, identity reporting, and path truncation. They do not call Bannerlord navigation or the native settlement locator in a campaign fixture. The Release compile checks the native adapter and runtime observer signatures only.
+The pure policy tests cover sample-window bounds, campaign-hour quota/reset/duplicate logic, both/neither native navigation validity, exception fail-open, sea and unknown outcomes, directional closure, zone-war versus unrelated-war behavior, identity reporting, path truncation, and the production-shared pre-admission error logging gate/reset with injected logging. The gate emits no more than one error record per session and carries cumulative quota/duplicate and suppressed-error counts. The tests do not call Bannerlord navigation or the native settlement locator in a campaign fixture. The Release compile checks the native adapter and runtime observer signatures only.
 
 ## Explicit limits and handoff
 

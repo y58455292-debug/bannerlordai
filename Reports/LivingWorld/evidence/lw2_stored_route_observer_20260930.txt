@@ -11,7 +11,7 @@ Implementation scope
 - Bounded process-local quota: at most 4 distinct party StringIds per CampaignTime hour, duplicate suppression, session reset. Aggregate quota and duplicate skip counts are included in subsequent admitted Evidence records.
 - Each point is classified using native land-valid/sea-invalid navigation; both/neither-valid points fail open as unknown. Land classification reuses the 5 map-unit, maximum-8 nearby-settlement classifier plus an overflow probe. Selected settlement identity is resolved directly and its current owner Kingdom is read live; no global kingdom/settlement/party scan.
 - Explicit closure is checked directionally as sampled zone kingdom > visitor kingdom. War skips only when visitor Kingdom.IsAtWarWith(the sampled zone Kingdom). No call to BlocksVisit; border filter counters are unchanged.
-- Evidence records report status closed_zone_sample_observed / no_closed_zone_in_samples / unavailable / partial, path size/begin, sampled and truncated counts, sea/unknown counts, sampled kingdom/settlement IDs, closure direction, zone-war skips, errors, and cumulative quota/duplicate skips.
+- Evidence records report status closed_zone_sample_observed / no_closed_zone_in_samples / unavailable / partial, path size/begin, sampled and truncated counts, sea/unknown counts, sampled kingdom/settlement IDs, closure direction, zone-war skips, errors, and cumulative quota/duplicate skips. A separate clock-independent emergency gate permits at most one pre-admission error record per session; suppressed pre-admission errors are counted and included in subsequent admitted records.
 - No candidate, score, target, route, movement, or save mutation. Radius and result limits bound requested work/calls but are not a hard native execution-time guarantee.
 
 Native source basis
@@ -26,12 +26,14 @@ Focused command after restore:
 Result:
   PASS KingdomBorderPolicy cases=14
   PASS land-zone/route ownership policy cases=31
-  PASS stored-route observer policy cases=32
-  TOTAL 77 PASS, 0 failures
+  PASS stored-route observer policy cases=37
+  TOTAL 82 PASS, 0 failures
 
-Observer tests cover valid/malformed/exhausted windows; PathBegin offset; exact 8 vs ninth-point truncation; hourly four-party quota; duplicate suppression; hour/session reset and counters; land-only, sea-only, overlap and neither-valid outcomes; classifier exception fail-open; no-route unavailable; sea reporting; unknown/partial and truncation; exact enclave zone/settlement IDs, repeated live transfer/capture and input permutations; directional closure; zone-war exception versus an unrelated war; and empty kingdom ID fail-open. These are pure deterministic policy tests; they do not run the native navigation/locator code or an in-campaign MobileParty fixture.
+Observer tests cover valid/malformed/exhausted windows; PathBegin offset; exact 8 vs ninth-point truncation; hourly four-party quota; duplicate suppression; hour/session reset and counters; land-only, sea-only, overlap and neither-valid outcomes; classifier exception fail-open; no-route unavailable; sea reporting; unknown/partial and truncation; exact enclave zone/settlement IDs, repeated live transfer/capture and input permutations; directional closure; zone-war exception versus an unrelated war; and empty kingdom ID fail-open. The production-shared injected error reporter is exercised with 10,000 pre-admission failures: one log write, 9,999 counted suppressions, safe reset, and isolated logger failure. These deterministic tests do not run the native navigation/locator code or an in-campaign MobileParty fixture.
 
-Final preservation verification after exception-boundary hardening (net8.0 suites run with command-line net11.0 target override; project files unchanged):
+Review correction: eligibility and CampaignTime reads occur before ordinary hourly budget admission. Their exception path now uses a clock-independent one-write-per-session cap so repeated failures cannot cause unbounded diagnostic I/O. The reporter includes cumulative quota/duplicate totals; regular bounded observer records also include the total number of pre-admission failures and suppressed writes. Normal observer samples remain limited to 4 parties/campaign hour.
+
+Preservation suites last passed on prior observer commit `ee8f778` (net8.0 suites run with command-line net11.0 target override; project files unchanged). They were not rerun for this isolated observer logging-cap change:
   HomeAssignmentRuntime including roster/production adapter: 104 PASS
   HomeAssignment/D1: 43 PASS
   Phase 3 Home Responsibility: 10 PASS
@@ -42,7 +44,7 @@ Release build
 Target: netstandard2.0 against the installed Bannerlord v1.5.3 assemblies.
 Result: 0 errors; 1 inherited MSB3277 System.ValueTuple conflict warning. SDK 11 preview produced its normal NETSDK1057 notice on restore.
 Build identity: v0.1.2-THEMATRIX-stored-route-observer-dev
-Final local Release DLL SHA-256: 1279BDF8881C6BD6B726AEAA54FDF3143B994B0880802E53628099D1AAB15DF7
+Final local Release DLL SHA-256 after the bounded-error correction: 09618CF9D7496E19FED5C6B341EA00FB12944947369E5B1F911AE835EA984C91
 The official cached NETStandard.Library 2.0.3 package was copied from the user's existing normal NuGet cache into the task-local package cache for restore; no installation, security, or trust configuration changed.
 
 Verification limits

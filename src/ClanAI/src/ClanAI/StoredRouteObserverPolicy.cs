@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading;
 
 namespace ClanAI
 {
@@ -77,6 +77,50 @@ namespace ClanAI
             }
             _admitted.Add(partyId);
             return true;
+        }
+    }
+
+    // A clock-independent emergency gate for exceptions before normal hourly admission.
+    // One diagnostic write per campaign session; suppressed events remain countable and
+    // are included in the next regular bounded observer record.
+    internal sealed class PreAdmissionObserverErrorReporter
+    {
+        private int _logClaimed;
+        private long _failures;
+        private long _suppressed;
+
+        internal long Failures { get { return Interlocked.Read(ref _failures); } }
+        internal long Suppressed { get { return Interlocked.Read(ref _suppressed); } }
+
+        internal bool Report(Action<string> writeLog, long quotaSkips, long duplicateSkips)
+        {
+            long failureNumber = Interlocked.Increment(ref _failures);
+            if (Interlocked.CompareExchange(ref _logClaimed, 1, 0) != 0)
+            {
+                Interlocked.Increment(ref _suppressed);
+                return false;
+            }
+
+            if (writeLog != null)
+            {
+                try
+                {
+                    writeLog("STORED_ROUTE_OBSERVER status=unavailable party=- visitor=- sampled=0 " +
+                        "truncated=False sea=0 unknown=1 errors=1 preAdmissionFailuresTotal=" + failureNumber +
+                        " preAdmissionErrorLogsSuppressed=" + Suppressed +
+                        " quotaSkipsTotal=" + quotaSkips + " duplicateSkipsTotal=" + duplicateSkips +
+                        " movementMutation=False candidateMutation=False");
+                }
+                catch { }
+            }
+            return true;
+        }
+
+        internal void Reset()
+        {
+            Interlocked.Exchange(ref _logClaimed, 0);
+            Interlocked.Exchange(ref _failures, 0);
+            Interlocked.Exchange(ref _suppressed, 0);
         }
     }
 

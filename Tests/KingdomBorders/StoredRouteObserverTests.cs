@@ -27,6 +27,24 @@ internal static class StoredRouteObserverTests
             () => { throw new InvalidOperationException("fixture"); }, out classifyError);
         check("native-classifier-exception-fails-open", classifyError && exceptionResult.Kind == KingdomLandZoneKind.Unknown);
 
+        var reporter = new PreAdmissionObserverErrorReporter();
+        var errorRecords = new List<string>();
+        Action<string> injectedLogger = message => errorRecords.Add(message);
+        for (int i = 0; i < 10000; i++) reporter.Report(injectedLogger, 17, 3);
+        check("repeated-pre-admission-errors-write-once-per-session", errorRecords.Count == 1);
+        check("pre-admission-failures-and-suppressions-counted", reporter.Failures == 10000 && reporter.Suppressed == 9999);
+        check("bounded-error-record-includes-skip-totals", errorRecords[0].Contains("quotaSkipsTotal=17") &&
+            errorRecords[0].Contains("duplicateSkipsTotal=3"));
+        reporter.Reset();
+        for (int i = 0; i < 3; i++) reporter.Report(injectedLogger, 2, 1);
+        check("session-reset-reopens-single-log-and-clears-counts", errorRecords.Count == 2 &&
+            reporter.Failures == 3 && reporter.Suppressed == 2);
+        var throwingReporter = new PreAdmissionObserverErrorReporter();
+        bool writerEscaped = false;
+        try { throwingReporter.Report(_ => { throw new InvalidOperationException("logger fixture"); }, 0, 0); }
+        catch { writerEscaped = true; }
+        check("diagnostic-writer-failure-is-isolated", !writerEscaped && throwingReporter.Failures == 1);
+
         StoredRouteSampleWindow window;
         check("null-empty-path-window", StoredRouteObserverPolicy.TryGetWindow(0, 0, out window) && window.Count == 0);
         check("negative-size-rejected", !StoredRouteObserverPolicy.TryGetWindow(-1, 0, out window));
