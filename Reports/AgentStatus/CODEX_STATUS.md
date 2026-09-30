@@ -1,6 +1,18 @@
 # Codex Status
 
-## Current checkpoint - THEMATRIX v0.1 stabilization candidate
+## Current checkpoint - LW2 land-control-zone foundation
+
+**PURE MODEL IMPLEMENTED + FOCUSED TESTS PASS + NATIVE ADAPTER RELEASE-COMPILED. No active AI route behavior, package, deployment, or runtime test.**
+
+- Work resumed from WIP `2313acb5310fa1e929c5558171c3c84e123e7bef`; authoritative `main` was `c244bea8e39feaba7be43d5bee00c88442ab9a1c` and was unchanged at resume.
+- The pure model classifies a 5-map-unit nearest-fortification zone from live owner inputs, with 8 local settlements plus one overflow probe, deterministic same-owner ties, explicit ambiguity/unknown/independent/sea states, and fail-open behavior. The native adapter uses Bannerlord's local settlement locator and checks land-valid/sea-invalid navigation. It does not scan/calculate a global map or assign sea sovereignty.
+- `Tests/KingdomBorders`: **40 PASS** (14 existing policy, 26 new zone/route-policy cases). These tests cover policy only; they do not invoke the native adapter.
+- `netstandard2.0` Release against installed v1.5.3 references: **0 errors**, 1 inherited `System.ValueTuple` MSB3277 warning. Build identity `v0.1.1-THEMATRIX-land-zone-foundation-dev`; local DLL SHA-256 `38F80B8E4083E73813F5DFACAE791BE7F95FC31ECB452BAAAF1A77FBE540FEAF`.
+- The model/adapter are **not wired into the visit filter or any runtime decision**. Route crossing remains unimplemented: stored path points lack sovereign identity, full native path query is unbounded, distance query has no waypoints, and complete land/sea transition semantics are unproven. Current packaged candidate remains the destination-only default-open filter below.
+- No gameplay package was produced or deployed. No game launch/save/runtime test occurred. RC1 and the installed C2/C3 evidence are unchanged.
+- Report: [LW2 land-control-zone checkpoint](../LivingWorld/LW2_LAND_ZONE_WIP_HANDOFF.md); [validation receipt](../LivingWorld/evidence/lw2_land_zone_foundation_20260930.txt).
+
+## Previous checkpoint - THEMATRIX v0.1 stabilization candidate
 
 **COMPLETE deterministic preservation set and installed-game-target Release build; package verified. NOT DEPLOYED OR RUNTIME-TESTED.**
 
@@ -10,7 +22,7 @@
 - Release `netstandard2.0` build against installed Bannerlord references: **0 errors**, 1 inherited `System.ValueTuple` MSB3277 warning. Release DLL SHA-256 matches the packaged DLL above.
 - The directional default-open filter applies to eligible NPC lord settlement visit destinations only. Only the player's main party is exempt; eligible NPC-controlled secondary parties in the player clan kingdom remain subject. A party at war with the specific candidate destination kingdom bypasses that closure; war with another kingdom does not.
 - If all filtered rows are blocked, one is reopened only when it has a non-empty settlement StringId and finite native distance; the lowest distance wins and ordinal StringId breaks ties. Closure is advisory for the reopened settlement and the counters report the bypass. With no such valid row, the list may remain empty. The native selector does not guarantee a score/action or liveness; no runtime no-stall proof exists.
-- Approximate land-control-zone policy remains pending. No route/frontier enforcement, deployment, game launch, save change, or RC1 change occurred. C2 remains installed and C3 save/reload closure remains incomplete as documented below.
+- The user has approved the approximate land-control-zone policy. The classifier foundation is the current checkpoint above; it is not integrated into the AI filter. No route/frontier enforcement, deployment, game launch, save change, or RC1 change occurred. C2 remains installed and C3 save/reload closure remains incomplete as documented below.
 - Report: [LW2 border foundation](../LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md); [stabilization receipt](../LivingWorld/evidence/thematrix_lw2_stabilization_20260930.txt); package [runbook](../../DevBuilds/THEMATRIX-v0.1.0-border-filter-stabilization-dev/DEMO_RUNBOOK.md).
 
 ## Previous checkpoint - THEMATRIX v0.1 limited developer border filter

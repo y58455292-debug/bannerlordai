@@ -1,0 +1,20 @@
+THEMATRIX LW2 land-control-zone foundation validation
+Date: 2026-09-30 UTC
+Source base: GitHub main c244bea8e39feaba7be43d5bee00c88442ab9a1c
+Resumed WIP: 2313acb5310fa1e929c5558171c3c84e123e7bef
+
+Focused deterministic suite:
+  dotnet run --no-restore --configuration Release --project Tests\KingdomBorders\KingdomBorderPolicyTests.csproj
+  PASS KingdomBorderPolicy cases=14; land-zone/route policy cases=26
+  Total: 40 PASS, 0 failures.
+
+Added deterministic coverage includes nearest live owner; enclave ownership; capture/owner transfer; ambiguous different-owner ties under reversed input order; same-owner tie identity ordering; independent and unowned fortifications; villages excluded from defining a zone; native radius boundary; invalid distance; search incomplete/overflow fail-open; open-sea pass-through; explicit directional closure; war-with-zone pass-through; and unknown-zone fail-open.
+
+Production build:
+  dotnet build src\ClanAI\src\ClanAI\ClanAI.csproj --no-restore --configuration Release -p:BannerlordInstallDir="C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord" --verbosity:quiet
+  Target: netstandard2.0 Release against installed Bannerlord references.
+  Result: 0 errors, 1 inherited MSB3277 System.ValueTuple conflict warning.
+  Assembly informational version: v0.1.1-THEMATRIX-land-zone-foundation-dev.
+  Local built ClanAI.dll SHA-256: 38F80B8E4083E73813F5DFACAE791BE7F95FC31ECB452BAAAF1A77FBE540FEAF.
+
+Only the pure classifier/predicate ran in tests; the native settlement adapter was compile-checked, not executed against a live campaign or native fixture. No active route filter or AI behavior consumes this adapter. No runtime, package, deployment, or save test is claimed.

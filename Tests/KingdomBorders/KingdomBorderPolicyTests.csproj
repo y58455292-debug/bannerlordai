@@ -10,5 +10,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="../../src/ClanAI/src/ClanAI/KingdomBorderPolicy.cs" Link="KingdomBorderPolicy.cs" />
+    <Compile Include="../../src/ClanAI/src/ClanAI/KingdomLandControlPolicy.cs" Link="KingdomLandControlPolicy.cs" />
   </ItemGroup>
 </Project>

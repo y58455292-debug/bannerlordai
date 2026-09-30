@@ -38,13 +38,13 @@ No in-game border behavior, route observation, villager/caravan behavior, resour
 
 Public module display text is `THEMATRIX`. `SubModule.xml` internal `<Id>ClanAI</Id>`, DLL/assembly/namespace/class names, save keys/schema, and installed module directory remain unchanged. The frozen RC1 package/archive was not edited.
 
-## Next bounded work
+## Follow-up after approved land-zone policy
 
-1. The exact installed v1.5.3 route-query review is complete: no bounded, candidate-specific political territory/path seam was verified. Keep destination filtering distinct from route enforcement.
-2. The user's approximate land-control-zone policy decision is pending. Do not implement a nearest-settlement/control-zone heuristic until the user resolves it; keep enclaves as live owning-kingdom facts and distant sea unknown.
-3. After policy direction is resolved, prototype only the selected bounded classifier/behavior scope with explicit unknown fallback and deterministic ownership-transfer tests. Do not claim physical route enforcement from destination scoring.
-4. Coordinate any future controlled in-game test separately; this package is not deployed or runtime-tested. Preserve the C3 installed-candidate and disposable-save history, while stable roster/status and save/reload closure remain unverified.
-5. Treat villagers, caravans, convoys, route transit, and downstream trade/resource effects as separate work. Foreign trade agreements require diplomacy votes; vanilla clan income remains unchanged.
+The user approved a conservative approximate land-control-zone rule. The pure classifier and bounded native nearby-settlement adapter are now implemented and validated; see [LW2 land-control-zone checkpoint](LW2_LAND_ZONE_WIP_HANDOFF.md). The adapter reads current fortification owners and fails open for sea, ambiguity, unknown ownership, and exhausted native-search budget.
+
+The adapter is not connected to AI candidate selection or an active route. Exact v1.5.3 route inspection found no safe bounded sovereign-route seam: passive `MobileParty.Path` points do not carry ownership, full native path queries have no work budget, distance queries provide no waypoints, and full-route land/sea transitions are not established. Do not label the classifier as route enforcement or a complete border system. Any next integration must first prove a bounded, candidate-specific route use without private movement computation or uncapped per-candidate path queries.
+
+No campaign runtime, deployment, save/reload, villager/caravan/convoy, trade, or diplomacy-vote effect is claimed. The destination-only package remains separate and unchanged. C3 roster/save-reload and installed C2 history remain as documented above.
 
 **Border crossing behavior: NOT IMPLEMENTED. THEMATRIX v0.1 limited developer demo: settlement visit-destination filter only; in-game behavior and no-stall fallback remain unverified.**
 
