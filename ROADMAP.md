@@ -496,7 +496,7 @@ LW0 — Living World Direction documentation checkpoint: **COMPLETE**. No gamepl
 | Order | Milestone | Status |
 |---|---|---|
 | LW1 | Persistent Home Assignment / Peacetime Responsibility | **LW1-C2 implementation/tests/Release build complete; exact dev candidate deployed to installed module; organic runtime/save-reload proof pending** |
-| LW2 | Governor Local-Need Response | Planned; not implemented |
+| LW2 | Kingdom-Wide Border Awareness and Closure | Foundation classifier implemented; route enforcement not implemented |
 | LW3 | Household Autonomy | Planned; not implemented |
 | LW4 | Purposeful Logistics | Planned; not implemented |
 | LW5 | Kingdom Service Requests | Planned; not implemented |
@@ -516,6 +516,8 @@ Persistence/UI/performance designs from LW1-A remain selected. Existing war Home
 **LW1-C3 deployment, 2026-09-30 UTC:** Exact `v0.23.0-LW1C2-dev` candidate is installed in the verified Steam `Modules/ClanAI` module with a verified pre-deployment DLL/metadata backup. Game remains closed; no campaign or save was opened or changed. Runtime roster and save/reload proof remain pending. See [LW1-C3 deployment status](Reports/LivingWorld/LW1C3_DEPLOYMENT_STATUS.md) and [deployment receipt](Reports/LivingWorld/evidence/lw1c3_deployment_20260930.txt).
 
 **Exact next checkpoint: LW1-C3 - verify stable names/statuses in player's organic campaign, finish bounded runtime/save-reload closure.** Runtime must remain bounded, use the organic campaign, and include save/reload closure. Do not begin LW2.
+
+The latest user direction supersedes that older next-step line: kingdom-wide borders are the first new AI behavior priority. LW1-C3 organic roster/save-reload closure remains deferred, not passed. Governor Local-Need Response is deferred behind border work. Border policy is open by default and directional; only explicit kingdom-to-kingdom closure may affect passage. The current foundation does not enforce travel or resource effects. See [LW2 Kingdom Border Foundation](Reports/LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md).
 
 ---
 

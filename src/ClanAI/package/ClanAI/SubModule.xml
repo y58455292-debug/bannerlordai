@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Module>
-  <Name value="ClanAI" />
+  <Name value="THEMATRIX" />
   <Id value="ClanAI" />
   <Version value="v0.22.0" />
   <RequiredBaseVersion value="v1.5.3" />
@@ -32,7 +32,7 @@
 
   <SubModules>
     <SubModule>
-      <Name value="ClanAI" />
+      <Name value="THEMATRIX" />
       <DLLName value="ClanAI.dll" />
       <SubModuleClassType value="ClanAI.ClanAISubModule" />
       <Tags>

@@ -168,6 +168,14 @@ If unclear: research first.
 > Other clans behave similarly.
 > People travel because something matters, and when that purpose ends they usually return.
 
+## 23. Kingdom borders and political access
+
+Kingdom-wide borders are the first new AI behavior priority. Use current native settlement ownership and kingdom affiliation; an isolated fief stays with its actual owner, regardless of surrounding ownership. Do not infer sovereignty from nearest settlements, majority, centroid, hull, or distant open water.
+
+Passage is open by default. Only an explicit directional kingdom closure may change access. Passage permission and trade/market access are separate. Domestic trade stays unrestricted; foreign trade requires kingdom-wide diplomacy-voted agreements, while vanilla clan income distribution remains unchanged. Convoys and actor-specific route/exit exceptions require evidence before support.
+
+Longer-term direction includes traceable food/money supply and transport, scarcity or prosperity from observed world events, aid/neglect, and remembered war, hunger, fief and family/property loss influencing loyalty or defection. Do not invent resource grants/deletion or double-count native effects. This is future scope, not part of the current border foundation.
+
 ## Frozen playable baseline
 
 RC1 remains frozen and playable while post-RC1 development follows this charter.

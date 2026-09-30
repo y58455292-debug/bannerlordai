@@ -1,3 +1,19 @@
+## Current checkpoint - THEMATRIX kingdom border foundation
+
+**FOUNDATION IMPLEMENTED; 10 deterministic cases, preservation suites, and installed-game Release compile pass. No runtime border behavior is claimed.**
+
+- User priority: kingdom-wide political borders. Passage is open by default; only explicit directional kingdom closure can classify a foreign kingdom destination as closed.
+- `KingdomBorderPolicy` classifies a supplied settlement destination from live kingdom/owner identifiers; it does not discover land control zones, inspect routes, or change native movement. Isolated fiefs use actual current ownership; independent/missing affiliations remain distinct; sea/open water is unknown.
+- Tests: border 10 PASS; Home Assignment persistence/policy 43 PASS; roster/native adapter 68 PASS; Phase 3 Home Responsibility 10 PASS. These do not prove border behavior.
+- Intended actors: lord parties, villagers, caravans; convoys tentative. Actor-specific ownership, war/alliance/independent exceptions, already-inside/exit behavior, and route semantics remain pending.
+- Public display name is THEMATRIX. Internal module ID, DLL/assembly/namespace and persistent keys remain ClanAI. RC1 is unchanged.
+- Domestic trade remains unrestricted; foreign trade requires future kingdom-wide diplomacy-voted agreements. Vanilla clan income distribution remains unchanged. Treaty-only versus broader ruler economic controls are not implemented. Passage and market access are separate.
+- Traceable scarcity/prosperity, aid/neglect and war/hunger/fief/family/property/relationship memories affecting loyalty/defection remain future work; no arbitrary resource grants/deletion or double-counting native effects.
+- Next: verify exact installed v1.5.3 actor, route, and sea APIs; select a route-aware native seam; implement a bounded travel response with no stuck loops/teleports. No direct movement override or economic/resource mutation.
+- LW1-C3 campaign roster/save-reload closure remains deferred and unverified, not passed. Player saw the menu and described its presentation as messy; no AI movement proof is inferred.
+
+Report: [LW2_KINGDOM_BORDER_FOUNDATION.md](../LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md).
+
 # Codex Status
 
 ## Current checkpoint - LW1-C3 Persistent Roster Deployment

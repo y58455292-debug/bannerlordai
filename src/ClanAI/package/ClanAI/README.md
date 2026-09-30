@@ -1,12 +1,12 @@
-# ClanAI v0.22.0
+# THEMATRIX v0.22.0
 
-ClanAI is an offline single-player Bannerlord module.
+THEMATRIX is the public display name of this offline single-player Bannerlord module. Its internal module ID remains `ClanAI` for compatibility.
 
 ## Install
 
 1. Install the `Bannerlord.Harmony` module version `v2.4.2.248` or a compatible supported version.
 2. Copy this entire `ClanAI` folder into the game's `Modules` directory.
-3. Enable `Bannerlord.Harmony` and `ClanAI` in the Bannerlord launcher.
+3. Enable `Bannerlord.Harmony` and `THEMATRIX` in the Bannerlord launcher. The module's compatibility ID is still `ClanAI`.
 
 ClanAI also uses the Bannerlord modules declared in `SubModule.xml`. NavalDLC is not required.
 

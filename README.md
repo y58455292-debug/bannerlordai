@@ -1,12 +1,12 @@
-# BannerlordAI
+# THEMATRIX
 
-BannerlordAI is an experimental Mount & Blade II: Bannerlord mod project focused on autonomous world-scope clan and lord behavior while keeping Bannerlord's native eligibility, action, and campaign systems authoritative.
+THEMATRIX is the public display name for this Mount & Blade II: Bannerlord mod project. The internal module ID, assembly, namespaces, and save identifiers remain `ClanAI` for compatibility. The project focuses on purposeful world-scale behavior while keeping Bannerlord's native eligibility, action, and campaign systems authoritative.
 
 The active mod source is `src/ClanAI`. `src/BannerlordInspector` is the observation harness. `src/ProviderPipeline` contains the retained provider-pipeline milestone work, but provider reasoning is not currently part of the proven clan-loyalty behavior described below.
 
 ## Post-RC1 Living World direction
 
-RC1 remains the frozen playable baseline at `9ec113e738af35254e113fbde7c05babbf3c405d`. Post-RC1 development follows [LIVING_WORLD_DIRECTION.md](LIVING_WORLD_DIRECTION.md), connecting homes, responsibilities, purpose, native actions and memory in both peace and war. **LW1-B Persistent Home Assignment / peacetime responsibility is implemented, deterministically tested and Release-build-proven as v0.23.0-LW1B-dev.** LW1-C2 adds a persistent household roster with explicit temporary-status explanations. Its focused tests pass and the `netstandard2.0` Release candidate is built as `v0.23.0-LW1C2-dev`; it is deployed in the installed ClanAI module but is not yet runtime-proven. See [LW1-C2 report](Reports/LivingWorld/LW1C2_PERSISTENT_HOUSEHOLD_ROSTER.md). Exact next checkpoint: **LW1-C3 — verify stable names/statuses in player's organic campaign and finish bounded runtime/save-reload closure**.
+RC1 remains the frozen playable baseline at `9ec113e738af35254e113fbde7c05babbf3c405d`. Post-RC1 development follows [LIVING_WORLD_DIRECTION.md](LIVING_WORLD_DIRECTION.md), connecting homes, responsibilities, purpose, native actions and memory in both peace and war. LW1-C2's persistent household roster is deployed as a dev candidate; focused tests and target-framework Release build pass, while organic campaign roster and save/reload closure remain unverified. The user's current priority is kingdom-wide political borders. **The current border checkpoint establishes ownership/affiliation classification only; it does not enforce route crossings.** See [LW1-C2 report](Reports/LivingWorld/LW1C2_PERSISTENT_HOUSEHOLD_ROSTER.md) and [Kingdom Border Foundation](Reports/LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md). Frozen RC1 remains unchanged.
 
 Phase 8C organic player feedback remains ongoing field validation through normal user play. See the ordered Living World development line in [ROADMAP.md](ROADMAP.md) and [LW0 checkpoint](Reports/LivingWorld/LW0_DIRECTION_CHECKPOINT.md). The frozen RC archive, tested package and DLL remain unchanged.
 
