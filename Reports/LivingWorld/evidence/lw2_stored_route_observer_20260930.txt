@@ -5,7 +5,7 @@ Retained WIP ancestry: 2313acb5310fa1e929c5558171c3c84e123e7bef
 
 Implementation scope
 --------------------
-- Added an Evidence-profile-only observer in the existing ClanAIPostVanilla.Postfix hourly AI decision seam.
+- Added an Evidence-profile-only observer in the existing ClanAIPostVanilla.Postfix hourly AI decision seam. The outer exception boundary includes eligibility and campaign-hour reads so transient native state cannot escape into the campaign AI callback.
 - Observer rechecks strict ordinary NPC lord eligibility. Main player, army, caravan, disabled/stopped AI, prisoner, child/template, attached, battle/siege, disbanding/waiting, inactive, invalid/leaderless and non-lord states are skipped. Parties currently at sea are not skipped; every indexed route point is separately checked in native land and sea navigation modes.
 - Reads MobileParty.Path directly at indices PathBegin through min(PathBegin+8, Path.Size); does not copy the path or invoke native path computation. It samples at most 8 points per admitted party.
 - Bounded process-local quota: at most 4 distinct party StringIds per CampaignTime hour, duplicate suppression, session reset. Aggregate quota and duplicate skip counts are included in subsequent admitted Evidence records.
@@ -31,7 +31,7 @@ Result:
 
 Observer tests cover valid/malformed/exhausted windows; PathBegin offset; exact 8 vs ninth-point truncation; hourly four-party quota; duplicate suppression; hour/session reset and counters; land-only, sea-only, overlap and neither-valid outcomes; classifier exception fail-open; no-route unavailable; sea reporting; unknown/partial and truncation; exact enclave zone/settlement IDs, repeated live transfer/capture and input permutations; directional closure; zone-war exception versus an unrelated war; and empty kingdom ID fail-open. These are pure deterministic policy tests; they do not run the native navigation/locator code or an in-campaign MobileParty fixture.
 
-Preservation suites, each run once after code was ready:
+Final preservation verification after exception-boundary hardening (net8.0 suites run with command-line net11.0 target override; project files unchanged):
   HomeAssignmentRuntime including roster/production adapter: 104 PASS
   HomeAssignment/D1: 43 PASS
   Phase 3 Home Responsibility: 10 PASS
@@ -42,7 +42,7 @@ Release build
 Target: netstandard2.0 against the installed Bannerlord v1.5.3 assemblies.
 Result: 0 errors; 1 inherited MSB3277 System.ValueTuple conflict warning. SDK 11 preview produced its normal NETSDK1057 notice on restore.
 Build identity: v0.1.2-THEMATRIX-stored-route-observer-dev
-Local Release DLL SHA-256: 4742869F3411665299955DEC1001B5285EBC48D2D14862E78FC6F37CA8C9BDAA
+Final local Release DLL SHA-256: 1279BDF8881C6BD6B726AEAA54FDF3143B994B0880802E53628099D1AAB15DF7
 The official cached NETStandard.Library 2.0.3 package was copied from the user's existing normal NuGet cache into the task-local package cache for restore; no installation, security, or trust configuration changed.
 
 Verification limits

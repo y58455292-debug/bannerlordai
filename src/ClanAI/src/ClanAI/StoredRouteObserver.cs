@@ -40,7 +40,26 @@ namespace ClanAI
 
         internal static void Observe(MobileParty party)
         {
-            if (!RuntimeProfile.EvidenceEnabled || !IsEligibleNpcLordParty(party)) return;
+            if (!RuntimeProfile.EvidenceEnabled) return;
+            try
+            {
+                ObserveEligibleParty(party);
+            }
+            catch
+            {
+                // Includes eligibility and campaign-hour reads: diagnostics never escape
+                // into the campaign AI callback, even if native state is transiently invalid.
+                ClanAIPostVanilla.WriteExternalLog(
+                    "STORED_ROUTE_OBSERVER status=unavailable party=- visitor=- sampled=0 " +
+                    "truncated=False sea=0 unknown=1 errors=1 quotaSkipsTotal=" +
+                    Budget.TotalQuotaSkips + " duplicateSkipsTotal=" + Budget.TotalDuplicateSkips +
+                    " movementMutation=False candidateMutation=False");
+            }
+        }
+
+        private static void ObserveEligibleParty(MobileParty party)
+        {
+            if (!IsEligibleNpcLordParty(party)) return;
             long campaignHour = (long)Math.Floor(CampaignTime.Now.ToHours);
             string partyId = party.StringId;
             if (!Budget.TryAdmit(campaignHour, partyId)) return;

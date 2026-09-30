@@ -32,7 +32,7 @@ The classifier uses actual local fortification ownership, so an enclave follows 
 
 - `Tests/KingdomBorders`: **77 PASS**: 14 destination-policy, 31 land-zone/ownership identity, and 32 stored-route observer policy cases.
 - Preservation suites: HomeAssignmentRuntime/roster/adapter **104 PASS**; HomeAssignment/D1 **43 PASS**; Phase 3 Home Responsibility **10 PASS**.
-- `netstandard2.0` Release build against installed Bannerlord v1.5.3 references: **0 errors**, 1 inherited `System.ValueTuple` MSB3277 warning. Identity `v0.1.2-THEMATRIX-stored-route-observer-dev`; local DLL SHA-256 `4742869F3411665299955DEC1001B5285EBC48D2D14862E78FC6F37CA8C9BDAA`.
+- `netstandard2.0` Release build against installed Bannerlord v1.5.3 references: **0 errors**, 1 inherited `System.ValueTuple` MSB3277 warning. Identity `v0.1.2-THEMATRIX-stored-route-observer-dev`; final local DLL SHA-256 `1279BDF8881C6BD6B726AEAA54FDF3143B994B0880802E53628099D1AAB15DF7`.
 - Exact commands and validation limits: [stored-route observer receipt](evidence/lw2_stored_route_observer_20260930.txt).
 
 The pure policy tests cover sample-window bounds, campaign-hour quota/reset/duplicate logic, both/neither native navigation validity, exception fail-open, sea and unknown outcomes, directional closure, zone-war versus unrelated-war behavior, identity reporting, and path truncation. They do not call Bannerlord navigation or the native settlement locator in a campaign fixture. The Release compile checks the native adapter and runtime observer signatures only.
