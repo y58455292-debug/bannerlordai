@@ -9,9 +9,9 @@
 - Installed candidate SHA-256: **`B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563`**, matching the verified `v0.23.0-LW1C2-dev` source candidate.
 - Pre-deployment installed DLL SHA-256: `B1911B17A04F42C11AB6E23DB3543AFE788FDFA07EFCF34DCF3638D4AB241271`. Rollback DLL and `SubModule.xml` are retained in the task workspace under `Reports/LivingWorld/evidence/lw1c3_predeploy_backup_20260930/`; both backup hashes were checked. Restore only while Bannerlord is closed.
 - Existing `SubModule.xml` remains unchanged (SHA-256 `287609EEBE39EE00D693CD1C354362C64878F40950BCD787D505F20F065B333D`); only the module DLL was replaced. Frozen RC1 archive was not changed.
-- Bannerlord/TaleWorlds process was absent before and after deployment. No game launch, campaign-time advancement, or save activity occurred. The remote desktop agent was offline; deployment used the permitted local copy operation after the target and backup hashes were verified.
+- Bannerlord/TaleWorlds process was absent before and after deployment. No game launch or campaign-time advancement occurred. A byte-verified disposable copy of the selected organic save is ready; the original remains unchanged. The remote desktop agent was offline; deployment used the permitted local copy operation after the target and backup hashes were verified.
 - Test plan: coordinate the live demo with the user; first identify the relevant organic campaign save and create a clearly named disposable copy through the normal game workflow. Never overwrite the original or autosaves. Then verify roster names, home labels, and status/explanations in the paused campaign, perform the bounded save/reload check on the copy, and capture the resulting evidence. Runtime remains **NOT YET TESTED**.
-- Report: [LW1-C3 deployment status](../LivingWorld/LW1C3_DEPLOYMENT_STATUS.md); evidence: [deployment receipt](../LivingWorld/evidence/lw1c3_deployment_20260930.txt).
+- Report: [LW1-C3 deployment status](../LivingWorld/LW1C3_DEPLOYMENT_STATUS.md); evidence: [deployment receipt](../LivingWorld/evidence/lw1c3_deployment_20260930.txt); [save-copy receipt](../LivingWorld/evidence/lw1c3_disposable_save_20260930.txt).
 
 ## Previous checkpoint - LW1-C2 Persistent Household Responsibility Roster
 

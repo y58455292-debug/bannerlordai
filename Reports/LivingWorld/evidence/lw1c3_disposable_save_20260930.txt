@@ -1,0 +1,16 @@
+LW1-C3 disposable save copy receipt — 2026-09-30 UTC
+
+User-selected original:
+  LW1C LAND FIX 20260930 0436.sav
+  Normal Bannerlord save directory: Documents/Mount and Blade II Bannerlord/Game Saves (OneDrive-redirected)
+  Bytes: 7,855,918
+  SHA-256 before copy: C792B001164A9AF911AF5571C092AC7AC7C1C586FE0FC09D7B1988675D4F8D38
+  Same-name sidecars: none
+
+Disposable copy created beside original, refusing overwrite:
+  LW1C LAND FIX 20260930 0436 - LW1-C3 DEMO COPY.sav
+  Bytes: 7,855,918
+  SHA-256: C792B001164A9AF911AF5571C092AC7AC7C1C586FE0FC09D7B1988675D4F8D38
+  Original SHA-256 after copy: C792B001164A9AF911AF5571C092AC7AC7C1C586FE0FC09D7B1988675D4F8D38
+
+The copy is byte-identical; no save binary fields were edited. Bannerlord was closed. No game launch or campaign-time advancement has occurred. Whether Bannerlord displays the distinct filename as the save-picker title remains to be confirmed during the coordinated demo. Preserve the original and all autosaves.
