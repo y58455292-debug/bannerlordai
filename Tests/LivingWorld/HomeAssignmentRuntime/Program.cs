@@ -14,6 +14,12 @@ class Program {
  var p=new MobileParty{StringId="party_"+id,LeaderHero=h,ActualClan=Clan.PlayerClan,MapFaction=Clan.PlayerClan};h.PartyBelongedTo=p;return p;
  }
  static Settlement Home(string id){return new Settlement{StringId=id,OwnerClan=Clan.PlayerClan,IsCastle=true};}
+ static MobileParty BorderParty(string id,Kingdom kingdom,bool playerClan=false){
+  var clan=playerClan?Clan.PlayerClan:new Clan();clan.Kingdom=kingdom;
+  var hero=new Hero{StringId=id,Name=id,Clan=clan,IsLord=true};
+  var party=new MobileParty{StringId="border_"+id,LeaderHero=hero,ActualClan=clan,MapFaction=clan};hero.PartyBelongedTo=party;return party;
+ }
+ static Settlement BorderSettlement(string id,Clan owner){return new Settlement{StringId=id,OwnerClan=owner,IsTown=true};}
  static void Main(){
  var a=Actor("a");var b=Actor("b");var home=Home("castle_a");var second=Home("castle_b");Settlement result;
  Check(!HomeAssignmentStore.TryHome(a,out result)&&MBObjectManager.Instance.Objects.Count==0,"unassigned fast path no resolution/enumeration");
@@ -41,18 +47,54 @@ class Program {
  a.NavigationCapability=MobileParty.NavigationType.All;AiVisitSettlementBehavior.Navigation=MobileParty.NavigationType.Naval;
  postfix.Invoke(null,new object[]{a,list});Check(list.Count==0,"ship-capable land party cannot expose a naval home route");AiVisitSettlementBehavior.Navigation=MobileParty.NavigationType.Default;
  postfix.Invoke(null,new object[]{a,list});Check(list.Count==1,"ship-capable land party can expose native land home route");a.NavigationCapability=MobileParty.NavigationType.Default;
- var closedDestination=new Settlement{StringId="closed_destination"};
- var openDestination=new Settlement{StringId="open_destination"};
- KingdomBorderClosureConfig.BlockedSettlementId=closedDestination.StringId;
+ var kingdomA=new Kingdom{StringId="kingdom_a"};var kingdomB=new Kingdom{StringId="kingdom_b"};
+ var kingdomC=new Kingdom{StringId="kingdom_c"};var factionA=new Clan{Kingdom=kingdomA};var factionB=new Clan{Kingdom=kingdomB};
+ var borderParty=BorderParty("border_lord",kingdomA);var closedDestination=BorderSettlement("closed_destination",factionB);
+ var openDestination=BorderSettlement("open_destination",new Clan{Kingdom=kingdomC});
+ Check(KingdomBorderClosureConfig.Load((System.Collections.Generic.IEnumerable<string>)null)==0&&!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"missing config resets to default-open");
+ KingdomBorderClosureConfig.Load(new[]{"kingdom_b>kingdom_a"});KingdomBorderClosureConfig.Load();Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"missing module config file resets production state to open");
+ Check(KingdomBorderClosureConfig.Load(new string[0])==0&&!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"empty config stays default-open");
+ KingdomBorderClosureConfig.Load(new[]{"# comment","","kingdom_b>kingdom_a"});
+ Check(KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"production parser blocks excluded visitor entering closed kingdom");
+ Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,openDestination),"production closure leaves other destination kingdom open");
+ Check(KingdomBorderClosureConfig.Load(new[]{"kingdom_b>kingdom_a","malformed"})==0&&!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"malformed config resets all rules to default-open");
+ KingdomBorderClosureConfig.Load(new[]{"kingdom_a>kingdom_b"});Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"reverse-direction closure does not block visitor entering a different kingdom");
+ KingdomBorderClosureConfig.Load(new[]{"kingdom_b>kingdom_a"});
+ closedDestination.OwnerClan=new Clan{Kingdom=kingdomC};Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"live ownership transfer to other kingdom opens destination");
+ closedDestination.OwnerClan=factionB;Check(KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"captured destination reads current kingdom ownership");
+ var otherEnemy=new Kingdom{StringId="kingdom_enemy"};kingdomA.FactionsAtWarWith.Add(otherEnemy);
+ Check(KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"war with another kingdom does not exempt peaceful closed destination");
+ kingdomA.FactionsAtWarWith.Add(kingdomB);Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"war with destination kingdom exempts destination filter");kingdomA.FactionsAtWarWith.Clear();
+ KingdomBorderClosureConfig.Load(new[]{"kingdom_a>kingdom_a"});Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"self-closure directive resets to default-open");
+ KingdomBorderClosureConfig.Load(new[]{"kingdom_b>kingdom_a"});
+ var playerKingdomParty=BorderParty("player_secondary",kingdomA,true);
+ Check(KingdomBorderClosureConfig.BlocksVisit(playerKingdomParty,closedDestination),"NPC-controlled secondary party in player clan kingdom follows kingdom policy");
+ borderParty.LeaderHero=null;Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"leaderless native merge party is excluded");borderParty=BorderParty("border_lord",kingdomA);
+ TaleWorlds.CampaignSystem.Campaign.Current.Disband=new TaleWorlds.CampaignSystem.CampaignBehaviors.TestDisbandBehavior{Waiting=borderParty};
+ Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"party waiting for disband is excluded");
+ TaleWorlds.CampaignSystem.Campaign.Current.Disband=null;
+ borderParty.Army=new object();Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"army parties are exempt");borderParty.Army=null;
+ borderParty.IsCurrentlyAtSea=true;Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"at-sea parties are exempt");borderParty.IsCurrentlyAtSea=false;
+ borderParty.Ai.IsDisabled=true;Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"disabled AI party is exempt");borderParty.Ai.IsDisabled=false;
+ borderParty.Ai.DoNotMakeNewDecisions=true;Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"decision-stopped AI party is exempt");borderParty.Ai.DoNotMakeNewDecisions=false;
+ borderParty.AttachedTo=new object();Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"attached party is exempt");borderParty.AttachedTo=null;
+ borderParty.MapEvent=new object();Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"battle party is exempt");borderParty.MapEvent=null;
+ borderParty.IsDisbanding=true;Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"disbanding party is exempt");borderParty.IsDisbanding=false;
+ borderParty.IsActive=false;Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"inactive party is exempt");borderParty.IsActive=true;
+ borderParty.IsLordParty=false;Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"non-lord party is exempt");borderParty.IsLordParty=true;
+ borderParty.IsCaravan=true;Check(!KingdomBorderClosureConfig.BlocksVisit(borderParty,closedDestination),"caravan is exempt");borderParty.IsCaravan=false;
+ var priorTarget=BorderSettlement("existing_route_target",factionB);borderParty.TargetSettlement=priorTarget;
+ var independentParty=BorderParty("independent",null);Check(!KingdomBorderClosureConfig.BlocksVisit(independentParty,closedDestination),"independent actor without kingdom remains unclassified");
+ var independentDestination=BorderSettlement("independent_destination",new Clan());Check(!KingdomBorderClosureConfig.BlocksVisit(BorderParty("lord2",kingdomA),independentDestination),"independent destination remains unclassified");
+ Check(!KingdomBorderClosureConfig.BlocksVisit(BorderParty("lord3",kingdomA),null),"null destination is safely ignored");
  list=AiVisitSettlementBehavior.List(closedDestination,openDestination);
- postfix.Invoke(null,new object[]{a,list});
+ postfix.Invoke(null,new object[]{borderParty,list});
  var candidateIds=AiVisitSettlementBehavior.SettlementIds(list);
- Check(Array.IndexOf(candidateIds,closedDestination.StringId)<0&&Array.IndexOf(candidateIds,openDestination.StringId)>=0&&Array.IndexOf(candidateIds,home.StringId)>=0,"closed destination removed while open and assigned-home candidates remain");
- KingdomBorderClosureConfig.BlockedSettlementId=home.StringId;
- list=AiVisitSettlementBehavior.List();postfix.Invoke(null,new object[]{a,list});
- candidateIds=AiVisitSettlementBehavior.SettlementIds(list);
- Check(Array.IndexOf(candidateIds,home.StringId)<0,"explicitly closed assignment is not re-added as a visit candidate");
- KingdomBorderClosureConfig.BlockedSettlementId=null;
+ Check(Array.IndexOf(candidateIds,closedDestination.StringId)<0&&Array.IndexOf(candidateIds,openDestination.StringId)>=0&&ReferenceEquals(borderParty.TargetSettlement,priorTarget),"production config removes only closed candidate and leaves existing route target unchanged");
+ KingdomBorderClosureConfig.Load(new[]{"kingdom_b>kingdom_a"});
+ list=AiVisitSettlementBehavior.List(closedDestination);postfix.Invoke(null,new object[]{borderParty,list});
+ Check(list.Count==0&&KingdomBorderClosureConfig.CandidateSummary().Contains("candidatesFiltered=1"),"last closed visit candidate yields an empty native visit list and increments diagnostic count");
+ KingdomBorderClosureConfig.Load(null);
  var think=new PartyThinkParams();think.AIBehaviorScores.Add(Tuple.Create(new AIBehaviorData{Party=home,AiBehavior=AiBehavior.GoToSettlement},1f));
  think.AIBehaviorScores.Add(Tuple.Create(new AIBehaviorData{Party=second,AiBehavior=AiBehavior.GoToSettlement},1.1f));
  var frame=new StrategicDecisionComposer.Frame{CandidateCount=2,BeforeWinner=1};

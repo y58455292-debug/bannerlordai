@@ -23,7 +23,15 @@ namespace TaleWorlds.CampaignSystem {
  public List<IFaction> FactionsAtWarWith{get;}=new List<IFaction>();
  public List<Hero> Heroes{get;}=new List<Hero>();
  public List<Hero> Companions{get;}=new List<Hero>();
+ public Kingdom Kingdom;
  public bool IsBanditFaction{get;set;} public bool IsOutlaw{get;set;}
+ public bool IsAtWarWith(Kingdom kingdom){return kingdom!=null&&FactionsAtWarWith.Contains(kingdom);}
+ }
+ public class Kingdom:IFaction {
+ public string StringId;
+ public List<IFaction> FactionsAtWarWith{get;}=new List<IFaction>();
+ public bool IsBanditFaction{get;set;} public bool IsOutlaw{get;set;}
+ public bool IsAtWarWith(Kingdom kingdom){return kingdom!=null&&FactionsAtWarWith.Contains(kingdom);}
  }
  public class Hero {
  public static Hero MainHero;
@@ -47,6 +55,7 @@ namespace TaleWorlds.CampaignSystem {
 }
 namespace TaleWorlds.CampaignSystem.CampaignBehaviors {
  public interface IDisbandPartyCampaignBehavior { bool IsPartyWaitingForDisband(Party.MobileParty p); }
+ public class TestDisbandBehavior:IDisbandPartyCampaignBehavior {public Party.MobileParty Waiting; public bool IsPartyWaitingForDisband(Party.MobileParty p){return p!=null&&ReferenceEquals(p,Waiting);}}
 }
 namespace TaleWorlds.CampaignSystem.Settlements {
  public class Settlement {public string StringId; public string Name; public bool IsTown,IsCastle,IsUnderSiege,IsUnderRaid; public object SiegeEvent; public CampaignSystem.Clan OwnerClan;}
@@ -91,7 +100,7 @@ namespace TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors {
  }}
 namespace ClanAI {
  internal static class RuntimeProfile {internal static bool EvidenceEnabled=true;}
- internal static class KingdomBorderClosureConfig {internal static string BlockedSettlementId;internal static bool BlocksVisit(TaleWorlds.CampaignSystem.Party.MobileParty p,TaleWorlds.CampaignSystem.Settlements.Settlement s){return s!=null&&s.StringId==BlockedSettlementId;}}
+ internal static class ModuleRuntimePaths {internal static string Data(string name){return null;}}
  internal static class ClanAIPostVanilla {internal static readonly List<string> Logs=new List<string>();internal static void WriteExternalLog(string s){Logs.Add(s);}}
  internal static class StrategicDecisionComposer {
  internal sealed class Frame {

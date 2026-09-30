@@ -7,5 +7,7 @@
 <Compile Include="../../../src/ClanAI/src/ClanAI/HomeAssignmentVisitPatch.cs" Link="VisitPatch.cs"/>
 <Compile Include="../../../src/ClanAI/src/ClanAI/HomeAssignmentLayer.cs" Link="Layer.cs"/>
 <Compile Include="../../../src/ClanAI/src/ClanAI/HomeAssignmentRoster.cs" Link="Roster.cs"/>
+<Compile Include="../../../src/ClanAI/src/ClanAI/KingdomBorderPolicy.cs" Link="KingdomBorderPolicy.cs"/>
+<Compile Include="../../../src/ClanAI/src/ClanAI/KingdomBorderClosureConfig.cs" Link="KingdomBorderClosureConfig.cs"/>
 </ItemGroup>
 </Project>

@@ -146,6 +146,7 @@ namespace ClanAI
                 + " reason=" + reason + " terminal=" + terminal);
             text.AppendLine("sessionLog=" + ClanAIPostVanilla.SessionLogPath);
             text.AppendLine(DelegatingMobilePartyAIModel.DiagnosticSummary(reason));
+            text.AppendLine("KINGDOM_BORDER_DESTINATION_FILTER " + KingdomBorderClosureConfig.CandidateSummary());
             text.AppendLine(ClanAIEvidenceWriter.HealthSummary());
             text.AppendLine("TIMING_SCOPE frames=rolling_1024 phases=Inspector_since_last_reset"
                 + " resetsByClanAI=0 pausedAndMenuFramesMayBeIncluded=True");

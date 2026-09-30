@@ -495,8 +495,8 @@ LW0 — Living World Direction documentation checkpoint: **COMPLETE**. No gamepl
 
 | Order | Milestone | Status |
 |---|---|---|
-| LW1 | Persistent Home Assignment / Peacetime Responsibility | **LW1-C2 implementation + tests + netstandard2.0 Release build complete; runtime not yet tested** |
-| LW2 | Kingdom-Wide Border Awareness and Closure | Foundation classifier in progress; route enforcement not implemented |
+| LW1 | Persistent Home Assignment / Peacetime Responsibility | **LW1-C2 implemented, built, and installed as dev candidate; menu presence observed by player; stable roster/save-reload/movement proof remains incomplete** |
+| LW2 | Kingdom-Wide Border Awareness and Closure | **THEMATRIX v0.1 limited developer package built/tested; native lord settlement-visit candidate filter only; runtime and route enforcement unverified** |
 | LW3 | Household Autonomy | Planned; not implemented |
 | LW4 | Purposeful Logistics | Planned; not implemented |
 | LW5 | Kingdom Service Requests | Planned; not implemented |
@@ -515,7 +515,7 @@ Persistence/UI/performance designs from LW1-A remain selected. Existing war Home
 
 **Exact next checkpoint: LW1-C3 - deploy persistent-roster dev candidate, verify stable names/statuses in player's organic campaign, finish bounded runtime/save-reload closure.** Runtime must remain bounded, use the organic campaign, and include save/reload closure. Do not begin LW2.
 
-The latest user direction supersedes that older next-step line: kingdom-wide borders are the first new AI behavior priority. LW1-C3 organic roster/save-reload closure remains deferred, not passed. Governor Local-Need Response is deferred behind border work. The v0.1 dev slice filters explicitly closed foreign settlement destinations from native visit candidates for ordinary non-player kingdom lord parties; it does not block travel-route crossings, entry, villagers, caravans, trade, or diplomacy. Policy remains directional and default-open. See [LW2 Kingdom Border Foundation](Reports/LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md).
+LW1-C3 deployment of the C2 dev candidate and preparation of a byte-identical disposable campaign copy are complete, with rollback and save receipts retained. The player observed the Home Assignment menu and described its presentation as messy; stable roster/statuses, AI movement, and save/reload remain unverified. Do not modify the current game. The user's next behavior priority is kingdom-wide borders. THEMATRIX v0.1 is now a separately built, default-open developer package for filtering closed settlements from eligible NPC lord parties' native visit candidates. It does not enforce route crossings, arrivals, or other actor types; empty-list alternate-action and no-stall behavior are not proven. The package is not deployed. Foreign trade agreements require kingdom-wide diplomacy votes, domestic trade remains unrestricted, and vanilla clan income stays unchanged. See [LW2 Kingdom Border Foundation](Reports/LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md) and [C3 deployment status](Reports/LivingWorld/LW1C3_DEPLOYMENT_STATUS.md).
 
 ---
 
