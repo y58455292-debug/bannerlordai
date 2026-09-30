@@ -95,7 +95,8 @@ namespace TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors {
  private static void GetBestNavigationDataForVisitingSettlement(MobileParty p,Settlement s,
  out MobileParty.NavigationType nav,out float distance,out bool from,out bool target)
  {nav=Navigation;distance=10f;from=false;target=false;}
- public static System.Collections.IList List(params Settlement[] settlements) {var rows=new List<SettlementNavigationData>();if(settlements!=null)foreach(var s in settlements)rows.Add(new SettlementNavigationData(10f,s==null?0:s.GetHashCode(),s,MobileParty.NavigationType.Default,false,false));return rows;}
+  public static System.Collections.IList List(params Settlement[] settlements) {var rows=new List<SettlementNavigationData>();if(settlements!=null)foreach(var s in settlements)rows.Add(new SettlementNavigationData(10f,s==null?0:s.GetHashCode(),s,MobileParty.NavigationType.Default,false,false));return rows;}
+  public static System.Collections.IList ListWithDistances(Settlement[] settlements,float[] distances) {var rows=new List<SettlementNavigationData>();if(settlements!=null)for(int i=0;i<settlements.Length;i++)rows.Add(new SettlementNavigationData(distances[i],settlements[i]==null?0:settlements[i].GetHashCode(),settlements[i],MobileParty.NavigationType.Default,false,false));return rows;}
  public static string[] SettlementIds(System.Collections.IList list){var ids=new List<string>();if(list!=null)foreach(var item in list){var row=(SettlementNavigationData)item;ids.Add(row.Settlement==null?null:row.Settlement.StringId);}return ids.ToArray();}
  }}
 namespace ClanAI {

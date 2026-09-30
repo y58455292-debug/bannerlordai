@@ -13,9 +13,18 @@ namespace ClanAI
     internal static class KingdomBorderClosureConfig
     {
         private static HashSet<string> _closedPairs = new HashSet<string>(StringComparer.Ordinal);
-        private static long _candidateChecks, _candidatesFiltered;
+        private static long _candidateChecks, _candidatesFiltered, _candidateFailOpenEvents, _candidateReopened;
         internal static string CandidateSummary()
-        { return "candidateChecks=" + Interlocked.Read(ref _candidateChecks) + " candidatesFiltered=" + Interlocked.Read(ref _candidatesFiltered); }
+        { return "candidateChecks=" + Interlocked.Read(ref _candidateChecks) +
+            " candidatesFiltered=" + Interlocked.Read(ref _candidatesFiltered) +
+            " candidateFailOpenEvents=" + Interlocked.Read(ref _candidateFailOpenEvents) +
+            " candidateReopened=" + Interlocked.Read(ref _candidateReopened); }
+
+        internal static void RecordCandidateFailOpen()
+        {
+            Interlocked.Increment(ref _candidateFailOpenEvents);
+            Interlocked.Increment(ref _candidateReopened);
+        }
 
         internal static int Load()
         {
@@ -38,6 +47,8 @@ namespace ClanAI
         {
             Interlocked.Exchange(ref _candidateChecks, 0);
             Interlocked.Exchange(ref _candidatesFiltered, 0);
+            Interlocked.Exchange(ref _candidateFailOpenEvents, 0);
+            Interlocked.Exchange(ref _candidateReopened, 0);
             var next = new HashSet<string>(StringComparer.Ordinal);
             if (lines != null)
             {

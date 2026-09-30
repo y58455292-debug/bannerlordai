@@ -1,0 +1,28 @@
+THEMATRIX LW2 candidate-list fail-open hardening receipt
+Recorded: 2026-09-30 UTC
+Source base: GitHub main 888cebe675058ca120d5b2be1cb46c892caba35e
+
+Change
+- When the existing native visit list is non-empty and the directional closure policy removes every row, retain exactly one row that Bannerlord had already validated and assigned a native navigation distance.
+- Select the lowest native distance; break ties by ordinal settlement StringId. Rows with invalid/unbounded distance or missing identity are not eligible as fallback.
+- Do not add a row when the native list started empty. A mixed open/closed list uses normal filtering without bypass.
+- Count candidateFailOpenEvents and candidateReopened in the existing CandidateSummary snapshot. candidatesFiltered remains a count of policy block results, including the one row reopened by the safeguard.
+- This is a conservative prevention against this patch emptying an existing candidate list. It does not create a target/action, guarantee Bannerlord chooses a score, or prove runtime liveness/no-stall.
+
+Native evidence
+- Installed v1.5.3 AiVisitSettlementBehavior.SettlementNavigationData has Distance, SettlementIdentifier and Settlement; its comparison sorts by distance then settlement identifier.
+- Retained native_party_ai_entry_20260929 evidence shows action selection is score-dependent; if no behavior scores exist, the party's current action may persist. The fail-open therefore is not a selector or campaign-liveness guarantee.
+
+Validation
+- Focused command: dotnet run --no-restore --project Tests/LivingWorld/HomeAssignmentRuntime/HomeAssignmentRuntimeTests.csproj -p:TargetFramework=net11.0
+- Execution target override was required because this environment has the .NET 11 preview SDK and no .NET 8 targeting packs available in its permitted local feed. The project file remains net8.0; no target-framework source edit was made.
+- Result: 102 PASS, including actual production postfix tests for nearest candidate reopen, ordinal tie-break, diagnostic counters, mixed-list no-bypass, and originally-empty no-invention.
+- Release command: dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj -c Release -p:BannerlordInstallDir='C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord' --configfile NuGet.Config
+- Result: netstandard2.0 Release succeeded, 0 errors, 1 inherited System.ValueTuple MSB3277 warning.
+- Release output ClanAI.dll SHA-256: 1FFCC6A7BD0E41B81874940D20F22646908CCA3EFE3800E5654689BEF87DE202.
+- Previously published pre-safeguard package remains unchanged at ClanAI.dll SHA-256 F85382892B293FFABF78B57923A152735E812A033FE9593DEC9B7AEEBE88C8F9. New output is not packaged, deployed, or runtime-tested in this checkpoint.
+
+Limits / next step
+- Settlement-destination filtering remains distinct from territory/frontier or route-crossing enforcement. No direct movement/action API, entry veto, route query, economy, actor expansion, or land-control heuristic was added.
+- The user's approximate land-control-zone policy decision remains pending; do not implement that heuristic until resolved.
+- No game launch, deployment, save modification, or RC1 artifact change occurred.

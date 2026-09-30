@@ -15,6 +15,7 @@ namespace ClanAI
         private static MethodInfo Suitable, Navigation;
         private static ConstructorInfo NavigationRow;
         private static FieldInfo RowSettlement;
+        private static FieldInfo RowDistance;
         internal static void Install()
         {
             if (_installed) return;
@@ -30,7 +31,9 @@ namespace ClanAI
                 null, new[] { typeof(float), typeof(int), typeof(Settlement), typeof(MobileParty.NavigationType),
                     typeof(bool), typeof(bool) }, null);
             RowSettlement = row.GetField("Settlement", BindingFlags.Instance | BindingFlags.Public);
-            if (fill == null || Suitable == null || Navigation == null || NavigationRow == null || RowSettlement == null)
+            RowDistance = row.GetField("Distance", BindingFlags.Instance | BindingFlags.Public);
+            if (fill == null || Suitable == null || Navigation == null || NavigationRow == null ||
+                RowSettlement == null || RowDistance == null)
                 throw new MissingMethodException("Supported LW1-B native visit signature unavailable");
             new Harmony("clanai.homeassignment.visit.v1").Patch(fill,
                 postfix: new HarmonyMethod(typeof(HomeAssignmentVisitPatch), nameof(Postfix)));
@@ -42,11 +45,36 @@ namespace ClanAI
             IList list = __1 as IList;
             if (list != null)
             {
+                object fallbackRow = null;
+                Settlement fallbackSettlement = null;
+                float fallbackDistance = float.MaxValue;
                 for (int i = list.Count - 1; i >= 0; i--)
                 {
                     object candidateRow = list[i];
                     Settlement candidate = candidateRow == null ? null : RowSettlement.GetValue(candidateRow) as Settlement;
-                    if (KingdomBorderClosureConfig.BlocksVisit(__0, candidate)) list.RemoveAt(i);
+                    if (KingdomBorderClosureConfig.BlocksVisit(__0, candidate))
+                    {
+                        float distance = (float)RowDistance.GetValue(candidateRow);
+                        if (candidate != null && !string.IsNullOrEmpty(candidate.StringId) &&
+                            !float.IsNaN(distance) && !float.IsInfinity(distance) &&
+                            (fallbackRow == null || distance < fallbackDistance ||
+                             (distance == fallbackDistance && string.Compare(candidate.StringId,
+                                 fallbackSettlement.StringId, StringComparison.Ordinal) < 0)))
+                        {
+                            fallbackRow = candidateRow;
+                            fallbackSettlement = candidate;
+                            fallbackDistance = distance;
+                        }
+                        list.RemoveAt(i);
+                    }
+                }
+                // Preserve one native-validated destination if this closure filter would otherwise
+                // erase every candidate. This is fail-open policy accounting, not a movement or
+                // selector-liveness guarantee; native AI still owns action selection.
+                if (list.Count == 0 && fallbackRow != null)
+                {
+                    list.Add(fallbackRow);
+                    KingdomBorderClosureConfig.RecordCandidateFailOpen();
                 }
             }
             Settlement home;
