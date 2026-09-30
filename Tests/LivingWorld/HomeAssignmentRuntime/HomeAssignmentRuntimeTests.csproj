@@ -6,5 +6,6 @@
 <Compile Include="../../../src/ClanAI/src/ClanAI/HomeAssignmentStore.cs" Link="Store.cs"/>
 <Compile Include="../../../src/ClanAI/src/ClanAI/HomeAssignmentVisitPatch.cs" Link="VisitPatch.cs"/>
 <Compile Include="../../../src/ClanAI/src/ClanAI/HomeAssignmentLayer.cs" Link="Layer.cs"/>
+<Compile Include="../../../src/ClanAI/src/ClanAI/HomeAssignmentRoster.cs" Link="Roster.cs"/>
 </ItemGroup>
 </Project>

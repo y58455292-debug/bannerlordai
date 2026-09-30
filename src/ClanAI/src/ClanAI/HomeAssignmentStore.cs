@@ -47,7 +47,7 @@ namespace ClanAI
             {
                 Hero hero = MBObjectManager.Instance.GetObject<Hero>(pair.Key);
                 Settlement home = MBObjectManager.Instance.GetObject<Settlement>(pair.Value);
-                if (!ValidHero(hero) || !ValidHome(home)) remove.Add(pair.Key);
+                if (!ValidAssignedHero(hero) || !ValidHome(home)) remove.Add(pair.Key);
                 else Cache[pair.Key] = new Resolved { Hero = hero, Home = home };
             }
             foreach (string id in remove) Records.Clear(id);
@@ -70,6 +70,14 @@ namespace ClanAI
                 hero.Age >= Campaign.Current.Models.AgeModel.HeroComesOfAge &&
                 !string.IsNullOrEmpty(hero.StringId);
         }
+        internal static bool ValidAssignedHero(Hero hero)
+        {
+            return Campaign.Current != null && hero != null && hero != Hero.MainHero &&
+                !hero.IsHumanPlayerCharacter && hero.IsAlive && !hero.IsTemplate &&
+                hero.Clan == Clan.PlayerClan && Clan.PlayerClan != null &&
+                hero.Age >= Campaign.Current.Models.AgeModel.HeroComesOfAge &&
+                !string.IsNullOrEmpty(hero.StringId);
+        }
         internal static bool ValidHome(Settlement home)
         { return Clan.PlayerClan != null && home != null && (home.IsTown || home.IsCastle) && home.OwnerClan == Clan.PlayerClan; }
         internal static bool Eligible(MobileParty party)
@@ -83,8 +91,7 @@ namespace ClanAI
                 !ValidHero(party.LeaderHero) || party.LeaderHero.IsPrisoner ||
                 !party.LeaderHero.IsActive || party.LeaderHero.PartyBelongedTo != party)
                 return false;
-            var disband = Campaign.Current.GetCampaignBehavior<IDisbandPartyCampaignBehavior>();
-            return disband == null || !disband.IsPartyWaitingForDisband(party);
+            return !IsWaitingForDisband(party);
         }
         internal static bool Peace(MobileParty party)
         {
@@ -111,7 +118,7 @@ namespace ClanAI
             { HomeAssignmentCounters.NoAssignment++; return false; }
             Resolved entry;
             if (!Cache.TryGetValue(id, out entry)) return false; // Resolution is never done on AI ticks.
-            if (!ReferenceEquals(entry.Hero, party.LeaderHero) || !ValidHero(entry.Hero) ||
+            if (!ReferenceEquals(entry.Hero, party.LeaderHero) || !ValidAssignedHero(entry.Hero) ||
                 !ValidHome(entry.Home) || entry.Home.StringId != saved)
             { Clear(id); return false; }
             home = entry.Home; return true;
@@ -121,8 +128,24 @@ namespace ClanAI
             if (hero == null) return null;
             Resolved entry;
             if (!Cache.TryGetValue(hero.StringId, out entry)) return null;
-            if (!ReferenceEquals(entry.Hero, hero) || !ValidHero(entry.Hero) || !ValidHome(entry.Home)) { Clear(hero.StringId); return null; }
+            if (!ReferenceEquals(entry.Hero, hero) || !ValidAssignedHero(entry.Hero) || !ValidHome(entry.Home)) { Clear(hero.StringId); return null; }
             return entry.Home;
+        }
+        internal static List<Hero> AssignedHeroes()
+        {
+            var heroes = new List<Hero>();
+            foreach (var pair in Records.Entries)
+            {
+                Resolved entry;
+                if (Cache.TryGetValue(pair.Key, out entry)) heroes.Add(entry.Hero);
+            }
+            return heroes;
+        }
+        internal static bool IsWaitingForDisband(MobileParty party)
+        {
+            if (party == null || Campaign.Current == null) return false;
+            var disband = Campaign.Current.GetCampaignBehavior<IDisbandPartyCampaignBehavior>();
+            return disband != null && disband.IsPartyWaitingForDisband(party);
         }
         internal static bool Assign(MobileParty party, Settlement home)
         {
@@ -142,7 +165,7 @@ namespace ClanAI
         {
             var remove = new List<string>();
             foreach (var pair in Cache)
-                if (!ValidHero(pair.Value.Hero) || !ValidHome(pair.Value.Home)) remove.Add(pair.Key);
+                if (!ValidAssignedHero(pair.Value.Hero) || !ValidHome(pair.Value.Home)) remove.Add(pair.Key);
             foreach (string id in remove) Clear(id);
         }
     }

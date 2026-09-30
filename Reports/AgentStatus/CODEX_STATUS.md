@@ -1,5 +1,24 @@
 # Codex Status
 
+## Current checkpoint - LW1-C2 Persistent Household Responsibility Roster
+
+**IMPLEMENTATION + FOCUSED TESTS + GAME-TARGET RELEASE BUILD COMPLETE, 2026-09-30 UTC. Runtime is not yet tested.**
+
+- Exact source base: GitHub `main` commit `5b9e47b2813373fe0b03bae58d41c88a8dfcff83`; materialized source was verified against its Git tree. The separate legacy checkout `D:\BannerlordAIResearch` was left untouched.
+- The owned-town/castle Manage Home Assignments menu now uses a bounded roster from direct player-clan hero/companion collections plus valid assigned identities. Temporary states stay visible with explicit suspended-responsibility statuses; active behavior still uses the original strict `Eligible` predicate.
+- Stable `Hero.StringId` identity, D1 schema, `ClanAI_HomeAssignment_v1`, 1.25 policy factor, native visit seam, and Phase 3 war Home Responsibility remain unchanged. RC1 package/archive bytes were not written.
+- Focused deterministic suites: **68 roster/runtime PASS, 43 persistence/D1 PASS, 10 Phase 3 preservation PASS**.
+- `NETStandard.Library` 2.0.3 was found in the signed-in user's NuGet cache, verified via package metadata/hash sidecar, and restored through a read-only local feed into the task-local cache.
+- Required actual `netstandard2.0` Release build: **0 errors, 1 inherited MSB3277 `System.ValueTuple` reference-conflict warning**. Focused API compile also passes.
+- Dev candidate: `DevBuilds/ClanAI-v0.23.0-LW1C2-dev/ClanAI.dll`, SHA-256 **`B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563`**.
+- Acceptance audit maps all 25 requested cases to deterministic assertions and static baseline checks in the report. RC1 artifacts, D1 key/schema, factor 1.25, visit seam, and Phase 3 sources remain unchanged.
+- Runtime: **NOT YET TESTED**. Bannerlord launched: **NO**. Deployed: **NO**. No campaign/save activity.
+- Report: [LW1-C2 persistent household roster](../LivingWorld/LW1C2_PERSISTENT_HOUSEHOLD_ROSTER.md); evidence: [C2 validation receipt](../LivingWorld/evidence/lw1c2_validation_20260930.txt).
+
+**Exact next checkpoint: LW1-C3 - deploy persistent-roster dev candidate, verify stable names/statuses in player's organic campaign, finish bounded runtime/save-reload closure.**
+
+## Previous checkpoint - LW1-B Persistent Home Assignment
+
 ## Current checkpoint — LW1-B Persistent Home Assignment
 
 **COMPLETE — IMPLEMENTED + TESTED + RELEASE BUILD READY FOR DEPLOYMENT, 2026-09-30 UTC.**

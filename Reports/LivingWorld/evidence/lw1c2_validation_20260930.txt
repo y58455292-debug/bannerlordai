@@ -1,0 +1,59 @@
+LW1-C2 validation receipt — 2026-09-30 UTC
+Authoritative source: y58455292-debug/bannerlordai main
+Base commit: 5b9e47b2813373fe0b03bae58d41c88a8dfcff83
+Base tree: 390d2615306e38458817254737305a414929dec2
+Materialization: 113 textual source/report/test inputs initially materialized and verified by exact Git blob SHA-1 and byte length; subsequent Phase3 test inputs likewise fetched from the same exact commit. The working directory is a source workspace, not a Git checkout.
+Legacy D:\BannerlordAIResearch: left untouched due unrelated dirty changes and denied write boundary.
+
+Focused tests (Release; available SDK override TargetFramework=net11.0; project target files remain unchanged):
+- `dotnet run --project Tests/LivingWorld/HomeAssignmentRuntime/HomeAssignmentRuntimeTests.csproj -c Release -p:TargetFramework=net11.0 --no-restore` — 68 PASS
+- `dotnet run --project Tests/LivingWorld/HomeAssignment/HomeAssignmentTests.csproj -c Release -p:TargetFramework=net11.0 --no-restore` — 43 PASS
+- `dotnet run --project Tests/TerritorialResponsibility/TerritorialResponsibilityPolicyTests.csproj -c Release --no-restore` — 10 PASS (project target is net11.0)
+Total: 121 PASS.
+
+Native API validation:
+- src/ClanAI/src/ClanAI/ClanAI.csproj Release compile using installed Bannerlord native references and command-line TargetFramework=net11.0 - 0 warnings, 0 errors.
+- Command: `dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj -c Release -p:TargetFramework=net11.0 --no-restore -p:OutputPath=.validation/clanai/ -p:AppendTargetFrameworkToOutputPath=false`.
+- This net11 output validates source/native API binding only. It is not the netstandard2.0 game candidate.
+
+Actual Release build:
+- Required target: project-declared `netstandard2.0`, Release; no framework override used.
+- Public NuGet restore failed in this environment (`NU1801` for service index and `NU1101` for package); first offline restore also returned `NU1100`.
+- Read-only cache inspection found `C:\Users\csala\.nuget\packages\netstandard.library\2.0.3\netstandard.library.2.0.3.nupkg`. Original `.nupkg.metadata` source was `https://api.nuget.org/v3/index.json`; package SHA-256 `3EB87644F79BCFFB3C0331DBDAC3C7837265F2CDF58A7BFD93E431776F77C9BA`, SHA-512 `E78F0CEA69C14895B1B089644077DBCE8631A626055D96522F4D29E061D8BFC3E48AA1419E74FAF265B998612C03F721F5F0CEF4690F824150A5689764DEE601`, sidecar `.nupkg.sha512` `548M6mnBSJWxsIlkQHfbzoYxpiYFXZZSL00p4GHYv8PkiqFBnnT68mW5mGEsA/ch9fDO9GkPgkFQpWiXZN7mAQ==`.
+- `dotnet restore src/ClanAI/src/ClanAI/ClanAI.csproj --configfile NuGet.Config --source C:\Users\csala\.nuget\packages -p:NuGetAudit=false` succeeded in 668 ms, extracting to task-local `.nuget`.
+- `dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj -c Release --no-restore -p:OutputPath="C:\Users\csala\Documents\Codex\2026-09-29\task-3\DevBuilds\ClanAI-v0.23.0-LW1C2-dev\" -p:AppendTargetFrameworkToOutputPath=false` succeeded: **0 errors, 1 inherited MSB3277 `System.ValueTuple` conflict warning**.
+- Candidate `DevBuilds/ClanAI-v0.23.0-LW1C2-dev/ClanAI.dll`, size 355,328 bytes, SHA-256 `B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563`.
+- The successful net11 native-reference compile was supplementary only; it is not the candidate build.
+
+Preservation checks:
+- ClanAI_HomeAssignment_v1 and D1 Hero.StringId->Settlement.StringId records unchanged.
+- Existing strict HomeAssignmentStore.Eligible remains behavior eligibility only; roster membership is independent.
+- Sea remains excluded from behavior eligibility; land ship-capable party remains allowed.
+- Existing HomeAssignmentPolicy.HomeFactor remains 1.25f.
+- Existing HomeAssignmentVisitPatch/native visit seam unchanged.
+- Phase 3 HomeResponsibility source/test lane remains unchanged and its 10 tests pass.
+- Baseline SHA-256 equality confirmed for `HomeAssignmentRecords.cs`, `HomeAssignmentPolicy.cs`, `HomeAssignmentVisitPatch.cs`, `HomeAssignmentLayer.cs`, `HomeResponsibilityLayer.cs`, and `HomeResponsibilityPolicy.cs`.
+- RC1 archive/package outputs were not written or replaced.
+- Existing `DevBuilds/ClanAI-v0.23.0-LW1B-dev/ClanAI.dll` in the materialized baseline remains SHA-256 `EEE566615AA72BFEB01C95D05AE8FCF022271F90A2519319D95AF3C90D6A4622`; C2 has a separate candidate path. The materialized RC1 archive currently reads SHA-256 `A03D183934BCF1C974EA6BCEBBF35CFF3A5413080D6F6634942811AE54C971D6` and was not written by this task.
+- No movement code, new AI, save schema, Persistent Purpose, Local Pressure, or unrelated LW2 feature was added.
+- No Bannerlord launch, deployment, or save/reload test. Runtime NOT YET TESTED.
+
+GitHub synchronization:
+- Normal git clone attempt failed: `git: 'remote-https' is not a git command ... fatal: remote helper 'https' aborted session`; no clone target was created/overwritten.
+- Exact-main materialization and publication use the authenticated GitHub connector. `main` was re-read at base `5b9e47b2813373fe0b03bae58d41c88a8dfcff83` and tree `390d2615306e38458817254737305a414929dec2` before the non-force ref update.
+- The connector commit includes the implementation, tests, report, evidence, status/roadmap/README, and separate C2 dev DLL. Its commit SHA is included in the task completion message.
+
+Final modified implementation/document source SHA-256 manifest:
+`D61391B0AFFD699FEDEAAA071D86E622728E82BB0618C5DED826DD97FD697E7A` src/ClanAI/src/ClanAI/HomeAssignmentRoster.cs
+`BBD6401C883849C37D43A124BA45F7624DA981C695F12BA7330F981528FC893C` src/ClanAI/src/ClanAI/HomeAssignmentStore.cs
+`0471EDB7A75F2A7B930D1A3708CD684DB1DF9FE7E8AC53DF733D70C0BE63DBC6` src/ClanAI/src/ClanAI/HomeAssignmentCampaignBehavior.cs
+`0D4D65A067AE8D1694A7B3DEF6EAFB52F1981AAAF166A878906DE2AE5328DA5B` src/ClanAI/src/ClanAI/ReleaseIdentity.cs
+`45D5C36020CD8A7D37134019074FF05A1079085FE3910AF78D7EEB044308A280` src/ClanAI/src/ClanAI/ClanAI.csproj
+`862572FB95812E19DABEEDF937128FD07EFFA2D5421D0AF47E7BC95B7A6611C2` Tests/LivingWorld/HomeAssignmentRuntime/NativeFixtures.cs
+`C23F274171DB2A331B227C1F200178EBE68C1E2FAF2135D984C43950C382F5A3` Tests/LivingWorld/HomeAssignmentRuntime/Program.cs
+`97BCAB4595815AD0DAF447FAED911AF708988A4D46B6C46C20ED7565D1A22485` Tests/LivingWorld/HomeAssignmentRuntime/HomeAssignmentRuntimeTests.csproj
+`B958748D4CDA7B1163588FC3B8D36F43276A77BE6CF815A6F96F60D6FA0515C5` README.md
+`F14CE9FCCD654D17075407A61133CA5AA4C7BB1D5BA4D80B0084BDDEC8201BC6` ROADMAP.md
+`A310A6F4CFA4AA7810D26E4EA8E449FFD4EC540FCA0D86061EA384CDBC3A216B` Reports/AgentStatus/CODEX_STATUS.md
+`F3E0818376046BC05C6D2A33E09E5A918342AC87D9AE205226C0E1E04A542EDA` Reports/LivingWorld/LW1C2_PERSISTENT_HOUSEHOLD_ROSTER.md
+`B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563` DevBuilds/ClanAI-v0.23.0-LW1C2-dev/ClanAI.dll

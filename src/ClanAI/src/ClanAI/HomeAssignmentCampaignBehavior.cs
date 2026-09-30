@@ -40,50 +40,66 @@ namespace ClanAI
             Settlement holding = Settlement.CurrentSettlement;
             if (!HomeAssignmentStore.ValidHome(holding)) return;
             var choices = new List<InquiryElement>();
-            foreach (var component in Clan.PlayerClan.WarPartyComponents)
+            foreach (Hero hero in HomeAssignmentRoster.Build(Clan.PlayerClan))
             {
-                MobileParty party = component.MobileParty;
-                if (!HomeAssignmentStore.Eligible(party)) continue;
-                Settlement home = HomeAssignmentStore.CurrentHome(party.LeaderHero);
-                choices.Add(new InquiryElement(party,
-                    party.LeaderHero.Name + " — " + (home == null ? "No assigned home" : home.Name.ToString()),
-                    null, true, party.Name.ToString()));
+                Settlement home = HomeAssignmentStore.CurrentHome(hero);
+                HomeAssignmentStatus status = HomeAssignmentRoster.Status(hero);
+                string homeName = home == null ? "No assigned home" : home.Name.ToString();
+                string title = HomeAssignmentRoster.DisplayName(hero) + " — Home: " + homeName;
+                string hint = HomeAssignmentRoster.Location(hero) + " — " + HomeAssignmentRoster.StatusText(status);
+                choices.Add(new InquiryElement(hero, title, null, true, hint));
             }
             if (choices.Count == 0)
             {
-                InformationManager.DisplayMessage(new InformationMessage("No eligible independent clan parties are available."));
+                InformationManager.DisplayMessage(new InformationMessage("No household members are available."));
                 return;
             }
             MBInformationManager.ShowMultiSelectionInquiry(new MultiSelectionInquiryData(
-                "Home Assignments", "Choose a clan party. Current holding: " + holding.Name,
+                "Household Home Responsibilities", "Current holding: " + holding.Name,
                 choices, true, 1, 1, "Select", "Cancel",
-                selected => { if (selected.Count == 1) ChooseAction((MobileParty)selected[0].Identifier, holding); },
+                selected => { if (selected.Count == 1) ChooseAction((Hero)selected[0].Identifier, holding); },
                 null));
         }
-        private static void ChooseAction(MobileParty party, Settlement holding)
+        private static void ChooseAction(Hero hero, Settlement holding)
         {
-            if (!HomeAssignmentStore.Eligible(party) || !HomeAssignmentStore.ValidHome(holding)) return;
-            var choices = new List<InquiryElement> {
-                new InquiryElement("assign", "Assign " + holding.Name, null, true, ""),
-                new InquiryElement("clear", "Clear assigned home", null,
-                    HomeAssignmentStore.CurrentHome(party.LeaderHero) != null, "")
-            };
+            if (!HomeAssignmentStore.ValidAssignedHero(hero)) return;
+            Settlement home = HomeAssignmentStore.CurrentHome(hero);
+            HomeAssignmentStatus status = HomeAssignmentRoster.Status(hero);
+            bool active = status == HomeAssignmentStatus.Active;
+            var choices = new List<InquiryElement>();
+            if (active)
+                choices.Add(new InquiryElement("assign", (home == null ? "Assign " : "Change home to ") + holding.Name, null, true, ""));
+            if (home != null)
+                choices.Add(new InquiryElement("clear", "Clear assigned home", null, true, ""));
+            if (choices.Count == 0)
+            {
+                InformationManager.DisplayMessage(new InformationMessage(
+                    HomeAssignmentRoster.DisplayName(hero) + ": " + HomeAssignmentRoster.StatusText(status) + "."));
+                return;
+            }
+            string actionHint = active ? "Choose a home responsibility action."
+                : HomeAssignmentRoster.StatusText(status) + ". You may clear the saved home.";
             MBInformationManager.ShowMultiSelectionInquiry(new MultiSelectionInquiryData(
-                party.LeaderHero.Name.ToString(), "Choose a home responsibility action.",
+                HomeAssignmentRoster.DisplayName(hero), actionHint,
                 choices, true, 1, 1, "Confirm", "Cancel", selected => {
-                    if (selected.Count != 1 || !HomeAssignmentStore.Eligible(party) ||
-                        !HomeAssignmentStore.ValidHome(holding)) return;
-                    string name = party.LeaderHero.Name.ToString();
-                    if ((string)selected[0].Identifier == "clear") {
-                        if (HomeAssignmentStore.Clear(party.LeaderHero.StringId))
+                    if (selected.Count != 1 || !HomeAssignmentStore.ValidAssignedHero(hero)) return;
+                    string action = (string)selected[0].Identifier;
+                    string name = HomeAssignmentRoster.DisplayName(hero);
+                    if (action == "clear")
+                    {
+                        if (HomeAssignmentStore.Clear(hero.StringId))
                             InformationManager.DisplayMessage(new InformationMessage(name + " no longer has an assigned home."));
-                    } else {
-                        Settlement old = HomeAssignmentStore.CurrentHome(party.LeaderHero);
-                        if (HomeAssignmentStore.Assign(party, holding))
-                            InformationManager.DisplayMessage(new InformationMessage(old == null
-                                ? name + " is now responsible for " + holding.Name + "."
-                                : name + "’s home responsibility has changed from " + old.Name + " to " + holding.Name + "."));
+                        return;
                     }
+                    MobileParty party = hero.PartyBelongedTo;
+                    if (action != "assign" || HomeAssignmentRoster.Status(hero) != HomeAssignmentStatus.Active ||
+                        party == null || !ReferenceEquals(party.LeaderHero, hero) ||
+                        !HomeAssignmentStore.Eligible(party) || !HomeAssignmentStore.ValidHome(holding)) return;
+                    Settlement previous = HomeAssignmentStore.CurrentHome(hero);
+                    if (HomeAssignmentStore.Assign(party, holding))
+                        InformationManager.DisplayMessage(new InformationMessage(previous == null
+                            ? name + " is now responsible for " + holding.Name + "."
+                            : name + "'s home responsibility has changed from " + previous.Name + " to " + holding.Name + "."));
                 }, null));
         }
     }

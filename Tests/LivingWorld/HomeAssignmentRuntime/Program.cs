@@ -10,7 +10,7 @@ class Program {
  static int count;
  static void Check(bool ok,string name){if(!ok)throw new Exception(name);count++;Console.WriteLine("PASS "+name);}
  static MobileParty Actor(string id) {
- var h=new Hero{StringId=id,Clan=Clan.PlayerClan};
+ var h=new Hero{StringId=id,Name=id,Clan=Clan.PlayerClan};
  var p=new MobileParty{StringId="party_"+id,LeaderHero=h,ActualClan=Clan.PlayerClan,MapFaction=Clan.PlayerClan};h.PartyBelongedTo=p;return p;
  }
  static Settlement Home(string id){return new Settlement{StringId=id,OwnerClan=Clan.PlayerClan,IsCastle=true};}
@@ -77,5 +77,101 @@ class Program {
  var recreated=Actor("b");recreated.LeaderHero=b.LeaderHero;b.LeaderHero.PartyBelongedTo=recreated;
  Check(HomeAssignmentStore.TryHome(recreated,out result)&&result==second,"party recreation retains hero identity");
  HomeAssignmentStore.BeginNewSession(false);Check(!HomeAssignmentStore.TryHome(recreated,out result),"new campaign resets static assignments");
+ HomeAssignmentStore.BeginNewSession(false);
+ Clan.PlayerClan.Heroes.Clear();Clan.PlayerClan.Companions.Clear();
+ var rosterActive=Actor("roster_active");rosterActive.LeaderHero.Name="Alrika";
+ var rosterSea=Actor("roster_sea");rosterSea.LeaderHero.Name="Biliya";
+ var rosterArmy=Actor("roster_army");rosterArmy.LeaderHero.Name="Mira";
+ var rosterPrisoner=Actor("roster_prisoner");rosterPrisoner.LeaderHero.Name="Prisoner";
+ var rosterNoParty=Actor("roster_no_party");rosterNoParty.LeaderHero.Name="NoParty";
+ var rosterHome=Home("roster_home");rosterHome.Name="Balgard";
+ Check(HomeAssignmentStore.Assign(rosterActive,rosterHome)&&HomeAssignmentStore.Assign(rosterSea,rosterHome)&&
+       HomeAssignmentStore.Assign(rosterArmy,rosterHome)&&HomeAssignmentStore.Assign(rosterPrisoner,rosterHome)&&
+       HomeAssignmentStore.Assign(rosterNoParty,rosterHome),"active eligible assignments created by party identity");
+ Clan.PlayerClan.Heroes.Add(rosterActive.LeaderHero);Clan.PlayerClan.Heroes.Add(rosterSea.LeaderHero);
+ Clan.PlayerClan.Heroes.Add(rosterArmy.LeaderHero);Clan.PlayerClan.Heroes.Add(rosterPrisoner.LeaderHero);
+ Clan.PlayerClan.Heroes.Add(rosterNoParty.LeaderHero);
+ rosterSea.IsCurrentlyAtSea=true;rosterArmy.Army=new object();rosterPrisoner.LeaderHero.IsPrisoner=true;
+ rosterNoParty.LeaderHero.PartyBelongedTo=null;
+ Check(!HomeAssignmentStore.Eligible(rosterSea)&&!HomeAssignmentStore.Eligible(rosterArmy)&&
+       !HomeAssignmentStore.Eligible(rosterPrisoner)&&!HomeAssignmentStore.Eligible(rosterNoParty.LeaderHero.PartyBelongedTo),"temporary states remain behavior-ineligible");
+ var roster=HomeAssignmentRoster.Build(Clan.PlayerClan);
+ Check(roster.Contains(rosterActive.LeaderHero)&&roster.Contains(rosterSea.LeaderHero)&&roster.Contains(rosterArmy.LeaderHero)&&
+       roster.Contains(rosterPrisoner.LeaderHero)&&roster.Contains(rosterNoParty.LeaderHero),"persistent roster includes active, sea, army, prisoner, and no-party heroes");
+ Check(HomeAssignmentRoster.Status(rosterActive.LeaderHero)==HomeAssignmentStatus.Active,"eligible active row status");
+ Check(HomeAssignmentRoster.Status(rosterSea.LeaderHero)==HomeAssignmentStatus.AtSea,"sea status suspended");
+ Check(HomeAssignmentRoster.Status(rosterArmy.LeaderHero)==HomeAssignmentStatus.InArmy,"army status suspended");
+ Check(HomeAssignmentRoster.Status(rosterPrisoner.LeaderHero)==HomeAssignmentStatus.Prisoner,"prisoner status suspended");
+ Check(HomeAssignmentRoster.Status(rosterNoParty.LeaderHero)==HomeAssignmentStatus.NoActiveParty,"no-party status suspended");
+ Check(HomeAssignmentStore.CurrentHome(rosterSea.LeaderHero)==rosterHome&&HomeAssignmentStore.CurrentHome(rosterArmy.LeaderHero)==rosterHome&&
+       HomeAssignmentStore.CurrentHome(rosterPrisoner.LeaderHero)==rosterHome&&HomeAssignmentStore.CurrentHome(rosterNoParty.LeaderHero)==rosterHome,
+       "sea, army, prisoner, and no-party preserve saved home");
+ Check(HomeAssignmentStore.Clear(rosterSea.LeaderHero.StringId)&&HomeAssignmentStore.CurrentHome(rosterSea.LeaderHero)==null,"selected unavailable-row clear by Hero.StringId");
+ Check(HomeAssignmentStore.Assign(rosterActive,second)&&HomeAssignmentStore.CurrentHome(rosterActive.LeaderHero)==second&&
+       HomeAssignmentStore.Assign(rosterActive,rosterHome)&&HomeAssignmentStore.CurrentHome(rosterActive.LeaderHero)==rosterHome,
+       "eligible party assignment change follows Hero.StringId");
+ var neverParty=Actor("no_party_never_assigned");neverParty.LeaderHero.PartyBelongedTo=null;
+ Check(!HomeAssignmentStore.Assign(neverParty,rosterHome)&&HomeAssignmentStore.CurrentHome(neverParty.LeaderHero)==null,
+       "no dormant assignment created without an eligible party");
+ var roleChanged=Actor("role_changed");Check(HomeAssignmentStore.Assign(roleChanged,rosterHome),"assigned hero before roster role change");
+ roleChanged.LeaderHero.IsLord=false;roleChanged.LeaderHero.IsPlayerCompanion=false;roleChanged.LeaderHero.PartyBelongedTo=null;
+ var roleRoster=HomeAssignmentRoster.Build(Clan.PlayerClan);
+ Check(roleRoster.Contains(roleChanged.LeaderHero)&&HomeAssignmentStore.CurrentHome(roleChanged.LeaderHero)==rosterHome,
+       "assigned alive clan member remains visible without party or current lord role");
+ var dead=Actor("dead_hero");Check(HomeAssignmentStore.Assign(dead,rosterHome),"dead invalidation setup");
+ Clan.PlayerClan.Heroes.Add(dead.LeaderHero);dead.LeaderHero.IsAlive=false;
+ var alien=Actor("out_of_clan");Check(HomeAssignmentStore.Assign(alien,rosterHome),"out-of-clan invalidation setup");
+ Clan.PlayerClan.Heroes.Add(alien.LeaderHero);alien.LeaderHero.Clan=new Clan();
+ var invalidRoster=HomeAssignmentRoster.Build(Clan.PlayerClan);
+ Check(!invalidRoster.Contains(dead.LeaderHero)&&!HomeAssignmentStore.Records.TryGet("dead_hero",out id),"dead hero excluded and assignment invalidated");
+ Check(!invalidRoster.Contains(alien.LeaderHero)&&!HomeAssignmentStore.Records.TryGet("out_of_clan",out id),"out-of-clan hero excluded and assignment invalidated");
+ var lostHome=Home("lost_home");var lostLeader=Actor("lost_home_leader");
+ Check(HomeAssignmentStore.Assign(lostLeader,lostHome),"lost holding invalidation setup");lostHome.OwnerClan=new Clan();
+ HomeAssignmentStore.InvalidateOwnership();
+ Check(!HomeAssignmentStore.Records.TryGet("lost_home_leader",out id),"foreign or lost holding invalidates assignment");
+ var main=Actor("main_hero");Hero.MainHero=main.LeaderHero;Clan.PlayerClan.Heroes.Add(main.LeaderHero);
+ var child=Actor("child_hero");child.LeaderHero.Age=12;Clan.PlayerClan.Heroes.Add(child.LeaderHero);
+ var template=Actor("template_hero");template.LeaderHero.IsTemplate=true;Clan.PlayerClan.Heroes.Add(template.LeaderHero);
+ var specialRoster=HomeAssignmentRoster.Build(Clan.PlayerClan);
+ Check(!specialRoster.Contains(main.LeaderHero),"main hero excluded from household roster");
+ Check(!specialRoster.Contains(child.LeaderHero)&&!specialRoster.Contains(template.LeaderHero),"children and templates excluded from household roster");
+ Hero.MainHero=null;
+ var orderA=Actor("sort_b");orderA.LeaderHero.Name="Same";
+ var orderB=Actor("sort_a");orderB.LeaderHero.Name="Same";
+ var orderC=Actor("sort_z");orderC.LeaderHero.Name="Alpha";
+ Clan.PlayerClan.Heroes.Add(orderA.LeaderHero);Clan.PlayerClan.Heroes.Add(orderB.LeaderHero);Clan.PlayerClan.Companions.Add(orderC.LeaderHero);
+ var ordered=HomeAssignmentRoster.Build(Clan.PlayerClan);
+ Check(ordered.IndexOf(orderC.LeaderHero)<ordered.IndexOf(orderB.LeaderHero)&&ordered.IndexOf(orderB.LeaderHero)<ordered.IndexOf(orderA.LeaderHero),
+       "display name then StringId sort is ordinal and deterministic");
+ var disbanding=Actor("disband_status");disbanding.IsDisbanding=true;
+ var attached=Actor("attached_status");attached.AttachedTo=new object();
+ var stopped=Actor("stopped_status");stopped.Ai.IsDisabled=true;
+ var battle=Actor("battle_status");battle.MapEvent=new object();
+ var other=Actor("other_status");other.IsCaravan=true;
+ Check(HomeAssignmentRoster.Status(disbanding.LeaderHero)==HomeAssignmentStatus.Disbanding,"disbanding status");
+ Check(HomeAssignmentRoster.Status(attached.LeaderHero)==HomeAssignmentStatus.Attached,"attached status");
+ Check(HomeAssignmentRoster.Status(stopped.LeaderHero)==HomeAssignmentStatus.AiStopped,"stopped AI status");
+ Check(HomeAssignmentRoster.Status(battle.LeaderHero)==HomeAssignmentStatus.InBattleOrSiege,"battle status");
+ Check(HomeAssignmentRoster.Status(other.LeaderHero)==HomeAssignmentStatus.OtherTemporaryUnavailable,"other temporary status");
+ var target=Home("target_settlement");target.Name="Omor";
+ rosterActive.CurrentSettlement=null;rosterActive.TargetSettlement=target;
+ Check(HomeAssignmentRoster.Location(rosterActive.LeaderHero)=="Traveling toward Omor","safe direct target location");
+ rosterActive.CurrentSettlement=rosterHome;
+ Check(HomeAssignmentRoster.Location(rosterActive.LeaderHero)=="Balgard","party current settlement location takes precedence");
+ rosterNoParty.LeaderHero.CurrentSettlement=target;
+ Check(HomeAssignmentRoster.Location(rosterNoParty.LeaderHero)=="Omor","hero settlement used when party is absent");
+ Check(HomeAssignmentRoster.StatusText(HomeAssignmentStatus.AtSea).Contains("suspended"),"unavailable status explains suspended responsibility");
+ string rosterSource=System.IO.File.ReadAllText("src/ClanAI/src/ClanAI/HomeAssignmentRoster.cs");
+ string layerSource=System.IO.File.ReadAllText("src/ClanAI/src/ClanAI/HomeAssignmentLayer.cs");
+ string behaviorSource=System.IO.File.ReadAllText("src/ClanAI/src/ClanAI/HomeAssignmentCampaignBehavior.cs");
+ Check(!rosterSource.Contains("Hero.All")&&!rosterSource.Contains("MobileParty.All")&&
+       !rosterSource.Contains("Settlement.All")&&!rosterSource.Contains("GetAll")&&
+       rosterSource.Contains("clan.Heroes")&&rosterSource.Contains("clan.Companions")&&
+       rosterSource.Contains("MaximumRows = HomeAssignmentRecords.MaximumRows"),
+       "bounded roster uses only direct clan collections, with no global scans");
+ Check(!layerSource.Contains("HomeAssignmentRoster")&&behaviorSource.Contains("HomeAssignmentRoster.Build(Clan.PlayerClan)")&&
+       behaviorSource.Contains("DisplayName(hero)")&&behaviorSource.Contains("Home: ")&&
+       behaviorSource.Contains("StatusText(status)"),
+       "menu-demand roster rows show name, home, and status outside unchanged AI layer");
  Console.WriteLine("TOTAL "+count+" PASS");
  }}

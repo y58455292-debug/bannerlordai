@@ -495,7 +495,7 @@ LW0 — Living World Direction documentation checkpoint: **COMPLETE**. No gamepl
 
 | Order | Milestone | Status |
 |---|---|---|
-| LW1 | Persistent Home Assignment / Peacetime Responsibility | **LW1-B IMPLEMENTED + TESTED + RELEASE BUILD READY; runtime not yet tested; LW1-C next** |
+| LW1 | Persistent Home Assignment / Peacetime Responsibility | **LW1-C2 implementation + tests + netstandard2.0 Release build complete; runtime not yet tested** |
 | LW2 | Governor Local-Need Response | Planned; not implemented |
 | LW3 | Household Autonomy | Planned; not implemented |
 | LW4 | Purposeful Logistics | Planned; not implemented |
@@ -509,9 +509,11 @@ LW0 — Living World Direction documentation checkpoint: **COMPLETE**. No gamepl
 
 Persistence/UI/performance designs from LW1-A remain selected. Existing war Home Responsibility remains unchanged and stronger during war/urgent threats.
 
+**LW1-C2: COMPLETE, 2026-09-30 UTC - implementation, deterministic validation, and actual target-framework Release build.** The bounded household roster keeps valid assigned heroes visible through temporary party states while retaining strict behavior eligibility and D1 persistence. Focused tests pass (68 roster/runtime, 43 persistence policy, 10 Phase 3). `netstandard2.0` Release build has 0 errors and 1 inherited `System.ValueTuple` warning. Candidate SHA-256: `B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563`. Runtime remains **NOT YET TESTED**. See [LW1-C2 report and evidence](Reports/LivingWorld/LW1C2_PERSISTENT_HOUSEHOLD_ROSTER.md).
+
 **LW1-B: COMPLETE, 2026-09-30 UTC — implemented, deterministically tested, Release build ready for deployment.** Multiple Hero.StringId → Settlement.StringId homes, owned town/castle menu, isolated D1 save key, legal native visit exposure, exact-home factor 1.25, counters and observation-only verification are implemented. Existing Phase 3 war Home Responsibility and frozen RC1 bytes are unchanged. Live assignment/menu/save/reload/movement proof is **NOT YET TESTED**. See [LW1-B implementation](Reports/LivingWorld/LW1B_HOME_ASSIGNMENT_IMPLEMENTATION.md).
 
-**Exact next checkpoint: LW1-C — deploy the LW1-B dev candidate and run the bounded playable Home Assignment demo/runtime proof.** Prove distinct homes, ordinary peacetime native centering/return, natural temporary activity (bounded null permitted), and uniquely named disposable save/reload. Do not begin LW2.
+**Exact next checkpoint: LW1-C3 - deploy persistent-roster dev candidate, verify stable names/statuses in player's organic campaign, finish bounded runtime/save-reload closure.** Runtime must remain bounded, use the organic campaign, and include save/reload closure. Do not begin LW2.
 
 ---
 
@@ -546,6 +548,4 @@ Do not collapse these into a single "working" label.
 - **Kingdoms and dynasties may change; culture persists.**
 - **Evidence serves gameplay, not the other way around.**
 - **The first integrated demo comes before perfection of every remaining research problem.**
-
-
 

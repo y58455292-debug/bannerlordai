@@ -20,11 +20,13 @@ namespace TaleWorlds.CampaignSystem {
  public class Clan:IFaction {
  public static Clan PlayerClan=new Clan();
  public List<IFaction> FactionsAtWarWith{get;}=new List<IFaction>();
+ public List<Hero> Heroes{get;}=new List<Hero>();
+ public List<Hero> Companions{get;}=new List<Hero>();
  public bool IsBanditFaction{get;set;} public bool IsOutlaw{get;set;}
  }
  public class Hero {
  public static Hero MainHero;
- public string StringId; public Clan Clan; public float Age=30;
+ public string StringId; public string Name; public Clan Clan; public float Age=30; public Settlements.Settlement CurrentSettlement;
  public bool IsHumanPlayerCharacter,IsTemplate,IsPrisoner;
  public bool IsAlive=true,IsLord=true,IsPlayerCompanion,IsActive=true;
  public Party.MobileParty PartyBelongedTo;
@@ -46,7 +48,7 @@ namespace TaleWorlds.CampaignSystem.CampaignBehaviors {
  public interface IDisbandPartyCampaignBehavior { bool IsPartyWaitingForDisband(Party.MobileParty p); }
 }
 namespace TaleWorlds.CampaignSystem.Settlements {
- public class Settlement {public string StringId; public bool IsTown,IsCastle,IsUnderSiege,IsUnderRaid; public CampaignSystem.Clan OwnerClan;}
+ public class Settlement {public string StringId; public string Name; public bool IsTown,IsCastle,IsUnderSiege,IsUnderRaid; public object SiegeEvent; public CampaignSystem.Clan OwnerClan;}
 }
 namespace TaleWorlds.CampaignSystem.Party {
  public class PartyAi {public bool IsDisabled,DoNotMakeNewDecisions;}
@@ -58,6 +60,7 @@ namespace TaleWorlds.CampaignSystem.Party {
  public CampaignSystem.Clan ActualClan;
  public CampaignSystem.IFaction MapFaction;
  public CampaignSystem.Hero LeaderHero;
+ public Settlements.Settlement CurrentSettlement;
  public string StringId;
  public PartyAi Ai=new PartyAi();
  public NavigationType NavigationCapability=NavigationType.Default;
