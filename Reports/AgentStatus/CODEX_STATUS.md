@@ -12,7 +12,8 @@
 - No v0.1 deployment, game launch or save action occurred. Do not deploy while the user's current game may be running.
 - Diagnostic access is automatic only in the Evidence runtime profile; there is no public on-demand command. The package defaults to Release and does not ship RuntimeProfile.cfg. The corrected Evidence opt-in, restart/cache behavior, output paths and broader telemetry side effects are in the package runbook.
 - Corrected package ZIP SHA-256: `E9A8CDDB4A8217CCA30E208A61E4172E45B1823752A0F8865DB2D42FD5F13612`; DLL bytes and SHA remain unchanged.
-- Report/evidence: [border checkpoint](../LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md), [validation receipt](../LivingWorld/evidence/thematrix_v0_1_border_destination_filter_20260930.txt), [diagnostic/runbook correction receipt](../LivingWorld/evidence/thematrix_v0_1_diagnostics_runbook_20260930.txt), and package [runbook](../../DevBuilds/THEMATRIX-v0.1.0-border-filter-dev/DEMO_RUNBOOK.md).
+- Exact installed v1.5.3 route-query inspection found no safe bounded candidate-specific route/sovereignty seam. No route code was added. Current next gate is an API with bounded route geometry and native fallback proof, or an explicit decision on approximate land control-zone semantics; see route safety evidence.
+- Report/evidence: [border checkpoint](../LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md), [validation receipt](../LivingWorld/evidence/thematrix_v0_1_border_destination_filter_20260930.txt), [diagnostic/runbook correction receipt](../LivingWorld/evidence/thematrix_v0_1_diagnostics_runbook_20260930.txt), [route-query safety receipt](../LivingWorld/evidence/native/native_route_query_safety_20260930.txt), and package [runbook](../../DevBuilds/THEMATRIX-v0.1.0-border-filter-dev/DEMO_RUNBOOK.md).
 
 ## Restored LW1-C3 deployment and disposable-save status
 

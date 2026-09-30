@@ -1,0 +1,24 @@
+THEMATRIX v0.1 — EXACT v1.5.3 ROUTE-QUERY SAFETY INSPECTION
+date_utc=2026-09-30
+source_context=read-only targeted inspection of installed Bannerlord v1.5.3 retained native_project
+campaign_system_dll_sha256=5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+gameplay_code_changed=no
+
+VERIFIED NATIVE SURFACES
+- MobileParty.Path and PathBegin (MobileParty.cs 255-266, 3838-3857) expose passive reads of the currently active route. They do not compute a hypothetical route for each settlement candidate.
+- MobileParty.ComputePath is private and mutates live movement state; it is not a safe probe and will not be called by this feature.
+- IMapScene.GetPathBetweenAIFaces can fill a fresh NavigationPath without changing party state (IMapScene.cs 28-38), but has no distance/work-budget argument. Only call count can be bounded; worst-case work was not established.
+- GetPathDistanceBetweenAIFaces accepts a distanceLimit but returns a scalar distance, not route waypoints/face sequence. Its excludedFaceIds in the native caller correspond to invalid terrain IDs tested against FaceGroupIndex, not political FaceIndex values.
+- DefaultPartyNavigationModel (41-71) uses native navigation semantics; mixed land/sea routes involve transition/radius/switch-cost behavior. This inspection did not establish a kingdom-aware sea/land crossing representation or sovereign ocean ownership.
+- Settlement.StartFindingLocatablesAroundPosition and FindNextLocatable (Settlement.cs 1178-1185; LocatorGrid.cs 126-172) enumerate nearby settlements. They do not return political polygons or sovereign ownership of a route face. A nearest-settlement control zone would be an explicit geographic heuristic and may misclassify boundaries, gaps and routes.
+
+IMPLEMENTATION DECISION
+- No route-crossing filter was added. The existing visit-candidate hook receives settlement candidates, while MobileParty.Path describes the party's already-active route; the inspected API does not safely provide a bounded candidate-specific path to test.
+- A fresh full-path query per candidate is not acceptable: it is unbudgeted, can multiply across candidates and eligible parties, and has no measured worst-case cost. The distance-limited query cannot say which territory a path crosses.
+- Nearest-settlement lookup does not resolve ownership for every land point and must not reassign an enclave or imply that an owned destination grants passage through surrounding foreign holdings. Open sea remains unknown.
+- A path filter would also need proof of native candidate fallback/reselection and no-stall behavior. The existing empty candidate list has no guaranteed alternate action, so route pruning could strand a party; no such runtime proof exists.
+
+NEXT GATE
+- Keep v0.1 honestly limited to default-open, explicitly directed lord settlement-visit destination filtering; no physical border-crossing enforcement is implemented or runtime-tested.
+- Before route enforcement, acquire a native seam that ties a bounded route to the candidate and expose safe cost/failure behavior, or obtain an explicit product decision to adopt an approximate land control-zone rule with stated boundary, enclave, sea/unknown and fail-open semantics. Any new implementation must add deterministic tests and runtime no-stall/performance evidence before a demo claim.
+- No game launch, deployment, save operation, movement call, custom grid, or RC1 modification occurred during this inspection.

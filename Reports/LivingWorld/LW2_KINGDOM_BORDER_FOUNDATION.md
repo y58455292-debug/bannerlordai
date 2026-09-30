@@ -40,12 +40,13 @@ Public module display text is `THEMATRIX`. `SubModule.xml` internal `<Id>ClanAI<
 
 ## Next bounded work
 
-1. Verify a native route/entry seam with callsite and loop-safety evidence; destination filtering must not be described as route enforcement.
-2. Resolve native actor affiliation for villagers and caravans, plus safe exceptions for war/allied/independent parties, already-inside actors, exits, and transit.
-3. Add an in-game bounded demonstration of the existing lord-party destination filter only after a coordinated deployment; observe no stuck loops and preserve save safety.
-4. Then determine whether native APIs support genuine route/frontier enforcement without direct movement hacks; keep sea/open water unknown until supported ownership semantics are proven.
-5. Treat convoys and downstream trade/resource effects as later work. Foreign trade agreements require diplomacy votes; vanilla clan income remains unchanged.
+1. Route query safety for the installed v1.5.3 APIs is now documented. Passive MobileParty.Path reads cover only the active route; fresh IMapScene.GetPathBetweenAIFaces has no distance/work budget; distance-limited path query has no waypoints.
+2. No route-crossing implementation is approved by the current evidence. Do not add an unbounded hypothetical path query per candidate or treat nearest-settlement proximity as actual sovereignty.
+3. Any future route work must first resolve candidate-to-path association, bounded cost and sampling, enclave/unknown/sea handling, and native fallback/no-stall behavior. If an inferred land control zone is proposed, its radius/boundary semantics require an explicit policy decision and must fail open when ambiguous.
+4. Villager/caravan actor affiliation, convoy handling, trade agreements and downstream resource effects remain later work. Foreign trade agreements require diplomacy votes; vanilla clan income remains unchanged.
+
+Route-query inspection: [v1.5.3 route safety evidence](evidence/native/native_route_query_safety_20260930.txt).
 
 **Border crossing behavior: NOT IMPLEMENTED. THEMATRIX v0.1 limited developer demo: settlement visit-destination filter only; in-game behavior and no-stall fallback remain unverified.**
 
-Validation receipt: [THEMATRIX v0.1 closed-border destination-filter validation](evidence/thematrix_v0_1_border_destination_filter_20260930.txt). Package diagnostic-access correction: [runbook correction receipt](evidence/thematrix_v0_1_diagnostics_runbook_20260930.txt).
+Validation receipt: [THEMATRIX v0.1 closed-border destination-filter validation](evidence/thematrix_v0_1_border_destination_filter_20260930.txt). Package diagnostic-access correction: [runbook correction receipt](evidence/thematrix_v0_1_diagnostics_runbook_20260930.txt). Route-query safety: [v1.5.3 inspection receipt](evidence/native/native_route_query_safety_20260930.txt).

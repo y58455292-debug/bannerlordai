@@ -496,7 +496,7 @@ LW0 — Living World Direction documentation checkpoint: **COMPLETE**. No gamepl
 | Order | Milestone | Status |
 |---|---|---|
 | LW1 | Persistent Home Assignment / Peacetime Responsibility | **LW1-C2 implemented, built, and installed as dev candidate; menu presence observed by player; stable roster/save-reload/movement proof remains incomplete** |
-| LW2 | Kingdom-Wide Border Awareness and Closure | **THEMATRIX v0.1 limited developer package built/tested; native lord settlement-visit candidate filter only; runtime and route enforcement unverified** |
+| LW2 | Kingdom-Wide Border Awareness and Closure | **THEMATRIX v0.1 limited developer package built/tested; native lord settlement-visit candidate filter only; runtime and route enforcement unverified. v1.5.3 path-query safety inspected; no bounded candidate-specific route/sovereignty seam established** |
 | LW3 | Household Autonomy | Planned; not implemented |
 | LW4 | Purposeful Logistics | Planned; not implemented |
 | LW5 | Kingdom Service Requests | Planned; not implemented |
@@ -517,7 +517,7 @@ Persistence/UI/performance designs from LW1-A remain selected. Existing war Home
 
 LW1-C3 deployment of the C2 dev candidate and preparation of a byte-identical disposable campaign copy are complete, with rollback and save receipts retained. The player observed the Home Assignment menu and described its presentation as messy; stable roster/statuses, AI movement, and save/reload remain unverified. Do not modify the current game. The user's next behavior priority is kingdom-wide borders. THEMATRIX v0.1 is now a separately built, default-open developer package for filtering closed settlements from eligible NPC lord parties' native visit candidates. It does not enforce route crossings, arrivals, or other actor types; empty-list alternate-action and no-stall behavior are not proven. The package is not deployed. Foreign trade agreements require kingdom-wide diplomacy votes, domestic trade remains unrestricted, and vanilla clan income stays unchanged. See [LW2 Kingdom Border Foundation](Reports/LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md) and [C3 deployment status](Reports/LivingWorld/LW1C3_DEPLOYMENT_STATUS.md).
 
-**Current documentation checkpoint:** correct the package runbook's diagnostic instructions to use the existing Evidence runtime profile (no public on-demand command) and clarify archive installation layout. Do not deploy or launch the game.
+**Completed documentation checkpoint (2026-09-30):** corrected the package runbook to use the existing Evidence runtime profile (no public on-demand command), clarified archive installation layout, and verified manifest/ZIP hashes. **Route feasibility checkpoint:** exact installed v1.5.3 route-query safety was inspected. Active Path is a passive current-route read; full-path query lacks work budget, distance query has no waypoints, terrain face groups are not political territories, and settlement locatables are not sovereignty. No route enforcement was added. Next gate: obtain a bounded candidate-specific native route/sovereignty seam and prove fallback/no-stall, or request explicit approval for a clearly approximate land-zone policy. Do not deploy or launch the game.
 
 ---
 
