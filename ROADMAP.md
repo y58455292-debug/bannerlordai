@@ -495,8 +495,8 @@ LW0 — Living World Direction documentation checkpoint: **COMPLETE**. No gamepl
 
 | Order | Milestone | Status |
 |---|---|---|
-| LW1 | Persistent Home Assignment / Peacetime Responsibility | **LW1-C2 implementation/tests/Release build complete; exact dev candidate deployed to installed module; organic runtime/save-reload proof pending** |
-| LW2 | Kingdom-Wide Border Awareness and Closure | Foundation classifier implemented; route enforcement not implemented |
+| LW1 | Persistent Home Assignment / Peacetime Responsibility | **LW1-C2 implementation + tests + netstandard2.0 Release build complete; runtime not yet tested** |
+| LW2 | Kingdom-Wide Border Awareness and Closure | Foundation classifier in progress; route enforcement not implemented |
 | LW3 | Household Autonomy | Planned; not implemented |
 | LW4 | Purposeful Logistics | Planned; not implemented |
 | LW5 | Kingdom Service Requests | Planned; not implemented |
@@ -513,11 +513,9 @@ Persistence/UI/performance designs from LW1-A remain selected. Existing war Home
 
 **LW1-B: COMPLETE, 2026-09-30 UTC — implemented, deterministically tested, Release build ready for deployment.** Multiple Hero.StringId → Settlement.StringId homes, owned town/castle menu, isolated D1 save key, legal native visit exposure, exact-home factor 1.25, counters and observation-only verification are implemented. Existing Phase 3 war Home Responsibility and frozen RC1 bytes are unchanged. Live assignment/menu/save/reload/movement proof is **NOT YET TESTED**. See [LW1-B implementation](Reports/LivingWorld/LW1B_HOME_ASSIGNMENT_IMPLEMENTATION.md).
 
-**LW1-C3 deployment, 2026-09-30 UTC:** Exact `v0.23.0-LW1C2-dev` candidate is installed in the verified Steam `Modules/ClanAI` module with a verified pre-deployment DLL/metadata backup. Game remains closed; no campaign or save was opened or changed. Runtime roster and save/reload proof remain pending. See [LW1-C3 deployment status](Reports/LivingWorld/LW1C3_DEPLOYMENT_STATUS.md) and [deployment receipt](Reports/LivingWorld/evidence/lw1c3_deployment_20260930.txt).
+**Exact next checkpoint: LW1-C3 - deploy persistent-roster dev candidate, verify stable names/statuses in player's organic campaign, finish bounded runtime/save-reload closure.** Runtime must remain bounded, use the organic campaign, and include save/reload closure. Do not begin LW2.
 
-**Exact next checkpoint: LW1-C3 - verify stable names/statuses in player's organic campaign, finish bounded runtime/save-reload closure.** Runtime must remain bounded, use the organic campaign, and include save/reload closure. Do not begin LW2.
-
-The latest user direction supersedes that older next-step line: kingdom-wide borders are the first new AI behavior priority. LW1-C3 organic roster/save-reload closure remains deferred, not passed. Governor Local-Need Response is deferred behind border work. Border policy is open by default and directional; only explicit kingdom-to-kingdom closure may affect passage. The current foundation does not enforce travel or resource effects. See [LW2 Kingdom Border Foundation](Reports/LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md).
+The latest user direction supersedes that older next-step line: kingdom-wide borders are the first new AI behavior priority. LW1-C3 organic roster/save-reload closure remains deferred, not passed. Governor Local-Need Response is deferred behind border work. The v0.1 dev slice filters explicitly closed foreign settlement destinations from native visit candidates for ordinary non-player kingdom lord parties; it does not block travel-route crossings, entry, villagers, caravans, trade, or diplomacy. Policy remains directional and default-open. See [LW2 Kingdom Border Foundation](Reports/LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md).
 
 ---
 
@@ -552,4 +550,3 @@ Do not collapse these into a single "working" label.
 - **Kingdoms and dynasties may change; culture persists.**
 - **Evidence serves gameplay, not the other way around.**
 - **The first integrated demo comes before perfection of every remaining research problem.**
-

@@ -39,10 +39,20 @@ namespace ClanAI
         private static void Postfix(MobileParty __0, object __1)
         {
             HomeAssignmentCounters.RetentionEvaluations++;
+            IList list = __1 as IList;
+            if (list != null)
+            {
+                for (int i = list.Count - 1; i >= 0; i--)
+                {
+                    object candidateRow = list[i];
+                    Settlement candidate = candidateRow == null ? null : RowSettlement.GetValue(candidateRow) as Settlement;
+                    if (KingdomBorderClosureConfig.BlocksVisit(__0, candidate)) list.RemoveAt(i);
+                }
+            }
             Settlement home;
             if (!HomeAssignmentStore.TryHome(__0, out home) ||
+                KingdomBorderClosureConfig.BlocksVisit(__0, home) ||
                 !HomeAssignmentStore.Eligible(__0) || !HomeAssignmentStore.Peace(__0) || HomeAssignmentStore.Urgent(__0, home)) return;
-            IList list = __1 as IList;
             if (list == null) return;
             foreach (object row in list)
                 if (ReferenceEquals(RowSettlement.GetValue(row), home)) return;

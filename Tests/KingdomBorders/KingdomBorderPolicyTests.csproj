@@ -12,4 +12,3 @@
     <Compile Include="../../src/ClanAI/src/ClanAI/KingdomBorderPolicy.cs" Link="KingdomBorderPolicy.cs" />
   </ItemGroup>
 </Project>
-

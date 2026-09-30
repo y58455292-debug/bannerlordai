@@ -14,6 +14,7 @@ namespace ClanAI
         private bool _loaded;
         public override void RegisterEvents()
         {
+            KingdomBorderClosureConfig.Load();
             HomeAssignmentVisitPatch.Install();
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSession);
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, OnDaily);

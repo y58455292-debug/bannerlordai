@@ -1,44 +1,37 @@
-## Current checkpoint - THEMATRIX kingdom border foundation
+# Codex Status
 
-**FOUNDATION IMPLEMENTED; 10 deterministic cases, preservation suites, and installed-game Release compile pass. No runtime border behavior is claimed.**
+## Current checkpoint - THEMATRIX v0.1 bounded lord-party border destination filter
 
-- User priority: kingdom-wide political borders. Passage is open by default; only explicit directional kingdom closure can classify a foreign kingdom destination as closed.
-- `KingdomBorderPolicy` classifies a supplied settlement destination from live kingdom/owner identifiers; it does not discover land control zones, inspect routes, or change native movement. Isolated fiefs use actual current ownership; independent/missing affiliations remain distinct; sea/open water is unknown.
-- Tests: border 10 PASS; Home Assignment persistence/policy 43 PASS; roster/native adapter 68 PASS; Phase 3 Home Responsibility 10 PASS. These do not prove border behavior.
-- Intended actors: lord parties, villagers, caravans; convoys tentative. Actor-specific ownership, war/alliance/independent exceptions, already-inside/exit behavior, and route semantics remain pending.
-- Public display name is THEMATRIX. Internal module ID, DLL/assembly/namespace and persistent keys remain ClanAI. RC1 is unchanged.
-- Domestic trade remains unrestricted; foreign trade requires future kingdom-wide diplomacy-voted agreements. Vanilla clan income distribution remains unchanged. Treaty-only versus broader ruler economic controls are not implemented. Passage and market access are separate.
-- Traceable scarcity/prosperity, aid/neglect and war/hunger/fief/family/property/relationship memories affecting loyalty/defection remain future work; no arbitrary resource grants/deletion or double-counting native effects.
-- Next: verify exact installed v1.5.3 actor, route, and sea APIs; select a route-aware native seam; implement a bounded travel response with no stuck loops/teleports. No direct movement override or economic/resource mutation.
-- LW1-C3 campaign roster/save-reload closure remains deferred and unverified, not passed. Player saw the menu and described its presentation as messy; no AI movement proof is inferred.
+**IMPLEMENTED + FOCUSED TESTS + netstandard2.0 RELEASE BUILD PASS. IN-GAME RUNTIME NOT TESTED.**
+
+- User priority: kingdom-wide political borders. Passage is open by default; only an explicit directional kingdom closure can classify a foreign kingdom destination as closed.
+- `KingdomBorderPolicy` reads one supplied settlement and current kingdom IDs. `KingdomBorderClosureConfig` optionally blocks explicitly closed foreign destinations from Bannerlord's existing native visit-candidate list for ordinary non-player kingdom lord parties. Config is empty/default-open and manually supplied for developer demonstration; it is not a gameplay vote or campaign setting.
+- This is settlement-destination filtering only. It does not classify territory between destinations, avoid route crossings, veto entry, or affect villagers/caravans/convoys. War parties/armies, caravans, player parties, non-lords, independent clans and unknown affiliations are passed through. Already selected routes are not forcibly cancelled.
+- Tests: `Tests/KingdomBorders` - 14 policy cases PASS; `Tests/LivingWorld/HomeAssignmentRuntime` - 70 adapter/runtime-fixture checks PASS including closed/open/home candidate behavior; `Tests/LivingWorld/HomeAssignment` - 43 PASS; Phase 3 Home Responsibility - 10 PASS.
+- Foreign trade agreements require kingdom-wide diplomacy votes; domestic trade remains unrestricted and vanilla income distribution to clans is unchanged. Economy, trade authorization and voting remain future work. Convoys remain tentative.
+- Dev build: `v0.1.0-THEMATRIX-dev`; SHA-256 `A3CBE69032978D0D6535D1E8080E1494D40EB303B770AC4F571BEEC4610E5214`. Release `netstandard2.0` build: 0 errors, 1 inherited `System.ValueTuple` MSB3277 warning. Not deployed; no game launched.
+- Public display name is THEMATRIX. Internal module ID, DLL/assembly/namespace, and persistent keys remain ClanAI. RC1 is untouched.
+- Next: establish a callsite-safe native route/entry rule, actor affiliation for villagers/caravans and transit exceptions before claiming frontier enforcement. Coordinate an in-game test of this dev filter separately. Resource/trade pressure follows verified native flows only.
+- LW1-C3 campaign roster/save-reload closure remains deferred and unverified, not passed. The home menu was observed by the player; its presentation was described as messy. No AI movement proof is inferred.
 
 Report: [LW2_KINGDOM_BORDER_FOUNDATION.md](../LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md).
 
-# Codex Status
+## Current checkpoint - LW1-C2 Persistent Household Responsibility Roster
 
-## Current checkpoint - LW1-C3 Persistent Roster Deployment
+**IMPLEMENTATION + FOCUSED TESTS + GAME-TARGET RELEASE BUILD COMPLETE, 2026-09-30 UTC. Runtime is not yet tested.**
 
-**DEPLOYMENT COMPLETE, 2026-09-30 UTC. Runtime roster/save-reload verification is pending.**
+- Exact source base: GitHub `main` commit `5b9e47b2813373fe0b03bae58d41c88a8dfcff83`; materialized source was verified against its Git tree. The separate legacy checkout `D:\BannerlordAIResearch` was left untouched.
+- The owned-town/castle Manage Home Assignments menu now uses a bounded roster from direct player-clan hero/companion collections plus valid assigned identities. Temporary states stay visible with explicit suspended-responsibility statuses; active behavior still uses the original strict `Eligible` predicate.
+- Stable `Hero.StringId` identity, D1 schema, `ClanAI_HomeAssignment_v1`, 1.25 policy factor, native visit seam, and Phase 3 war Home Responsibility remain unchanged. RC1 package/archive bytes were not written.
+- Focused deterministic suites: **68 roster/runtime PASS, 43 persistence/D1 PASS, 10 Phase 3 preservation PASS**.
+- `NETStandard.Library` 2.0.3 was found in the signed-in user's NuGet cache, verified via package metadata/hash sidecar, and restored through a read-only local feed into the task-local cache.
+- Required actual `netstandard2.0` Release build: **0 errors, 1 inherited MSB3277 `System.ValueTuple` reference-conflict warning**. Focused API compile also passes.
+- Dev candidate: `DevBuilds/ClanAI-v0.23.0-LW1C2-dev/ClanAI.dll`, SHA-256 **`B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563`**.
+- Acceptance audit maps all 25 requested cases to deterministic assertions and static baseline checks in the report. RC1 artifacts, D1 key/schema, factor 1.25, visit seam, and Phase 3 sources remain unchanged.
+- Runtime: **NOT YET TESTED**. Bannerlord launched: **NO**. Deployed: **NO**. No campaign/save activity.
+- Report: [LW1-C2 persistent household roster](../LivingWorld/LW1C2_PERSISTENT_HOUSEHOLD_ROSTER.md); evidence: [C2 validation receipt](../LivingWorld/evidence/lw1c2_validation_20260930.txt).
 
-- Exact GitHub candidate commit: `54506d232623ea63c04dbac1f9b200b3c9d197d9`.
-- Installed target: Steam `Mount & Blade II Bannerlord/Modules/ClanAI/bin/Win64_Shipping_Client/ClanAI.dll`.
-- Installed candidate SHA-256: **`B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563`**, matching the verified `v0.23.0-LW1C2-dev` source candidate.
-- Pre-deployment installed DLL SHA-256: `B1911B17A04F42C11AB6E23DB3543AFE788FDFA07EFCF34DCF3638D4AB241271`. Rollback DLL and `SubModule.xml` are retained in the task workspace under `Reports/LivingWorld/evidence/lw1c3_predeploy_backup_20260930/`; both backup hashes were checked. Restore only while Bannerlord is closed.
-- Existing `SubModule.xml` remains unchanged (SHA-256 `287609EEBE39EE00D693CD1C354362C64878F40950BCD787D505F20F065B333D`); only the module DLL was replaced. Frozen RC1 archive was not changed.
-- Bannerlord/TaleWorlds process was absent before and after deployment. No game launch or campaign-time advancement occurred. A byte-verified disposable copy of the selected organic save is ready; the original remains unchanged. The remote desktop agent was offline; deployment used the permitted local copy operation after the target and backup hashes were verified.
-- Test plan: coordinate the live demo with the user; first identify the relevant organic campaign save and create a clearly named disposable copy through the normal game workflow. Never overwrite the original or autosaves. Then verify roster names, home labels, and status/explanations in the paused campaign, perform the bounded save/reload check on the copy, and capture the resulting evidence. Runtime remains **NOT YET TESTED**.
-- Report: [LW1-C3 deployment status](../LivingWorld/LW1C3_DEPLOYMENT_STATUS.md); evidence: [deployment receipt](../LivingWorld/evidence/lw1c3_deployment_20260930.txt); [save-copy receipt](../LivingWorld/evidence/lw1c3_disposable_save_20260930.txt).
-
-## Previous checkpoint - LW1-C2 Persistent Household Responsibility Roster
-
-**IMPLEMENTATION + FOCUSED TESTS + GAME-TARGET RELEASE BUILD COMPLETE, 2026-09-30 UTC. Runtime roster/save-reload verification remains pending.**
-
-- Exact source base: GitHub `main` commit `5b9e47b2813373fe0b03bae58d41c88a8dfcff83`; the separate legacy checkout `D:\\BannerlordAIResearch` was left untouched.
-- The owned-town/castle Manage Home Assignments menu uses a bounded player-clan household roster and explicit suspended-responsibility statuses while preserving strict behavior eligibility.
-- Stable `Hero.StringId` identity, D1 schema, `ClanAI_HomeAssignment_v1`, 1.25 policy factor, native visit seam, Phase 3 war Home Responsibility, and frozen RC1 package bytes remain unchanged.
-- Focused deterministic suites: **68 roster/runtime PASS, 43 persistence/D1 PASS, 10 Phase 3 preservation PASS**. Actual `netstandard2.0` Release build: **0 errors, 1 inherited MSB3277 warning**.
-- Dev candidate SHA-256: **`B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563`**. Acceptance audit covers all 25 requested cases.
-- C2 report and evidence: [report](../LivingWorld/LW1C2_PERSISTENT_HOUSEHOLD_ROSTER.md), [validation receipt](../LivingWorld/evidence/lw1c2_validation_20260930.txt).
+**Exact next checkpoint: LW1-C3 - deploy persistent-roster dev candidate, verify stable names/statuses in player's organic campaign, finish bounded runtime/save-reload closure.**
 
 ## Previous checkpoint - LW1-B Persistent Home Assignment
 

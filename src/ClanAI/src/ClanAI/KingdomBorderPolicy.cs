@@ -38,6 +38,24 @@ namespace ClanAI
                 ? KingdomBorderRelation.Closed
                 : KingdomBorderRelation.Open;
         }
+
+        internal static bool BlocksLordSettlementVisit(
+            bool isOrdinaryKingdomLordParty,
+            bool factionsAtWar,
+            bool destinationHasOwnerClan,
+            string actorKingdomId,
+            string destinationOwnerKingdomId,
+            bool explicitlyClosed)
+        {
+            if (!isOrdinaryKingdomLordParty || factionsAtWar)
+                return false;
+
+            return ClassifySettlementDestination(
+                false,
+                actorKingdomId,
+                destinationHasOwnerClan,
+                destinationOwnerKingdomId,
+                explicitlyClosed) == KingdomBorderRelation.Closed;
+        }
     }
 }
-

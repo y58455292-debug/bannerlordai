@@ -41,6 +41,18 @@ class Program {
  a.NavigationCapability=MobileParty.NavigationType.All;AiVisitSettlementBehavior.Navigation=MobileParty.NavigationType.Naval;
  postfix.Invoke(null,new object[]{a,list});Check(list.Count==0,"ship-capable land party cannot expose a naval home route");AiVisitSettlementBehavior.Navigation=MobileParty.NavigationType.Default;
  postfix.Invoke(null,new object[]{a,list});Check(list.Count==1,"ship-capable land party can expose native land home route");a.NavigationCapability=MobileParty.NavigationType.Default;
+ var closedDestination=new Settlement{StringId="closed_destination"};
+ var openDestination=new Settlement{StringId="open_destination"};
+ KingdomBorderClosureConfig.BlockedSettlementId=closedDestination.StringId;
+ list=AiVisitSettlementBehavior.List(closedDestination,openDestination);
+ postfix.Invoke(null,new object[]{a,list});
+ var candidateIds=AiVisitSettlementBehavior.SettlementIds(list);
+ Check(Array.IndexOf(candidateIds,closedDestination.StringId)<0&&Array.IndexOf(candidateIds,openDestination.StringId)>=0&&Array.IndexOf(candidateIds,home.StringId)>=0,"closed destination removed while open and assigned-home candidates remain");
+ KingdomBorderClosureConfig.BlockedSettlementId=home.StringId;
+ list=AiVisitSettlementBehavior.List();postfix.Invoke(null,new object[]{a,list});
+ candidateIds=AiVisitSettlementBehavior.SettlementIds(list);
+ Check(Array.IndexOf(candidateIds,home.StringId)<0,"explicitly closed assignment is not re-added as a visit candidate");
+ KingdomBorderClosureConfig.BlockedSettlementId=null;
  var think=new PartyThinkParams();think.AIBehaviorScores.Add(Tuple.Create(new AIBehaviorData{Party=home,AiBehavior=AiBehavior.GoToSettlement},1f));
  think.AIBehaviorScores.Add(Tuple.Create(new AIBehaviorData{Party=second,AiBehavior=AiBehavior.GoToSettlement},1.1f));
  var frame=new StrategicDecisionComposer.Frame{CandidateCount=2,BeforeWinner=1};

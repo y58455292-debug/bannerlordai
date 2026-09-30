@@ -1,5 +1,6 @@
 // Minimal native boundary fixtures. These do not replace or ship with ClanAI.
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 namespace HarmonyLib {
@@ -85,10 +86,12 @@ namespace TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors {
  private static void GetBestNavigationDataForVisitingSettlement(MobileParty p,Settlement s,
  out MobileParty.NavigationType nav,out float distance,out bool from,out bool target)
  {nav=Navigation;distance=10f;from=false;target=false;}
- public static System.Collections.IList List() {return new List<SettlementNavigationData>();}
+ public static System.Collections.IList List(params Settlement[] settlements) {var rows=new List<SettlementNavigationData>();if(settlements!=null)foreach(var s in settlements)rows.Add(new SettlementNavigationData(10f,s==null?0:s.GetHashCode(),s,MobileParty.NavigationType.Default,false,false));return rows;}
+ public static string[] SettlementIds(System.Collections.IList list){var ids=new List<string>();if(list!=null)foreach(var item in list){var row=(SettlementNavigationData)item;ids.Add(row.Settlement==null?null:row.Settlement.StringId);}return ids.ToArray();}
  }}
 namespace ClanAI {
  internal static class RuntimeProfile {internal static bool EvidenceEnabled=true;}
+ internal static class KingdomBorderClosureConfig {internal static string BlockedSettlementId;internal static bool BlocksVisit(TaleWorlds.CampaignSystem.Party.MobileParty p,TaleWorlds.CampaignSystem.Settlements.Settlement s){return s!=null&&s.StringId==BlockedSettlementId;}}
  internal static class ClanAIPostVanilla {internal static readonly List<string> Logs=new List<string>();internal static void WriteExternalLog(string s){Logs.Add(s);}}
  internal static class StrategicDecisionComposer {
  internal sealed class Frame {

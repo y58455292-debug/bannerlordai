@@ -1,0 +1,27 @@
+THEMATRIX v0.1 CLOSED-BORDER DESTINATION FILTER - VALIDATION RECEIPT
+Date: 2026-09-30 UTC
+Repository: y58455292-debug/bannerlordai
+Previous verified main: 43c9bad3ca6fab17c175d98fdc31955b8f217cfb
+
+SCOPE
+- Explicit directional closures, default-open, from optional module-local Data/KingdomBorderClosures.cfg. Empty/missing config means open.
+- Candidate-list filtering only: ordinary non-player kingdom lord parties omit explicitly closed foreign settlement destinations from Bannerlord's existing AiVisitSettlementBehavior settlement candidate list.
+- Current party kingdom and destination settlement owner's kingdom are read live at candidate-list construction. No sovereignty is inferred from nearby settlements, routes, or sea.
+- No route-crossing enforcement, entry veto, movement manipulation, villagers/caravans/convoys, trade-market access, diplomacy vote implementation, economy effects, or runtime proof.
+- War parties/armies, player parties, caravans, non-lords and unresolved/independent affiliation cases pass through this candidate filter. Already selected routes are not cancelled.
+- Foreign trade agreements are kingdom-wide and require diplomacy votes; domestic trade stays unrestricted; vanilla clan income distribution is unchanged. This is documented direction only.
+
+VALIDATION
+- KingdomBorderPolicy: 14 deterministic PASS.
+- HomeAssignmentRuntime adapter: 70 PASS, including closed candidate removed, open and assigned-home candidates retained, and closed assigned home not re-added.
+- HomeAssignment policy/persistence: 43 PASS.
+- Phase3 Home Responsibility: 10 PASS.
+- netstandard2.0 Release against installed Bannerlord v1.5.3 references: 0 errors; 1 inherited System.ValueTuple MSB3277 warning.
+- Build command: dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj --no-restore -c Release -p:TargetFramework=netstandard2.0 -p:InformationalVersion=v0.1.0-THEMATRIX-dev
+- Release ClanAI.dll SHA-256: A3CBE69032978D0D6535D1E8080E1494D40EB303B770AC4F571BEEC4610E5214.
+
+PRESERVATION
+- Public display name THEMATRIX; compatibility IDs remain ClanAI, ClanAI.dll, namespace/class names, and all save keys/schema.
+- HomeAssignmentStore.Eligible unchanged; HomeAssignmentPolicy.HomeFactor remains 1.25f; existing native visit seam remains the candidate-list hook.
+- RC1 archive and installed C2 candidate are unchanged. No deployment, Bannerlord launch, or save activity occurred.
+- LW1-C3 roster/save-reload/runtime status remains NOT YET TESTED.
