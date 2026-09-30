@@ -2,6 +2,6 @@ namespace ClanAI
 {
     internal static class ReleaseIdentity
     {
-        internal const string Version = "v0.23.0-LW1C2-dev";
+        internal const string Version = "v0.1.2-THEMATRIX-stored-route-observer-dev";
     }
 }

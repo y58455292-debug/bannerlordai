@@ -121,6 +121,7 @@ namespace ClanAI
             bool visitorAtWarWithZoneKingdom, bool explicitlyClosed)
         {
             return zone.Kind == KingdomLandZoneKind.KingdomOwned &&
+                !string.IsNullOrEmpty(zone.KingdomId) &&
                 !string.IsNullOrEmpty(visitorKingdomId) &&
                 !string.Equals(visitorKingdomId, zone.KingdomId, StringComparison.Ordinal) &&
                 !visitorAtWarWithZoneKingdom && explicitlyClosed;

@@ -287,6 +287,7 @@ namespace ClanAI
 
         public static void Reset()
         {
+            StoredRouteObserver.Reset();
             if (!RuntimeProfile.EvidenceEnabled)
             {
                 _sessionLogPath = null;
@@ -361,6 +362,11 @@ namespace ClanAI
             {
                 return;
             }
+
+            // Evidence-only, passive stored-path sampling. The observer rechecks the
+            // strict ordinary NPC lord scope and has its own four-party hourly quota.
+            if (RuntimeProfile.EvidenceEnabled)
+                StoredRouteObserver.Observe(party);
 
             if (HourlyObserveOnly)
             {

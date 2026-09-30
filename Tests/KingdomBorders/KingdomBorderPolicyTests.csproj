@@ -11,5 +11,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="../../src/ClanAI/src/ClanAI/KingdomBorderPolicy.cs" Link="KingdomBorderPolicy.cs" />
     <Compile Include="../../src/ClanAI/src/ClanAI/KingdomLandControlPolicy.cs" Link="KingdomLandControlPolicy.cs" />
+    <Compile Include="../../src/ClanAI/src/ClanAI/StoredRouteObserverPolicy.cs" Link="StoredRouteObserverPolicy.cs" />
+    <Compile Include="StoredRouteObserverTests.cs" />
   </ItemGroup>
 </Project>

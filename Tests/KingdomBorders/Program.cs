@@ -68,6 +68,21 @@ internal static class Program
         }
     }
 
+    private static void ExpectZoneIdentity(string name, KingdomLandZoneKind expectedKind,
+        string expectedKingdomId, string expectedSettlementId,
+        params KingdomLandZoneSettlement[] candidates)
+    {
+        KingdomLandZoneResult result = Zone(true, true, candidates);
+        if (result.Kind != expectedKind ||
+            !string.Equals(result.KingdomId, expectedKingdomId, StringComparison.Ordinal) ||
+            !string.Equals(result.SettlementId, expectedSettlementId, StringComparison.Ordinal))
+        {
+            Console.WriteLine("FAIL " + name + " expected=" + expectedKind + "/" + expectedKingdomId +
+                "/" + expectedSettlementId + " actual=" + result.Kind + "/" + result.KingdomId + "/" + result.SettlementId);
+            _failures++;
+        }
+    }
+
     private static int Main()
     {
         Expect("same-kingdom", KingdomBorderRelation.Open, false, "kingdom-a", true, "kingdom-a", true);
@@ -89,8 +104,21 @@ internal static class Program
         var fartherA = new KingdomLandZoneSettlement("fort-surrounding", true, true, "kingdom-a", 4f);
         ExpectZone("nearest-current-owner", KingdomLandZoneKind.KingdomOwned, true, true, fartherA, nearestB);
         ExpectZone("enclave-keeps-actual-owner", KingdomLandZoneKind.KingdomOwned, true, true, nearestB, fartherA);
+        ExpectZoneIdentity("enclave-owner-and-settlement-exact", KingdomLandZoneKind.KingdomOwned,
+            "kingdom-b", "fort-enclave", fartherA, nearestB);
+        ExpectZoneIdentity("enclave-permutation-preserves-identity", KingdomLandZoneKind.KingdomOwned,
+            "kingdom-b", "fort-enclave", nearestB, fartherA);
         ExpectZone("capture-uses-new-live-owner", KingdomLandZoneKind.KingdomOwned, true, true,
             new KingdomLandZoneSettlement("fort-enclave", true, true, "kingdom-c", 1f));
+        ExpectZoneIdentity("capture-uses-new-owner-and-same-fief", KingdomLandZoneKind.KingdomOwned,
+            "kingdom-c", "fort-enclave",
+            new KingdomLandZoneSettlement("fort-enclave", true, true, "kingdom-c", 1f));
+        ExpectZoneIdentity("later-transfer-is-read-live", KingdomLandZoneKind.KingdomOwned,
+            "kingdom-d", "fort-enclave",
+            new KingdomLandZoneSettlement("fort-enclave", true, true, "kingdom-d", 1f));
+        ExpectZoneIdentity("recaptured-fief-is-read-live-again", KingdomLandZoneKind.KingdomOwned,
+            "kingdom-a", "fort-enclave",
+            new KingdomLandZoneSettlement("fort-enclave", true, true, "kingdom-a", 1f));
         ExpectZone("sea-skips-nearest-land", KingdomLandZoneKind.SeaOrOpenWater, false, true, fartherA);
         ExpectZone("incomplete-native-search-fails-open", KingdomLandZoneKind.Unknown, true, false, nearestB);
         ExpectZone("ambiguous-equidistant-owners", KingdomLandZoneKind.Ambiguous, true, true,
@@ -147,14 +175,16 @@ internal static class Program
             Zone(true, true, new KingdomLandZoneSettlement("unowned", true, false, null, 1f)),
             "kingdom-a", false, true);
 
-        if (_failures != 0)
+        int observerFailures = StoredRouteObserverTests.Run();
+        if (_failures != 0 || observerFailures != 0)
         {
-            Console.WriteLine("FAIL KingdomBorderPolicy and land-zone cases=40 failures=" + _failures);
+            Console.WriteLine("FAIL KingdomBorderPolicy=14 land-zone/route policy cases=31 stored-route observer cases=32 policyFailures=" +
+                _failures + " observerFailures=" + observerFailures);
             return 1;
         }
-        Console.WriteLine("PASS KingdomBorderPolicy cases=14; land-zone/route policy cases=26");
+        Console.WriteLine("PASS KingdomBorderPolicy cases=14; land-zone/route policy cases=31; stored-route observer policy cases=32");
         Console.WriteLine("default=open; only explicit directional closure classifies a foreign kingdom as closed");
-        Console.WriteLine("classifier is a bounded land-zone model; open water fails open and active route enforcement is not wired");
+        Console.WriteLine("observer reads at most eight stored waypoints; no candidate or movement mutation; runtime native path behavior is not tested here");
         return 0;
     }
 }

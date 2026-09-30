@@ -1,0 +1,53 @@
+THEMATRIX LW2 stored-route observer validation
+Date: 2026-09-30 UTC
+Authoritative base: GitHub main 0d78ccfc28546966c4e4fa5ca89e18aaff7ae790
+Retained WIP ancestry: 2313acb5310fa1e929c5558171c3c84e123e7bef
+
+Implementation scope
+--------------------
+- Added an Evidence-profile-only observer in the existing ClanAIPostVanilla.Postfix hourly AI decision seam.
+- Observer rechecks strict ordinary NPC lord eligibility. Main player, army, caravan, disabled/stopped AI, prisoner, child/template, attached, battle/siege, disbanding/waiting, inactive, invalid/leaderless and non-lord states are skipped. Parties currently at sea are not skipped; every indexed route point is separately checked in native land and sea navigation modes.
+- Reads MobileParty.Path directly at indices PathBegin through min(PathBegin+8, Path.Size); does not copy the path or invoke native path computation. It samples at most 8 points per admitted party.
+- Bounded process-local quota: at most 4 distinct party StringIds per CampaignTime hour, duplicate suppression, session reset. Aggregate quota and duplicate skip counts are included in subsequent admitted Evidence records.
+- Each point is classified using native land-valid/sea-invalid navigation; both/neither-valid points fail open as unknown. Land classification reuses the 5 map-unit, maximum-8 nearby-settlement classifier plus an overflow probe. Selected settlement identity is resolved directly and its current owner Kingdom is read live; no global kingdom/settlement/party scan.
+- Explicit closure is checked directionally as sampled zone kingdom > visitor kingdom. War skips only when visitor Kingdom.IsAtWarWith(the sampled zone Kingdom). No call to BlocksVisit; border filter counters are unchanged.
+- Evidence records report status closed_zone_sample_observed / no_closed_zone_in_samples / unavailable / partial, path size/begin, sampled and truncated counts, sea/unknown counts, sampled kingdom/settlement IDs, closure direction, zone-war skips, errors, and cumulative quota/duplicate skips.
+- No candidate, score, target, route, movement, or save mutation. Radius and result limits bound requested work/calls but are not a hard native execution-time guarantee.
+
+Native source basis
+-------------------
+Retained installed v1.5.3 source: D:\BannerlordAIResearch\Builds\Phase4B_LocalManpower_Audit_20260925\native_project\TaleWorlds.CampaignSystem.Party\MobileParty.cs. MobileParty.Path is a public NavigationPath field and PathBegin is a public getter/private setter. EventPositionAdder reads Path[PathBegin] and increments PathBegin when a point is reached, then movement uses the current PathBegin point. Observer labels its result as stored-path samples; the samples do not guarantee future traversal or represent the full route.
+Retained route research also establishes: native full-path query has no work-budget parameter; distance query has no waypoints; private ComputePath mutates live movement; face-group exclusions identify invalid terrain classes, not kingdom borders. No such path computation or face ownership inference is used here.
+
+Deterministic tests
+------------------
+Focused command after restore:
+  dotnet run --project Tests\KingdomBorders\KingdomBorderPolicyTests.csproj -c Release --no-restore
+Result:
+  PASS KingdomBorderPolicy cases=14
+  PASS land-zone/route ownership policy cases=31
+  PASS stored-route observer policy cases=32
+  TOTAL 77 PASS, 0 failures
+
+Observer tests cover valid/malformed/exhausted windows; PathBegin offset; exact 8 vs ninth-point truncation; hourly four-party quota; duplicate suppression; hour/session reset and counters; land-only, sea-only, overlap and neither-valid outcomes; classifier exception fail-open; no-route unavailable; sea reporting; unknown/partial and truncation; exact enclave zone/settlement IDs, repeated live transfer/capture and input permutations; directional closure; zone-war exception versus an unrelated war; and empty kingdom ID fail-open. These are pure deterministic policy tests; they do not run the native navigation/locator code or an in-campaign MobileParty fixture.
+
+Preservation suites, each run once after code was ready:
+  HomeAssignmentRuntime including roster/production adapter: 104 PASS
+  HomeAssignment/D1: 43 PASS
+  Phase 3 Home Responsibility: 10 PASS
+
+Release build
+-------------
+  dotnet build src\ClanAI\src\ClanAI\ClanAI.csproj -c Release --no-restore -v:q
+Target: netstandard2.0 against the installed Bannerlord v1.5.3 assemblies.
+Result: 0 errors; 1 inherited MSB3277 System.ValueTuple conflict warning. SDK 11 preview produced its normal NETSDK1057 notice on restore.
+Build identity: v0.1.2-THEMATRIX-stored-route-observer-dev
+Local Release DLL SHA-256: 4742869F3411665299955DEC1001B5285EBC48D2D14862E78FC6F37CA8C9BDAA
+The official cached NETStandard.Library 2.0.3 package was copied from the user's existing normal NuGet cache into the task-local package cache for restore; no installation, security, or trust configuration changed.
+
+Verification limits
+-------------------
+- Native adapter/observer signatures compile against installed assemblies; native point validity, settlement locator behavior, live campaign logging, quota cadence, and observer runtime remain untested in-game.
+- "No closed zone in samples" describes only the sampled points and does not prove that the entire path is open. Closed-zone sample observation is not route enforcement.
+- No candidate reselection, movement behavior, or passage restriction is implemented. Physical border enforcement remains separate and requires safe native candidate-to-route association and reselection evidence.
+- No package was created; no deployment, game launch, original-save operation, RC1 edit, C2 edit, save schema/key change, Home Assignment factor change, or C3 completion claim occurred.

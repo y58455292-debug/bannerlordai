@@ -1,16 +1,17 @@
 # Codex Status
 
-## Current checkpoint - LW2 land-control-zone foundation
+## Current checkpoint - LW2 stored-route observer
 
-**PURE MODEL IMPLEMENTED + FOCUSED TESTS PASS + NATIVE ADAPTER RELEASE-COMPILED. No active AI route behavior, package, deployment, or runtime test.**
+**PASSIVE EVIDENCE-PROFILE OBSERVER IMPLEMENTED, FOCUSED AND PRESERVATION TESTS PASS, RELEASE BUILT. NO BORDER ENFORCEMENT, CAMPAIGN RUNTIME VALIDATION, PACKAGE, OR DEPLOYMENT.**
 
-- Work resumed from WIP `2313acb5310fa1e929c5558171c3c84e123e7bef`; authoritative `main` was `c244bea8e39feaba7be43d5bee00c88442ab9a1c` and was unchanged at resume.
-- The pure model classifies a 5-map-unit nearest-fortification zone from live owner inputs, with 8 local settlements plus one overflow probe, deterministic same-owner ties, explicit ambiguity/unknown/independent/sea states, and fail-open behavior. The native adapter uses Bannerlord's local settlement locator and checks land-valid/sea-invalid navigation. It does not scan/calculate a global map or assign sea sovereignty.
-- `Tests/KingdomBorders`: **40 PASS** (14 existing policy, 26 new zone/route-policy cases). These tests cover policy only; they do not invoke the native adapter.
-- `netstandard2.0` Release against installed v1.5.3 references: **0 errors**, 1 inherited `System.ValueTuple` MSB3277 warning. Build identity `v0.1.1-THEMATRIX-land-zone-foundation-dev`; local DLL SHA-256 `38F80B8E4083E73813F5DFACAE791BE7F95FC31ECB452BAAAF1A77FBE540FEAF`.
-- The model/adapter are **not wired into the visit filter or any runtime decision**. Route crossing remains unimplemented: stored path points lack sovereign identity, full native path query is unbounded, distance query has no waypoints, and complete land/sea transition semantics are unproven. Current packaged candidate remains the destination-only default-open filter below.
-- No gameplay package was produced or deployed. No game launch/save/runtime test occurred. RC1 and the installed C2/C3 evidence are unchanged.
-- Report: [LW2 land-control-zone checkpoint](../LivingWorld/LW2_LAND_ZONE_WIP_HANDOFF.md); [validation receipt](../LivingWorld/evidence/lw2_land_zone_foundation_20260930.txt).
+- Resumed from WIP `2313acb5310fa1e929c5558171c3c84e123e7bef`; authoritative `main` at resume was `0d78ccfc28546966c4e4fa5ca89e18aaff7ae790` (the land-zone foundation checkpoint).
+- `ClanAIPostVanilla.Postfix` now calls the observer only when Evidence profile is enabled. It admits at most 4 distinct eligible NPC lord parties per campaign hour, suppresses duplicate party IDs, and reads at most 8 indexed points from the existing `Path` beginning at `PathBegin`. Native source shows `PathBegin` is the point currently being consumed; these are stored-path samples, not proof of a future or traversable route.
+- Each point is checked in both native land and sea navigation modes. Sea, unknown/ambiguous, truncated, unavailable, closed-zone sample, zone-specific war skip, identities/direction, errors, and quota/duplicate skips are represented in bounded Evidence log records. The observer uses the 5-unit/8-result local fortification classifier plus overflow probe and reads the selected settlement's current owner directly. It does not call `BlocksVisit`, inspect all parties/settlements/kingdoms, compute paths, or change candidates, scores, targets, movement, or save data.
+- `Tests/KingdomBorders`: **77 PASS** (14 destination-policy, 31 land-zone/identity, 32 observer-policy cases). The existing preservation runs also passed: HomeAssignmentRuntime/roster/adapter **104**, HomeAssignment/D1 **43**, Phase 3 Home Responsibility **10**. Pure tests do not execute Bannerlord's native adapter or a campaign path.
+- `netstandard2.0` Release against installed v1.5.3 references: **0 errors**, 1 inherited `System.ValueTuple` MSB3277 warning. Build identity `v0.1.2-THEMATRIX-stored-route-observer-dev`; Release DLL SHA-256 `4742869F3411665299955DEC1001B5285EBC48D2D14862E78FC6F37CA8C9BDAA`.
+- This observer describes sampled stored waypoints only. It neither rejects route candidates nor changes AI behavior; sparse samples cannot establish that an entire route is open. It is not packaged, deployed, or runtime-tested. Existing destination-filter package remains separate and unchanged.
+- RC1, save keys/schema, Home Assignment factor/native visit behavior, installed C2, and C3 history remain unchanged. No game launch or save operation occurred.
+- Report: [LW2 land-control-zone and stored-route observer handoff](../LivingWorld/LW2_LAND_ZONE_WIP_HANDOFF.md); [observer validation receipt](../LivingWorld/evidence/lw2_stored_route_observer_20260930.txt).
 
 ## Previous checkpoint - THEMATRIX v0.1 stabilization candidate
 
