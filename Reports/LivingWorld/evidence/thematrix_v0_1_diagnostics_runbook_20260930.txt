@@ -1,0 +1,28 @@
+THEMATRIX v0.1 DEVELOPER RUNBOOK / DIAGNOSTIC ACCESS CORRECTION
+date_utc=2026-09-30
+parent_main=a3de39860bf96196231f9ec96feb8b0d0026e323
+scope=documentation and package archive correction only; no source/DLL/game/save changes
+
+CODE REVIEW FINDINGS (GitHub main source)
+- RuntimeProfile.ConfigPath resolves to the installed module's Data/RuntimeProfile.cfg via ModuleRuntimePaths.Data.
+- RuntimeProfile defaults to Release when the file is missing, unreadable, or invalid. Profile=Evidence opts into Evidence; its static _loaded cache means the profile is read once per game process and changes require a full process restart.
+- ClanAIDiagnostics is internal and Snapshot(string,bool) is private. No user-callable UI/console command exists.
+- On campaign session launch, diagnostics automatically write a session_begin snapshot if Evidence-enabled session logging created a path. Subsequent snapshots occur after the frame gate and 30-second throttle, after save-boundary follow-up, and at session end. On module unload, shutdown-health output may be written.
+- Snapshot path is a .diagnostics.txt sibling of the module session log under Modules/ClanAI/Logs/Sessions. It contains KINGDOM_BORDER_DESTINATION_FILTER candidateChecks/candidatesFiltered.
+- Evidence profile also enables existing Civic Project and Local Manpower telemetry, adds Generational Continuity Preflight, Phase 4A Recovery Observer and Dynasty Structural Runtime Observer hooks, and writes further log/telemetry files. It adds IO/runtime work and is not equivalent to Release-profile testing.
+- RuntimeProfile.cfg is intentionally absent from the default package, preserving Release-by-default.
+
+PACKAGE / DOCUMENTATION CHANGES
+- Runbook now gives an Evidence opt-in: on a disposable-campaign setup, fully exit Bannerlord, create Modules/ClanAI/Data/RuntimeProfile.cfg with Profile=Evidence, restart the full game process, load the disposable campaign and read the newest *.diagnostics.txt. Remove the file and restart to return to Release.
+- Runbook and README now say to copy the contents of the archive's top-level ClanAI folder into Modules/ClanAI; do not nest Modules/ClanAI/ClanAI.
+- Manifest was recalculated and matched the packaged files. Release DLL SHA-256 is unchanged: F85382892B293FFABF78B57923A152735E812A033FE9593DEC9B7AEEBE88C8F9.
+- Updated README SHA-256: 647E491DB52D83D8BCDEA8FEE61BE92E75CBFAE2714428F1E9FB813748369D47.
+- Updated runbook SHA-256: 11773BD8895057FEB0D8016329792A04CD448968C3187B203B1571A968A5D8F7.
+- Updated distributable ZIP SHA-256: E9A8CDDB4A8217CCA30E208A61E4172E45B1823752A0F8865DB2D42FD5F13612. ZIP listing contains ClanAI module contents, README, runbook and manifest. No RuntimeProfile.cfg ships.
+- CODEX_STATUS and ROADMAP historical C3 next-deploy prompts were marked historical; C3 deployment/copy prep remains recorded and runtime closure remains unverified.
+
+VALIDATION LIMITS
+- Package file hashes and archive listing were checked after repacking.
+- Tests/build not rerun because only runbook/status/report/manifest/archive contents changed; source and DLL bytes were unchanged.
+- No game launch, deployment, save operation, or RC1 modification occurred.
+- The package remains a limited NPC lord settlement visit-candidate filter; route crossing, arrival, other actor types, and alternate-action liveness are not proven.

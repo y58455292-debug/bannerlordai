@@ -11,7 +11,7 @@ SCOPE
 - Exact-installed v1.5.3 safety inspection: EnterSettlementAction.ApplyForParty mutates army/sea/current-settlement state and emits lifecycle events; it is called from normal arrival, fleeing/disabled-AI/attached-army paths, and party spawn paths. A global veto is unsafe; no entry patch was added. Rejecting entry without safe target re-selection could cause retries/stalls.
 - Parties at war with the destination kingdom, armies, caravans, player main party, non-lords, inactive/disabled/stopped/attached/battle/sea parties, leaderless/waiting-to-disband parties and unresolved/independent affiliation cases pass through. War with an unrelated kingdom does not exempt the party. Already selected routes are not cancelled.
 - Empty visit-list source loop safely produces no GoToSettlement score; no alternate action is guaranteed. There is no end-to-end liveness/no-stall proof and no added hold/retarget fallback.
-- On-demand diagnostic snapshots include `KINGDOM_BORDER_DESTINATION_FILTER candidateChecks=... candidatesFiltered=...`; no per-candidate file IO is added.
+- Evidence-profile session snapshots automatically include `KINGDOM_BORDER_DESTINATION_FILTER candidateChecks=... candidatesFiltered=...`; there is no public on-demand command. The package defaults to Release and omits RuntimeProfile.cfg. See the package runbook for the supported opt-in. The border filter adds no per-candidate file IO.
 - Foreign trade agreements are kingdom-wide and require diplomacy votes; domestic trade stays unrestricted; vanilla clan income distribution is unchanged. This is documented direction only.
 
 VALIDATION
@@ -22,10 +22,15 @@ VALIDATION
 - netstandard2.0 Release against installed Bannerlord v1.5.3 references: 0 errors; 1 inherited System.ValueTuple MSB3277 warning.
 - Build command: dotnet build src/ClanAI/src/ClanAI/ClanAI.csproj --no-restore -c Release -p:TargetFramework=netstandard2.0 -p:InformationalVersion=v0.1.0-THEMATRIX-dev
 - Release ClanAI.dll SHA-256: F85382892B293FFABF78B57923A152735E812A033FE9593DEC9B7AEEBE88C8F9.
-- Distributable ZIP SHA-256: BCE7B002C709DE2DBC5DB32F875EF2860837CBB5BE121A6EA3198FA87C750C05. Package includes `ClanAI/SubModule.xml` (`Name=THEMATRIX`, `Version=v0.1.0`, `Id=ClanAI`), `ClanAI.dll`, empty default-open config, runbook, README, and SHA-256 manifest. Archive listing was checked.
+- Distributable ZIP SHA-256: E9A8CDDB4A8217CCA30E208A61E4172E45B1823752A0F8865DB2D42FD5F13612. Package includes `ClanAI/SubModule.xml` (`Name=THEMATRIX`, `Version=v0.1.0`, `Id=ClanAI`), `ClanAI.dll`, empty default-open config, runbook, README, and SHA-256 manifest. Archive listing was checked after the runbook/README correction; DLL bytes are unchanged. Internal manifest hashes were recomputed and verified.
 
 PRESERVATION
 - Public display name THEMATRIX; compatibility IDs remain ClanAI, ClanAI.dll, namespace/class names, and all save keys/schema.
 - HomeAssignmentStore.Eligible unchanged; HomeAssignmentPolicy.HomeFactor remains 1.25f; existing native visit seam remains the candidate-list hook.
 - RC1 archive and installed C2 candidate are unchanged by this checkpoint. No v0.1 deployment, Bannerlord launch, or save activity occurred.
 - Prior C3 deployment and disposable-save prep remain recorded in `LW1C3_DEPLOYMENT_STATUS.md` and its evidence receipts; original save preserved. Player observed the menu but described it as messy. Roster statuses and save/reload remain unverified; no AI movement proof is claimed.
+
+
+RUNBOOK / PACKAGE CORRECTION
+- Diagnostic access is automatic only in the optional Evidence profile; there is no public on-demand command. See `thematrix_v0_1_diagnostics_runbook_20260930.txt` and the packaged runbook for exact source behavior and bounded opt-in.
+- The corrected ZIP hash is `E9A8CDDB4A8217CCA30E208A61E4172E45B1823752A0F8865DB2D42FD5F13612`; the Release DLL remains byte-identical at SHA-256 `F85382892B293FFABF78B57923A152735E812A033FE9593DEC9B7AEEBE88C8F9`.

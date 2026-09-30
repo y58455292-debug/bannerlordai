@@ -10,7 +10,9 @@
 - Actual `netstandard2.0` Release against installed Bannerlord v1.5.3 references: 0 errors, 1 inherited `System.ValueTuple` warning. Existing native diagnostic snapshot includes filter counters without per-candidate file IO.
 - Scope: ordinary eligible NPC lord parties and native visit destinations only. No route crossing/frontier enforcement, entry veto, villagers, caravans, convoys, trade or diplomacy vote integration. Empty native visit list yields no GoToSettlement score; another action is not guaranteed. End-to-end no-stall behavior is unverified. Config is loaded at behavior registration and takes effect after campaign/session reload.
 - No v0.1 deployment, game launch or save action occurred. Do not deploy while the user's current game may be running.
-- Report/evidence: [border checkpoint](../LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md), [validation receipt](../LivingWorld/evidence/thematrix_v0_1_border_destination_filter_20260930.txt).
+- Diagnostic access is automatic only in the Evidence runtime profile; there is no public on-demand command. The package defaults to Release and does not ship RuntimeProfile.cfg. The corrected Evidence opt-in, restart/cache behavior, output paths and broader telemetry side effects are in the package runbook.
+- Corrected package ZIP SHA-256: `E9A8CDDB4A8217CCA30E208A61E4172E45B1823752A0F8865DB2D42FD5F13612`; DLL bytes and SHA remain unchanged.
+- Report/evidence: [border checkpoint](../LivingWorld/LW2_KINGDOM_BORDER_FOUNDATION.md), [validation receipt](../LivingWorld/evidence/thematrix_v0_1_border_destination_filter_20260930.txt), [diagnostic/runbook correction receipt](../LivingWorld/evidence/thematrix_v0_1_diagnostics_runbook_20260930.txt), and package [runbook](../../DevBuilds/THEMATRIX-v0.1.0-border-filter-dev/DEMO_RUNBOOK.md).
 
 ## Restored LW1-C3 deployment and disposable-save status
 
@@ -37,7 +39,7 @@
 - At the C2 checkpoint, runtime had not been tested and no deployment/save activity had yet occurred. Later C3 deployment and disposable-copy preparation are recorded in the current status section above.
 - Report: [LW1-C2 persistent household roster](../LivingWorld/LW1C2_PERSISTENT_HOUSEHOLD_ROSTER.md); evidence: [C2 validation receipt](../LivingWorld/evidence/lw1c2_validation_20260930.txt).
 
-**Exact next checkpoint: LW1-C3 - deploy persistent-roster dev candidate, verify stable names/statuses in player's organic campaign, finish bounded runtime/save-reload closure.**
+**Historical next checkpoint at the original C2 report: LW1-C3 - deploy persistent-roster dev candidate, verify stable names/statuses in player's organic campaign, finish bounded runtime/save-reload closure.** Deployment and disposable-save prep are recorded above; stable roster/status and save/reload closure remain incomplete.
 
 ## Previous checkpoint - LW1-B Persistent Home Assignment
 
@@ -57,14 +59,14 @@
 - Dev DLL SHA-256: **EEE566615AA72BFEB01C95D05AE8FCF022271F90A2519319D95AF3C90D6A4622**.
 - Runtime status: **NOT YET TESTED**.
 - Bannerlord launched: **NO**.
-- Deployed: **NO**.
+- At the time of this LW1-B checkpoint: deployed: **NO**.
 - RC1 changed: **NO**. RC1 remains frozen/playable at `9ec113e738af35254e113fbde7c05babbf3c405d`; archive and tested package/DLL unchanged.
 - No direct movement, synthetic AIBehaviorData, teleportation or mandatory external IO added.
 - Broader pre-existing test limitations are recorded in the implementation report; they are not claimed green.
 
 Report: [LW1-B implementation](../LivingWorld/LW1B_HOME_ASSIGNMENT_IMPLEMENTATION.md).
 
-**Exact next checkpoint: LW1-C — deploy the LW1-B dev candidate and run the bounded playable Home Assignment demo/runtime proof.**
+**Historical next checkpoint at the LW1-B checkpoint: LW1-C — deploy the LW1-B dev candidate and run the bounded playable Home Assignment demo/runtime proof.** Later C3 deployment/copy prep is recorded above; runtime closure remains incomplete.
 
 ## Previous checkpoint — LW1-A2R source decision
 

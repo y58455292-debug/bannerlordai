@@ -5,6 +5,8 @@ This exact Release module is a limited, default-open experiment that removes exp
 - Module compatibility ID and DLL remain `ClanAI` / `ClanAI.dll`.
 - Candidate hash and package file hashes: `SHA256SUMS.txt`.
 - Empty default configuration: `ClanAI/Data/KingdomBorderClosures.cfg`.
+- The archive's top-level `ClanAI` folder contains module contents. Copy its contents into `Modules/ClanAI`; do not create a nested `Modules/ClanAI/ClanAI` directory.
+- Runtime profile defaults to Release. Evidence mode is an optional manual opt-in and enables broader telemetry; see `DEMO_RUNBOOK.md`.
 - Scope, setup, observation and rollback: `DEMO_RUNBOOK.md`.
 - Runtime status: not yet tested; not deployed.
 

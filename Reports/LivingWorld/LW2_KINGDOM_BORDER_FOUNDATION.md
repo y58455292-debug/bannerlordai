@@ -32,7 +32,7 @@ Preservation suites were rerun with the installed .NET 11 preview as a compatibl
 
 The source compiles against the installed Bannerlord references as a `netstandard2.0` Release build: **0 errors, 1 inherited `System.ValueTuple` MSB3277 warning**. Build command used `-p:InformationalVersion=v0.1.0-THEMATRIX-dev`. Release/package `ClanAI.dll` SHA-256: `F85382892B293FFABF78B57923A152735E812A033FE9593DEC9B7AEEBE88C8F9`. This is a development package, not deployed or runtime-tested. The installed C2 DLL remains `B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563`.
 
-No in-game runtime border behavior, route observation, villager/caravan behavior, resource-flow effect, diplomacy-vote integration, or save/reload behavior has been tested. The current developer config can demonstrate destination filtering only after installed/runtime use, which has not happened.
+No in-game runtime border behavior, route observation, villager/caravan behavior, resource-flow effect, diplomacy-vote integration, or save/reload behavior has been tested. The corrected package ZIP SHA-256 is `E9A8CDDB4A8217CCA30E208A61E4172E45B1823752A0F8865DB2D42FD5F13612`; its Release DLL bytes remain unchanged. The current developer config can demonstrate destination filtering only after installed/runtime use, which has not happened.
 
 ## Branding and compatibility
 
@@ -48,4 +48,4 @@ Public module display text is `THEMATRIX`. `SubModule.xml` internal `<Id>ClanAI<
 
 **Border crossing behavior: NOT IMPLEMENTED. THEMATRIX v0.1 limited developer demo: settlement visit-destination filter only; in-game behavior and no-stall fallback remain unverified.**
 
-Validation receipt: [THEMATRIX v0.1 closed-border destination-filter validation](evidence/thematrix_v0_1_border_destination_filter_20260930.txt).
+Validation receipt: [THEMATRIX v0.1 closed-border destination-filter validation](evidence/thematrix_v0_1_border_destination_filter_20260930.txt). Package diagnostic-access correction: [runbook correction receipt](evidence/thematrix_v0_1_diagnostics_runbook_20260930.txt).
