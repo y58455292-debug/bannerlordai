@@ -1,6 +1,28 @@
 # Codex Status
 
-## Current checkpoint — LW1-A2S Native source acquisition
+## Current checkpoint — LW1-A2R Peacetime home seam decision
+
+**COMPLETE — source interpretation only, 2026-09-30.** Supported Bannerlord v1.5.3 native source now closes the Persistent Home Assignment candidate/control question.
+
+A normal non-main, AI-enabled, non-army player-clan lord party uses `AiPartyThinkBehavior.PartyHourlyAiTick`, native `CampaignEventDispatcher.AiHourlyTick`, `PartyThinkParams.AIBehaviorScores`, and native `SetPartyAiAction` commit. Main party and disabled/decision-stopped AI are explicit selector exclusions; army membership materially changes native producers/escort control, so LW1-B keeps `Army == null`. No separate ordinary secondary-party manual-order selector gate is established by the retained exact-assembly evidence.
+
+Native `GoToSettlement` is legal for friendly owned towns/castles in peace and an exact home can reach `AIBehaviorScores` when the visit producer processes it. It is not reliably available arbitrarily far: `AiVisitSettlementBehavior.FillSettlementsToVisitWithDistancesAsDays` applies a hard maximum-distance filter before scoring, and the sorted scoring loop may stop on an earlier good-enough settlement. A retained distant visit inside the list gets native score `0.025`. Native defensive `PatrolAroundPoint` can use towns but explicitly excludes castles, so patrol is not a universal home carrier. `DefendSettlement` requires an active hostile attacker and remains the separate urgent war path.
+
+**Direct composer sufficient: NO.** Selected one earlier native-compatible seam: `AiVisitSettlementBehavior.FillSettlementsToVisitWithDistancesAsDays`. LW1-B may expose/retain only the exact assigned native settlement after native suitability/navigation, then leave native visit scoring, `AIBehaviorData` creation, `PartyThinkParams`, final winner and `SetPartyAiAction` untouched. No synthetic candidate, target assignment, move command, teleport or second movement engine is authorized. The v1 peacetime exact-home factor is **1.25**; the retained native far-floor arithmetic is `0.025 × 1.25 = 0.03125`, just above the non-army visit/patrol selector threshold `0.03`, while stronger native purposes remain free to win.
+
+Persistence `Hero.StringId → Settlement.StringId`, the `ClanAI_HomeAssignment_v1` D1 contract, owned-town/castle Home Assignment menu, O(1) assignment path, land-only first scope, and existing War Home Responsibility preservation all remain valid. A2R itself changes no save schema.
+
+Gameplay changed: **NO**. Save schema changed: **NO**. RC1 changed: **NO**. Bannerlord launched: **NO**. ClanAI built/deployed: **NO**.
+
+Report: [LW1A2R_PEACETIME_SEAM_DECISION.md](../LivingWorld/LW1A2R_PEACETIME_SEAM_DECISION.md).
+Evidence: [lw1a2r_peacetime_seam_decision_20260929.txt](../LivingWorld/evidence/lw1a2r_peacetime_seam_decision_20260929.txt).
+
+**Implementation clearance: GO — ONE NATIVE SEAM.**
+
+**Exact next checkpoint: LW1-B — implement and build the playable Persistent Home Assignment / Peacetime Responsibility vertical slice.** Do not begin LW1-B in this A2R checkpoint. Stop after commit/main verification.
+
+
+## Preserved LW1-A2S Native source acquisition
 
 **COMPLETE — 2026-09-29.** The connected RC1 Bannerlord machine `DESKTOP-JO4B7VH` is reachable again. Read-only acquisition from the exact installed runtime recomputed the native input identities: `TaleWorlds.CampaignSystem.dll` SHA-256 `5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F` and `SandBox.dll` SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`. Supported runtime provenance is Bannerlord `v1.5.3`, retained engine build `122374`, Steam buildid `25302170`.
 

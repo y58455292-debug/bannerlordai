@@ -495,7 +495,7 @@ LW0 — Living World Direction documentation checkpoint: **COMPLETE**. No gamepl
 
 | Order | Milestone | Status |
 |---|---|---|
-| LW1 | Persistent Home Assignment / Peacetime Responsibility | Planned; not implemented; LW1-A source audit incomplete |
+| LW1 | Persistent Home Assignment / Peacetime Responsibility | **A2R COMPLETE; implementation cleared; LW1-B next; not yet implemented** |
 | LW2 | Governor Local-Need Response | Planned; not implemented |
 | LW3 | Household Autonomy | Planned; not implemented |
 | LW4 | Purposeful Logistics | Planned; not implemented |
@@ -505,9 +505,11 @@ LW0 — Living World Direction documentation checkpoint: **COMPLETE**. No gamepl
 | LW8 | Social Visits / Relationship Activity | Planned; not implemented |
 | LW9 | Settlement Flourishing Integration | Planned; not implemented |
 
-**LW1-A status: INCOMPLETE, 2026-09-29.** Current composer only rescales existing candidates; supported-native exact-home peacetime candidate availability is unresolved because full selector source/binary was unavailable. Persistence/UI/performance/war-preservation designs are recorded; LW1-B implementation clearance is **NO-GO** pending source closure. See [LW1-A audit](Reports/LivingWorld/LW1A_HOME_ASSIGNMENT_NATIVE_AUDIT.md).
+**LW1-A/A2 source closure: COMPLETE, 2026-09-30.** Exact supported v1.5.3 source confirms normal player-clan secondary lord parties use the native party-think selector. Existing composer-only scoring is insufficient for arbitrary far Persistent Home Assignment because native visit generation can drop the exact fortification before `AIBehaviorScores`; defensive patrol also excludes castles. The selected single native-compatible seam is `AiVisitSettlementBehavior.FillSettlementsToVisitWithDistancesAsDays`, limited to exact assigned-settlement visit exposure/retention after native suitability/navigation. Native visit scoring, candidate construction, final winner and movement commit remain Bannerlord-owned. See [LW1-A2R decision](Reports/LivingWorld/LW1A2R_PEACETIME_SEAM_DECISION.md).
 
-**Next development checkpoint: LW1-A2 — supported-native peacetime candidate-generation and control-seam source closure.** Verify near/far candidate production, player-clan control gates and score formulas, then select at most one precise native-compatible seam if needed. This is source research only, before LW1-B. LW1 remains unimplemented. Stop this LW1-A task after its documentation commit; do not begin A2 or B here.
+Persistence/UI/performance designs from LW1-A remain selected. Existing war Home Responsibility remains unchanged and stronger during war/urgent threats.
+
+**Next development checkpoint: LW1-B — implement and build the playable Persistent Home Assignment / Peacetime Responsibility vertical slice.** This includes multiple persistent assignments, native assign/change/clear UI, save/load, bounded peacetime home gravity through the selected one native seam plus existing composer, observation-only commit verification, deterministic tests and Release build. Do not begin LW2+ features.
 
 ---
 

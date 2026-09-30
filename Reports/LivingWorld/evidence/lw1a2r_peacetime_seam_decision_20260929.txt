@@ -1,0 +1,77 @@
+LW1-A2R — PEACETIME HOME SEAM DECISION FOCUSED EVIDENCE
+Date: 2026-09-30 UTC
+Source GitHub checkpoint: 3f7928b165892180ba484adcd0374682efa92529
+Supported native: Bannerlord v1.5.3 / build 122374 / Steam buildid 25302170
+CampaignSystem SHA-256: 5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+SandBox SHA-256: 16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A
+Interpretation only; no game launch/build/deploy/source edit.
+
+PLAYER-CLAN SECONDARY SELECTOR
+Source: native_party_ai_entry_20260929.txt
+- AiPartyThinkBehavior.PartyHourlyAiTick lines 0049-0051: IsDisabled / DoNotMakeNewDecisions stop.
+- lines 0065-0078: main party excluded; ThinkParams reset; CampaignEventDispatcher.AiHourlyTick called; AIBehaviorScores then scanned.
+- lines 0144-0185: winner commits through native SetPartyAiAction for PatrolAroundPoint, GoToSettlement, DefendSettlement.
+Source: native_player_clan_party_control_20260929.txt
+- MobileParty IsMainParty / IsLordParty and LordPartyComponent owner/leader/ActualClan surfaces retained.
+- AiArmyMemberBehavior lines 0037-0094: army member gets EscortParty candidate.
+- MobilePartyAi lines 1567-1616: DisableForHours / DisableAi / EnableAi / SetDoNotMakeNewDecisions.
+Result: normal non-main, AI-enabled, non-army player-clan lord party uses normal selector. No separate ordinary secondary-party manual-order gate is established by retained exact-assembly search.
+
+GOTOSETTLEMENT
+Source: native_visit_settlement_20260929.txt
+- lines 0673-0686: kingdom-faction path iterates mapFaction.Settlements; suitability + navigation required; hard distance condition distanceAsDays < GetMaximumDistanceAsDays.
+- lines 0798-0809: suitable visit target may be fortification/village; ordinary friendly fortification is legal absent blocking map/siege state.
+- lines 0213-0216: a settlement already retained but beyond MaximumMeaningfulDistanceAsDays is added with score 0.025.
+- lines 0305-0321: score >= 8 adds then breaks, so later sorted settlements may never be processed.
+- lines 0388-0390: ordinary detailed score must exceed 0.025 to add.
+- lines 0785-0795: AddBehaviorTupleWithScore constructs exact native AIBehaviorData(settlement, GoToSettlement) and adds/updates PartyThinkParams.
+- lines 0554-0636: native owner/home context exists; leaderHero.HomeSettlement is a multiplier input, but it is downstream of candidate exposure and cannot solve the hard distance omission.
+Result: near exact owned fortification can reach AIBehaviorScores; arbitrary far exact fortification is not reliable because the hard pre-score distance filter can remove it. Once added, party selector scans the list directly.
+
+PATROLAROUNDPOINT
+Source: native_patrol_generation_20260929.txt
+- lines 0139-0163: defensive patrol loops faction settlements but skips every target that is neither IsTown nor IsVillage; castle omitted.
+- lines 0224-0237: land distance score is based on faction-mid-settlement strategic position and party size, not current party-to-target distance.
+- lines 0240-0258: valid navigation + positive TargetScoreCalculatingModel result required; exact settlement then enters AIBehaviorScores as PatrolAroundPoint.
+Result: town may be an exact native patrol target near or far; castle cannot be one in this producer. Patrol cannot be universal home gravity for town/castle assignments.
+
+DEFENDSETTLEMENT
+Source: native_defend_generation_20260929.txt
+- lines 0135-0157: Defender maps to DefendSettlement and evaluates faction settlements.
+- lines 0428-0437: Defender requires active LastAttackerParty and hostile faction.
+- lines 0351-0425: native navigation/travel-time score can reject unreachable/too-late defense.
+- lines 0476-0479: surviving defender candidate enters PartyThinkParams.
+Result: ordinary peace does not supply DefendSettlement home behavior; existing urgent war Home Responsibility remains separate and stronger.
+
+DIRECT COMPOSER
+Source: LW1A_HOME_ASSIGNMENT_NATIVE_AUDIT.md section 1.
+- Existing StrategicDecisionComposer rescales only fixed existing candidate indices and rejects count changes.
+Result: direct composer cannot act when exact home was removed upstream.
+
+SELECTED ONE SEAM
+Class: TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiVisitSettlementBehavior
+Method: FillSettlementsToVisitWithDistancesAsDays
+Signature: private static void FillSettlementsToVisitWithDistancesAsDays(MobileParty mobileParty, List<SettlementNavigationData> listToFill)
+Category: native visit candidate exposure/retention seam.
+Allowed influence: one exact assigned native Settlement may survive/evaluate beyond the generic bounded visit-search/distance exclusion only after native IsSettlementSuitableForVisitingCondition and GetBestNavigationDataForVisitingSettlement succeed.
+Not allowed: new global scan; synthetic AIBehaviorData; direct TargetSettlement; SetMoveGoToSettlement; teleport; forced periodic movement; bypass native good-enough break or final winner.
+Downstream remains native visit score -> native AddBehaviorTupleWithScore -> PartyThinkParams -> existing bounded composer factor -> native winner -> native SetPartyAiAction.
+
+SOURCE-INFORMED V1 FACTOR
+Native far visit floor: 0.025.
+Native non-army GoToSettlement/PatrolAroundPoint selector threshold: 0.03.
+1.25 x 0.025 = 0.03125.
+Decision: v1 exact-home peacetime factor 1.25, one contribution/candidate/frame; war/unknown/urgent = 1.00. Stronger native purposes remain free to win.
+
+PERFORMANCE
+LeaderHero.StringId -> O(1) assignment lookup -> cached Settlement -> compare current native settlement/evaluate one assigned reference -> native legality/navigation -> pure policy -> bounded retain/factor.
+No second all-settlement enumeration.
+
+DESIGN PRESERVED
+Identity: Hero.StringId -> Settlement.StringId.
+Persistence: ClanAI_HomeAssignment_v1 / D1 retained for LW1-B; no schema changed in A2R.
+UI: player-owned town/castle Home assignments menu retained.
+War Home Responsibility: unchanged, peacetime seam/factor disabled outside confirmed peace.
+
+DECISION=GO — ONE NATIVE SEAM: TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiVisitSettlementBehavior.FillSettlementsToVisitWithDistancesAsDays
+NEXT=LW1-B — implement and build the playable Persistent Home Assignment / Peacetime Responsibility vertical slice.
