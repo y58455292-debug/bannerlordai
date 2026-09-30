@@ -8,6 +8,7 @@ SCOPE
 - Candidate-list filtering only: ordinary non-player kingdom lord parties omit explicitly closed foreign settlement destinations from Bannerlord's existing AiVisitSettlementBehavior settlement candidate list.
 - Current party kingdom and destination settlement owner's kingdom are read live at candidate-list construction. No sovereignty is inferred from nearby settlements, routes, or sea.
 - No route-crossing enforcement, entry veto, movement manipulation, villagers/caravans/convoys, trade-market access, diplomacy vote implementation, economy effects, or runtime proof.
+- Exact-installed v1.5.3 safety inspection: EnterSettlementAction.ApplyForParty mutates army/sea/current-settlement state and emits lifecycle events; it is called from normal arrival, fleeing/disabled-AI/attached-army paths, and party spawn paths. A global veto is unsafe; no entry patch was added. Rejecting entry without safe target re-selection could cause retries/stalls.
 - War parties/armies, player parties, caravans, non-lords and unresolved/independent affiliation cases pass through this candidate filter. Already selected routes are not cancelled.
 - Foreign trade agreements are kingdom-wide and require diplomacy votes; domestic trade stays unrestricted; vanilla clan income distribution is unchanged. This is documented direction only.
 
