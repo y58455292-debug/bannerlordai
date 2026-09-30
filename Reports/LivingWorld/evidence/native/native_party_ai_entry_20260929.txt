@@ -1,0 +1,420 @@
+BANNERLORDAI LW1-A2S TARGETED NATIVE SOURCE EVIDENCE
+extraction_utc=2026-09-30T00:44:33.746553+00:00
+source_git_checkpoint=d340bfccf051c87ff90a7c7a344c8a34076f9a9f
+bannerlord_install_root=C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord
+supported_runtime_version=v1.5.3
+retained_engine_build_version=122374
+steam_buildid=25302170
+source_dll=C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll
+source_dll_sha256=5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+decompiler=ilspycmd 11.0.0.9375 / ICSharpCode.Decompiler 11.0.0.9375
+decompiler_path=C:\Users\csala\.dotnet\tools\ilspycmd.exe
+decompiler_runtime_note=existing local tool; DOTNET_ROLL_FORWARD=Major used with installed .NET 11 RC; no tool/runtime download performed
+scope=targeted read-only decompilation; not an entire assembly dump
+source_types=TaleWorlds.CampaignSystem.PartyThinkParams | TaleWorlds.CampaignSystem.AIBehaviorData | TaleWorlds.CampaignSystem.CampaignEventDispatcher | TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiPartyThinkBehavior
+method_signatures:
+- public PartyThinkParams(MobileParty mobileParty)
+- public void Reset(MobileParty mobileParty)
+- public bool TryGetBehaviorScore(in AIBehaviorData aiBehaviorData, out float score)
+- public void SetBehaviorScore(in AIBehaviorData aiBehaviorData, float score)
+- public void AddBehaviorScore(in (AIBehaviorData, float) value)
+- public override void AiHourlyTick(MobileParty party, PartyThinkParams partyThinkParams)
+- public override void RegisterEvents()
+- private void PartyHourlyAiTick(MobileParty mobileParty)
+
+=== PartyThinkParams ===
+0001: using TaleWorlds.CampaignSystem.Party;
+0002: using TaleWorlds.Library;
+0003: 
+0004: namespace TaleWorlds.CampaignSystem;
+0005: 
+0006: public class PartyThinkParams
+0007: {
+0008: 	public MobileParty MobilePartyOf;
+0009: 
+0010: 	private readonly MBList<(AIBehaviorData, float)> _aiBehaviorScores;
+0011: 
+0012: 	private MBList<MobileParty> _possibleArmyMembersUponArmyCreation;
+0013: 
+0014: 	public float CurrentObjectiveValue;
+0015: 
+0016: 	public bool WillGatherAnArmy;
+0017: 
+0018: 	public bool DoNotChangeBehavior;
+0019: 
+0020: 	public float StrengthOfLordsWithoutArmy;
+0021: 
+0022: 	public float StrengthOfLordsWithArmy;
+0023: 
+0024: 	public float StrengthOfLordsAtSameClanWithoutArmy;
+0025: 
+0026: 	public MBReadOnlyList<(AIBehaviorData, float)> AIBehaviorScores => _aiBehaviorScores;
+0027: 
+0028: 	public MBReadOnlyList<MobileParty> PossibleArmyMembersUponArmyCreation => _possibleArmyMembersUponArmyCreation;
+0029: 
+0030: 	public PartyThinkParams(MobileParty mobileParty)
+0031: 	{
+0032: 		_aiBehaviorScores = new MBList<(AIBehaviorData, float)>(32);
+0033: 		_possibleArmyMembersUponArmyCreation = null;
+0034: 		MobilePartyOf = mobileParty;
+0035: 		WillGatherAnArmy = false;
+0036: 		DoNotChangeBehavior = false;
+0037: 		CurrentObjectiveValue = 0f;
+0038: 	}
+0039: 
+0040: 	public void Reset(MobileParty mobileParty)
+0041: 	{
+0042: 		_aiBehaviorScores.Clear();
+0043: 		_possibleArmyMembersUponArmyCreation?.Clear();
+0044: 		MobilePartyOf = mobileParty;
+0045: 		WillGatherAnArmy = false;
+0046: 		DoNotChangeBehavior = false;
+0047: 		CurrentObjectiveValue = 0f;
+0048: 		StrengthOfLordsWithoutArmy = 0f;
+0049: 		StrengthOfLordsWithArmy = 0f;
+0050: 		StrengthOfLordsAtSameClanWithoutArmy = 0f;
+0051: 	}
+0052: 
+0053: 	public void Initialization()
+0054: 	{
+0055: 		StrengthOfLordsWithoutArmy = 0f;
+0056: 		StrengthOfLordsWithArmy = 0f;
+0057: 		StrengthOfLordsAtSameClanWithoutArmy = 0f;
+0058: 		foreach (Hero hero in MobilePartyOf.MapFaction.Heroes)
+0059: 		{
+0060: 			if (hero.PartyBelongedTo == null)
+0061: 			{
+0062: 				continue;
+0063: 			}
+0064: 			MobileParty partyBelongedTo = hero.PartyBelongedTo;
+0065: 			if (partyBelongedTo.Army != null)
+0066: 			{
+0067: 				StrengthOfLordsWithArmy += partyBelongedTo.Party.EstimatedStrength;
+0068: 				continue;
+0069: 			}
+0070: 			StrengthOfLordsWithoutArmy += partyBelongedTo.Party.EstimatedStrength;
+0071: 			if (hero.Clan == MobilePartyOf.LeaderHero?.Clan)
+0072: 			{
+0073: 				StrengthOfLordsAtSameClanWithoutArmy += partyBelongedTo.Party.EstimatedStrength;
+0074: 			}
+0075: 		}
+0076: 	}
+0077: 
+0078: 	public void SetArmyMembers(MBList<MobileParty> armyMembers)
+0079: 	{
+0080: 		_possibleArmyMembersUponArmyCreation = armyMembers;
+0081: 	}
+0082: 
+0083: 	public bool TryGetBehaviorScore(in AIBehaviorData aiBehaviorData, out float score)
+0084: 	{
+0085: 		foreach (var aiBehaviorScore in _aiBehaviorScores)
+0086: 		{
+0087: 			var (aIBehaviorData, _) = aiBehaviorScore;
+0088: 			if (aIBehaviorData.Equals(aiBehaviorData))
+0089: 			{
+0090: 				score = aiBehaviorScore.Item2;
+0091: 				return true;
+0092: 			}
+0093: 		}
+0094: 		score = 0f;
+0095: 		return false;
+0096: 	}
+0097: 
+0098: 	public void SetBehaviorScore(in AIBehaviorData aiBehaviorData, float score)
+0099: 	{
+0100: 		for (int i = 0; i < _aiBehaviorScores.Count; i++)
+0101: 		{
+0102: 			if (_aiBehaviorScores[i].Item1.Equals(aiBehaviorData))
+0103: 			{
+0104: 				_aiBehaviorScores[i] = (_aiBehaviorScores[i].Item1, score);
+0105: 				return;
+0106: 			}
+0107: 		}
+0108: 		Debug.FailedAssert("AIBehaviorScore not found.", "C:\\BuildAgent\\work\\mb3\\Source\\Bannerlord\\TaleWorlds.CampaignSystem\\ICampaignBehaviorManager.cs", "SetBehaviorScore", 196);
+0109: 	}
+0110: 
+0111: 	public void AddBehaviorScore(in (AIBehaviorData, float) value)
+0112: 	{
+0113: 		_aiBehaviorScores.Add(value);
+0114: 	}
+0115: }
+
+=== AIBehaviorData ===
+0001: using System;
+0002: using TaleWorlds.CampaignSystem.Map;
+0003: using TaleWorlds.CampaignSystem.Party;
+0004: 
+0005: namespace TaleWorlds.CampaignSystem;
+0006: 
+0007: public struct AIBehaviorData : IEquatable<AIBehaviorData>
+0008: {
+0009: 	public static readonly AIBehaviorData Invalid = new AIBehaviorData(null, AiBehavior.None, MobileParty.NavigationType.None, willGatherArmy: false, isFromPort: false, isTargetingPort: false);
+0010: 
+0011: 	public IMapPoint Party;
+0012: 
+0013: 	public CampaignVec2 Position;
+0014: 
+0015: 	public AiBehavior AiBehavior;
+0016: 
+0017: 	public bool WillGatherArmy;
+0018: 
+0019: 	public bool IsFromPort;
+0020: 
+0021: 	public bool IsTargetingPort;
+0022: 
+0023: 	public MobileParty.NavigationType NavigationType;
+0024: 
+0025: 	public AIBehaviorData(IMapPoint party, AiBehavior aiBehavior, MobileParty.NavigationType navigationType, bool willGatherArmy, bool isFromPort, bool isTargetingPort)
+0026: 	{
+0027: 		Party = party;
+0028: 		AiBehavior = aiBehavior;
+0029: 		NavigationType = navigationType;
+0030: 		WillGatherArmy = willGatherArmy;
+0031: 		IsFromPort = isFromPort;
+0032: 		IsTargetingPort = isTargetingPort;
+0033: 		Position = CampaignVec2.Zero;
+0034: 	}
+0035: 
+0036: 	public AIBehaviorData(CampaignVec2 position, AiBehavior aiBehavior, MobileParty.NavigationType navigationType, bool willGatherArmy, bool isFromPort, bool isTargetingPort)
+0037: 	{
+0038: 		Position = position;
+0039: 		Party = null;
+0040: 		AiBehavior = aiBehavior;
+0041: 		NavigationType = navigationType;
+0042: 		WillGatherArmy = willGatherArmy;
+0043: 		IsFromPort = isFromPort;
+0044: 		IsTargetingPort = isTargetingPort;
+0045: 	}
+0046: 
+0047: 	public override bool Equals(object obj)
+0048: 	{
+0049: 		if (!(obj is AIBehaviorData))
+0050: 		{
+0051: 			return false;
+0052: 		}
+0053: 		return (AIBehaviorData)obj == this;
+0054: 	}
+0055: 
+0056: 	public bool Equals(AIBehaviorData other)
+0057: 	{
+0058: 		return other == this;
+0059: 	}
+0060: 
+0061: 	public override int GetHashCode()
+0062: 	{
+0063: 		int aiBehavior = (int)AiBehavior;
+0064: 		int hashCode = aiBehavior.GetHashCode();
+0065: 		hashCode = ((Party != null) ? ((hashCode * 397) ^ Party.GetHashCode()) : hashCode);
+0066: 		hashCode = (hashCode * 397) ^ WillGatherArmy.GetHashCode();
+0067: 		hashCode = (hashCode * 397) ^ IsTargetingPort.GetHashCode();
+0068: 		hashCode = (hashCode * 397) ^ IsFromPort.GetHashCode();
+0069: 		hashCode = (hashCode * 397) ^ NavigationType.GetHashCode();
+0070: 		return (hashCode * 397) ^ Position.GetHashCode();
+0071: 	}
+0072: 
+0073: 	public static bool operator ==(AIBehaviorData a, AIBehaviorData b)
+0074: 	{
+0075: 		if (a.Party == b.Party && a.AiBehavior == b.AiBehavior && a.NavigationType == b.NavigationType && a.WillGatherArmy == b.WillGatherArmy && a.IsFromPort == b.IsFromPort && a.IsTargetingPort == b.IsTargetingPort)
+0076: 		{
+0077: 			return a.Position == b.Position;
+0078: 		}
+0079: 		return false;
+0080: 	}
+0081: 
+0082: 	public static bool operator !=(AIBehaviorData a, AIBehaviorData b)
+0083: 	{
+0084: 		return !(a == b);
+0085: 	}
+0086: }
+
+=== CampaignEventDispatcher.AiHourlyTick ===
+1224: 	public override void AiHourlyTick(MobileParty party, PartyThinkParams partyThinkParams)
+1225: 	{
+1226: 		CampaignEventReceiver[] eventReceivers = _eventReceivers;
+1227: 		for (int i = 0; i < eventReceivers.Length; i++)
+1228: 		{
+1229: 			eventReceivers[i].AiHourlyTick(party, partyThinkParams);
+1230: 		}
+1231: 	}
+
+=== AiPartyThinkBehavior.RegisterEvents ===
+0016: 	public override void RegisterEvents()
+0017: 	{
+0018: 		CampaignEvents.TickPartialHourlyAiEvent.AddNonSerializedListener(this, PartyHourlyAiTick);
+0019: 		CampaignEvents.OnSettlementOwnerChangedEvent.AddNonSerializedListener(this, OnSettlementOwnerChanged);
+0020: 		CampaignEvents.WarDeclared.AddNonSerializedListener(this, OnWarDeclared);
+0021: 		CampaignEvents.MakePeace.AddNonSerializedListener(this, OnMakePeace);
+0022: 		CampaignEvents.OnClanChangedKingdomEvent.AddNonSerializedListener(this, OnClanChangedKingdom);
+0023: 		CampaignEvents.OnNewGameCreatedPartialFollowUpEndEvent.AddNonSerializedListener(this, OnNewGameCreated);
+0024: 		CampaignEvents.MobilePartyCreated.AddNonSerializedListener(this, OnMobilePartyCreated);
+0025: 	}
+
+=== AiPartyThinkBehavior.PartyHourlyAiTick ===
+0047: 	private void PartyHourlyAiTick(MobileParty mobileParty)
+0048: 	{
+0049: 		if (mobileParty.Ai.IsDisabled || mobileParty.Ai.DoNotMakeNewDecisions)
+0050: 		{
+0051: 			return;
+0052: 		}
+0053: 		bool flag = mobileParty.Army != null && mobileParty.Army.LeaderParty == mobileParty;
+0054: 		bool flag2 = mobileParty.Army != null && mobileParty.AttachedTo == null;
+0055: 		bool isTransitionInProgress = mobileParty.IsTransitionInProgress;
+0056: 		int num = 6;
+0057: 		if ((flag | isTransitionInProgress | flag2) || mobileParty.Ai.RethinkAtNextHourlyTick || (mobileParty.MapEvent != null && (mobileParty.MapEvent.IsRaid || mobileParty.MapEvent.IsSiegeAssault)))
+0058: 		{
+0059: 			num = ((!flag2 || isTransitionInProgress) ? 1 : 3);
+0060: 		}
+0061: 		if (flag && MobileParty.MainParty.Army != null && MobileParty.MainParty.Army.LeaderParty == mobileParty && (mobileParty.CurrentSettlement != null || (mobileParty.LastVisitedSettlement != null && mobileParty.MapEvent == null && mobileParty.LastVisitedSettlement.Position.Distance(mobileParty.Position) < 1f)))
+0062: 		{
+0063: 			num = 6;
+0064: 		}
+0065: 		if (mobileParty.Ai.HourCounter % num == 0 && mobileParty != MobileParty.MainParty && (mobileParty.MapEvent == null || (mobileParty.Party == mobileParty.MapEvent.AttackerSide.LeaderParty && ((mobileParty.MapEvent.IsRaid && !mobileParty.IsCurrentlyAtSea) || mobileParty.MapEvent.IsSiegeAssault))))
+0066: 		{
+0067: 			mobileParty.Ai.HourCounter = 0;
+0068: 			AiBehavior aiBehavior = ((!flag) ? AiBehavior.None : mobileParty.Army.LeaderParty.DefaultBehavior);
+0069: 			IMapPoint mapPoint = (flag ? mobileParty.Army.AiBehaviorObject : null);
+0070: 			mobileParty.Ai.RethinkAtNextHourlyTick = false;
+0071: 			PartyThinkParams thinkParamsCache = mobileParty.ThinkParamsCache;
+0072: 			thinkParamsCache.Reset(mobileParty);
+0073: 			CampaignEventDispatcher.Instance.AiHourlyTick(mobileParty, thinkParamsCache);
+0074: 			AIBehaviorData aIBehaviorData = AIBehaviorData.Invalid;
+0075: 			AIBehaviorData aIBehaviorData2 = AIBehaviorData.Invalid;
+0076: 			float num2 = -1f;
+0077: 			float num3 = -1f;
+0078: 			foreach (var aIBehaviorScore in thinkParamsCache.AIBehaviorScores)
+0079: 			{
+0080: 				float item = aIBehaviorScore.Item2;
+0081: 				if (item > num2)
+0082: 				{
+0083: 					num2 = item;
+0084: 					(aIBehaviorData, _) = aIBehaviorScore;
+0085: 				}
+0086: 				if (item > num3 && !aIBehaviorScore.Item1.WillGatherArmy)
+0087: 				{
+0088: 					num3 = item;
+0089: 					(aIBehaviorData2, _) = aIBehaviorScore;
+0090: 				}
+0091: 			}
+0092: 			if (aIBehaviorData != AIBehaviorData.Invalid)
+0093: 			{
+0094: 				if (mobileParty.DefaultBehavior == AiBehavior.Hold || mobileParty.Ai.RethinkAtNextHourlyTick || thinkParamsCache.CurrentObjectiveValue < 0.05f)
+0095: 				{
+0096: 					num2 = 1f;
+0097: 				}
+0098: 				double num4 = ((aIBehaviorData.AiBehavior == AiBehavior.PatrolAroundPoint || aIBehaviorData.AiBehavior == AiBehavior.GoToSettlement) ? 0.03 : 0.1);
+0099: 				num4 *= (double)(aIBehaviorData.WillGatherArmy ? 2f : ((mobileParty.Army != null && mobileParty.Army.LeaderParty == mobileParty) ? 0.33f : 1f));
+0100: 				bool flag3 = mobileParty.Army != null;
+0101: 				for (int i = 0; i < num; i++)
+0102: 				{
+0103: 					if (flag3)
+0104: 					{
+0105: 						break;
+0106: 					}
+0107: 					flag3 = MBRandom.RandomFloat < num2;
+0108: 				}
+0109: 				if ((((double)num2 > num4) & flag3) || (num2 > 0.01f && mobileParty.MapEvent == null && mobileParty.Army == null && mobileParty.DefaultBehavior == AiBehavior.Hold))
+0110: 				{
+0111: 					if (mobileParty.MapEvent != null && mobileParty.Party == mobileParty.MapEvent.AttackerSide.LeaderParty && !thinkParamsCache.DoNotChangeBehavior && (aIBehaviorData.Party != mobileParty.MapEvent.MapEventSettlement || (aIBehaviorData.AiBehavior != AiBehavior.RaidSettlement && aIBehaviorData.AiBehavior != AiBehavior.BesiegeSettlement && aIBehaviorData.AiBehavior != AiBehavior.AssaultSettlement)))
+0112: 					{
+0113: 						if (PlayerEncounter.Current != null && PlayerEncounter.Battle == mobileParty.MapEvent)
+0114: 						{
+0115: 							PlayerEncounter.Finish();
+0116: 						}
+0117: 						if (mobileParty.MapEvent != null)
+0118: 						{
+0119: 							mobileParty.MapEvent.FinalizeEvent();
+0120: 						}
+0121: 						if (mobileParty.SiegeEvent != null)
+0122: 						{
+0123: 							mobileParty.SiegeEvent.FinalizeSiegeEvent();
+0124: 						}
+0125: 					}
+0126: 					if ((double)num2 <= num4)
+0127: 					{
+0128: 						aIBehaviorData = aIBehaviorData2;
+0129: 					}
+0130: 					bool flag4 = aIBehaviorData.AiBehavior == AiBehavior.RaidSettlement || aIBehaviorData.AiBehavior == AiBehavior.BesiegeSettlement || aIBehaviorData.AiBehavior == AiBehavior.DefendSettlement || aIBehaviorData.AiBehavior == AiBehavior.PatrolAroundPoint;
+0131: 					if (mobileParty.Army != null && mobileParty.Army.LeaderParty == mobileParty && (mobileParty.CurrentSettlement == null || mobileParty.CurrentSettlement.SiegeEvent == null) && !((aIBehaviorData.AiBehavior == AiBehavior.GoAroundParty || aIBehaviorData.AiBehavior == AiBehavior.PatrolAroundPoint || aIBehaviorData.AiBehavior == AiBehavior.GoToSettlement) | flag4))
+0132: 					{
+0133: 						DisbandArmyAction.ApplyByUnknownReason(mobileParty.Army);
+0134: 					}
+0135: 					if (flag4 && mobileParty.Army == null && aIBehaviorData.WillGatherArmy && !mobileParty.LeaderHero.Clan.IsUnderMercenaryService)
+0136: 					{
+0137: 						bool flag5 = MBRandom.RandomFloat < num2;
+0138: 						if ((aIBehaviorData.AiBehavior == AiBehavior.DefendSettlement) | flag5)
+0139: 						{
+0140: 							Army.ArmyTypes selectedArmyType = ((aIBehaviorData.AiBehavior != AiBehavior.BesiegeSettlement) ? ((aIBehaviorData.AiBehavior == AiBehavior.RaidSettlement) ? Army.ArmyTypes.Raider : Army.ArmyTypes.Defender) : Army.ArmyTypes.Besieger);
+0141: 							((Kingdom)mobileParty.MapFaction).CreateArmy(mobileParty.LeaderHero, aIBehaviorData.Party as Settlement, selectedArmyType, thinkParamsCache.PossibleArmyMembersUponArmyCreation);
+0142: 						}
+0143: 					}
+0144: 					else if (!thinkParamsCache.DoNotChangeBehavior)
+0145: 					{
+0146: 						if (aIBehaviorData.AiBehavior == AiBehavior.PatrolAroundPoint)
+0147: 						{
+0148: 							if (aIBehaviorData.Party != null)
+0149: 							{
+0150: 								SetPartyAiAction.GetActionForPatrollingAroundSettlement(mobileParty, (Settlement)aIBehaviorData.Party, aIBehaviorData.NavigationType, aIBehaviorData.IsFromPort, aIBehaviorData.IsTargetingPort);
+0151: 							}
+0152: 							else
+0153: 							{
+0154: 								SetPartyAiAction.GetActionForPatrollingAroundPoint(mobileParty, aIBehaviorData.Position, aIBehaviorData.NavigationType, aIBehaviorData.IsFromPort);
+0155: 							}
+0156: 						}
+0157: 						else if (aIBehaviorData.AiBehavior == AiBehavior.GoToSettlement)
+0158: 						{
+0159: 							if (MobilePartyHelper.GetCurrentSettlementOfMobilePartyForAICalculation(mobileParty) != aIBehaviorData.Party)
+0160: 							{
+0161: 								SetPartyAiAction.GetActionForVisitingSettlement(mobileParty, (Settlement)aIBehaviorData.Party, aIBehaviorData.NavigationType, aIBehaviorData.IsFromPort, aIBehaviorData.IsTargetingPort);
+0162: 							}
+0163: 						}
+0164: 						else if (aIBehaviorData.AiBehavior == AiBehavior.EscortParty)
+0165: 						{
+0166: 							SetPartyAiAction.GetActionForEscortingParty(mobileParty, (MobileParty)aIBehaviorData.Party, aIBehaviorData.NavigationType, aIBehaviorData.IsFromPort, aIBehaviorData.IsTargetingPort);
+0167: 						}
+0168: 						else if (aIBehaviorData.AiBehavior == AiBehavior.RaidSettlement)
+0169: 						{
+0170: 							if (mobileParty.MapEvent == null || !mobileParty.MapEvent.IsRaid || mobileParty.MapEvent.MapEventSettlement != aIBehaviorData.Party)
+0171: 							{
+0172: 								SetPartyAiAction.GetActionForRaidingSettlement(mobileParty, (Settlement)aIBehaviorData.Party, aIBehaviorData.NavigationType, aIBehaviorData.IsFromPort, aIBehaviorData.IsTargetingPort);
+0173: 							}
+0174: 						}
+0175: 						else if (aIBehaviorData.AiBehavior == AiBehavior.BesiegeSettlement)
+0176: 						{
+0177: 							if (mobileParty.MapEvent == null || !mobileParty.MapEvent.IsSiegeAssault || mobileParty.MapEvent.MapEventSettlement != aIBehaviorData.Party)
+0178: 							{
+0179: 								SetPartyAiAction.GetActionForBesiegingSettlement(mobileParty, (Settlement)aIBehaviorData.Party, aIBehaviorData.NavigationType, aIBehaviorData.IsFromPort);
+0180: 							}
+0181: 						}
+0182: 						else if (aIBehaviorData.AiBehavior == AiBehavior.DefendSettlement && mobileParty.CurrentSettlement != aIBehaviorData.Party)
+0183: 						{
+0184: 							SetPartyAiAction.GetActionForDefendingSettlement(mobileParty, (Settlement)aIBehaviorData.Party, aIBehaviorData.NavigationType, aIBehaviorData.IsFromPort, aIBehaviorData.IsTargetingPort);
+0185: 						}
+0186: 						else if (aIBehaviorData.AiBehavior == AiBehavior.GoAroundParty)
+0187: 						{
+0188: 							SetPartyAiAction.GetActionForGoingAroundParty(mobileParty, (MobileParty)aIBehaviorData.Party, aIBehaviorData.NavigationType, aIBehaviorData.IsFromPort);
+0189: 						}
+0190: 						else if (aIBehaviorData.AiBehavior == AiBehavior.MoveToNearestLandOrPort)
+0191: 						{
+0192: 							SetPartyAiAction.GetActionForMovingToNearestLand(mobileParty, (Settlement)aIBehaviorData.Party);
+0193: 						}
+0194: 					}
+0195: 				}
+0196: 				else if (aIBehaviorData.AiBehavior != AiBehavior.None)
+0197: 				{
+0198: 					if (mobileParty.Army != null && mobileParty.Army.LeaderParty == mobileParty && !mobileParty.Army.IsWaitingForArmyMembers())
+0199: 					{
+0200: 						DisbandArmyAction.ApplyByUnknownReason(mobileParty.Army);
+0201: 					}
+0202: 					else if (mobileParty.Army != null && mobileParty.CurrentSettlement == null && mobileParty != mobileParty.Army.LeaderParty && !thinkParamsCache.DoNotChangeBehavior)
+0203: 					{
+0204: 						SetPartyAiAction.GetActionForEscortingParty(mobileParty, mobileParty.Army.LeaderParty, aIBehaviorData.NavigationType, aIBehaviorData.IsFromPort, aIBehaviorData.IsTargetingPort);
+0205: 					}
+0206: 				}
+0207: 				if (MobileParty.MainParty.Army != null && mobileParty == MobileParty.MainParty.Army.LeaderParty && (aiBehavior != mobileParty.Army.LeaderParty.DefaultBehavior || mobileParty.Army.AiBehaviorObject != mapPoint))
+0208: 				{
+0209: 					CampaignEventDispatcher.Instance.OnPlayerArmyLeaderChangedBehavior();
+0210: 				}
+0211: 			}
+0212: 		}
+0213: 		mobileParty.Ai.HourCounter++;
+0214: 	}

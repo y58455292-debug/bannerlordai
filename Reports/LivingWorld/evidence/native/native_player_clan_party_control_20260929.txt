@@ -1,0 +1,439 @@
+BANNERLORDAI LW1-A2S TARGETED NATIVE SOURCE EVIDENCE
+extraction_utc=2026-09-30T00:44:33.746553+00:00
+source_git_checkpoint=d340bfccf051c87ff90a7c7a344c8a34076f9a9f
+bannerlord_install_root=C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord
+supported_runtime_version=v1.5.3
+retained_engine_build_version=122374
+steam_buildid=25302170
+source_dll=C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll
+source_dll_sha256=5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+decompiler=ilspycmd 11.0.0.9375 / ICSharpCode.Decompiler 11.0.0.9375
+decompiler_path=C:\Users\csala\.dotnet\tools\ilspycmd.exe
+decompiler_runtime_note=existing local tool; DOTNET_ROLL_FORWARD=Major used with installed .NET 11 RC; no tool/runtime download performed
+scope=targeted read-only decompilation; not an entire assembly dump
+source_types=TaleWorlds.CampaignSystem.Party.MobilePartyAi | TaleWorlds.CampaignSystem.Party.MobileParty | TaleWorlds.CampaignSystem.Party.PartyComponents.LordPartyComponent | TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiArmyMemberBehavior | TaleWorlds.CampaignSystem.CampaignBehaviors.DisbandPartyCampaignBehavior
+method_signatures:
+- private void TickInternal()
+- public void DisableForHours(int hours)
+- public void DisableAi()
+- public void EnableAi()
+- public void SetDoNotMakeNewDecisions(bool doNotMakeNewDecisions)
+- public void UpdatePartyComponentFlags()
+- protected override void OnMobilePartySetOnCreation()
+- public static MobileParty CreateLordParty(string stringId, Hero hero, CampaignVec2 position, float spawnRadius, Settlement spawnSettlement, Hero partyLeader)
+- public static void ConvertPartyToLordParty(MobileParty mobileParty, Hero owner, Hero partyLeader)
+- public void AiHourlyTick(MobileParty mobileParty, PartyThinkParams p)
+
+=== MobilePartyAi persisted decision-control fields/properties ===
+0072: 
+0073: 	[SaveableField(33)]
+0074: 	private FleeingData _fleeingData;
+0075: 
+0076: 	[SaveableField(2)]
+0077: 	private bool _isDisabled;
+0078: 
+0079: 	[SaveableField(5)]
+0080: 	private readonly MobileParty _mobileParty;
+0081: 
+0082: 	[SaveableField(6)]
+0083: 	public int HourCounter;
+0084: 
+0085: 	[SaveableField(32)]
+0086: 	internal CampaignVec2 BehaviorTarget;
+0087: 
+0088: 	[SaveableField(13)]
+0089: 	private float _attackInitiative = 1f;
+0090: 
+0091: 	[SaveableField(14)]
+0092: 	private float _avoidInitiative = 1f;
+0093: 
+0094: 	[SaveableField(15)]
+0095: 	private CampaignTime _initiativeRestoreTime;
+0096: 
+0097: 	[SaveableField(18)]
+0098: 	private CampaignTime _nextAiCheckTime;
+0099: 
+0100: 	[SaveableField(19)]
+0101: 	internal bool DefaultBehaviorNeedsUpdate;
+0102: 
+0103: 	[SaveableField(30)]
+0104: 	private IInteractablePoint _aiBehaviorInteractable;
+0105: 
+0106: 	public bool IsDisabled
+0107: 	{
+0108: 		get
+0109: 		{
+0110: 			return _isDisabled;
+0111: 		}
+0112: 		private set
+0113: 		{
+0114: 			_isDisabled = value;
+0115: 		}
+0116: 	}
+0117: 
+0118: 	[SaveableProperty(3)]
+0119: 	private CampaignTime _enableAgainAtHour { get; set; }
+0120: 
+0121: 	[SaveableProperty(10)]
+0122: 	public bool RethinkAtNextHourlyTick { get; set; }
+0123: 
+0124: 	[SaveableProperty(11)]
+0125: 	public bool DoNotMakeNewDecisions { get; private set; }
+0126: 
+0127: 	[SaveableProperty(17)]
+0128: 	public bool IsAlerted { get; private set; }
+0129: 
+0130: 	[SaveableProperty(31)]
+0131: 	public CampaignTime DoNotAttackMainPartyUntil { get; internal set; }
+0132: 
+=== MobilePartyAi.TickInternal ===
+0427: 	private void TickInternal()
+0428: 	{
+0429: 		if (_mobileParty.MapEvent != null || !_mobileParty.IsActive)
+0430: 		{
+0431: 			return;
+0432: 		}
+0433: 		if (_mobileParty == MobileParty.MainParty && MobileParty.MainParty.DefaultBehavior == AiBehavior.EngageParty && !MobileParty.MainParty.TargetParty.IsVisible)
+0434: 		{
+0435: 			MobileParty.MainParty.SetMoveModeHold();
+0436: 		}
+0437: 		if (IsDisabled)
+0438: 		{
+0439: 			if (EnableAgainAtHourIsPast())
+0440: 			{
+0441: 				EnableAi();
+0442: 			}
+0443: 		}
+0444: 		else if (_mobileParty.Army == null || !_mobileParty.Army.LeaderParty.AttachedParties.Contains(_mobileParty))
+0445: 		{
+0446: 			GetBehaviors(out var bestAiBehavior, out var behaviorObject, out var bestTargetPoint);
+0447: 			SetAiBehavior(bestAiBehavior, behaviorObject, bestTargetPoint);
+0448: 		}
+0449: 	}
+
+=== MobilePartyAi.DisableForHours ===
+1567: 	public void DisableForHours(int hours)
+1568: 	{
+1569: 		_isDisabled = true;
+1570: 		_enableAgainAtHour = CampaignTime.Now + CampaignTime.Hours(hours);
+1571: 	}
+
+=== MobilePartyAi.DisableAi ===
+1573: 	public void DisableAi()
+1574: 	{
+1575: 		_isDisabled = true;
+1576: 		_enableAgainAtHour = CampaignTime.Never;
+1577: 	}
+
+=== MobilePartyAi.EnableAi ===
+1579: 	public void EnableAi()
+1580: 	{
+1581: 		_isDisabled = false;
+1582: 		_enableAgainAtHour = CampaignTime.Now;
+1583: 	}
+
+=== MobilePartyAi.SetDoNotMakeNewDecisions ===
+1613: 	public void SetDoNotMakeNewDecisions(bool doNotMakeNewDecisions)
+1614: 	{
+1615: 		DoNotMakeNewDecisions = doNotMakeNewDecisions;
+1616: 	}
+
+=== MobileParty main/leader/clan/lord-party identity ===
+0274: 	private PartyComponent _partyComponent;
+0275: 
+0276: 	public static MobileParty MainParty => Campaign.Current.MainParty;
+0277: 
+0278: 	public static MBReadOnlyList<MobileParty> All => Campaign.Current.MobileParties;
+0279: 
+0280: 	public static MBReadOnlyList<MobileParty> AllCaravanParties => Campaign.Current.CaravanParties;
+0281: 
+0282: 	public static MBReadOnlyList<MobileParty> AllPatrolParties => Campaign.Current.PatrolParties;
+0283: 
+0284: 	public static MBReadOnlyList<MobileParty> AllBanditParties => Campaign.Current.BanditParties;
+
+0827: 	}
+0828: 
+0829: 	public Hero LeaderHero => PartyComponent?.Leader;
+0830: 
+0831: 	[SaveableProperty(1070)]
+0832: 	private Hero Scout { get; set; }
+0833: 
+0834: 	[SaveableProperty(1072)]
+0835: 	private Hero Engineer { get; set; }
+0836: 
+0837: 	[SaveableProperty(1071)]
+
+0994: 	public float BaseFoodChange => Campaign.Current.Models.MobilePartyFoodConsumptionModel.CalculateDailyBaseFoodConsumptionf(this).ResultNumber;
+0995: 
+0996: 	public Clan ActualClan
+0997: 	{
+0998: 		get
+0999: 		{
+1000: 			return _actualClan;
+1001: 		}
+1002: 		set
+1003: 		{
+1004: 			if (_actualClan != value)
+1005: 			{
+1006: 				if (_actualClan != null && value != null && PartyComponent is WarPartyComponent warPartyComponent)
+1007: 				{
+1008: 					warPartyComponent.OnClanChange(_actualClan, value);
+1009: 				}
+1010: 				_actualClan = value;
+1011: 			}
+1012: 		}
+1013: 	}
+1014: 
+1015: 	public ExplainedNumber FoodChangeExplained
+1016: 	{
+1017: 		get
+1018: 		{
+
+1129: 	public ItemRoster ItemRoster => Party.ItemRoster;
+1130: 
+1131: 	public bool IsMainParty => this == MainParty;
+1132: 
+1133: 	public IFaction MapFaction
+1134: 	{
+1135: 		get
+1136: 		{
+1137: 			if (ActualClan != null)
+1138: 			{
+1139: 				return ActualClan.MapFaction;
+1140: 			}
+1141: 			if (Party.Owner != null)
+1142: 			{
+1143: 				if (Party.Owner == Hero.MainHero)
+1144: 				{
+1145: 					return Party.Owner.MapFaction;
+1146: 				}
+1147: 				if (Party.Owner.IsNotable)
+
+4313: 		}
+4314: 		Party.SetVisualAsDirty();
+4315: 	}
+4316: 
+4317: 	public void UpdatePartyComponentFlags()
+4318: 	{
+4319: 		IsLordParty = _partyComponent is LordPartyComponent;
+4320: 		IsVillager = _partyComponent is VillagerPartyComponent;
+4321: 		IsMilitia = _partyComponent is MilitiaPartyComponent;
+4322: 		IsCaravan = _partyComponent is CaravanPartyComponent;
+4323: 		IsPatrolParty = _partyComponent is PatrolPartyComponent;
+4324: 		IsGarrison = _partyComponent is GarrisonPartyComponent;
+4325: 		IsCustomParty = _partyComponent is CustomPartyComponent;
+4326: 		IsBandit = _partyComponent is BanditPartyComponent;
+4327: 	}
+4328: }
+
+
+=== LordPartyComponent ownership/home/creation ===
+0072: 		}
+0073: 	}
+0074: 
+0075: 	public override bool CanHaveNavalNavigationCapability => _leader?.CanHaveFleet ?? true;
+0076: 
+0077: 	public override Settlement HomeSettlement => Owner.HomeSettlement;
+0078: 
+0079: 	[SaveableProperty(20)]
+0080: 	public Hero Owner { get; private set; }
+0081: 
+0082: 	public override Hero Leader => _leader;
+0083: 
+0084: 	public override int WagePaymentLimit => _wagePaymentLimit;
+0085: 
+0086: 	internal static void AutoGeneratedStaticCollectObjectsLordPartyComponent(object o, List<object> collectedObjects)
+0087: 	{
+0088: 		((LordPartyComponent)o).AutoGeneratedInstanceCollectObjects(collectedObjects);
+0089: 	}
+0090: 
+0091: 	protected override void AutoGeneratedInstanceCollectObjects(List<object> collectedObjects)
+0092: 	{
+0093: 		base.AutoGeneratedInstanceCollectObjects(collectedObjects);
+0094: 		collectedObjects.Add(_leader);
+0095: 		collectedObjects.Add(Owner);
+0096: 	}
+0097: 
+0098: 	internal static object AutoGeneratedGetMemberValueOwner(object o)
+0099: 	{
+0100: 		return ((LordPartyComponent)o).Owner;
+0101: 	}
+
+0118: 	protected override void OnMobilePartySetOnCreation()
+0119: 	{
+0120: 		base.MobileParty.ActualClan = Owner.Clan;
+0121: 		base.MobileParty.Party.SetVisualAsDirty();
+0122: 		if (base.MobileParty != MobileParty.MainParty && base.MobileParty.Owner.Clan != Clan.PlayerClan)
+0123: 		{
+0124: 			base.MobileParty.Aggressiveness = 0.9f + 0.1f * (float)Owner.GetTraitLevel(DefaultTraits.Valor) - 0.05f * (float)Owner.GetTraitLevel(DefaultTraits.Mercy);
+0125: 			Owner.PassedTimeAtHomeSettlement = (int)(MBRandom.RandomFloat * 100f);
+0126: 		}
+0127: 		if (_initializationArgs != null)
+0128: 		{
+0129: 			_initializationArgs.InitializeLordPartyProperties(base.MobileParty, Owner);
+0130: 			_initializationArgs = null;
+0131: 		}
+0132: 	}
+
+0134: 	public static MobileParty CreateLordParty(string stringId, Hero hero, CampaignVec2 position, float spawnRadius, Settlement spawnSettlement, Hero partyLeader)
+0135: 	{
+0136: 		InitializationArgs args = new InitializationArgs(position, spawnRadius, spawnSettlement);
+0137: 		return MobileParty.CreateParty(stringId + "_party_1", new LordPartyComponent(hero, partyLeader, args));
+0138: 	}
+
+0140: 	public static void ConvertPartyToLordParty(MobileParty mobileParty, Hero owner, Hero partyLeader)
+0141: 	{
+0142: 		mobileParty.SetPartyComponent(new LordPartyComponent(owner, partyLeader, null));
+0143: 	}
+
+=== AiArmyMemberBehavior focused type ===
+0001: using Helpers;
+0002: using TaleWorlds.CampaignSystem.Party;
+0003: using TaleWorlds.CampaignSystem.Siege;
+0004: using TaleWorlds.Library;
+0005: 
+0006: namespace TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors;
+0007: 
+0008: public class AiArmyMemberBehavior : CampaignBehaviorBase
+0009: {
+0010: 	private float FollowingArmyLeaderMaxScore => 20f;
+0011: 
+0012: 	private float FollowingArmyLeaderMinScore => FollowingArmyLeaderMaxScore * 0.5f;
+0013: 
+0014: 	private float ArmyLeaderIsUnreachableScore => 0.02475f;
+0015: 
+0016: 	public override void RegisterEvents()
+0017: 	{
+0018: 		CampaignEvents.AiHourlyTickEvent.AddNonSerializedListener(this, AiHourlyTick);
+0019: 		CampaignEvents.OnSiegeEventStartedEvent.AddNonSerializedListener(this, OnSiegeEventStarted);
+0020: 	}
+0021: 
+0022: 	public override void SyncData(IDataStore dataStore)
+0023: 	{
+0024: 	}
+0025: 
+0026: 	private void OnSiegeEventStarted(SiegeEvent siegeEvent)
+0027: 	{
+0028: 		for (int i = 0; i < siegeEvent.BesiegedSettlement.Parties.Count; i++)
+0029: 		{
+0030: 			if (siegeEvent.BesiegedSettlement.Parties[i].IsLordParty)
+0031: 			{
+0032: 				siegeEvent.BesiegedSettlement.Parties[i].SetMoveModeHold();
+0033: 			}
+0034: 		}
+0035: 	}
+0036: 
+0037: 	public void AiHourlyTick(MobileParty mobileParty, PartyThinkParams p)
+0038: 	{
+0039: 		if (mobileParty.Army == null || mobileParty.Army.LeaderParty == mobileParty || (mobileParty.AttachedTo == null && ((mobileParty.Army.LeaderParty.CurrentSettlement != null && mobileParty.Army.LeaderParty.CurrentSettlement.IsUnderSiege && (mobileParty.Army.LeaderParty.CurrentSettlement.SiegeEvent.IsBlockadeActive || !mobileParty.HasNavalNavigationCapability)) || (mobileParty.CurrentSettlement != null && mobileParty.CurrentSettlement.IsUnderSiege))))
+0040: 		{
+0041: 			return;
+0042: 		}
+0043: 		MobileParty.NavigationType bestNavigationType = MobileParty.NavigationType.None;
+0044: 		float bestNavigationDistance = float.MaxValue;
+0045: 		bool isTargetingPort = false;
+0046: 		bool isFromPort = false;
+0047: 		if (mobileParty.Army.LeaderParty.CurrentSettlement != null)
+0048: 		{
+0049: 			SiegeEvent siegeEvent = mobileParty.Army.LeaderParty.CurrentSettlement.SiegeEvent;
+0050: 			bool num = siegeEvent == null;
+0051: 			bool flag = mobileParty.HasNavalNavigationCapability && mobileParty.Army.LeaderParty.CurrentSettlement.HasPort && (siegeEvent == null || (!siegeEvent.IsBlockadeActive && mobileParty.HasNavalNavigationCapability));
+0052: 			if (num)
+0053: 			{
+0054: 				AiHelper.GetBestNavigationTypeAndAdjustedDistanceOfSettlementForMobileParty(mobileParty, mobileParty.Army.LeaderParty.CurrentSettlement, isTargetingPort: false, out bestNavigationType, out bestNavigationDistance, out isFromPort);
+0055: 			}
+0056: 			if (flag)
+0057: 			{
+0058: 				AiHelper.GetBestNavigationTypeAndAdjustedDistanceOfSettlementForMobileParty(mobileParty, mobileParty.Army.LeaderParty.CurrentSettlement, isTargetingPort: true, out var bestNavigationType2, out var bestNavigationDistance2, out var isFromPort2);
+0059: 				if (bestNavigationDistance2 < bestNavigationDistance)
+0060: 				{
+0061: 					bestNavigationType = bestNavigationType2;
+0062: 					bestNavigationDistance = bestNavigationDistance2;
+0063: 					isFromPort = isFromPort2;
+0064: 					isTargetingPort = true;
+0065: 				}
+0066: 			}
+0067: 		}
+0068: 		else
+0069: 		{
+0070: 			AiHelper.GetBestNavigationTypeAndDistanceOfMobilePartyForMobileParty(mobileParty, mobileParty.Army.LeaderParty, out bestNavigationType, out bestNavigationDistance);
+0071: 		}
+0072: 		if (bestNavigationType != MobileParty.NavigationType.None)
+0073: 		{
+0074: 			float num2 = FollowingArmyLeaderMaxScore;
+0075: 			float num3 = 1f;
+0076: 			float num4 = (mobileParty.Army.LeaderParty.IsMainParty ? Campaign.Current.Models.ArmyManagementCalculationModel.PlayerMobilePartySizeRatioToCallToArmy : Campaign.Current.Models.ArmyManagementCalculationModel.AIMobilePartySizeRatioToCallToArmy);
+0077: 			if ((float)mobileParty.GetNumDaysForFoodToLast() < Campaign.Current.Models.ArmyManagementCalculationModel.MinimumNeededFoodInDaysToCallToArmy || mobileParty.PartySizeRatio < num4)
+0078: 			{
+0079: 				num2 = FollowingArmyLeaderMinScore;
+0080: 				float num5 = Campaign.Current.GetAverageDistanceBetweenClosestTwoTownsWithNavigationType(bestNavigationType) * 0.5f;
+0081: 				if (num5 > bestNavigationDistance)
+0082: 				{
+0083: 					num3 = MathF.Clamp(num5 / (bestNavigationDistance + 0.1f), 1f, FollowingArmyLeaderMaxScore / FollowingArmyLeaderMinScore);
+0084: 				}
+0085: 			}
+0086: 			AIBehaviorData item = new AIBehaviorData(mobileParty.Army.LeaderParty, AiBehavior.EscortParty, bestNavigationType, willGatherArmy: false, isFromPort, isTargetingPort);
+0087: 			float item2 = MathF.Clamp(num2 * num3, FollowingArmyLeaderMinScore, FollowingArmyLeaderMaxScore);
+0088: 			p.AddBehaviorScore((item, item2));
+0089: 		}
+0090: 		else
+0091: 		{
+0092: 			AIBehaviorData item3 = new AIBehaviorData(mobileParty.Army.LeaderParty, AiBehavior.EscortParty, mobileParty.NavigationCapability, willGatherArmy: false, isFromPort, isTargetingPort: false);
+0093: 			float armyLeaderIsUnreachableScore = ArmyLeaderIsUnreachableScore;
+0094: 			p.AddBehaviorScore((item3, armyLeaderIsUnreachableScore));
+0095: 		}
+0096: 	}
+0097: }
+
+=== DisbandPartyCampaignBehavior decision-stop excerpt ===
+0116: 					hero = hero2;
+0117: 					break;
+0118: 				}
+0119: 			}
+0120: 			if (hero != null)
+0121: 			{
+0122: 				TeleportHeroAction.ApplyDelayedTeleportToPartyAsPartyLeader(hero, party);
+0123: 			}
+0124: 			else
+0125: 			{
+0126: 				_partiesThatWaitingToDisband.Add(party, CampaignTime.DaysFromNow(1f));
+0127: 			}
+0128: 			return;
+0129: 		}
+0130: 		if (party.IsCaravan && party.ActualClan == Clan.PlayerClan)
+0131: 		{
+0132: 			party.Ai.SetDoNotMakeNewDecisions(doNotMakeNewDecisions: true);
+0133: 			GetTargetSettlementForDisbandingParty(party, out var targetSettlement, out var bestNavigationType, out var isTargetingPort);
+0134: 			if (targetSettlement != null)
+0135: 			{
+0136: 				party.SetMoveGoToSettlement(targetSettlement, bestNavigationType, isTargetingPort);
+0137: 			}
+0138: 		}
+0139: 		if (party.ActualClan == Clan.PlayerClan && party.LeaderHero != null)
+0140: 		{
+0141: 			_ = party.LeaderHero;
+0142: 			party.RemovePartyLeader();
+0143: 			Debug.FailedAssert("Player Clan's party should not have a leader hero after party disband started!", "C:\\BuildAgent\\work\\mb3\\Source\\Bannerlord\\TaleWorlds.CampaignSystem\\CampaignBehaviors\\DisbandPartyCampaignBehavior.cs", "OnPartyDisbandStarted", 171);
+0144: 		}
+0145: 		CampaignTime value = (party.IsCurrentlyAtSea ? CampaignTime.Never : CampaignTime.DaysFromNow(1f));
+0146: 		_partiesThatWaitingToDisband.Add(party, value);
+0147: 	}
+0148: 
+0149: 	private void OnPartyDisbandCanceled(MobileParty party)
+0150: 	{
+0151: 		if (_partiesThatWaitingToDisband.ContainsKey(party))
+0152: 		{
+0153: 			_partiesThatWaitingToDisband.Remove(party);
+0154: 		}
+0155: 	}
+0156: 
+0157: 	private void HourlyTick()
+0158: 	{
+0159: 		List<MobileParty> list = new List<MobileParty>();
+0160: 		foreach (KeyValuePair<MobileParty, CampaignTime> item in _partiesThatWaitingToDisband)
+
+=== Exact-assembly reference-search summary ===
+CampaignSystem.dll SetDoNotMakeNewDecisions callers include TeleportHeroAction, DisbandPartyCampaignBehavior, and temporary quest/issue party behaviors.
+CampaignSystem.dll DisableAi callers include RaftStateChangeAction, BanditSpawnCampaignBehavior boss parties, selected quest/issue parties, GarrisonPartyComponent, and MilitiaPartyComponent.
+SandBox.dll targeted exact-project search found no SetDoNotMakeNewDecisions call and no ordinary player-clan secondary-lord-party DisableAi caller.
+Scope: exact local reference search of the two required assemblies only.

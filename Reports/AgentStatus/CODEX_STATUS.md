@@ -1,6 +1,23 @@
 # Codex Status
 
-## Current checkpoint — LW1-A2 Native source closure
+## Current checkpoint — LW1-A2S Native source acquisition
+
+**COMPLETE — 2026-09-29.** The connected RC1 Bannerlord machine `DESKTOP-JO4B7VH` is reachable again. Read-only acquisition from the exact installed runtime recomputed the native input identities: `TaleWorlds.CampaignSystem.dll` SHA-256 `5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F` and `SandBox.dll` SHA-256 `16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A`. Supported runtime provenance is Bannerlord `v1.5.3`, retained engine build `122374`, Steam buildid `25302170`.
+
+Existing local `ilspycmd 11.0.0.9375` / `ICSharpCode.Decompiler 11.0.0.9375` was used without downloads. Targeted, hash-provenanced excerpts retain the exact native selector entry, `PartyThinkParams.AIBehaviorScores` storage/selection path, `GoToSettlement`, `PatrolAroundPoint`, `DefendSettlement` generation, army-member behavior, player/main-party/AI-control gates, and land/naval navigation inputs. `SandBox.dll` was independently inventoried; no full proprietary DLL or full assembly decompile is committed.
+
+This is **source acquisition only**. LW1-A2S does not decide exact peacetime home availability and does not select an implementation seam. The acquired evidence is sufficient to resume that interpretation in the next checkpoint.
+
+RC1 remains frozen/playable at `9ec113e738af35254e113fbde7c05babbf3c405d`; tested ClanAI DLL SHA-256 remains `A18341FB2CD6B8623B45B52155C1A7D987DBEE7AAE14AE7DBF704514EC7F37B5`. Bannerlord launched: **NO**. Gameplay/save schema/RC1 changed: **NO**. ClanAI built/deployed: **NO**.
+
+Report: [LW1A2S_NATIVE_SOURCE_ACQUISITION.md](../LivingWorld/LW1A2S_NATIVE_SOURCE_ACQUISITION.md).
+Evidence directory: [native](../LivingWorld/evidence/native/).
+
+**Exact next checkpoint: LW1-A2R — resume supported-native peacetime candidate-generation/control-seam closure using acquired source evidence.** Do not begin LW1-B.
+
+Stop after this acquisition commit/main verification.
+
+## Preserved LW1-A2 Native source closure blocker
 
 **BLOCKED / INCOMPLETE — 2026-09-29.** Fresh source-access checks confirm DESKTOP-JO4B7VH remains offline and the inspected workspace/current GitHub tree has no supported native assemblies/full peacetime selector. No native-generation/control question has been closed; exact near/far visit/patrol home availability remains **UNKNOWN**. No native-compatible seam is selected.
 

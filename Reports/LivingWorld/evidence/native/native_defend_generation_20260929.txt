@@ -1,0 +1,327 @@
+BANNERLORDAI LW1-A2S TARGETED NATIVE SOURCE EVIDENCE
+extraction_utc=2026-09-30T00:44:33.746553+00:00
+source_git_checkpoint=d340bfccf051c87ff90a7c7a344c8a34076f9a9f
+bannerlord_install_root=C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord
+supported_runtime_version=v1.5.3
+retained_engine_build_version=122374
+steam_buildid=25302170
+source_dll=C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll
+source_dll_sha256=5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+decompiler=ilspycmd 11.0.0.9375 / ICSharpCode.Decompiler 11.0.0.9375
+decompiler_path=C:\Users\csala\.dotnet\tools\ilspycmd.exe
+decompiler_runtime_note=existing local tool; DOTNET_ROLL_FORWARD=Major used with installed .NET 11 RC; no tool/runtime download performed
+scope=targeted read-only decompilation; not an entire assembly dump
+source_types=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiMilitaryBehavior
+method_signatures:
+- public override void RegisterEvents()
+- public void FindBestTargetAndItsValueForFaction(Army.ArmyTypes missionType, PartyThinkParams p, float ourStrength)
+- private void CalculateMilitaryBehaviorForFactionSettlements(IFaction faction, PartyThinkParams p, Army.ArmyTypes missionType, AiBehavior aiBehavior, float ourStrength, float partySizeScore, float cohesionScore, float foodScore)
+- private bool CheckIfSettlementIsSuitableForMilitaryAction(Settlement settlement, MobileParty mobileParty, Army.ArmyTypes missionType, bool isCalculatingForNewArmyCreation)
+- private void GetDistanceScoreForDefending(Settlement targetSettlement, MobileParty mobileParty, out MobileParty.NavigationType bestNavigationType, out float bestDistanceScore, out bool isFromPort, out bool isTargetingPort)
+- private void CalculateMilitaryBehaviorForSettlement(Settlement settlement, Army.ArmyTypes missionType, AiBehavior aiBehavior, PartyThinkParams p, float ourStrength, float partySizeScore, float cohesionScore, float foodScore)
+- private void AiHourlyTick(MobileParty mobileParty, PartyThinkParams p)
+
+=== RegisterEvents ===
+0025: 	public override void RegisterEvents()
+0026: 	{
+0027: 		CampaignEvents.AiHourlyTickEvent.AddNonSerializedListener(this, AiHourlyTick);
+0028: 		CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
+0029: 		CampaignEvents.MapEventEnded.AddNonSerializedListener(this, OnMapEventEnded);
+0030: 		CampaignEvents.OnSiegeEventStartedEvent.AddNonSerializedListener(this, OnSiegeEventStarted);
+0031: 		CampaignEvents.MapEventStarted.AddNonSerializedListener(this, OnMapEventStarted);
+0032: 	}
+
+=== FindBestTargetAndItsValueForFaction ===
+0117: 	public void FindBestTargetAndItsValueForFaction(Army.ArmyTypes missionType, PartyThinkParams p, float ourStrength)
+0118: 	{
+0119: 		MobileParty mobilePartyOf = p.MobilePartyOf;
+0120: 		IFaction mapFaction = mobilePartyOf.MapFaction;
+0121: 		if (mobilePartyOf.Army != null && mobilePartyOf.Army.LeaderParty != mobilePartyOf)
+0122: 		{
+0123: 			return;
+0124: 		}
+0125: 		float num = 1f;
+0126: 		if (mobilePartyOf.Army != null && mobilePartyOf.Army.Cohesion < 40f)
+0127: 		{
+0128: 			num *= mobilePartyOf.Army.Cohesion / 40f;
+0129: 		}
+0130: 		if (!(num > 0.25f))
+0131: 		{
+0132: 			return;
+0133: 		}
+0134: 		float partySizeScore = GetPartySizeScore(mobilePartyOf, missionType);
+0135: 		AiBehavior aiBehavior = AiBehavior.Hold;
+0136: 		switch (missionType)
+0137: 		{
+0138: 		case Army.ArmyTypes.Defender:
+0139: 			aiBehavior = AiBehavior.DefendSettlement;
+0140: 			break;
+0141: 		case Army.ArmyTypes.Besieger:
+0142: 			aiBehavior = AiBehavior.BesiegeSettlement;
+0143: 			break;
+0144: 		case Army.ArmyTypes.Raider:
+0145: 			aiBehavior = AiBehavior.RaidSettlement;
+0146: 			break;
+0147: 		}
+0148: 		float foodScoreForActionType = GetFoodScoreForActionType(p, missionType);
+0149: 		if (!(foodScoreForActionType > 0f))
+0150: 		{
+0151: 			return;
+0152: 		}
+0153: 		switch (missionType)
+0154: 		{
+0155: 		case Army.ArmyTypes.Defender:
+0156: 			CalculateMilitaryBehaviorForFactionSettlements(mapFaction, p, missionType, aiBehavior, ourStrength, partySizeScore, num, foodScoreForActionType);
+0157: 			break;
+0158: 		case Army.ArmyTypes.Raider:
+0159: 			if (mobilePartyOf.Army != null || p.WillGatherAnArmy)
+0160: 			{
+0161: 				break;
+0162: 			}
+0163: 			goto default;
+0164: 		default:
+0165: 		{
+0166: 			for (int i = 0; i < mapFaction.FactionsAtWarWith.Count; i++)
+0167: 			{
+0168: 				IFaction faction = mapFaction.FactionsAtWarWith[i];
+0169: 				if (faction.Leader != null && faction.IsMapFaction)
+0170: 				{
+0171: 					CalculateMilitaryBehaviorForFactionSettlements(faction, p, missionType, aiBehavior, ourStrength, partySizeScore, num, foodScoreForActionType);
+0172: 				}
+0173: 			}
+0174: 			break;
+0175: 		}
+0176: 		}
+0177: 	}
+
+=== CalculateMilitaryBehaviorForFactionSettlements ===
+0243: 	private void CalculateMilitaryBehaviorForFactionSettlements(IFaction faction, PartyThinkParams p, Army.ArmyTypes missionType, AiBehavior aiBehavior, float ourStrength, float partySizeScore, float cohesionScore, float foodScore)
+0244: 	{
+0245: 		MobileParty mobilePartyOf = p.MobilePartyOf;
+0246: 		for (int i = 0; i < faction.Settlements.Count; i++)
+0247: 		{
+0248: 			Settlement settlement = faction.Settlements[i];
+0249: 			if (CheckIfSettlementIsSuitableForMilitaryAction(settlement, mobilePartyOf, missionType, p.WillGatherAnArmy))
+0250: 			{
+0251: 				CalculateMilitaryBehaviorForSettlement(settlement, missionType, aiBehavior, p, ourStrength, partySizeScore, cohesionScore, foodScore);
+0252: 			}
+0253: 		}
+0254: 	}
+
+=== CheckIfSettlementIsSuitableForMilitaryAction ===
+0256: 	private bool CheckIfSettlementIsSuitableForMilitaryAction(Settlement settlement, MobileParty mobileParty, Army.ArmyTypes missionType, bool isCalculatingForNewArmyCreation)
+0257: 	{
+0258: 		if (MobileParty.MainParty.ShouldBeIgnored && !mobileParty.IsMainParty && !mobileParty.AttachedParties.Contains(MobileParty.MainParty) && ((settlement.Party.MapEvent != null && settlement.Party.MapEvent == MapEvent.PlayerMapEvent) || (settlement.SiegeEvent != null && settlement.SiegeEvent.IsPlayerSiegeEvent)))
+0259: 		{
+0260: 			return false;
+0261: 		}
+0262: 		if (settlement.LastAttackerParty == MobileParty.MainParty && !mobileParty.Ai.DoNotAttackMainPartyUntil.IsPast)
+0263: 		{
+0264: 			return false;
+0265: 		}
+0266: 		if (((mobileParty.Army != null) | isCalculatingForNewArmyCreation) && missionType == Army.ArmyTypes.Defender && settlement.IsVillage)
+0267: 		{
+0268: 			return false;
+0269: 		}
+0270: 		return true;
+0271: 	}
+
+=== GetDistanceScoreForDefending ===
+0351: 	private void GetDistanceScoreForDefending(Settlement targetSettlement, MobileParty mobileParty, out MobileParty.NavigationType bestNavigationType, out float bestDistanceScore, out bool isFromPort, out bool isTargetingPort)
+0352: 	{
+0353: 		isTargetingPort = false;
+0354: 		bool flag = targetSettlement.HasPort && mobileParty.HasNavalNavigationCapability;
+0355: 		bool flag2 = false;
+0356: 		if (flag)
+0357: 		{
+0358: 			if (targetSettlement.IsFortification)
+0359: 			{
+0360: 				flag2 = targetSettlement.SiegeEvent != null && (!targetSettlement.SiegeEvent.IsBlockadeActive || (targetSettlement.SiegeEvent.BesiegerCamp.LeaderParty.MapEvent != null && (targetSettlement.SiegeEvent.BesiegerCamp.LeaderParty.MapEvent.IsBlockade || targetSettlement.SiegeEvent.BesiegerCamp.LeaderParty.MapEvent.IsBlockadeSallyOut)));
+0361: 			}
+0362: 			else if (targetSettlement.IsVillage)
+0363: 			{
+0364: 				flag2 = targetSettlement.HasPort;
+0365: 			}
+0366: 		}
+0367: 		if (flag2)
+0368: 		{
+0369: 			isTargetingPort = true;
+0370: 		}
+0371: 		AiHelper.GetBestNavigationTypeAndAdjustedDistanceOfSettlementForMobileParty(mobileParty, targetSettlement, isTargetingPort, out bestNavigationType, out var bestNavigationDistance, out isFromPort);
+0372: 		if (!flag2 & flag)
+0373: 		{
+0374: 			AiHelper.GetBestNavigationTypeAndAdjustedDistanceOfSettlementForMobileParty(mobileParty, targetSettlement, isTargetingPort: true, out bestNavigationType, out bestNavigationDistance, out isFromPort);
+0375: 		}
+0376: 		float num = ((bestNavigationType == MobileParty.NavigationType.Naval) ? Campaign.Current.EstimatedAverageLordPartyNavalSpeed : Campaign.Current.EstimatedAverageLordPartySpeed);
+0377: 		if (bestNavigationType == MobileParty.NavigationType.All)
+0378: 		{
+0379: 			num = (Campaign.Current.EstimatedAverageLordPartyNavalSpeed + Campaign.Current.EstimatedAverageLordPartySpeed) * 0.5f;
+0380: 		}
+0381: 		float num2 = bestNavigationDistance / (num * (float)CampaignTime.HoursInDay);
+0382: 		float num3 = 4.01f;
+0383: 		if (targetSettlement.IsVillage)
+0384: 		{
+0385: 			MapEvent mapEvent = targetSettlement.Party.MapEvent;
+0386: 			if (mapEvent != null && mapEvent.Component is RaidEventComponent { RaidDamage: >0f, RaidDamage: var raidDamage })
+0387: 			{
+0388: 				float num4 = raidDamage / mapEvent.BattleStartTime.ElapsedDaysUntilNow;
+0389: 				num3 = targetSettlement.SettlementHitPoints / num4 * 0.25f;
+0390: 			}
+0391: 		}
+0392: 		else if (targetSettlement.IsFortification && targetSettlement.Party.SiegeEvent != null)
+0393: 		{
+0394: 			num3 = 8.02f;
+0395: 		}
+0396: 		bool shouldEngage;
+0397: 		MobileParty mostPowerfulNavalAlly;
+0398: 		MobileParty mostPowerfulLandAlly;
+0399: 		if (num2 >= num3)
+0400: 		{
+0401: 			bestNavigationType = MobileParty.NavigationType.None;
+0402: 			bestDistanceScore = 0f;
+0403: 			isTargetingPort = false;
+0404: 		}
+0405: 		else if (targetSettlement.Party.MapEventSide == null && targetSettlement.SiegeEvent != null && mobileParty.NavigationCapability == MobileParty.NavigationType.All)
+0406: 		{
+0407: 			bool shouldJoinLandSide = false;
+0408: 			bool shouldConsiderJoiningNearbyAllyParties = mobileParty.DefaultBehavior == AiBehavior.DefendSettlement && mobileParty.ShortTermTargetParty != null && !mobileParty.ShortTermTargetParty.MapFaction.IsAtWarWith(mobileParty.MapFaction);
+0409: 			if (shouldConsiderJoiningNearbyAllyParties)
+0410: 			{
+0411: 				shouldJoinLandSide = !mobileParty.ShortTermTargetParty.IsCurrentlyAtSea;
+0412: 				bestNavigationType = MobileParty.NavigationType.All;
+0413: 			}
+0414: 			else
+0415: 			{
+0416: 				mobileParty.Ai.GetNearbyPartyDataWhileDefendingSettlement(targetSettlement, out shouldConsiderJoiningNearbyAllyParties, out shouldJoinLandSide, out shouldEngage, out mostPowerfulNavalAlly, out mostPowerfulLandAlly);
+0417: 			}
+0418: 			isTargetingPort = !shouldJoinLandSide && targetSettlement.HasPort;
+0419: 		}
+0420: 		else if (targetSettlement.IsVillage && targetSettlement.Party.MapEvent != null && targetSettlement.Party.MapEvent.IsRaid)
+0421: 		{
+0422: 			mobileParty.Ai.GetNearbyPartyDataWhileDefendingSettlement(targetSettlement, out var _, out var shouldJoinLandSide2, out shouldEngage, out mostPowerfulLandAlly, out mostPowerfulNavalAlly);
+0423: 			isTargetingPort = !shouldJoinLandSide2 && targetSettlement.HasPort;
+0424: 		}
+0425: 		bestDistanceScore = MBMath.Map(1f - num2 / (num3 + 0.01f), 0f, 1f, 0.1f, 1.25f);
+0426: 	}
+
+=== CalculateMilitaryBehaviorForSettlement ===
+0428: 	private void CalculateMilitaryBehaviorForSettlement(Settlement settlement, Army.ArmyTypes missionType, AiBehavior aiBehavior, PartyThinkParams p, float ourStrength, float partySizeScore, float cohesionScore, float foodScore)
+0429: 	{
+0430: 		if ((missionType != Army.ArmyTypes.Defender || settlement.LastAttackerParty == null || !settlement.LastAttackerParty.IsActive) && (missionType != Army.ArmyTypes.Raider || !settlement.IsVillage || settlement.Village.VillageState == Village.VillageStates.Looted) && (missionType != Army.ArmyTypes.Besieger || !settlement.IsFortification || (settlement.SiegeEvent != null && settlement.SiegeEvent.BesiegerCamp.MapFaction != p.MobilePartyOf.MapFaction)))
+0431: 		{
+0432: 			return;
+0433: 		}
+0434: 		MobileParty mobilePartyOf = p.MobilePartyOf;
+0435: 		if ((missionType == Army.ArmyTypes.Raider && (settlement.Village.VillageState != Village.VillageStates.Normal || settlement.Party.MapEvent != null) && (mobilePartyOf.MapEvent == null || mobilePartyOf.MapEvent.MapEventSettlement != settlement)) || (missionType == Army.ArmyTypes.Besieger && (settlement.Party.MapEvent != null || settlement.SiegeEvent != null) && (settlement.SiegeEvent == null || settlement.SiegeEvent.BesiegerCamp.MapFaction != mobilePartyOf.MapFaction) && (mobilePartyOf.MapEvent == null || mobilePartyOf.MapEvent.MapEventSettlement != settlement)) || (missionType == Army.ArmyTypes.Defender && (settlement.LastAttackerParty == null || !settlement.LastAttackerParty.IsActive || !settlement.LastAttackerParty.MapFaction.IsAtWarWith(mobilePartyOf.MapFaction))) || (mobilePartyOf.Army == null && missionType == Army.ArmyTypes.Besieger && ((settlement.Party.MapEvent != null && settlement.Party.MapEvent.AttackerSide.LeaderParty != mobilePartyOf.Party) || (settlement.Party.SiegeEvent != null && mobilePartyOf.BesiegedSettlement != settlement))))
+0436: 		{
+0437: 			return;
+0438: 		}
+0439: 		MobileParty.NavigationType bestNavigationType = MobileParty.NavigationType.None;
+0440: 		float bestDistanceScore = float.MaxValue;
+0441: 		bool isTargetingPort = false;
+0442: 		bool isFromPort = false;
+0443: 		switch (missionType)
+0444: 		{
+0445: 		case Army.ArmyTypes.Besieger:
+0446: 			CalculateDistanceScoreForBesieging(settlement, mobilePartyOf, out bestNavigationType, out bestDistanceScore, out isFromPort, out isTargetingPort);
+0447: 			break;
+0448: 		case Army.ArmyTypes.Raider:
+0449: 			GetDistanceScoreForRaiding(settlement, mobilePartyOf, out bestNavigationType, out bestDistanceScore, out isFromPort, out isTargetingPort);
+0450: 			break;
+0451: 		case Army.ArmyTypes.Defender:
+0452: 			GetDistanceScoreForDefending(settlement, mobilePartyOf, out bestNavigationType, out bestDistanceScore, out isFromPort, out isTargetingPort);
+0453: 			break;
+0454: 		}
+0455: 		if (!(bestDistanceScore > 0f))
+0456: 		{
+0457: 			return;
+0458: 		}
+0459: 		if (mobilePartyOf.SiegeEvent != null && mobilePartyOf.BesiegerCamp != null && mobilePartyOf.SiegeEvent.BesiegedSettlement == settlement)
+0460: 		{
+0461: 			ourStrength = mobilePartyOf.BesiegerCamp.GetInvolvedPartiesForEventType().Sum((PartyBase x) => x.EstimatedStrength);
+0462: 		}
+0463: 		float targetScoreForFaction = Campaign.Current.Models.TargetScoreCalculatingModel.GetTargetScoreForFaction(settlement, missionType, mobilePartyOf, ourStrength);
+0464: 		targetScoreForFaction *= bestDistanceScore * cohesionScore * partySizeScore * foodScore;
+0465: 		if (!mobilePartyOf.IsDisbanding)
+0466: 		{
+0467: 			IDisbandPartyCampaignBehavior disbandPartyCampaignBehavior = _disbandPartyCampaignBehavior;
+0468: 			if (disbandPartyCampaignBehavior == null || !disbandPartyCampaignBehavior.IsPartyWaitingForDisband(mobilePartyOf))
+0469: 			{
+0470: 				goto IL_0284;
+0471: 			}
+0472: 		}
+0473: 		targetScoreForFaction *= 0.25f;
+0474: 		goto IL_0284;
+0475: 		IL_0284:
+0476: 		if (bestNavigationType != MobileParty.NavigationType.None)
+0477: 		{
+0478: 			AIBehaviorData item = new AIBehaviorData(settlement, aiBehavior, bestNavigationType, p.WillGatherAnArmy, isFromPort, isTargetingPort);
+0479: 			p.AddBehaviorScore((item, targetScoreForFaction));
+0480: 		}
+0481: 	}
+
+=== AiHourlyTick ===
+0483: 	private void AiHourlyTick(MobileParty mobileParty, PartyThinkParams p)
+0484: 	{
+0485: 		if (mobileParty.IsMilitia || mobileParty.IsCaravan || mobileParty.IsVillager || mobileParty.IsBandit || mobileParty.IsPatrolParty || mobileParty.IsDisbanding || mobileParty.LeaderHero == null || (mobileParty.MapFaction != Clan.PlayerClan.MapFaction && !mobileParty.MapFaction.IsKingdomFaction) || mobileParty.CurrentSettlement?.SiegeEvent != null)
+0486: 		{
+0487: 			return;
+0488: 		}
+0489: 		if (mobileParty.Army != null)
+0490: 		{
+0491: 			mobileParty.Ai.SetInitiative(0.33f, 0.33f, 24f);
+0492: 			if (mobileParty.Army.LeaderParty == mobileParty && mobileParty.Army.LeaderParty.Army.IsWaitingForArmyMembers())
+0493: 			{
+0494: 				mobileParty.Ai.SetInitiative(0.33f, 1f, 24f);
+0495: 				p.DoNotChangeBehavior = true;
+0496: 			}
+0497: 			else if (mobileParty.Army.LeaderParty.DefaultBehavior == AiBehavior.PatrolAroundPoint)
+0498: 			{
+0499: 				mobileParty.Ai.SetInitiative(1f, 1f, 24f);
+0500: 			}
+0501: 			else if (mobileParty.Army.LeaderParty.DefaultBehavior == AiBehavior.DefendSettlement && mobileParty.Army.LeaderParty == mobileParty && mobileParty.Army.AiBehaviorObject != null && mobileParty.Army.AiBehaviorObject is Settlement && ((Settlement)mobileParty.Army.AiBehaviorObject).Position.DistanceSquared(mobileParty.Position) < Campaign.Current.GetAverageDistanceBetweenClosestTwoTownsWithNavigationType(mobileParty.NavigationCapability) * 1.53f)
+0502: 			{
+0503: 				mobileParty.Ai.SetInitiative(1f, 1f, 24f);
+0504: 			}
+0505: 			if (mobileParty.Army.LeaderParty != mobileParty)
+0506: 			{
+0507: 				return;
+0508: 			}
+0509: 		}
+0510: 		else if (mobileParty.DefaultBehavior == AiBehavior.DefendSettlement)
+0511: 		{
+0512: 			mobileParty.Ai.SetInitiative(0.33f, 1f, 2f);
+0513: 		}
+0514: 		float totalLandStrengthWithFollowers = mobileParty.GetTotalLandStrengthWithFollowers();
+0515: 		p.Initialization();
+0516: 		bool flag = false;
+0517: 		float num = totalLandStrengthWithFollowers;
+0518: 		if (mobileParty.LeaderHero != null && mobileParty.Army == null && mobileParty.LeaderHero.Clan != null && mobileParty.MapFaction is Kingdom && mobileParty.MapEvent == null && Campaign.Current.Models.ArmyManagementCalculationModel.CanLordCreateArmy(mobileParty, out var possibleArmyMembers))
+0519: 		{
+0520: 			p.SetArmyMembers(possibleArmyMembers);
+0521: 			foreach (MobileParty item in possibleArmyMembers)
+0522: 			{
+0523: 				num += item.Party.GetCustomStrength(BattleSideEnum.Attacker, MapEvent.PowerCalculationContext.Siege);
+0524: 			}
+0525: 			flag = true;
+0526: 		}
+0527: 		for (int i = 0; i < 4; i++)
+0528: 		{
+0529: 			Army.ArmyTypes armyTypes = (Army.ArmyTypes)i;
+0530: 			if (armyTypes == Army.ArmyTypes.Raider)
+0531: 			{
+0532: 				Hero leaderHero = mobileParty.LeaderHero;
+0533: 				if (leaderHero != null && !leaderHero.CanRaid)
+0534: 				{
+0535: 					continue;
+0536: 				}
+0537: 			}
+0538: 			if (flag && armyTypes == Army.ArmyTypes.Besieger)
+0539: 			{
+0540: 				p.WillGatherAnArmy = true;
+0541: 				FindBestTargetAndItsValueForFaction(armyTypes, p, num);
+0542: 			}
+0543: 			p.WillGatherAnArmy = false;
+0544: 			FindBestTargetAndItsValueForFaction(armyTypes, p, totalLandStrengthWithFollowers);
+0545: 		}
+0546: 	}

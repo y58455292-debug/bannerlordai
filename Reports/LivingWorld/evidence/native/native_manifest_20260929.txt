@@ -1,0 +1,86 @@
+BANNERLORDAI LW1-A2S TARGETED NATIVE SOURCE EVIDENCE
+extraction_utc=2026-09-30T00:44:33.746553+00:00
+source_git_checkpoint=d340bfccf051c87ff90a7c7a344c8a34076f9a9f
+bannerlord_install_root=C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord
+supported_runtime_version=v1.5.3
+retained_engine_build_version=122374
+steam_buildid=25302170
+source_dll=C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll
+source_dll_sha256=5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+decompiler=ilspycmd 11.0.0.9375 / ICSharpCode.Decompiler 11.0.0.9375
+decompiler_path=C:\Users\csala\.dotnet\tools\ilspycmd.exe
+decompiler_runtime_note=existing local tool; DOTNET_ROLL_FORWARD=Major used with installed .NET 11 RC; no tool/runtime download performed
+scope=targeted read-only decompilation; not an entire assembly dump
+source_types=installation provenance and assembly/type inventory
+method_signatures=not_applicable_manifest_only
+INSTALLATION
+root=C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord
+bin=C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\bin\Win64_Shipping_Client
+machine=DESKTOP-JO4B7VH
+machine_accessible=YES
+bannerlord_processes_before_acquisition=0
+Bannerlord_launched=NO
+
+VERSION_PROVENANCE
+installed_Native_SubModule_version=v1.5.3
+retained_engine_log_same_machine_build_version=122374
+steam_appmanifest_buildid=25302170
+note=Windows file/product version resources on the two managed DLLs are generic 1.0.0.x and are recorded below separately from the supported Bannerlord runtime version.
+
+DLL
+path=C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll
+bytes=5658464
+sha256=5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+last_write_utc=2026-09-16T05:55:57.2113841Z
+file_version=1.0.0.0
+product_version=1.0.0
+assembly_version=1.0.0.0
+
+DLL
+path=C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\SandBox.dll
+bytes=1344864
+sha256=16AF436C569675EB30E22514BB755E6FB3612AFCE38F6CC55D1748D079C19C1A
+last_write_utc=2026-09-16T05:55:58.0228196Z
+file_version=1.0.0.0
+product_version=1.0.0
+assembly_version=1.0.0.0
+
+TOOL
+path=C:\Users\csala\.dotnet\tools\ilspycmd.exe
+version=ilspycmd 11.0.0.9375 / ICSharpCode.Decompiler 11.0.0.9375
+availability=already installed locally
+network_install_or_download=NO
+
+CAMPAIGNSYSTEM_RELEVANT_TYPES
+TaleWorlds.CampaignSystem.PartyThinkParams
+TaleWorlds.CampaignSystem.AIBehaviorData
+TaleWorlds.CampaignSystem.CampaignEventDispatcher
+TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiPartyThinkBehavior
+TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiVisitSettlementBehavior
+TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiPatrollingBehavior
+TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiMilitaryBehavior
+TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiArmyMemberBehavior
+TaleWorlds.CampaignSystem.Party.MobilePartyAi
+TaleWorlds.CampaignSystem.Party.MobileParty
+TaleWorlds.CampaignSystem.Party.PartyComponents.LordPartyComponent
+TaleWorlds.CampaignSystem.GameComponents.DefaultMobilePartyAIModel
+
+SANDBOX_CLASS_INVENTORY
+total_classes=509
+CampaignBehaviors.AiBehaviors_namespace_matches=0
+filtered_matches:
+Class SandBox.Objects.DynamicPatrolAreaParent
+Class SandBox.Objects.PatrolPoint
+Class SandBox.Objects.SettlementMusicData
+Class SandBox.Objects.Usables.PatrolArea
+Class SandBox.Missions.MissionLogics.MissionSettlementPrepareLogic
+Class SandBox.Missions.MissionLogics.StealthPatrolPointMissionLogic
+Class SandBox.Missions.MissionLogics.WhileEnteringSettlementBattleMissionController
+Class SandBox.Missions.AgentBehaviors.PatrolAgentBehavior
+Class SandBox.Missions.AgentBehaviors.PatrollingGuardBehavior
+Class SandBox.CampaignBehaviors.SettlementMusiciansCampaignBehavior
+
+PROPRIETARY_BINARY_POLICY
+full_native_dll_committed=NO
+full_decompiled_assembly_committed=NO
+targeted_excerpts_only=YES

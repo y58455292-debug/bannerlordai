@@ -1,0 +1,671 @@
+BANNERLORDAI LW1-A2S TARGETED NATIVE SOURCE EVIDENCE
+extraction_utc=2026-09-30T00:44:33.746553+00:00
+source_git_checkpoint=d340bfccf051c87ff90a7c7a344c8a34076f9a9f
+bannerlord_install_root=C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord
+supported_runtime_version=v1.5.3
+retained_engine_build_version=122374
+steam_buildid=25302170
+source_dll=C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll
+source_dll_sha256=5B23C3E36D7A5D6D47C47EAB075E9E2B1CC8D1AA53C79E135FA2B5EF434EBC5F
+decompiler=ilspycmd 11.0.0.9375 / ICSharpCode.Decompiler 11.0.0.9375
+decompiler_path=C:\Users\csala\.dotnet\tools\ilspycmd.exe
+decompiler_runtime_note=existing local tool; DOTNET_ROLL_FORWARD=Major used with installed .NET 11 RC; no tool/runtime download performed
+scope=targeted read-only decompilation; not an entire assembly dump
+source_types=TaleWorlds.CampaignSystem.CampaignBehaviors.AiBehaviors.AiVisitSettlementBehavior
+method_signatures:
+- public override void RegisterEvents()
+- private void AiHourlyTick(MobileParty mobileParty, PartyThinkParams p)
+- private static void FillSettlementsToVisitWithDistancesAsDays(MobileParty mobileParty, List<SettlementNavigationData> listToFill)
+- private static void GetBestNavigationDataForVisitingSettlement(MobileParty mobileParty, Settlement settlement, out MobileParty.NavigationType bestNavigationType, out float distanceAsDays, out bool isFromPort, out bool isTargetingPortBetter)
+- private (float, float, float, float) CalculateBeingSettlementOwnerScores(MobileParty mobileParty, Settlement settlement, Settlement currentSettlement, float idealGarrisonStrengthPerWalledCenter, float distanceScorePure, float averagePartySizeRatioToMaximumSize)
+- private void AddBehaviorTupleWithScore(PartyThinkParams p, Settlement settlement, float visitingNearbySettlementScore, MobileParty.NavigationType navigationType, bool isFromPort, bool isTargetingPortBetter)
+- private static bool IsSettlementSuitableForVisitingCondition(MobileParty mobileParty, Settlement settlement)
+
+=== RegisterEvents ===
+0075: 	public override void RegisterEvents()
+0076: 	{
+0077: 		CampaignEvents.AiHourlyTickEvent.AddNonSerializedListener(this, AiHourlyTick);
+0078: 		CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
+0079: 		CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, OnNewGameCreated);
+0080: 		CampaignEvents.HourlyTickEvent.AddNonSerializedListener(this, OnHourlyTick);
+0081: 		CampaignEvents.OnGameLoadedEvent.AddNonSerializedListener(this, OnGameLoaded);
+0082: 	}
+
+=== AiHourlyTick: eligibility + need inputs + settlement list setup ===
+0127: 	private void AiHourlyTick(MobileParty mobileParty, PartyThinkParams p)
+0128: 	{
+0129: 		if (mobileParty.CurrentSettlement?.SiegeEvent != null)
+0130: 		{
+0131: 			return;
+0132: 		}
+0133: 		Settlement currentSettlementOfMobilePartyForAICalculation = MobilePartyHelper.GetCurrentSettlementOfMobilePartyForAICalculation(mobileParty);
+0134: 		if (mobileParty.IsBandit)
+0135: 		{
+0136: 			CalculateVisitHideoutScoresForBanditParty(mobileParty, currentSettlementOfMobilePartyForAICalculation, p);
+0137: 			return;
+0138: 		}
+0139: 		IFaction mapFaction = mobileParty.MapFaction;
+0140: 		if (mobileParty.IsMilitia || mobileParty.IsCaravan || mobileParty.IsPatrolParty || mobileParty.IsVillager || (!mapFaction.IsMinorFaction && !mapFaction.IsKingdomFaction && (mobileParty.LeaderHero == null || !mobileParty.LeaderHero.IsLord)) || (mobileParty.Army != null && mobileParty.AttachedTo != null && mobileParty.Army.LeaderParty != mobileParty))
+0141: 		{
+0142: 			return;
+0143: 		}
+0144: 		Hero leaderHero = mobileParty.LeaderHero;
+0145: 		(float, float, int, int) tuple = CalculatePartyParameters(mobileParty);
+0146: 		float item = tuple.Item1;
+0147: 		float item2 = tuple.Item2;
+0148: 		int item3 = tuple.Item3;
+0149: 		int item4 = tuple.Item4;
+0150: 		float num = item2 / Math.Min(1f, Math.Max(0.1f, item));
+0151: 		float num2 = ((num >= 1f) ? 0.33f : ((TaleWorlds.Library.MathF.Max(1f, TaleWorlds.Library.MathF.Min(2f, num)) - 0.5f) / 1.5f));
+0152: 		float num3 = mobileParty.Food;
+0153: 		float num4 = 0f - mobileParty.FoodChange;
+0154: 		int num5 = mobileParty.PartyTradeGold;
+0155: 		if (mobileParty.Army != null && mobileParty == mobileParty.Army.LeaderParty)
+0156: 		{
+0157: 			foreach (MobileParty attachedParty in mobileParty.Army.LeaderParty.AttachedParties)
+0158: 			{
+0159: 				num3 += attachedParty.Food;
+0160: 				num4 += 0f - attachedParty.FoodChange;
+0161: 				num5 += attachedParty.PartyTradeGold;
+0162: 			}
+0163: 		}
+0164: 		float num6 = 1f;
+0165: 		if (leaderHero != null && mobileParty.IsLordParty)
+0166: 		{
+0167: 			num6 = CalculateSellItemScore(mobileParty);
+0168: 		}
+0169: 		int num7 = mobileParty.Party.PrisonerSizeLimit;
+0170: 		if (mobileParty.Army != null)
+0171: 		{
+0172: 			foreach (MobileParty attachedParty2 in mobileParty.Army.LeaderParty.AttachedParties)
+0173: 			{
+0174: 				num7 += attachedParty2.Party.PrisonerSizeLimit;
+0175: 			}
+0176: 		}
+0177: 		_settlementsNavigationData.Clear();
+0178: 		FillSettlementsToVisitWithDistancesAsDays(mobileParty, _settlementsNavigationData);
+0179: 		float num8 = PartyBaseHelper.FindPartySizeNormalLimit(mobileParty);
+0180: 		float num9 = 2000f;
+0181: 		float num10 = 2000f;
+0182: 		if (leaderHero != null)
+0183: 		{
+0184: 			num9 = HeroHelper.StartRecruitingMoneyLimitForClanLeader(leaderHero);
+0185: 			num10 = HeroHelper.StartRecruitingMoneyLimit(leaderHero);
+0186: 		}
+0187: 		float num11 = 0.2f;
+0188: 		float num12 = 1f;
+0189: 		_settlementsNavigationData.Sort();
+0190: 		foreach (SettlementNavigationData settlementsNavigationDatum in _settlementsNavigationData)
+0191: 		{
+0192: 			Settlement settlement = settlementsNavigationDatum.Settlement;
+0193: 			MobileParty.NavigationType bestNavigationType = settlementsNavigationDatum.BestNavigationType;
+0194: 			float distance = settlementsNavigationDatum.Distance;
+0195: 			bool isFromPort = settlementsNavigationDatum.IsFromPort;
+0196: 			bool isTargetingPortBetter = settlementsNavigationDatum.IsTargetingPortBetter;
+0197: 			float num13 = 1.6f;
+0198: 			if (!mobileParty.IsDisbanding)
+0199: 			{
+0200: 				IDisbandPartyCampaignBehavior disbandPartyCampaignBehavior = _disbandPartyCampaignBehavior;
+0201: 				if (disbandPartyCampaignBehavior == null || !disbandPartyCampaignBehavior.IsPartyWaitingForDisband(mobileParty))
+0202: 				{
+0203: 					if (leaderHero == null)
+0204: 					{
+0205: 						float visitingNearbySettlementScore = CalculateMergeScoreForLeaderlessParty(mobileParty, settlement, distance, out var canMerge);
+0206: 						if (canMerge)
+0207: 						{
+0208: 							AddBehaviorTupleWithScore(p, settlement, visitingNearbySettlementScore, bestNavigationType, isFromPort, isTargetingPortBetter);
+0209: 						}
+0210: 					}
+0211: 					else
+0212: 					{
+0213: 						if (distance >= MaximumMeaningfulDistanceAsDays(bestNavigationType))
+0214: 						{
+0215: 							AddBehaviorTupleWithScore(p, settlement, 0.025f, bestNavigationType, isFromPort, isTargetingPortBetter);
+0216: 							continue;
+0217: 						}
+0218: 						float num14 = TaleWorlds.Library.MathF.Max(num11, distance);
+0219: 						float num15 = 1f;
+0220: 						if (distance > num11)
+0221: 						{
+0222: 							num15 = num12 / (num12 - num11 + distance);
+0223: 						}
+0224: 						float num16 = num15;
+0225: 						if (item < 0.6f)
+0226: 						{
+0227: 							num16 = TaleWorlds.Library.MathF.Pow(num15, TaleWorlds.Library.MathF.Pow(0.6f / TaleWorlds.Library.MathF.Max(0.15f, item), 0.3f));
+0228: 						}
+0229: 						float num17 = 1f;
+0230: 						float num18 = (float)item3 / (float)item4;
+0231: 						bool flag = mobileParty.Army != null && mobileParty.AttachedTo == null && mobileParty.Army.LeaderParty != mobileParty;
+0232: 						if (settlement.IsFortification && num18 > 0.2f)
+0233: 						{
+0234: 							num17 = MBMath.Map(num18 - 0.2f, 0f, 0.8f, 1f, 5f);
+0235: 							if (flag || mobileParty.MapEvent != null || mobileParty.SiegeEvent != null)
+0236: 							{
+0237: 								num17 *= 0.6f;
+0238: 							}
+0239: 						}
+0240: 						float num19 = 1f;
+0241: 						if (mobileParty.DefaultBehavior == AiBehavior.GoToSettlement && ((settlement == currentSettlementOfMobilePartyForAICalculation && currentSettlementOfMobilePartyForAICalculation.IsFortification) || (currentSettlementOfMobilePartyForAICalculation == null && settlement == mobileParty.TargetSettlement)))
+0242: 						{
+
+=== AiHourlyTick: far-distance floor candidate ===
+0201: 				if (disbandPartyCampaignBehavior == null || !disbandPartyCampaignBehavior.IsPartyWaitingForDisband(mobileParty))
+0202: 				{
+0203: 					if (leaderHero == null)
+0204: 					{
+0205: 						float visitingNearbySettlementScore = CalculateMergeScoreForLeaderlessParty(mobileParty, settlement, distance, out var canMerge);
+0206: 						if (canMerge)
+0207: 						{
+0208: 							AddBehaviorTupleWithScore(p, settlement, visitingNearbySettlementScore, bestNavigationType, isFromPort, isTargetingPortBetter);
+0209: 						}
+0210: 					}
+0211: 					else
+0212: 					{
+0213: 						if (distance >= MaximumMeaningfulDistanceAsDays(bestNavigationType))
+0214: 						{
+0215: 							AddBehaviorTupleWithScore(p, settlement, 0.025f, bestNavigationType, isFromPort, isTargetingPortBetter);
+0216: 							continue;
+0217: 						}
+0218: 						float num14 = TaleWorlds.Library.MathF.Max(num11, distance);
+0219: 						float num15 = 1f;
+0220: 						if (distance > num11)
+0221: 						{
+0222: 							num15 = num12 / (num12 - num11 + distance);
+0223: 						}
+0224: 						float num16 = num15;
+0225: 						if (item < 0.6f)
+0226: 						{
+0227: 							num16 = TaleWorlds.Library.MathF.Pow(num15, TaleWorlds.Library.MathF.Pow(0.6f / TaleWorlds.Library.MathF.Max(0.15f, item), 0.3f));
+0228: 						}
+0229: 						float num17 = 1f;
+0230: 						float num18 = (float)item3 / (float)item4;
+0231: 						bool flag = mobileParty.Army != null && mobileParty.AttachedTo == null && mobileParty.Army.LeaderParty != mobileParty;
+0232: 						if (settlement.IsFortification && num18 > 0.2f)
+0233: 						{
+0234: 							num17 = MBMath.Map(num18 - 0.2f, 0f, 0.8f, 1f, 5f);
+0235: 							if (flag || mobileParty.MapEvent != null || mobileParty.SiegeEvent != null)
+0236: 							{
+0237: 								num17 *= 0.6f;
+0238: 							}
+0239: 						}
+0240: 						float num19 = 1f;
+0241: 						if (mobileParty.DefaultBehavior == AiBehavior.GoToSettlement && ((settlement == currentSettlementOfMobilePartyForAICalculation && currentSettlementOfMobilePartyForAICalculation.IsFortification) || (currentSettlementOfMobilePartyForAICalculation == null && settlement == mobileParty.TargetSettlement)))
+
+=== AiHourlyTick: food need scoring ===
+0237: 								num17 *= 0.6f;
+0238: 							}
+0239: 						}
+0240: 						float num19 = 1f;
+0241: 						if (mobileParty.DefaultBehavior == AiBehavior.GoToSettlement && ((settlement == currentSettlementOfMobilePartyForAICalculation && currentSettlementOfMobilePartyForAICalculation.IsFortification) || (currentSettlementOfMobilePartyForAICalculation == null && settlement == mobileParty.TargetSettlement)))
+0242: 						{
+0243: 							num19 = 1.2f;
+0244: 						}
+0245: 						else if (currentSettlementOfMobilePartyForAICalculation == null && settlement == mobileParty.LastVisitedSettlement)
+0246: 						{
+0247: 							num19 = 0.8f;
+0248: 						}
+0249: 						float num20 = ((num18 > 0.2f) ? 1f : 0.16f);
+0250: 						float num21 = Math.Max(0f, num3) / num4;
+0251: 						if (num4 > 0f && (mobileParty.BesiegedSettlement == null || num21 <= 1f) && num5 > 100 && (settlement.IsTown || (settlement.IsVillage && mobileParty.Army == null)))
+0252: 						{
+0253: 							float neededFoodsInDaysThresholdForSiege = Campaign.Current.Models.MobilePartyAIModel.NeededFoodsInDaysThresholdForSiege;
+0254: 							if (num21 < neededFoodsInDaysThresholdForSiege)
+0255: 							{
+0256: 								int num22 = (int)(num4 * ((num21 < 1f && settlement.IsVillage) ? Campaign.Current.Models.PartyFoodBuyingModel.MinimumDaysFoodToLastWhileBuyingFoodFromVillage : Campaign.Current.Models.PartyFoodBuyingModel.MinimumDaysFoodToLastWhileBuyingFoodFromTown)) + 1;
+0257: 								float num23 = neededFoodsInDaysThresholdForSiege * 0.5f;
+0258: 								float num24 = num23 - Math.Min(num23, Math.Max(0f, num21 - 1f));
+0259: 								float num25 = (float)num22 + 20f * (float)((!settlement.IsTown) ? 1 : 2) * ((num14 > num12) ? 1f : (num14 / num12));
+0260: 								int val = (int)((float)(num5 - 100) / Campaign.Current.Models.PartyFoodBuyingModel.LowCostFoodPriceAverage);
+0261: 								num20 += num24 * num24 * 0.093f * ((num21 < num23) ? (15f + 0.5f * (num23 - num21)) : 1f) * Math.Min(num25, Math.Min(val, settlement.ItemRoster.TotalFood)) / num25;
+0262: 							}
+0263: 						}
+0264: 						float num26 = 0f;
+0265: 						int num27 = 0;
+0266: 						int num28 = 0;
+0267: 						float num29 = 1f;
+0268: 						if (!settlement.IsCastle && item < 1f && mobileParty.GetAvailableWageBudget() > 0)
+0269: 						{
+0270: 							num28 = _numberOfAlliedMobilePartiesTargetingSettlement[settlement];
+0271: 							if (currentSettlementOfMobilePartyForAICalculation == settlement)
+0272: 							{
+0273: 								num27 -= mobileParty.Army?.LeaderPartyAndAttachedPartiesCount ?? 1;
+0274: 								if (num27 < 0)
+0275: 								{
+0276: 									num27 = 0;
+0277: 								}
+0278: 							}
+0279: 							if (mobileParty.TargetSettlement == settlement || (mobileParty.Army != null && mobileParty.Army.LeaderParty.TargetSettlement == settlement))
+0280: 							{
+0281: 								num28 -= mobileParty.Army?.LeaderPartyAndAttachedPartiesCount ?? 1;
+0282: 								if (num28 < 0)
+0283: 								{
+0284: 									num28 = 0;
+0285: 								}
+0286: 							}
+0287: 							if (mobileParty.Army != null)
+0288: 							{
+0289: 								num28 += mobileParty.Army.LeaderPartyAndAttachedPartiesCount;
+0290: 							}
+0291: 							if (!mobileParty.Party.IsStarving && (float)mobileParty.PartyTradeGold > num10 && (leaderHero.Clan.Leader == leaderHero || (float)leaderHero.Clan.Gold > num9) && num8 > mobileParty.PartySizeRatio)
+0292: 							{
+0293: 								(int, float) approximateVolunteersCanBeRecruitedDataFromSettlement = GetApproximateVolunteersCanBeRecruitedDataFromSettlement(leaderHero, settlement);
+0294: 								num26 = approximateVolunteersCanBeRecruitedDataFromSettlement.Item1;
+0295: 								if (num26 > 0f)
+
+=== AiHourlyTick: recruitment inputs ===
+0271: 							if (currentSettlementOfMobilePartyForAICalculation == settlement)
+0272: 							{
+0273: 								num27 -= mobileParty.Army?.LeaderPartyAndAttachedPartiesCount ?? 1;
+0274: 								if (num27 < 0)
+0275: 								{
+0276: 									num27 = 0;
+0277: 								}
+0278: 							}
+0279: 							if (mobileParty.TargetSettlement == settlement || (mobileParty.Army != null && mobileParty.Army.LeaderParty.TargetSettlement == settlement))
+0280: 							{
+0281: 								num28 -= mobileParty.Army?.LeaderPartyAndAttachedPartiesCount ?? 1;
+0282: 								if (num28 < 0)
+0283: 								{
+0284: 									num28 = 0;
+0285: 								}
+0286: 							}
+0287: 							if (mobileParty.Army != null)
+0288: 							{
+0289: 								num28 += mobileParty.Army.LeaderPartyAndAttachedPartiesCount;
+0290: 							}
+0291: 							if (!mobileParty.Party.IsStarving && (float)mobileParty.PartyTradeGold > num10 && (leaderHero.Clan.Leader == leaderHero || (float)leaderHero.Clan.Gold > num9) && num8 > mobileParty.PartySizeRatio)
+0292: 							{
+0293: 								(int, float) approximateVolunteersCanBeRecruitedDataFromSettlement = GetApproximateVolunteersCanBeRecruitedDataFromSettlement(leaderHero, settlement);
+0294: 								num26 = approximateVolunteersCanBeRecruitedDataFromSettlement.Item1;
+0295: 								if (num26 > 0f)
+0296: 								{
+0297: 									float item5 = approximateVolunteersCanBeRecruitedDataFromSettlement.Item2;
+0298: 									num26 = Math.Min(num26, TaleWorlds.Library.MathF.Floor((float)mobileParty.GetAvailableWageBudget() / item5));
+0299: 								}
+0300: 							}
+0301: 							float num30 = num26 * num15 / TaleWorlds.Library.MathF.Sqrt(1 + num27 + num28);
+0302: 							float num31 = ((num30 < 1f) ? num30 : ((float)Math.Pow(num30, num2)));
+0303: 							num29 = Math.Max(Math.Min(1f, num20), Math.Max((mapFaction == settlement.MapFaction) ? 0.25f : 0.16f, num * Math.Max(1f, Math.Min(2f, num)) * num31 * (1f - 0.9f * num18) * (1f - 0.9f * num18)));
+0304: 						}
+0305: 						num13 *= num29 * num17 * num20 * num16;
+0306: 						if (num13 >= 8f)
+0307: 						{
+0308: 							AddBehaviorTupleWithScore(p, settlement, num13, bestNavigationType, isFromPort, isTargetingPortBetter);
+0309: 							break;
+0310: 						}
+0311: 						float num32 = 1f;
+0312: 						if (num26 > 0f && !flag)
+0313: 						{
+0314: 							num32 = 1f + ((mobileParty.DefaultBehavior == AiBehavior.GoToSettlement && settlement != currentSettlementOfMobilePartyForAICalculation && num14 < num11) ? (0.1f * TaleWorlds.Library.MathF.Min(5f, num26) - 0.1f * TaleWorlds.Library.MathF.Min(5f, num26) * (num14 / num11) * (num14 / num11)) : 0f);
+0315: 						}
+0316: 						float num33 = ((settlement.IsCastle && !flag && num20 < 1f) ? 1.4f : 1f);
+0317: 						num13 *= (settlement.IsTown ? num6 : 1f) * num32 * num33;
+0318: 						if (num13 >= 8f)
+0319: 						{
+0320: 							AddBehaviorTupleWithScore(p, settlement, num13, bestNavigationType, isFromPort, isTargetingPortBetter);
+0321: 							break;
+0322: 						}
+0323: 						int num34 = mobileParty.PrisonRoster.TotalRegulars;
+0324: 						if (mobileParty.PrisonRoster.TotalHeroes > 0)
+0325: 						{
+0326: 							foreach (TroopRosterElement item6 in mobileParty.PrisonRoster.GetTroopRoster())
+0327: 							{
+0328: 								if (item6.Character.IsHero && item6.Character.HeroObject.Clan.IsAtWarWith(settlement.MapFaction))
+0329: 								{
+0330: 									num34 += 6;
+0331: 								}
+0332: 							}
+0333: 						}
+0334: 						float num35 = 1f;
+0335: 						float num36 = 1f;
+0336: 						if (mobileParty.Army != null && mobileParty.Army.LeaderParty.AttachedParties.Contains(mobileParty))
+0337: 						{
+0338: 							if (mobileParty.Army.LeaderParty != mobileParty)
+0339: 							{
+0340: 								num35 = ((float)mobileParty.Army.CohesionThresholdForDispersion - mobileParty.Army.Cohesion) / (float)mobileParty.Army.CohesionThresholdForDispersion;
+0341: 							}
+0342: 							num36 = ((MobileParty.MainParty != null && mobileParty.Army == MobileParty.MainParty.Army) ? 0.6f : 0.8f);
+0343: 							foreach (MobileParty attachedParty3 in mobileParty.Army.LeaderParty.AttachedParties)
+0344: 							{
+0345: 								num34 += attachedParty3.PrisonRoster.TotalRegulars;
+
+=== AiHourlyTick: prisoner / owner / ship-repair multipliers and final add ===
+0326: 							foreach (TroopRosterElement item6 in mobileParty.PrisonRoster.GetTroopRoster())
+0327: 							{
+0328: 								if (item6.Character.IsHero && item6.Character.HeroObject.Clan.IsAtWarWith(settlement.MapFaction))
+0329: 								{
+0330: 									num34 += 6;
+0331: 								}
+0332: 							}
+0333: 						}
+0334: 						float num35 = 1f;
+0335: 						float num36 = 1f;
+0336: 						if (mobileParty.Army != null && mobileParty.Army.LeaderParty.AttachedParties.Contains(mobileParty))
+0337: 						{
+0338: 							if (mobileParty.Army.LeaderParty != mobileParty)
+0339: 							{
+0340: 								num35 = ((float)mobileParty.Army.CohesionThresholdForDispersion - mobileParty.Army.Cohesion) / (float)mobileParty.Army.CohesionThresholdForDispersion;
+0341: 							}
+0342: 							num36 = ((MobileParty.MainParty != null && mobileParty.Army == MobileParty.MainParty.Army) ? 0.6f : 0.8f);
+0343: 							foreach (MobileParty attachedParty3 in mobileParty.Army.LeaderParty.AttachedParties)
+0344: 							{
+0345: 								num34 += attachedParty3.PrisonRoster.TotalRegulars;
+0346: 								if (attachedParty3.PrisonRoster.TotalHeroes <= 0)
+0347: 								{
+0348: 									continue;
+0349: 								}
+0350: 								foreach (TroopRosterElement item7 in attachedParty3.PrisonRoster.GetTroopRoster())
+0351: 								{
+0352: 									if (item7.Character.IsHero && item7.Character.HeroObject.Clan.IsAtWarWith(settlement.MapFaction))
+0353: 									{
+0354: 										num34 += 6;
+0355: 									}
+0356: 								}
+0357: 							}
+0358: 						}
+0359: 						float num37 = (settlement.IsFortification ? (1f + 2f * (float)(num34 / num7)) : 1f);
+0360: 						float num38 = ((mobileParty.DesiredAiNavigationType == bestNavigationType) ? 1.5f : 1f);
+0361: 						float num39 = 1f;
+0362: 						float num40 = 1f;
+0363: 						float num41 = 1f;
+0364: 						float num42 = 1f;
+0365: 						float num43 = 1f;
+0366: 						if (num20 <= 0.5f)
+0367: 						{
+0368: 							(num39, num40, num41, num42) = CalculateBeingSettlementOwnerScores(mobileParty, settlement, currentSettlementOfMobilePartyForAICalculation, -1f, num15, item);
+0369: 						}
+0370: 						float num44 = 1f;
+0371: 						if (settlement.HasPort && mobileParty.Ships.Any())
+0372: 						{
+0373: 							float num45 = mobileParty.Ships.AverageQ((Ship x) => x.HitPoints / x.MaxHitPoints);
+0374: 							if (num45 < 0.8f)
+0375: 							{
+0376: 								num44 = ((num45 > 0.6f) ? 1.5f : ((!(num45 > 0.4f)) ? 3f : 1.75f));
+0377: 							}
+0378: 						}
+0379: 						num13 *= num43 * num19 * num35 * num37 * num36 * num39 * num41 * num40 * num42 * num38 * num44;
+0380: 					}
+0381: 					goto IL_0bfb;
+0382: 				}
+0383: 			}
+0384: 			float visitingNearbySettlementScore2 = CalculateMergeScoreForDisbandingParty(mobileParty, settlement, distance);
+0385: 			AddBehaviorTupleWithScore(p, settlement, visitingNearbySettlementScore2, bestNavigationType, isFromPort, isTargetingPortBetter);
+0386: 			goto IL_0bfb;
+0387: 			IL_0bfb:
+0388: 			if (num13 > 0.025f)
+0389: 			{
+0390: 				AddBehaviorTupleWithScore(p, settlement, num13, bestNavigationType, isFromPort, isTargetingPortBetter);
+0391: 			}
+0392: 		}
+0393: 	}
+0394: 
+0395: 	private (int, float) GetApproximateVolunteersCanBeRecruitedDataFromSettlement(Hero hero, Settlement settlement)
+0396: 	{
+0397: 		int num = 4;
+0398: 		if (hero.MapFaction != settlement.MapFaction)
+0399: 		{
+0400: 			num = 2;
+0401: 		}
+0402: 		int num2 = 0;
+0403: 		int num3 = 0;
+0404: 		foreach (Hero notable in settlement.Notables)
+0405: 		{
+0406: 			if (!notable.IsAlive)
+0407: 			{
+0408: 				continue;
+0409: 			}
+0410: 			for (int i = 0; i < num; i++)
+0411: 			{
+0412: 				if (notable.VolunteerTypes[i] != null)
+0413: 				{
+0414: 					num2++;
+0415: 					num3 += Campaign.Current.Models.PartyWageModel.GetCharacterWage(notable.VolunteerTypes[i]);
+0416: 				}
+0417: 			}
+0418: 		}
+0419: 		if (num2 > 0)
+0420: 		{
+0421: 			num3 /= num2;
+0422: 		}
+0423: 		return (num2, num3);
+0424: 	}
+0425: 
+0426: 	private float CalculateSellItemScore(MobileParty mobileParty)
+0427: 	{
+0428: 		float num = 0f;
+0429: 		float num2 = 0f;
+0430: 		for (int i = 0; i < mobileParty.ItemRoster.Count; i++)
+0431: 		{
+0432: 			ItemRosterElement itemRosterElement = mobileParty.ItemRoster[i];
+
+=== FillSettlementsToVisitWithDistancesAsDays ===
+0670: 	private static void FillSettlementsToVisitWithDistancesAsDays(MobileParty mobileParty, List<SettlementNavigationData> listToFill)
+0671: 	{
+0672: 		float num = SearchForNeutralSettlementRadiusAsDays * Campaign.Current.EstimatedAverageLordPartySpeed * (float)CampaignTime.HoursInDay;
+0673: 		if (mobileParty.LeaderHero != null && mobileParty.LeaderHero.MapFaction.IsKingdomFaction)
+0674: 		{
+0675: 			MBReadOnlyList<Settlement> settlements = mobileParty.MapFaction.Settlements;
+0676: 			float num2 = 0f;
+0677: 			foreach (Settlement item in settlements)
+0678: 			{
+0679: 				if (IsSettlementSuitableForVisitingCondition(mobileParty, item))
+0680: 				{
+0681: 					GetBestNavigationDataForVisitingSettlement(mobileParty, item, out var bestNavigationType, out var distanceAsDays, out var isFromPort, out var isTargetingPortBetter);
+0682: 					if (bestNavigationType != MobileParty.NavigationType.None && distanceAsDays < GetMaximumDistanceAsDays(bestNavigationType))
+0683: 					{
+0684: 						num2 += distanceAsDays;
+0685: 						listToFill.Add(new SettlementNavigationData(distanceAsDays, item.GetHashCode(), item, bestNavigationType, isFromPort, isTargetingPortBetter));
+0686: 					}
+0687: 				}
+0688: 			}
+0689: 			num2 /= (float)listToFill.Count;
+0690: 			if (num2 > GetMaximumDistanceAsDays(mobileParty.NavigationCapability) * 0.7f && (mobileParty.Army == null || mobileParty.Army.LeaderParty == mobileParty))
+0691: 			{
+0692: 				LocatableSearchData<Settlement> data = Settlement.StartFindingLocatablesAroundPosition(mobileParty.Position.ToVec2(), num);
+0693: 				for (Settlement settlement = Settlement.FindNextLocatable(ref data); settlement != null; settlement = Settlement.FindNextLocatable(ref data))
+0694: 				{
+0695: 					if (!settlement.IsCastle && settlement.MapFaction != mobileParty.MapFaction && IsSettlementSuitableForVisitingCondition(mobileParty, settlement))
+0696: 					{
+0697: 						GetBestNavigationDataForVisitingSettlement(mobileParty, settlement, out var bestNavigationType2, out var distanceAsDays2, out var isFromPort2, out var isTargetingPortBetter2);
+0698: 						if (bestNavigationType2 != MobileParty.NavigationType.None && distanceAsDays2 < GetMaximumDistanceAsDays(bestNavigationType2))
+0699: 						{
+0700: 							listToFill.Add(new SettlementNavigationData(distanceAsDays2, settlement.GetHashCode(), settlement, bestNavigationType2, isFromPort2, isTargetingPortBetter2));
+0701: 						}
+0702: 					}
+0703: 				}
+0704: 			}
+0705: 		}
+0706: 		else
+0707: 		{
+0708: 			LocatableSearchData<Settlement> data2 = Settlement.StartFindingLocatablesAroundPosition(mobileParty.Position.ToVec2(), num * 1.6f);
+0709: 			for (Settlement settlement2 = Settlement.FindNextLocatable(ref data2); settlement2 != null; settlement2 = Settlement.FindNextLocatable(ref data2))
+0710: 			{
+0711: 				if (IsSettlementSuitableForVisitingCondition(mobileParty, settlement2))
+0712: 				{
+0713: 					GetBestNavigationDataForVisitingSettlement(mobileParty, settlement2, out var bestNavigationType3, out var distanceAsDays3, out var isFromPort3, out var isTargetingPortBetter3);
+0714: 					if (bestNavigationType3 != MobileParty.NavigationType.None && distanceAsDays3 < GetMaximumDistanceAsDays(bestNavigationType3))
+0715: 					{
+0716: 						listToFill.Add(new SettlementNavigationData(distanceAsDays3, settlement2.GetHashCode(), settlement2, bestNavigationType3, isFromPort3, isTargetingPortBetter3));
+0717: 					}
+0718: 				}
+0719: 			}
+0720: 		}
+0721: 		if (listToFill.AnyQ())
+0722: 		{
+0723: 			return;
+0724: 		}
+0725: 		Settlement factionMidSettlement = mobileParty.MapFaction.FactionMidSettlement;
+0726: 		if (factionMidSettlement == null)
+0727: 		{
+0728: 			return;
+0729: 		}
+0730: 		if (factionMidSettlement.IsFortification)
+0731: 		{
+0732: 			foreach (Village boundVillage in factionMidSettlement.BoundVillages)
+0733: 			{
+0734: 				if (IsSettlementSuitableForVisitingCondition(mobileParty, boundVillage.Settlement))
+0735: 				{
+0736: 					GetBestNavigationDataForVisitingSettlement(mobileParty, boundVillage.Settlement, out var bestNavigationType4, out var distanceAsDays4, out var isFromPort4, out var isTargetingPortBetter4);
+0737: 					if (bestNavigationType4 != MobileParty.NavigationType.None)
+0738: 					{
+0739: 						listToFill.Add(new SettlementNavigationData(distanceAsDays4, boundVillage.GetHashCode(), boundVillage.Settlement, bestNavigationType4, isFromPort4, isTargetingPortBetter4));
+0740: 					}
+0741: 				}
+0742: 			}
+0743: 			return;
+0744: 		}
+0745: 		if (IsSettlementSuitableForVisitingCondition(mobileParty, factionMidSettlement))
+0746: 		{
+0747: 			GetBestNavigationDataForVisitingSettlement(mobileParty, factionMidSettlement, out var bestNavigationType5, out var distanceAsDays5, out var isFromPort5, out var isTargetingPortBetter5);
+0748: 			if (bestNavigationType5 != MobileParty.NavigationType.None)
+0749: 			{
+0750: 				listToFill.Add(new SettlementNavigationData(distanceAsDays5, factionMidSettlement.GetHashCode(), factionMidSettlement, bestNavigationType5, isFromPort5, isTargetingPortBetter5));
+0751: 			}
+0752: 		}
+0753: 	}
+
+=== GetBestNavigationDataForVisitingSettlement ===
+0755: 	private static void GetBestNavigationDataForVisitingSettlement(MobileParty mobileParty, Settlement settlement, out MobileParty.NavigationType bestNavigationType, out float distanceAsDays, out bool isFromPort, out bool isTargetingPortBetter)
+0756: 	{
+0757: 		bestNavigationType = MobileParty.NavigationType.None;
+0758: 		float bestNavigationDistance = float.MaxValue;
+0759: 		bool isFromPort2 = false;
+0760: 		isTargetingPortBetter = false;
+0761: 		isFromPort = false;
+0762: 		if (!settlement.HasPort || settlement.SiegeEvent == null || settlement.SiegeEvent.IsBlockadeActive || !mobileParty.HasNavalNavigationCapability)
+0763: 		{
+0764: 			AiHelper.GetBestNavigationTypeAndAdjustedDistanceOfSettlementForMobileParty(mobileParty, settlement, isTargetingPort: false, out bestNavigationType, out bestNavigationDistance, out isFromPort2);
+0765: 		}
+0766: 		if (mobileParty.HasNavalNavigationCapability && settlement.HasPort && settlement.IsFortification)
+0767: 		{
+0768: 			AiHelper.GetBestNavigationTypeAndAdjustedDistanceOfSettlementForMobileParty(mobileParty, settlement, isTargetingPort: true, out var bestNavigationType2, out var bestNavigationDistance2, out var isFromPort3);
+0769: 			if (bestNavigationDistance2 < bestNavigationDistance)
+0770: 			{
+0771: 				bestNavigationType = bestNavigationType2;
+0772: 				bestNavigationDistance = bestNavigationDistance2;
+0773: 				isFromPort = isFromPort3;
+0774: 				isTargetingPortBetter = true;
+0775: 			}
+0776: 			else
+0777: 			{
+0778: 				isFromPort = isFromPort2;
+0779: 				isTargetingPortBetter = false;
+0780: 			}
+0781: 		}
+0782: 		distanceAsDays = bestNavigationDistance / (Campaign.Current.EstimatedAverageLordPartySpeed * (float)CampaignTime.HoursInDay);
+0783: 	}
+
+=== CalculateBeingSettlementOwnerScores ===
+0554: 	private (float, float, float, float) CalculateBeingSettlementOwnerScores(MobileParty mobileParty, Settlement settlement, Settlement currentSettlement, float idealGarrisonStrengthPerWalledCenter, float distanceScorePure, float averagePartySizeRatioToMaximumSize)
+0555: 	{
+0556: 		float num = 1f;
+0557: 		float num2 = 1f;
+0558: 		float num3 = 1f;
+0559: 		float item = 1f;
+0560: 		Hero leaderHero = mobileParty.LeaderHero;
+0561: 		IFaction mapFaction = mobileParty.MapFaction;
+0562: 		if (currentSettlement != settlement && (mobileParty.Army == null || mobileParty.Army.LeaderParty != mobileParty))
+0563: 		{
+0564: 			if (settlement.OwnerClan.Leader == leaderHero)
+0565: 			{
+0566: 				float currentTime = Campaign.CurrentTime;
+0567: 				float lastVisitTimeOfOwner = settlement.LastVisitTimeOfOwner;
+0568: 				float num4 = ((currentTime - lastVisitTimeOfOwner > NumberOfHoursAtDay) ? (currentTime - lastVisitTimeOfOwner) : ((NumberOfHoursAtDay - (currentTime - lastVisitTimeOfOwner)) * (IdealTimePeriodForVisitingOwnedSettlement / NumberOfHoursAtDay))) / IdealTimePeriodForVisitingOwnedSettlement;
+0569: 				num += num4;
+0570: 			}
+0571: 			if (MBRandom.RandomFloatWithSeed((uint)mobileParty.RandomValue, (uint)CampaignTime.Now.ToDays) < 0.5f && settlement.IsFortification && leaderHero.Clan != Clan.PlayerClan && (settlement.OwnerClan.Leader == leaderHero || settlement.OwnerClan == leaderHero.Clan))
+0572: 			{
+0573: 				if (idealGarrisonStrengthPerWalledCenter.ApproximatelyEqualsTo(-1f))
+0574: 				{
+0575: 					idealGarrisonStrengthPerWalledCenter = FactionHelper.FindIdealGarrisonStrengthPerWalledCenter(mapFaction as Kingdom);
+0576: 				}
+0577: 				int num5 = Campaign.Current.Models.SettlementGarrisonModel.FindNumberOfTroopsToTakeFromGarrison(mobileParty, settlement, idealGarrisonStrengthPerWalledCenter);
+0578: 				if (num5 > 0)
+0579: 				{
+0580: 					num2 = 1f + TaleWorlds.Library.MathF.Pow(num5, 0.67f);
+0581: 					if (mobileParty.Army != null && mobileParty.Army.LeaderParty == mobileParty)
+0582: 					{
+0583: 						num2 = 1f + (num2 - 1f) / TaleWorlds.Library.MathF.Sqrt(mobileParty.Army.Parties.Count);
+0584: 					}
+0585: 				}
+0586: 			}
+0587: 		}
+0588: 		if (settlement == leaderHero.HomeSettlement && mobileParty.Army == null && !settlement.IsVillage)
+0589: 		{
+0590: 			float num6 = (leaderHero.HomeSettlement.IsCastle ? 1.5f : 1f);
+0591: 			num3 = ((currentSettlement != settlement) ? (num3 + 1000f * num6 / (250f + leaderHero.PassedTimeAtHomeSettlement * leaderHero.PassedTimeAtHomeSettlement)) : (num3 + 3000f * num6 / (250f + leaderHero.PassedTimeAtHomeSettlement * leaderHero.PassedTimeAtHomeSettlement)));
+0592: 		}
+0593: 		if (settlement != currentSettlement)
+0594: 		{
+0595: 			float num7 = 1f;
+0596: 			if (mobileParty.LastVisitedSettlement == settlement)
+0597: 			{
+0598: 				num7 = 0.25f;
+0599: 			}
+0600: 			if (settlement.IsFortification && settlement.MapFaction == mapFaction && settlement.OwnerClan != Clan.PlayerClan)
+0601: 			{
+0602: 				float num8 = ((settlement.Town.GarrisonParty != null) ? settlement.Town.GarrisonParty.Party.EstimatedStrength : 0f);
+0603: 				float num9 = FactionHelper.OwnerClanEconomyEffectOnGarrisonSizeConstant(settlement.OwnerClan);
+0604: 				float num10 = FactionHelper.SettlementProsperityEffectOnGarrisonSizeConstant(settlement.Town);
+0605: 				float num11 = FactionHelper.SettlementFoodPotentialEffectOnGarrisonSizeConstant(settlement);
+0606: 				if (idealGarrisonStrengthPerWalledCenter == -1f)
+0607: 				{
+0608: 					idealGarrisonStrengthPerWalledCenter = FactionHelper.FindIdealGarrisonStrengthPerWalledCenter(mapFaction as Kingdom);
+0609: 				}
+0610: 				float num12 = idealGarrisonStrengthPerWalledCenter;
+0611: 				if (settlement.Town.GarrisonParty != null && settlement.Town.GarrisonParty.HasLimitedWage())
+0612: 				{
+0613: 					num12 = (float)settlement.Town.GarrisonParty.PaymentLimit / Campaign.Current.AverageWage;
+0614: 				}
+0615: 				else
+0616: 				{
+0617: 					if (mobileParty.Army != null)
+0618: 					{
+0619: 						num12 *= 0.75f;
+0620: 					}
+0621: 					num12 *= num9 * num10 * num11;
+0622: 				}
+0623: 				float num13 = num12;
+0624: 				if (num8 < num13)
+0625: 				{
+0626: 					float num14 = ((settlement.OwnerClan == leaderHero.Clan) ? 149f : 99f);
+0627: 					if (settlement.OwnerClan == Clan.PlayerClan)
+0628: 					{
+0629: 						num14 *= 0.5f;
+0630: 					}
+0631: 					float num15 = 1f - num8 / num13;
+0632: 					item = 1f + num14 * distanceScorePure * distanceScorePure * (averagePartySizeRatioToMaximumSize - 0.5f) * num15 * num15 * num15 * num7;
+0633: 				}
+0634: 			}
+0635: 		}
+0636: 		return (num, num2, num3, item);
+0637: 	}
+
+=== AddBehaviorTupleWithScore ===
+0785: 	private void AddBehaviorTupleWithScore(PartyThinkParams p, Settlement settlement, float visitingNearbySettlementScore, MobileParty.NavigationType navigationType, bool isFromPort, bool isTargetingPortBetter)
+0786: 	{
+0787: 		AIBehaviorData aiBehaviorData = new AIBehaviorData(settlement, AiBehavior.GoToSettlement, navigationType, willGatherArmy: false, isFromPort, isTargetingPortBetter);
+0788: 		if (p.TryGetBehaviorScore(in aiBehaviorData, out var score))
+0789: 		{
+0790: 			p.SetBehaviorScore(in aiBehaviorData, score + visitingNearbySettlementScore);
+0791: 		}
+0792: 		else
+0793: 		{
+0794: 			p.AddBehaviorScore((aiBehaviorData, visitingNearbySettlementScore));
+0795: 		}
+0796: 	}
+
+=== IsSettlementSuitableForVisitingCondition ===
+0798: 	private static bool IsSettlementSuitableForVisitingCondition(MobileParty mobileParty, Settlement settlement)
+0799: 	{
+0800: 		if (settlement.Party.MapEvent == null && (settlement.Party.SiegeEvent == null || (!settlement.Party.SiegeEvent.IsBlockadeActive && mobileParty.HasNavalNavigationCapability)) && (!mobileParty.Party.Owner.MapFaction.IsAtWarWith(settlement.MapFaction) || ((mobileParty.Party.Owner.MapFaction.IsMinorFaction || mobileParty.MapFaction.Settlements.Count == 0) && settlement.IsVillage)) && (settlement.IsVillage || settlement.IsFortification))
+0801: 		{
+0802: 			if (settlement.IsVillage)
+0803: 			{
+0804: 				return settlement.Village.VillageState == Village.VillageStates.Normal;
+0805: 			}
+0806: 			return true;
+0807: 		}
+0808: 		return false;
+0809: 	}
