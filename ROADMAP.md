@@ -495,7 +495,7 @@ LW0 — Living World Direction documentation checkpoint: **COMPLETE**. No gamepl
 
 | Order | Milestone | Status |
 |---|---|---|
-| LW1 | Persistent Home Assignment / Peacetime Responsibility | **LW1-C2 implementation + tests + netstandard2.0 Release build complete; runtime not yet tested** |
+| LW1 | Persistent Home Assignment / Peacetime Responsibility | **LW1-C2 implementation/tests/Release build complete; exact dev candidate deployed to installed module; organic runtime/save-reload proof pending** |
 | LW2 | Governor Local-Need Response | Planned; not implemented |
 | LW3 | Household Autonomy | Planned; not implemented |
 | LW4 | Purposeful Logistics | Planned; not implemented |
@@ -513,7 +513,9 @@ Persistence/UI/performance designs from LW1-A remain selected. Existing war Home
 
 **LW1-B: COMPLETE, 2026-09-30 UTC — implemented, deterministically tested, Release build ready for deployment.** Multiple Hero.StringId → Settlement.StringId homes, owned town/castle menu, isolated D1 save key, legal native visit exposure, exact-home factor 1.25, counters and observation-only verification are implemented. Existing Phase 3 war Home Responsibility and frozen RC1 bytes are unchanged. Live assignment/menu/save/reload/movement proof is **NOT YET TESTED**. See [LW1-B implementation](Reports/LivingWorld/LW1B_HOME_ASSIGNMENT_IMPLEMENTATION.md).
 
-**Exact next checkpoint: LW1-C3 - deploy persistent-roster dev candidate, verify stable names/statuses in player's organic campaign, finish bounded runtime/save-reload closure.** Runtime must remain bounded, use the organic campaign, and include save/reload closure. Do not begin LW2.
+**LW1-C3 deployment, 2026-09-30 UTC:** Exact `v0.23.0-LW1C2-dev` candidate is installed in the verified Steam `Modules/ClanAI` module with a verified pre-deployment DLL/metadata backup. Game remains closed; no campaign or save was opened or changed. Runtime roster and save/reload proof remain pending. See [LW1-C3 deployment status](Reports/LivingWorld/LW1C3_DEPLOYMENT_STATUS.md) and [deployment receipt](Reports/LivingWorld/evidence/lw1c3_deployment_20260930.txt).
+
+**Exact next checkpoint: LW1-C3 - verify stable names/statuses in player's organic campaign, finish bounded runtime/save-reload closure.** Runtime must remain bounded, use the organic campaign, and include save/reload closure. Do not begin LW2.
 
 ---
 

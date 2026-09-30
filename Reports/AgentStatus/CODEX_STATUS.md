@@ -1,21 +1,28 @@
 # Codex Status
 
-## Current checkpoint - LW1-C2 Persistent Household Responsibility Roster
+## Current checkpoint - LW1-C3 Persistent Roster Deployment
 
-**IMPLEMENTATION + FOCUSED TESTS + GAME-TARGET RELEASE BUILD COMPLETE, 2026-09-30 UTC. Runtime is not yet tested.**
+**DEPLOYMENT COMPLETE, 2026-09-30 UTC. Runtime roster/save-reload verification is pending.**
 
-- Exact source base: GitHub `main` commit `5b9e47b2813373fe0b03bae58d41c88a8dfcff83`; materialized source was verified against its Git tree. The separate legacy checkout `D:\BannerlordAIResearch` was left untouched.
-- The owned-town/castle Manage Home Assignments menu now uses a bounded roster from direct player-clan hero/companion collections plus valid assigned identities. Temporary states stay visible with explicit suspended-responsibility statuses; active behavior still uses the original strict `Eligible` predicate.
-- Stable `Hero.StringId` identity, D1 schema, `ClanAI_HomeAssignment_v1`, 1.25 policy factor, native visit seam, and Phase 3 war Home Responsibility remain unchanged. RC1 package/archive bytes were not written.
-- Focused deterministic suites: **68 roster/runtime PASS, 43 persistence/D1 PASS, 10 Phase 3 preservation PASS**.
-- `NETStandard.Library` 2.0.3 was found in the signed-in user's NuGet cache, verified via package metadata/hash sidecar, and restored through a read-only local feed into the task-local cache.
-- Required actual `netstandard2.0` Release build: **0 errors, 1 inherited MSB3277 `System.ValueTuple` reference-conflict warning**. Focused API compile also passes.
-- Dev candidate: `DevBuilds/ClanAI-v0.23.0-LW1C2-dev/ClanAI.dll`, SHA-256 **`B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563`**.
-- Acceptance audit maps all 25 requested cases to deterministic assertions and static baseline checks in the report. RC1 artifacts, D1 key/schema, factor 1.25, visit seam, and Phase 3 sources remain unchanged.
-- Runtime: **NOT YET TESTED**. Bannerlord launched: **NO**. Deployed: **NO**. No campaign/save activity.
-- Report: [LW1-C2 persistent household roster](../LivingWorld/LW1C2_PERSISTENT_HOUSEHOLD_ROSTER.md); evidence: [C2 validation receipt](../LivingWorld/evidence/lw1c2_validation_20260930.txt).
+- Exact GitHub candidate commit: `54506d232623ea63c04dbac1f9b200b3c9d197d9`.
+- Installed target: Steam `Mount & Blade II Bannerlord/Modules/ClanAI/bin/Win64_Shipping_Client/ClanAI.dll`.
+- Installed candidate SHA-256: **`B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563`**, matching the verified `v0.23.0-LW1C2-dev` source candidate.
+- Pre-deployment installed DLL SHA-256: `B1911B17A04F42C11AB6E23DB3543AFE788FDFA07EFCF34DCF3638D4AB241271`. Rollback DLL and `SubModule.xml` are retained in the task workspace under `Reports/LivingWorld/evidence/lw1c3_predeploy_backup_20260930/`; both backup hashes were checked. Restore only while Bannerlord is closed.
+- Existing `SubModule.xml` remains unchanged (SHA-256 `287609EEBE39EE00D693CD1C354362C64878F40950BCD787D505F20F065B333D`); only the module DLL was replaced. Frozen RC1 archive was not changed.
+- Bannerlord/TaleWorlds process was absent before and after deployment. No game launch, campaign-time advancement, or save activity occurred. The remote desktop agent was offline; deployment used the permitted local copy operation after the target and backup hashes were verified.
+- Test plan: coordinate the live demo with the user; first identify the relevant organic campaign save and create a clearly named disposable copy through the normal game workflow. Never overwrite the original or autosaves. Then verify roster names, home labels, and status/explanations in the paused campaign, perform the bounded save/reload check on the copy, and capture the resulting evidence. Runtime remains **NOT YET TESTED**.
+- Report: [LW1-C3 deployment status](../LivingWorld/LW1C3_DEPLOYMENT_STATUS.md); evidence: [deployment receipt](../LivingWorld/evidence/lw1c3_deployment_20260930.txt).
 
-**Exact next checkpoint: LW1-C3 - deploy persistent-roster dev candidate, verify stable names/statuses in player's organic campaign, finish bounded runtime/save-reload closure.**
+## Previous checkpoint - LW1-C2 Persistent Household Responsibility Roster
+
+**IMPLEMENTATION + FOCUSED TESTS + GAME-TARGET RELEASE BUILD COMPLETE, 2026-09-30 UTC. Runtime roster/save-reload verification remains pending.**
+
+- Exact source base: GitHub `main` commit `5b9e47b2813373fe0b03bae58d41c88a8dfcff83`; the separate legacy checkout `D:\\BannerlordAIResearch` was left untouched.
+- The owned-town/castle Manage Home Assignments menu uses a bounded player-clan household roster and explicit suspended-responsibility statuses while preserving strict behavior eligibility.
+- Stable `Hero.StringId` identity, D1 schema, `ClanAI_HomeAssignment_v1`, 1.25 policy factor, native visit seam, Phase 3 war Home Responsibility, and frozen RC1 package bytes remain unchanged.
+- Focused deterministic suites: **68 roster/runtime PASS, 43 persistence/D1 PASS, 10 Phase 3 preservation PASS**. Actual `netstandard2.0` Release build: **0 errors, 1 inherited MSB3277 warning**.
+- Dev candidate SHA-256: **`B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563`**. Acceptance audit covers all 25 requested cases.
+- C2 report and evidence: [report](../LivingWorld/LW1C2_PERSISTENT_HOUSEHOLD_ROSTER.md), [validation receipt](../LivingWorld/evidence/lw1c2_validation_20260930.txt).
 
 ## Previous checkpoint - LW1-B Persistent Home Assignment
 

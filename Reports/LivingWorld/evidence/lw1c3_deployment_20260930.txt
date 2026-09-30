@@ -1,0 +1,26 @@
+LW1-C3 deployment receipt — 2026-09-30 UTC
+
+Candidate source:
+  GitHub main commit: 54506d232623ea63c04dbac1f9b200b3c9d197d9
+  Candidate: v0.23.0-LW1C2-dev
+  Candidate SHA-256: B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563
+  Installed SHA-256 after copy: B3760F027476C89555414C38D94CECB47C4AC0D08EA2B7E16E594BA516DA9563
+
+Target:
+  C:\Program Files (x86)\Steam\steamapps\common\Mount & Blade II Bannerlord\Modules\ClanAI\bin\Win64_Shipping_Client\ClanAI.dll
+  Module ID/name: ClanAI
+  SubModule metadata version: v0.22.0
+  SubModule.xml SHA-256 before and after: 287609EEBE39EE00D693CD1C354362C64878F40950BCD787D505F20F065B333D
+
+Rollback evidence:
+  Prior installed DLL SHA-256: B1911B17A04F42C11AB6E23DB3543AFE788FDFA07EFCF34DCF3638D4AB241271
+  Backup DLL SHA-256: B1911B17A04F42C11AB6E23DB3543AFE788FDFA07EFCF34DCF3638D4AB241271
+  Backup metadata SHA-256: 287609EEBE39EE00D693CD1C354362C64878F40950BCD787D505F20F065B333D
+  Local rollback folder: Reports/LivingWorld/evidence/lw1c3_predeploy_backup_20260930/ in the authorized task workspace
+
+Process check: no Bannerlord/TaleWorlds process before or after deployment.
+Actions: replaced only the installed ClanAI.dll; did not edit module metadata or another module.
+RC1 archive: unchanged.
+Game launch/campaign-time advancement/save access or modification: none.
+Runtime status: NOT YET TESTED.
+Next: coordinate user demo; identify current organic campaign, save a clearly named disposable copy, verify roster names/home/status and bounded save/reload. Never overwrite originals/autosaves.
