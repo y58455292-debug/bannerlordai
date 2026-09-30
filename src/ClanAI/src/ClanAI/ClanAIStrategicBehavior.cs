@@ -422,6 +422,7 @@ namespace ClanAI
                         thinkParams,
                         scaffold);
 
+                    HomeAssignmentLayer.Apply(party, thinkParams, scaffold);
                     StrategicDecisionComposer.Complete(
                         scaffold,
                         thinkParams);
@@ -476,6 +477,7 @@ namespace ClanAI
                     thinkParams,
                     composer);
 
+                HomeAssignmentLayer.Apply(party, thinkParams, composer);
                 StrategicDecisionComposer.Complete(
                     composer,
                     thinkParams);
@@ -725,6 +727,7 @@ namespace ClanAI
                 thinkParams,
                 composer);
 
+            HomeAssignmentLayer.Apply(party, thinkParams, composer);
             StrategicDecisionComposer.Complete(
                 composer,
                 thinkParams);

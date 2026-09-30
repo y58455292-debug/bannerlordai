@@ -6,7 +6,7 @@ The active mod source is `src/ClanAI`. `src/BannerlordInspector` is the observat
 
 ## Post-RC1 Living World direction
 
-RC1 remains the frozen playable baseline at `9ec113e738af35254e113fbde7c05babbf3c405d`. Post-RC1 development follows [LIVING_WORLD_DIRECTION.md](LIVING_WORLD_DIRECTION.md), connecting homes, responsibilities, purpose, native actions and memory in both peace and war. Next planned implementation research is **Persistent Home Assignment / peacetime responsibility**, beginning with **LW1-A — Persistent Home Assignment native-seam/design audit**; it is not implemented.
+RC1 remains the frozen playable baseline at `9ec113e738af35254e113fbde7c05babbf3c405d`. Post-RC1 development follows [LIVING_WORLD_DIRECTION.md](LIVING_WORLD_DIRECTION.md), connecting homes, responsibilities, purpose, native actions and memory in both peace and war. **LW1-B Persistent Home Assignment / peacetime responsibility is implemented, deterministically tested and Release-build-proven as v0.23.0-LW1B-dev. It is not yet runtime-proven or deployed.** At an owned town/castle, Manage Home Assignments assigns, changes or clears independent clan-party leaders’ homes. See [implementation and build evidence](Reports/LivingWorld/LW1B_HOME_ASSIGNMENT_IMPLEMENTATION.md). Next: **LW1-C — deploy the LW1-B dev candidate and run the bounded playable Home Assignment demo/runtime proof**.
 
 Phase 8C organic player feedback remains ongoing field validation through normal user play. See the ordered Living World development line in [ROADMAP.md](ROADMAP.md) and [LW0 checkpoint](Reports/LivingWorld/LW0_DIRECTION_CHECKPOINT.md). The frozen RC archive, tested package and DLL remain unchanged.
 

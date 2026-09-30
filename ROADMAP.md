@@ -461,7 +461,7 @@ No kingdom is selected to collapse because of plot.
 
 # Phase 8 — Balance, release hardening, and presentation
 
-**Status — STARTED 2026-09-25; PHASE 8B-I5 RC1 FREEZE COMPLETE 2026-09-27.** Phase 8B-I4R4 passed its bounded release-profile save/reload smoke with the exact packaged DLL. Phase 8B-I5 then froze that byte-identical three-file v0.22.0 payload as `Releases/ClanAI-v0.22.0-RC1.zip`, added player installation/beta guidance, and repeated the offline standalone, dependency/version, package, save-key, and Phase 3–7 preservation gates. No gameplay, policy, save-schema, or package-payload change occurred during the freeze. **Release classification: RC1 READY FOR PLAYER CAMPAIGN. Phase 8C continues through normal user play; next development checkpoint: LW1-A2 — supported-native peacetime candidate-generation and control-seam source closure.** See `Reports/Release/PHASE8B_I5_RC_FREEZE_RESULT.md`.
+**Status — STARTED 2026-09-25; PHASE 8B-I5 RC1 FREEZE COMPLETE 2026-09-27.** Phase 8B-I4R4 passed its bounded release-profile save/reload smoke with the exact packaged DLL. Phase 8B-I5 then froze that byte-identical three-file v0.22.0 payload as `Releases/ClanAI-v0.22.0-RC1.zip`, added player installation/beta guidance, and repeated the offline standalone, dependency/version, package, save-key, and Phase 3–7 preservation gates. No gameplay, policy, save-schema, or package-payload change occurred during the freeze. **Release classification: RC1 READY FOR PLAYER CAMPAIGN. Phase 8C continues through normal user play; next development checkpoint: LW1-C — deploy the LW1-B dev candidate and run the bounded playable Home Assignment demo/runtime proof.** See `Reports/Release/PHASE8B_I5_RC_FREEZE_RESULT.md`.
 
 Only after the major world loops work:
 
@@ -495,7 +495,7 @@ LW0 — Living World Direction documentation checkpoint: **COMPLETE**. No gamepl
 
 | Order | Milestone | Status |
 |---|---|---|
-| LW1 | Persistent Home Assignment / Peacetime Responsibility | **A2R COMPLETE; implementation cleared; LW1-B next; not yet implemented** |
+| LW1 | Persistent Home Assignment / Peacetime Responsibility | **LW1-B IMPLEMENTED + TESTED + RELEASE BUILD READY; runtime not yet tested; LW1-C next** |
 | LW2 | Governor Local-Need Response | Planned; not implemented |
 | LW3 | Household Autonomy | Planned; not implemented |
 | LW4 | Purposeful Logistics | Planned; not implemented |
@@ -509,7 +509,9 @@ LW0 — Living World Direction documentation checkpoint: **COMPLETE**. No gamepl
 
 Persistence/UI/performance designs from LW1-A remain selected. Existing war Home Responsibility remains unchanged and stronger during war/urgent threats.
 
-**Next development checkpoint: LW1-B — implement and build the playable Persistent Home Assignment / Peacetime Responsibility vertical slice.** This includes multiple persistent assignments, native assign/change/clear UI, save/load, bounded peacetime home gravity through the selected one native seam plus existing composer, observation-only commit verification, deterministic tests and Release build. Do not begin LW2+ features.
+**LW1-B: COMPLETE, 2026-09-30 UTC — implemented, deterministically tested, Release build ready for deployment.** Multiple Hero.StringId → Settlement.StringId homes, owned town/castle menu, isolated D1 save key, legal native visit exposure, exact-home factor 1.25, counters and observation-only verification are implemented. Existing Phase 3 war Home Responsibility and frozen RC1 bytes are unchanged. Live assignment/menu/save/reload/movement proof is **NOT YET TESTED**. See [LW1-B implementation](Reports/LivingWorld/LW1B_HOME_ASSIGNMENT_IMPLEMENTATION.md).
+
+**Exact next checkpoint: LW1-C — deploy the LW1-B dev candidate and run the bounded playable Home Assignment demo/runtime proof.** Prove distinct homes, ordinary peacetime native centering/return, natural temporary activity (bounded null permitted), and uniquely named disposable save/reload. Do not begin LW2.
 
 ---
 

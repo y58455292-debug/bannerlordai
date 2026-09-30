@@ -1,6 +1,33 @@
 # Codex Status
 
-## Current checkpoint — LW1-A2R Peacetime home seam decision
+## Current checkpoint — LW1-B Persistent Home Assignment
+
+**COMPLETE — IMPLEMENTED + TESTED + RELEASE BUILD READY FOR DEPLOYMENT, 2026-09-30 UTC.**
+
+- Development identity: **v0.23.0-LW1B-dev**, assembly/file version 0.23.0.0.
+- Multiple independent player-clan adult family/companion-led land lord parties can have distinct owned-town/castle homes; main/army/caravan/disabled/stopped/disbanding/special parties are excluded.
+- Native owned-settlement menu: **Manage Home Assignments** → party/current home → Assign here or Clear. Assignment/change/clear messages are one-shot.
+- Persistence: **ClanAI_HomeAssignment_v1**, D1 base64 leader/home StringIds. Existing 12 save keys unchanged; new schema is isolated/additive.
+- Exact approved native visit-list postfix uses supported native suitability/navigation helpers. Native visit scoring, candidate creation, composer indices, final winner and movement commit remain native.
+- HomeAssignmentPolicy exact-home visit/patrol factor **1.25** during peace; urgent native defense and war bypass this policy. Phase 3 war code/composer/context remain byte-identical.
+- Deterministic policy/save tests: **43 PASS**. Runtime adapter boundary fixtures: **29 PASS**. Existing Phase 3 Home Responsibility: **10 PASS**. Native metadata, source invariants, release/standalone/preservation checks passed.
+- Release build: **0 errors**, one existing System.ValueTuple/Harmony reference-conflict warning.
+- Dev DLL: `DevBuilds/ClanAI-v0.23.0-LW1B-dev/ClanAI.dll`.
+- Dev DLL SHA-256: **EEE566615AA72BFEB01C95D05AE8FCF022271F90A2519319D95AF3C90D6A4622**.
+- Runtime status: **NOT YET TESTED**.
+- Bannerlord launched: **NO**.
+- Deployed: **NO**.
+- RC1 changed: **NO**. RC1 remains frozen/playable at `9ec113e738af35254e113fbde7c05babbf3c405d`; archive and tested package/DLL unchanged.
+- No direct movement, synthetic AIBehaviorData, teleportation or mandatory external IO added.
+- Broader pre-existing test limitations are recorded in the implementation report; they are not claimed green.
+
+Report: [LW1-B implementation](../LivingWorld/LW1B_HOME_ASSIGNMENT_IMPLEMENTATION.md).
+
+**Exact next checkpoint: LW1-C — deploy the LW1-B dev candidate and run the bounded playable Home Assignment demo/runtime proof.**
+
+## Previous checkpoint — LW1-A2R source decision
+
+## Archived checkpoint — LW1-A2R Peacetime home seam decision
 
 **COMPLETE — source interpretation only, 2026-09-30.** Supported Bannerlord v1.5.3 native source now closes the Persistent Home Assignment candidate/control question.
 

@@ -239,6 +239,7 @@ namespace ClanAI
                     starter.AddBehavior(new SocialCaptivityObserverBehavior());
                     starter.AddBehavior(new PrisonerMercyDecisionBehavior());
                     starter.AddBehavior(new WarStateBehavior());
+                    starter.AddBehavior(new HomeAssignmentCampaignBehavior());
                     starter.AddBehavior(new RulerClanCourtshipBehavior());
                     starter.AddBehavior(new KingdomContinuityBehavior());
                     if (RuntimeProfile.EvidenceEnabled)

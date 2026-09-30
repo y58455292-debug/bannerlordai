@@ -68,13 +68,13 @@ expected_version = "v0.22.0"
 if module_version != expected_version:
     failed.append("manifest version mismatch: " + repr(module_version))
 for token in (
-    "<AssemblyVersion>0.22.0.0</AssemblyVersion>",
-    "<FileVersion>0.22.0.0</FileVersion>",
-    "<InformationalVersion>v0.22.0</InformationalVersion>",
+    "<AssemblyVersion>0.23.0.0</AssemblyVersion>",
+    "<FileVersion>0.23.0.0</FileVersion>",
+    "<InformationalVersion>v0.23.0-LW1B-dev</InformationalVersion>",
 ):
     if token not in project:
         failed.append("assembly version mismatch: " + token)
-if 'Version = "v0.22.0"' not in identity:
+if 'Version = "v0.23.0-LW1B-dev"' not in identity:
     failed.append("runtime release identity mismatch")
 
 runtime_identity_files = (
@@ -102,6 +102,7 @@ expected_keys = {
     "ClanAI_CompanionNegativeOutcomeMemory_v1", "ClanAI_SocialLoyaltyClanLoss_v2",
     "ClanAI_WarState_v1", "ClanAI_KingdomContinuity_v1",
 }
+expected_keys.add("ClanAI_HomeAssignment_v1")  # Additive LW1-B key; baseline keys stay frozen.
 if save_keys != expected_keys:
     failed.append("save-key set changed: " + repr(sorted(save_keys)))
 
@@ -129,7 +130,7 @@ if failed:
 
 print("PASS Phase 8B-I2 external Harmony dependency/no-bundle invariant")
 print("PASS Phase 8B-I2 NavalDLC non-dependency invariant")
-print("PASS Phase 8B-I2 version identity invariant v0.22.0")
+print("PASS Phase 8B-I2 frozen package v0.22.0 / development source v0.23.0-LW1B-dev identity invariant")
 print("PASS Phase 8B-I2 configurable build-root invariant")
 print("PASS Phase 8B-I1/save-key/gameplay-policy preservation invariant")
 

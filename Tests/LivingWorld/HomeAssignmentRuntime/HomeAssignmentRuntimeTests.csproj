@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+<PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><ImplicitUsings>disable</ImplicitUsings></PropertyGroup>
+<ItemGroup>
+<Compile Include="../../../src/ClanAI/src/ClanAI/HomeAssignmentPolicy.cs" Link="Policy.cs"/>
+<Compile Include="../../../src/ClanAI/src/ClanAI/HomeAssignmentRecords.cs" Link="Records.cs"/>
+<Compile Include="../../../src/ClanAI/src/ClanAI/HomeAssignmentStore.cs" Link="Store.cs"/>
+<Compile Include="../../../src/ClanAI/src/ClanAI/HomeAssignmentVisitPatch.cs" Link="VisitPatch.cs"/>
+<Compile Include="../../../src/ClanAI/src/ClanAI/HomeAssignmentLayer.cs" Link="Layer.cs"/>
+</ItemGroup>
+</Project>

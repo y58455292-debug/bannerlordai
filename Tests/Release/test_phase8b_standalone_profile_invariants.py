@@ -99,6 +99,7 @@ expected_keys = {
     "ClanAI_CompanionNegativeOutcomeMemory_v1", "ClanAI_SocialLoyaltyClanLoss_v2",
     "ClanAI_WarState_v1", "ClanAI_KingdomContinuity_v1",
 }
+expected_keys.add("ClanAI_HomeAssignment_v1")  # Additive LW1-B key; all baseline keys retained.
 if save_keys != expected_keys:
     failed.append("save-key set changed: " + repr(sorted(save_keys)))
 
